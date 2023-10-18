@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="com.android.alarm.permission.SET_ALARM" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+
+    <application
+        android:name=".MyApplication"
+        android:allowBackup="true"
+        android:exported="true"
+        android:hardwareAccelerated="false"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:largeHeap="true"
+        android:launchMode="singleTop"
+        android:requestLegacyExternalStorage="true"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.Trivia"
+        android:usesCleartextTraffic="true">
+        <activity
+            android:name=".WebviewActivity"
+            android:exported="false" />
+        <activity
+            android:name=".HistoryDetals"
+            android:exported="false" />
+        <activity
+            android:name=".MainGameActivity"
+            android:exported="false" />
+        <activity
+            android:name=".History"
+            android:exported="false" />
+        <activity
+            android:name=".WelcomeActivity"
+            android:exported="false" />
+
+        <meta-data
+            android:name="com.google.android.actions"
+            android:resource="@xml/welcome_dialog" />
+
+        <activity
+            android:name=".LevelActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Emitter"
+            android:exported="false" />
+        <activity
+            android:name=".WinnersActivity"
+            android:exported="false" />
+        <activity android:name=".UserDetails" />
+        <activity android:name=".CreditActivity" />
+        <activity android:name=".SettingActivity" />
+        <activity android:name=".PlayDetailsActivity" />
+        <activity android:name=".FailureActivity" />
+        <activity android:name=".ProgressActivity" />
+        <activity android:name=".GameActivity2" />
+        <activity android:name=".Loader" />
+        <activity android:name=".LeaderBoard" />
+        <activity android:name=".Dashboard" />
+        <activity android:name=".CountDownActivity" />
+        <activity android:name=".CountryLeaderBoard" />
+        <activity
+            android:name=".MainActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="ca-app-pub-4696224049420135~4669510197" />
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
+        <meta-data
+            android:name="com.google.android.gms.ads.flag.OPTIMIZE_INITIALIZATION"
+            android:value="true" />
+        <meta-data
+            android:name="com.google.android.gms.ads.flag.OPTIMIZE_AD_LOADING"
+            android:value="true" />
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.provider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/provider_paths" />
+        </provider>
+
+        <receiver
+            android:name=".NotificationService"
+            android:process=":service" />
+    </application>
+
+</manifest>

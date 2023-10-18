@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:id="@+id/rootview"
+    android:background="@color/basic_color"
+    tools:context=".FailureActivity">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+
+
+            <TextView
+                android:id="@+id/replay"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/replay_level"
+                android:fontFamily="@font/ultra"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:layout_marginTop="10dp"
+                android:layout_above="@id/hex"
+                android:layout_marginBottom="30dp"
+                android:layout_gravity="center_horizontal"
+                android:textSize="26sp"/>
+
+            <RelativeLayout
+                android:id="@+id/hex"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_gravity="center_horizontal">
+                <ImageView
+                    android:layout_width="160dp"
+                    android:layout_height="140dp"
+                    android:src="@drawable/hexagon_2"
+                    android:rotation="90"
+                    android:layout_margin="10dp"
+                    app:tint="@color/white"/>
+
+
+                <TextView
+                    android:id="@+id/count_down_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/fjalla_one"
+                    android:text="0"
+                    android:textColor="@color/white"
+                    android:textSize="40sp"
+                    android:textStyle="bold" />
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+
+                android:layout_marginTop="20dp"
+                >
+                <TextView
+                    android:id="@+id/failureTxt"
+                    android:layout_marginTop="0dp"
+                    android:layout_width="match_parent"
+                    android:textSize="18sp"
+                    android:layout_marginRight="10dp"
+                    android:gravity="center"
+                    android:fontFamily="@font/ultra"
+                    android:layout_marginLeft="10dp"
+                    android:textColor="@color/white"
+                    android:text="@string/failure_text"
+                    android:layout_height="wrap_content"/>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="40dp"
+                    android:layout_marginRight="40dp"
+                    >
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/btn_forAnim"
+                        android:layout_margin="30dp"
+                        android:background="@drawable/playbtn_bg"
+                        >
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/continue_game"
+                        android:layout_margin="30dp"
+                        android:background="@drawable/playbtn_bg"
+                        >
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:layout_width="48dp"
+                                android:layout_height="48dp"
+                                android:src="@drawable/video"
+                                app:tint="@color/white"
+                                android:layout_gravity="center_vertical"
+                                />
+                            <RelativeLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content">
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center_vertical"
+                                    android:layout_marginLeft="10dp"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="@string/continue_"
+                                        android:textStyle="bold"
+                                        android:textSize="24sp"
+                                        android:textAllCaps="true"
+                                        android:elevation="5dp"
+                                        android:shadowColor="@color/black"
+                                        android:layout_centerInParent="true"
+                                        android:textColor="@color/black"
+                                        />
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center_vertical"
+                                    android:layout_marginLeft="10dp"
+                                    android:layout_marginTop="-2dp"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:id="@+id/new_game_text"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="@string/continue_"
+                                        android:textStyle="bold"
+                                        android:textAllCaps="true"
+                                        android:textSize="24sp"
+                                        android:elevation="5dp"
+                                        android:shadowColor="@color/black"
+                                        android:layout_centerInParent="true"
+                                        android:textColor="@color/white"
+                                        />
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="@string/watch_a_video"
+                                        android:textStyle="bold"
+                                        android:textSize="14sp"
+                                        android:textColor="@color/white"
+                                        />
+                                </LinearLayout>
+                            </RelativeLayout>
+                        </LinearLayout>
+                    </RelativeLayout>
+                </RelativeLayout>
+                <RelativeLayout
+                    android:id="@+id/new_games"
+                    android:layout_width="match_parent"
+                    android:layout_height="80dp"
+                    android:background="@drawable/ic_hexnow"
+                    android:layout_marginLeft="50dp"
+                    android:layout_marginRight="50dp"
+                    android:layout_marginTop="10dp"
+                    android:padding="10dp"
+                    >
+
+
+                    <TextView
+                        android:id="@+id/more_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:text="@string/play_again"
+                        android:textColor="@color/white"
+                        android:textSize="20dp"
+                        android:textStyle="bold" />
+
+
+                </RelativeLayout>
+
+                <TextView
+                    android:id="@+id/no_thanks"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/no_thanks"
+                    android:textColor="@color/white"
+                    android:textSize="14sp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="20dp"
+                    />
+
+
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent">
+        <com.google.android.gms.ads.AdView
+            xmlns:ads="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/adView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            ads:adSize="FULL_BANNER"
+            android:layout_marginBottom="0dp"
+            ads:adUnitId="@string/banner_adunit">
+
+        </com.google.android.gms.ads.AdView>
+    </RelativeLayout>
+
+</LinearLayout>

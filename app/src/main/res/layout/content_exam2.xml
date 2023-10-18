@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp"
+                    android:id="@+id/displayExam">
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+        <RelativeLayout
+            android:id="@+id/nav"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_alignParentBottom="true"
+            android:visibility="gone"
+            >
+
+            <ImageButton
+                android:id="@+id/prev"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_centerVertical="true"
+                android:layout_alignParentLeft="true"
+                android:onClick="back"
+                android:visibility="gone"/>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:layout_centerHorizontal="true">
+                <Button
+                    android:id="@+id/myclick"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:text="Submit"
+                    android:onClick="check"
+                    android:padding="10dp"
+                    android:textAllCaps="false"
+
+                    />
+
+            </RelativeLayout>
+
+
+            <ImageButton
+                android:id="@+id/fwd"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:onClick="next"/>
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+

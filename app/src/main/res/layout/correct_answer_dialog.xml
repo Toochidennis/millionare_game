@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:gravity="center"
+
+
+
+
+
+
+    android:id="@+id/rootview"
+
+    >
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    <LinearLayout
+
+        android:id="@+id/background"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+
+
+
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:background="@color/basic_color"
+            android:layout_marginTop="40dp"
+
+            android:layout_height="50dp">
+
+        </LinearLayout>
+        <RelativeLayout
+            android:layout_marginTop="-80dp"
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="80dp"
+                android:gravity="center_vertical"
+               android:layout_marginLeft="20dp">
+                <TextView
+                    android:layout_marginTop="18dp"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:textColor="@color/white"
+                    android:text="Correct Answer"
+                    android:textSize="20dp"
+                    android:textStyle="bold"
+                    android:fontFamily="@font/arizonia"
+
+                    />
+            </LinearLayout>
+
+            <RelativeLayout
+                android:id="@+id/close_dialog"
+                android:layout_width="wrap_content"
+                android:layout_height="60dp"
+                android:layout_marginTop="0dp"
+                android:layout_marginRight="10dp"
+
+                android:layout_alignParentRight="true"
+                android:layout_weight="1">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/hexagon"
+                    app:tint="@color/white" />
+
+                <ImageView
+
+                    android:id="@+id/close"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/ic_baseline_close_24"
+                    app:tint="@color/black" />
+            </RelativeLayout>
+        </RelativeLayout>
+
+
+       <LinearLayout
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:paddingHorizontal="10dp"
+           android:background="@color/basic_color">
+           <RelativeLayout
+
+
+
+               android:orientation="vertical"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:layout_marginBottom="5dp"
+               android:layout_marginTop="30dp"
+               android:id="@+id/view_cont"
+               android:background="@drawable/hex_green2"
+               >
+
+               <LinearLayout
+
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:orientation="horizontal"
+                   android:padding="10dp">
+
+                   <RelativeLayout
+                       android:id="@+id/_questions"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content">
+
+                       <ImageView
+                           android:layout_width="wrap_content"
+                           android:layout_height="30dp"
+                           android:layout_centerInParent="true"
+                           android:src="@drawable/hexagon"
+                           app:tint="@color/white" />
+
+                       <TextView
+                           android:id="@+id/alpha_opt"
+                           android:layout_width="wrap_content"
+                           android:layout_height="wrap_content"
+                           android:layout_centerInParent="true"
+                           android:layout_centerVertical="true"
+                           android:layout_gravity="center"
+                           android:text="A"
+                           android:textColor="@color/black"
+                           android:textSize="12sp"
+                           android:textStyle="bold" />
+
+                   </RelativeLayout>
+
+
+                   <TextView
+                       android:id="@+id/opt"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:layout_gravity="center_vertical"
+                       android:text="a"
+                       android:textColor="@color/white"
+                       android:textSize="18sp" />
+
+               </LinearLayout>
+
+           </RelativeLayout>
+       </LinearLayout>
+
+        <LinearLayout
+            android:background="@color/basic_color"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:paddingTop="20dp"
+            android:orientation="vertical"
+
+            android:paddingHorizontal="10dp"
+            >
+
+
+            <TextView
+                android:id="@+id/reason"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:lineSpacingMultiplier="1.36"
+
+                android:fontFamily="@font/arimo"
+                />
+
+            <RelativeLayout
+
+
+                android:id="@+id/read_more"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:background="@drawable/ic_hexnow"
+
+                android:layout_marginLeft="25dp"
+                android:layout_marginRight="25dp"
+                android:layout_marginTop="20dp"
+                android:padding="10dp"
+                >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:text="@string/readmore"
+
+                    android:textColor="@color/white"
+                    android:textSize="20dp"
+                    android:textStyle="bold" />
+            </RelativeLayout>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="@color/basic_color"/>
+
+
+
+
+
+    </LinearLayout>
+    </ScrollView>
+
+</RelativeLayout>

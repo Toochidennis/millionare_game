@@ -1,0 +1,437 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:alpha="0.0"
+    android:id="@+id/background"
+    >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+
+        android:gravity="end">
+        <RelativeLayout
+            android:id="@+id/new_game"
+            android:layout_width="wrap_content"
+            android:layout_height="60dp"
+            android:layout_margin="10dp"
+
+            android:layout_weight="1">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:src="@drawable/hexagon"
+                app:tint="@color/white" />
+
+            <ImageView
+                android:layout_centerInParent="true"
+                android:id="@+id/close"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:src="@drawable/ic_baseline_close_24"
+                app:tint="@color/black" />
+        </RelativeLayout>
+
+    </LinearLayout>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:background="@android:color/transparent"
+        android:layout_height="match_parent">
+    <LinearLayout
+
+
+
+
+        android:orientation="vertical"
+        android:layout_gravity="center_vertical"
+        android:gravity="center_vertical"
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:paddingBottom="30dp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_centerInParent="true"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_above="@+id/list">
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginRight="30dp">
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="100dp"
+                        android:elevation="5dp"
+
+                        app:cardCornerRadius="10dp"
+
+                        android:layout_margin="3dp"
+
+                        android:paddingTop="30dp"
+                        android:paddingBottom="30dp">
+                        <TextView
+                            android:layout_gravity="center"
+                            android:layout_margin="5dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="this is the content"/>
+
+
+                    </androidx.cardview.widget.CardView>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginLeft="0dp"
+                    android:layout_marginRight="20dp">
+                    <androidx.cardview.widget.CardView
+                        android:elevation="5dp"
+                        android:layout_margin="3dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="100dp"
+
+                        app:cardCornerRadius="10dp"
+                        android:paddingTop="30dp"
+                        android:paddingBottom="30dp">
+                        <TextView
+                            android:layout_margin="5dp"
+                            android:layout_gravity="center"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="this is the content uu jj jj jj"/>
+
+
+                    </androidx.cardview.widget.CardView>
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+
+
+            <LinearLayout
+                android:id="@+id/list"
+
+                android:layout_centerInParent="true"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:layout_marginTop="0dp"
+                android:orientation="horizontal"
+                android:visibility="visible">
+
+
+
+
+
+                <RelativeLayout
+                    android:id="@+id/_questions"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="150dp"
+                    android:layout_margin="10dp"
+
+
+                    >
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="100dp"
+                        android:layout_above="@+id/two"
+                        android:layout_centerInParent="true"
+                        android:src="@drawable/ic_arrow_upward_black">
+
+                    </ImageView>
+
+
+
+                    <ImageView
+                        android:id="@+id/two"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:src="@drawable/hexagon"
+                        app:tint="@color/basic_color" />
+
+                    <ImageView
+                        android:id="@+id/bad1"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:layout_centerInParent="true"
+                        android:src="@drawable/bad"
+                        android:visibility="gone" />
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:layout_gravity="center"
+                        android:text="-2"
+                        android:textColor="@color/white"
+                        android:textSize="30sp"
+                        android:textStyle="bold" />
+
+                    <ImageView
+                        android:id="@+id/video_ad1"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_centerInParent="true"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/motion_video"
+                        android:visibility="gone" />
+
+                </RelativeLayout>
+
+
+                <RelativeLayout
+
+                    android:id="@+id/ask_friend"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="150dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_toRightOf="@+id/_questions">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:src="@drawable/hexagon"
+                        app:tint="@color/basic_color" />
+
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_centerInParent="true"
+                        android:layout_gravity="center"
+                        android:id="@+id/qu"
+                        android:src="@drawable/ic_baseline_help_outline_24" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="100dp"
+                        android:layout_below="@+id/qu"
+                        android:layout_centerInParent="true"
+                        android:src="@drawable/ic_arrow_downward_black" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/voting"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="150dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_toRightOf="@+id/ask_friend">
+
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="100dp"
+                        android:layout_above="@+id/graph"
+                        android:layout_centerInParent="true"
+                        android:src="@drawable/ic_arrow_upward_black">
+
+                    </ImageView>
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:src="@drawable/hexagon"
+                        android:id="@+id/graph"
+                        app:tint="@color/basic_color" />
+
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_centerInParent="true"
+                        android:src="@drawable/ic_baseline_bar_chart_24"
+                        app:tint="@color/white" />
+
+                    <ImageView
+                        android:id="@+id/bad3"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:layout_centerInParent="true"
+                        android:src="@drawable/bad"
+                        android:visibility="gone" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/skip"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="150dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_toRightOf="@+id/voting">
+
+
+
+                    <ImageView
+                        android:id="@+id/rotate"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:src="@drawable/hexagon"
+                        app:tint="@color/basic_color" />
+
+                    <ImageView
+                        android:id="@+id/refresh"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_centerInParent="true"
+                        android:layout_gravity="center"
+                        android:src="@drawable/ic_baseline_autorenew_24"
+                        app:tint="@color/white" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="100dp"
+                        android:layout_below="@+id/refresh"
+                        android:layout_centerInParent="true"
+                        android:src="@drawable/ic_arrow_downward_black">
+
+                    </ImageView>
+
+
+                </RelativeLayout>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_marginTop="-20dp"
+                android:layout_centerInParent="true"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_above="@+id/list">
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginRight="0dp">
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="100dp"
+                        android:elevation="5dp"
+
+                        app:cardCornerRadius="10dp"
+
+                        android:layout_margin="3dp"
+
+                        android:paddingTop="30dp"
+                        android:paddingBottom="30dp">
+                        <TextView
+                            android:layout_gravity="center"
+                            android:layout_margin="5dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="this is the content"/>
+
+
+                    </androidx.cardview.widget.CardView>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginRight="0dp">
+                    <androidx.cardview.widget.CardView
+                        android:elevation="5dp"
+                        android:layout_margin="3dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="100dp"
+
+                        app:cardCornerRadius="10dp"
+                        android:paddingTop="30dp"
+                        android:paddingBottom="30dp">
+                        <TextView
+                            android:layout_margin="5dp"
+                            android:layout_gravity="center"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="this is the content uu jj jj jj"/>
+
+
+                    </androidx.cardview.widget.CardView>
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+        </LinearLayout>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </LinearLayout>
+
+
+
+    </ScrollView>
+
+</LinearLayout>

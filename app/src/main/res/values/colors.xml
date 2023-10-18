@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_dark">#230253</color>
+    <color name="color5">#D8A7B1</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="black">#000000</color>
+    <color name="white">#FFFFFF</color>
+    <color name="basic_color">#03045e</color>
+    <color name="orange"> #fb8500</color>
+    <color name="color1">#ffb703</color>
+    <color name="color2">#023047</color>
+    <color name="color3">#219ebc</color>
+    <color name="color4">#8ecae6</color>
+    <color name="redH">#e53935</color>
+    <color name="navy_blue">#000080</color>
+    <color name="green">#00B800</color>
+    <color name="hot_pink">#EF7C8E</color>
+    <color name="hot_pink_dark">#AC5563</color>
+    <color name="spearmint">#B6E2D3</color>
+    <color name="rose_water">#D8A7B1</color>
+    <color name="dark_blue">#274472</color>
+    <color name="dark_blue_dark">#182B49</color>
+
+    <color name="baby_blue">#C3E0E5</color>
+    <color name="blue_gray">#5885AF</color>
+    <color name="blue_gray_dark">#395977</color>
+    <color name="lilac">#D3B5E5</color>
+    <color name="rose_quartz">#FFD4DB</color>
+    <color name="dark_grey">#808080</color>
+    <color name="dark_grey1">#000000</color>
+    <color name="dark_grey2">#383838</color>
+</resources>

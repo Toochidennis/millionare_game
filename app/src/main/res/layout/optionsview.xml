@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:paddingBottom="20dp"
+    android:layout_marginTop="-20dp"
+    android:layout_height="match_parent"
+    android:id="@+id/optlay">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:gravity="center_horizontal"
+            android:id="@+id/numbering"
+            android:textSize="18sp"
+            android:textColor="@color/black" />
+        <RadioGroup
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="fill_parent"
+            android:id="@+id/question"
+            android:layout_marginTop="15dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:textColor="@color/black">
+        </RadioGroup>
+        <LinearLayout
+            android:id="@+id/qd"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center">
+
+        </LinearLayout>
+
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/verdict_fram"
+            android:layout_gravity="center_horizontal"
+            android:visibility="gone">
+            <ImageView
+                android:id="@+id/verdict_img"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:visibility="gone"
+                android:layout_gravity="center"/>
+            <TextView
+                android:id="@+id/verdict_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"/>
+
+        </FrameLayout>
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:id="@+id/t_your_ans"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:text="your ans"
+                android:textColor="@color/orange"
+                android:visibility="gone"/>
+
+        </FrameLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/your_ans"
+            android:textSize="14sp"
+            android:layout_gravity="center_horizontal"
+            android:textColor="@color/black"
+            android:layout_marginBottom="16dp"
+            android:visibility="gone"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/t_correct_ans"
+            android:textStyle="bold"
+            android:layout_gravity="center_horizontal"
+            android:textSize="16sp"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/correct_ans"
+            android:textSize="14sp"
+            android:layout_gravity="center_horizontal"
+            android:textColor="@color/black"
+            android:visibility="gone"
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:id="@+id/colorBar"
+            android:layout_marginTop="20dp"
+            android:visibility="gone"
+            android:layout_height="3dp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/verdict"
+            android:visibility="gone"/>
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,84 @@
+<resources>
+    <string name="app_name">Millionaire Game</string>
+    <string name="select_a_theme">Select a theme</string>
+    <string name="new_game">New Game</string>
+    <string name="leaderboard"><u>Leaderboard</u></string>
+    <string name="exit_game">Exit Game</string>
+    <string name="settings">Settings</string>
+    <string name="sound_on">Sound</string>
+    <string name="game_mode">Game mode</string>
+    <string name="taptic">Vibration</string>
+    <string name="simple">Simple</string>
+    <string name="no_thanks"><u>No Thanks</u></string>
+    <string name="language">Language</string>
+    <string name="on">ON</string>
+    <string name="off">OFF</string>
+    <string name="timed">Timed</string>
+    <string name="credits">Credits</string>
+    <string name="default_theme">Default</string>
+    <string name="theme_1">Theme 1</string>
+    <string name="theme_2">Theme 2</string>
+    <string name="theme_3">Theme 3</string>
+    <string name="english">English</string>
+    <string name="french">French</string>
+    <string name="banner_adunit">ca-app-pub-4696224049420135/8152081288</string>
+    <string name="app_ad_id">ca-app-pub-4696224049420135~2129598410</string>
+    <string name="interstitial_adunit">ca-app-pub-4696224049420135/9312479087</string>
+    <string name="rewardedad_adunit">ca-app-pub-4696224049420135/7768937909</string>
+    <string name="ad_copy">I just won 000 in the millionaire game. I invite you to play the awesome and exciting millionaire game to improve your knowledge.
+
+\n\nBeat me if you can !!!
+       \n111
+    </string>
+    <string name="ad_copy2">My username is usernamevariable I invite you to play the awesome and exciting millionaire game to improve your knowledge.
+
+\n\nBeat me if you can !!!
+       \n111
+    </string>
+    <string name="play">PLAY</string>
+    <string name="see_your_ranking">See your ranking</string>
+    <string name="goto_youtube"><u>Learn Digital Skills</u></string>
+    <string name="won">Congratulations you won</string>
+    <string name="more_games"><u>Join Our Community</u></string>
+    <string name="more_games2">More Games</string>
+    <string name="reach_us_on_facebook"><u>@Digitaldreamsng</u></string>
+    <string name="call_us"><u>09064660137</u></string>
+    <string name="send_us_an_email"><u>info@digitaldreamsng.com</u></string>
+    <string name="twitter"><u>@DigitalDreamsNG</u></string>
+    <string name="get_ready">Get Ready!</string>
+    <string name="you_won">Score</string>
+    <string name="next">Next Level</string>
+    <string name="winner">Winner</string>
+    <string name="home">Home</string>
+    <string name="winning_congrats">Congratulations!</string>
+    <string name="next_level">Stage Completed</string>
+
+    <string name="can_you_beat_that">You can beat this score!</string>
+    <string name="share">Share</string>
+    <string name="are_you_sure_you_want_to_exit">Are you sure you want to exit?</string>
+    <string name="yes">Quit</string>
+    <string name="no">No</string>
+    <string name="are_you_sure_you_want_to_take_500_and_leave_the_game">
+        Quiters never win. Do not quit, continue to win
+    </string>
+    <string name="take_money">Exit Game</string>
+    <string name="continue_">Continue</string>
+    <string name="take">Take</string>
+    <string name="replay_level">Replay Level</string>
+    <string name="watch_a_video">Retain your score</string>
+    <string name="base_url">http://www.cbtportal.linkskool.com/api</string>
+    <string name="hard_level">Next Level</string>
+
+    <string name="failure_text">Failing does not mean you are a failure </string>
+    <string name="play_again"><u>Play Again</u></string>
+    <string name="view_ranking"><u>View Ranking</u></string>
+    <string name="view_history"><u>View Answers</u></string>
+    <string name="count_down_amount">1000000</string>
+    <string name="count_down_level">Level 1</string>
+    <string name="play_history">Play History</string>
+    <string name="give_up"><u>Give up</u></string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="anonymous_user">Anonymous user</string>
+    <string name="readmore">Read More</string>
+</resources>

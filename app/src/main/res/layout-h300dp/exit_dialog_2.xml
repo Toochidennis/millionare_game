@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/rootview"
+    android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/basic_color">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    >
+
+    <RelativeLayout
+        android:id="@+id/close_container"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:elevation="5dp"
+        android:layout_alignParentEnd="true"
+        android:layout_margin="10dp">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/hexagon_4"
+            android:layout_centerInParent="true"
+            />
+        <ImageView
+            android:id="@+id/close"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            app:tint="@color/black"
+            android:src="@drawable/ic_baseline_close_24"/>
+
+    </RelativeLayout>
+</RelativeLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+                <ImageView
+                    android:layout_width="150dp"
+                    android:layout_height="110dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_gravity="center_horizontal"
+                    android:background="@drawable/game_logo" />
+            <TextView
+                android:visibility="gone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/app_name"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                android:fontFamily="@font/montserrat"
+                android:textStyle="bold"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="30dp"/>
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <RelativeLayout
+                    android:id="@+id/view_forAnim"
+                    android:layout_width="match_parent"
+                    android:layout_height="65dp"
+                    android:layout_marginTop="20dp"
+                    android:elevation="5dp"
+                    android:background="@drawable/ic_hexnow"
+                    android:layout_marginLeft="40dp"
+                    android:layout_marginRight="40dp"
+                    >
+
+
+                </RelativeLayout>
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="65dp"
+                    android:layout_marginTop="20dp"
+                    android:elevation="5dp"
+                    android:background="@drawable/ic_hexnow"
+                    android:layout_marginLeft="40dp"
+                    android:layout_marginRight="40dp"
+                    >
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_centerVertical="true"
+                        android:layout_centerInParent="true"
+                        android:gravity="center"
+                        >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/arimo"
+                            android:text="@string/take"
+                            android:paddingTop="5dp"
+                            android:textColor="@color/white"
+                            android:textSize="16sp"
+                            />
+
+                        <TextView
+                            android:paddingBottom="5dp"
+                            android:id="@+id/amount_won"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/ultra"
+                            android:text="$500000"
+                            android:textColor="@color/white"
+                            android:textSize="24sp"
+                            />
+
+                    </LinearLayout>
+
+                </RelativeLayout>
+            </RelativeLayout>
+
+
+            <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/desc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/are_you_sure_you_want_to_take_500_and_leave_the_game"
+            android:textSize="14sp"
+            android:textColor="@color/white"
+            android:textAlignment="center"
+            android:fontFamily="@font/ultra"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="20dp"
+            />
+
+
+                <RelativeLayout
+                    android:id="@+id/continue_"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:background="@drawable/ic_hexnow"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginRight="25dp"
+                    android:layout_marginTop="10dp"
+                    android:padding="10dp"
+                    >
+
+                    <TextView
+                        android:id="@+id/setting_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/continue_"
+                        android:textStyle="bold"
+                        android:textSize="20dp"
+                        android:layout_centerInParent="true"
+                        android:textColor="@color/white"
+                        />
+                </RelativeLayout>
+
+        </LinearLayout>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_alignParentBottom="true"
+            android:orientation="horizontal">
+
+
+
+            <LinearLayout
+                android:id="@+id/share"
+                android:layout_width="0dp"
+                android:layout_height="60dp"
+                android:layout_weight="2"
+                android:layout_marginTop="10dp"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:background="@drawable/ic_newhex"
+                android:layout_margin="10dp">
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/ic_baseline_share_24"
+                    app:tint="@color/black"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/share"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:layout_marginLeft="10dp"
+                    android:fontFamily="@font/arimo"/>
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:id="@+id/take_money"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+
+            android:layout_marginLeft="25dp"
+            android:layout_marginRight="25dp"
+            android:layout_marginTop="10dp"
+            android:padding="10dp"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/take_money"
+                android:textStyle="bold"
+                android:textSize="20dp"
+                android:layout_centerInParent="true"
+                android:textColor="@color/white"
+                />
+        </RelativeLayout>
+    </LinearLayout>
+    </ScrollView>
+</LinearLayout>
