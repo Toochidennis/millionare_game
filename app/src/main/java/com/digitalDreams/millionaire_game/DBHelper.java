@@ -111,7 +111,8 @@ class DBHelper extends SQLiteOpenHelper {
 
     public Cursor getQuestionByLevel2(String level){
         SQLiteDatabase db = getWritableDatabase();
-        if(!db.isOpen()){
+        // this line was changed
+        if(db.isOpen()){
             //db.close();
             db = getWritableDatabase();
 
