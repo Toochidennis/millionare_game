@@ -37,7 +37,7 @@ import java.io.IOException;
 public class WinnersActivity extends AppCompatActivity {
     File imagePath;
     //ImageView shareBTN, backBTN;
-    RelativeLayout bg,newGameBtn;
+    RelativeLayout bg, newGameBtn;
     RelativeLayout imageRoot;
     TextView usernameTXT;
     TextView amountWonTXT;
@@ -78,76 +78,67 @@ public class WinnersActivity extends AppCompatActivity {
 
         newGameBtn = findViewById(R.id.new_game);
 
-        share_layout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                checkPermission();
+        share_layout.setOnClickListener(view -> checkPermission());
 
-            }
-        });
-
-        newGameBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                GameActivity2.hasOldWinningAmount = true;
+        newGameBtn.setOnClickListener(view -> {
+            GameActivity2.hasOldWinningAmount = true;
 //                Intent intent = new Intent(WinnersActivity.this,GameActivity2.class);
 //                intent.putExtra("hasOldWinningAmount",true);
 //                startActivity(intent);
 //                finish();
-                GameActivity2.hasOldWinningAmount = true;
-                Utils.continueGame(WinnersActivity.this);
-            }
+            GameActivity2.hasOldWinningAmount = true;
+            Utils.continueGame(WinnersActivity.this);
         });
 
         RelativeLayout btnAnim = findViewById(R.id.btn_forAnim);
         new MyAnimation(btnAnim);
 
 
-
         SharedPreferences sharedPreferences = getSharedPreferences("settings", Context.MODE_PRIVATE);
-        String languageCode = sharedPreferences.getString("language","en");
-        int endcolor = sharedPreferences.getInt("end_color",getResources().getColor(R.color.purple_dark));
-        int startColor = sharedPreferences.getInt("start_color",getResources().getColor(R.color.purple_500));
-        int cardBackground = sharedPreferences.getInt("card_background",0x219ebc);
-        String highscore = sharedPreferences.getString("high_score","0");
-        String username = sharedPreferences.getString("username","");
-        amountWon = sharedPreferences.getString("amountWon","1000000");
-        String game_level = sharedPreferences.getString("game_level","1");
+        String languageCode = sharedPreferences.getString("language", "en");
+        int endcolor = sharedPreferences.getInt("end_color", getResources().getColor(R.color.purple_dark));
+        int startColor = sharedPreferences.getInt("start_color", getResources().getColor(R.color.purple_500));
+        int cardBackground = sharedPreferences.getInt("card_background", 0x219ebc);
+        String highscore = sharedPreferences.getString("high_score", "0");
+        String username = sharedPreferences.getString("username", "");
+        amountWon = sharedPreferences.getString("amountWon", "1000000");
+        String game_level = sharedPreferences.getString("game_level", "1");
 
         /////////////Save level//////
 
         SharedPreferences.Editor editor = sharedPreferences.edit();
         int game_level_int = Integer.parseInt(game_level);
 
-        int  next_level = game_level_int+1;
+        int next_level = game_level_int + 1;
 
-        editor.putString("game_level",String.valueOf(next_level));
-        editor.putString("high_score",amountWon);
+        editor.putString("game_level", String.valueOf(next_level));
+        editor.putString("high_score", amountWon);
         editor.apply();
 
 
         ///////////////////////////
 
-       try{
-           usernameTXT.setText(username.substring(0,1).toUpperCase()+username.substring(1,username.length()));
-           amountWonTXT.setText(Utils.addDollarSign(Utils.addCommaToNumber(Integer.parseInt(amountWon))));
-       }catch (Exception e){}
+        try {
+            usernameTXT.setText(username.substring(0, 1).toUpperCase() + username.substring(1, username.length()));
+            amountWonTXT.setText(Utils.addDollarSign(Utils.addCommaToNumber(Integer.parseInt(amountWon))));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         bg = findViewById(R.id.rootview);
         imageRoot = findViewById(R.id.imageroot);
-        new Particles(this,bg,R.layout.image_xml,20);
+        new Particles(this, bg, R.layout.image_xml, 20);
         GradientDrawable gd = new GradientDrawable(
                 GradientDrawable.Orientation.TOP_BOTTOM,
-                new int[] {startColor,endcolor});
+                new int[]{startColor, endcolor});
 
         bg.setBackgroundDrawable(gd);
 
         //share = findViewById(R.id.share);
         //next =  findViewById(R.id.next);
-       /// home = findViewById(R.id.home);
+        /// home = findViewById(R.id.home);
 
 
-       // new NewParticle(this, R.layout.single_star,imageRoot,100,5000);
-
+        // new NewParticle(this, R.layout.single_star,imageRoot,100,5000);
 
 
 //        shareBTN = findViewById(R.id.shareBTN);
@@ -177,22 +168,23 @@ public class WinnersActivity extends AppCompatActivity {
 //        });
     }
 
-    private void playBackgroundSound(){
-        try{
-            if(GameActivity2.mWinning_sound!=null) {
+    private void playBackgroundSound() {
+        try {
+            if (GameActivity2.mWinning_sound != null) {
                 CountDownActivity.mMediaPlayer.stop();
 
                 GameActivity2.mWinning_sound.setAudioStreamType(AudioManager.STREAM_MUSIC);
                 GameActivity2.mWinning_sound.setLooping(true);
                 GameActivity2.mWinning_sound.start();
             }
-        }catch (Exception e){}
+        } catch (Exception e) {
+        }
     }
 
-    private String setAvatar(ImageView imageView,String avatar){
+    private String setAvatar(ImageView imageView, String avatar) {
         //SharedPreferences sharedPreferences = getSharedPreferences("settings", Context.MODE_PRIVATE);
         //String avatar = sharedPreferences.getString("avatar","");
-        switch (avatar){
+        switch (avatar) {
             case "1":
                 imageView.setImageResource(R.drawable.avatar1);
                 break;
@@ -209,9 +201,9 @@ public class WinnersActivity extends AppCompatActivity {
         return avatar;
     }
 
-    private String getAvatar(){
+    private String getAvatar() {
         SharedPreferences sharedPreferences = getSharedPreferences("settings", Context.MODE_PRIVATE);
-        String avatar = sharedPreferences.getString("avatar","");
+        String avatar = sharedPreferences.getString("avatar", "");
         return avatar;
     }
 
@@ -300,7 +292,7 @@ public class WinnersActivity extends AppCompatActivity {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
 
         if (requestCode == MY_PERMISSIONS_WRITE_EXTERNAL_STORAGE) {
-            if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 Bitmap bitmap = takeScreenshot();
                 saveBitmap(bitmap);
                 shareIt();
@@ -311,7 +303,7 @@ public class WinnersActivity extends AppCompatActivity {
     @Override
     protected void onPause() {
         super.onPause();
-        if(GameActivity2.mWinning_sound!=null) {
+        if (GameActivity2.mWinning_sound != null) {
             GameActivity2.mWinning_sound.pause();
 
         }
@@ -320,9 +312,8 @@ public class WinnersActivity extends AppCompatActivity {
     @Override
     protected void onPostResume() {
         super.onPostResume();
-        if(GameActivity2.mWinning_sound!=null) {
+        if (GameActivity2.mWinning_sound != null) {
             GameActivity2.mWinning_sound.start();
-
         }
     }
 }
