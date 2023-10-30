@@ -49,8 +49,6 @@ public class WelcomeActivity extends AppCompatActivity {
 
         if(IS_DONE_INSERTING){
 
-
-
             Utils.IS_DONE_INSERTING = true;
             editor.putBoolean("IS_DONE_INSERTING",true);
             editor.commit();
@@ -83,7 +81,7 @@ public class WelcomeActivity extends AppCompatActivity {
                 new int[] {startColor,endcolor});
 
         bg.setBackgroundDrawable(gd);
-        viewpager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+ /*       viewpager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
 
@@ -99,7 +97,7 @@ public class WelcomeActivity extends AppCompatActivity {
             public void onPageScrollStateChanged(int state) {
 
             }
-        });
+        });*/
 
 
         TimerTask timerTask = new TimerTask() {
@@ -118,14 +116,7 @@ public class WelcomeActivity extends AppCompatActivity {
 
 
 
-
-                viewpager.post(new Runnable(){
-
-                    @Override
-                    public void run() {
-                        viewpager.setCurrentItem((viewpager.getCurrentItem()+1)%viewPagerAdapter.getCount());
-                    }
-                });
+                viewpager.post(() -> viewpager.setCurrentItem((viewpager.getCurrentItem()+1)%viewPagerAdapter.getCount()));
             }
         };
         timer = new Timer();
