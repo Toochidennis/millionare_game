@@ -253,36 +253,30 @@ public class GameActivity2 extends AppCompatActivity {
         exitBtn = findViewById(R.id.exitBtn);
 
 
-        progressBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                Intent intent = new Intent(GameActivity2.this, ProgressActivity.class);
-                intent.putExtra("number", p1);
-                intent.putExtra("timer", "false");
-                if (Build.VERSION.SDK_INT > 20) {
-                    ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(GameActivity2.this);
-                    startActivity(intent, options.toBundle());
-                } else {
-                    startActivity(intent);
-                }
+        progressBtn.setOnClickListener(view -> {
+            Intent intent = new Intent(GameActivity2.this, ProgressActivity.class);
+            intent.putExtra("number", p1);
+            intent.putExtra("timer", "false");
+            if (Build.VERSION.SDK_INT > 20) {
+                ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(GameActivity2.this);
+                startActivity(intent, options.toBundle());
+            } else {
+                startActivity(intent);
             }
         });
 
-        exitBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Utils.darkBlueBlink(exitBtn, getApplicationContext());
+        exitBtn.setOnClickListener(view -> {
+            Utils.darkBlueBlink(exitBtn, getApplicationContext());
 
-                ExitGameDialog dialog = new ExitGameDialog(GameActivity2.this, amountWon);
-                dialog.setCancelable(false);
-                dialog.setCanceledOnTouchOutside(false);
-                dialog.show();
-                Window window = dialog.getWindow();
-                window.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+            ExitGameDialog dialog = new ExitGameDialog(GameActivity2.this, amountWon);
+            dialog.setCancelable(false);
+            dialog.setCanceledOnTouchOutside(false);
+            dialog.show();
+            Window window = dialog.getWindow();
+            assert window != null;
+            window.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
 
 
-            }
         });
 
 
@@ -347,13 +341,7 @@ public class GameActivity2 extends AppCompatActivity {
 //
 //        }
 
-        cancel_button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                guid_layout.setVisibility(View.GONE);
-
-            }
-        });
+        cancel_button.setOnClickListener(view -> guid_layout.setVisibility(View.GONE));
 
     }
 
@@ -704,9 +692,7 @@ public class GameActivity2 extends AppCompatActivity {
                 TextView answerDesc = a.findViewById(R.id.answer_desc);
                 String desc = answerDescriptionArr[new Random().nextInt(answerDescriptionArr.length)];
                 answerDesc.setText(desc);
-                hideQuestionBtn.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
+                hideQuestionBtn.setOnClickListener(view -> {
 //                        ImageView video_ad1_Icon = a.findViewById(R.id.video_ad1);
 //                      if(removeOptions && fromProgress2){
 //                          showInterstitial();
@@ -721,53 +707,44 @@ public class GameActivity2 extends AppCompatActivity {
 //
 //                      }
 
-                        hideQuestion(q, ans.getText().toString());
-                        _2question = false;
-                        ImageView badIcon = a.findViewById(R.id.bad1);
-                        badIcon.setVisibility(View.VISIBLE);
+                    hideQuestion(q, ans.getText().toString());
+                    _2question = false;
+                    ImageView badIcon = a.findViewById(R.id.bad1);
+                    badIcon.setVisibility(View.VISIBLE);
 
-                        hideQuestionBtn.setClickable(false);
-                    }
+                    hideQuestionBtn.setClickable(false);
                 });
 
-                askFriendBtn.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        askFriend = false;
-                        votingContainer.setVisibility(View.GONE);
-                        ImageView badIcon = a.findViewById(R.id.bad2);
-                        badIcon.setVisibility(View.VISIBLE);
-                        answerContainer.setVisibility(View.VISIBLE);
-                        String answer = ans.getText().toString().trim();
-                        String correctOption = checkCorrectOptions(q, answer);
-                        answerOption.setText(correctOption);
-                        askFriendBtn.setClickable(false);
+                askFriendBtn.setOnClickListener(view -> {
+                    askFriend = false;
+                    votingContainer.setVisibility(View.GONE);
+                    ImageView badIcon = a.findViewById(R.id.bad2);
+                    badIcon.setVisibility(View.VISIBLE);
+                    answerContainer.setVisibility(View.VISIBLE);
+                    String answer = ans.getText().toString().trim();
+                    String correctOption = checkCorrectOptions(q, answer);
+                    answerOption.setText(correctOption);
+                    askFriendBtn.setClickable(false);
 
-                    }
                 });
 
-                votingBtn.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        answerContainer.setVisibility(View.GONE);
-                        votingContainer.setVisibility(View.VISIBLE);
-                        ImageView badIcon = a.findViewById(R.id.bad3);
-                        badIcon.setVisibility(View.VISIBLE);
-                        vote = false;
-                        String answer = ans.getText().toString().trim();
-                        String correctOption = checkCorrectOptions(q, answer);
-                        setVotingGraph(a, correctOption);
-                        votingBtn.setClickable(false);
-                    }
+                votingBtn.setOnClickListener(view -> {
+                    answerContainer.setVisibility(View.GONE);
+                    votingContainer.setVisibility(View.VISIBLE);
+                    ImageView badIcon = a.findViewById(R.id.bad3);
+                    badIcon.setVisibility(View.VISIBLE);
+                    vote = false;
+                    String answer = ans.getText().toString().trim();
+                    String correctOption = checkCorrectOptions(q, answer);
+                    setVotingGraph(a, correctOption);
+                    votingBtn.setClickable(false);
                 });
 
-                skipBtn.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
+                skipBtn.setOnClickListener(view -> {
 
-                        ImageView video_ad_Icon2 = a.findViewById(R.id.video_ad2);
+                    ImageView video_ad_Icon2 = a.findViewById(R.id.video_ad2);
 
-                        AdManager.showInterstitial(GameActivity2.this);
+                    AdManager.showInterstitial(GameActivity2.this);
 //                        if(hasRefreshed && fromProgress2){
 //                            showInterstitial();
 //                            hasRefreshed = false;
@@ -781,20 +758,19 @@ public class GameActivity2 extends AppCompatActivity {
 //
 //                        }
 
-                        showInterstitial();
+                    showInterstitial();
 
 
-                        enableOptions(current.findViewById(R.id.qd));
-                        //skip=false;
-                        answerContainer.setVisibility(View.GONE);
-                        votingContainer.setVisibility(View.GONE);
-                        //showOptions(q);
-                        // ImageView badIcon = a.findViewById(R.id.bad4);
-                        // badIcon.setVisibility(View.VISIBLE);
-                        refreshQuestion();
-                        // skipBtn.setClickable(false);
-                        rotateView(refresh, video_ad_Icon2, skipBtn);
-                    }
+                    enableOptions(current.findViewById(R.id.qd));
+                    //skip=false;
+                    answerContainer.setVisibility(View.GONE);
+                    votingContainer.setVisibility(View.GONE);
+                    //showOptions(q);
+                    // ImageView badIcon = a.findViewById(R.id.bad4);
+                    // badIcon.setVisibility(View.VISIBLE);
+                    refreshQuestion();
+                    // skipBtn.setClickable(false);
+                    rotateView(refresh, video_ad_Icon2, skipBtn);
                 });
 
 
@@ -803,73 +779,69 @@ public class GameActivity2 extends AppCompatActivity {
                     final TextView k = q.getChildAt(c).findViewById(R.id.opt);
                     k.setTag(number);
                     int finalC = c;
-                    r.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            r.setEnabled(false);
-                            disableOptions(q);
-                            p1 = noOfPagesPassed + 2; //(int) k.getTag();
-                            Log.i("render2== AF no of", String.valueOf(noOfPagesPassed));
-                            Log.i("render2== AF", String.valueOf(p1));
-                            checkNext = false;
-                            if (cTimer != null) {
-                                cTimer.cancel();
-                            }
-                            your_ans.setText(k.getText().toString());
-                            Drawable gd = r.getBackground().mutate();
-                            //LayerDrawable gd = new LayerDrawable(new Drawable[] { r.getBackground().mutate() });
-                            gd.setColorFilter(ContextCompat.getColor(GameActivity2.this, R.color.orange), PorterDuff.Mode.SRC_IN);
-                            r.setBackground(gd);
-                            final RelativeLayout[] relativeLayout = {(RelativeLayout) q.getChildAt(finalC)};
-                            final Drawable[] vectorDrawable = {gd};
-                            new Handler().postDelayed(new Runnable() {
-                                @Override
-                                public void run() {
-                                    try {
-                                        for (int c = 0; c < q.getChildCount(); c++) {
+                    r.setOnClickListener(v1 -> {
+                        r.setEnabled(false);
+                        disableOptions(q);
+                        p1 = noOfPagesPassed + 2; //(int) k.getTag();
+                        Log.i("render2== AF no of", String.valueOf(noOfPagesPassed));
+                        Log.i("render2== AF", String.valueOf(p1));
+                        checkNext = false;
+                        if (cTimer != null) {
+                            cTimer.cancel();
+                        }
+                        your_ans.setText(k.getText().toString());
+                        Drawable gd = r.getBackground().mutate();
+                        //LayerDrawable gd = new LayerDrawable(new Drawable[] { r.getBackground().mutate() });
+                        gd.setColorFilter(ContextCompat.getColor(GameActivity2.this, R.color.orange), PorterDuff.Mode.SRC_IN);
+                        r.setBackground(gd);
+                        final RelativeLayout[] relativeLayout = {(RelativeLayout) q.getChildAt(finalC)};
+                        final Drawable[] vectorDrawable = {gd};
+                        new Handler().postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                try {
+                                    for (int c1 = 0; c1 < q.getChildCount(); c1++) {
 
 
-                                            TextView k = q.getChildAt(c).findViewById(R.id.opt);
+                                        TextView k1 = q.getChildAt(c1).findViewById(R.id.opt);
 
 
-                                            if (k.getText().toString().trim().equals(ans.getText().toString().trim())) {
-                                                relativeLayout[0] = (RelativeLayout) q.getChildAt(c);
-                                                vectorDrawable[0] = relativeLayout[0].getBackground().mutate();
+                                        if (k1.getText().toString().trim().equals(ans.getText().toString().trim())) {
+                                            relativeLayout[0] = (RelativeLayout) q.getChildAt(c1);
+                                            vectorDrawable[0] = relativeLayout[0].getBackground().mutate();
 
-                                                if (number_of_failure >= 1) {
-                                                    vectorDrawable[0].setColorFilter(ContextCompat.getColor(GameActivity2.this, R.color.green), PorterDuff.Mode.SRC_IN);
-                                                    relativeLayout[0].setBackground(vectorDrawable[0]);
-                                                }
-
+                                            if (number_of_failure >= 1) {
+                                                vectorDrawable[0].setColorFilter(ContextCompat.getColor(GameActivity2.this, R.color.green), PorterDuff.Mode.SRC_IN);
+                                                relativeLayout[0].setBackground(vectorDrawable[0]);
                                             }
 
                                         }
-                                        if (!k.getText().toString().trim().equals(ans.getText().toString().trim())) {
-                                            VectorDrawable gd = (VectorDrawable) r.getBackground().mutate();
-                                            gd.setColorFilter(ContextCompat.getColor(GameActivity2.this, R.color.redH), PorterDuff.Mode.SRC_IN);
-                                            r.setBackground(gd);
-                                            failCount++;
-                                        }
-                                        int questionId = 0;
-                                        try {
-                                            questionId = b.getInt("id");
-                                            // Log.i("checking", String.valueOf(questionId));
-                                        } catch (JSONException e) {
-                                            e.printStackTrace();
-                                        }
-                                        int currentProgress = noOfPagesPassed + 2;
-                                        Log.i("renderpp", String.valueOf(noOfPagesPassed));
-                                        checkAnswer(k.getText().toString(), ans.getText().toString(), currentProgress, vectorDrawable[0], relativeLayout[0], questionId);
-
-
-                                    } catch (Exception e) {
 
                                     }
+                                    if (!k.getText().toString().trim().equals(ans.getText().toString().trim())) {
+                                        VectorDrawable gd = (VectorDrawable) r.getBackground().mutate();
+                                        gd.setColorFilter(ContextCompat.getColor(GameActivity2.this, R.color.redH), PorterDuff.Mode.SRC_IN);
+                                        r.setBackground(gd);
+                                        failCount++;
+                                    }
+                                    int questionId = 0;
+                                    try {
+                                        questionId = b.getInt("id");
+                                        // Log.i("checking", String.valueOf(questionId));
+                                    } catch (JSONException e) {
+                                        e.printStackTrace();
+                                    }
+                                    int currentProgress = noOfPagesPassed + 2;
+                                    Log.i("renderpp", String.valueOf(noOfPagesPassed));
+                                    checkAnswer(k.getText().toString(), ans.getText().toString(), currentProgress, vectorDrawable[0], relativeLayout[0], questionId);
+
+
+                                } catch (Exception e) {
+
                                 }
-                            }, 1000);
+                            }
+                        }, 1000);
 
-
-                        }
 
                     });
 
@@ -1264,6 +1236,7 @@ public class GameActivity2 extends AppCompatActivity {
                 TextView opt = bottomSheetDialog.findViewById(R.id.opt);
                 TextView reason = bottomSheetDialog.findViewById(R.id.reason);
 
+                assert opt != null;
                 opt.setText(Utils.capitalizeFirstWord(singleQuestion.getString("correct")));
                 JSONArray opt_answer = new JSONArray(singleQuestion.getString("answer"));
                 int position = getOptionIndex(opt_answer, singleQuestion.getString("correct"));
@@ -1271,13 +1244,8 @@ public class GameActivity2 extends AppCompatActivity {
 
                 reason.setText(Utils.capitalizeFirstWord(singleQuestion.getString("reason")));
                 RelativeLayout readMore = bottomSheetDialog.findViewById(R.id.read_more);
-                readMore.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        Utils.navigateToWebview(String.valueOf(questionID), GameActivity2.this);
-
-                    }
-                });
+                assert readMore != null;
+                readMore.setOnClickListener(view -> Utils.navigateToWebview(String.valueOf(questionID), GameActivity2.this));
 //
 
             } catch (Exception e) {
@@ -1302,52 +1270,48 @@ public class GameActivity2 extends AppCompatActivity {
 
                     /////
 
-                    new Handler().postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            if (noOfCorrectAnswer >= 15) {
-                                loadSongs();
-                                SharedPreferences sharedPreferences = getSharedPreferences("settings", Context.MODE_PRIVATE);
-                                int current_play_level_int = Integer.parseInt(sharedPreferences.getString("current_play_level", "1"));
-                                int newGameLevel = current_play_level_int + 1;
-                                SharedPreferences.Editor editor = sharedPreferences.edit();
-                                /// editor.putString("game_level",String.valueOf(newGameLevel));
-                                editor.putString("current_play_level", String.valueOf(newGameLevel));
+                    new Handler().postDelayed(() -> {
+                        if (noOfCorrectAnswer >= 15) {
+                            loadSongs();
+                            SharedPreferences sharedPreferences = getSharedPreferences("settings", Context.MODE_PRIVATE);
+                            int current_play_level_int = Integer.parseInt(sharedPreferences.getString("current_play_level", "1"));
+                            int newGameLevel = current_play_level_int + 1;
+                            SharedPreferences.Editor editor = sharedPreferences.edit();
+                            /// editor.putString("game_level",String.valueOf(newGameLevel));
+                            editor.putString("current_play_level", String.valueOf(newGameLevel));
 
-                                if (hasOldWinningAmount) {
-                                    String amountWon = GameActivity2.amountWon.replace("$", "").replace(",", "");
-                                    String oldAmountWon = sharedPreferences.getString("amountWon", "0").replace("$", "").replace(",", "");
-                                    int newAmount = Integer.parseInt(amountWon) + Integer.parseInt(oldAmountWon);
-                                    DecimalFormat formatter = new DecimalFormat("#,###,###");
-                                    String formatted_newAmount = formatter.format(newAmount);
-                                    editor.putString("amountWon", formatted_newAmount);
+                            if (hasOldWinningAmount) {
+                                String amountWon = GameActivity2.amountWon.replace("$", "").replace(",", "");
+                                String oldAmountWon = sharedPreferences.getString("amountWon", "0").replace("$", "").replace(",", "");
+                                int newAmount = Integer.parseInt(amountWon) + Integer.parseInt(oldAmountWon);
+                                DecimalFormat formatter = new DecimalFormat("#,###,###");
+                                String formatted_newAmount = formatter.format(newAmount);
+                                editor.putString("amountWon", formatted_newAmount);
 
-                                } else {
-                                    editor.putString("amountWon", amountWon);
-                                }
-                                editor.apply();
-
-                                Intent intent = new Intent(GameActivity2.this, WinnersActivity.class);
-                                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                                intent.putExtra("isWon", true);
-                                intent.putExtra("isShowAd", false);
-                                startActivity(intent);
-                                //finish();
                             } else {
-                                Intent intent = new Intent(GameActivity2.this, ProgressActivity.class);
-                                intent.putExtra("number", number1);
-                                intent.putExtra("timer", "true");
-                                if (Build.VERSION.SDK_INT > 20) {
-                                    ActivityOptions options =
-                                            ActivityOptions.makeSceneTransitionAnimation(GameActivity2.this);
-                                    startActivity(intent);
-                                } else {
-                                    startActivity(intent);
-                                }
-                                wonder();
+                                editor.putString("amountWon", amountWon);
                             }
-                        }
+                            editor.apply();
 
+                            Intent intent = new Intent(GameActivity2.this, WinnersActivity.class);
+                            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                            intent.putExtra("isWon", true);
+                            intent.putExtra("isShowAd", false);
+                            startActivity(intent);
+                            //finish();
+                        } else {
+                            Intent intent = new Intent(GameActivity2.this, ProgressActivity.class);
+                            intent.putExtra("number", number1);
+                            intent.putExtra("timer", "true");
+                            if (Build.VERSION.SDK_INT > 20) {
+                                ActivityOptions options =
+                                        ActivityOptions.makeSceneTransitionAnimation(GameActivity2.this);
+                                startActivity(intent);
+                            } else {
+                                startActivity(intent);
+                            }
+                            wonder();
+                        }
                     }, 1000);
 
                     //bottomSheetDialog.show();
@@ -1360,15 +1324,13 @@ public class GameActivity2 extends AppCompatActivity {
 
 
             RelativeLayout close_dialog = bottomSheetDialog.findViewById(R.id.close_dialog);
-            close_dialog.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    close_dialog.setEnabled(false);
+            assert close_dialog != null;
+            close_dialog.setOnClickListener(view -> {
+                close_dialog.setEnabled(false);
 
-                    bottomSheetDialog.dismiss();
+                bottomSheetDialog.dismiss();
 
 
-                }
             });
 
 
@@ -1396,92 +1358,78 @@ public class GameActivity2 extends AppCompatActivity {
                 RelativeLayout play_again = wrongAnswerDialog.findViewById(R.id.play_again);
                 ImageView cancel_icon = wrongAnswerDialog.findViewById(R.id.cancel_icon);
 
-                cancel_icon.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
+                cancel_icon.setOnClickListener(view -> {
 
-                        cancel_icon.setEnabled(false);
+                    cancel_icon.setEnabled(false);
+                    giveUp.performClick();
+                });
+
+                play_again.setOnClickListener(view -> {
+                    if (Utils.isOnline(GameActivity2.this)) {
+                        wrongAnswerDialog.showRewarededAdWithListener();
+
+                    } else {
+
                         giveUp.performClick();
+
                     }
                 });
 
-                play_again.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        if (Utils.isOnline(GameActivity2.this)) {
-                            wrongAnswerDialog.showRewarededAdWithListener();
+                giveUp.setOnClickListener(view -> {
+                    wrongAnswerDialog.dismiss();
 
-                        } else {
+                    final BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(GameActivity2.this);
+                    bottomSheetDialog.setContentView(R.layout.correct_answer_dialog);
 
-                            giveUp.performClick();
-
-                        }
-                    }
-                });
-
-                giveUp.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        wrongAnswerDialog.dismiss();
-
-                        final BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(GameActivity2.this);
-                        bottomSheetDialog.setContentView(R.layout.correct_answer_dialog);
-
-                        try {
-                            TextView alpha_opt = bottomSheetDialog.findViewById(R.id.alpha_opt);
-                            TextView opt = bottomSheetDialog.findViewById(R.id.opt);
-                            opt.setText(Utils.capitalizeFirstWord(singleQuestion.getString("correct")));
-                            TextView reason = bottomSheetDialog.findViewById(R.id.reason);
-                            reason.setText(Utils.capitalizeFirstWord(singleQuestion.getString("reason")));
-                            JSONArray opt_answer = new JSONArray(singleQuestion.getString("answer"));
-                            int position = getOptionIndex(opt_answer, singleQuestion.getString("correct"));
-                            alpha_opt.setText(numbs[position]);
-                            RelativeLayout readMore = bottomSheetDialog.findViewById(R.id.read_more);
-                            readMore.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View view) {
-                                    Utils.navigateToWebview(String.valueOf(questionID), GameActivity2.this);
-
-                                }
-                            });
+                    try {
+                        TextView alpha_opt = bottomSheetDialog.findViewById(R.id.alpha_opt);
+                        TextView opt = bottomSheetDialog.findViewById(R.id.opt);
+                        assert opt != null;
+                        opt.setText(Utils.capitalizeFirstWord(singleQuestion.getString("correct")));
+                        TextView reason = bottomSheetDialog.findViewById(R.id.reason);
+                        assert reason != null;
+                        reason.setText(Utils.capitalizeFirstWord(singleQuestion.getString("reason")));
+                        JSONArray opt_answer = new JSONArray(singleQuestion.getString("answer"));
+                        int position = getOptionIndex(opt_answer, singleQuestion.getString("correct"));
+                        alpha_opt.setText(numbs[position]);
+                        RelativeLayout readMore = bottomSheetDialog.findViewById(R.id.read_more);
+                        assert readMore != null;
+                        readMore.setOnClickListener(view1 -> Utils.navigateToWebview(String.valueOf(questionID), GameActivity2.this));
 //
 
-                        } catch (Exception e) {
-                            e.printStackTrace();
-
-                        }
-                        bottomSheetDialog.show();
-                        RelativeLayout close_dialog = bottomSheetDialog.findViewById(R.id.close_dialog);
-                        close_dialog.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
-                                close_dialog.setEnabled(false);
-
-                                bottomSheetDialog.dismiss();
-
-                            }
-                        });
-                        bottomSheetDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
-                            @Override
-                            public void onDismiss(DialogInterface dialogInterface) {
-
-
-                                bottomSheetDialog.dismiss();
-
-//
-                                if (CountDownActivity.mMediaPlayer != null) {
-                                    CountDownActivity.mMediaPlayer.pause();
-                                }
-
-
-                                Intent intent = new Intent(GameActivity2.this, FailureActivity.class);
-                                startActivity(intent);
-
-
-                            }
-                        });
+                    } catch (Exception e) {
+                        e.printStackTrace();
 
                     }
+                    bottomSheetDialog.show();
+                    RelativeLayout close_dialog = bottomSheetDialog.findViewById(R.id.close_dialog);
+                    assert close_dialog != null;
+                    close_dialog.setOnClickListener(view12 -> {
+                        close_dialog.setEnabled(false);
+
+                        bottomSheetDialog.dismiss();
+
+                    });
+                    bottomSheetDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                        @Override
+                        public void onDismiss(DialogInterface dialogInterface) {
+
+
+                            bottomSheetDialog.dismiss();
+
+//
+                            if (CountDownActivity.mMediaPlayer != null) {
+                                CountDownActivity.mMediaPlayer.pause();
+                            }
+
+
+                            Intent intent = new Intent(GameActivity2.this, FailureActivity.class);
+                            startActivity(intent);
+
+
+                        }
+                    });
+
                 });
 
 
@@ -1494,6 +1442,7 @@ public class GameActivity2 extends AppCompatActivity {
                 try {
                     TextView alpha_opt = bottomSheetDialog.findViewById(R.id.alpha_opt);
                     TextView opt = bottomSheetDialog.findViewById(R.id.opt);
+                    assert opt != null;
                     opt.setText(Utils.capitalizeFirstWord(singleQuestion.getString("correct")));
                     TextView reason = bottomSheetDialog.findViewById(R.id.reason);
                     JSONArray opt_answer = new JSONArray(singleQuestion.getString("answer"));
@@ -1501,13 +1450,8 @@ public class GameActivity2 extends AppCompatActivity {
                     int position = getOptionIndex(opt_answer, singleQuestion.getString("correct"));
                     alpha_opt.setText(numbs[position]);
                     RelativeLayout readMore = bottomSheetDialog.findViewById(R.id.read_more);
-                    readMore.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            Utils.navigateToWebview(String.valueOf(questionID), GameActivity2.this);
-
-                        }
-                    });
+                    assert readMore != null;
+                    readMore.setOnClickListener(view -> Utils.navigateToWebview(String.valueOf(questionID), GameActivity2.this));
 //
 
                 } catch (Exception e) {
@@ -1516,13 +1460,11 @@ public class GameActivity2 extends AppCompatActivity {
                 }
                 bottomSheetDialog.show();
                 RelativeLayout close_dialog = bottomSheetDialog.findViewById(R.id.close_dialog);
-                close_dialog.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        close_dialog.setEnabled(false);
-                        bottomSheetDialog.dismiss();
+                assert close_dialog != null;
+                close_dialog.setOnClickListener(view -> {
+                    close_dialog.setEnabled(false);
+                    bottomSheetDialog.dismiss();
 
-                    }
                 });
                 bottomSheetDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
                     @Override
@@ -2102,13 +2044,10 @@ public class GameActivity2 extends AppCompatActivity {
                     RelativeLayout play_again = wrongAnswerDialog.findViewById(R.id.play_again);
                     ImageView cancel_icon = wrongAnswerDialog.findViewById(R.id.cancel_icon);
 
-                    cancel_icon.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
+                    cancel_icon.setOnClickListener(view -> {
 
-                            cancel_icon.setEnabled(false);
-                            giveUp.performClick();
-                        }
+                        cancel_icon.setEnabled(false);
+                        giveUp.performClick();
                     });
 
                     play_again.setOnClickListener(new View.OnClickListener() {
@@ -2133,70 +2072,60 @@ public class GameActivity2 extends AppCompatActivity {
                         }
                     });
 
-                    giveUp.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            wrongAnswerDialog.dismiss();
+                    giveUp.setOnClickListener(view -> {
+                        wrongAnswerDialog.dismiss();
 
-                            final BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(GameActivity2.this);
-                            bottomSheetDialog.setContentView(R.layout.correct_answer_dialog);
+                        final BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(GameActivity2.this);
+                        bottomSheetDialog.setContentView(R.layout.correct_answer_dialog);
 
-                            try {
-                                TextView alpha_opt = bottomSheetDialog.findViewById(R.id.alpha_opt);
-                                TextView opt = bottomSheetDialog.findViewById(R.id.opt);
-                                opt.setText(Utils.capitalizeFirstWord(singleQuestion.getString("correct")));
-                                TextView reason = bottomSheetDialog.findViewById(R.id.reason);
-                                int questionID = singleQuestion.getInt("id");
-                                reason.setText(Utils.capitalizeFirstWord(singleQuestion.getString("reason")));
-                                JSONArray opt_answer = new JSONArray(singleQuestion.getString("answer"));
-                                int position = getOptionIndex(opt_answer, singleQuestion.getString("correct"));
-                                alpha_opt.setText(numbs[position]);
-                                RelativeLayout readMore = bottomSheetDialog.findViewById(R.id.read_more);
-                                readMore.setOnClickListener(new View.OnClickListener() {
-                                    @Override
-                                    public void onClick(View view) {
-                                        Utils.navigateToWebview(String.valueOf(questionID), GameActivity2.this);
-
-                                    }
-                                });
+                        try {
+                            TextView alpha_opt = bottomSheetDialog.findViewById(R.id.alpha_opt);
+                            TextView opt = bottomSheetDialog.findViewById(R.id.opt);
+                            assert opt != null;
+                            opt.setText(Utils.capitalizeFirstWord(singleQuestion.getString("correct")));
+                            TextView reason = bottomSheetDialog.findViewById(R.id.reason);
+                            int questionID = singleQuestion.getInt("id");
+                            reason.setText(Utils.capitalizeFirstWord(singleQuestion.getString("reason")));
+                            JSONArray opt_answer = new JSONArray(singleQuestion.getString("answer"));
+                            int position = getOptionIndex(opt_answer, singleQuestion.getString("correct"));
+                            alpha_opt.setText(numbs[position]);
+                            RelativeLayout readMore = bottomSheetDialog.findViewById(R.id.read_more);
+                            readMore.setOnClickListener(view1 -> Utils.navigateToWebview(String.valueOf(questionID), GameActivity2.this));
 //
 
-                            } catch (Exception e) {
-                                e.printStackTrace();
-
-                            }
-                            bottomSheetDialog.show();
-                            RelativeLayout close_dialog = bottomSheetDialog.findViewById(R.id.close_dialog);
-                            close_dialog.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View view) {
-                                    close_dialog.setEnabled(false);
-
-                                    bottomSheetDialog.dismiss();
-
-                                }
-                            });
-                            bottomSheetDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
-                                @Override
-                                public void onDismiss(DialogInterface dialogInterface) {
-
-
-                                    bottomSheetDialog.dismiss();
-
-//
-                                    if (CountDownActivity.mMediaPlayer != null) {
-                                        CountDownActivity.mMediaPlayer.pause();
-                                    }
-
-
-                                    Intent intent = new Intent(GameActivity2.this, FailureActivity.class);
-                                    startActivity(intent);
-
-
-                                }
-                            });
+                        } catch (Exception e) {
+                            e.printStackTrace();
 
                         }
+                        bottomSheetDialog.show();
+                        RelativeLayout close_dialog = bottomSheetDialog.findViewById(R.id.close_dialog);
+                        assert close_dialog != null;
+                        close_dialog.setOnClickListener(view12 -> {
+                            close_dialog.setEnabled(false);
+
+                            bottomSheetDialog.dismiss();
+
+                        });
+                        bottomSheetDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                            @Override
+                            public void onDismiss(DialogInterface dialogInterface) {
+
+
+                                bottomSheetDialog.dismiss();
+
+//
+                                if (CountDownActivity.mMediaPlayer != null) {
+                                    CountDownActivity.mMediaPlayer.pause();
+                                }
+
+
+                                Intent intent = new Intent(GameActivity2.this, FailureActivity.class);
+                                startActivity(intent);
+
+
+                            }
+                        });
+
                     });
 
 
