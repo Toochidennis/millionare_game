@@ -583,49 +583,53 @@ public class FailureActivity extends AppCompatActivity {
         String country = sharedPreferences.getString("country", "");
         String country_flag = sharedPreferences.getString("country_flag", "");
         String oldAmountWon = sharedPreferences.getString("amountWon", "");
-        Log.i("highscore", highscore);
 
         int h;
 
         try {
             h = Integer.parseInt(Utils.removeExtra(highscore));
-        } catch (Exception e) {
-            h = Utils.highScore;
 
-        }
-        String score = GameActivity2.amountWon;
-        ///score = score.substring(1);
-        score = score.replace(",", "");
-        int s = Integer.parseInt(score);
+            String score = GameActivity2.amountWon;
+            ///score = score.substring(1);
+            score = score.replace(",", "").replace("$", "");
+            int s = 0;
+            if (!score.isEmpty())
+                s = Integer.parseInt(score);
 
-        Log.i("highscore", score);
-
-
-        if (hasOldWinningAmount) {
-
-            String amountWon = GameActivity2.amountWon.replace("$", "").replace(",", "");
-            oldAmountWon = oldAmountWon.replace("$", "").replace(",", "");
-            s = Integer.parseInt(amountWon) + Integer.parseInt(oldAmountWon);
+            Log.i("highscore", score);
 
 
-        }
+            if (hasOldWinningAmount) {
+
+                String amountWon = GameActivity2.amountWon.replace("$", "").replace(",", "");
+                oldAmountWon = oldAmountWon.replace("$", "").replace(",", "");
+
+                if (!amountWon.isEmpty()) {
+                    s = Integer.parseInt(amountWon);
+                }
+
+                if (!oldAmountWon.isEmpty()) {
+                    s += Integer.parseInt(oldAmountWon);
+                }
+
+            }
 
 
-        if (s > h) {
-            SharedPreferences.Editor editor = sharedPreferences.edit();
-            editor.putString("high_score", String.valueOf(s));
-            editor.apply();
+            if (s > h) {
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putString("high_score", String.valueOf(s));
+                editor.apply();
 
 
-        }
-        Map userDetails = new HashMap();
-        userDetails.put("username", username);
-        userDetails.put("country", country);
-        userDetails.put("country_flag", country_flag);
+            }
 
+            Map userDetails = new HashMap();
+            userDetails.put("username", username);
+            userDetails.put("country", country);
+            userDetails.put("country_flag", country_flag);
 
-        try {
             sendScoreToSever(String.valueOf(s), userDetails);
+
         } catch (Exception e) {
             e.printStackTrace();
         }
