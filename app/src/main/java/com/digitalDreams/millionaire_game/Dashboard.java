@@ -125,41 +125,32 @@ public class Dashboard extends AppCompatActivity {
 
 
 
-        newGameBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-              ///  newGameBtn.startAnimation(buttonClick);
-                Utils.greenBlink(newGameBtn,getApplicationContext());
+        newGameBtn.setOnClickListener(view -> {
+          ///  newGameBtn.startAnimation(buttonClick);
+            Utils.greenBlink(newGameBtn,getApplicationContext());
 
-                Intent intent = new Intent(Dashboard.this,GameActivity2.class);
-                startActivity(intent);
-                finish();
+            Intent intent = new Intent(Dashboard.this,GameActivity2.class);
+            startActivity(intent);
+            finish();
+        });
+
+        gotoYoutubeBtn.setOnClickListener(view -> {
+            Utils.darkBlueBlink(gotoYoutubeBtn,getApplicationContext());
+
+            try{
+
+                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.youtube.com/channel/UC7AAQdgwQ204aU5ztp19FKg")));
+
+            }catch (Exception e){
+
             }
         });
-        gotoYoutubeBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Utils.darkBlueBlink(gotoYoutubeBtn,getApplicationContext());
+        new_particle.setOnClickListener(view -> {
 
+            MediaPlayer.create(Dashboard.this, R.raw.others).start();
+            Intent i = new Intent(Dashboard.this,WinnersActivity.class);
+            startActivity(i);
 
-                try{
-
-                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.youtube.com/channel/UC7AAQdgwQ204aU5ztp19FKg")));
-
-                }catch (Exception e){
-
-                }
-            }
-        });
-        new_particle.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                MediaPlayer.create(Dashboard.this, R.raw.others).start();
-                Intent i = new Intent(Dashboard.this,WinnersActivity.class);
-                startActivity(i);
-
-            }
         });
 
         leaderBoardBtn.setOnClickListener(new View.OnClickListener() {
@@ -231,15 +222,12 @@ public class Dashboard extends AppCompatActivity {
         });
 
         RelativeLayout profileBtn = findViewById(R.id.profile);
-        profileBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Utils.darkBlueBlink(profileBtn,Dashboard.this);
-                Utils.destination_activity = Dashboard.class;
-                Intent intent = new Intent(Dashboard.this,UserDetails.class);
-                intent.putExtra("type","edit");
-                startActivity(intent);
-            }
+        profileBtn.setOnClickListener(view -> {
+            Utils.darkBlueBlink(profileBtn,Dashboard.this);
+            Utils.destination_activity = Dashboard.class;
+            Intent intent = new Intent(Dashboard.this,UserDetails.class);
+            intent.putExtra("type","edit");
+            startActivity(intent);
         });
 
 //        WelcomeDialog welcomeDialog = new WelcomeDialog(this);
