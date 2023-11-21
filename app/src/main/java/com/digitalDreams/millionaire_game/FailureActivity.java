@@ -222,11 +222,9 @@ public class FailureActivity extends AppCompatActivity {
         });
 
 
-        noThankBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Utils.destination_activity = PlayDetailsActivity.class;
-                username = sharedPreferences.getString("username", "");
+        noThankBtn.setOnClickListener(view -> {
+            Utils.destination_activity = PlayDetailsActivity.class;
+            username = sharedPreferences.getString("username", "");
 
 //                if(username.equals(getResources().getString(R.string.anonymous_user))){
 //                    Utils.destination_activity = PlayDetailsActivity.class;
@@ -237,28 +235,28 @@ public class FailureActivity extends AppCompatActivity {
 //                    return;
 //                }
 
-                //showInterstitial();
+            //showInterstitial();
 
-                if (CountDownActivity.mMediaPlayer != null) {
-                    CountDownActivity.mMediaPlayer.stop();
-                }
+            if (CountDownActivity.mMediaPlayer != null) {
+                CountDownActivity.mMediaPlayer.stop();
+            }
 
-                Intent intent = new Intent(FailureActivity.this, PlayDetailsActivity.class);
+            Intent intent = new Intent(FailureActivity.this, PlayDetailsActivity.class);
 
-                // intent.setFlags( Intent.FLAG_ACTIVITY_CLEAR_TOP );
-                boolean hasOldWinningAmount = getIntent().getBooleanExtra("hasOldWinningAmount", false);
+            // intent.setFlags( Intent.FLAG_ACTIVITY_CLEAR_TOP );
+            boolean hasOldWinningAmount = getIntent().getBooleanExtra("hasOldWinningAmount", false);
 
-                if (hasOldWinningAmount) {
-                    intent.putExtra("hasOldWinningAmount", true);
+            if (hasOldWinningAmount) {
+                intent.putExtra("hasOldWinningAmount", true);
 
-                }
+            }
 
-                intent.putExtra("noThanks", true);
+            intent.putExtra("noThanks", true);
 
-                startActivity(intent);
+            startActivity(intent);
 
-                finishGameActivity();
-                finish();
+            finishGameActivity();
+            finish();
 
 
 //                final Handler handler = new Handler();
@@ -273,7 +271,6 @@ public class FailureActivity extends AppCompatActivity {
 //                }, 7000);
 
 
-            }
         });
 
         TextView countDownTxt = findViewById(R.id.count_down_text);
@@ -638,12 +635,8 @@ public class FailureActivity extends AppCompatActivity {
     private void sendScoreToSever(String score, Map<String, String> userDetails) {
         Log.i("ogabet", String.valueOf(userDetails));
         String url = getResources().getString(R.string.base_url) + "/post_score.php";
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                Log.i("response", "response " + response);
-            }
-        }, new Response.ErrorListener() {
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, url, response ->
+                Log.i("response", "response " + response), new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
                 error.printStackTrace();
