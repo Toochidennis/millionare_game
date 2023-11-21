@@ -76,50 +76,36 @@ public class ExitGameDialog extends Dialog {
 
         bg.setBackgroundDrawable(gd);
         ImageView closeBtn = findViewById(R.id.close);
-        closeBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                dismiss();
-            }
-        });
+        closeBtn.setOnClickListener(view -> dismiss());
         RelativeLayout takeMoneyBtn = findViewById(R.id.take_money);
         RelativeLayout continueBtn = findViewById(R.id.continue_);
-        takeMoneyBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Utils.darkBlueBlink(takeMoneyBtn, context);
-                showInterstitial();
-                if(CountDownActivity.mMediaPlayer!=null) {
-                    CountDownActivity.mMediaPlayer.stop();
-
-                }
+        takeMoneyBtn.setOnClickListener(view -> {
+            Utils.darkBlueBlink(takeMoneyBtn, context);
+            showInterstitial();
+            if(CountDownActivity.mMediaPlayer!=null) {
+                CountDownActivity.mMediaPlayer.stop();
 
             }
+
         });
         TextView amountwonText = findViewById(R.id.amount_won);
         amountwonText.setText(Utils.addCommaAndDollarSign(Integer.parseInt(amountWon)));
 
 
-        continueBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Utils.darkBlueBlink(continueBtn, context);
+        continueBtn.setOnClickListener(view -> {
+            Utils.darkBlueBlink(continueBtn, context);
 
-                dismiss();
-            }
+            dismiss();
         });
 
         TextView descriptionTxt = findViewById(R.id.desc);
        // descriptionTxt.setText("Are you sure you want to take "+ amountWon +" and leave the game?");
 
         LinearLayout shareBtn = findViewById(R.id.share);
-        shareBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Utils.darkBlueBlink(shareBtn, context);
+        shareBtn.setOnClickListener(view -> {
+            Utils.darkBlueBlink(shareBtn, context);
 
-                checkPermission();
-            }
+            checkPermission();
         });
     }
 
@@ -155,14 +141,11 @@ public class ExitGameDialog extends Dialog {
             });
 
 
-
         }else{
 
             quite();
 
-
         }
-
     }
 
     public  void quite(){
@@ -174,7 +157,6 @@ public class ExitGameDialog extends Dialog {
         GameActivity2.gameActivity2.finish();
 
     }
-
 
 
     public void checkPermission(){
