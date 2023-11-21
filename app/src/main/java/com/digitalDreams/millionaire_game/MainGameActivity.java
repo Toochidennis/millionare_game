@@ -244,19 +244,16 @@ public class MainGameActivity extends AppCompatActivity {
             }
         });
 
-        exitBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Utils.darkBlueBlink(exitBtn, getApplicationContext());
+        exitBtn.setOnClickListener(view -> {
+            Utils.darkBlueBlink(exitBtn, getApplicationContext());
 
-                ExitGameDialog dialog = new ExitGameDialog(MainGameActivity.this,amountWon);
-                dialog.setCancelable(false);
-                dialog.setCanceledOnTouchOutside(false);
-                dialog.show();
-                Window window = dialog.getWindow();
-                window.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+            ExitGameDialog dialog = new ExitGameDialog(MainGameActivity.this,amountWon);
+            dialog.setCancelable(false);
+            dialog.setCanceledOnTouchOutside(false);
+            dialog.show();
+            Window window = dialog.getWindow();
+            window.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
 
-            }
         });
 
 
