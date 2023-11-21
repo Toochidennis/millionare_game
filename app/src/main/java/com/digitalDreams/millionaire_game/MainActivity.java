@@ -107,25 +107,23 @@ public class MainActivity extends AppCompatActivity {
 //        appOpenAdManager = new AppOpenManager(this);
 //        appOpenAdManager.fetchAd();
 
+
         //Log.i("response","t "+text);
-        new Thread(new Runnable(){
-            @Override
-            public void run(){
-                String text = null;
-                try {
-                    if(dbHelper.getQuestionSize()==0) {
-                        Utils.IS_DONE_INSERTING = false;
-                        //  saveAnonymouseUser();
-                        text = readRawTextFile(R.raw.millionaire);
-                        parseJSON(text);
-                    }else{
-                        Utils.IS_DONE_INSERTING = true;
-                        editor.putBoolean("IS_DONE_INSERTING",true);
-                        editor.commit();
-                    }
-                } catch (IOException e) {
-                    e.printStackTrace();
+        new Thread(() -> {
+            String text = null;
+            try {
+                if(dbHelper.getQuestionSize()==0) {
+                    Utils.IS_DONE_INSERTING = false;
+                    //  saveAnonymouseUser();
+                    text = readRawTextFile(R.raw.millionaire);
+                    parseJSON(text);
+                }else{
+                    Utils.IS_DONE_INSERTING = true;
+                    editor.putBoolean("IS_DONE_INSERTING",true);
+                    editor.commit();
                 }
+            } catch (IOException e) {
+                e.printStackTrace();
             }
         }).start();
 
@@ -601,30 +599,27 @@ public class MainActivity extends AppCompatActivity {
     /** Start the Dashboard. */
     public void startDashboardActivity() {
         if(dbHelper.getQuestionSize()>0){
-            new Handler().postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    SharedPreferences sharedPreferences = getSharedPreferences("settings",MODE_PRIVATE);
-                    String username = sharedPreferences.getString("username","");
-                    if(username.isEmpty()) {
-                        Intent intent = new Intent(MainActivity.this, UserDetails.class);
-                        startActivity(intent);
-                        finish();
-                    }else {
-                        SharedPreferences.Editor editor = sharedPreferences.edit();
+            new Handler().postDelayed(() -> {
+                SharedPreferences sharedPreferences = getSharedPreferences("settings",MODE_PRIVATE);
+                String username = sharedPreferences.getString("username","");
+                if(username.isEmpty()) {
+                    Intent intent = new Intent(MainActivity.this, UserDetails.class);
+                    startActivity(intent);
+                    finish();
+                }else {
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
 
 
-                        Utils.IS_DONE_INSERTING = true;
-                        editor.putBoolean("IS_DONE_INSERTING",true);
-                        editor.commit();
+                    Utils.IS_DONE_INSERTING = true;
+                    editor.putBoolean("IS_DONE_INSERTING",true);
+                    editor.commit();
 
 
 
 
-                        Intent intent = new Intent(MainActivity.this, Dashboard.class);
-                        startActivity(intent);
-                        finish();
-                    }
+                    Intent intent = new Intent(MainActivity.this, Dashboard.class);
+                    startActivity(intent);
+                    finish();
                 }
             },SPLASH_SCREEN_DELAY);
         }
