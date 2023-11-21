@@ -1,132 +1,112 @@
 package com.digitalDreams.millionaire_game;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.viewpager.widget.ViewPager;
-
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
-import android.util.Log;
-import android.widget.ProgressBar;
+import android.os.Handler;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
-import com.digitalDreams.millionaire_game.slider.AskComputer;
-import com.digitalDreams.millionaire_game.slider.MinusTwo;
-import com.digitalDreams.millionaire_game.slider.ResetQuestion;
-import com.digitalDreams.millionaire_game.slider.TakeAPoll;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.animation.ObjectAnimator;
 
-import java.util.Timer;
-import java.util.TimerTask;
 
 public class WelcomeActivity extends AppCompatActivity {
-    RelativeLayout bg;
-    ViewPager viewpager;
-    private PageViewAdapter viewPagerAdapter;
-    Timer timer;
-    ProgressBar progressBar;
+    RelativeLayout rootView;
+    ImageView loadingImageView;
+    //  Timer timer;
+    // ProgressBar progressBar;
 
+    private static final int CHECK_INTERVAL = 1000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
-        viewpager = findViewById(R.id.viewpager);
+        initViews();
+    }
 
+    private void initViews() {
+        rootView = findViewById(R.id.rootView);
+        loadingImageView = findViewById(R.id.loadingImageView);
 
         SharedPreferences sharedPreferences = getSharedPreferences("settings", Context.MODE_PRIVATE);
-        String languageCode = sharedPreferences.getString("language","en");
-        int endcolor = sharedPreferences.getInt("end_color",getResources().getColor(R.color.purple_dark));
-        int startColor = sharedPreferences.getInt("start_color",getResources().getColor(R.color.purple_500));
-        int cardBackground = sharedPreferences.getInt("card_background",0x219ebc);
-        String highscore = sharedPreferences.getString("high_score","0");
-        String game_level = sharedPreferences.getString("game_level","1");
-        boolean  IS_DONE_INSERTING = sharedPreferences.getBoolean("IS_DONE_INSERTING",false);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        String username = sharedPreferences.getString("username","");
+        //   String languageCode = sharedPreferences.getString("language", "en");
+        int endColor = sharedPreferences.getInt("end_color", getResources().getColor(R.color.purple_dark));
+        int startColor = sharedPreferences.getInt("start_color", getResources().getColor(R.color.purple_500));
+        //   int cardBackground = sharedPreferences.getInt("card_background", 0x219ebc);
+        //   String highScore = sharedPreferences.getString("high_score", "0");
+        //   String gameLevel = sharedPreferences.getString("game_level", "1");
+        //   boolean IS_DONE_INSERTING = sharedPreferences.getBoolean("IS_DONE_INSERTING", false);
+     //   SharedPreferences.Editor editor = sharedPreferences.edit();
+        //  String username = sharedPreferences.getString("username", "");
 
-        if(IS_DONE_INSERTING){
-
+ /*       if (IS_DONE_INSERTING) {
             Utils.IS_DONE_INSERTING = true;
-            editor.putBoolean("IS_DONE_INSERTING",true);
+            editor.putBoolean("IS_DONE_INSERTING", true);
             editor.commit();
 
-            startActivity(new Intent(WelcomeActivity.this,Dashboard.class));
+            startActivity(new Intent(WelcomeActivity.this, Dashboard.class));
             finish();
+        }*/
 
-        }
 
-       // setLocale(this,languageCode);
-
-        // setting up the adapter
-        viewPagerAdapter = new PageViewAdapter(getSupportFragmentManager());
-        progressBar =  findViewById(R.id.progress);
-
-        // add the fragments
-        viewPagerAdapter.add(new MinusTwo(), "Page 1");
-        viewPagerAdapter.add(new AskComputer(), "Page 2");
-        viewPagerAdapter.add(new TakeAPoll(), "Page 2");
-        viewPagerAdapter.add(new ResetQuestion(), "Page 2");
-       // viewPagerAdapter.add(new Page3(), "Page 3");
-
-        viewpager.setAdapter(viewPagerAdapter);
-
-        bg = findViewById(R.id.rootview);
-
-        new Particles(this,bg,R.layout.image_xml,20);
+        new Particles(this, rootView, R.layout.image_xml, 20);
         GradientDrawable gd = new GradientDrawable(
                 GradientDrawable.Orientation.TOP_BOTTOM,
-                new int[] {startColor,endcolor});
+                new int[]{startColor, endColor});
 
-        bg.setBackgroundDrawable(gd);
- /*       viewpager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-            @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+        // bg.setBackgroundDrawable(gd);
+        rootView.setBackground(gd);
 
+        animateImage("scaleX");
+        animateImage("scaleY");
 
-            }
-
-            @Override
-            public void onPageSelected(int position) {
-
-            }
-
-            @Override
-            public void onPageScrollStateChanged(int state) {
-
-            }
-        });*/
+        checkBackgroundThreadStatus();
 
 
-        TimerTask timerTask = new TimerTask() {
+/*        TimerTask timerTask = new TimerTask() {
             @Override
             public void run() {
-
-                progressBar.setProgress((Utils.NUMBER_OF_INSERT*8));
-                progressBar.setMax(100);
-                Log.i("check--","Checkoooo");
-                if(Utils.IS_DONE_INSERTING || IS_DONE_INSERTING){
-                    Intent i =  new Intent(WelcomeActivity.this,Dashboard.class);
+                if (Utils.IS_DONE_INSERTING || IS_DONE_INSERTING) {
+                    Intent i = new Intent(WelcomeActivity.this, Dashboard.class);
                     startActivity(i);
                     finish();
                 }
-
-
-
-
-                viewpager.post(() -> viewpager.setCurrentItem((viewpager.getCurrentItem()+1)%viewPagerAdapter.getCount()));
             }
         };
-        timer = new Timer();
-        timer.schedule(timerTask, 3000, 3000);
 
-
+        new Timer().schedule(timerTask, 3000, 3000);*/
     }
+
+    // New code added for animating logo
+    private void animateImage(String propertyName) {
+        ObjectAnimator animator = ObjectAnimator.ofFloat(loadingImageView, propertyName, 1f, 1.2f);
+        animator.setDuration(1000);
+        animator.setRepeatMode(ObjectAnimator.REVERSE);
+        animator.setRepeatCount(ObjectAnimator.INFINITE);
+        animator.start();
+    }
+
+    private void checkBackgroundThreadStatus() {
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                if (Utils.IS_DONE_INSERTING) {
+                    startActivity(new Intent(WelcomeActivity.this, Dashboard.class));
+                    finish();
+                } else {
+                    handler.postDelayed(this, CHECK_INTERVAL);
+                }
+            }
+        }, CHECK_INTERVAL);
+    }
+
     @Override
     protected void onDestroy() {
-        timer.cancel();
         super.onDestroy();
     }
 
