@@ -266,7 +266,7 @@ public class GameActivity2 extends AppCompatActivity {
         });
 
         exitBtn.setOnClickListener(view -> {
-            Utils.darkBlueBlink(exitBtn, getApplicationContext());
+            Utils.darkBlueBlink(exitBtn, this);
 
             ExitGameDialog dialog = new ExitGameDialog(GameActivity2.this, amountWon);
             dialog.setCancelable(false);
@@ -861,18 +861,20 @@ public class GameActivity2 extends AppCompatActivity {
 
             @Override
             public void run() {
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        if (!checkNext) {
-                            jl.performClick();
-                        } else {
-                            /*Intent intent = new Intent(ExamGameActivity.this,GameEnd.class);
-                            intent.putExtra("level",String.valueOf(level));
-                            intent.putExtra("score",String.valueOf(userScore));
-                            startActivity(intent);
-                            finish();*/
+                runOnUiThread(() -> {
+                    if (!checkNext) {
+                        //jl.performClick();
+                        try {
+                            next(jl);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
                         }
+                    } else {
+                        /*Intent intent = new Intent(ExamGameActivity.this,GameEnd.class);
+                        intent.putExtra("level",String.valueOf(level));
+                        intent.putExtra("score",String.valueOf(userScore));
+                        startActivity(intent);
+                        finish();*/
                     }
                 });
             }
