@@ -81,4 +81,5 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="anonymous_user">Anonymous user</string>
     <string name="readmore">Read More</string>
+    <string name="loading_image">Loading image</string>
 </resources>
