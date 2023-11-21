@@ -54,11 +54,10 @@ public class UserDetails extends AppCompatActivity {
     EditText usernameEdt;
     RelativeLayout bg;
     RelativeLayout close_container;
-    CardView avatarContainer1,avatarContainer2,avatarContainer3,avatarContainer4;
+    CardView avatarContainer1, avatarContainer2, avatarContainer3, avatarContainer4;
     GridLayout gridLayout;
-    String username="",avatar="",
-            country="Afghanistan"
-            ,flag="";
+    String username = "", avatar = "",
+            country = "Afghanistan", flag = "";
     //AutoCompleteTextView spinner;
     CountryAdapter countryAdapter;
     ArrayList countries = new ArrayList();
@@ -67,6 +66,7 @@ public class UserDetails extends AppCompatActivity {
     Dialog dialog;
     CardView card;
 
+    //private static boolean
 
 
     @Override
@@ -78,7 +78,7 @@ public class UserDetails extends AppCompatActivity {
 
         Intent intent = getIntent();
         String type = intent.getStringExtra("type");
-       // Toolbar toolbar = findViewById(R.id.toolbar);
+        // Toolbar toolbar = findViewById(R.id.toolbar);
         //setSupportActionBar(toolbar);
 //        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 //        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_baseline_arrow_back_24);
@@ -94,51 +94,48 @@ public class UserDetails extends AppCompatActivity {
         usernameEdt = findViewById(R.id.username);
 
 
-
-        SharedPreferences sharedPreferences = getSharedPreferences("settings",MODE_PRIVATE);
-        String username = sharedPreferences.getString("username","");
-         country = sharedPreferences.getString("country","");
-         flag = sharedPreferences.getString("country_flag","");
-        int endcolor = sharedPreferences.getInt("end_color",getResources().getColor(R.color.purple_dark));
-        int startColor = sharedPreferences.getInt("start_color",getResources().getColor(R.color.purple_500));
-        int cardBackground = sharedPreferences.getInt("card_background",0x219ebc);
-        if(username.equals(getResources().getString(R.string.anonymous_user))){
+        SharedPreferences sharedPreferences = getSharedPreferences("settings", MODE_PRIVATE);
+        String username = sharedPreferences.getString("username", "");
+        country = sharedPreferences.getString("country", "");
+        flag = sharedPreferences.getString("country_flag", "");
+        int endcolor = sharedPreferences.getInt("end_color", getResources().getColor(R.color.purple_dark));
+        int startColor = sharedPreferences.getInt("start_color", getResources().getColor(R.color.purple_500));
+        int cardBackground = sharedPreferences.getInt("card_background", 0x219ebc);
+        if (username.equals(getResources().getString(R.string.anonymous_user))) {
             username = "";
         }
-        new Particles(this,bg,R.layout.image_xml,20);
+        new Particles(this, bg, R.layout.image_xml, 20);
         GradientDrawable gd = new GradientDrawable(
                 GradientDrawable.Orientation.TOP_BOTTOM,
-                new int[] {startColor,endcolor});
+                new int[]{startColor, endcolor});
 
         bg.setBackgroundDrawable(gd);
         usernameEdt.requestFocus();
         usernameEdt.setText(username);
         Button continueBtn = findViewById(R.id.continueBtn);
         //spinner = findViewById(R.id.country);
-        countryAdapter = new CountryAdapter(this,countries,flags);
-        continueBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Utils.darkBlueBlink(continueBtn, getApplicationContext());
+        countryAdapter = new CountryAdapter(this, countries, flags);
 
-                validateInput();
-            }
+        continueBtn.setOnClickListener(view -> {
+            Utils.darkBlueBlink(continueBtn, getApplicationContext());
+
+            validateInput();
         });
 
 
         gridLayout = findViewById(R.id.grid);
-        for (int a=0;a<gridLayout.getChildCount();a++){
+        for (int a = 0; a < gridLayout.getChildCount(); a++) {
             CardView card = (CardView) gridLayout.getChildAt(a);
             int b = a;
             card.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    avatar= String.valueOf(b+1);
+                    avatar = String.valueOf(b + 1);
                     selectAvatar(card);
                 }
             });
         }
-        if(type!=null&&type.equals("edit")){
+        if (type != null && type.equals("edit")) {
             selectAvatar();
         }
 
@@ -149,12 +146,12 @@ public class UserDetails extends AppCompatActivity {
 
         //   ArrayAdapter arrayAdapter = new ArrayAdapter(this,android.R.layout.simple_spinner_dropdown_item,countries);
         //spinner.setAdapter(adapter);
-       // int spinnerPosition = countryAdapter.getPosition(country);
-        if(!country.equals("default")){
+        // int spinnerPosition = countryAdapter.getPosition(country);
+        if (!country.equals("default")) {
             country_name.setText(country);
         }
-        Log.i("Flag",country);
-        Log.i("Flag",flag);
+        Log.i("Flag", country);
+        Log.i("Flag", flag);
 
 
 //        spinner.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -164,7 +161,6 @@ public class UserDetails extends AppCompatActivity {
 //
 //            }
 //        });
-
 
 
         //////////////////////////
@@ -192,14 +188,11 @@ public class UserDetails extends AppCompatActivity {
 //            }
 //        });
 
-        close_container.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        close_container.setOnClickListener(view -> {
 
-              Utils.saveAnonymouseUser(UserDetails.this);
-              naviget();
+            Utils.saveAnonymouseUser(UserDetails.this);
+            naviget();
 
-            }
         });
 
 
@@ -208,13 +201,13 @@ public class UserDetails extends AppCompatActivity {
             public void onClick(View v) {
 
                 // Initialize dialog
-                dialog=new Dialog(UserDetails.this);
+                dialog = new Dialog(UserDetails.this);
 
                 // set custom dialog
                 dialog.setContentView(R.layout.dialog_searchable_spinner);
 
                 // set custom height and width
-                dialog.getWindow().setLayout(650,800);
+                dialog.getWindow().setLayout(650, 800);
 
                 // set transparent background
                 dialog.getWindow().setBackgroundDrawable(new ColorDrawable(R.drawable.hex_blue));
@@ -228,37 +221,28 @@ public class UserDetails extends AppCompatActivity {
                 dialog.show();
 
 
-
-                EditText editText=dialog.findViewById(R.id.edit_text);
-                ListView listView=dialog.findViewById(R.id.list_view);
-               // editText.requestFocus();
+                EditText editText = dialog.findViewById(R.id.edit_text);
+                ListView listView = dialog.findViewById(R.id.list_view);
+                // editText.requestFocus();
 //                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
 //                imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, InputMethodManager.SHOW_IMPLICIT);
-                dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
-                    @Override
-                    public void onDismiss(DialogInterface dialogInterface) {
+                dialog.setOnDismissListener(dialogInterface -> {
 
 
-                        editText.clearFocus();
-                       // imm.toggleSoftInput(InputMethodManager.HIDE_IMPLICIT_ONLY, 0);
+                    editText.clearFocus();
+                    // imm.toggleSoftInput(InputMethodManager.HIDE_IMPLICIT_ONLY, 0);
 
-                    }
                 });
 
-                dialog.setOnShowListener(new DialogInterface.OnShowListener() {
-                    @Override
-                    public void onShow(DialogInterface dialogInterface) {
-                        editText.clearFocus();
-                       // imm.toggleSoftInput(InputMethodManager.HIDE_IMPLICIT_ONLY, 0);
+                dialog.setOnShowListener(dialogInterface -> {
+                    editText.clearFocus();
+                    // imm.toggleSoftInput(InputMethodManager.HIDE_IMPLICIT_ONLY, 0);
 
-                    }
                 });
-
-
 
 
                 // Initialize array adapter
-                ArrayAdapter<String> adapter=new ArrayAdapter<String>(UserDetails.this, R.layout.single_tv,countries);
+                ArrayAdapter<String> adapter = new ArrayAdapter<String>(UserDetails.this, R.layout.single_tv, countries);
 
                 // set adapter
                 listView.setAdapter(adapter);
@@ -280,42 +264,37 @@ public class UserDetails extends AppCompatActivity {
                 });
 
 
+                listView.setOnItemClickListener((parent, view, position, id) -> {
+                    // when item selected from list
+                    // set selected item on textView
+                    country_name.setText(adapter.getItem(position));
 
-                listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                        // when item selected from list
-                        // set selected item on textView
-                        country_name.setText(adapter.getItem(position));
+                    String selectedItem = adapter.getItem(position).toString();
+                    country = selectedItem;
+                    flag = flags.get(countries.indexOf(country)).toString();
+                    //spinner.setText(country);
 
-                        String selectedItem = adapter.getItem(position).toString();
-                        country = selectedItem;
-                        flag = flags.get(countries.indexOf(country)).toString();
-                        //spinner.setText(country);
-
-                       // Log.i("Flag",flags.get( countries.indexOf(country)).toString());
-                       // Log.i("Flag",selectedItem);
-                        //Log.i("Flag",countries.get(i).toString());
+                    // Log.i("Flag",flags.get( countries.indexOf(country)).toString());
+                    // Log.i("Flag",selectedItem);
+                    //Log.i("Flag",countries.get(i).toString());
 
 
-                        editText.clearFocus();
-                        //imm.toggleSoftInput(InputMethodManager.HIDE_IMPLICIT_ONLY, 0);
+                    editText.clearFocus();
+                    //imm.toggleSoftInput(InputMethodManager.HIDE_IMPLICIT_ONLY, 0);
 
 
-                        // Dismiss dialog
-                        dialog.dismiss();
+                    // Dismiss dialog
+                    dialog.dismiss();
 
 
-
-                    }
                 });
             }
         });
 
     }
 
-    private void selectAvatar(CardView cardView){
-        for (int a=0;a<gridLayout.getChildCount();a++){
+    private void selectAvatar(CardView cardView) {
+        for (int a = 0; a < gridLayout.getChildCount(); a++) {
             CardView card = (CardView) gridLayout.getChildAt(a);
             card.setCardBackgroundColor(getResources().getColor(R.color.color5));
         }
@@ -323,50 +302,50 @@ public class UserDetails extends AppCompatActivity {
 
     }
 
-    private void selectAvatar(){
-        SharedPreferences sharedPreferences = getSharedPreferences("settings",MODE_PRIVATE);
-        String avatar = sharedPreferences.getString("avatar","1");
+    private void selectAvatar() {
+        SharedPreferences sharedPreferences = getSharedPreferences("settings", MODE_PRIVATE);
+        String avatar = sharedPreferences.getString("avatar", "1");
 
-        for (int a=0;a<gridLayout.getChildCount();a++){
-            if(a+1==Integer.parseInt(avatar)) {
+        for (int a = 0; a < gridLayout.getChildCount(); a++) {
+            if (a + 1 == Integer.parseInt(avatar)) {
                 CardView card = (CardView) gridLayout.getChildAt(a);
                 card.setCardBackgroundColor(getResources().getColor(R.color.green));
             }
         }
     }
 
-    private void validateInput(){
+    private void validateInput() {
         username = usernameEdt.getText().toString();
-        if(username.isEmpty()){
-            Toast.makeText(UserDetails.this,"Player name can't be empty",Toast.LENGTH_SHORT).show();
-        }else if(country.equals("") || country.equals("Select country") || country.equals("default")){
-            Toast.makeText(UserDetails.this,"Select your country",Toast.LENGTH_SHORT).show();
+        if (username.isEmpty()) {
+            Toast.makeText(UserDetails.this, "Player name can't be empty", Toast.LENGTH_SHORT).show();
+        } else if (country.equals("") || country.equals("Select country") || country.equals("default")) {
+            Toast.makeText(UserDetails.this, "Select your country", Toast.LENGTH_SHORT).show();
 
 
-        }else {
+        } else {
             //Random = new Random()
             final int min = 1;
             final int max = 3;
-             int random = new Random().nextInt((max - min) + 1) + min;
-            avatar =  String.valueOf(random);
+            int random = new Random().nextInt((max - min) + 1) + min;
+            avatar = String.valueOf(random);
 
 
-            SharedPreferences sharedPreferences = getSharedPreferences("settings",MODE_PRIVATE);
+            SharedPreferences sharedPreferences = getSharedPreferences("settings", MODE_PRIVATE);
             SharedPreferences.Editor editor = sharedPreferences.edit();
-            editor.putString("username",username);
+            editor.putString("username", username);
             ///editor.putString("avatar","1");
-            editor.putString("country",country);
-            editor.putString("country_flag",flag);
-            editor.putString("avatar",avatar);
-           // editor.putString("current_play_level","1");
-            editor.putBoolean("isFirstTime",true);
+            editor.putString("country", country);
+            editor.putString("country_flag", flag);
+            editor.putString("avatar", avatar);
+            // editor.putString("current_play_level","1");
+            editor.putBoolean("isFirstTime", true);
 
             editor.apply();
 
 
             checkScore();
 
-naviget();
+            naviget();
 
         }
     }
@@ -380,11 +359,10 @@ naviget();
     }
 
 
-
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         super.onOptionsItemSelected(item);
-        switch (item.getItemId()){
+        switch (item.getItemId()) {
             case android.R.id.home:
                 onBackPressed();
                 return true;
@@ -392,15 +370,15 @@ naviget();
         return false;
     }
 
-    public  void addCountries(){
-       // Log.i("llllll","flag");
-        try{
+    public void addCountries() {
+        // Log.i("llllll","flag");
+        try {
             String json = readRawTextFile(R.raw.country_json);
             JSONArray jsonArray = new JSONArray(json);
             //Iterator<String> iterator = jsonObject.keys();
 
             //Log.i("llllll","flag");
-            for(int j =0; j < jsonArray.length();j++){
+            for (int j = 0; j < jsonArray.length(); j++) {
                 JSONObject obj1 = jsonArray.getJSONObject(j);
                 String name = obj1.getString("name");
                 String flag = obj1.getString("image");
@@ -421,12 +399,12 @@ naviget();
 //               /// countryAdapter.notifyDataSetChanged();
 //            }
 
-        }catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    String[] countries4ii = new String[]{"Select country","Afghanistan", "Albania", "Algeria", "American Samoa", "Andorra", "Angola", "Anguilla",
+    String[] countries4ii = new String[]{"Select country", "Afghanistan", "Albania", "Algeria", "American Samoa", "Andorra", "Angola", "Anguilla",
             "Antarctica", "Antigua and Barbuda", "Argentina", "Armenia", "Aruba", "Australia", "Austria", "Azerbaijan", "Bahamas",
             "Bahrain", "Bangladesh", "Barbados", "Belarus", "Belgium", "Belize", "Benin", "Bermuda", "Bhutan", "Bolivia",
             "Bosnia and Herzegowina", "Botswana", "Bouvet Island", "Brazil", "British Indian Ocean Territory", "Brunei Darussalam",
@@ -461,7 +439,7 @@ naviget();
             "Wallis and Futuna Islands", "Western Sahara", "Yemen", "Yugoslavia", "Zambia", "Zimbabwe"};
 
 
-    private String readRawTextFile( int resId) throws IOException {
+    private String readRawTextFile(int resId) throws IOException {
         InputStream is = getResources().openRawResource(resId);
         Writer writer = new StringWriter();
         char[] buffer = new char[10024];
@@ -487,11 +465,11 @@ naviget();
     public void onBackPressed() {
 
 
-       naviget();
+        naviget();
         super.onBackPressed();
     }
 
-   public void  checkScore(){
+    public void checkScore() {
         String modeValue = "";
         SharedPreferences sharedPreferences = getSharedPreferences("settings", MODE_PRIVATE);
         String highscore = sharedPreferences.getString("high_score", "0");
@@ -509,24 +487,24 @@ naviget();
             modeValue = "hard";
         }
 
-       Map userDetails = new HashMap();
-       userDetails.put("username",username);
-       userDetails.put("country",country);
-       userDetails.put("country_flag",country_flag);
+        Map userDetails = new HashMap();
+        userDetails.put("username", username);
+        userDetails.put("country", country);
+        userDetails.put("country_flag", country_flag);
 
-       Utils.sendScoreToSever(UserDetails.this,highscore,userDetails,modeValue);
+        Utils.sendScoreToSever(UserDetails.this, highscore, userDetails, modeValue);
     }
 
 
-    public  void naviget(){
+    public void naviget() {
 
         Intent i;
 
-        if(Utils.IS_DONE_INSERTING){
-             i =  new Intent(UserDetails.this, Utils.destination_activity);
+        if (Utils.IS_DONE_INSERTING) {
+            i = new Intent(UserDetails.this, Utils.destination_activity);
 
-        }else{
-            i =  new Intent(UserDetails.this, WelcomeActivity.class);
+        } else {
+            i = new Intent(UserDetails.this, WelcomeActivity.class);
 
         }
 
@@ -547,6 +525,6 @@ naviget();
 
 
     //@SuppressLint("ResourceAsColor")
-   // @SuppressLint("ResourceAsColor")
+    // @SuppressLint("ResourceAsColor")
 
 }
