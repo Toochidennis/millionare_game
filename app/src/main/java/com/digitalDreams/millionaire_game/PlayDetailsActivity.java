@@ -1,6 +1,7 @@
 package com.digitalDreams.millionaire_game;
 
 import static com.digitalDreams.millionaire_game.GameActivity2.hasOldWinningAmount;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
@@ -10,6 +11,7 @@ import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
 
 import android.Manifest;
+import android.app.Activity;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Context;
@@ -67,19 +69,19 @@ import java.util.List;
 import java.util.Map;
 
 
-
 public class PlayDetailsActivity extends AppCompatActivity {
     DBHelper dbHelper;
     File imagePath;
-    RelativeLayout bg,newGameBtn;
+    RelativeLayout bg, newGameBtn;
     public static int MY_PERMISSIONS_WRITE_EXTERNAL_STORAGE = 100;
-    private String deviceId="";
-    private String modeValue="";
+    private String deviceId = "";
+    private String modeValue = "";
     boolean isWon = false;
     boolean AdsFromFailureActivity = false;
     boolean AdsFromExitGameDialog = false;
-    TextView wonTxt,usernameField,new_game_text;
-   // AdManager  adManager;
+    TextView wonTxt, usernameField, new_game_text;
+    public static Activity playerDetailsActivity;
+    // AdManager  adManager;
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
@@ -87,8 +89,11 @@ public class PlayDetailsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_play_details);
 
+
         AdManager.initInterstitialAd(this);
         AdManager.initRewardedVideo(this);
+
+        playerDetailsActivity = this;
 
         //adManager =  new AdManager(this);
         RelativeLayout bg = findViewById(R.id.rootview);
@@ -101,41 +106,29 @@ public class PlayDetailsActivity extends AppCompatActivity {
         mAdView.loadAd(adRequest);
 
 
+        boolean fromNoThanks = getIntent().getBooleanExtra("noThanks", false);
+        if (fromNoThanks) {
+            try {
+                AdManager.showInterstitial(PlayDetailsActivity.this);
+            } catch (Exception e) {
+                e.printStackTrace();
 
-
-        boolean fromNoThanks = getIntent().getBooleanExtra("noThanks",false);
-        if(fromNoThanks){
-           try {
-               AdManager.showInterstitial(PlayDetailsActivity.this);
-           }catch (Exception e){
-               e.printStackTrace();
-
-           }
+            }
         }
-
-
-
-
-
-
 
 
         newGameBtn = findViewById(R.id.new_game1);
         RelativeLayout btnAnim = findViewById(R.id.btn_forAnim);
         new MyAnimation(btnAnim);
 
-        newGameBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Utils.greenBlink(newGameBtn, getApplicationContext());
-//                Intent intent = new Intent(PlayDetailsActivity.this,GameActivity2.class);
-//                startActivity(intent);
-//                finish();
+        newGameBtn.setOnClickListener(view -> {
+            Utils.greenBlink(newGameBtn, getApplicationContext());
+            Intent intent = new Intent(PlayDetailsActivity.this, GameActivity2.class);
+            startActivity(intent);
+            finish();
 
-                Utils.continueGame(PlayDetailsActivity.this);
-            }
+            // Utils.continueGame(PlayDetailsActivity.this);
         });
-
 
 
         SharedPreferences sharedPreferences1 = getSharedPreferences("settings", MODE_PRIVATE);
@@ -143,44 +136,45 @@ public class PlayDetailsActivity extends AppCompatActivity {
         String oldAmountWon = sharedPreferences1.getString("amountWon", "");
 
 
-
         dbHelper = new DBHelper(this);
 
-        isWon = getIntent().getBooleanExtra("isWon",false);
-        AdsFromFailureActivity  = getIntent().getBooleanExtra("AdsFromFailureActivity",false);
-        AdsFromExitGameDialog = getIntent().getBooleanExtra("AdsFromExitGameDialog",false);
+        isWon = getIntent().getBooleanExtra("isWon", false);
+        AdsFromFailureActivity = getIntent().getBooleanExtra("AdsFromFailureActivity", false);
+        AdsFromExitGameDialog = getIntent().getBooleanExtra("AdsFromExitGameDialog", false);
         wonTxt = findViewById(R.id.wontxt);
-        usernameField =  findViewById(R.id.username);
-        if(username.length() > 1) {
+        usernameField = findViewById(R.id.username);
+        if (username.length() > 1) {
             usernameField.setText(username.substring(0, 1).toUpperCase() + username.substring(1, username.length()));
-        }else{
+        } else {
             usernameField.setText(getResources().getText(R.string.anonymous_user));
 
         }
-        if(isWon){
+        if (isWon) {
             wonTxt.setText(getResources().getString(R.string.won));
         }
 
 
-
         TextView amountWonTxt = findViewById(R.id.amount_won);
         //  boolean hasOldWinningAmount = getIntent().getBooleanExtra("hasOldWinningAmount",false);
-                if(hasOldWinningAmount){
+        if (hasOldWinningAmount) {
 
-                    String amountWon = GameActivity2.amountWon.replace("$","").replace(",","");
-                    oldAmountWon = oldAmountWon.replace("$","").replace(",","");
-                    int newAmount = Integer.parseInt(amountWon) + Integer.parseInt(oldAmountWon);
-                    DecimalFormat formatter = new DecimalFormat("#,###,###");
-                    String formatted_newAmount = formatter.format(newAmount);
+            String amountWon = GameActivity2.amountWon.replace("$", "").replace(",", "");
+            oldAmountWon = oldAmountWon.replace("$", "").replace(",", "");
+            int newAmount = Integer.parseInt(amountWon) + Integer.parseInt(oldAmountWon);
+
+            try {
+                DecimalFormat formatter = new DecimalFormat("#,###,###");
+                String formatted_newAmount = formatter.format(newAmount);
+
+                amountWonTxt.setText("$" + formatted_newAmount);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
 
 
-
-                    amountWonTxt.setText("$"+ String.valueOf(formatted_newAmount));
-
-
-                    }else{
-                    amountWonTxt.setText(Utils.addCommaAndDollarSign(Integer.parseInt(GameActivity2.amountWon)));
-                }
+        } else {
+            amountWonTxt.setText(Utils.addCommaAndDollarSign(Integer.parseInt(GameActivity2.amountWon)));
+        }
 
 
         TextView noOfQuestionsAnsweredText = findViewById(R.id.no_question_answered);
@@ -216,10 +210,10 @@ public class PlayDetailsActivity extends AppCompatActivity {
         TextView modeTxt = findViewById(R.id.mode);
         if (mode.equals("0")) {
             modeTxt.setText("Mode: Normal");
-            modeValue="normal";
+            modeValue = "normal";
         } else {
             modeTxt.setText("Mode: Hard");
-            modeValue="hard";
+            modeValue = "hard";
         }
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
         getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
@@ -256,27 +250,24 @@ public class PlayDetailsActivity extends AppCompatActivity {
             }
         });
 
-        newGame.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Utils.destination_activity = LeaderBoard.class;
-                Utils.darkBlueBlink(newGame, getApplicationContext());
-                String json = dbHelper.buildJson();
-                Intent intent = new Intent(PlayDetailsActivity.this, LeaderBoard.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(intent);
-                finish();
-            }
+        newGame.setOnClickListener(view -> {
+            Utils.destination_activity = LeaderBoard.class;
+            Utils.darkBlueBlink(newGame, getApplicationContext());
+            String json = dbHelper.buildJson();
+            Intent intent = new Intent(PlayDetailsActivity.this, LeaderBoard.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(intent);
+            finish();
         });
 
-      if(AdsFromFailureActivity){
+        if (AdsFromFailureActivity) {
 //            if (FailureActivity.interstitialAd.isLoaded()) {
 //            FailureActivity.interstitialAd.show();
 //        }
-          AdManager.showInterstitial(PlayDetailsActivity.this);
-      }
+            AdManager.showInterstitial(PlayDetailsActivity.this);
+        }
 
-        if(AdsFromExitGameDialog){
+        if (AdsFromExitGameDialog) {
 //            if (ExitGameDialog.interstitialAd.isLoaded()) {
 //                ExitGameDialog.interstitialAd.show();
 //            }
@@ -284,14 +275,11 @@ public class PlayDetailsActivity extends AppCompatActivity {
         }
 
 
-
-
-
-       checkScore();
+        checkScore();
         //sendScoreToSever("2000", "dking");
 
         deviceId = getDeviceId(this);
-        Log.i("response","device_id "+getDeviceId(this));
+        Log.i("response", "device_id " + getDeviceId(this));
 
     }
 
@@ -350,7 +338,7 @@ public class PlayDetailsActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-       // initializeNotification();
+        // initializeNotification();
 //        ExitDialog dialog = new ExitDialog(this);
 //        dialog.show();
 //        Window window = dialog.getWindow();
@@ -403,7 +391,7 @@ public class PlayDetailsActivity extends AppCompatActivity {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
 
         if (requestCode == MY_PERMISSIONS_WRITE_EXTERNAL_STORAGE) {
-            if (grantResults.length>0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 Bitmap bitmap = takeScreenshot();
                 saveBitmap(bitmap);
                 shareIt();
@@ -450,7 +438,7 @@ public class PlayDetailsActivity extends AppCompatActivity {
 
         try {
             h = Integer.parseInt(Utils.removeExtra(highscore));
-        }catch (Exception e){
+        } catch (Exception e) {
             h = Utils.highScore;
 
         }
@@ -461,12 +449,11 @@ public class PlayDetailsActivity extends AppCompatActivity {
         int s = Integer.parseInt(score);
 
 
-        if(hasOldWinningAmount){
+        if (hasOldWinningAmount) {
 
-            String amountWon = GameActivity2.amountWon.replace("$","").replace(",","");
-            oldAmountWon = oldAmountWon.replace("$","").replace(",","");
+            String amountWon = GameActivity2.amountWon.replace("$", "").replace(",", "");
+            oldAmountWon = oldAmountWon.replace("$", "").replace(",", "");
             s = Integer.parseInt(amountWon) + Integer.parseInt(oldAmountWon);
-
 
 
         }
@@ -478,31 +465,29 @@ public class PlayDetailsActivity extends AppCompatActivity {
             editor.apply();
 
 
-
-
         }
         Map userDetails = new HashMap();
-        userDetails.put("username",username);
-        userDetails.put("country",country);
-        userDetails.put("country_flag",country_flag);
+        userDetails.put("username", username);
+        userDetails.put("country", country);
+        userDetails.put("country_flag", country_flag);
 
 
-       try{
-           sendScoreToSever(String.valueOf(s), userDetails);
-       }catch (Exception e){
-           e.printStackTrace();
-       }
+        try {
+            sendScoreToSever(String.valueOf(s), userDetails);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     //@RequiresApi(api = Build.VERSION_CODES.M)
-    private void sendScoreToSever(String score, Map<String,String> userDetails) {
+    private void sendScoreToSever(String score, Map<String, String> userDetails) {
         Log.i("ogabet3", String.valueOf(userDetails));
-        try{
-           /// initializeNotification();
-        }catch (Exception e){
+        try {
+            /// initializeNotification();
+        } catch (Exception e) {
             e.printStackTrace();
         }
-        String url = getResources().getString(R.string.base_url)+"/post_score.php";
+        String url = getResources().getString(R.string.base_url) + "/post_score.php";
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
 
             @Override
@@ -519,42 +504,38 @@ public class PlayDetailsActivity extends AppCompatActivity {
                     String dailyMax = dailyObj.getString("max");
                     String weeklyMax = weeklyObj.getString("max");
 
-                    if(String.valueOf(daily).equals("1") && String.valueOf(weekly).equals("1")){
+                    if (daily.equals("1") && weekly.equals("1")) {
 
-                        txt = "Congratulations! improve your score to remain at the top - $"+currencyFormat(dailyMax);
+                        txt = "Congratulations! improve your score to remain at the top - $" + currencyFormat(dailyMax);
 
 
-                    }else if(String.valueOf(daily).equals("1")){
-                        txt = "Beat this weeks highest score - $"+currencyFormat(weeklyMax);
+                    } else if (String.valueOf(daily).equals("1")) {
+                        txt = "Beat this weeks highest score - $" + currencyFormat(weeklyMax);
 
-                    }else if(dailyMax != null && dailyMax != "null"){
-                        txt = "Beat today's highest score of - $"+currencyFormat(dailyMax);
+                    } else if (dailyMax != null && dailyMax != "null") {
+                        txt = "Beat today's highest score of - $" + currencyFormat(dailyMax);
 
-                    }else{
-                        txt = "Beat today's highest score - $"+currencyFormat(dailyMax);
+                    } else {
+                        txt = "Beat today's highest score - $" + currencyFormat(dailyMax);
 
                     }
 
 
-                    ResultDialog r = new ResultDialog(PlayDetailsActivity.this,daily,weekly,txt);
-                   // r.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.blue(444)));
+                    ResultDialog r = new ResultDialog(PlayDetailsActivity.this, daily, weekly, txt);
+                    // r.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.blue(444)));
 
                     // r.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.));
 
-                    if(!isFinishing()){
+                    if (!isFinishing()) {
 
                         r.show();
 
                     }
 
 
-
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-
-
-
 
 
             }
@@ -570,10 +551,10 @@ public class PlayDetailsActivity extends AppCompatActivity {
                 Map<String, String> param = new HashMap<>();
 
                 JSONObject country_json = new JSONObject();
-                try{
-                    country_json.put("name",userDetails.get("country"));
+                try {
+                    country_json.put("name", userDetails.get("country"));
                     country_json.put("url", userDetails.get("country_flag"));
-                }catch (Exception e){
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
                 param.put("score", score);
@@ -581,10 +562,10 @@ public class PlayDetailsActivity extends AppCompatActivity {
                 param.put("country", userDetails.get("country"));
                 param.put("country_json", country_json.toString());
                 param.put("country_flag", userDetails.get("country_flag"));
-                param.put("avatar",  getAvatar());
-                param.put("device_id",getDeviceId(PlayDetailsActivity.this));
-                param.put("game_type","millionaire");
-                param.put("mode",modeValue);
+                param.put("avatar", getAvatar());
+                param.put("device_id", getDeviceId(PlayDetailsActivity.this));
+                param.put("game_type", "millionaire");
+                param.put("mode", modeValue);
                 Log.i("praram", String.valueOf(param));
                 return param;
             }
@@ -631,14 +612,14 @@ public class PlayDetailsActivity extends AppCompatActivity {
 
     }
 
-    private String getAvatar(){
+    private String getAvatar() {
         SharedPreferences sharedPreferences = getSharedPreferences("settings", Context.MODE_PRIVATE);
-        String avatar = sharedPreferences.getString("avatar","");
+        String avatar = sharedPreferences.getString("avatar", "");
         return avatar;
     }
 
     @RequiresApi(api = Build.VERSION_CODES.M)
-    private  void initializeNotification(){
+    private void initializeNotification() {
 
 
 //        Calendar calendar = Calendar.getInstance();
@@ -648,30 +629,30 @@ public class PlayDetailsActivity extends AppCompatActivity {
 //
 //        calendar.set(Calendar.MINUTE);
 //        calendar.set(Calendar.SECOND);
-        AlarmManager alarmManager = (AlarmManager)getSystemService(ALARM_SERVICE);
+        AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
 
 
         //makeNotificationChannel("4","noti",1);
-        final int flag =  Build.VERSION.SDK_INT >= Build.VERSION_CODES.M ? PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE : PendingIntent.FLAG_UPDATE_CURRENT;
+        final int flag = Build.VERSION.SDK_INT >= Build.VERSION_CODES.M ? PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE : PendingIntent.FLAG_UPDATE_CURRENT;
 
         PendingIntent servicePendingIntent =
                 PendingIntent.getBroadcast(PlayDetailsActivity.this, 0,
-                        new Intent(PlayDetailsActivity.this, NotificationService.class),flag);
+                        new Intent(PlayDetailsActivity.this, NotificationService.class), flag);
         alarmManager.cancel(servicePendingIntent);
         int delay = (60 * 2) * 1000;
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP,(delay),AlarmManager.INTERVAL_DAY, servicePendingIntent);
+            alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP, (delay), AlarmManager.INTERVAL_DAY, servicePendingIntent);
         } else {
-            alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP,(delay), AlarmManager.INTERVAL_DAY,servicePendingIntent);
+            alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP, (delay), AlarmManager.INTERVAL_DAY, servicePendingIntent);
         }
 
 
-
     }
+
     public static String currencyFormat(String amount) {
-        if(null == amount){
-            return  "0";
+        if (amount == null || amount.equals("null")) {
+            return "0";
         }
         DecimalFormat formatter = new DecimalFormat("###,###,##0.00");
         return formatter.format(Double.parseDouble(amount));
