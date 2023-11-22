@@ -2,13 +2,13 @@ plugins {
     id 'com.android.application'
 }
 android {
-    compileSdk 33
+    compileSdk 34
 // buildToolsVersion "30.0.3"
 
     defaultConfig {
         applicationId "com.digitalDreams.millionaire_game"
         minSdkVersion 21
-        targetSdk 33
+        targetSdk 34
 
         versionCode 96
 
