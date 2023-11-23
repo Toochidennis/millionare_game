@@ -60,7 +60,6 @@ class DBHelper extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + HISTORY_TABLE);
         sqLiteDatabase.execSQL("create table " + JSON_TABLE + " (ID TEXT PRIMARY KEY, QUESTION TEXT,ANSWER TEXT, TYPE TEXT,CORRECT TEXT,QUESTION_IMAGE TEXT, TITLE TEXT, LEVEL TEXT,LANGUAGE TEXT,STAGE_NAME TEXT,STAGE TEXT,REASON TEXT)");
         sqLiteDatabase.execSQL("create table " + HISTORY_TABLE + " (ID TEXT PRIMARY KEY, QUESTION_ID TEXT,ANSWER TEXT,CORRECT_ANSWER TEXT,HIGH_SCORE TEXT ,SESSION TEXT,DATE_PLAYED TEXT, IS_CORRECT BOOLEN, REASON TEXT)");
-
     }
 
 
@@ -91,22 +90,27 @@ class DBHelper extends SQLiteOpenHelper {
                               String content, String type,
                               String answer, String correct,
                               String stage_name, String stage, String reason) {
-        SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues contentValues = new ContentValues();
-        contentValues.put(LANGUAGE, language);
-        contentValues.put(LEVEL, level);
-        contentValues.put(ID, id);
-        contentValues.put(QUESTION, content);
-        contentValues.put(TYPE, type);
-        contentValues.put(ANSWER, answer);
-        contentValues.put(CORRECT, correct);
-        contentValues.put(STAGE_NAME, stage_name);
-        contentValues.put(STAGE, stage);
-        contentValues.put(REASON, reason);
-        long result = db.insert(JSON_TABLE, null, contentValues);
-        Log.i("contentValues", String.valueOf(contentValues));
+        synchronized (lock) {
+            try (SQLiteDatabase db = this.getWritableDatabase()) {
 
-        Log.i("response", "result " + result);
+                ContentValues contentValues = new ContentValues();
+                contentValues.put(LANGUAGE, language);
+                contentValues.put(LEVEL, level);
+                contentValues.put(ID, id);
+                contentValues.put(QUESTION, content);
+                contentValues.put(TYPE, type);
+                contentValues.put(ANSWER, answer);
+                contentValues.put(CORRECT, correct);
+                contentValues.put(STAGE_NAME, stage_name);
+                contentValues.put(STAGE, stage);
+                contentValues.put(REASON, reason);
+                long result = db.insert(JSON_TABLE, null, contentValues);
+                Log.i("contentValues", String.valueOf(contentValues));
+
+                Log.i("response", "result " + result);
+            }
+        }
+
     }
 
     public Cursor getQuestionByLevel2(String level) {
@@ -266,69 +270,77 @@ class DBHelper extends SQLiteOpenHelper {
                             String correctAnswer,
                             String session,
                             String date_played, String high_score, boolean is_correct) {
-        SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues contentValues = new ContentValues();
-        contentValues.put("QUESTION_ID", questionId);
-        contentValues.put("ANSWER", answer);
-        contentValues.put("CORRECT_ANSWER", correctAnswer);
-        contentValues.put("SESSION", session);
-        contentValues.put("DATE_PLAYED", date_played);
-        contentValues.put("HIGH_SCORE", high_score);
-        contentValues.put("IS_CORRECT", is_correct);
-        contentValues.put("REASON", getReason(questionId));
+        synchronized (lock) {
+            try (SQLiteDatabase db = this.getWritableDatabase()) {
+                ContentValues contentValues = new ContentValues();
+                contentValues.put("QUESTION_ID", questionId);
+                contentValues.put("ANSWER", answer);
+                contentValues.put("CORRECT_ANSWER", correctAnswer);
+                contentValues.put("SESSION", session);
+                contentValues.put("DATE_PLAYED", date_played);
+                contentValues.put("HIGH_SCORE", high_score);
+                contentValues.put("IS_CORRECT", is_correct);
+                contentValues.put("REASON", getReason(questionId));
 
 
-        boolean questionExists = checkHistory(questionId);
-        if (!questionExists) {
-            db.insert(HISTORY_TABLE, null, contentValues);
+                boolean questionExists = checkHistory(questionId);
+                if (!questionExists) {
+                    db.insert(HISTORY_TABLE, null, contentValues);
 
-
+                }
+            }
         }
-
     }
 
     @SuppressLint("Range")
     public String getReason(String questionId) {
-        String reason = "";
-        SQLiteDatabase db = this.getWritableDatabase();
-        String sql = "SELECT * FROM " + JSON_TABLE + " WHERE ID = " + questionId;
-        Cursor cursor = db.rawQuery(sql, null);
+        synchronized (lock) {
+            try (SQLiteDatabase db = this.getWritableDatabase()) {
+                String reason = "";
 
-        while (cursor.moveToNext()) {
+                String sql = "SELECT * FROM " + JSON_TABLE + " WHERE ID = " + questionId;
+                Cursor cursor = db.rawQuery(sql, null);
 
-            reason = cursor.getString(cursor.getColumnIndex("REASON"));
+                while (cursor.moveToNext()) {
 
+                    reason = cursor.getString(cursor.getColumnIndex("REASON"));
+
+                }
+
+                return reason;
+            }
         }
 
-        return reason;
     }
 
     public boolean checkHistory(String questionId) {
-        SQLiteDatabase db = this.getWritableDatabase();
-        String sql = "SELECT * FROM " + HISTORY_TABLE + " WHERE QUESTION_ID = '" + questionId + "'";
+        synchronized (lock) {
+            try (SQLiteDatabase db = this.getWritableDatabase()) {
+                String sql = "SELECT * FROM " + HISTORY_TABLE + " WHERE QUESTION_ID = '" + questionId + "'";
 
-        Cursor cursor = db.rawQuery(sql, null);
+                Cursor cursor = db.rawQuery(sql, null);
 
-
-        if (cursor.getCount() > 0) {
-            return true;
+                return cursor.getCount() > 0;
+            }
         }
-        return false;
-
     }
 
     public Cursor getHistory() {
-        SQLiteDatabase db = this.getWritableDatabase();
-        String sql = "SELECT * FROM " + HISTORY_TABLE + " ORDER BY ID DESC";
-        return db.rawQuery(sql, null);
-
+        synchronized (lock) {
+            try (SQLiteDatabase db = this.getWritableDatabase()) {
+                String sql = "SELECT * FROM " + HISTORY_TABLE + " ORDER BY ID DESC";
+                return db.rawQuery(sql, null);
+            }
+        }
     }
 
     public Cursor getHistoryByDate(String dateTime) {
-        SQLiteDatabase db = this.getWritableDatabase();
-        String sql = "SELECT  * FROM " + HISTORY_TABLE + " WHERE DATE_PLAYED = '" + dateTime + "' GROUP BY QUESTION_ID  ORDER BY ID DESC";
-        return db.rawQuery(sql, null);
-
+        synchronized (lock) {
+            try (SQLiteDatabase db = this.getWritableDatabase()) {
+                String sql = "SELECT  * FROM " + HISTORY_TABLE + " WHERE DATE_PLAYED = '" + dateTime + "' GROUP BY QUESTION_ID  ORDER BY ID DESC";
+                return db.rawQuery(sql, null);
+            }
+        }
     }
 
     public JSONArray buildHistoriesByDateTime(String dateTime) {
@@ -374,98 +386,102 @@ class DBHelper extends SQLiteOpenHelper {
     }
 
     public JSONArray buildHistories() {
+        synchronized (lock) {
+            try (SQLiteDatabase db = this.getWritableDatabase()) {
+                JSONArray jsonArray = new JSONArray();
 
-        SQLiteDatabase db = this.getWritableDatabase();
-        JSONArray jsonArray = new JSONArray();
-
-        String date = "";
-
-
-        try {
+                String date = "";
 
 
-            Cursor histories = getHistory();
-            while (histories.moveToNext()) {
+                Cursor histories = getHistory();
+                while (histories.moveToNext()) {
 
 
-                @SuppressLint("Range") String questionId = histories.getString(histories.getColumnIndex("QUESTION_ID"));
-                @SuppressLint("Range") String answered = histories.getString(histories.getColumnIndex("ANSWER"));
-                @SuppressLint("Range") String date_played = histories.getString(histories.getColumnIndex("DATE_PLAYED"));
-                @SuppressLint("Range") String HIGH_SCORE = histories.getString(histories.getColumnIndex("HIGH_SCORE"));
-                @SuppressLint("Range") String IS_CORRECT = histories.getString(histories.getColumnIndex("IS_CORRECT"));
+                    @SuppressLint("Range") String questionId = histories.getString(histories.getColumnIndex("QUESTION_ID"));
+                    @SuppressLint("Range") String answered = histories.getString(histories.getColumnIndex("ANSWER"));
+                    @SuppressLint("Range") String date_played = histories.getString(histories.getColumnIndex("DATE_PLAYED"));
+                    @SuppressLint("Range") String HIGH_SCORE = histories.getString(histories.getColumnIndex("HIGH_SCORE"));
+                    @SuppressLint("Range") String IS_CORRECT = histories.getString(histories.getColumnIndex("IS_CORRECT"));
 
 //               Log.i("serious",questionId);
 //               Log.i("serious",IS_CORRECT);
 //               Log.i("serious",date_played);
 
 
-                if (!date.equals(date_played)) {
-                    // Log.i("serious",IS_CORRECT);
-                    String sql1 = "SELECT * FROM " + HISTORY_TABLE + " WHERE DATE_PLAYED = '" + date_played + "' AND IS_CORRECT = '" + 1 + "'";
-                    String sql2 = "SELECT * FROM " + HISTORY_TABLE + " WHERE DATE_PLAYED = '" + date_played + "' AND IS_CORRECT = '" + 0 + "'";
-                    Cursor correctAnswers = db.rawQuery(sql1, null);
-                    Cursor incorrectAnswers = db.rawQuery(sql2, null);
+                    if (!date.equals(date_played)) {
+                        // Log.i("serious",IS_CORRECT);
+                        String sql1 = "SELECT * FROM " + HISTORY_TABLE + " WHERE DATE_PLAYED = '" + date_played + "' AND IS_CORRECT = '" + 1 + "'";
+                        String sql2 = "SELECT * FROM " + HISTORY_TABLE + " WHERE DATE_PLAYED = '" + date_played + "' AND IS_CORRECT = '" + 0 + "'";
+                        Cursor correctAnswers = db.rawQuery(sql1, null);
+                        Cursor incorrectAnswers = db.rawQuery(sql2, null);
 
-                    JSONObject object = getQuestionById(questionId);
-                    object.put("answered", answered);
-                    object.put("date_played", date_played);
-                    object.put("high_score", HIGH_SCORE);
-                    object.put("correct_answers", correctAnswers.getCount());
-                    object.put("wrong_answers", incorrectAnswers.getCount());
-                    object.put("is_correct", IS_CORRECT);
+                        try {
+                            JSONObject object = getQuestionById(questionId);
+
+                            object.put("answered", answered);
+                            object.put("date_played", date_played);
+                            object.put("high_score", HIGH_SCORE);
+                            object.put("correct_answers", correctAnswers.getCount());
+                            object.put("wrong_answers", incorrectAnswers.getCount());
+                            object.put("is_correct", IS_CORRECT);
 
 //               Log.i("checking", String.valueOf(questionId));
 //              Log.i("checking", String.valueOf(object));
-                    jsonArray.put(object);
-                    date = date_played;
+                            jsonArray.put(object);
+                            date = date_played;
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+
                 }
 
 
+                Log.i("checkingjj", String.valueOf(jsonArray));
+
+                return jsonArray;
+
             }
-
-        } catch (Exception e) {
-            Log.i("checkingjj", String.valueOf(e));
-            e.printStackTrace();
-
         }
-        Log.i("checkingjj", String.valueOf(jsonArray));
-
-        return jsonArray;
-
 
     }
 
     public JSONObject getQuestionById(String questionId) {
-        JSONObject contentObj = new JSONObject();
-        try {
-            SQLiteDatabase db = this.getWritableDatabase();
-            String sql = "SELECT * FROM " + JSON_TABLE + " WHERE ID = " + questionId;
-            Cursor res = db.rawQuery(sql, null);
+        synchronized (lock) {
+            JSONObject contentObj = new JSONObject();
 
-            if (res.moveToNext()) {
-                @SuppressLint("Range") String id = res.getString(res.getColumnIndex("ID"));
-                @SuppressLint("Range") String language = res.getString(res.getColumnIndex("LANGUAGE"));
-                @SuppressLint("Range") String question = res.getString(res.getColumnIndex("QUESTION"));
-                @SuppressLint("Range") String answer = res.getString(res.getColumnIndex("ANSWER"));
-                @SuppressLint("Range") String type = res.getString(res.getColumnIndex("TYPE"));
-                @SuppressLint("Range") String correct = res.getString(res.getColumnIndex("CORRECT"));
+            try (SQLiteDatabase db = this.getWritableDatabase()) {
+                String sql = "SELECT * FROM " + JSON_TABLE + " WHERE ID = " + questionId;
+                Cursor res = db.rawQuery(sql, null);
 
+                if (res.moveToNext()) {
+                    @SuppressLint("Range") String id = res.getString(res.getColumnIndex("ID"));
+                    @SuppressLint("Range") String language = res.getString(res.getColumnIndex("LANGUAGE"));
+                    @SuppressLint("Range") String question = res.getString(res.getColumnIndex("QUESTION"));
+                    @SuppressLint("Range") String answer = res.getString(res.getColumnIndex("ANSWER"));
+                    @SuppressLint("Range") String type = res.getString(res.getColumnIndex("TYPE"));
+                    @SuppressLint("Range") String correct = res.getString(res.getColumnIndex("CORRECT"));
 
-                contentObj.put("id", id);
-                contentObj.put("parent", "0");
-                contentObj.put("content", question);
-                contentObj.put("title", "");
-                contentObj.put("type", type);
-                contentObj.put("answer", answer);
-                contentObj.put("correct", correct);
-                contentObj.put("question_image", "");
+                    try {
+                        contentObj.put("id", id);
+                        contentObj.put("parent", "0");
+                        contentObj.put("content", question);
+                        contentObj.put("title", "");
+                        contentObj.put("type", type);
+                        contentObj.put("answer", answer);
+                        contentObj.put("correct", correct);
+                        contentObj.put("question_image", "");
+
+                    } catch (Exception e) {
+                        Log.i("checking", "pppp2");
+                        e.printStackTrace();
+                    }
+
+                }
             }
-        } catch (Exception e) {
-            Log.i("checking", "pppp2");
-            e.printStackTrace();
-        }
 
-        return contentObj;
+            return contentObj;
+        }
 
 
     }
