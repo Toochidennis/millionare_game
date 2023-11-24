@@ -1263,65 +1263,62 @@ public class GameActivity2 extends AppCompatActivity {
 //            final BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(this);
 //
 //            bottomSheetDialog.setContentView(R.layout.correct_answer_dialog);
-            bottomSheetDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
-                @Override
-                public void onDismiss(DialogInterface dialogInterface) {
+            bottomSheetDialog.setOnDismissListener(dialogInterface -> {
 
-                    bottomSheetDialog.dismiss();
+                bottomSheetDialog.dismiss();
 
 
-                    /////
+                /////
 
-                    new Handler().postDelayed(() -> {
-                        if (noOfCorrectAnswer >= 15) {
-                            loadSongs();
-                            SharedPreferences sharedPreferences = getSharedPreferences("settings", Context.MODE_PRIVATE);
-                            int current_play_level_int = Integer.parseInt(sharedPreferences.getString("current_play_level", "1"));
-                            int newGameLevel = current_play_level_int + 1;
-                            SharedPreferences.Editor editor = sharedPreferences.edit();
-                            /// editor.putString("game_level",String.valueOf(newGameLevel));
-                            editor.putString("current_play_level", String.valueOf(newGameLevel));
+                new Handler().postDelayed(() -> {
+                    if (noOfCorrectAnswer >= 15) {
+                        loadSongs();
+                        SharedPreferences sharedPreferences = getSharedPreferences("settings", Context.MODE_PRIVATE);
+                        int current_play_level_int = Integer.parseInt(sharedPreferences.getString("current_play_level", "1"));
+                        int newGameLevel = current_play_level_int + 1;
+                        SharedPreferences.Editor editor = sharedPreferences.edit();
+                        /// editor.putString("game_level",String.valueOf(newGameLevel));
+                        editor.putString("current_play_level", String.valueOf(newGameLevel));
 
-                            if (hasOldWinningAmount) {
-                                String amountWon = GameActivity2.amountWon.replace("$", "").replace(",", "");
-                                String oldAmountWon = sharedPreferences.getString("amountWon", "0").replace("$", "").replace(",", "");
-                                int newAmount = Integer.parseInt(amountWon) + Integer.parseInt(oldAmountWon);
-                                DecimalFormat formatter = new DecimalFormat("#,###,###");
-                                String formatted_newAmount = formatter.format(newAmount);
-                                editor.putString("amountWon", formatted_newAmount);
+                        if (hasOldWinningAmount) {
+                            String amountWon = GameActivity2.amountWon.replace("$", "").replace(",", "");
+                            String oldAmountWon = sharedPreferences.getString("amountWon", "0").replace("$", "").replace(",", "");
+                            int newAmount = Integer.parseInt(amountWon) + Integer.parseInt(oldAmountWon);
+                            DecimalFormat formatter = new DecimalFormat("#,###,###");
+                            String formatted_newAmount = formatter.format(newAmount);
+                            editor.putString("amountWon", formatted_newAmount);
 
-                            } else {
-                                editor.putString("amountWon", amountWon);
-                            }
-                            editor.apply();
-
-                            Intent intent = new Intent(GameActivity2.this, WinnersActivity.class);
-                            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                            intent.putExtra("isWon", true);
-                            intent.putExtra("isShowAd", false);
-                            startActivity(intent);
-                            //finish();
                         } else {
-                            Intent intent = new Intent(GameActivity2.this, ProgressActivity.class);
-                            intent.putExtra("number", number1);
-                            intent.putExtra("timer", "true");
-                            if (Build.VERSION.SDK_INT > 20) {
-                                ActivityOptions options =
-                                        ActivityOptions.makeSceneTransitionAnimation(GameActivity2.this);
-                                startActivity(intent);
-                            } else {
-                                startActivity(intent);
-                            }
-                            wonder();
+                            editor.putString("amountWon", amountWon);
                         }
-                    }, 1000);
+                        editor.apply();
 
-                    //bottomSheetDialog.show();
+                        Intent intent = new Intent(GameActivity2.this, WinnersActivity.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        intent.putExtra("isWon", true);
+                        intent.putExtra("isShowAd", false);
+                        startActivity(intent);
+                        //finish();
+                    } else {
+                        Intent intent = new Intent(GameActivity2.this, ProgressActivity.class);
+                        intent.putExtra("number", number1);
+                        intent.putExtra("timer", "true");
+                        if (Build.VERSION.SDK_INT > 20) {
+                            ActivityOptions options =
+                                    ActivityOptions.makeSceneTransitionAnimation(GameActivity2.this);
+                            startActivity(intent);
+                        } else {
+                            startActivity(intent);
+                        }
+                        wonder();
+                    }
+                }, 1000);
+
+                //bottomSheetDialog.show();
 
 
-                    /////
+                /////
 
-                }
             });
 
 
