@@ -224,18 +224,18 @@ class DBHelper extends SQLiteOpenHelper {
 
     public int getQuestionSize() {
         synchronized (lock) {
-            Cursor res = null;
             try {
                 SQLiteDatabase db = this.getWritableDatabase();
                 String selectQuery = "SELECT * FROM " + JSON_TABLE;
-                res = db.rawQuery(selectQuery, null);
+                Cursor res = db.rawQuery(selectQuery, null);
+
+                return res.getCount();
+
             } catch (Exception e) {
                 e.printStackTrace();
+                return 0;
             }
-            assert res != null;
-            return res.getCount();
         }
-
     }
 
     public String buildJson() {
