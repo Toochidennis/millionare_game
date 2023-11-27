@@ -81,6 +81,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import java.util.Locale;
 import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -92,13 +93,10 @@ public class GameActivity2 extends AppCompatActivity {
     public static MediaPlayer mFailurePlayer;
 
 
-    DateFormat df = new SimpleDateFormat("EEE, d MMM, HH:mm");
-    String date_1 = df.format(Calendar.getInstance().getTime());
     static boolean active = false;
 
 
-    String date_time = date_1;
-    String time_1 = date_1;
+    String time_1;
 
     public static MediaPlayer mWinning_sound;
     String countdownTime = "60000";
@@ -173,6 +171,7 @@ public class GameActivity2 extends AppCompatActivity {
     TextView opt_dec_1, opt_dec_2, opt_dec_3, opt_dec_4;
     int number_of_failure = 0;
     LinearLayout lifeGuardContainers = null;
+    TextView amountWonTxt;
     //AdManager adManager;
     public static Activity gameActivity2;
     JSONArray allQuestion = new JSONArray();
@@ -189,10 +188,17 @@ public class GameActivity2 extends AppCompatActivity {
 
         playStong();
 
+        try {
+            DateFormat df = new SimpleDateFormat("EEE, d MMM, HH:mm", Locale.getDefault());
+            time_1 = df.format(Calendar.getInstance().getTime());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
         setContentView(R.layout.activity_exam_game2);
         fromProgress = getIntent().getBooleanExtra("fromProgress", false);
         gameActivity2 = this;
-        Utils.lastDatePlayed = date_1;
+        Utils.lastDatePlayed = time_1;
 
 
         hasOldWinningAmount = getIntent().getBooleanExtra("hasOldWinningAmount", false);
@@ -251,6 +257,7 @@ public class GameActivity2 extends AppCompatActivity {
 
         progressBtn = findViewById(R.id.progressBtn);
         exitBtn = findViewById(R.id.exitBtn);
+        amountWonTxt = findViewById(R.id.amount_won);
 
 
         progressBtn.setOnClickListener(view -> {
@@ -2335,25 +2342,28 @@ public class GameActivity2 extends AppCompatActivity {
     }
 
     private void setAmountWon() {
-        TextView amountWonTxt = findViewById(R.id.amount_won);
         String amountWon_ = amountWon.replace("$", "");
         saveNoOfCorrectAnswer();
 
-        if (amountWon_.isEmpty()) {
-            amountWonTxt.setText("$0");
-        } else {
-            switch (Integer.parseInt(amountWon_)) {
-                case 0:
-                    amountWonTxt.setText("$0");
-                    break;
-                case 500:
-                    amountWonTxt.setText("$500");
-                    break;
+        try {
+            if (amountWon_.isEmpty()) {
+                amountWonTxt.setText("$0");
+            } else {
+                switch (Integer.parseInt(amountWon_)) {
+                    case 0:
+                        amountWonTxt.setText("$0");
+                        break;
+                    case 500:
+                        amountWonTxt.setText("$500");
+                        break;
 
-                default:
-                    amountWonTxt.setText("$" + prettyCount(Integer.parseInt(amountWon)).replace(".0", ""));
-                    break;
+                    default:
+                        amountWonTxt.setText("$" + prettyCount(Integer.parseInt(amountWon)).replace(".0", ""));
+                        break;
+                }
             }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
     }
@@ -2565,7 +2575,6 @@ public class GameActivity2 extends AppCompatActivity {
 
         dbHelper.saveHistory(String.valueOf(questionId), answer, correctAnswer, time_1, time_1, high_score, is_correct);
 
-
     }
 
     public int getOptionIndex(JSONArray jsonArray, String correctAswer) {
@@ -2585,7 +2594,6 @@ public class GameActivity2 extends AppCompatActivity {
         return 3;
     }
 
-
     @Override
     public void onStop() {
         super.onStop();
@@ -2600,11 +2608,9 @@ public class GameActivity2 extends AppCompatActivity {
             CountDownActivity.mSuccessPlayer = MediaPlayer.create(GameActivity2.this, R.raw.success_sound);
 
         } catch (Exception e) {
-
+            e.printStackTrace();
         }
 
-
     }
-
 
 }
