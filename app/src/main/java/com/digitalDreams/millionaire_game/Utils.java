@@ -111,8 +111,13 @@ public class Utils {
     public static void greenBlink(View btn, Context context) {
         int dark = R.drawable.dark_play;
         int light = R.drawable.playbtn_bg;
-        Uri uri = Uri.parse("android.resource://" + context.getPackageName() + "/" + R.raw.play);
-        MediaPlayer.create(context, uri).start();
+
+        try {
+            Uri uri = Uri.parse("android.resource://" + context.getPackageName() + "/" + R.raw.play);
+            MediaPlayer.create(context, uri).start();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
 
         btn.setOnTouchListener((v, event) -> {
@@ -138,8 +143,13 @@ public class Utils {
     public static void darkBlueBlink(View btn, Context context) {
         int dark = R.drawable.ic_hex_2;
         int light = R.drawable.ic_hexnow;
-        Uri uri = Uri.parse("android.resource://" + context.getPackageName() + "/" + R.raw.others);
-        MediaPlayer.create(context, uri).start();
+
+        try {
+            Uri uri = Uri.parse("android.resource://" + context.getPackageName() + "/" + R.raw.others);
+            MediaPlayer.create(context, uri).start();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
 
         btn.setOnTouchListener((v, event) -> {
@@ -234,7 +244,6 @@ public class Utils {
     }
 
     public static String getDate() {
-
 
         Date c = Calendar.getInstance().getTime();
         System.out.println("Current time => " + c);
