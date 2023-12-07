@@ -1042,6 +1042,8 @@ public void moveToSignUp(String username){
     public void loadFlag(String url,ImageView imageView){
        try {
            SVGLoader.fetchSvg(LeaderBoard.this,url,imageView);
-       }catch (Exception e){}
+       }catch (Exception e){
+           e.printStackTrace();
+       }
     }
 }
