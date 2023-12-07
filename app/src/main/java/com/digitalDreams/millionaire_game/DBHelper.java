@@ -91,22 +91,28 @@ class DBHelper extends SQLiteOpenHelper {
                               String content, String type,
                               String answer, String correct,
                               String stage_name, String stage, String reason) {
-        SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues contentValues = new ContentValues();
-        contentValues.put(LANGUAGE, language);
-        contentValues.put(LEVEL, level);
-        contentValues.put(ID, id);
-        contentValues.put(QUESTION, content);
-        contentValues.put(TYPE, type);
-        contentValues.put(ANSWER, answer);
-        contentValues.put(CORRECT, correct);
-        contentValues.put(STAGE_NAME, stage_name);
-        contentValues.put(STAGE, stage);
-        contentValues.put(REASON, reason);
-        long result = db.insert(JSON_TABLE, null, contentValues);
-        Log.i("contentValues", String.valueOf(contentValues));
+        synchronized (lock) {
+            try {
+                SQLiteDatabase db = this.getWritableDatabase();
+                ContentValues contentValues = new ContentValues();
+                contentValues.put(LANGUAGE, language);
+                contentValues.put(LEVEL, level);
+                contentValues.put(ID, id);
+                contentValues.put(QUESTION, content);
+                contentValues.put(TYPE, type);
+                contentValues.put(ANSWER, answer);
+                contentValues.put(CORRECT, correct);
+                contentValues.put(STAGE_NAME, stage_name);
+                contentValues.put(STAGE, stage);
+                contentValues.put(REASON, reason);
+                long result = db.insert(JSON_TABLE, null, contentValues);
+                Log.i("contentValues", String.valueOf(contentValues));
+                Log.i("response", "result " + result);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
 
-        Log.i("response", "result " + result);
+        }
     }
 
     public Cursor getQuestionByLevel2(String level) {
@@ -248,28 +254,31 @@ class DBHelper extends SQLiteOpenHelper {
             for (int a = 1; a < 16; a++) {
                 Cursor res = getQuestionByLevel2(String.valueOf(a));
 
-                res.moveToNext();
-                @SuppressLint("Range") String id = res.getString(res.getColumnIndex("ID"));
-                @SuppressLint("Range") String language = res.getString(res.getColumnIndex("LANGUAGE"));
-                @SuppressLint("Range") String question = res.getString(res.getColumnIndex("QUESTION"));
-                @SuppressLint("Range") String answer = res.getString(res.getColumnIndex("ANSWER"));
-                @SuppressLint("Range") String type = res.getString(res.getColumnIndex("TYPE"));
-                @SuppressLint("Range") String correct = res.getString(res.getColumnIndex("CORRECT"));
-                @SuppressLint("Range") String reason = res.getString(res.getColumnIndex("REASON"));
+                if (res != null){
+                    res.moveToNext();
 
-                JSONObject contentObj = new JSONObject();
-                contentObj.put("id", id);
-                contentObj.put("parent", "0");
-                contentObj.put("content", question);
-                contentObj.put("title", "");
-                contentObj.put("type", type);
-                contentObj.put("answer", answer);
-                contentObj.put("correct", correct);
-                contentObj.put("question_image", "");
-                contentObj.put("reason", reason);
-                arr.put(contentObj);
+                    @SuppressLint("Range") String id = res.getString(res.getColumnIndex("ID"));
+                    @SuppressLint("Range") String language = res.getString(res.getColumnIndex("LANGUAGE"));
+                    @SuppressLint("Range") String question = res.getString(res.getColumnIndex("QUESTION"));
+                    @SuppressLint("Range") String answer = res.getString(res.getColumnIndex("ANSWER"));
+                    @SuppressLint("Range") String type = res.getString(res.getColumnIndex("TYPE"));
+                    @SuppressLint("Range") String correct = res.getString(res.getColumnIndex("CORRECT"));
+                    @SuppressLint("Range") String reason = res.getString(res.getColumnIndex("REASON"));
 
-                res.close();
+                    JSONObject contentObj = new JSONObject();
+                    contentObj.put("id", id);
+                    contentObj.put("parent", "0");
+                    contentObj.put("content", question);
+                    contentObj.put("title", "");
+                    contentObj.put("type", type);
+                    contentObj.put("answer", answer);
+                    contentObj.put("correct", correct);
+                    contentObj.put("question_image", "");
+                    contentObj.put("reason", reason);
+                    arr.put(contentObj);
+
+                    res.close();
+                }
 
             }
             qObj.put("0", arr);
