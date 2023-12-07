@@ -27,15 +27,14 @@ import java.text.DecimalFormat;
 public class CountDownActivity extends AppCompatActivity {
     String time = "5000";
     DBHelper dbHelper;
-   public static MediaPlayer mMediaPlayer;
+    public static MediaPlayer mMediaPlayer;
     public static MediaPlayer mSuccessPlayer;
     public static MediaPlayer mFailurePlayer;
     boolean hasOldWinningAmount = false;
-  //  public static RewardedAd mRewardedVideoAd;
+    //  public static RewardedAd mRewardedVideoAd;
     TextView count_down_level;
     TextView amount_to_win;
-   // AdManager adManager;
-
+    // AdManager adManager;
 
 
     @Override
@@ -47,8 +46,7 @@ public class CountDownActivity extends AppCompatActivity {
         AdManager.initRewardedVideo(CountDownActivity.this);
 
 
-
-       // mRewardedVideoAd = AdManager.rewardedAd; //MobileAds.getRewardedVideoAdInstance(this);
+        // mRewardedVideoAd = AdManager.rewardedAd; //MobileAds.getRewardedVideoAdInstance(this);
 
         loadVideoAd();
 
@@ -56,39 +54,37 @@ public class CountDownActivity extends AppCompatActivity {
 //         dbHelper = new DBHelper(this);
 //         dbHelper.close();
 //         String json = dbHelper.buildJson();
-         hasOldWinningAmount = getIntent().getBooleanExtra("hasOldWinningAmount",false);
-
-
+        hasOldWinningAmount = getIntent().getBooleanExtra("hasOldWinningAmount", false);
 
 
         SharedPreferences sharedPreferences = getSharedPreferences("settings", Context.MODE_PRIVATE);
-        String languageCode = sharedPreferences.getString("language","en");
-        int endcolor = sharedPreferences.getInt("end_color",getResources().getColor(R.color.purple_dark));
-        int startColor = sharedPreferences.getInt("start_color",getResources().getColor(R.color.purple_500));
-        String game_level = sharedPreferences.getString("game_level","1");
+        String languageCode = sharedPreferences.getString("language", "en");
+        int endcolor = sharedPreferences.getInt("end_color", getResources().getColor(R.color.purple_dark));
+        int startColor = sharedPreferences.getInt("start_color", getResources().getColor(R.color.purple_500));
+        String game_level = sharedPreferences.getString("game_level", "1");
 
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
         getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
                 | View.SYSTEM_UI_FLAG_IMMERSIVE);
 
         RelativeLayout bg = findViewById(R.id.rootview);
-        new Particles(this,bg,R.layout.image_xml,20);
+        new Particles(this, bg, R.layout.image_xml, 20);
         GradientDrawable gd = new GradientDrawable(
                 GradientDrawable.Orientation.TOP_BOTTOM,
-                new int[] {startColor,endcolor});
+                new int[]{startColor, endcolor});
 
         bg.setBackgroundDrawable(gd);
         resetData();
 
         ////// set game and level ///////////
-         amount_to_win =  findViewById(R.id.amount_to_win);
-         count_down_level = findViewById(R.id.level);
+        amount_to_win = findViewById(R.id.amount_to_win);
+        count_down_level = findViewById(R.id.level);
         String pattern = "#,###,###.###";
         DecimalFormat decimalFormat = new DecimalFormat(pattern);
 
         int amount_to_win_int = Integer.parseInt(game_level) * 1000000;
-        String level_string = "Level "+ game_level;
-        amount_to_win.setText("$"+decimalFormat.format(amount_to_win_int));
+        String level_string = "Level " + game_level;
+        amount_to_win.setText("$" + decimalFormat.format(amount_to_win_int));
         count_down_level.setText(level_string);
 
         ////
@@ -98,14 +94,14 @@ public class CountDownActivity extends AppCompatActivity {
         String response = intent.getStringExtra("Json");
         String from = intent.getStringExtra("from");
         String courseName = intent.getStringExtra("course");
-       long countdownTime = Long.parseLong(time);
+        long countdownTime = Long.parseLong(time);
 
-        CountDownTimer timer = new CountDownTimer(countdownTime,1000) {
+        CountDownTimer timer = new CountDownTimer(countdownTime, 1000) {
             @Override
             public void onTick(long millisUntilFinished) {
                 int sec = (int) (millisUntilFinished / 1000);
-                int seconds=(sec % 3600)%60;
-                counterText.setText(""+seconds);
+                int seconds = (sec % 3600) % 60;
+                counterText.setText("" + seconds);
             }
 
             @Override
@@ -118,7 +114,7 @@ public class CountDownActivity extends AppCompatActivity {
 //                intent.setFlags( Intent.FLAG_ACTIVITY_CLEAR_TOP );
 //                startActivity(intent);
                 GameActivity2.isStartAtFresh = false;
-               finish();
+                finish();
             }
         };
         timer.start();
@@ -130,27 +126,22 @@ public class CountDownActivity extends AppCompatActivity {
         super.onBackPressed();
     }
 
-    private void loadSongs(){
-        new Handler().post(new Runnable() {
-            @Override
-            public void run() {
+    private void loadSongs() {
+        new Handler().post(() -> {
 
-                try{
-                    mMediaPlayer = MediaPlayer.create(CountDownActivity.this, R.raw.background_sound);
-                    mFailurePlayer  = MediaPlayer.create(CountDownActivity.this, R.raw.failure_sound2);
-                    mSuccessPlayer  = MediaPlayer.create(CountDownActivity.this, R.raw.success_sound);
-                }catch(Exception e){
-
-
-
-                }
-
+            try {
+                mMediaPlayer = MediaPlayer.create(CountDownActivity.this, R.raw.background_sound);
+                mFailurePlayer = MediaPlayer.create(CountDownActivity.this, R.raw.failure_sound2);
+                mSuccessPlayer = MediaPlayer.create(CountDownActivity.this, R.raw.success_sound);
+            } catch (Exception e) {
+                e.printStackTrace();
             }
+
         });
 
     }
 
-    public  void loadVideoAd() {
+    public void loadVideoAd() {
 //        // Load a reward based video ad
 //        if(!mRewardedVideoAd.isLoaded()){
 //            Log.i("mRewardedVideoAd","Not LOaded");
@@ -159,7 +150,6 @@ public class CountDownActivity extends AppCompatActivity {
 //            Log.i("mRewardedVideoAd","LOaded");
 //
 //        }
-
 
 
     }
