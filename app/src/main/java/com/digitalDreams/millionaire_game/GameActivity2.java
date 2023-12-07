@@ -88,9 +88,9 @@ import java.util.TimerTask;
 
 public class GameActivity2 extends AppCompatActivity {
 
-    public static MediaPlayer mMediaPlayer;
-    public static MediaPlayer mSuccessPlayer;
-    public static MediaPlayer mFailurePlayer;
+    // public static MediaPlayer mMediaPlayer;
+    // public static MediaPlayer mSuccessPlayer;
+    //  public static MediaPlayer mFailurePlayer;
 
 
     static boolean active = false;
@@ -844,7 +844,7 @@ public class GameActivity2 extends AppCompatActivity {
 
 
                                 } catch (Exception e) {
-
+                                    e.printStackTrace();
                                 }
                             }
                         }, 1000);
@@ -1290,7 +1290,22 @@ public class GameActivity2 extends AppCompatActivity {
                         if (hasOldWinningAmount) {
                             String amountWon = GameActivity2.amountWon.replace("$", "").replace(",", "");
                             String oldAmountWon = sharedPreferences.getString("amountWon", "0").replace("$", "").replace(",", "");
-                            int newAmount = Integer.parseInt(amountWon) + Integer.parseInt(oldAmountWon);
+                            int parsedAmountWon;
+                            int parsedOldAmount;
+
+                            if (amountWon.isEmpty()) {
+                                parsedAmountWon = 0;
+                            } else {
+                                parsedAmountWon = Integer.parseInt(amountWon);
+                            }
+
+                            if (oldAmountWon.isEmpty()) {
+                                parsedOldAmount = 0;
+                            } else {
+                                parsedOldAmount = Integer.parseInt(oldAmountWon);
+                            }
+
+                            int newAmount = parsedAmountWon + parsedOldAmount;
                             DecimalFormat formatter = new DecimalFormat("#,###,###");
                             String formatted_newAmount = formatter.format(newAmount);
                             editor.putString("amountWon", formatted_newAmount);
@@ -1416,24 +1431,21 @@ public class GameActivity2 extends AppCompatActivity {
                         bottomSheetDialog.dismiss();
 
                     });
-                    bottomSheetDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
-                        @Override
-                        public void onDismiss(DialogInterface dialogInterface) {
+                    bottomSheetDialog.setOnDismissListener(dialogInterface -> {
 
 
-                            bottomSheetDialog.dismiss();
+                        bottomSheetDialog.dismiss();
 
 //
-                            if (CountDownActivity.mMediaPlayer != null) {
-                                CountDownActivity.mMediaPlayer.pause();
-                            }
-
-
-                            Intent intent = new Intent(GameActivity2.this, FailureActivity.class);
-                            startActivity(intent);
-
-
+                        if (CountDownActivity.mMediaPlayer != null) {
+                            CountDownActivity.mMediaPlayer.pause();
                         }
+
+
+                        Intent intent = new Intent(GameActivity2.this, FailureActivity.class);
+                        startActivity(intent);
+
+
                     });
 
                 });
@@ -1472,61 +1484,59 @@ public class GameActivity2 extends AppCompatActivity {
                     bottomSheetDialog.dismiss();
 
                 });
-                bottomSheetDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
-                    @Override
-                    public void onDismiss(DialogInterface dialogInterface) {
+                bottomSheetDialog.setOnDismissListener(dialogInterface -> new Handler().postDelayed(() -> {
 
-
-                        new Handler().postDelayed(new Runnable() {
-                            @Override
-                            public void run() {
-
-                                Intent intent = new Intent(GameActivity2.this, FailureActivity.class);
-                                if (hasOldWinningAmount) {
-                                    intent.putExtra("hasOldWinningAmount", hasOldWinningAmount);
-                                }
-                                if (CountDownActivity.mMediaPlayer != null) {
-                                    CountDownActivity.mMediaPlayer.pause();
-                                }
-                                startActivity(intent);
-                            }
-                        }, 500);
-
-
+                    Intent intent = new Intent(GameActivity2.this, FailureActivity.class);
+                    if (hasOldWinningAmount) {
+                        intent.putExtra("hasOldWinningAmount", hasOldWinningAmount);
                     }
-                });
+                    if (CountDownActivity.mMediaPlayer != null) {
+                        CountDownActivity.mMediaPlayer.pause();
+                    }
+                    startActivity(intent);
+                }, 500));
 
             }
 
 
         }
 
-
     }
 
     private void playSuccessSound() {
-        if (CountDownActivity.mSuccessPlayer != null) {
-            CountDownActivity.mSuccessPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
-            CountDownActivity.mSuccessPlayer.setLooping(false);
-            CountDownActivity.mSuccessPlayer.start();
+        try {
+            if (CountDownActivity.mSuccessPlayer != null) {
+                CountDownActivity.mSuccessPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+                CountDownActivity.mSuccessPlayer.setLooping(false);
+                CountDownActivity.mSuccessPlayer.start();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
     private void playFailureSound() {
         //CountDownActivity.mFailurePlayer  = MediaPlayer.create(this, R.raw.failure_sound);
-
-        if (CountDownActivity.mFailurePlayer != null) {
-            CountDownActivity.mFailurePlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
-            CountDownActivity.mFailurePlayer.setLooping(false);
-            CountDownActivity.mFailurePlayer.start();
+        try {
+            if (CountDownActivity.mFailurePlayer != null) {
+                CountDownActivity.mFailurePlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+                CountDownActivity.mFailurePlayer.setLooping(false);
+                CountDownActivity.mFailurePlayer.start();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
     private void playBackgroundSound() {
-        if (CountDownActivity.mMediaPlayer != null) {
-            CountDownActivity.mMediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
-            CountDownActivity.mMediaPlayer.setLooping(true);
-            CountDownActivity.mMediaPlayer.start();
+        try {
+            if (CountDownActivity.mMediaPlayer != null) {
+                CountDownActivity.mMediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+                CountDownActivity.mMediaPlayer.setLooping(true);
+                CountDownActivity.mMediaPlayer.start();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
@@ -2031,116 +2041,121 @@ public class GameActivity2 extends AppCompatActivity {
 //            }
 //        }
 
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                FailDialog dialog;
-                dialog = new FailDialog(GameActivity2.this, amountWon);
-                dialog.setCancelable(false);
-                dialog.setCanceledOnTouchOutside(false);
-                if (!isFinishing()) {
-                    // dialog.show();
-                    final ImageButton jl = findViewById(R.id.fwd);
+        try {
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    FailDialog dialog;
+                    dialog = new FailDialog(GameActivity2.this, amountWon);
+                    dialog.setCancelable(false);
+                    dialog.setCanceledOnTouchOutside(false);
+                    if (!isFinishing()) {
+                        // dialog.show();
+                        final ImageButton jl = findViewById(R.id.fwd);
 
-                    WrongAnswerDialog wrongAnswerDialog = new WrongAnswerDialog(GameActivity2.this, CountDownActivity.mMediaPlayer);
+                        WrongAnswerDialog wrongAnswerDialog = new WrongAnswerDialog(GameActivity2.this, CountDownActivity.mMediaPlayer);
 
-                    wrongAnswerDialog.show();
-                    wrongAnswerDialog.setCancelable(false);
-                    RelativeLayout giveUp = wrongAnswerDialog.findViewById(R.id.give_up);
-                    RelativeLayout play_again = wrongAnswerDialog.findViewById(R.id.play_again);
-                    ImageView cancel_icon = wrongAnswerDialog.findViewById(R.id.cancel_icon);
+                        wrongAnswerDialog.show();
+                        wrongAnswerDialog.setCancelable(false);
+                        RelativeLayout giveUp = wrongAnswerDialog.findViewById(R.id.give_up);
+                        RelativeLayout play_again = wrongAnswerDialog.findViewById(R.id.play_again);
+                        ImageView cancel_icon = wrongAnswerDialog.findViewById(R.id.cancel_icon);
 
-                    cancel_icon.setOnClickListener(view -> {
+                        cancel_icon.setOnClickListener(view -> {
 
-                        cancel_icon.setEnabled(false);
-                        giveUp.performClick();
-                    });
+                            cancel_icon.setEnabled(false);
+                            giveUp.performClick();
+                        });
 
-                    play_again.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            if (Utils.isOnline(GameActivity2.this)) {
-                                wrongAnswerDialog.showRewarededAdWithListener();
-                                wrongAnswerDialog.mRewardedVideoAd.setFullScreenContentCallback(new FullScreenContentCallback() {
-                                    @Override
-                                    public void onAdDismissedFullScreenContent() {
-                                        super.onAdDismissedFullScreenContent();
-                                        setTime();
-                                    }
+                        play_again.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                if (Utils.isOnline(GameActivity2.this)) {
+                                    wrongAnswerDialog.showRewarededAdWithListener();
+                                    wrongAnswerDialog.mRewardedVideoAd.setFullScreenContentCallback(new FullScreenContentCallback() {
+                                        @Override
+                                        public void onAdDismissedFullScreenContent() {
+                                            super.onAdDismissedFullScreenContent();
+                                            setTime();
+                                        }
 
-                                });
+                                    });
 
-                            } else {
+                                } else {
 
-                                giveUp.performClick();
+                                    giveUp.performClick();
 
+                                }
                             }
-                        }
-                    });
+                        });
 
-                    giveUp.setOnClickListener(view -> {
-                        wrongAnswerDialog.dismiss();
+                        giveUp.setOnClickListener(view -> {
+                            wrongAnswerDialog.dismiss();
 
-                        final BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(GameActivity2.this);
-                        bottomSheetDialog.setContentView(R.layout.correct_answer_dialog);
+                            final BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(GameActivity2.this);
+                            bottomSheetDialog.setContentView(R.layout.correct_answer_dialog);
 
-                        try {
-                            TextView alpha_opt = bottomSheetDialog.findViewById(R.id.alpha_opt);
-                            TextView opt = bottomSheetDialog.findViewById(R.id.opt);
-                            assert opt != null;
-                            opt.setText(Utils.capitalizeFirstWord(singleQuestion.getString("correct")));
-                            TextView reason = bottomSheetDialog.findViewById(R.id.reason);
-                            int questionID = singleQuestion.getInt("id");
-                            reason.setText(Utils.capitalizeFirstWord(singleQuestion.getString("reason")));
-                            JSONArray opt_answer = new JSONArray(singleQuestion.getString("answer"));
-                            int position = getOptionIndex(opt_answer, singleQuestion.getString("correct"));
-                            alpha_opt.setText(numbs[position]);
-                            RelativeLayout readMore = bottomSheetDialog.findViewById(R.id.read_more);
-                            readMore.setOnClickListener(view1 -> Utils.navigateToWebview(String.valueOf(questionID), GameActivity2.this));
+                            try {
+                                TextView alpha_opt = bottomSheetDialog.findViewById(R.id.alpha_opt);
+                                TextView opt = bottomSheetDialog.findViewById(R.id.opt);
+                                assert opt != null;
+                                opt.setText(Utils.capitalizeFirstWord(singleQuestion.getString("correct")));
+                                TextView reason = bottomSheetDialog.findViewById(R.id.reason);
+                                int questionID = singleQuestion.getInt("id");
+                                reason.setText(Utils.capitalizeFirstWord(singleQuestion.getString("reason")));
+                                JSONArray opt_answer = new JSONArray(singleQuestion.getString("answer"));
+                                int position = getOptionIndex(opt_answer, singleQuestion.getString("correct"));
+                                alpha_opt.setText(numbs[position]);
+                                RelativeLayout readMore = bottomSheetDialog.findViewById(R.id.read_more);
+                                readMore.setOnClickListener(view1 -> Utils.navigateToWebview(String.valueOf(questionID), GameActivity2.this));
 //
 
-                        } catch (Exception e) {
-                            e.printStackTrace();
+                            } catch (Exception e) {
+                                e.printStackTrace();
 
-                        }
-                        bottomSheetDialog.show();
-                        RelativeLayout close_dialog = bottomSheetDialog.findViewById(R.id.close_dialog);
-                        assert close_dialog != null;
-                        close_dialog.setOnClickListener(view12 -> {
-                            close_dialog.setEnabled(false);
-
-                            bottomSheetDialog.dismiss();
-
-                        });
-                        bottomSheetDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
-                            @Override
-                            public void onDismiss(DialogInterface dialogInterface) {
-
+                            }
+                            bottomSheetDialog.show();
+                            RelativeLayout close_dialog = bottomSheetDialog.findViewById(R.id.close_dialog);
+                            assert close_dialog != null;
+                            close_dialog.setOnClickListener(view12 -> {
+                                close_dialog.setEnabled(false);
 
                                 bottomSheetDialog.dismiss();
 
+                            });
+                            bottomSheetDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                                @Override
+                                public void onDismiss(DialogInterface dialogInterface) {
+
+
+                                    bottomSheetDialog.dismiss();
+
 //
-                                if (CountDownActivity.mMediaPlayer != null) {
-                                    CountDownActivity.mMediaPlayer.pause();
+                                    if (CountDownActivity.mMediaPlayer != null) {
+                                        CountDownActivity.mMediaPlayer.pause();
+                                    }
+
+
+                                    Intent intent = new Intent(GameActivity2.this, FailureActivity.class);
+                                    startActivity(intent);
+
+
                                 }
+                            });
 
-
-                                Intent intent = new Intent(GameActivity2.this, FailureActivity.class);
-                                startActivity(intent);
-
-
-                            }
                         });
 
-                    });
 
-
+                    }
+                    Window window = dialog.getWindow();
+                    window.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                    dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                 }
-                Window window = dialog.getWindow();
-                window.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-            }
-        }, 1000);
+            }, 1000);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
     }
 
@@ -2386,13 +2401,11 @@ public class GameActivity2 extends AppCompatActivity {
     }
 
     private void loadSongs() {
-        new Handler().post(new Runnable() {
-            @Override
-            public void run() {
-                mWinning_sound = MediaPlayer.create(GameActivity2.this, R.raw.winning_sound);
-
-            }
-        });
+        try {
+            new Handler().post(() -> mWinning_sound = MediaPlayer.create(GameActivity2.this, R.raw.winning_sound));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
     }
 
