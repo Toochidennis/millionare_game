@@ -55,9 +55,5 @@ dependencies {
     // implementation 'androidx.work:work-runtime-ktx:2.7.0-alpha05'
     //implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.22'
     implementation 'org.conscrypt:conscrypt-android:2.5.1'
-
-
     // implementation 'com.google.android.gms:play-services-ads:21.3.0'
-
-
 }
