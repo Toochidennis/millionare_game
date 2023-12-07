@@ -929,7 +929,9 @@ public class CountryLeaderBoard extends AppCompatActivity {
     public void loadFlag(String url,ImageView imageView){
         try {
             SVGLoader.fetchSvg(CountryLeaderBoard.this,url,imageView);
-        }catch (Exception e){}
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
 
