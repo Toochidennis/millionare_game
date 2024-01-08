@@ -178,6 +178,7 @@ public class WinnersActivity extends AppCompatActivity {
                 GameActivity2.mWinning_sound.start();
             }
         } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
