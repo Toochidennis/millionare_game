@@ -155,25 +155,23 @@ public class PlayDetailsActivity extends AppCompatActivity {
 
 
         TextView amountWonTxt = findViewById(R.id.amount_won);
-        //  boolean hasOldWinningAmount = getIntent().getBooleanExtra("hasOldWinningAmount",false);
-        if (hasOldWinningAmount) {
+        try {
+            //  boolean hasOldWinningAmount = getIntent().getBooleanExtra("hasOldWinningAmount",false);
+            if (hasOldWinningAmount) {
 
-            String amountWon = GameActivity2.amountWon.replace("$", "").replace(",", "");
-            oldAmountWon = oldAmountWon.replace("$", "").replace(",", "");
-            int newAmount = Integer.parseInt(amountWon) + Integer.parseInt(oldAmountWon);
+                String amountWon = GameActivity2.amountWon.replace("$", "").replace(",", "");
+                oldAmountWon = oldAmountWon.replace("$", "").replace(",", "");
+                int newAmount = Integer.parseInt(amountWon) + Integer.parseInt(oldAmountWon);
 
-            try {
                 DecimalFormat formatter = new DecimalFormat("#,###,###");
                 String formatted_newAmount = formatter.format(newAmount);
-
                 amountWonTxt.setText("$" + formatted_newAmount);
-            } catch (Exception e) {
-                e.printStackTrace();
+
+            } else {
+                amountWonTxt.setText(Utils.addCommaAndDollarSign(Integer.parseInt(GameActivity2.amountWon)));
             }
-
-
-        } else {
-            amountWonTxt.setText(Utils.addCommaAndDollarSign(Integer.parseInt(GameActivity2.amountWon)));
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
 
@@ -233,22 +231,14 @@ public class PlayDetailsActivity extends AppCompatActivity {
         LinearLayout shareBtn = findViewById(R.id.share);
         RelativeLayout newGame = findViewById(R.id.new_game);
 
-        homeBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Utils.darkBlueBlink(homeBtn, getApplicationContext());
-                Intent intent = new Intent(PlayDetailsActivity.this, Dashboard.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(intent);
-                finish();
-            }
+        homeBtn.setOnClickListener(view -> {
+            Utils.darkBlueBlink(homeBtn, getApplicationContext());
+            Intent intent = new Intent(PlayDetailsActivity.this, Dashboard.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(intent);
+            finish();
         });
-        shareBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                checkPermission();
-            }
-        });
+        shareBtn.setOnClickListener(view -> checkPermission());
 
         newGame.setOnClickListener(view -> {
             Utils.destination_activity = LeaderBoard.class;
@@ -306,33 +296,36 @@ public class PlayDetailsActivity extends AppCompatActivity {
         imagePath = new File(Environment.getExternalStorageDirectory() + "/screenshotxyz.jpg");
         FileOutputStream fos;
         try {
-            fos = new FileOutputStream(imagePath);
-            bitmap.compress(Bitmap.CompressFormat.JPEG, 80, fos);
-            fos.flush();
-            fos.close();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
+            if (imagePath.exists()) {
+                fos = new FileOutputStream(imagePath);
+                bitmap.compress(Bitmap.CompressFormat.JPEG, 80, fos);
+                fos.flush();
+                fos.close();
+            }
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
     private void shareIt() {
-        Uri uri = FileProvider.getUriForFile(this, getApplicationContext().getPackageName() + ".provider", imagePath);
-        final String appPackageName = getPackageName(); // getPackageName() from Context or Activity object
-        String url = "https://play.google.com/store/apps/details?id=" + appPackageName;
-        Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
-        sharingIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-        sharingIntent.setType("image/jpeg");
-        String shareText = getResources().getString(R.string.ad_copy);
-        shareText = shareText.replace("000", GameActivity2.amountWon);
-        shareText = shareText.replace("111", url);
-        sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "");
-        sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, shareText);
-        sharingIntent.putExtra(Intent.EXTRA_STREAM, uri);
+        if (imagePath.exists()) {
+            Uri uri = FileProvider.getUriForFile(this, getApplicationContext().getPackageName() + ".provider", imagePath);
+            final String appPackageName = getPackageName(); // getPackageName() from Context or Activity object
+            String url = "https://play.google.com/store/apps/details?id=" + appPackageName;
+            Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
+            sharingIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+            sharingIntent.setType("image/jpeg");
+            String shareText = getResources().getString(R.string.ad_copy);
+            shareText = shareText.replace("000", GameActivity2.amountWon);
+            shareText = shareText.replace("111", url);
+            sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "");
+            sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, shareText);
+            sharingIntent.putExtra(Intent.EXTRA_STREAM, uri);
 
-        startActivity(Intent.createChooser(sharingIntent, "Share via"));
-
+            startActivity(Intent.createChooser(sharingIntent, "Share via"));
+        } else {
+            Toast.makeText(getApplicationContext(), "File does not exist", Toast.LENGTH_SHORT).show();
+        }
     }
 
 

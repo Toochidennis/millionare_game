@@ -39,7 +39,7 @@ public class SVGLoader {
                     // we are adding a default image if we gets any error.
                     try {
                         target.setImageResource(R.drawable.youtube1);
-                    }catch (Exception ex){
+                    } catch (Exception ex) {
                         ex.printStackTrace();
                     }
 
@@ -49,10 +49,14 @@ public class SVGLoader {
                 public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
                     // sharp is a library which will load stream which we generated
                     // from url in our target imageview.
-                    assert response.body() != null;
-                    InputStream stream = response.body().byteStream();
-                    Sharp.loadInputStream(stream).into(target);
-                    stream.close();
+                    try {
+                        assert response.body() != null;
+                        InputStream stream = response.body().byteStream();
+                        Sharp.loadInputStream(stream).into(target);
+                        stream.close();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
                 }
             });
 
