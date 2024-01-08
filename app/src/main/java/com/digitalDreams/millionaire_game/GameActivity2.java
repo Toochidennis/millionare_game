@@ -1202,9 +1202,14 @@ public class GameActivity2 extends AppCompatActivity {
         return false;
     }
 
-    private void checkAnswer(String answer, String correct, int number1, Drawable vectorDrawable
-            , RelativeLayout relativeLayout, int questionID) {
-
+    private void checkAnswer(
+            String answer,
+            String correct,
+            int number1,
+            Drawable vectorDrawable,
+            RelativeLayout relativeLayout,
+            int questionID
+    ) {
 
         loadVideoAd();
 
@@ -1293,22 +1298,27 @@ public class GameActivity2 extends AppCompatActivity {
                             int parsedAmountWon;
                             int parsedOldAmount;
 
-                            if (amountWon.isEmpty()) {
-                                parsedAmountWon = 0;
-                            } else {
-                                parsedAmountWon = Integer.parseInt(amountWon);
-                            }
+                            try {
 
-                            if (oldAmountWon.isEmpty()) {
-                                parsedOldAmount = 0;
-                            } else {
-                                parsedOldAmount = Integer.parseInt(oldAmountWon);
-                            }
+                                if (amountWon.isEmpty()) {
+                                    parsedAmountWon = 0;
+                                } else {
+                                    parsedAmountWon = Integer.parseInt(amountWon);
+                                }
 
-                            int newAmount = parsedAmountWon + parsedOldAmount;
-                            DecimalFormat formatter = new DecimalFormat("#,###,###");
-                            String formatted_newAmount = formatter.format(newAmount);
-                            editor.putString("amountWon", formatted_newAmount);
+                                if (oldAmountWon.isEmpty()) {
+                                    parsedOldAmount = 0;
+                                } else {
+                                    parsedOldAmount = Integer.parseInt(oldAmountWon);
+                                }
+
+                                int newAmount = parsedAmountWon + parsedOldAmount;
+                                DecimalFormat formatter = new DecimalFormat("#,###,###");
+                                String formatted_newAmount = formatter.format(newAmount);
+                                editor.putString("amountWon", formatted_newAmount);
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
 
                         } else {
                             editor.putString("amountWon", amountWon);
@@ -1545,93 +1555,92 @@ public class GameActivity2 extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
 
-        loadInterstialAd();
-        loadVideoAd();
+        try {
+            loadInterstialAd();
+            loadVideoAd();
 
 
-        Log.i("obidati", String.valueOf(noOfPagesPassed));
+            Log.i("obidati", String.valueOf(noOfPagesPassed));
 
 //        ImageView video_ad_Icon1 = current.findViewById(R.id.video_ad1);
-        //    ImageView video_ad_Icon2 = current.findViewById(R.id.video_ad2);
-        if (removeOptions && fromProgress2) {
-            /// video_ad_Icon1.setVisibility(View.VISIBLE);
+            //    ImageView video_ad_Icon2 = current.findViewById(R.id.video_ad2);
+            if (removeOptions && fromProgress2) {
+                /// video_ad_Icon1.setVisibility(View.VISIBLE);
 
-        }
-        if (hasRefreshed && fromProgress2) {
-            //  video_ad_Icon2.setVisibility(View.VISIBLE);
+            }
+            if (hasRefreshed && fromProgress2) {
+                //  video_ad_Icon2.setVisibility(View.VISIBLE);
 
-        }
-
-
-        Log.i("Loadeddd", String.valueOf(fromProgress));
-        if (fromProgress) {
-            fromProgress = false;
-            //hideLifeGuard();
-            //number_of_failure = 0;
-            LinearLayout parent = findViewById(R.id.displayExam);
-            int i = parent.indexOfChild(current);
-            nextView = parent.getChildAt(i);
-
-            RelativeLayout answerContainer = parent.findViewById(R.id.ask_answer_container);
-            answerContainer.setVisibility(View.GONE);
+            }
 
 
-            if (noOfCorrectAnswer <= 14) {
-                try {
-                    updateLifelines(nextView);
-                } catch (Exception e) {
-                    e.printStackTrace();
+            Log.i("Loadeddd", String.valueOf(fromProgress));
+            if (fromProgress) {
+                fromProgress = false;
+                //hideLifeGuard();
+                //number_of_failure = 0;
+                LinearLayout parent = findViewById(R.id.displayExam);
+                int i = parent.indexOfChild(current);
+                nextView = parent.getChildAt(i);
+
+                RelativeLayout answerContainer = parent.findViewById(R.id.ask_answer_container);
+                answerContainer.setVisibility(View.GONE);
+
+
+                if (noOfCorrectAnswer <= 14) {
+                    try {
+                        updateLifelines(nextView);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+
                 }
 
+            } else {
+
+                // showInterstitial();
+                fromProgress = true;
+
             }
 
+            continueSound = false;
 
-        } else {
+            if (continueGame) {
+                hideLifeGuard();
+                number_of_failure = 0;
 
-            // showInterstitial();
-            fromProgress = true;
+                if (cTimer != null) {
+                    cTimer.cancel();
+                    countdownTime = "60000";
+                    startTimer();
+                }
 
-        }
-
-
-        continueSound = false;
-
-        if (continueGame) {
-            hideLifeGuard();
-            number_of_failure = 0;
-
-            if (cTimer != null) {
-                cTimer.cancel();
-                countdownTime = "60000";
-                startTimer();
-            }
-
-            enableOptions(current.findViewById(R.id.qd));
-            //AllowOptions(findViewById(R.id.qd));
+                enableOptions(current.findViewById(R.id.qd));
+                //AllowOptions(findViewById(R.id.qd));
 //            ImageView badIcon = lay.findViewById(R.id.bad4);
 //            badIcon.setVisibility(View.VISIBLE);
 
-            // refreshQuestion();
+                // refreshQuestion();
 
-            // setQuestion(noOfPagesPassed);
+                // setQuestion(noOfPagesPassed);
 
-            Log.i("continue", "continue");
+                Log.i("continue", "continue");
 
-            refreshQuestion();
-            // wonder();
-            //next2();
-            continueGame = false;
+                refreshQuestion();
+                // wonder();
+                //next2();
+                continueGame = false;
 
-        } else {
-            Log.i("continue", "dicontinue");
+            } else {
+                Log.i("continue", "dicontinue");
 
-        }
-        if (sound.equals("1")) {
+            }
+            if (sound.equals("1")) {
 
-            playBackgroundSound();
-        }
+                playBackgroundSound();
+            }
 
-        setAmountWon();
+            setAmountWon();
 
 
 //        if(mRewardedVideoAd==null) {
@@ -1640,40 +1649,44 @@ public class GameActivity2 extends AppCompatActivity {
 //            mRewardedVideoAd.show();
 //        }
 
-        Log.i("obidati", String.valueOf(noOfPagesPassed));
+            Log.i("obidati", String.valueOf(noOfPagesPassed));
 
 
-        if (isStartAtFresh) {
-            countDown();
+            if (isStartAtFresh) {
+                countDown();
 
-            isStartAtFresh = false;
-            json = dbHelper.buildJson();
-            json = Html.fromHtml(json).toString();
-            noOfPagesPassed = 0;
-            _2question = true;
-            askFriend = true;
-            vote = true;
-            startDisplay(json);
-            playStong();
-            playBackgroundSound();
-            number_of_failure = 0;
-            noOfCorrectAnswer = 0;
-
-
-            SharedPreferences sharedPreferences = getSharedPreferences("settings", Context.MODE_PRIVATE);
-
-            String game_level = sharedPreferences.getString("game_level", "1");
-            int game_level_int = Integer.parseInt(game_level);
-
-            moneyArr = new Integer[]{500 * (game_level_int), 1000 * (game_level_int), 2000 * (game_level_int),
-                    3000 * (game_level_int), 5000 * (game_level_int), 7500 * (game_level_int), 10000 * (game_level_int),
-                    12500 * (game_level_int), 15000 * (game_level_int), 25000 * (game_level_int),
-                    50000 * (game_level_int), 100000 * (game_level_int), 250000 * (game_level_int), 500000 * (game_level_int),
-                    1000000 * (game_level_int)};
+                isStartAtFresh = false;
+                json = dbHelper.buildJson();
+                json = Html.fromHtml(json).toString();
+                noOfPagesPassed = 0;
+                _2question = true;
+                askFriend = true;
+                vote = true;
+                startDisplay(json);
+                playStong();
+                playBackgroundSound();
+                number_of_failure = 0;
+                noOfCorrectAnswer = 0;
 
 
-            //   gameStateSharedPreference.edit().putBoolean("isStartGame", isStartAtFresh).apply();
+                SharedPreferences sharedPreferences = getSharedPreferences("settings", Context.MODE_PRIVATE);
 
+                String game_level = sharedPreferences.getString("game_level", "1");
+                int game_level_int = Integer.parseInt(game_level);
+
+                moneyArr = new Integer[]{500 * (game_level_int), 1000 * (game_level_int), 2000 * (game_level_int),
+                        3000 * (game_level_int), 5000 * (game_level_int), 7500 * (game_level_int), 10000 * (game_level_int),
+                        12500 * (game_level_int), 15000 * (game_level_int), 25000 * (game_level_int),
+                        50000 * (game_level_int), 100000 * (game_level_int), 250000 * (game_level_int), 500000 * (game_level_int),
+                        1000000 * (game_level_int)};
+
+
+                //   gameStateSharedPreference.edit().putBoolean("isStartGame", isStartAtFresh).apply();
+
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
     }
@@ -2249,7 +2262,7 @@ public class GameActivity2 extends AppCompatActivity {
             //setQuestion(noOfPagesPassed);
             resetQuestion(current, current);
         } catch (Exception e) {
-
+            e.printStackTrace();
         }
 
 //        TextView questionTxt=current.findViewById(R.id.qo_text);
