@@ -152,7 +152,8 @@ class DBHelper extends SQLiteOpenHelper {
                     return res2;
 
                 }
-                /// db.close(); ///new removal
+
+                db.close(); ///new addition
 
             } catch (Exception e) {
                 e.printStackTrace();
@@ -170,7 +171,6 @@ class DBHelper extends SQLiteOpenHelper {
                 String selectQuery = "SELECT * FROM " + JSON_TABLE + " ORDER BY  STAGE ASC";
 
                 res = db.rawQuery(selectQuery, null);
-
 
             } catch (Exception e) {
                 e.printStackTrace();
@@ -211,6 +211,8 @@ class DBHelper extends SQLiteOpenHelper {
 
 
                 Log.d("query", selectQuery1);
+
+                db.close(); // new addition
 
             } catch (Exception e) {
                 e.printStackTrace();
@@ -254,7 +256,7 @@ class DBHelper extends SQLiteOpenHelper {
             for (int a = 1; a < 16; a++) {
                 Cursor res = getQuestionByLevel2(String.valueOf(a));
 
-                if (res != null){
+                if (res != null) {
                     res.moveToNext();
 
                     @SuppressLint("Range") String id = res.getString(res.getColumnIndex("ID"));

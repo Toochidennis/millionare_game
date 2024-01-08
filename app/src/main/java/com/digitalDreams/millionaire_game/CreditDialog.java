@@ -41,7 +41,6 @@ public class CreditDialog extends Dialog {
                 Intent intent = new Intent(Intent.ACTION_VIEW);
                 intent.setData(Uri.parse("fb://facewebmodal/f?href=" + "https://www.facebook.com/" + facebookUrl));
                 getContext().startActivity(intent);
-                Log.i("response", "page " + "fb://facewebmodal/f?href=" + "https://www.facebook.com/" + facebookUrl);
             } catch (Exception e) {
                 e.printStackTrace();
                 // Cache and Open a url in browser
@@ -53,18 +52,26 @@ public class CreditDialog extends Dialog {
 
         TextView emailBtn = findViewById(R.id.email_link);
         emailBtn.setOnClickListener(view -> {
-            Intent intent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts(
-                    "mailto", emailAddress, null));
+            Intent intent = new Intent(Intent.ACTION_SENDTO);
+            intent.setData(Uri.parse("mailto:" + emailAddress));
             intent.putExtra(Intent.EXTRA_SUBJECT, "");
             intent.putExtra(Intent.EXTRA_TEXT, "");
-            getContext().startActivity(Intent.createChooser(intent, "Send Us a mail"));
+
+            if (intent.resolveActivity(getContext().getPackageManager()) != null) {
+                getContext().startActivity(intent);
+            } else {
+                getContext().startActivity(Intent.createChooser(intent, "Send Us a mail"));
+            }
         });
 
         TextView callBtn = findViewById(R.id.phone_link);
         callBtn.setOnClickListener(view -> {
             Intent intent = new Intent(Intent.ACTION_DIAL);
             intent.setData(Uri.parse("tel:" + phoneNumber));
-            getContext().startActivity(intent);
+
+            if (intent.resolveActivity(getContext().getPackageManager()) != null) {
+                getContext().startActivity(intent);
+            }
         });
 
         TextView twitterBtn = findViewById(R.id.twitter_link);

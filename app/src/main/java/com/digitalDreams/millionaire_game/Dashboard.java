@@ -42,48 +42,48 @@ import java.util.Locale;
 
 public class Dashboard extends AppCompatActivity {
     //public static InterstitialAd interstitialAd;
-   // public static boolean refresh =false;
-    TextView newGameTxt,playTxt,leaderboardText,seeRankTxt,moreTxt,playTxt2,gotoYotubetxt;
+    // public static boolean refresh =false;
+    TextView newGameTxt, playTxt, leaderboardText, seeRankTxt, moreTxt, playTxt2, gotoYotubetxt;
     RelativeLayout bg;
-    RelativeLayout newGameBtn,leaderBoardBtn,exitBtn,gotoYoutubeBtn,new_particle;
+    RelativeLayout newGameBtn, leaderBoardBtn, exitBtn, gotoYoutubeBtn, new_particle;
     ImageView settingBtn;
     //AdManager adManager;
     //DBHelper dbHelper;
-   // public static RewardedVideoAd mRewardedVideoAd;
+    // public static RewardedVideoAd mRewardedVideoAd;
     AlphaAnimation buttonClick = new AlphaAnimation(1F, 0.8F);
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-       // mRewardedVideoAd = MobileAds.getRewardedVideoAdInstance(this);
+        // mRewardedVideoAd = MobileAds.getRewardedVideoAdInstance(this);
 
         setContentView(R.layout.activity_dashboard);
-         AdManager.initInterstitialAd(this);
+        AdManager.initInterstitialAd(this);
 
 
         loadInterstialAd();
         //loadVideoAd();
 
 
+        SharedPreferences sharedPreferences = getSharedPreferences("settings", Context.MODE_PRIVATE);
+        String languageCode = sharedPreferences.getString("language", "en");
+        int endcolor = sharedPreferences.getInt("end_color", getResources().getColor(R.color.purple_dark));
+        int startColor = sharedPreferences.getInt("start_color", getResources().getColor(R.color.purple_500));
+        int cardBackground = sharedPreferences.getInt("card_background", 0x219ebc);
+        String highscore = sharedPreferences.getString("high_score", "0");
+        String game_level = sharedPreferences.getString("game_level", "1");
 
-        SharedPreferences sharedPreferences = getSharedPreferences("settings",Context.MODE_PRIVATE);
-        String languageCode = sharedPreferences.getString("language","en");
-        int endcolor = sharedPreferences.getInt("end_color",getResources().getColor(R.color.purple_dark));
-        int startColor = sharedPreferences.getInt("start_color",getResources().getColor(R.color.purple_500));
-        int cardBackground = sharedPreferences.getInt("card_background",0x219ebc);
-        String highscore = sharedPreferences.getString("high_score","0");
-        String game_level = sharedPreferences.getString("game_level","1");
-
-        setLocale(this,languageCode);
+        setLocale(this, languageCode);
         //setTheme();
         //dbHelper = new DBHelper(this);
 
 
         TextView highscoreTxt = findViewById(R.id.highscore);
-        try{
-            highscoreTxt.setText("$"+Utils.prettyCount(Integer.parseInt(highscore)));
-        }catch (Exception e){}
+        try {
+            highscoreTxt.setText("$" + Utils.prettyCount(Integer.parseInt(highscore)));
+        } catch (Exception e) {
+        }
         AdView mAdView;
         mAdView = findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder().build();
@@ -101,10 +101,10 @@ public class Dashboard extends AppCompatActivity {
         moreTxt = findViewById(R.id.more_text);
         leaderboardText = findViewById(R.id.leaderboard_text);
         bg = findViewById(R.id.rootview);
-        new Particles(this,bg,R.layout.image_xml,20);
+        new Particles(this, bg, R.layout.image_xml, 20);
         GradientDrawable gd = new GradientDrawable(
                 GradientDrawable.Orientation.TOP_BOTTOM,
-                new int[] {startColor,endcolor});
+                new int[]{startColor, endcolor});
 
         bg.setBackgroundDrawable(gd);
 
@@ -121,62 +121,65 @@ public class Dashboard extends AppCompatActivity {
         settingBtn.setBackgroundColor(cardBackground);*/
 
 
-
-
-
-
         newGameBtn.setOnClickListener(view -> {
-          ///  newGameBtn.startAnimation(buttonClick);
-            Utils.greenBlink(newGameBtn,getApplicationContext());
+            ///  newGameBtn.startAnimation(buttonClick);
+            Utils.greenBlink(newGameBtn, getApplicationContext());
 
-            Intent intent = new Intent(Dashboard.this,GameActivity2.class);
+            Intent intent = new Intent(Dashboard.this, GameActivity2.class);
             startActivity(intent);
             finish();
         });
 
         gotoYoutubeBtn.setOnClickListener(view -> {
-            Utils.darkBlueBlink(gotoYoutubeBtn,getApplicationContext());
-
-            try{
+            try {
+                Utils.darkBlueBlink(gotoYoutubeBtn, getApplicationContext());
 
                 startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.youtube.com/channel/UC7AAQdgwQ204aU5ztp19FKg")));
-
-            }catch (Exception e){
+            } catch (Exception e) {
+                e.printStackTrace();
 
             }
         });
-        new_particle.setOnClickListener(view -> {
 
-            MediaPlayer.create(Dashboard.this, R.raw.others).start();
-            Intent i = new Intent(Dashboard.this,WinnersActivity.class);
+        new_particle.setOnClickListener(view -> {
+            try {
+                MediaPlayer.create(Dashboard.this, R.raw.others).start();
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            Intent i = new Intent(Dashboard.this, WinnersActivity.class);
             startActivity(i);
 
         });
 
-        leaderBoardBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        leaderBoardBtn.setOnClickListener(view -> {
+            try {
                 Utils.destination_activity = LeaderBoard.class;
-
                 Utils.darkBlueBlink(leaderBoardBtn, getApplicationContext());
-
                 MediaPlayer.create(Dashboard.this, R.raw.others).start();
-                Intent intent = new Intent(Dashboard.this,LeaderBoard.class);
-                startActivity(intent);
-                finish();
+            } catch (Exception e) {
+                e.printStackTrace();
             }
+
+            Intent intent = new Intent(Dashboard.this, LeaderBoard.class);
+            startActivity(intent);
+            finish();
         });
 
 
-        settingBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                settingBtn.startAnimation(buttonClick);
+        settingBtn.setOnClickListener(view -> {
+            settingBtn.startAnimation(buttonClick);
+            try {
                 MediaPlayer.create(Dashboard.this, R.raw.others).start();
-                Intent intent = new Intent(Dashboard.this,SettingActivity.class);
-                startActivity(intent);
-
+            }catch (Exception e){
+                e.printStackTrace();
             }
+
+            Intent intent = new Intent(Dashboard.this, SettingActivity.class);
+            startActivity(intent);
+
         });
 
         ImageView raysImg = findViewById(R.id.rays);
@@ -191,42 +194,35 @@ public class Dashboard extends AppCompatActivity {
         raysImg.startAnimation(rotateAnimation);
 
         LinearLayout accountBtn = findViewById(R.id.account);
-        accountBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(Dashboard.this,History.class);
-                Utils.darkBlueBlink(accountBtn,Dashboard.this);
+        accountBtn.setOnClickListener(view -> {
+            Intent intent = new Intent(Dashboard.this, History.class);
+            Utils.darkBlueBlink(accountBtn, Dashboard.this);
 
-                startActivity(intent);
-
-
-            }
+            startActivity(intent);
         });
 
         RelativeLayout moreBtn = findViewById(R.id.more_games);
-        moreBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Utils.darkBlueBlink(moreBtn, getApplicationContext());
+        moreBtn.setOnClickListener(view -> {
+            Utils.darkBlueBlink(moreBtn, getApplicationContext());
 //                MediaPlayer.create(Dashboard.this, R.raw.others).start();
 //                Utils.blink(moreBtn, R.drawable.ic_hex_2, R.drawable.ic_hexnow);
-               // Uri uri = Uri.parse("https://play.google.com/store/apps/developer?id=DIGITAL+DREAMS+LIMITED");
-                Uri uri = Uri.parse("https://www.facebook.com/MillionaireGameApp");
+            // Uri uri = Uri.parse("https://play.google.com/store/apps/developer?id=DIGITAL+DREAMS+LIMITED");
+            Uri uri = Uri.parse("https://www.facebook.com/MillionaireGameApp");
 
-               try {
-                   Intent intent = new Intent(Intent.ACTION_VIEW);
-                   intent.setData(uri);
-                   startActivity(intent);
-               }catch (Exception e){}
+            try {
+                Intent intent = new Intent(Intent.ACTION_VIEW);
+                intent.setData(uri);
+                startActivity(intent);
+            } catch (Exception e) {
             }
         });
 
         RelativeLayout profileBtn = findViewById(R.id.profile);
         profileBtn.setOnClickListener(view -> {
-            Utils.darkBlueBlink(profileBtn,Dashboard.this);
+            Utils.darkBlueBlink(profileBtn, Dashboard.this);
             Utils.destination_activity = Dashboard.class;
-            Intent intent = new Intent(Dashboard.this,UserDetails.class);
-            intent.putExtra("type","edit");
+            Intent intent = new Intent(Dashboard.this, UserDetails.class);
+            intent.putExtra("type", "edit");
             startActivity(intent);
         });
 
@@ -253,56 +249,57 @@ public class Dashboard extends AppCompatActivity {
     BroadcastReceiver refreshBroadCast = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
-            SharedPreferences sharedPreferences = getSharedPreferences("settings",Context.MODE_PRIVATE);
-            String languageCode = sharedPreferences.getString("language","en");
-            int endcolor = sharedPreferences.getInt("end_color",0x230253);
-            int startColor = sharedPreferences.getInt("start_color",0xFF6200EE);            int cardBackground = sharedPreferences.getInt("card_background",0x03045e);
-            if(SettingsDialog.soundTxt!=null&SettingsDialog.soundBtn!=null){
+            SharedPreferences sharedPreferences = getSharedPreferences("settings", Context.MODE_PRIVATE);
+            String languageCode = sharedPreferences.getString("language", "en");
+            int endcolor = sharedPreferences.getInt("end_color", 0x230253);
+            int startColor = sharedPreferences.getInt("start_color", 0xFF6200EE);
+            int cardBackground = sharedPreferences.getInt("card_background", 0x03045e);
+            if (SettingsDialog.soundTxt != null & SettingsDialog.soundBtn != null) {
                 SettingsDialog.soundTxt.setText(getResources().getString(R.string.sound_on));
                 SettingsDialog.soundBtn.setCardBackgroundColor(cardBackground);
             }
-            if(SettingsDialog.gameModeTxt!=null&& SettingsDialog.gameModeBtn!=null){
+            if (SettingsDialog.gameModeTxt != null && SettingsDialog.gameModeBtn != null) {
                 SettingsDialog.gameModeTxt.setText(getResources().getString(R.string.game_mode));
                 SettingsDialog.gameModeBtn.setCardBackgroundColor(cardBackground);
 
             }
-            if(SettingsDialog.themeTxt!=null&&SettingsDialog.selectThemeBtn!=null){
+            if (SettingsDialog.themeTxt != null && SettingsDialog.selectThemeBtn != null) {
                 SettingsDialog.themeTxt.setText(getResources().getString(R.string.select_a_theme));
                 SettingsDialog.selectThemeBtn.setCardBackgroundColor(cardBackground);
 
             }
-            if(SettingsDialog.vibrationTxt!=null&& SettingsDialog.vibrationBtn!=null){
+            if (SettingsDialog.vibrationTxt != null && SettingsDialog.vibrationBtn != null) {
                 SettingsDialog.vibrationTxt.setText(getResources().getString(R.string.taptic));
                 SettingsDialog.vibrationBtn.setCardBackgroundColor(cardBackground);
 
             }
-                setLangauge(Dashboard.this);
-                //SettingsDialog.languageBtn.setCardBackgroundColor(cardBackground);
+            setLangauge(Dashboard.this);
+            //SettingsDialog.languageBtn.setCardBackgroundColor(cardBackground);
 
 
             //newGameTxt.setText(getResources().getString(R.string.new_game));
             leaderboardText.setText(getResources().getString(R.string.leaderboard));
 
 
-            setLocale(Dashboard.this,languageCode);
+            setLocale(Dashboard.this, languageCode);
             //bg.setBackgroundColor(backgroundcolor);
             GradientDrawable gd = new GradientDrawable(
                     GradientDrawable.Orientation.TOP_BOTTOM,
-                    new int[] {startColor,endcolor});
+                    new int[]{startColor, endcolor});
 
             bg.setBackgroundDrawable(gd);
 
-            if(SettingActivity.bg!=null){
-                String theme = sharedPreferences.getString("theme","0");
+            if (SettingActivity.bg != null) {
+                String theme = sharedPreferences.getString("theme", "0");
                 SettingActivity.bg.setBackgroundDrawable(gd);
-                if(theme.equals("0")) {
+                if (theme.equals("0")) {
                     SettingActivity.themeNameTxt.setText(getResources().getString(R.string.default_theme));
-                }else if(theme.equals("1")){
+                } else if (theme.equals("1")) {
                     SettingActivity.themeNameTxt.setText(getResources().getString(R.string.theme_1));
 
-                }else if(theme.equals("2")){
+                } else if (theme.equals("2")) {
                     SettingActivity.themeNameTxt.setText(getResources().getString(R.string.theme_2));
-                }else if(theme.equals("3")){
+                } else if (theme.equals("3")) {
                     SettingActivity.themeNameTxt.setText(getResources().getString(R.string.theme_3));
 
                 }
@@ -313,24 +310,24 @@ public class Dashboard extends AppCompatActivity {
             SettingActivity.gameModeTxt.setText(getResources().getString(R.string.game_mode));
             SettingActivity.crediTxt.setText(getResources().getString(R.string.credits));
             SettingActivity.language.setText(getResources().getString(R.string.language));
-            String sound = sharedPreferences.getString("sound","1");
-            if(sound.equalsIgnoreCase("1")) {
+            String sound = sharedPreferences.getString("sound", "1");
+            if (sound.equalsIgnoreCase("1")) {
                 SettingActivity.soundModeTxt.setText(getResources().getString(R.string.on));
-            }else {
+            } else {
                 SettingActivity.soundModeTxt.setText(getResources().getString(R.string.off));
             }
 
-            String mode = sharedPreferences.getString("game_mode","0");
-            if(mode.equals("0")){
+            String mode = sharedPreferences.getString("game_mode", "0");
+            if (mode.equals("0")) {
                 SettingActivity.modeText.setText(getResources().getString(R.string.simple));
-            }else {
+            } else {
                 SettingActivity.modeText.setText(getResources().getString(R.string.timed));
             }
-            String vibrate = sharedPreferences.getString("vibrate","1");
-            if(vibrate.equals("0")){
+            String vibrate = sharedPreferences.getString("vibrate", "1");
+            if (vibrate.equals("0")) {
                 SettingActivity.badIcon.setVisibility(View.VISIBLE);
                 SettingActivity.vibrationTxt.setText(getResources().getString(R.string.off));
-            }else{
+            } else {
                 SettingActivity.badIcon.setVisibility(View.GONE);
                 SettingActivity.vibrationTxt.setText(getResources().getString(R.string.on));
             }
@@ -347,23 +344,23 @@ public class Dashboard extends AppCompatActivity {
         moreTxt.setText(getResources().getString(R.string.more_games));
         playTxt2.setText(getResources().getString(R.string.play));
         leaderboardText.setText(getResources().getString(R.string.leaderboard));
-        registerReceiver(refreshBroadCast,new IntentFilter("refresh"));
+        registerReceiver(refreshBroadCast, new IntentFilter("refresh"));
 
-        SharedPreferences sharedPreferences = getSharedPreferences("settings",MODE_PRIVATE);
-        String languageCode = sharedPreferences.getString("language","en");
-        if(languageCode.equals("fr")){
+        SharedPreferences sharedPreferences = getSharedPreferences("settings", MODE_PRIVATE);
+        String languageCode = sharedPreferences.getString("language", "en");
+        if (languageCode.equals("fr")) {
             playTxt.setTextSize(18);
             playTxt2.setTextSize(18);
-        }else {
+        } else {
             playTxt2.setTextSize(32);
             playTxt.setTextSize(32);
         }
     }
 
-    public void setLangauge(Context context){
-        SharedPreferences sharedPreferences = context.getSharedPreferences("settings",MODE_PRIVATE);
-        String languageCode = sharedPreferences.getString("language","en");
-        switch (languageCode){
+    public void setLangauge(Context context) {
+        SharedPreferences sharedPreferences = context.getSharedPreferences("settings", MODE_PRIVATE);
+        String languageCode = sharedPreferences.getString("language", "en");
+        switch (languageCode) {
             case "en":
                 SettingActivity.flagImg.setImageResource(R.drawable.united_kingdom);
                 SettingActivity.languageTxt.setText(context.getResources().getString(R.string.english));
@@ -387,8 +384,8 @@ public class Dashboard extends AppCompatActivity {
     //////
 
 
-    private void loadInterstialAd(){
-       // interstitialAd = AdManager.mInterstitialAd; //new InterstitialAd(this) ;
+    private void loadInterstialAd() {
+        // interstitialAd = AdManager.mInterstitialAd; //new InterstitialAd(this) ;
         AdManager.initInterstitialAd(Dashboard.this);
 //        interstitialAd.setAdUnitId (getResources().getString(R.string.interstitial_adunit) ) ;
 //        interstitialAd.loadAd(new AdRequest.Builder().build());
@@ -405,7 +402,6 @@ public class Dashboard extends AppCompatActivity {
 //        }
 //
 //    }
-
 
 
 }
