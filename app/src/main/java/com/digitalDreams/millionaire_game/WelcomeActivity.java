@@ -33,15 +33,15 @@ public class WelcomeActivity extends AppCompatActivity {
         loadingImageView = findViewById(R.id.loadingImageView);
 
         SharedPreferences sharedPreferences = getSharedPreferences("settings", Context.MODE_PRIVATE);
-        //   String languageCode = sharedPreferences.getString("language", "en");
+        String languageCode = sharedPreferences.getString("language", "en");
         int endColor = sharedPreferences.getInt("end_color", getResources().getColor(R.color.purple_dark));
         int startColor = sharedPreferences.getInt("start_color", getResources().getColor(R.color.purple_500));
-        //   int cardBackground = sharedPreferences.getInt("card_background", 0x219ebc);
-        //   String highScore = sharedPreferences.getString("high_score", "0");
-        //   String gameLevel = sharedPreferences.getString("game_level", "1");
-        //   boolean IS_DONE_INSERTING = sharedPreferences.getBoolean("IS_DONE_INSERTING", false);
-     //   SharedPreferences.Editor editor = sharedPreferences.edit();
-        //  String username = sharedPreferences.getString("username", "");
+        int cardBackground = sharedPreferences.getInt("card_background", 0x219ebc);
+        String highScore = sharedPreferences.getString("high_score", "0");
+        String gameLevel = sharedPreferences.getString("game_level", "1");
+        boolean IS_DONE_INSERTING = sharedPreferences.getBoolean("IS_DONE_INSERTING", false);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        String username = sharedPreferences.getString("username", "");
 
  /*       if (IS_DONE_INSERTING) {
             Utils.IS_DONE_INSERTING = true;
@@ -90,6 +90,7 @@ public class WelcomeActivity extends AppCompatActivity {
         animator.start();
     }
 
+    // New code added
     private void checkBackgroundThreadStatus() {
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
