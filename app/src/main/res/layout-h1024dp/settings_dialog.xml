@@ -76,7 +76,7 @@
                         android:id="@+id/language"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="English"
+                        android:text="@string/english"
                         android:textColor="@color/white"
                         android:layout_centerInParent="true"
                         android:textSize="18sp"
