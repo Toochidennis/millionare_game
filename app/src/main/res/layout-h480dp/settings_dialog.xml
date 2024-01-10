@@ -72,16 +72,17 @@
                         android:layout_height="48dp"
                         android:src="@drawable/united_kingdom"
                         />
+
                     <TextView
                         android:id="@+id/language"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="English"
-                        android:textColor="@color/white"
                         android:layout_centerInParent="true"
-                        android:textSize="18sp"
                         android:fontFamily="@font/montserrat"
-                        android:textStyle="bold"/>
+                        android:text="@string/english"
+                        android:textColor="@color/white"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
                 </RelativeLayout>
             </androidx.cardview.widget.CardView>
             <androidx.cardview.widget.CardView
