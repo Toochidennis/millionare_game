@@ -31,6 +31,7 @@ class SettingsDialog extends Dialog {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.settings_dialog);
+
         soundTxt = findViewById(R.id.sound);
         languageTxt = findViewById(R.id.language);
         themeTxt = findViewById(R.id.theme);
@@ -53,53 +54,43 @@ class SettingsDialog extends Dialog {
         selectThemeBtn.setCardBackgroundColor(cardBackground);
         rootView.setCardBackgroundColor(endcolor);
         new Dashboard().setLangauge(context);
-        languageBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                LanguageDialog dialog = new LanguageDialog(getContext());
-                dialog.show();
-                Window window = dialog.getWindow();
-                window.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-            }
+
+        languageBtn.setOnClickListener(view -> {
+            LanguageDialog dialog = new LanguageDialog(getContext());
+            dialog.show();
+            Window window = dialog.getWindow();
+            window.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+            dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         });
+
         ImageView closeBtn = findViewById(R.id.close);
-        closeBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                dismiss();
-            }
+        closeBtn.setOnClickListener(view -> dismiss());
+
+        selectThemeBtn.setOnClickListener(view -> {
+            ThemeDialog dialog = new ThemeDialog(context);
+            dialog.show();
+            Window window = dialog.getWindow();
+            window.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+            dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         });
-        selectThemeBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                ThemeDialog dialog = new ThemeDialog(context);
-                dialog.show();
-                Window window = dialog.getWindow();
-                window.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-            }
-        });
+
         String mode = sharedPreferences.getString("game_mode",context.getResources().getString(R.string.simple));
 
         TextView modeText = findViewById(R.id.mode_setting);
         modeText.setText(mode);
-        gameModeBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String mode = sharedPreferences.getString("game_mode",context.getResources().getString(R.string.simple));
-                SharedPreferences.Editor editor = sharedPreferences.edit();
+        gameModeBtn.setOnClickListener(view -> {
+            String mode1 = sharedPreferences.getString("game_mode",context.getResources().getString(R.string.simple));
+            SharedPreferences.Editor editor = sharedPreferences.edit();
 
-                if(mode.equals("simple")){
-                    editor.putString("game_mode","timed");
-                }else if(mode.equals("timed")){
-                    editor.putString("game_mode","simple");
+            if(mode1.equals("simple")){
+                editor.putString("game_mode","timed");
+            }else if(mode1.equals("timed")){
+                editor.putString("game_mode","simple");
 
-                }
-                editor.apply();
-                mode = sharedPreferences.getString("game_mode",context.getResources().getString(R.string.simple));
-                modeText.setText(mode);
             }
+            editor.apply();
+            mode1 = sharedPreferences.getString("game_mode",context.getResources().getString(R.string.simple));
+            modeText.setText(mode1);
         });
         String sound = sharedPreferences.getString("sound","on");
 
@@ -111,26 +102,23 @@ class SettingsDialog extends Dialog {
         }else{
             soundIcon.setImageResource(R.drawable.ic_baseline_volume_up_24);
         }
-        soundBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String sound = sharedPreferences.getString("sound","on");
-                SharedPreferences.Editor editor = sharedPreferences.edit();
-                if((sound.equals("on"))){
-                    editor.putString("sound","off");
-                }else if(sound.equals("off")){
-                    editor.putString("sound","on");
-                }
-                editor.apply();
-                sound = sharedPreferences.getString("sound","on");
-                soundModeTxt.setText("Sound "+sound);
-                if(sound.equals("off")){
-                    soundIcon.setImageResource(R.drawable.ic_baseline_volume_off_24);
-                }else{
-                    soundIcon.setImageResource(R.drawable.ic_baseline_volume_up_24);
-                }
-
+        soundBtn.setOnClickListener(view -> {
+            String sound1 = sharedPreferences.getString("sound","on");
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            if((sound1.equals("on"))){
+                editor.putString("sound","off");
+            }else if(sound1.equals("off")){
+                editor.putString("sound","on");
             }
+            editor.apply();
+            sound1 = sharedPreferences.getString("sound","on");
+            soundModeTxt.setText("Sound "+ sound1);
+            if(sound1.equals("off")){
+                soundIcon.setImageResource(R.drawable.ic_baseline_volume_off_24);
+            }else{
+                soundIcon.setImageResource(R.drawable.ic_baseline_volume_up_24);
+            }
+
         });
 
         ImageView vibrationIcon = findViewById(R.id.vibration_icon);

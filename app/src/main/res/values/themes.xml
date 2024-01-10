@@ -62,4 +62,11 @@
         <item name="colorAccent">@color/green</item>
     </style>
 
+    <style name="FullScreenDialog" parent="Theme.AppCompat.Light.DialogWhenLarge">
+        <item name="android:windowAnimationStyle">@style/Animation.Design.BottomSheetDialog</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <!--// <item name="android:windowBackground">@android:color/transparent</item>-->
+    </style>
+
 </resources>
