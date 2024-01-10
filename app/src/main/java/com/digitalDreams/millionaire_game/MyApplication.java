@@ -3,16 +3,20 @@ package com.digitalDreams.millionaire_game;
 
 import android.app.Activity;
 import android.app.Application;
+import android.app.Application.ActivityLifecycleCallbacks;
 import android.content.Context;
+import android.content.SharedPreferences;
+import android.content.res.Configuration;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
-import androidx.lifecycle.Lifecycle;
+import androidx.annotation.Nullable;
+import androidx.lifecycle.Lifecycle.Event;
 import androidx.lifecycle.LifecycleObserver;
 import androidx.lifecycle.OnLifecycleEvent;
 import androidx.lifecycle.ProcessLifecycleOwner;
-//import androidx.lifecycle.ProcessLifecycleOwner;
 
 import com.google.android.gms.ads.AdError;
 import com.google.android.gms.ads.AdRequest;
@@ -20,59 +24,99 @@ import com.google.android.gms.ads.FullScreenContentCallback;
 import com.google.android.gms.ads.LoadAdError;
 import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.ads.appopen.AppOpenAd;
+import com.google.android.gms.ads.appopen.AppOpenAd.AppOpenAdLoadCallback;
 import com.google.android.gms.ads.initialization.InitializationStatus;
 import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 
 import java.util.Date;
-
-import android.app.Application.ActivityLifecycleCallbacks;
-import androidx.lifecycle.Lifecycle.Event;
-
-import android.widget.Toast;
-
-import androidx.annotation.Nullable;
-
-import com.google.android.gms.ads.appopen.AppOpenAd.AppOpenAdLoadCallback;
+import java.util.Locale;
 
 
-/** Application class that initializes, loads and show ads when activities change states. */
+/**
+ * Application class that initializes, loads and show ads when activities change states.
+ */
 public class MyApplication extends Application
         implements ActivityLifecycleCallbacks, LifecycleObserver {
 
     private AppOpenAdManager appOpenAdManager;
     private Activity currentActivity;
-    private  final String TAG = "MyApplication";
+    private final String TAG = "MyApplication";
+
+    private SharedPreferences sharedPreferences;
 
     @Override
     public void onCreate() {
         super.onCreate();
         this.registerActivityLifecycleCallbacks(this);
 
+
         // Log the Mobile Ads SDK version.
-       // Log.d(TAG, "Google Mobile Ads SDK Version: " + MobileAds.getVersion());
+        // Log.d(TAG, "Google Mobile Ads SDK Version: " + MobileAds.getVersion());
 
         MobileAds.initialize(
                 this,
                 new OnInitializationCompleteListener() {
                     @Override
                     public void onInitializationComplete(
-                            @NonNull InitializationStatus initializationStatus) {}
+                            @NonNull InitializationStatus initializationStatus) {
+                    }
                 });
 
         ProcessLifecycleOwner.get().getLifecycle().addObserver(this);
         appOpenAdManager = new AppOpenAdManager();
+
+
+        sharedPreferences = getSharedPreferences("settings", MODE_PRIVATE);
+        String savedLanguage = sharedPreferences.getString("language", "");
+
+        if (savedLanguage.isEmpty()) {
+            setAppLanguage(getDeviceLanguage());
+        } else {
+            setAppLanguage(savedLanguage);
+        }
+
     }
 
-    /** LifecycleObserver method that shows the app open ad when the app moves to foreground. */
+    private String getDeviceLanguage() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            return getResources().getConfiguration().getLocales().get(0).getLanguage();
+        } else {
+            return getResources().getConfiguration().locale.getLanguage();
+        }
+    }
+
+    // Method to set the app's language
+    private void setAppLanguage(String languageCode) {
+        Locale appLocale = new Locale(languageCode);
+        Locale.setDefault(appLocale);
+        Configuration configuration = new Configuration();
+        configuration.locale = appLocale;
+        getResources().updateConfiguration(configuration, getResources().getDisplayMetrics());
+        saveLanguagePreference(languageCode);
+    }
+
+    // Method to save the user's language preference
+    private void saveLanguagePreference(String languageCode) {
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString("language", languageCode);
+        editor.apply();
+    }
+
+    /**
+     * LifecycleObserver method that shows the app open ad when the app moves to foreground.
+     */
     @OnLifecycleEvent(Event.ON_START)
     protected void onMoveToForeground() {
         // Show the ad (if available) when the app moves to foreground.
         appOpenAdManager.showAdIfAvailable(currentActivity);
     }
 
-    /** ActivityLifecycleCallback methods. */
+    /**
+     * ActivityLifecycleCallback methods.
+     */
     @Override
-    public void onActivityCreated(@NonNull Activity activity, @Nullable Bundle savedInstanceState) {}
+    public void onActivityCreated(@NonNull Activity activity, @Nullable Bundle savedInstanceState) {
+    }
 
     @Override
     public void onActivityStarted(@NonNull Activity activity) {
@@ -86,24 +130,29 @@ public class MyApplication extends Application
     }
 
     @Override
-    public void onActivityResumed(@NonNull Activity activity) {}
+    public void onActivityResumed(@NonNull Activity activity) {
+    }
 
     @Override
-    public void onActivityPaused(@NonNull Activity activity) {}
+    public void onActivityPaused(@NonNull Activity activity) {
+    }
 
     @Override
-    public void onActivityStopped(@NonNull Activity activity) {}
+    public void onActivityStopped(@NonNull Activity activity) {
+    }
 
     @Override
-    public void onActivitySaveInstanceState(@NonNull Activity activity, @NonNull Bundle outState) {}
+    public void onActivitySaveInstanceState(@NonNull Activity activity, @NonNull Bundle outState) {
+    }
 
     @Override
-    public void onActivityDestroyed(@NonNull Activity activity) {}
+    public void onActivityDestroyed(@NonNull Activity activity) {
+    }
 
     /**
      * Shows an app open ad.
      *
-     * @param activity the activity that shows the app open ad
+     * @param activity                 the activity that shows the app open ad
      * @param onShowAdCompleteListener the listener to be notified when an app open ad is complete
      */
     public void showAdIfAvailable(
@@ -122,7 +171,9 @@ public class MyApplication extends Application
         void onShowAdComplete();
     }
 
-    /** Inner class that loads and shows app open ads. */
+    /**
+     * Inner class that loads and shows app open ads.
+     */
     private class AppOpenAdManager {
 
         private static final String LOG_TAG = "AppOpenAdManager";
@@ -132,11 +183,16 @@ public class MyApplication extends Application
         private boolean isLoadingAd = false;
         private boolean isShowingAd = false;
 
-        /** Keep track of the time an app open ad is loaded to ensure you don't show an expired ad. */
+        /**
+         * Keep track of the time an app open ad is loaded to ensure you don't show an expired ad.
+         */
         private long loadTime = 0;
 
-        /** Constructor. */
-        public AppOpenAdManager() {}
+        /**
+         * Constructor.
+         */
+        public AppOpenAdManager() {
+        }
 
         /**
          * Load an ad.
@@ -186,14 +242,18 @@ public class MyApplication extends Application
                     });
         }
 
-        /** Check if ad was loaded more than n hours ago. */
+        /**
+         * Check if ad was loaded more than n hours ago.
+         */
         private boolean wasLoadTimeLessThanNHoursAgo(long numHours) {
             long dateDifference = (new Date()).getTime() - loadTime;
             long numMilliSecondsPerHour = 3600000;
             return (dateDifference < (numMilliSecondsPerHour * numHours));
         }
 
-        /** Check if ad exists and can be shown. */
+        /**
+         * Check if ad exists and can be shown.
+         */
         private boolean isAdAvailable() {
             // Ad references in the app open beta will time out after four hours, but this time limit
             // may change in future beta versions. For details, see:
@@ -220,7 +280,7 @@ public class MyApplication extends Application
         /**
          * Show the ad if one isn't already showing.
          *
-         * @param activity the activity that shows the app open ad
+         * @param activity                 the activity that shows the app open ad
          * @param onShowAdCompleteListener the listener to be notified when an app open ad is complete
          */
         private void showAdIfAvailable(
@@ -251,8 +311,8 @@ public class MyApplication extends Application
                             appOpenAd = null;
                             isShowingAd = false;
 
-                           // Log.d(LOG_TAG, "onAdDismissedFullScreenContent.");
-                           // Toast.makeText(activity, "onAdDismissedFullScreenContent", Toast.LENGTH_SHORT).show();
+                            // Log.d(LOG_TAG, "onAdDismissedFullScreenContent.");
+                            // Toast.makeText(activity, "onAdDismissedFullScreenContent", Toast.LENGTH_SHORT).show();
 
                             onShowAdCompleteListener.onShowAdComplete();
                             loadAd(activity);
@@ -264,9 +324,9 @@ public class MyApplication extends Application
                             appOpenAd = null;
                             isShowingAd = false;
 
-                          //  Log.d(LOG_TAG, "onAdFailedToShowFullScreenContent: " + adError.getMessage());
+                            //  Log.d(LOG_TAG, "onAdFailedToShowFullScreenContent: " + adError.getMessage());
                             //Toast.makeText(activity, "onAdFailedToShowFullScreenContent", Toast.LENGTH_SHORT)
-                                   // .show();
+                            // .show();
 
                             onShowAdCompleteListener.onShowAdComplete();
                             loadAd(activity);

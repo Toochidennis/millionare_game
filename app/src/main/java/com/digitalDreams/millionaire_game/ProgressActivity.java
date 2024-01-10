@@ -87,7 +87,11 @@ public class ProgressActivity extends AppCompatActivity {
             String formatted_newAmount = formatter.format(GameActivity2.moneyArr[a]);
             //editor.putString("amountWon","$"+formatted_newAmount);
             amountText.setText("$" + formatted_newAmount);
-            slideInAnimation(v, a);
+            try {
+                slideInAnimation(v, a);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
             if (a == position - 1) {
                 try {
                     VectorDrawable g = (VectorDrawable) r.getBackground().mutate();
