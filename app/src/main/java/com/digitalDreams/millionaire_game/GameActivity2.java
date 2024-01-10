@@ -503,6 +503,7 @@ public class GameActivity2 extends AppCompatActivity {
         }
     }
 
+
     public void takeTest() {
         setTime();
         RelativeLayout r = findViewById(R.id.nav);
@@ -513,6 +514,7 @@ public class GameActivity2 extends AppCompatActivity {
         current.setVisibility(View.VISIBLE);
         SharedPreferences sharedPreferences = getSharedPreferences("settings", Context.MODE_PRIVATE);
         String mode = sharedPreferences.getString("game_mode", "0");
+
         if (mode.equals("1")) {
             calcTime(countdownTime);
         } else {

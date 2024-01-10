@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Millionaire Game</string>
     <string name="select_a_theme">Select a theme</string>
@@ -21,6 +22,7 @@
     <string name="theme_3">Theme 3</string>
     <string name="english">English</string>
     <string name="french">French</string>
+    <string name="spanish">Spanish</string>
     <string name="banner_adunit">ca-app-pub-4696224049420135/8152081288</string>
     <string name="app_ad_id">ca-app-pub-4696224049420135~2129598410</string>
     <string name="interstitial_adunit">ca-app-pub-4696224049420135/9312479087</string>
@@ -74,7 +76,7 @@
     <string name="view_ranking"><u>View Ranking</u></string>
     <string name="view_history"><u>View Answers</u></string>
     <string name="count_down_amount">1000000</string>
-    <string name="count_down_level">Level 1</string>
+    <string name="count_down_level">Level</string>
     <string name="play_history">Play History</string>
     <string name="give_up"><u>Give up</u></string>
     <!-- TODO: Remove or change this placeholder text -->
@@ -82,4 +84,6 @@
     <string name="anonymous_user">Anonymous user</string>
     <string name="readmore">Read More</string>
     <string name="loading_image">Loading image</string>
+    <string name="please_wait">Please wait…</string>
+    <string name="correct_answer">Correct Answer</string>
 </resources>
