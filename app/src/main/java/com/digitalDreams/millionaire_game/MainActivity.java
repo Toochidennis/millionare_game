@@ -1,5 +1,8 @@
 package com.digitalDreams.millionaire_game;
 
+import static com.digitalDreams.millionaire_game.Utils.IS_INSERTED_ENGLISH_KEY;
+import static com.digitalDreams.millionaire_game.Utils.IS_INSERTED_SPANISH_KEY;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
@@ -46,28 +49,29 @@ import java.io.Reader;
 import java.io.StringWriter;
 import java.io.UnsupportedEncodingException;
 import java.io.Writer;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
-    public  final int SPLASH_SCREEN_DELAY=100;
-    public  List<String> columnList = new ArrayList<>();
+    public final int SPLASH_SCREEN_DELAY = 100;
+    public List<String> columnList = new ArrayList<>();
     DBHelper dbHelper;
     ImageView ddLogo;
-    long logoStartTime=0;
+    long logoStartTime = 0;
     LinearLayout webDevContainer;
     LinearLayout mobileDevContainer;
     LinearLayout digitalMarketingContainer;
     LinearLayout dataScienceContainer;
     LinearLayout container;
     private static final long COUNTER_TIME = 5;
-    public  static boolean ACTIVITY_PASSED = false;
+    public static boolean ACTIVITY_PASSED = false;
+    private String languageCode;
 
 
     private long secondsRemaining;
-
 
 
     @Override
@@ -78,10 +82,9 @@ public class MainActivity extends AppCompatActivity {
         AppOpenManager appOpenAdManager;
 
 
-
         window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-        window.setStatusBarColor(ContextCompat.getColor(this,R.color.white));
+        window.setStatusBarColor(ContextCompat.getColor(this, R.color.white));
 
         dbHelper = new DBHelper(this);
 
@@ -95,32 +98,42 @@ public class MainActivity extends AppCompatActivity {
 //
 //        });
 
-        SharedPreferences sharedPreferences = getSharedPreferences("settings",MODE_PRIVATE);
+        SharedPreferences sharedPreferences = getSharedPreferences("settings", MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        String username = sharedPreferences.getString("username","");
-        Utils.IS_DONE_INSERTING = sharedPreferences.getBoolean("IS_DONE_INSERTING",false);
-
+        String username = sharedPreferences.getString("username", "");
+        Utils.IS_DONE_INSERTING = sharedPreferences.getBoolean("IS_DONE_INSERTING", false);
+        languageCode = sharedPreferences.getString("language", "");
 
 
         createTimer(COUNTER_TIME);
-        new RequestConfiguration.Builder().setTestDeviceIds(Arrays.asList("C5C6588E00A996967AA2085A167B0F4E","9D16E23BB90EF4BFA204300CCDCCF264"));
+        new RequestConfiguration.Builder().setTestDeviceIds(Arrays.asList("C5C6588E00A996967AA2085A167B0F4E", "9D16E23BB90EF4BFA204300CCDCCF264"));
 //        appOpenAdManager = new AppOpenManager(this);
 //        appOpenAdManager.fetchAd();
 
 
         //Log.i("response","t "+text);
         new Thread(() -> {
-            String text = null;
+            String text;
             try {
-                if(dbHelper.getQuestionSize()==0) {
+                if (dbHelper.getQuestionSize() == 0) {
                     Utils.IS_DONE_INSERTING = false;
                     //  saveAnonymouseUser();
-                    text = readRawTextFile(R.raw.millionaire);
-                    parseJSON(text);
-                }else{
+                    if (languageCode.equals("es")) {
+                        text = readRawTextFile(R.raw.millionaire_es);
+                        parseJSON(text);
+                        editor.putBoolean(IS_INSERTED_SPANISH_KEY, true);
+                    } else {
+                        text = readRawTextFile(R.raw.millionaire);
+                        parseJSON(text);
+                        editor.putBoolean(IS_INSERTED_ENGLISH_KEY, true);
+                    }
+
+                    editor.apply();
+
+                } else {
                     Utils.IS_DONE_INSERTING = true;
-                    editor.putBoolean("IS_DONE_INSERTING",true);
-                    editor.commit();
+                    editor.putBoolean("IS_DONE_INSERTING", true);
+                    editor.apply();
                 }
             } catch (IOException e) {
                 e.printStackTrace();
@@ -139,7 +152,7 @@ public class MainActivity extends AppCompatActivity {
         //Animation infromBottom = inFromBottomAnimation(1500,logoStartTime);
         //ddLogo.startAnimation(infromBottom);
 
-        AlphaAnimation fadeIn=new AlphaAnimation(0,1);
+        AlphaAnimation fadeIn = new AlphaAnimation(0, 1);
         final AnimationSet set = new AnimationSet(false);
 
         set.addAnimation(fadeIn);
@@ -150,16 +163,16 @@ public class MainActivity extends AppCompatActivity {
         getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
         int height = displayMetrics.heightPixels;
         int width = displayMetrics.widthPixels;
-        Log.i("response","heigth "+height);
+        Log.i("response", "heigth " + height);
 
         int yValue = height - 500;
         Path path = new Path();
-        path.moveTo(0,height);
-        ObjectAnimator moveX = ObjectAnimator.ofFloat(ddLogo, "x", "y",path );
+        path.moveTo(0, height);
+        ObjectAnimator moveX = ObjectAnimator.ofFloat(ddLogo, "x", "y", path);
         moveX.setDuration(0);
         moveX.start();
 
-        ObjectAnimator objectAnimator1 = ObjectAnimator.ofFloat(ddLogo,"alpha", 1);
+        ObjectAnimator objectAnimator1 = ObjectAnimator.ofFloat(ddLogo, "alpha", 1);
         ObjectAnimator objectAnimator2 = ObjectAnimator.ofFloat(ddLogo, "translationY", 0);
 
         AnimatorSet animatorSet = new AnimatorSet();
@@ -230,70 +243,65 @@ public class MainActivity extends AppCompatActivity {
             }
         });*/
 
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                container.setVisibility(View.VISIBLE);
-                trainTxt.setVisibility(View.VISIBLE);
-                webDevContainer.setVisibility(View.VISIBLE);
-                mobileDevContainer.setVisibility(View.VISIBLE);
-                dataScienceContainer.setVisibility(View.VISIBLE);
-                digitalMarketingContainer.setVisibility(View.VISIBLE);
-                animateWebContainer();
-                animateMobileContainer();
-                animateDigtalContainer();
-                animateDataScienceContainer();
-                trainTxt.startAnimation(set);
-            }
-        },2000);
+        new Handler().postDelayed(() -> {
+            container.setVisibility(View.VISIBLE);
+            trainTxt.setVisibility(View.VISIBLE);
+            webDevContainer.setVisibility(View.VISIBLE);
+            mobileDevContainer.setVisibility(View.VISIBLE);
+            dataScienceContainer.setVisibility(View.VISIBLE);
+            digitalMarketingContainer.setVisibility(View.VISIBLE);
+            animateWebContainer();
+            animateMobileContainer();
+            animateDigtalContainer();
+            animateDataScienceContainer();
+            trainTxt.startAnimation(set);
+        }, 2000);
 
     }
 
-    private String readRawTextFile( int resId) throws IOException {
+
+    private String readRawTextFile(int resId) throws IOException {
         InputStream is = getResources().openRawResource(resId);
         Writer writer = new StringWriter();
         char[] buffer = new char[10024];
         try {
-            Reader reader = new BufferedReader(new InputStreamReader(is, "UTF-8"));
+            Reader reader = new BufferedReader(new InputStreamReader(is, StandardCharsets.UTF_8));
             int n;
             while ((n = reader.read(buffer)) != -1) {
                 writer.write(buffer, 0, n);
             }
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         } finally {
             is.close();
         }
 
-        String jsonString = writer.toString();
-        return jsonString;
+        return writer.toString();
     }
 
-    private void createTable(String json){
+    private void createTable(String json) {
         try {
             JSONObject jsonObject = new JSONObject(json);
             Iterator<String> iterator = jsonObject.keys();
-            while (iterator.hasNext()){
+            while (iterator.hasNext()) {
                 String key = iterator.next();
-                if(!columnList.contains(key)) {
+                if (!columnList.contains(key)) {
                     columnList.add(key);
                 }
                 JSONObject obj1 = jsonObject.getJSONObject(key);
                 Iterator<String> iterator1 = obj1.keys();
-                while (iterator1.hasNext()){
+                while (iterator1.hasNext()) {
                     String key1 = iterator1.next();
-                    if(!columnList.contains(key1)) {
+                    if (!columnList.contains(key1)) {
                         columnList.add(key1);
                     }
                     JSONArray jsonArray = obj1.getJSONArray(key1);
-                    for(int a=0;a<jsonArray.length();a++){
+                    for (int a = 0; a < jsonArray.length(); a++) {
                         JSONObject obj2 = jsonArray.getJSONObject(a);
                         Iterator<String> iterator2 = obj2.keys();
-                        while (iterator2.hasNext()){
+                        while (iterator2.hasNext()) {
                             String key2 = iterator2.next();
-                            if(!columnList.contains(key2)) {
+                            if (!columnList.contains(key2)) {
                                 columnList.add(key2);
                             }
                             //Log.i("response",""+key2+" "+obj2.getString(key2));
@@ -304,7 +312,7 @@ public class MainActivity extends AppCompatActivity {
             }
         } catch (JSONException e) {
             e.printStackTrace();
-        }finally {
+        } finally {
             //dbHelper = new DBHelper(this)
             //insertDataToTable(json);
 
@@ -312,13 +320,10 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void parseJSON(String json){
-        int lent =0;
+    private void parseJSON(String json) {
+        int lent = 0;
         try {
             JSONArray jsonArray = new JSONArray(json);
-
-
-
 
 
 //                            String key = iter4.next();
@@ -333,10 +338,10 @@ public class MainActivity extends AppCompatActivity {
                 Log.i("index", String.valueOf(a));
                 lent++;
 
-                Utils.NUMBER_OF_INSERT ++;
+                Utils.NUMBER_OF_INSERT++;
 
 
-                if(lent == jsonArray.length()){
+                if (lent == jsonArray.length()) {
                     Utils.IS_DONE_INSERTING = true;
                 }
 
@@ -354,7 +359,20 @@ public class MainActivity extends AppCompatActivity {
                 String content = question.getString(1); //object.getString("content");
                 String type = "qo";//object.getString("type");
                 String level = String.valueOf(question.getString(2));
-                String language = "GENERAL";
+                String language;
+
+                switch (languageCode) {
+                    case "fr":
+                        language = getString(R.string.french);
+                        break;
+                    case "es":
+                        language = getString(R.string.spanish);
+                        break;
+
+                    default:
+                        language = getString(R.string.english);
+                        break;
+                }
 
 
                 String stage_name = "GENERAL";
@@ -367,7 +385,7 @@ public class MainActivity extends AppCompatActivity {
 
                 JSONArray answers = new JSONArray();
 
-                for(int j = 5; j < question.length(); j++){
+                for (int j = 5; j < question.length(); j++) {
                     JSONObject obj = new JSONObject();
                     obj.put("text", question.getString(j));
                     answers.put(obj);
@@ -377,13 +395,8 @@ public class MainActivity extends AppCompatActivity {
                 String answer = String.valueOf(answers);
 
 
-
-
-
-                dbHelper.insertDetails(language,level,id,content,type,answer,correct,stage_name,stage, reason);
+                dbHelper.insertDetails(language, level, id, content, type, answer, correct, stage_name, stage, reason);
             }
-
-
 
 
 //                Iterator<String> iterator = obj1.keys();
@@ -404,8 +417,7 @@ public class MainActivity extends AppCompatActivity {
 //                }
 
 
-
-        }catch (JSONException e){
+        } catch (JSONException e) {
             e.printStackTrace();
         }
         Log.i("JsonDetails", String.valueOf(lent));
@@ -422,26 +434,26 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void insertDataToTable(String json){
+    private void insertDataToTable(String json) {
         try {
             JSONObject jsonObject = new JSONObject(json);
             Iterator<String> iterator = jsonObject.keys();
-            while (iterator.hasNext()){
+            while (iterator.hasNext()) {
                 List<String> dataList = new ArrayList<>();
                 String key = iterator.next();
                 dataList.add(key);
                 JSONObject obj1 = jsonObject.getJSONObject(key);
                 Iterator<String> iterator1 = obj1.keys();
-                while (iterator1.hasNext()){
+                while (iterator1.hasNext()) {
                     String key1 = iterator1.next();
                     dataList.add(key1);
                     JSONArray jsonArray = obj1.getJSONArray(key1);
-                    for(int a=0;a<jsonArray.length();a++){
+                    for (int a = 0; a < jsonArray.length(); a++) {
                         JSONObject obj2 = jsonArray.getJSONObject(a);
                         Iterator<String> iterator2 = obj2.keys();
-                        while (iterator2.hasNext()){
+                        while (iterator2.hasNext()) {
                             String key2 = iterator2.next();
-                            Log.i("response",""+key2+" "+obj2.getString(key2));
+                            Log.i("response", "" + key2 + " " + obj2.getString(key2));
                             dataList.add(obj2.getString(key2));
 
                             //String id = obj2.getString(columnList.get())
@@ -478,7 +490,8 @@ public class MainActivity extends AppCompatActivity {
         inFromRigth.setInterpolator(new AccelerateInterpolator());
         return inFromRigth;
     }
-    private Animation inFromBottomAnimation(int duration,Long startTime) {
+
+    private Animation inFromBottomAnimation(int duration, Long startTime) {
         Animation inFromLeft = new TranslateAnimation(
                 Animation.RELATIVE_TO_PARENT, 0.0f,
                 Animation.RELATIVE_TO_PARENT, 0.0f,
@@ -490,8 +503,8 @@ public class MainActivity extends AppCompatActivity {
         return inFromLeft;
     }
 
-    private void animateWebContainer(){
-        AlphaAnimation fadeIn=new AlphaAnimation(0,1);
+    private void animateWebContainer() {
+        AlphaAnimation fadeIn = new AlphaAnimation(0, 1);
         final AnimationSet set = new AnimationSet(false);
         Animation inFromLeft = new TranslateAnimation(
                 Animation.RELATIVE_TO_PARENT, -1.0f,
@@ -505,8 +518,8 @@ public class MainActivity extends AppCompatActivity {
         webDevContainer.startAnimation(set);
     }
 
-    private void animateMobileContainer(){
-        AlphaAnimation fadeIn=new AlphaAnimation(0,1);
+    private void animateMobileContainer() {
+        AlphaAnimation fadeIn = new AlphaAnimation(0, 1);
         final AnimationSet set = new AnimationSet(false);
         Animation inFromRigth = new TranslateAnimation(
                 Animation.RELATIVE_TO_PARENT, 1.0f,
@@ -521,8 +534,8 @@ public class MainActivity extends AppCompatActivity {
         mobileDevContainer.startAnimation(set);
     }
 
-    private void animateDigtalContainer(){
-        AlphaAnimation fadeIn=new AlphaAnimation(0,1);
+    private void animateDigtalContainer() {
+        AlphaAnimation fadeIn = new AlphaAnimation(0, 1);
         final AnimationSet set = new AnimationSet(false);
         Animation inFromLeft = new TranslateAnimation(
                 Animation.RELATIVE_TO_PARENT, -1.0f,
@@ -536,8 +549,8 @@ public class MainActivity extends AppCompatActivity {
         digitalMarketingContainer.startAnimation(set);
     }
 
-    private void animateDataScienceContainer(){
-        AlphaAnimation fadeIn=new AlphaAnimation(0,1);
+    private void animateDataScienceContainer() {
+        AlphaAnimation fadeIn = new AlphaAnimation(0, 1);
         final AnimationSet set = new AnimationSet(false);
         Animation inFromRigth = new TranslateAnimation(
                 Animation.RELATIVE_TO_PARENT, 1.0f,
@@ -551,7 +564,6 @@ public class MainActivity extends AppCompatActivity {
         set.setStartOffset(100);
         dataScienceContainer.startAnimation(set);
     }
-
 
 
     private void createTimer(long seconds) {
@@ -595,32 +607,32 @@ public class MainActivity extends AppCompatActivity {
         countDownTimer.start();
     }
 
-    /** Start the Dashboard. */
+    /**
+     * Start the Dashboard.
+     */
     public void startDashboardActivity() {
-        if(dbHelper.getQuestionSize()>0){
+        if (dbHelper.getQuestionSize() > 0) {
             new Handler().postDelayed(() -> {
-                SharedPreferences sharedPreferences = getSharedPreferences("settings",MODE_PRIVATE);
-                String username = sharedPreferences.getString("username","");
-                if(username.isEmpty()) {
+                SharedPreferences sharedPreferences = getSharedPreferences("settings", MODE_PRIVATE);
+                String username = sharedPreferences.getString("username", "");
+                if (username.isEmpty()) {
                     Intent intent = new Intent(MainActivity.this, UserDetails.class);
                     startActivity(intent);
                     finish();
-                }else {
+                } else {
                     SharedPreferences.Editor editor = sharedPreferences.edit();
 
 
                     Utils.IS_DONE_INSERTING = true;
-                    editor.putBoolean("IS_DONE_INSERTING",true);
+                    editor.putBoolean("IS_DONE_INSERTING", true);
                     editor.commit();
-
-
 
 
                     Intent intent = new Intent(MainActivity.this, Dashboard.class);
                     startActivity(intent);
                     finish();
                 }
-            },SPLASH_SCREEN_DELAY);
+            }, SPLASH_SCREEN_DELAY);
         }
     }
 
