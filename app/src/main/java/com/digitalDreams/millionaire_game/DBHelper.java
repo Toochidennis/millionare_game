@@ -111,7 +111,6 @@ class DBHelper extends SQLiteOpenHelper {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-
         }
     }
 
@@ -129,10 +128,26 @@ class DBHelper extends SQLiteOpenHelper {
                 SharedPreferences sharedPreferences = context.getSharedPreferences("settings", Context.MODE_PRIVATE);
                 String game_level = sharedPreferences.getString("game_level", "1");
                 String current_play_level = sharedPreferences.getString("current_play_level", "1");
-                Log.i("current_play_level", current_play_level);
+                String languageCode = sharedPreferences.getString("language", "");
+                String language;
+
+                switch (languageCode) {
+                    case "fr":
+                        language = context.getString(R.string.french);
+                        break;
+                    case "es":
+                        language = context.getString(R.string.spanish);
+                        break;
+
+                    default:
+                        language = context.getString(R.string.english);
+                        break;
+                }
+
+                Log.i("current_play_level", current_play_level + " Language " + language);
 
 
-                String selectQuery = "SELECT * FROM " + JSON_TABLE + " where LEVEL = " + level + " ORDER BY RANDOM() LIMIT 1";
+                String selectQuery = "SELECT * FROM " + JSON_TABLE + " WHERE LEVEL = '" + level + "' AND " + " LANGUAGE = '" + language + "' ORDER BY RANDOM() LIMIT 1";
                 //String selectQuery = "SELECT * FROM " + JSON_TABLE + " where LEVEL = "+level+" and STAGE = " +current_play_level+ " ORDER BY RANDOM() LIMIT 1";
 
                 Log.i("99999999", selectQuery);
@@ -144,7 +159,7 @@ class DBHelper extends SQLiteOpenHelper {
 //
 //      }
                 if (res.getCount() < 1) {
-                    String selectQuery2 = "SELECT * FROM " + JSON_TABLE + " ORDER BY RANDOM() LIMIT 1";
+                    String selectQuery2 = "SELECT * FROM " + JSON_TABLE + " WHERE LANGUAGE = '" + language + "' ORDER BY RANDOM() LIMIT 1";
                     //where  STAGE = " +current_play_level+
 
                     Cursor res2 = db.rawQuery(selectQuery2, null);
@@ -192,6 +207,8 @@ class DBHelper extends SQLiteOpenHelper {
                 SharedPreferences sharedPreferences = context.getSharedPreferences("settings", Context.MODE_PRIVATE);
                 String game_level = sharedPreferences.getString("game_level", "1");
                 String current_play_level = sharedPreferences.getString("current_play_level", "1");
+
+
                 String selectQuery = "SELECT * FROM " + JSON_TABLE + " where LEVEL = " + level;
                 Cursor res = db.rawQuery(selectQuery, null);
 
@@ -551,6 +568,5 @@ class DBHelper extends SQLiteOpenHelper {
 
 
     }
-
 
 }
