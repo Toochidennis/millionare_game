@@ -1,156 +1,200 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/rootview"
-    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
-    >
+    android:orientation="vertical">
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/black"
         android:alpha="0.8"
-        >
-    </RelativeLayout>
+        android:background="@color/black"></RelativeLayout>
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@android:color/transparent"
-        >
+        android:background="@android:color/transparent">
 
-      <LinearLayout
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:orientation="vertical">
-
-
-              <TextView
-                  android:layout_width="wrap_content"
-                  android:layout_height="wrap_content"
-                  android:text="Select a Language"
-                  android:textSize="22sp"
-                  android:textColor="@color/white"
-                  android:textStyle="bold"
-                  android:layout_marginTop="50dp"
-                  android:layout_gravity="center_horizontal"
-                  android:fontFamily="@font/montserrat"/>
-
-        <RelativeLayout
-            android:id="@+id/english_language"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            >
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:elevation="5dp"
-                android:orientation="horizontal">
-                <ImageView
-                    android:id="@+id/flag"
-                    android:layout_width="48dp"
-                    android:layout_height="48dp"
-                    android:src="@drawable/united_kingdom"
-                    />
+            android:orientation="vertical">
 
 
             <TextView
-                android:id="@+id/theme_txt_default"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/english"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="50dp"
+                android:fontFamily="@font/montserrat"
+                android:text="Select a Language"
                 android:textColor="@color/white"
-                android:textSize="18sp"
-                android:layout_marginLeft="10dp"
-                android:fontFamily="@font/arimo"
-                android:layout_gravity="center_vertical"/>
-            </LinearLayout>
-            <ImageView
-                android:orientation="vertical"
+                android:textSize="22sp"
+                android:textStyle="bold" />
+
+            <RelativeLayout
+                android:id="@+id/english_language"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_margin="10dp"
-                android:src="@drawable/ic_hexnow"
-                app:tint="@color/purple_500"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp">
 
-                />
-        </RelativeLayout>
-          <RelativeLayout
-              android:id="@+id/french_language"
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content">
-              <LinearLayout
-                  android:layout_width="wrap_content"
-                  android:layout_height="wrap_content"
-                  android:layout_centerInParent="true"
-                  android:elevation="5dp"
-                  android:orientation="horizontal">
-                  <ImageView
-                      android:id="@+id/flag_2"
-                      android:layout_width="48dp"
-                      android:layout_height="48dp"
-                      android:src="@drawable/france"
-                      />
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:elevation="5dp"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/flag"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:src="@drawable/united_kingdom" />
 
 
-                  <TextView
-                      android:layout_width="wrap_content"
-                      android:layout_height="wrap_content"
-                      android:text="@string/french"
-                      android:textColor="@color/white"
-                      android:textSize="18sp"
-                      android:layout_marginLeft="10dp"
-                      android:fontFamily="@font/arimo"
-                      android:layout_gravity="center_vertical"/>
-              </LinearLayout>
-              <ImageView
-                  android:orientation="vertical"
-                  android:layout_width="match_parent"
-                  android:layout_height="50dp"
-                  android:layout_margin="10dp"
-                  android:id="@+id/default_theme"
-                  android:src="@drawable/ic_hexnow"
-                  app:tint="@color/purple_500"
+                    <TextView
+                        android:id="@+id/theme_txt_default"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="10dp"
+                        android:fontFamily="@font/arimo"
+                        android:text="@string/english"
+                        android:textColor="@color/white"
+                        android:textSize="18sp" />
+                </LinearLayout>
 
-                  />
-          </RelativeLayout>
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_margin="10dp"
+                    android:orientation="vertical"
+                    android:src="@drawable/ic_hexnow"
+                    app:tint="@color/purple_500"
 
-      </LinearLayout>
+                    />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/french_language"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:elevation="5dp"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/flag_2"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:src="@drawable/france" />
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="10dp"
+                        android:fontFamily="@font/arimo"
+                        android:text="@string/french"
+                        android:textColor="@color/white"
+                        android:textSize="18sp" />
+                </LinearLayout>
+
+                <ImageView
+                    android:id="@+id/default_theme"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_margin="10dp"
+                    android:orientation="vertical"
+                    android:src="@drawable/ic_hexnow"
+                    app:tint="@color/purple_500"
+
+                    />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/spanish_language"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:elevation="5dp"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/flag_3"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:src="@drawable/spain" />
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="10dp"
+                        android:fontFamily="@font/arimo"
+                        android:text="@string/spanish"
+                        android:textColor="@color/white"
+                        android:textSize="18sp" />
+                </LinearLayout>
+
+                <ImageView
+                    android:id="@+id/default_theme2"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_margin="10dp"
+                    android:orientation="vertical"
+                    android:src="@drawable/ic_hexnow"
+                    app:tint="@color/purple_500"
+
+                    />
+            </RelativeLayout>
+
+        </LinearLayout>
     </RelativeLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingBottom="40dp"
         android:layout_alignParentBottom="true"
+        android:paddingBottom="40dp"
 
         >
-    <RelativeLayout
-        android:id="@+id/close_container"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="40dp"
-        android:layout_marginBottom="40dp">
 
-        <ImageView
+        <RelativeLayout
+            android:id="@+id/close_container"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/hexagon"
-            android:layout_centerInParent="true"
-            app:tint="@color/white"
-            />
-        <ImageView
-            android:id="@+id/close"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            app:tint="@color/black"
-            android:src="@drawable/ic_baseline_close_24"/>
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="40dp"
+            android:layout_marginBottom="40dp">
 
-    </RelativeLayout>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:src="@drawable/hexagon"
+                app:tint="@color/white" />
+
+            <ImageView
+                android:id="@+id/close"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:src="@drawable/ic_baseline_close_24"
+                app:tint="@color/black" />
+
+        </RelativeLayout>
     </RelativeLayout>
 </RelativeLayout>
