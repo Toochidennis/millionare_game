@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Jeu du Millionnaire</string>
+    <string name="select_a_theme">Sélectionner un thème</string>
+    <string name="new_game">Nouvelle partie</string>
+    <string name="leaderboard"><u>Classement</u></string>
+    <string name="exit_game">Quitter le jeu</string>
+    <string name="settings">Paramètres</string>
+    <string name="sound_on">Son</string>
+    <string name="game_mode">Mode de jeu</string>
+    <string name="taptic">Vibration</string>
+    <string name="simple">Simple</string>
+    <string name="no_thanks"><u>Non merci</u></string>
+    <string name="language">Langue</string>
+    <string name="on">ON</string>
+    <string name="off">OFF</string>
+    <string name="timed">Chronométré</string>
+    <string name="credits">Crédits</string>
+    <string name="default_theme">Défaut</string>
+    <string name="theme_1">Thème 1</string>
+    <string name="theme_2">Thème 2</string>
+    <string name="theme_3">Thème 3</string>
+    <string name="english">English</string>
+    <string name="french">French</string>
+    <string name="spanish">Spanish</string>
+    <string name="banner_adunit">ca-app-pub-4696224049420135/8152081288</string>
+    <string name="app_ad_id">ca-app-pub-4696224049420135~2129598410</string>
+    <string name="interstitial_adunit">ca-app-pub-4696224049420135/9312479087</string>
+    <string name="rewardedad_adunit">ca-app-pub-4696224049420135/7768937909</string>
+    <string name="ad_copy">Je viens de gagner 000 dans le jeu du millionnaire. Je t\'invite à jouer à ce jeu passionnant pour améliorer tes connaissances.
+
+\n\nEssaie de me battre si tu peux !!!
+       \n111
+    </string>
+    <string name="ad_copy2">Mon nom d\'utilisateur est usernamevariable. Je t\'invite à jouer à ce jeu passionnant pour améliorer tes connaissances.
+
+\n\nEssaie de me battre si tu peux !!!
+       \n111
+    </string>
+    <string name="play">JOUER</string>
+    <string name="see_your_ranking">Voir ton classement</string>
+    <string name="goto_youtube"><u>Apprends des compétences numériques</u></string>
+    <string name="won">Félicitations, tu as gagné</string>
+    <string name="more_games"><u>Rejoins notre communauté</u></string>
+    <string name="more_games2">Plus de jeux</string>
+    <string name="reach_us_on_facebook"><u>@Digitaldreamsng</u></string>
+    <string name="call_us"><u>09064660137</u></string>
+    <string name="send_us_an_email"><u>info@digitaldreamsng.com</u></string>
+    <string name="twitter"><u>@DigitalDreamsNG</u></string>
+    <string name="get_ready">Prépare-toi !</string>
+    <string name="you_won">Score</string>
+    <string name="next">Niveau suivant</string>
+    <string name="winner">Gagnant</string>
+    <string name="home">Accueil</string>
+    <string name="winning_congrats">Félicitations !</string>
+    <string name="next_level">Niveau terminé</string>
+
+    <string name="can_you_beat_that">Tu peux battre ce score !</string>
+    <string name="share">Partager</string>
+    <string name="are_you_sure_you_want_to_exit">Es-tu sûr de vouloir quitter ?</string>
+    <string name="yes">Quitter</string>
+    <string name="no">Non</string>
+    <string name="are_you_sure_you_want_to_take_500_and_leave_the_game">
+        Les quitters ne gagnent jamais. Ne quitte pas, continue de gagner.
+    </string>
+    <string name="take_money">Quitter le jeu</string>
+    <string name="continue_">Continuer</string>
+    <string name="take">Prendre</string>
+    <string name="replay_level">Rejouer le niveau</string>
+    <string name="watch_a_video">Garde ton score</string>
+    <string name="base_url">http://www.cbtportal.linkskool.com/api</string>
+    <string name="hard_level">Niveau suivant</string>
+
+    <string name="failure_text">Échouer ne signifie pas que tu es un échec</string>
+    <string name="play_again"><u>Rejouer</u></string>
+    <string name="view_ranking"><u>Voir le classement</u></string>
+    <string name="view_history"><u>Voir les réponses</u></string>
+    <string name="count_down_amount">1000000</string>
+    <string name="count_down_level">Niveau</string>
+    <string name="play_history">Historique de jeu</string>
+    <string name="give_up"><u>Abandonner</u></string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Salut fragment vide</string>
+    <string name="anonymous_user">Utilisateur anonyme</string>
+    <string name="readmore">Lire la suite</string>
+    <string name="loading_image">Chargement de l\'image</string>
+    <string name="please_wait">Espere por favor…</string>
+    <string name="correct_answer">Respuesta correcta</string>
+</resources>
