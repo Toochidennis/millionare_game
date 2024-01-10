@@ -18,6 +18,8 @@ import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
@@ -38,6 +40,7 @@ import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.interstitial.InterstitialAd;
 
 
+import java.io.IOException;
 import java.util.Locale;
 
 public class Dashboard extends AppCompatActivity {
@@ -84,6 +87,7 @@ public class Dashboard extends AppCompatActivity {
             highscoreTxt.setText("$" + Utils.prettyCount(Integer.parseInt(highscore)));
         } catch (Exception e) {
         }
+
         AdView mAdView;
         mAdView = findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder().build();
@@ -173,7 +177,7 @@ public class Dashboard extends AppCompatActivity {
             settingBtn.startAnimation(buttonClick);
             try {
                 MediaPlayer.create(Dashboard.this, R.raw.others).start();
-            }catch (Exception e){
+            } catch (Exception e) {
                 e.printStackTrace();
             }
 
@@ -214,6 +218,7 @@ public class Dashboard extends AppCompatActivity {
                 intent.setData(uri);
                 startActivity(intent);
             } catch (Exception e) {
+                e.printStackTrace();
             }
         });
 
@@ -246,6 +251,7 @@ public class Dashboard extends AppCompatActivity {
         resources.updateConfiguration(config, resources.getDisplayMetrics());
     }
 
+
     BroadcastReceiver refreshBroadCast = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
@@ -254,6 +260,7 @@ public class Dashboard extends AppCompatActivity {
             int endcolor = sharedPreferences.getInt("end_color", 0x230253);
             int startColor = sharedPreferences.getInt("start_color", 0xFF6200EE);
             int cardBackground = sharedPreferences.getInt("card_background", 0x03045e);
+
             if (SettingsDialog.soundTxt != null & SettingsDialog.soundBtn != null) {
                 SettingsDialog.soundTxt.setText(getResources().getString(R.string.sound_on));
                 SettingsDialog.soundBtn.setCardBackgroundColor(cardBackground);
@@ -304,6 +311,7 @@ public class Dashboard extends AppCompatActivity {
 
                 }
             }
+
             SettingActivity.soundTxt.setText(getResources().getString(R.string.sound_on));
             SettingActivity.themeTxt.setText(getResources().getString(R.string.select_a_theme));
             SettingActivity.vibrationTxt.setText(getResources().getString(R.string.taptic));
@@ -331,6 +339,7 @@ public class Dashboard extends AppCompatActivity {
                 SettingActivity.badIcon.setVisibility(View.GONE);
                 SettingActivity.vibrationTxt.setText(getResources().getString(R.string.on));
             }
+
         }
     };
 
@@ -351,10 +360,14 @@ public class Dashboard extends AppCompatActivity {
         if (languageCode.equals("fr")) {
             playTxt.setTextSize(18);
             playTxt2.setTextSize(18);
+        } else if (languageCode.equals("es")) {
+            playTxt.setTextSize(18);
+            playTxt2.setTextSize(18);
         } else {
             playTxt2.setTextSize(32);
             playTxt.setTextSize(32);
         }
+
     }
 
     public void setLangauge(Context context) {
@@ -365,10 +378,15 @@ public class Dashboard extends AppCompatActivity {
                 SettingActivity.flagImg.setImageResource(R.drawable.united_kingdom);
                 SettingActivity.languageTxt.setText(context.getResources().getString(R.string.english));
                 break;
+
             case "fr":
                 SettingActivity.flagImg.setImageResource(R.drawable.france);
                 SettingActivity.languageTxt.setText(context.getResources().getString(R.string.french));
+                break;
 
+            case "es":
+                SettingActivity.flagImg.setImageResource(R.drawable.spain);
+                SettingActivity.languageTxt.setText(context.getResources().getString(R.string.spanish));
                 break;
         }
     }
@@ -378,8 +396,10 @@ public class Dashboard extends AppCompatActivity {
         ExitDialog dialog = new ExitDialog(this);
         dialog.show();
         Window window = dialog.getWindow();
+        assert window != null;
         window.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
     }
+
 
     //////
 

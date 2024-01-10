@@ -83,7 +83,7 @@ public class CountDownActivity extends AppCompatActivity {
         DecimalFormat decimalFormat = new DecimalFormat(pattern);
 
         int amount_to_win_int = Integer.parseInt(game_level) * 1000000;
-        String level_string = "Level " + game_level;
+        String level_string = getString(R.string.count_down_level) + " " + game_level;
         amount_to_win.setText("$" + decimalFormat.format(amount_to_win_int));
         count_down_level.setText(level_string);
 
