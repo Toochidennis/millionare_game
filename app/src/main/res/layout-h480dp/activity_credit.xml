@@ -30,7 +30,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Meet our Team:"
+        android:text="@string/meet_our_team"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="50dp"
         android:fontFamily="@font/arimo"
@@ -95,7 +95,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Contact Us"
+                android:text="@string/contact_us"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 android:fontFamily="@font/montserrat"
