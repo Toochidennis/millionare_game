@@ -1,24 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".CreditActivity">
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/black"
         android:alpha="0.8"
-        >
+        android:background="@color/black">
 
     </RelativeLayout>
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@android:color/transparent"
-        >
+        android:background="@android:color/transparent">
 
 
         <LinearLayout
@@ -33,7 +32,7 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="50dp"
                 android:fontFamily="@font/arimo"
-                android:text="Meet our Team:"
+                android:text="@string/meet_our_team"
                 android:textColor="@color/white"
                 android:textSize="18sp"
                 android:textStyle="bold" />
@@ -94,7 +93,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/montserrat"
-                    android:text="Contact Us"
+                    android:text="@string/contact_us"
                     android:textColor="@color/white"
                     android:textSize="18sp"
                     android:textStyle="bold" />
@@ -204,13 +203,15 @@
 
         </LinearLayout>
     </RelativeLayout>
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingBottom="40dp"
         android:layout_alignParentBottom="true"
+        android:paddingBottom="40dp"
 
         >
+
         <RelativeLayout
             android:id="@+id/close_container"
             android:layout_width="wrap_content"
@@ -222,17 +223,17 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/hexagon"
                 android:layout_centerInParent="true"
-                app:tint="@color/white"
-                />
+                android:src="@drawable/hexagon"
+                app:tint="@color/white" />
+
             <ImageView
                 android:id="@+id/close"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                app:tint="@color/black"
-                android:src="@drawable/ic_baseline_close_24"/>
+                android:src="@drawable/ic_baseline_close_24"
+                app:tint="@color/black" />
 
         </RelativeLayout>
     </RelativeLayout>
