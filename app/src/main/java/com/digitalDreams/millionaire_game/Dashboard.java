@@ -277,10 +277,10 @@ public class Dashboard extends AppCompatActivity {
 
 
             //newGameTxt.setText(getResources().getString(R.string.new_game));
-            leaderboardText.setText(getResources().getString(R.string.leaderboard));
 
 
             setLocale(Dashboard.this, languageCode);
+
             //bg.setBackgroundColor(backgroundcolor);
             GradientDrawable gd = new GradientDrawable(
                     GradientDrawable.Orientation.TOP_BOTTOM,
@@ -314,6 +314,9 @@ public class Dashboard extends AppCompatActivity {
             SettingActivity.gameModeTxt.setText(getResources().getString(R.string.game_mode));
             SettingActivity.crediTxt.setText(getResources().getString(R.string.credits));
             SettingActivity.language.setText(getResources().getString(R.string.language));
+
+            leaderboardText.setText(getResources().getString(R.string.leaderboard));
+
             String sound = sharedPreferences.getString("sound", "1");
 
             if (sound.equalsIgnoreCase("1")) {
