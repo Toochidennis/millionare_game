@@ -71,7 +71,7 @@ public class SettingActivity extends AppCompatActivity {
         RelativeLayout creditBtn = findViewById(R.id.credits);
         flagImg = findViewById(R.id.flag);
         languageTxt = findViewById(R.id.language_value);
-        new Dashboard().setLangauge(SettingActivity.this);
+        new Dashboard().setLanguage(SettingActivity.this);
         themeNameTxt = findViewById(R.id.theme_name);
         themeNameTxt.setText(theme);
         soundTxt = findViewById(R.id.sound_txt);
