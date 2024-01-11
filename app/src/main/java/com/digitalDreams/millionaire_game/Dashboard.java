@@ -1,7 +1,5 @@
 package com.digitalDreams.millionaire_game;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -10,18 +8,10 @@ import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.content.res.Resources;
-import android.database.Cursor;
-import android.graphics.Color;
-import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
-import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Looper;
-import android.util.Log;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -35,12 +25,12 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
+
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
-import com.google.android.gms.ads.interstitial.InterstitialAd;
 
-
-import java.io.IOException;
 import java.util.Locale;
 
 public class Dashboard extends AppCompatActivity {
@@ -76,16 +66,17 @@ public class Dashboard extends AppCompatActivity {
         int cardBackground = sharedPreferences.getInt("card_background", 0x219ebc);
         String highscore = sharedPreferences.getString("high_score", "0");
         String game_level = sharedPreferences.getString("game_level", "1");
-
-        setLocale(this, languageCode);
         //setTheme();
         //dbHelper = new DBHelper(this);
+
+        setLocale(this, languageCode);
 
 
         TextView highscoreTxt = findViewById(R.id.highscore);
         try {
             highscoreTxt.setText("$" + Utils.prettyCount(Integer.parseInt(highscore)));
         } catch (Exception e) {
+            e.printStackTrace();
         }
 
         AdView mAdView;
@@ -247,16 +238,16 @@ public class Dashboard extends AppCompatActivity {
         Locale.setDefault(locale);
         Resources resources = activity.getResources();
         Configuration config = resources.getConfiguration();
-        config.setLocale(locale);
+        config.locale = locale;
         resources.updateConfiguration(config, resources.getDisplayMetrics());
     }
 
 
-    BroadcastReceiver refreshBroadCast = new BroadcastReceiver() {
+    private final BroadcastReceiver refreshBroadCast = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
             SharedPreferences sharedPreferences = getSharedPreferences("settings", Context.MODE_PRIVATE);
-            String languageCode = sharedPreferences.getString("language", "en");
+            String languageCode = sharedPreferences.getString("language", "");
             int endcolor = sharedPreferences.getInt("end_color", 0x230253);
             int startColor = sharedPreferences.getInt("start_color", 0xFF6200EE);
             int cardBackground = sharedPreferences.getInt("card_background", 0x03045e);
@@ -280,7 +271,8 @@ public class Dashboard extends AppCompatActivity {
                 SettingsDialog.vibrationBtn.setCardBackgroundColor(cardBackground);
 
             }
-            setLangauge(Dashboard.this);
+
+            setLanguage(Dashboard.this);
             //SettingsDialog.languageBtn.setCardBackgroundColor(cardBackground);
 
 
@@ -299,16 +291,20 @@ public class Dashboard extends AppCompatActivity {
             if (SettingActivity.bg != null) {
                 String theme = sharedPreferences.getString("theme", "0");
                 SettingActivity.bg.setBackgroundDrawable(gd);
-                if (theme.equals("0")) {
-                    SettingActivity.themeNameTxt.setText(getResources().getString(R.string.default_theme));
-                } else if (theme.equals("1")) {
-                    SettingActivity.themeNameTxt.setText(getResources().getString(R.string.theme_1));
+                switch (theme) {
+                    case "0":
+                        SettingActivity.themeNameTxt.setText(getResources().getString(R.string.default_theme));
+                        break;
+                    case "1":
+                        SettingActivity.themeNameTxt.setText(getResources().getString(R.string.theme_1));
 
-                } else if (theme.equals("2")) {
-                    SettingActivity.themeNameTxt.setText(getResources().getString(R.string.theme_2));
-                } else if (theme.equals("3")) {
-                    SettingActivity.themeNameTxt.setText(getResources().getString(R.string.theme_3));
-
+                        break;
+                    case "2":
+                        SettingActivity.themeNameTxt.setText(getResources().getString(R.string.theme_2));
+                        break;
+                    case "3":
+                        SettingActivity.themeNameTxt.setText(getResources().getString(R.string.theme_3));
+                        break;
                 }
             }
 
@@ -319,6 +315,7 @@ public class Dashboard extends AppCompatActivity {
             SettingActivity.crediTxt.setText(getResources().getString(R.string.credits));
             SettingActivity.language.setText(getResources().getString(R.string.language));
             String sound = sharedPreferences.getString("sound", "1");
+
             if (sound.equalsIgnoreCase("1")) {
                 SettingActivity.soundModeTxt.setText(getResources().getString(R.string.on));
             } else {
@@ -339,9 +336,9 @@ public class Dashboard extends AppCompatActivity {
                 SettingActivity.badIcon.setVisibility(View.GONE);
                 SettingActivity.vibrationTxt.setText(getResources().getString(R.string.on));
             }
-
         }
     };
+
 
     @Override
     protected void onResume() {
@@ -353,10 +350,17 @@ public class Dashboard extends AppCompatActivity {
         moreTxt.setText(getResources().getString(R.string.more_games));
         playTxt2.setText(getResources().getString(R.string.play));
         leaderboardText.setText(getResources().getString(R.string.leaderboard));
-        registerReceiver(refreshBroadCast, new IntentFilter("refresh"));
+
+       /* if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            registerReceiver(refreshBroadCast, new IntentFilter("refresh"), Context.RECEIVER_NOT_EXPORTED);
+        } else {
+            registerReceiver(refreshBroadCast, new IntentFilter("refresh"));
+        }*/
+
+        LocalBroadcastManager.getInstance(this).registerReceiver(refreshBroadCast, new IntentFilter("refresh"));
 
         SharedPreferences sharedPreferences = getSharedPreferences("settings", MODE_PRIVATE);
-        String languageCode = sharedPreferences.getString("language", "en");
+        String languageCode = sharedPreferences.getString("language", "");
         if (languageCode.equals("fr")) {
             playTxt.setTextSize(18);
             playTxt2.setTextSize(18);
@@ -370,7 +374,7 @@ public class Dashboard extends AppCompatActivity {
 
     }
 
-    public void setLangauge(Context context) {
+    public void setLanguage(Context context) {
         SharedPreferences sharedPreferences = context.getSharedPreferences("settings", MODE_PRIVATE);
         String languageCode = sharedPreferences.getString("language", "en");
         switch (languageCode) {
