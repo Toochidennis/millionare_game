@@ -86,4 +86,18 @@
     <string name="loading_image">Loading image</string>
     <string name="please_wait">Please wait…</string>
     <string name="correct_answer">Correct Answer</string>
+    <string name="you_missed_the_correct_answer">You missed the correct answer</string>
+    <string name="continue_by_watching_ad">Continue by watching Ad</string>
+    <string name="minus_2_questions">Minus 2 Questions</string>
+    <string name="ask_computer">Ask Computer</string>
+    <string name="take_a_poll">Take a Poll</string>
+    <string name="reset_question">Reset Question</string>
+    <string name="maybe_its">Maybe its</string>
+    <string name="all_time">All Time</string>
+    <string name="weekly">Weekly</string>
+    <string name="daily">Daily</string>
+    <string name="country">Country</string>
+    <string name="leaderboard_is_not_available">Leaderboard is not available</string>
+    <string name="meet_our_team">Meet our Team:</string>
+    <string name="contact_us">Contact Us</string>
 </resources>

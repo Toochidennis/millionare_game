@@ -8,7 +8,7 @@
     <string name="settings">Paramètres</string>
     <string name="sound_on">Son</string>
     <string name="game_mode">Mode de jeu</string>
-    <string name="taptic">Vibration</string>
+    <string name="taptic">Vibración</string>
     <string name="simple">Simple</string>
     <string name="no_thanks"><u>Non merci</u></string>
     <string name="language">Langue</string>
@@ -86,4 +86,18 @@
     <string name="loading_image">Chargement de l\'image</string>
     <string name="please_wait">Espere por favor…</string>
     <string name="correct_answer">Respuesta correcta</string>
+    <string name="you_missed_the_correct_answer">Te has equivocado de respuesta</string>
+    <string name="continue_by_watching_ad">Continúa viendo un anuncio</string>
+    <string name="minus_2_questions">Menos 2 Preguntas</string>
+    <string name="ask_computer">Preguntar a la Computadora</string>
+    <string name="take_a_poll">Realizar una Encuesta</string>
+    <string name="reset_question">Reiniciar Pregunta</string>
+    <string name="maybe_its">Quizás sea</string>
+    <string name="all_time">Todo el Tiempo</string>
+    <string name="weekly">Semanal</string>
+    <string name="daily">Diario</string>
+    <string name="country">País</string>
+    <string name="leaderboard_is_not_available">La tabla de clasificación no está disponible</string>
+    <string name="meet_our_team">Conoce a nuestro equipo:</string>
+    <string name="contact_us">Contáctenos</string>
 </resources>
