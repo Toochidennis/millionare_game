@@ -36,15 +36,13 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.HistoryV
         this.highest_score = highest_score;
         Log.i("checking",String.valueOf(histories.length()));
 
-
     }
 
     @NonNull
     @Override
     public HistoryViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        LayoutInflater layoutInflater = LayoutInflater.from(context);
-        View view;
-        view = layoutInflater.inflate(R.layout.single_history, parent, false);
+        LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
+        View view = layoutInflater.inflate(R.layout.single_history, parent, false);
         return new HistoryAdapter.HistoryViewHolder(view);
     }
 
@@ -53,13 +51,13 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.HistoryV
     public void onBindViewHolder(@NonNull HistoryViewHolder holder, int position) {
      try{
          JSONObject history = histories.getJSONObject(position);
-         String content = history.getString("content");
+         //String content = history.getString("content");
          String date_played = history.getString("date_played");
-         String correctAnswer = history.getString("correct");
+        // String correctAnswer = history.getString("correct");
          String high_score = history.getString("high_score");
          String correct_answers = history.getString("correct_answers");
          String wrong_answers = history.getString("wrong_answers");
-         JSONArray answers = new JSONArray(history.getString("answer"));
+        // JSONArray answers = new JSONArray(history.getString("answer"));
          holder.dateLayout.setVisibility(View.GONE);
          holder. mAdView.setVisibility(View.GONE);
          holder.high_score_layout.setVisibility(View.GONE);
