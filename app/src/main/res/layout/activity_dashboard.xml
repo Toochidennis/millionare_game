@@ -228,7 +228,6 @@
                                 android:id="@+id/play_text"
                                 android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
-                                android:layout_centerInParent="true"
                                 android:elevation="5dp"
                                 android:shadowColor="@color/black"
                                 android:text="@string/play"
@@ -371,7 +370,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         ads:adSize="FULL_BANNER"
-        ads:adUnitId="@string/banner_adunit"></com.google.android.gms.ads.AdView>
+        ads:adUnitId="@string/banner_adunit"/>
 
 
 </RelativeLayout>
