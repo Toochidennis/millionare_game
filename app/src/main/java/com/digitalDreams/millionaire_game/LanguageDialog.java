@@ -11,6 +11,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.content.res.Resources;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.ViewGroup;
@@ -19,6 +20,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
 import androidx.annotation.NonNull;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -65,7 +67,6 @@ class LanguageDialog extends Dialog {
         boolean isEnglishInserted = sharedPreferences.getBoolean(IS_INSERTED_ENGLISH_KEY, false);
         boolean isSpanishInserted = sharedPreferences.getBoolean(IS_INSERTED_SPANISH_KEY, false);
 
-
         closeBtn.setOnClickListener(view -> dismiss());
 
         englishBtn.setOnClickListener(view -> {
@@ -77,7 +78,8 @@ class LanguageDialog extends Dialog {
                 editor.putBoolean(IS_INSERTED_ENGLISH_KEY, true);
             }
 
-            context.sendBroadcast(new Intent("refresh"));
+            // context.sendBroadcast(new Intent("refresh"));
+            LocalBroadcastManager.getInstance(context).sendBroadcast(new Intent("refresh"));
             editor.putString("language", languageCode);
             editor.apply();
             dismiss();
@@ -86,7 +88,9 @@ class LanguageDialog extends Dialog {
         frenchBtn.setOnClickListener(view -> {
             languageCode = "fr";
             setLocale(unwrap(context), languageCode);
-            context.sendBroadcast(new Intent("refresh"));
+
+            //  context.sendBroadcast(new Intent("refresh"));
+            LocalBroadcastManager.getInstance(context).sendBroadcast(new Intent("refresh"));
             editor.putString("language", languageCode);
             editor.apply();
             dismiss();
@@ -101,7 +105,8 @@ class LanguageDialog extends Dialog {
                 editor.putBoolean(IS_INSERTED_SPANISH_KEY, true);
             }
 
-            context.sendBroadcast(new Intent("refresh"));
+            // context.sendBroadcast(new Intent("refresh"));
+            LocalBroadcastManager.getInstance(context).sendBroadcast(new Intent("refresh"));
             editor.putString("language", languageCode);
             editor.apply();
             dismiss();
@@ -228,9 +233,11 @@ class LanguageDialog extends Dialog {
         Locale locale = new Locale(languageCode);
         Locale.setDefault(locale);
         Resources resources = activity.getResources();
-        Configuration config = resources.getConfiguration();
-        config.setLocale(locale);
+        Configuration config = new Configuration();
+        config.locale = locale;
         resources.updateConfiguration(config, resources.getDisplayMetrics());
+
+        Log.d("changed1", languageCode);
     }
 
     private static Activity unwrap(Context context) {
@@ -240,4 +247,5 @@ class LanguageDialog extends Dialog {
 
         return (Activity) context;
     }
+
 }
