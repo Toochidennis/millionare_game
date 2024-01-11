@@ -399,7 +399,7 @@ public class GameActivity2 extends AppCompatActivity {
             if (js != null) {
                 String gid = js.optString("id");
                 String ty = js.getString("type");
-                Log.i("render2", String.valueOf(js.optString("correct")));
+                Log.i("render2", js.optString("correct"));
                 Log.i("render2", String.valueOf(singleQuestion));
                 switch (ty) {
                     case "section":
@@ -734,7 +734,6 @@ public class GameActivity2 extends AppCompatActivity {
                     String correctOption = checkCorrectOptions(q, answer);
                     answerOption.setText(correctOption);
                     askFriendBtn.setClickable(false);
-
                 });
 
                 votingBtn.setOnClickListener(view -> {
