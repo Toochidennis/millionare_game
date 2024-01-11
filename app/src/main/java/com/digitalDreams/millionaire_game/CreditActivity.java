@@ -21,48 +21,39 @@ public class CreditActivity extends AppCompatActivity {
         setContentView(R.layout.activity_credit);
         TextView facebookBtn = findViewById(R.id.facebook_link);
         facebookBtn.setText(facebookId);
-        facebookBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                try {
-                    getPackageManager().getPackageInfo("com.facebook.katana", 0);
+        facebookBtn.setOnClickListener(view -> {
+            try {
+                getPackageManager().getPackageInfo("com.facebook.katana", 0);
 
-                    String facebookScheme = "fb://profile/" + facebookId;
-                    new Intent(Intent.ACTION_VIEW, Uri.parse(facebookScheme));
-                }
-                catch(Exception e) {
-
-                    // Cache and Open a url in browser
-                    String facebookProfileUri = "https://www.facebook.com/" + facebookId;
-                     new Intent(Intent.ACTION_VIEW, Uri.parse(facebookProfileUri));
-                }
-
+                String facebookScheme = "fb://profile/" + facebookId;
+                new Intent(Intent.ACTION_VIEW, Uri.parse(facebookScheme));
             }
+            catch(Exception e) {
+
+                // Cache and Open a url in browser
+                String facebookProfileUri = "https://www.facebook.com/" + facebookId;
+                 new Intent(Intent.ACTION_VIEW, Uri.parse(facebookProfileUri));
+            }
+
         });
 
         TextView emailBtn = findViewById(R.id.email_link);
         emailBtn.setText(emailAddress);
-        emailBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(CreditActivity.this,"clicked",Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts(
-                        "mailto",emailAddress, null));
-                intent.putExtra(Intent.EXTRA_SUBJECT, "");
-                intent.putExtra(Intent.EXTRA_TEXT, "");
-                startActivity(Intent.createChooser(intent, "Send Us a mail"));
-            }
+        emailBtn.setOnClickListener(view -> {
+            Toast.makeText(CreditActivity.this,"clicked",Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts(
+                    "mailto",emailAddress, null));
+            intent.putExtra(Intent.EXTRA_SUBJECT, "");
+            intent.putExtra(Intent.EXTRA_TEXT, "");
+            startActivity(Intent.createChooser(intent, "Send Us a mail"));
         });
 
         TextView callBtn = findViewById(R.id.phone_link);
         callBtn.setText(phoneNumber);
-        callBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(Intent.ACTION_DIAL);
-                intent.setData(Uri.parse(phoneNumber));
-                startActivity(intent);
-            }
+        callBtn.setOnClickListener(view -> {
+            Intent intent = new Intent(Intent.ACTION_DIAL);
+            intent.setData(Uri.parse(phoneNumber));
+            startActivity(intent);
         });
     }
 }
