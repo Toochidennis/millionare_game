@@ -74,7 +74,7 @@
                 android:layout_marginBottom="20dp"
                 android:fontFamily="@font/fjalla_one"
                 android:gravity="center"
-                android:text="You missed the correct answer"
+                android:text="@string/you_missed_the_correct_answer"
                 android:textSize="20sp"
                 android:textColor="@color/white"
 
@@ -95,7 +95,7 @@
                     android:layout_marginTop="0dp"
                     android:fontFamily="@font/arimo"
                     android:gravity="center"
-                    android:text="Continue by watching Ad"
+                    android:text="@string/continue_by_watching_ad"
                     android:textColor="@color/blue_gray"
                     android:textSize="20sp" />
 
