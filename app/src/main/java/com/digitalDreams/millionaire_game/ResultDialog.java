@@ -47,6 +47,7 @@ public class ResultDialog extends Dialog {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_result_dialog);
+
         background = findViewById(R.id.background);
 
         ImageView closeBtn = findViewById(R.id.close);
