@@ -286,16 +286,16 @@
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="10dp"
                 />
+
             <TextView
                 android:id="@+id/leaderboard_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/leaderboard"
-                android:textStyle="bold"
-                android:textSize="20dp"
                 android:layout_centerInParent="true"
+                android:text="@string/leaderboard"
                 android:textColor="@color/white"
-                />
+                android:textSize="20dp"
+                android:textStyle="bold" />
         </RelativeLayout>
             <RelativeLayout
                 android:layout_width="match_parent"
