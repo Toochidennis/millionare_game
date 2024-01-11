@@ -267,26 +267,25 @@
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:layout_centerVertical="true"
-                    android:layout_marginLeft="10dp"
+                    android:layout_marginStart="10dp"
                     android:alpha="0.8"
                     android:src="@drawable/ic_leaderboard_black_48dp"
                     app:tint="@color/white" />
 
                 <TextView
-                    android:id="@+id/leaderboard_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
                     android:text="@string/leaderboard"
                     android:textColor="@color/white"
-                    android:textSize="20dp"
+                    android:textSize="20sp"
                     android:textStyle="bold" />
             </RelativeLayout>
 
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="50dp"
+                android:layout_marginStart="50dp"
                 android:background="@drawable/whitepolygon">
 
                 <LinearLayout
@@ -296,19 +295,21 @@
                     android:orientation="vertical">
 
                     <TextView
+                        android:id="@+id/leaderboard_text"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="40dp"
                         android:text="@string/leaderboard"
+                        android:textStyle="bold"
+                        android:textSize="20sp"
+                        android:layout_marginStart="40dp"
                         android:textColor="@color/black"
-                        android:textSize="20dp"
-                        android:textStyle="bold" />
+                        />
 
                     <TextView
                         android:id="@+id/see_rank_text"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="40dp"
+                        android:layout_marginStart="40dp"
                         android:text="@string/see_your_ranking"
                         android:textColor="@color/basic_color"
                         android:textSize="14sp" />
@@ -334,6 +335,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
                 android:text="@string/more_games"
+                android:textAlignment="center"
                 android:textColor="@color/white"
                 android:textSize="20dp"
                 android:textStyle="bold" />
@@ -357,8 +359,9 @@
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
                 android:text="@string/goto_youtube"
+                android:textAlignment="center"
                 android:textColor="@color/white"
-                android:textSize="20dp"
+                android:textSize="20sp"
                 android:textStyle="bold" />
 
         </RelativeLayout>

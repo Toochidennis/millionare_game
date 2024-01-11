@@ -281,7 +281,6 @@
                 android:layout_marginLeft="10dp"
                 />
             <TextView
-                android:id="@+id/leaderboard_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/leaderboard"
@@ -305,11 +304,12 @@
                     >
 
                     <TextView
+                        android:id="@+id/leaderboard_text"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/leaderboard"
                         android:textStyle="bold"
-                        android:textSize="20dp"
+                        android:textSize="20sp"
                         android:layout_marginLeft="40dp"
                         android:textColor="@color/black"
                         />
@@ -338,17 +338,16 @@
             >
 
 
-
             <TextView
                 android:id="@+id/more_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/more_games"
-                android:textStyle="bold"
-                android:textSize="20dp"
                 android:layout_centerInParent="true"
+                android:text="@string/more_games"
+                android:textAlignment="center"
                 android:textColor="@color/white"
-                />
+                android:textSize="20dp"
+                android:textStyle="bold" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -363,17 +362,16 @@
             >
 
 
-
             <TextView
                 android:id="@+id/goto_youtube_txt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/goto_youtube"
-                android:textStyle="bold"
-                android:textSize="20dp"
                 android:layout_centerInParent="true"
+                android:text="@string/goto_youtube"
+                android:textAlignment="center"
                 android:textColor="@color/white"
-                />
+                android:textSize="20dp"
+                android:textStyle="bold" />
         </RelativeLayout>
 
         </LinearLayout>

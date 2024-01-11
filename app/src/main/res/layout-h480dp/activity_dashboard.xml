@@ -247,7 +247,6 @@
                 android:background="@drawable/ic_hexnow"
                 >
 
-
                 <ImageView
                     android:layout_width="40dp"
                     android:layout_height="40dp"
@@ -263,11 +262,13 @@
                     android:layout_height="wrap_content"
                     android:text="@string/leaderboard"
                     android:textStyle="bold"
-                    android:textSize="20dp"
+                    android:textSize="20sp"
                     android:layout_centerInParent="true"
                     android:textColor="@color/white"
                     />
             </RelativeLayout>
+
+
             <RelativeLayout
                 android:visibility="gone"
                 android:id="@+id/new_particle"
@@ -296,7 +297,7 @@
 
             </RelativeLayout>
             <RelativeLayout
-                android:id="@+id/new_particle"
+                android:id="@+id/new_particle2"
                 android:layout_width="match_parent"
                 android:layout_height="80dp"
                 android:background="@drawable/ic_hexnow"
@@ -368,17 +369,16 @@
             >
 
 
-
             <TextView
                 android:id="@+id/more_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/more_games"
-                android:textStyle="bold"
-                android:textSize="20dp"
                 android:layout_centerInParent="true"
+                android:text="@string/more_games"
+                android:textAlignment="center"
                 android:textColor="@color/white"
-                />
+                android:textSize="20dp"
+                android:textStyle="bold" />
         </RelativeLayout>
 
 

@@ -288,19 +288,18 @@
                 />
 
             <TextView
-                android:id="@+id/leaderboard_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
                 android:text="@string/leaderboard"
                 android:textColor="@color/white"
-                android:textSize="20dp"
+                android:textSize="20sp"
                 android:textStyle="bold" />
         </RelativeLayout>
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="50dp"
+                android:layout_marginStart="50dp"
                 android:background="@drawable/whitepolygon"
                 >
                 <LinearLayout
@@ -311,11 +310,12 @@
                     >
 
                     <TextView
+                        android:id="@+id/leaderboard_text"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/leaderboard"
                         android:textStyle="bold"
-                        android:textSize="20dp"
+                        android:textSize="20sp"
                         android:layout_marginLeft="40dp"
                         android:textColor="@color/black"
                         />
@@ -325,7 +325,7 @@
                         android:layout_height="wrap_content"
                         android:text="@string/see_your_ranking"
                         android:textSize="14sp"
-                        android:layout_marginLeft="40dp"
+                        android:layout_marginStart="40dp"
                         android:textColor="@color/basic_color"
                         />
                 </LinearLayout>
@@ -350,8 +350,9 @@
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
                 android:text="@string/more_games"
+                android:textAlignment="center"
                 android:textColor="@color/white"
-                android:textSize="20dp"
+                android:textSize="20sp"
                 android:textStyle="bold" />
         </RelativeLayout>
 
@@ -373,8 +374,9 @@
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
                 android:text="@string/goto_youtube"
+                android:textAlignment="center"
                 android:textColor="@color/white"
-                android:textSize="20dp"
+                android:textSize="20sp"
                 android:textStyle="bold" />
         </RelativeLayout>
         </LinearLayout>
