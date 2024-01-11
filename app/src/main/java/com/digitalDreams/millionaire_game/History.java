@@ -10,6 +10,7 @@ import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -56,6 +57,7 @@ public class History extends AppCompatActivity {
         dbHelper = new DBHelper(this);
         recyclerview = findViewById(R.id.recyclerview);
         JSONArray jsonArray = dbHelper.buildHistories();
+        Log.d("history", jsonArray.toString());
         historyAdapter = new HistoryAdapter(this,jsonArray,Utils.addCommaAndDollarSign(Double.parseDouble(cleanedHighScore)));
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerview.setLayoutManager(layoutManager);
@@ -75,15 +77,12 @@ public class History extends AppCompatActivity {
 
 
 
-        close_container.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Utils.darkBlueBlink(close_container, History.this);
-                AdManager.showInterstitial(History.this);
-                onBackPressed();
+        close_container.setOnClickListener(view -> {
+            Utils.darkBlueBlink(close_container, History.this);
+            AdManager.showInterstitial(History.this);
+            onBackPressed();
 
 
-            }
         });
 
         arrow_back.setOnClickListener(new View.OnClickListener() {
