@@ -127,7 +127,7 @@
                     android:layout_marginRight="8dp"
                     android:layout_marginBottom="200dp"
                     android:elevation="10dp"
-                    android:orientation="vertical"></LinearLayout>
+                    android:orientation="vertical"/>
 
             </LinearLayout>
 
@@ -189,7 +189,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         ads:adSize="FULL_BANNER"
-        ads:adUnitId="@string/banner_adunit"></com.google.android.gms.ads.AdView>
+        ads:adUnitId="@string/banner_adunit"/>
 
     <LinearLayout
         android:visibility="gone"
@@ -342,14 +342,10 @@
                         android:id="@+id/arrow2"
                         android:layout_width="50dp"
                         android:layout_height="180dp"
-
                         android:layout_alignParentRight="true"
                         android:layout_marginTop="40dp"
                         android:layout_marginRight="40dp"
                         android:rotation="180"
-
-
-
                         android:src="@drawable/cnn"
 
                         />
@@ -440,8 +436,6 @@
                             android:src="@drawable/motion_video"
                             android:visibility="gone" />
 
-
-
                     </RelativeLayout>
 
 
@@ -483,7 +477,6 @@
                         android:layout_marginTop="10dp"
                         android:layout_marginEnd="10dp"
                         android:layout_marginBottom="10dp"
-                        android:layout_toRightOf="@+id/ask_friend"
                         android:layout_weight="1">
 
 
@@ -561,10 +554,7 @@
 
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="-10dp"
-
-
-                    >
+                    android:layout_marginTop="-10dp">
 
 
                     <ImageView
