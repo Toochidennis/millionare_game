@@ -33,16 +33,17 @@
                 android:src="@drawable/ic_baseline_share_white" />
 
         </RelativeLayout>
+
         <TextView
+            android:id="@+id/activity_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Leaderboard"
-            android:textStyle="bold"
+            android:layout_centerInParent="true"
             android:fontFamily="@font/montserrat"
-            android:textSize="18sp"
+            android:text="@string/leaderboard"
             android:textColor="@color/white"
-            android:id="@+id/activity_title"
-            android:layout_centerInParent="true"/>
+            android:textSize="18sp"
+            android:textStyle="bold" />
         <RelativeLayout
             android:id="@+id/close_container"
             android:layout_width="70dp"
@@ -98,7 +99,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="All Time"
+                        android:text="@string/all_time"
                         android:textSize="14sp"
                         android:textColor="@color/white"
                         android:fontFamily="@font/arimo"/>
@@ -119,7 +120,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Weekly"
+                        android:text="@string/weekly"
                         android:textSize="14sp"
                         android:textColor="@color/white"
                         android:fontFamily="@font/arimo"/>
@@ -140,7 +141,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Daily"
+                        android:text="@string/daily"
                         android:textSize="14sp"
                         android:textColor="@color/white"
                         android:fontFamily="@font/arimo"/>
@@ -165,7 +166,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Country"
+                        android:text="@string/country"
                         android:textSize="14sp"
                         android:textColor="@color/white"
                         android:fontFamily="@font/arimo"/>
@@ -215,7 +216,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:fontFamily="@font/arimo"
-            android:text="Leaderboard is not available"
+            android:text="@string/leaderboard_is_not_available"
             android:textColor="@color/white"
             android:textSize="16sp"
             android:visibility="gone" />
