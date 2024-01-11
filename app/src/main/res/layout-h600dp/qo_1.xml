@@ -321,7 +321,7 @@
                                     android:layout_height="0dp"
                                     android:layout_weight="1"
                                     android:background="@color/black"
-                                    android:orientation="horizontal"></LinearLayout>
+                                    android:orientation="horizontal"/>
 
                                 <LinearLayout
                                     android:id="@+id/progress_totalD"
@@ -329,7 +329,7 @@
                                     android:layout_height="0dp"
                                     android:layout_weight="1"
                                     android:background="@color/orange"
-                                    android:orientation="horizontal"></LinearLayout>
+                                    android:orientation="horizontal"/>
                             </LinearLayout>
                         </LinearLayout>
                     </LinearLayout>
@@ -363,7 +363,7 @@
                         android:layout_height="wrap_content"
                         android:layout_centerInParent="true"
                         android:fontFamily="@font/montserrat"
-                        android:text="Maybe its"
+                        android:text="@string/maybe_its"
                         android:textColor="@color/white"
                         android:textSize="16sp"
                         android:textStyle="bold" />
@@ -527,7 +527,7 @@
                             android:layout_width="20dp"
                             android:layout_height="20dp"
                             android:layout_alignParentBottom="true"
-                            android:layout_marginLeft="40dp"
+                            android:layout_marginStart="40dp"
                             android:src="@drawable/vicon2" />
 
                         <ImageView
@@ -550,8 +550,8 @@
                         android:layout_weight="1"
                         android:textAlignment="center"
                         android:layout_height="wrap_content"
-                        android:text="Minus 2 Questions"
-                        android:textSize="10dp"
+                        android:text="@string/minus_2_questions"
+                        android:textSize="10sp"
                         android:id="@+id/opt_dec_1"
                         android:textColor="@color/white"
 
@@ -561,8 +561,8 @@
                         android:layout_weight="1"
                         android:textAlignment="center"
                         android:layout_height="wrap_content"
-                        android:textSize="10dp"
-                        android:text="Ask Computer"
+                        android:textSize="10sp"
+                        android:text="@string/ask_computer"
                         android:id="@+id/opt_dec_2"
                         android:textColor="@color/white"
                         />
@@ -571,8 +571,8 @@
                         android:layout_weight="1"
                         android:textAlignment="center"
                         android:layout_height="wrap_content"
-                        android:textSize="10dp"
-                        android:text="Take a Poll"
+                        android:textSize="10sp"
+                        android:text="@string/take_a_poll"
                         android:id="@+id/opt_dec_3"
                         android:textColor="@color/white"
                         />
@@ -581,8 +581,8 @@
                         android:layout_weight="1"
                         android:textAlignment="center"
                         android:layout_height="wrap_content"
-                        android:textSize="10dp"
-                        android:text="Reset Question"
+                        android:textSize="10sp"
+                        android:text="@string/reset_question"
                         android:id="@+id/opt_dec_4"
                         android:textColor="@color/white"
                         />
