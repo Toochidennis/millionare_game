@@ -18,10 +18,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
-import android.content.pm.ResolveInfo;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.GradientDrawable;
 import android.net.Uri;
 import android.os.Build;
@@ -32,8 +30,6 @@ import android.util.Base64;
 import android.util.Base64OutputStream;
 import android.util.Log;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.Window;
 import android.view.WindowManager;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -60,12 +56,8 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.OutputStream;
 import java.text.DecimalFormat;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 
@@ -176,17 +168,22 @@ public class PlayDetailsActivity extends AppCompatActivity {
 
 
         TextView noOfQuestionsAnsweredText = findViewById(R.id.no_question_answered);
+        String questionsAnsweredText;
         if (GameActivity2.noOfQuestionAnswered != 0) {
-            noOfQuestionsAnsweredText.setText("" + GameActivity2.noOfQuestionAnswered + " questions answered");
+            questionsAnsweredText = GameActivity2.noOfQuestionAnswered + " " + getResources().getString(R.string.questions_answered);
+            noOfQuestionsAnsweredText.setText(questionsAnsweredText);
         } else {
-            noOfQuestionsAnsweredText.setText("" + GameActivity2.noOfQuestionAnswered + " question answered");
+            questionsAnsweredText = GameActivity2.noOfQuestionAnswered + " " + getResources().getString(R.string.question_answered);
+            noOfQuestionsAnsweredText.setText(questionsAnsweredText);
         }
-        TextView accuracyText = findViewById(R.id.accuracy);
+        TextView accuracyTextView = findViewById(R.id.accuracy);
         float accuracy = (float) GameActivity2.noOfCorrectAnswer / (float) GameActivity2.noOfQuestionAnswered;
 
         accuracy = accuracy * 100;
 
-        accuracyText.setText(Math.round(accuracy) + "% Accuracy");
+        String accuracyText = Math.round(accuracy) + " " + getResources().getString(R.string.accuracy);
+
+        accuracyTextView.setText(accuracyText);
 
         TextView timeTakenText = findViewById(R.id.time_taken);
         int seconds = (int) (GameActivity2.timing / 1000);
@@ -243,7 +240,7 @@ public class PlayDetailsActivity extends AppCompatActivity {
         newGame.setOnClickListener(view -> {
             Utils.destination_activity = LeaderBoard.class;
             Utils.darkBlueBlink(newGame, getApplicationContext());
-            String json = dbHelper.buildJson();
+            //String json = dbHelper.buildJson();
             Intent intent = new Intent(PlayDetailsActivity.this, LeaderBoard.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(intent);
@@ -324,7 +321,7 @@ public class PlayDetailsActivity extends AppCompatActivity {
 
             startActivity(Intent.createChooser(sharingIntent, "Share via"));
         } else {
-            Toast.makeText(getApplicationContext(), "File does not exist", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), getResources().getString(R.string.file_does_not_exist), Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -448,7 +445,6 @@ public class PlayDetailsActivity extends AppCompatActivity {
             oldAmountWon = oldAmountWon.replace("$", "").replace(",", "");
             s = Integer.parseInt(amountWon) + Integer.parseInt(oldAmountWon);
 
-
         }
 
 
@@ -481,57 +477,53 @@ public class PlayDetailsActivity extends AppCompatActivity {
             e.printStackTrace();
         }
         String url = getResources().getString(R.string.base_url) + "/post_score.php";
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, url, response -> {
+            try {
+                Log.i("response111", "response== " + response);
 
-            @Override
-            public void onResponse(String response) {
-                try {
-                    Log.i("response111", "response== " + response);
+                JSONObject obj = new JSONObject(response);
+                JSONObject dailyObj = obj.getJSONObject("daily");
+                String daily = dailyObj.getString("number");
+                JSONObject weeklyObj = obj.getJSONObject("weekly");
+                String weekly = weeklyObj.getString("number");
+                String txt = "";
+                String dailyMax = dailyObj.getString("max");
+                String weeklyMax = weeklyObj.getString("max");
 
-                    JSONObject obj = new JSONObject(response);
-                    JSONObject dailyObj = obj.getJSONObject("daily");
-                    String daily = dailyObj.getString("number");
-                    JSONObject weeklyObj = obj.getJSONObject("weekly");
-                    String weekly = weeklyObj.getString("number");
-                    String txt = "";
-                    String dailyMax = dailyObj.getString("max");
-                    String weeklyMax = weeklyObj.getString("max");
+                if (daily.equals("1") && weekly.equals("1")) {
 
-                    if (daily.equals("1") && weekly.equals("1")) {
-
-                        txt = "Congratulations! improve your score to remain at the top - $" + currencyFormat(dailyMax);
+                    txt = getResources().getString(R.string.congratulations_improve_your_score_to_remain_at_the_top) + currencyFormat(dailyMax);
 
 
-                    } else if (String.valueOf(daily).equals("1")) {
-                        txt = "Beat this weeks highest score - $" + currencyFormat(weeklyMax);
+                } else if (daily.equals("1")) {
+                    txt = getResources().getString(R.string.beat_this_weeks_highest_score) + currencyFormat(weeklyMax);
 
-                    } else if (dailyMax != null && dailyMax != "null") {
-                        txt = "Beat today's highest score of - $" + currencyFormat(dailyMax);
+                } else if (!dailyMax.equals("null")) {
+                    txt = getResources().getString(R.string.beat_today_s_highest_score_of) + currencyFormat(dailyMax);
 
-                    } else {
-                        txt = "Beat today's highest score - $" + currencyFormat(dailyMax);
+                } else {
+                    txt = getResources().getString(R.string.beat_today_s_highest_score) + currencyFormat(dailyMax);
 
-                    }
-
-
-                    ResultDialog r = new ResultDialog(PlayDetailsActivity.this, daily, weekly, txt);
-                    // r.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.blue(444)));
-
-                    // r.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.));
-
-                    if (!isFinishing()) {
-
-                        r.show();
-
-                    }
-
-
-                } catch (JSONException e) {
-                    e.printStackTrace();
                 }
 
 
+                ResultDialog r = new ResultDialog(PlayDetailsActivity.this, daily, weekly, txt);
+                // r.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.blue(444)));
+
+                // r.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.));
+
+                if (!isFinishing()) {
+
+                    r.show();
+
+                }
+
+
+            } catch (JSONException e) {
+                e.printStackTrace();
             }
+
+
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
