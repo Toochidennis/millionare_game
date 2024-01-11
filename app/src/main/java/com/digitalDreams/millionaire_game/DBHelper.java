@@ -182,8 +182,26 @@ class DBHelper extends SQLiteOpenHelper {
             Cursor res = null;
             try {
                 SQLiteDatabase db = this.getWritableDatabase();
+
+                SharedPreferences sharedPreferences = context.getSharedPreferences("settings", Context.MODE_PRIVATE);
+                String languageCode = sharedPreferences.getString("language", "");
+                String language;
+
+                switch (languageCode) {
+                    case "fr":
+                        language = context.getString(R.string.french);
+                        break;
+                    case "es":
+                        language = context.getString(R.string.spanish);
+                        break;
+
+                    default:
+                        language = context.getString(R.string.english);
+                        break;
+                }
+
                 //String selectQuery = "SELECT * FROM " + JSON_TABLE + " where LEVEL = "+level+" ORDER BY RANDOM() LIMIT 1";
-                String selectQuery = "SELECT * FROM " + JSON_TABLE + " ORDER BY  STAGE ASC";
+                String selectQuery = "SELECT * FROM " + JSON_TABLE + " WHERE  LANGUAGE = '" + language + "' ORDER BY  STAGE ASC";
 
                 res = db.rawQuery(selectQuery, null);
 
@@ -202,7 +220,6 @@ class DBHelper extends SQLiteOpenHelper {
             Cursor res1 = null;
             try {
                 SQLiteDatabase db = this.getWritableDatabase();
-
 
                 SharedPreferences sharedPreferences = context.getSharedPreferences("settings", Context.MODE_PRIVATE);
                 String game_level = sharedPreferences.getString("game_level", "1");
@@ -284,6 +301,8 @@ class DBHelper extends SQLiteOpenHelper {
                     @SuppressLint("Range") String correct = res.getString(res.getColumnIndex("CORRECT"));
                     @SuppressLint("Range") String reason = res.getString(res.getColumnIndex("REASON"));
 
+                    Log.d("reason", reason + " " + answer + " " + language);
+
                     JSONObject contentObj = new JSONObject();
                     contentObj.put("id", id);
                     contentObj.put("parent", "0");
@@ -326,11 +345,11 @@ class DBHelper extends SQLiteOpenHelper {
 
 
         boolean questionExists = checkHistory(questionId);
+
         if (!questionExists) {
             db.insert(HISTORY_TABLE, null, contentValues);
 
         }
-
 
     }
 
@@ -380,7 +399,6 @@ class DBHelper extends SQLiteOpenHelper {
 
 
         try {
-
 
             Cursor histories = getHistoryByDate(dateTime);
             while (histories.moveToNext()) {
@@ -506,7 +524,6 @@ class DBHelper extends SQLiteOpenHelper {
         }
 
         return contentObj;
-
 
     }
 
