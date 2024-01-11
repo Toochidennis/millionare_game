@@ -100,4 +100,20 @@
     <string name="leaderboard_is_not_available">Leaderboard is not available</string>
     <string name="meet_our_team">Meet our Team:</string>
     <string name="contact_us">Contact Us</string>
+    <string name="view_answers">View Answers</string>
+    <string name="reason">Reason:</string>
+    <string name="high_score">HIGH SCORE</string>
+    <string name="best_score">Best Score</string>
+    <string name="position_this_week">position this week</string>
+    <string name="you_are_at">You are at:</string>
+    <string name="beat_score">beat score</string>
+    <string name="position_today">position today</string>
+    <string name="congratulations_improve_your_score_to_remain_at_the_top">Congratulations! improve your score to remain at the top - $</string>
+    <string name="beat_this_weeks_highest_score">Beat this weeks highest score - $</string>
+    <string name="beat_today_s_highest_score_of">Beat today\'s highest score of - $</string>
+    <string name="beat_today_s_highest_score">Beat today\'s highest score - $</string>
+    <string name="file_does_not_exist">File does not exist</string>
+    <string name="accuracy">% Accuracy</string>
+    <string name="questions_answered">"questions answered"</string>
+    <string name="question_answered">"question answered"</string>
 </resources>

@@ -10,7 +10,7 @@
     <string name="home">Accueil</string>
     <string name="next_level">Niveau terminé</string>
     <string name="winning_congrats">Toutes nos félicitations</string>
-    <string name="leaderboard">Classement</string>
+    <string name="leaderboard"><u>Classement</u></string>
     <string name="exit_game">Quitter le jeu</string>
     <string name="settings">Paramètres</string>
     <string name="sound_on">Son sur</string>
@@ -98,5 +98,21 @@ Battez-moi si vous le pouvez !!!
     <string name="leaderboard_is_not_available">Le classement n\'est pas disponible</string>
     <string name="meet_our_team">Rencontrez notre équipe:</string>
     <string name="contact_us">Contactez-nous</string>
+    <string name="view_answers">Voir les réponses</string>
+    <string name="reason">Raison:</string>
+    <string name="high_score">SCORE ÉLEVÉ</string>
+    <string name="best_score">Meilleur Score</string>
+    <string name="position_this_week"> position cette semaine</string>
+    <string name="you_are_at">Vous êtes à :</string>
+    <string name="beat_score">Battre le score</string>
+    <string name="position_today"> position aujourd\'hui</string>
+    <string name="congratulations_improve_your_score_to_remain_at_the_top">Félicitations ! Améliorez votre score pour rester au sommet - $</string>
+    <string name="beat_this_weeks_highest_score">Battez le score le plus élevé de cette semaine - $</string>
+    <string name="beat_today_s_highest_score_of">Battez le score le plus élevé d\'aujourd\'hui de - $</string>
+    <string name="beat_today_s_highest_score">Battez le score le plus élevé d\'aujourd\'hui - $</string>
+    <string name="file_does_not_exist">Le fichier n\'existe pas</string>
+    <string name="accuracy">% Précision</string>
+    <string name="questions_answered">"questions répondues"</string>
+    <string name="question_answered">"question répondues"</string>
 
 </resources>

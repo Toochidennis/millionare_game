@@ -48,14 +48,14 @@
     <string name="send_us_an_email"><u>info@digitaldreamsng.com</u></string>
     <string name="twitter"><u>@DigitalDreamsNG</u></string>
     <string name="get_ready">Prépare-toi !</string>
-    <string name="you_won">Score</string>
+    <string name="you_won">Puntuación</string>
     <string name="next">Niveau suivant</string>
     <string name="winner">Gagnant</string>
     <string name="home">Accueil</string>
     <string name="winning_congrats">Félicitations !</string>
     <string name="next_level">Niveau terminé</string>
 
-    <string name="can_you_beat_that">Tu peux battre ce score !</string>
+    <string name="can_you_beat_that">Tu peux battre ce puntuación !</string>
     <string name="share">Partager</string>
     <string name="are_you_sure_you_want_to_exit">Es-tu sûr de vouloir quitter ?</string>
     <string name="yes">Quitter</string>
@@ -67,7 +67,7 @@
     <string name="continue_">Continuer</string>
     <string name="take">Prendre</string>
     <string name="replay_level">Rejouer le niveau</string>
-    <string name="watch_a_video">Garde ton score</string>
+    <string name="watch_a_video">Garde ton puntuación</string>
     <string name="base_url">http://www.cbtportal.linkskool.com/api</string>
     <string name="hard_level">Niveau suivant</string>
 
@@ -100,4 +100,20 @@
     <string name="leaderboard_is_not_available">La tabla de clasificación no está disponible</string>
     <string name="meet_our_team">Conoce a nuestro equipo:</string>
     <string name="contact_us">Contáctenos</string>
+    <string name="view_answers">Ver respuestas</string>
+    <string name="reason">Razón:</string>
+    <string name="high_score">MÁXIMA PUNTUACIÓN</string>
+    <string name="best_score">Mejor Puntuación</string>
+    <string name="position_this_week">Posición esta semana</string>
+    <string name="you_are_at">Te encuentras en:</string>
+    <string name="beat_score">Superar la puntuación</string>
+    <string name="position_today">Posición hoy</string>
+    <string name="congratulations_improve_your_score_to_remain_at_the_top">¡Felicidades! Mejora tu puntuación para mantenerte en la cima - $</string>
+    <string name="beat_this_weeks_highest_score">Supera el puntaje más alto de esta semana - $</string>
+    <string name="beat_today_s_highest_score_of">Supera el puntaje más alto de hoy de - $</string>
+    <string name="beat_today_s_highest_score">Supera el puntaje más alto de hoy - $</string>
+    <string name="file_does_not_exist">El archivo no existe</string>
+    <string name="accuracy">% Precisión</string>
+    <string name="questions_answered">"preguntas respondidas"</string>
+    <string name="question_answered">"pregunta respondidas"</string>
 </resources>
