@@ -17,7 +17,7 @@
     <string name="game_mode">Mode de jeu</string>
     <string name="taptic">Vibrer</string>
     <string name="simple">Facile</string>
-    <string name="no_thanks"><u>No Thanks</u></string>
+    <string name="no_thanks"><u>Non merci</u></string>
     <string name="language">Langue</string>
     <string name="view_history"><u>Voir lhistorique</u></string>
     <string name="on">Sur</string>
@@ -36,15 +36,17 @@
     <string name="app_ad_id">ca-app-pub-4696224049420135~2129598410</string>
     <string name="interstitial_adunit">ca-app-pub-4696224049420135/9312479087</string>
     <string name="rewardedad_adunit">ca-app-pub-4696224049420135/7768937909</string>
-    <string name="ad_copy">I just won 000 in the millionaire game. Invite you to play the awesome and exciting millionaire game to improve your knowledge.
+    <string name="ad_copy">Je viens de gagner 000 dans le jeu du millionnaire. Je t\'invite à jouer au jeu du millionnaire, impressionnant et excitant, pour améliorer tes connaissances.
 
-Beat me if you can !!!
-    </string>
-    <string name="ad_copy2">My username is usernamevariable I invite you to play the awesome and exciting millionaire game to improve your knowledge.
+Battez-moi si vous le pouvez !!!
+</string>
 
-\n\nBeat me if you can !!!
+    <string name="ad_copy2">Mon nom d\'utilisateur est usernamevariable. Je t\'invite à jouer au jeu du millionnaire, impressionnant et excitant, pour améliorer tes connaissances.
+
+\n\nBattez-moi si vous le pouvez !!!
        \n111
-    </string>
+</string>
+
     <string name="play">JOUER</string>
     <string name="see_your_ranking">Voir votre classement</string>
     <string name="more_games2">plus de jeux</string>
@@ -75,12 +77,26 @@ Beat me if you can !!!
     <string name="view_ranking"><u>voir le classement</u></string>
     <string name="count_down_amount">1000000</string>
     <string name="count_down_level">Niveau</string>
-    <string name="give_up"><ul>Give up</ul></string>
+    <string name="give_up"><ul>Abandonner</ul></string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="anonymous_user">Anonymous user</string>
-    <string name="readmore">Read More</string>
-    <string name="loading_image">Loading image</string>
+    <string name="anonymous_user">Utilisateur anonyme</string>
+    <string name="readmore">lire la suite</string>
+    <string name="loading_image">Chargement de l\'image</string>
     <string name="please_wait">Veuillez patienter…</string>
     <string name="correct_answer">Réponse correcte</string>
+    <string name="you_missed_the_correct_answer">Vous avez manqué la bonne réponse</string>
+    <string name="continue_by_watching_ad">Continuez en regardant une publicité</string>
+    <string name="minus_2_questions">Moins 2 Questions</string>
+    <string name="ask_computer">Demander à l\'Ordinateur</string>
+    <string name="take_a_poll">Faire un Sondage</string>
+    <string name="reset_question">Réinitialiser la Question</string>
+    <string name="maybe_its">Peut-être que c\'est</string>
+    <string name="all_time">Tout le Temps</string>
+    <string name="weekly">Hebdomadaire</string>
+    <string name="daily">Quotidien</string>
+    <string name="country">Pays</string>
+    <string name="leaderboard_is_not_available">Le classement n\'est pas disponible</string>
+    <string name="meet_our_team">Rencontrez notre équipe:</string>
+    <string name="contact_us">Contactez-nous</string>
 
 </resources>
