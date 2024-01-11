@@ -1,226 +1,228 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
     android:gravity="center"
-    android:id="@+id/main"
+    android:orientation="vertical"
 
     >
+
     <LinearLayout
         android:id="@+id/background"
-        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:orientation="vertical"
         android:paddingBottom="30dp">
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:gravity="end">
-        <RelativeLayout
-            android:id="@+id/new_game"
-            android:layout_width="wrap_content"
-            android:layout_height="60dp"
-            android:layout_margin="10dp"
-            android:layout_weight="1">
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:src="@drawable/hexagon"
-                app:tint="@color/white" />
-
-            <ImageView
-
-                android:id="@+id/close"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:layout_centerInParent="true"
-                android:src="@drawable/ic_baseline_close_24"
-                app:tint="@color/black" />
-        </RelativeLayout>
-
-    </LinearLayout>
-    <TextView
-        android:layout_gravity="center"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="You are at:"
-        android:textStyle="bold"
-        android:gravity="center"
-        android:textSize="25sp"
-        android:fontFamily="@font/arizonia1"
-        />
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:gravity="center"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center">
-          <RelativeLayout
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content">
+            android:gravity="end"
+            android:orientation="vertical">
 
-              <TextView
-
-                  android:id="@+id/daily"
-                  android:layout_width="wrap_content"
-                  android:layout_height="wrap_content"
-                  android:fontFamily="@font/ultra"
-                  android:gravity="center"
-                  android:text="6th"
-                  android:textColor="@color/white"
-                  android:textSize="35sp"
-                  android:textStyle="bold" />
-              <TextView
-                  android:layout_toRightOf="@+id/daily"
-
-                  android:textStyle="italic"
-                  android:textColor="@color/white"
-                  android:id="@+id/position"
-                  android:layout_width="wrap_content"
-                  android:layout_height="wrap_content"
-                  android:text="6th"
-                  android:gravity="center"
-                  android:textSize="15sp"
-                  android:fontFamily="@font/arimo"
-                  />
-          </RelativeLayout>
-            <TextView
-
-                android:textColor="@color/white"
-                android:id="@+id/dailyTxt"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text=" position today"
-                android:gravity="center"
-                android:textSize="18sp"
-                android:fontFamily="@font/arimo"
-                />
-
-
-
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center">
             <RelativeLayout
+                android:id="@+id/new_game"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                android:layout_height="60dp"
+                android:layout_margin="10dp"
+                android:layout_weight="1">
 
-                <TextView
-                    android:id="@+id/weekly"
+                <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/ultra"
-                    android:gravity="center"
-                    android:text="6th"
-                    android:textColor="@color/white"
-                    android:textSize="35sp"
-                    android:textStyle="bold" />
-                <TextView
-                    android:layout_toRightOf="@+id/weekly"
-                    android:textColor="@color/white"
-                    android:id="@+id/position2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="6th"
-                    android:textStyle="italic"
-                    android:gravity="center"
-                    android:textSize="15sp"
-                    android:fontFamily="@font/arimo"
-                    />
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/hexagon"
+                    app:tint="@color/white" />
+
+                <ImageView
+
+                    android:id="@+id/close"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/ic_baseline_close_24"
+                    app:tint="@color/black" />
             </RelativeLayout>
-            <TextView
-                android:textColor="@color/white"
-                android:id="@+id/weeklytxt"
 
-
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text= " position this week"
-                android:gravity="center"
-                android:textSize="18sp"
-                android:fontFamily="@font/arimo"
-                />
         </LinearLayout>
 
-    </LinearLayout>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/arizonia1"
+            android:gravity="center"
+            android:text="@string/you_are_at"
+            android:textSize="25sp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+
+                        android:id="@+id/daily"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/ultra"
+                        android:gravity="center"
+                        android:text="6th"
+                        android:textColor="@color/white"
+                        android:textSize="35sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/position"
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_toRightOf="@+id/daily"
+                        android:fontFamily="@font/arimo"
+                        android:gravity="center"
+                        android:text="6th"
+                        android:textColor="@color/white"
+                        android:textSize="15sp"
+                        android:textStyle="italic" />
+                </RelativeLayout>
+
+                <TextView
+
+                    android:id="@+id/dailyTxt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/arimo"
+                    android:gravity="center"
+                    android:text="@string/position_today"
+                    android:textColor="@color/white"
+                    android:textSize="18sp" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/weekly"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/ultra"
+                        android:gravity="center"
+                        android:text="6th"
+                        android:textColor="@color/white"
+                        android:textSize="35sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/position2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_toRightOf="@+id/weekly"
+                        android:fontFamily="@font/arimo"
+                        android:gravity="center"
+                        android:text="6th"
+                        android:textColor="@color/white"
+                        android:textSize="15sp"
+                        android:textStyle="italic" />
+                </RelativeLayout>
+
+                <TextView
+                    android:id="@+id/weeklytxt"
+                    android:layout_width="wrap_content"
+
+
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/arimo"
+                    android:gravity="center"
+                    android:text="@string/position_this_week"
+                    android:textColor="@color/white"
+                    android:textSize="18sp" />
+            </LinearLayout>
+
+        </LinearLayout>
 
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:layout_marginTop="25dp"
             android:gravity="center"
-            android:layout_gravity="center"
-            android:orientation="vertical"
-            >
+            android:orientation="vertical">
 
             <TextView
-
                 android:id="@+id/txt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:fontFamily="@font/fjalla_one"
                 android:gravity="center"
-                android:text="beat score"
-                android:textSize="18dp" />
+                android:text="@string/beat_score"
+                android:textSize="18sp" />
+
             <TextView
-                android:textColor="@color/white"
-                android:layout_gravity="center"
-                android:gravity="center"
+                android:id="@+id/txt2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/txt2"
+                android:layout_gravity="center"
                 android:fontFamily="@font/fjalla_one"
-                android:textStyle="bold"
-                android:textSize="18dp"
+                android:gravity="center"
                 android:text="$10,000"
-                />
-
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                android:textStyle="bold" />
 
 
         </LinearLayout>
 
-    <RelativeLayout
+        <RelativeLayout
 
 
-        android:id="@+id/view_ranking"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:background="@drawable/ic_hexnow"
+            android:id="@+id/view_ranking"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginLeft="25dp"
 
-        android:layout_marginLeft="25dp"
-        android:layout_marginRight="25dp"
-        android:layout_marginTop="20dp"
-        android:padding="10dp"
-        >
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="25dp"
+            android:background="@drawable/ic_hexnow"
+            android:padding="10dp">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:text="@string/view_ranking"
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
 
-            android:textColor="@color/white"
-            android:textSize="20dp"
-            android:textStyle="bold" />
-    </RelativeLayout>
+                android:text="@string/view_ranking"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+        </RelativeLayout>
 
         <RelativeLayout
 
@@ -228,47 +230,45 @@
             android:id="@+id/view_history"
             android:layout_width="match_parent"
             android:layout_height="60dp"
-            android:background="@drawable/ic_hexnow"
-
             android:layout_marginLeft="25dp"
-            android:layout_marginRight="25dp"
+
             android:layout_marginTop="10dp"
-            android:padding="10dp"
-            >
+            android:layout_marginRight="25dp"
+            android:background="@drawable/ic_hexnow"
+            android:padding="10dp">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
 
+                android:layout_centerInParent="true"
                 android:text="@string/view_history"
                 android:textColor="@color/white"
                 android:textSize="20dp"
                 android:textStyle="bold" />
         </RelativeLayout>
 
-    <RelativeLayout
-        android:layout_marginBottom="10dp"
-        android:id="@+id/play_again"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:background="@drawable/hex_green"
+        <RelativeLayout
+            android:id="@+id/play_again"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginLeft="25dp"
+            android:layout_marginTop="10dp"
 
-        android:layout_marginLeft="25dp"
-        android:layout_marginRight="25dp"
-        android:layout_marginTop="10dp"
-        android:padding="10dp"
-        >
+            android:layout_marginRight="25dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/hex_green"
+            android:padding="10dp">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:text="@string/play_again"
-            android:textColor="@color/white"
-            android:textSize="20dp"
-            android:textStyle="bold" />
-    </RelativeLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="@string/play_again"
+                android:textColor="@color/white"
+                android:textSize="20dp"
+                android:textStyle="bold" />
+        </RelativeLayout>
 
     </LinearLayout>
 
