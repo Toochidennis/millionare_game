@@ -275,6 +275,7 @@ public class FailureActivity extends AppCompatActivity {
 
         TextView countDownTxt = findViewById(R.id.count_down_text);
         time = Long.parseLong(countdownTime);
+
         countDownTimer = new CountDownTimer(time, 1000) {
             @Override
             public void onTick(long l) {
