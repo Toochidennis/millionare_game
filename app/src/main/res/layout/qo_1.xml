@@ -346,7 +346,7 @@
                         android:id="@+id/answer_desc"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Maybe its"
+                        android:text="@string/maybe_its"
                         android:textSize="16sp"
                         android:textColor="@color/white"
                         android:layout_centerInParent="true"
@@ -528,7 +528,7 @@
                         android:layout_weight="1"
                         android:textAlignment="center"
                         android:layout_height="wrap_content"
-                        android:text="Minus 2 Questions"
+                        android:text="@string/minus_2_questions"
                         android:textSize="10dp"
                         android:id="@+id/opt_dec_1"
 
@@ -539,7 +539,7 @@
                         android:textAlignment="center"
                         android:layout_height="wrap_content"
                         android:textSize="10dp"
-                        android:text="Ask Computer"
+                        android:text="@string/ask_computer"
                         android:id="@+id/opt_dec_2"
                         />
                     <TextView
@@ -557,7 +557,7 @@
                         android:textAlignment="center"
                         android:layout_height="wrap_content"
                         android:textSize="10dp"
-                        android:text="Reset Question"
+                        android:text="@string/reset_question"
                         android:id="@+id/opt_dec_4"
                         />
 
