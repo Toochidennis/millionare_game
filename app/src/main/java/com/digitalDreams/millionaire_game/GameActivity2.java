@@ -313,7 +313,11 @@ public class GameActivity2 extends AppCompatActivity {
             json = sharedPreferences.getString("saved_json", "");
 
         } else {
-            json = dbHelper.buildJson(); //bundle.getString("Json");
+            try {
+                json = dbHelper.buildJson();
+            } catch (Exception e) {
+                e.printStackTrace();//bundle.getString("Json");
+            }
             //from = bundle.getString("from");
 
             sharedPreferences.edit().putString("saved_json", json).apply();
