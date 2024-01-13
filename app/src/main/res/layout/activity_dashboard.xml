@@ -142,6 +142,7 @@
                 app:tint="@color/white" />
 
             <ImageView
+                android:id="@+id/gameLogoImageView"
                 android:layout_width="250dp"
                 android:layout_height="200dp"
                 android:layout_centerInParent="true"
