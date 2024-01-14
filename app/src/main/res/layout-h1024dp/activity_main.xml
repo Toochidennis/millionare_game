@@ -47,7 +47,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/fjalla_one"
-        android:text="We train you on :"
+        android:text="@string/we_train_you_on"
         android:textColor="@color/basic_color"
         android:textSize="18sp" />
     <LinearLayout
@@ -79,11 +79,12 @@
      </RelativeLayout>
 
      <TextView
+         android:id="@+id/web_dev_txt"
          android:layout_width="wrap_content"
          android:layout_height="wrap_content"
-         android:text="Web Development"
+         android:text="@string/web_development"
          android:textSize="16sp"
-         android:layout_marginLeft="20dp"
+         android:layout_marginStart="20dp"
          android:fontFamily="@font/ultra"
          android:textColor="@color/black"
          android:layout_gravity="center_vertical"/>
@@ -118,11 +119,12 @@
      </RelativeLayout>
 
      <TextView
+         android:id="@+id/mobile_txt"
          android:layout_width="wrap_content"
          android:layout_height="wrap_content"
-         android:text="Mobile Development"
+         android:text="@string/mobile_development"
          android:textSize="16sp"
-         android:layout_marginLeft="20dp"
+         android:layout_marginStart="20dp"
          android:fontFamily="@font/ultra"
          android:textColor="@color/black"
          android:layout_gravity="center_vertical"/>
@@ -156,11 +158,12 @@
      </RelativeLayout>
 
      <TextView
+         android:id="@+id/digital_marketing_txt"
          android:layout_width="wrap_content"
          android:layout_height="wrap_content"
-         android:text="Digital Marketing"
+         android:text="@string/digital_marketing"
          android:textSize="16sp"
-         android:layout_marginLeft="20dp"
+         android:layout_marginStart="20dp"
          android:fontFamily="@font/ultra"
          android:textColor="@color/black"
          android:layout_gravity="center_vertical"/>
@@ -194,11 +197,12 @@
      </RelativeLayout>
 
      <TextView
+         android:id="@+id/data_science_txt"
          android:layout_width="wrap_content"
          android:layout_height="wrap_content"
-         android:text="Data Science"
+         android:text="@string/data_science"
          android:textSize="16sp"
-         android:layout_marginLeft="20dp"
+         android:layout_marginStart="20dp"
          android:fontFamily="@font/ultra"
          android:textColor="@color/black"
          android:layout_gravity="center_vertical"/>
