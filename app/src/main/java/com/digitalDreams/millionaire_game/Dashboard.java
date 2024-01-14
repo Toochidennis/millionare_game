@@ -26,6 +26,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import com.google.android.gms.ads.AdRequest;
@@ -40,6 +41,7 @@ public class Dashboard extends AppCompatActivity {
     RelativeLayout bg;
     RelativeLayout newGameBtn, leaderBoardBtn, exitBtn, gotoYoutubeBtn, new_particle;
     ImageView settingBtn;
+    String languageCode;
     //AdManager adManager;
     //DBHelper dbHelper;
     // public static RewardedVideoAd mRewardedVideoAd;
@@ -60,7 +62,7 @@ public class Dashboard extends AppCompatActivity {
 
 
         SharedPreferences sharedPreferences = getSharedPreferences("settings", Context.MODE_PRIVATE);
-        String languageCode = sharedPreferences.getString("language", "en");
+        languageCode = sharedPreferences.getString("language", "en");
         int endcolor = sharedPreferences.getInt("end_color", getResources().getColor(R.color.purple_dark));
         int startColor = sharedPreferences.getInt("start_color", getResources().getColor(R.color.purple_500));
         int cardBackground = sharedPreferences.getInt("card_background", 0x219ebc);
@@ -242,6 +244,11 @@ public class Dashboard extends AppCompatActivity {
         resources.updateConfiguration(config, resources.getDisplayMetrics());
     }
 
+    private void updateGameLogo() {
+        ImageView gameLogo = findViewById(R.id.gameLogoImageView);
+        gameLogo.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.game_logo));
+    }
+
 
     private final BroadcastReceiver refreshBroadCast = new BroadcastReceiver() {
         @Override
@@ -277,7 +284,6 @@ public class Dashboard extends AppCompatActivity {
 
 
             //newGameTxt.setText(getResources().getString(R.string.new_game));
-
 
             setLocale(Dashboard.this, languageCode);
 
@@ -317,6 +323,8 @@ public class Dashboard extends AppCompatActivity {
 
             leaderboardText.setText(getResources().getString(R.string.leaderboard));
 
+            updateGameLogo();
+
             String sound = sharedPreferences.getString("sound", "1");
 
             if (sound.equalsIgnoreCase("1")) {
@@ -354,6 +362,8 @@ public class Dashboard extends AppCompatActivity {
         playTxt2.setText(getResources().getString(R.string.play));
         leaderboardText.setText(getResources().getString(R.string.leaderboard));
 
+        updateGameLogo();
+
        /* if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             registerReceiver(refreshBroadCast, new IntentFilter("refresh"), Context.RECEIVER_NOT_EXPORTED);
         } else {
@@ -364,6 +374,7 @@ public class Dashboard extends AppCompatActivity {
 
         SharedPreferences sharedPreferences = getSharedPreferences("settings", MODE_PRIVATE);
         String languageCode = sharedPreferences.getString("language", "");
+
         if (languageCode.equals("fr")) {
             playTxt.setTextSize(18);
             playTxt2.setTextSize(18);
@@ -379,7 +390,7 @@ public class Dashboard extends AppCompatActivity {
 
     public void setLanguage(Context context) {
         SharedPreferences sharedPreferences = context.getSharedPreferences("settings", MODE_PRIVATE);
-        String languageCode = sharedPreferences.getString("language", "en");
+        String languageCode = sharedPreferences.getString("language", "");
         switch (languageCode) {
             case "en":
                 SettingActivity.flagImg.setImageResource(R.drawable.united_kingdom);

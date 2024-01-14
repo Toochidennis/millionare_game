@@ -15,7 +15,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Select Country"
+        android:text="@string/select_country"
         android:textSize="20sp"
         android:textColor="@color/white"
         android:textStyle="bold"
@@ -28,7 +28,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/edit_text"
-        android:hint="Search..."
+        android:hint="@string/search"
         android:textColor="@color/black"
         android:padding="12dp"
         android:singleLine="true"
