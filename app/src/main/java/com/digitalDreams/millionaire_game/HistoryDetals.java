@@ -37,9 +37,9 @@ public class HistoryDetals extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_history);
         SharedPreferences sharedPreferences = getSharedPreferences("settings", Context.MODE_PRIVATE);
-        String highscore = sharedPreferences.getString("high_score","0");
+        String highscore = sharedPreferences.getString("high_score", "0");
         String regex = "[^0-9]";
-        String cleanedHighScore = highscore.replaceAll(regex,"");
+        String cleanedHighScore = highscore.replaceAll(regex, "");
 
         AdManager.initInterstitialAd(this);
         date_played = getIntent().getStringExtra("date_played");
@@ -50,11 +50,10 @@ public class HistoryDetals extends AppCompatActivity {
         mAdView.loadAd(adRequest);
 
 
-
         dbHelper = new DBHelper(this);
         recyclerview = findViewById(R.id.recyclerview);
         JSONArray jsonArray = dbHelper.buildHistoriesByDateTime(date_played);
-        historyAdapter = new HistoryDetailsAdapter(this,jsonArray,Utils.addCommaAndDollarSign(Double.parseDouble(cleanedHighScore)));
+        historyAdapter = new HistoryDetailsAdapter(this, jsonArray, Utils.addCommaAndDollarSign(Double.parseDouble(cleanedHighScore)));
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerview.setLayoutManager(layoutManager);
         recyclerview.setHasFixedSize(true);
@@ -70,7 +69,6 @@ public class HistoryDetals extends AppCompatActivity {
 
 //        HistoryContainerAdapter historyContainerAdapter = new HistoryContainerAdapter(this,dates,jsonObject);
 //        listView.setAdapter(historyContainerAdapter);
-
 
 
         close_container.setOnClickListener(new View.OnClickListener() {
@@ -95,27 +93,24 @@ public class HistoryDetals extends AppCompatActivity {
             }
         });
 
-        String languageCode = sharedPreferences.getString("language","en");
-        int endcolor = sharedPreferences.getInt("end_color",getResources().getColor(R.color.purple_dark));
-        int startColor = sharedPreferences.getInt("start_color",getResources().getColor(R.color.purple_500));
-        int cardBackground = sharedPreferences.getInt("card_background",0x219ebc);
-        String game_level = sharedPreferences.getString("game_level","1");
+        String languageCode = sharedPreferences.getString("language", "en");
+        int endcolor = sharedPreferences.getInt("end_color", getResources().getColor(R.color.purple_dark));
+        int startColor = sharedPreferences.getInt("start_color", getResources().getColor(R.color.purple_500));
+        int cardBackground = sharedPreferences.getInt("card_background", 0x219ebc);
+        String game_level = sharedPreferences.getString("game_level", "1");
 
         // high_score.setText(Utils.addCommaAndDollarSign(Double.parseDouble(highscore)));
 
 
         bg = findViewById(R.id.rootview);
-        new Particles(this,bg,R.layout.image_xml,20);
+        new Particles(this, bg, R.layout.image_xml, 20);
         GradientDrawable gd = new GradientDrawable(
                 GradientDrawable.Orientation.TOP_BOTTOM,
-                new int[] {startColor,endcolor});
+                new int[]{startColor, endcolor});
 
         bg.setBackgroundDrawable(gd);
 
         dbHelper.buildHistories2();
-
-
-
 
 
     }

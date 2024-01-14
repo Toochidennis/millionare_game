@@ -141,7 +141,7 @@ public class HistoryDetailsAdapter extends RecyclerView.Adapter<HistoryDetailsAd
 
     @Override
     public int getItemCount() {
-        Log.i("checking==", String.valueOf(histories.length()));
+      //  Log.i("checking==", String.valueOf(histories.length()));
 
         return histories.length();
     }
