@@ -24,17 +24,19 @@ import com.google.android.gms.ads.AdView;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.HistoryViewHolder>{
+import java.util.Locale;
+
+public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.HistoryViewHolder> {
     Context context;
     private JSONArray histories;
     String currentDat = "";
     String highest_score;
 
-    public HistoryAdapter(@NonNull Context context,JSONArray histories,String highest_score) {
+    public HistoryAdapter(@NonNull Context context, JSONArray histories, String highest_score) {
         this.context = context;
-        this.histories =  histories;
+        this.histories = histories;
         this.highest_score = highest_score;
-        Log.i("checking",String.valueOf(histories.length()));
+        Log.i("checking", String.valueOf(histories.length()));
 
     }
 
@@ -49,106 +51,103 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.HistoryV
     @SuppressLint("ResourceAsColor")
     @Override
     public void onBindViewHolder(@NonNull HistoryViewHolder holder, int position) {
-     try{
-         JSONObject history = histories.getJSONObject(position);
-         //String content = history.getString("content");
-         String date_played = history.getString("date_played");
-        // String correctAnswer = history.getString("correct");
-         String high_score = history.getString("high_score");
-         String correct_answers = history.getString("correct_answers");
-         String wrong_answers = history.getString("wrong_answers");
-        // JSONArray answers = new JSONArray(history.getString("answer"));
-         holder.dateLayout.setVisibility(View.GONE);
-         holder. mAdView.setVisibility(View.GONE);
-         holder.high_score_layout.setVisibility(View.GONE);
-         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
-                 LinearLayout.LayoutParams.MATCH_PARENT,
-                 LinearLayout.LayoutParams.WRAP_CONTENT
-         );
-         params.topMargin = 0;
-         holder.rootview.setLayoutParams(params);
-        if(position == 0){
-            currentDat = date_played;
+        try {
+            JSONObject history = histories.getJSONObject(position);
+            //String content = history.getString("content");
+            String date_played = history.getString("date_played");
+            // String correctAnswer = history.getString("correct");
+            String high_score = history.getString("high_score");
+            String correct_answers = history.getString("correct_answers");
+            String wrong_answers = history.getString("wrong_answers");
+            // JSONArray answers = new JSONArray(history.getString("answer"));
+            holder.dateLayout.setVisibility(View.GONE);
+            holder.mAdView.setVisibility(View.GONE);
+            holder.high_score_layout.setVisibility(View.GONE);
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+                    LinearLayout.LayoutParams.MATCH_PARENT,
+                    LinearLayout.LayoutParams.WRAP_CONTENT
+            );
+            params.topMargin = 0;
+            holder.rootview.setLayoutParams(params);
+            if (position == 0) {
+                currentDat = date_played;
 
-            holder.dateLayout.setVisibility(View.VISIBLE);
-            holder.high_score_layout.setVisibility(View.VISIBLE);
+                holder.dateLayout.setVisibility(View.VISIBLE);
+                holder.high_score_layout.setVisibility(View.VISIBLE);
 
 
 //            AdRequest adRequest = new AdRequest.Builder().build();
 //            holder. mAdView.loadAd(adRequest);
-           holder.high_score.setText(highest_score);
+                holder.high_score.setText(highest_score);
 //            holder.mAdView.setVisibility(View.VISIBLE);
-        }else{
+            } else {
 
 
-
-            if(!currentDat.equals(date_played)){
-                currentDat = date_played;
-                holder.dateLayout.setVisibility(View.VISIBLE);
-                params.topMargin = 40;
-                holder.rootview.setLayoutParams(params);
+                if (!currentDat.equals(date_played)) {
+                    currentDat = date_played;
+                    holder.dateLayout.setVisibility(View.VISIBLE);
+                    params.topMargin = 40;
+                    holder.rootview.setLayoutParams(params);
 
 //                AdRequest adRequest = new AdRequest.Builder().build();
 //                holder. mAdView.loadAd(adRequest);
 //                holder. mAdView.setVisibility(View.VISIBLE);
+                }
             }
+
+            if (position % 3 == 0 && position != 0) {
+                AdRequest adRequest = new AdRequest.Builder().build();
+                holder.mAdView.loadAd(adRequest);
+                holder.mAdView.setVisibility(View.VISIBLE);
+            } else {
+                holder.mAdView.setVisibility(View.GONE);
+
+            }
+
+
+            holder.session.setText("" + date_played);
+            holder.session_high_score.setText(Utils.addCommaAndDollarSign(Double.parseDouble(high_score)));
+
+            String correctAnswerTxt = correct_answers + " " + context.getResources().getString(R.string.correct_answers);
+            holder.question.setText(correctAnswerTxt);
+            String wrongAnswerText = wrong_answers + " " + context.getResources().getString(R.string.wrong_answers);
+            holder.wrong.setText(wrongAnswerText);
+            double true_value = Double.parseDouble(correct_answers);
+            double false_value = Double.parseDouble(correct_answers);
+            double overall_value = 15; // (Integer.parseInt(wrong_answers)+Integer.parseInt(correct_answers));
+            double accuracy = (true_value / overall_value) * 100;// ((overall_value)/15);
+
+            holder.accuracy.setText(String.format(Locale.getDefault(), "%.2f %s", accuracy, context.getResources().getString(R.string.accuracy)));
+
+            holder.view_answers.setOnClickListener(view -> {
+                Intent i = new Intent(context, HistoryDetals.class);
+                i.putExtra("date_played", date_played);
+                context.startActivity(i);
+            });
+            //HistoryOptionAdapter  historyOptionAdapter = new HistoryOptionAdapter(context,answers,correctAnswer);
+            // holder.optionsList.setAdapter(historyOptionAdapter);
+            // historyOptionAdapter.notifyDataSetChanged();
+
+            //inflateOptions(answers,holder,correctAnswer);
+            //setListViewHeightBasedOnChildren(holder.optionsList);
+
+
+        } catch (Exception e) {
+            Log.i("checking", String.valueOf(e));
+
         }
-
-         if(position % 3 == 0 && position != 0){
-             AdRequest adRequest = new AdRequest.Builder().build();
-             holder. mAdView.loadAd(adRequest);
-             holder. mAdView.setVisibility(View.VISIBLE);
-         }else{
-             holder. mAdView.setVisibility(View.GONE);
-
-         }
-
-
-
-        holder.session.setText(""+date_played);
-        holder.session_high_score.setText(Utils.addCommaAndDollarSign(Double.parseDouble(high_score)));
-
-         holder.question.setText(correct_answers+" correct answers");
-         holder.wrong.setText(wrong_answers+" wrong answers");
-         double true_value = Double.parseDouble(correct_answers);
-         double false_value = Double.parseDouble(correct_answers);
-         double overall_value = 15; // (Integer.parseInt(wrong_answers)+Integer.parseInt(correct_answers));
-        double accuracy =  (true_value/overall_value) * 100;// ((overall_value)/15);
-
-         holder.accuracy.setText(String.format("%.2f",(accuracy))+"% accuracy");
-         holder.view_answers.setOnClickListener(new View.OnClickListener() {
-             @Override
-             public void onClick(View view) {
-                 Intent i = new Intent(context, HistoryDetals.class);
-                 i.putExtra("date_played",date_played);
-                 context.startActivity(i);
-             }
-         });
-         //HistoryOptionAdapter  historyOptionAdapter = new HistoryOptionAdapter(context,answers,correctAnswer);
-        // holder.optionsList.setAdapter(historyOptionAdapter);
-        // historyOptionAdapter.notifyDataSetChanged();
-
-         //inflateOptions(answers,holder,correctAnswer);
-         //setListViewHeightBasedOnChildren(holder.optionsList);
-
-
-
-     }catch (Exception e){
-         Log.i("checking",String.valueOf(e));
-
-     }
 
     }
 
     @Override
     public int getItemCount() {
-        Log.i("checking==", String.valueOf(histories.length()));
+        // Log.i("checking==", String.valueOf(histories.length()));
 
         return histories.length();
     }
 
-    class HistoryViewHolder extends RecyclerView.ViewHolder{
-        TextView session,question, accuracy,high_score,session_high_score,wrong;
+    class HistoryViewHolder extends RecyclerView.ViewHolder {
+        TextView session, question, accuracy, high_score, session_high_score, wrong;
         LinearLayout optionLayout;
         //ListView optionsList;
         CardView dateLayout;
@@ -181,10 +180,9 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.HistoryV
         }
     }
 
-    public void  inflateOptions(JSONArray answers, HistoryViewHolder holder, String correctAnswer) {
+    public void inflateOptions(JSONArray answers, HistoryViewHolder holder, String correctAnswer) {
         try {
             LayoutInflater layoutInflater = LayoutInflater.from(context);
-
 
 
             for (int i = 0; i < answers.length(); i++) {
@@ -212,11 +210,10 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.HistoryV
                 holder.optionLayout.addView(view);
 
 
-
-
             }
 
-        }catch (Exception e){}
+        } catch (Exception e) {
+        }
     }
 
 
@@ -225,7 +222,7 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.HistoryV
         if (myListView != null) {
             int totalHeight = 0;
             for (int i = 0; i < adapter.getCount(); i++) {
-                View item= adapter.getView(i, null, myListView);
+                View item = adapter.getView(i, null, myListView);
                 item.measure(0, 0);
                 totalHeight += item.getMeasuredHeight();
             }

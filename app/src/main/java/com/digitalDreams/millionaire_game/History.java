@@ -117,8 +117,6 @@ public class History extends AppCompatActivity {
 
 
 
-
-
     }
 
     @Override
