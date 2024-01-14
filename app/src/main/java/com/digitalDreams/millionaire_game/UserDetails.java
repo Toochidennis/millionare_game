@@ -2,35 +2,24 @@ package com.digitalDreams.millionaire_game;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
 
-import android.annotation.SuppressLint;
 import android.app.Dialog;
-import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
-import android.provider.CalendarContract;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.inputmethod.InputMethodManager;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.GridLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
-import android.widget.Spinner;
 import android.widget.Toast;
 
 import org.json.JSONArray;
@@ -42,11 +31,10 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
 import java.io.StringWriter;
-import java.io.UnsupportedEncodingException;
 import java.io.Writer;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Map;
 import java.util.Random;
 
@@ -57,10 +45,10 @@ public class UserDetails extends AppCompatActivity {
     CardView avatarContainer1, avatarContainer2, avatarContainer3, avatarContainer4;
     GridLayout gridLayout;
     String username = "", avatar = "",
-            country = "Afghanistan", flag = "";
+            country = "Afghanistan", flag = "", languageCode = "";
     //AutoCompleteTextView spinner;
     CountryAdapter countryAdapter;
-    ArrayList countries = new ArrayList();
+    ArrayList<String> countries = new ArrayList<>();
     ArrayList flags = new ArrayList();
     EditText country_name;
     Dialog dialog;
@@ -73,8 +61,6 @@ public class UserDetails extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_details);
-        addCountries();
-
 
         Intent intent = getIntent();
         String type = intent.getStringExtra("type");
@@ -98,12 +84,15 @@ public class UserDetails extends AppCompatActivity {
         String username = sharedPreferences.getString("username", "");
         country = sharedPreferences.getString("country", "");
         flag = sharedPreferences.getString("country_flag", "");
+        languageCode = sharedPreferences.getString("language", "");
         int endcolor = sharedPreferences.getInt("end_color", getResources().getColor(R.color.purple_dark));
         int startColor = sharedPreferences.getInt("start_color", getResources().getColor(R.color.purple_500));
         int cardBackground = sharedPreferences.getInt("card_background", 0x219ebc);
+
         if (username.equals(getResources().getString(R.string.anonymous_user))) {
             username = "";
         }
+
         new Particles(this, bg, R.layout.image_xml, 20);
         GradientDrawable gd = new GradientDrawable(
                 GradientDrawable.Orientation.TOP_BOTTOM,
@@ -123,18 +112,19 @@ public class UserDetails extends AppCompatActivity {
         });
 
 
+        addCountries();
+
         gridLayout = findViewById(R.id.grid);
+
         for (int a = 0; a < gridLayout.getChildCount(); a++) {
             CardView card = (CardView) gridLayout.getChildAt(a);
             int b = a;
-            card.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    avatar = String.valueOf(b + 1);
-                    selectAvatar(card);
-                }
+            card.setOnClickListener(view -> {
+                avatar = String.valueOf(b + 1);
+                selectAvatar(card);
             });
         }
+
         if (type != null && type.equals("edit")) {
             selectAvatar();
         }
@@ -196,99 +186,96 @@ public class UserDetails extends AppCompatActivity {
         });
 
 
-        country_name.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        country_name.setOnClickListener(v -> {
 
-                // Initialize dialog
-                dialog = new Dialog(UserDetails.this);
+            // Initialize dialog
+            dialog = new Dialog(UserDetails.this);
 
-                // set custom dialog
-                dialog.setContentView(R.layout.dialog_searchable_spinner);
+            // set custom dialog
+            dialog.setContentView(R.layout.dialog_searchable_spinner);
 
-                // set custom height and width
-                dialog.getWindow().setLayout(650, 800);
+            // set custom height and width
+            dialog.getWindow().setLayout(650, 800);
 
-                // set transparent background
-                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(R.drawable.hex_blue));
-                //dialog.getWindow().se
+            // set transparent background
+            dialog.getWindow().setBackgroundDrawable(new ColorDrawable(R.drawable.hex_blue));
+            //dialog.getWindow().se
 
-                // show dialog
+            // show dialog
 
 
-                // Initialize and assign variable
+            // Initialize and assign variable
 
-                dialog.show();
+            dialog.show();
 
 
-                EditText editText = dialog.findViewById(R.id.edit_text);
-                ListView listView = dialog.findViewById(R.id.list_view);
-                // editText.requestFocus();
+            EditText editText = dialog.findViewById(R.id.edit_text);
+            ListView listView = dialog.findViewById(R.id.list_view);
+            // editText.requestFocus();
 //                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
 //                imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, InputMethodManager.SHOW_IMPLICIT);
-                dialog.setOnDismissListener(dialogInterface -> {
+            dialog.setOnDismissListener(dialogInterface -> {
 
 
-                    editText.clearFocus();
-                    // imm.toggleSoftInput(InputMethodManager.HIDE_IMPLICIT_ONLY, 0);
+                editText.clearFocus();
+                // imm.toggleSoftInput(InputMethodManager.HIDE_IMPLICIT_ONLY, 0);
 
-                });
+            });
 
-                dialog.setOnShowListener(dialogInterface -> {
-                    editText.clearFocus();
-                    // imm.toggleSoftInput(InputMethodManager.HIDE_IMPLICIT_ONLY, 0);
+            dialog.setOnShowListener(dialogInterface -> {
+                editText.clearFocus();
+                // imm.toggleSoftInput(InputMethodManager.HIDE_IMPLICIT_ONLY, 0);
 
-                });
-
-
-                // Initialize array adapter
-                ArrayAdapter<String> adapter = new ArrayAdapter<String>(UserDetails.this, R.layout.single_tv, countries);
-
-                // set adapter
-                listView.setAdapter(adapter);
-                editText.addTextChangedListener(new TextWatcher() {
-                    @Override
-                    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-                    }
-
-                    @Override
-                    public void onTextChanged(CharSequence s, int start, int before, int count) {
-                        adapter.getFilter().filter(s);
-                    }
-
-                    @Override
-                    public void afterTextChanged(Editable s) {
-
-                    }
-                });
+            });
 
 
-                listView.setOnItemClickListener((parent, view, position, id) -> {
-                    // when item selected from list
-                    // set selected item on textView
-                    country_name.setText(adapter.getItem(position));
+            // Initialize array adapter
+            ArrayAdapter<String> adapter1 = new ArrayAdapter<String>(UserDetails.this, R.layout.single_tv, countries);
 
-                    String selectedItem = adapter.getItem(position).toString();
-                    country = selectedItem;
-                    flag = flags.get(countries.indexOf(country)).toString();
-                    //spinner.setText(country);
+            // set adapter
+            listView.setAdapter(adapter1);
+            editText.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
-                    // Log.i("Flag",flags.get( countries.indexOf(country)).toString());
-                    // Log.i("Flag",selectedItem);
-                    //Log.i("Flag",countries.get(i).toString());
+                }
+
+                @Override
+                public void onTextChanged(CharSequence s, int start, int before, int count) {
+                    adapter1.getFilter().filter(s);
+                }
+
+                @Override
+                public void afterTextChanged(Editable s) {
+
+                }
+            });
 
 
-                    editText.clearFocus();
-                    //imm.toggleSoftInput(InputMethodManager.HIDE_IMPLICIT_ONLY, 0);
+            listView.setOnItemClickListener((parent, view, position, id) -> {
+                // when item selected from list
+                // set selected item on textView
+                country_name.setText(adapter1.getItem(position));
+
+                String selectedItem = adapter1.getItem(position).toString();
+                country = selectedItem;
+                flag = flags.get(countries.indexOf(country)).toString();
+                //spinner.setText(country);
+
+                // Log.i("Flag",flags.get( countries.indexOf(country)).toString());
+                // Log.i("Flag",selectedItem);
+                //Log.i("Flag",countries.get(i).toString());
 
 
-                    // Dismiss dialog
-                    dialog.dismiss();
+                editText.clearFocus();
+                //imm.toggleSoftInput(InputMethodManager.HIDE_IMPLICIT_ONLY, 0);
 
 
-                });
-            }
+                // Dismiss dialog
+                dialog.dismiss();
+
+
+            });
         });
 
     }
@@ -317,9 +304,9 @@ public class UserDetails extends AppCompatActivity {
     private void validateInput() {
         username = usernameEdt.getText().toString();
         if (username.isEmpty()) {
-            Toast.makeText(UserDetails.this, "Player name can't be empty", Toast.LENGTH_SHORT).show();
-        } else if (country.equals("") || country.equals("Select country") || country.equals("default")) {
-            Toast.makeText(UserDetails.this, "Select your country", Toast.LENGTH_SHORT).show();
+            Toast.makeText(UserDetails.this, getResources().getString(R.string.player_name_can_t_be_empty), Toast.LENGTH_SHORT).show();
+        } else if (country.equals("") || country.equals(getResources().getString(R.string.select_country)) || country.equals("default")) {
+            Toast.makeText(UserDetails.this, getResources().getString(R.string.select_your_country), Toast.LENGTH_SHORT).show();
 
 
         } else {
@@ -362,18 +349,25 @@ public class UserDetails extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         super.onOptionsItemSelected(item);
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                onBackPressed();
-                return true;
+        if (item.getItemId() == android.R.id.home) {
+            onBackPressed();
+            return true;
         }
         return false;
     }
 
     public void addCountries() {
         // Log.i("llllll","flag");
+        String json = "";
         try {
-            String json = readRawTextFile(R.raw.country_json);
+            if (languageCode.equals("es")) {
+                json = readRawTextFile(R.raw.country_json_es);
+            } else if (languageCode.equals("fr")) {
+                json = readRawTextFile(R.raw.country_json_fr);
+            } else {
+                json = readRawTextFile(R.raw.country_json_en);
+            }
+
             JSONArray jsonArray = new JSONArray(json);
             //Iterator<String> iterator = jsonObject.keys();
 
@@ -444,26 +438,22 @@ public class UserDetails extends AppCompatActivity {
         Writer writer = new StringWriter();
         char[] buffer = new char[10024];
         try {
-            Reader reader = new BufferedReader(new InputStreamReader(is, "UTF-8"));
+            Reader reader = new BufferedReader(new InputStreamReader(is, StandardCharsets.UTF_8));
             int n;
             while ((n = reader.read(buffer)) != -1) {
                 writer.write(buffer, 0, n);
             }
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
             is.close();
         }
 
-        String jsonString = writer.toString();
-        return jsonString;
+        return writer.toString();
     }
 
     @Override
     public void onBackPressed() {
-
 
         naviget();
         super.onBackPressed();

@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Millionaire Game</string>
+    <string name="app_name">Jeu du millionnaire</string>
     <string name="select_a_theme">Sélectionnez un thème</string>
     <string name="new_game">Nouveau jeu</string>
     <string name="goto_youtube">Apprendre des compétences numériques</string>
     <string name="won">a gagné</string>
     <string name="next">Suivante</string>
     <string name="winner">Gagnante</string>
-    <string name="home">Accueil</string>
-    <string name="next_level">Niveau terminé</string>
+    <string name="home">Maison</string>
+    <string name="next_level">Niveau suivant</string>
     <string name="winning_congrats">Toutes nos félicitations</string>
     <string name="leaderboard"><u>Classement</u></string>
     <string name="exit_game">Quitter le jeu</string>
@@ -16,7 +16,7 @@
     <string name="sound_on">Son sur</string>
     <string name="game_mode">Mode de jeu</string>
     <string name="taptic">Vibrer</string>
-    <string name="simple">Facile</string>
+    <string name="simple">Simple</string>
     <string name="no_thanks"><u>Non merci</u></string>
     <string name="language">Langue</string>
     <string name="view_history"><u>Voir lhistorique</u></string>
@@ -25,7 +25,7 @@
     <string name="timed">Chronométré</string>
     <string name="credits">Crédits</string>
     <string name="default_theme">Défaut</string>
-    <string name="play_history">Plya History</string>
+    <string name="play_history">Historique de lecture</string>
     <string name="theme_1">Thème 1</string>
     <string name="theme_2">Thème 2</string>
     <string name="theme_3">Thème 3</string>
@@ -37,8 +37,8 @@
     <string name="interstitial_adunit">ca-app-pub-4696224049420135/9312479087</string>
     <string name="rewardedad_adunit">ca-app-pub-4696224049420135/7768937909</string>
     <string name="ad_copy">Je viens de gagner 000 dans le jeu du millionnaire. Je t\'invite à jouer au jeu du millionnaire, impressionnant et excitant, pour améliorer tes connaissances.
-
-Battez-moi si vous le pouvez !!!
+\n\nBattez-moi si vous le pouvez !!!
+        \n111
 </string>
 
     <string name="ad_copy2">Mon nom d\'utilisateur est usernamevariable. Je t\'invite à jouer au jeu du millionnaire, impressionnant et excitant, pour améliorer tes connaissances.
@@ -49,30 +49,30 @@ Battez-moi si vous le pouvez !!!
 
     <string name="play">JOUER</string>
     <string name="see_your_ranking">Voir votre classement</string>
-    <string name="more_games2">plus de jeux</string>
+    <string name="more_games2">Plus de jeux</string>
     <string name="more_games">Rejoignez notre communauté</string>
-    <string name="reach_us_on_facebook"><u>Reach us on Facebook</u></string>
-    <string name="call_us"><u>Call Us</u></string>
-    <string name="send_us_an_email"><u>Send us an Email</u></string>
-    <string name="twitter"><u>twitter</u></string>
+    <string name="reach_us_on_facebook"><u>Rejoignez-nous sur Facebook</u></string>
+    <string name="call_us"><u>Appelez-nous</u></string>
+    <string name="send_us_an_email"><u>Envoyez-nous un e-mail</u></string>
+    <string name="twitter"><u>Twitter</u></string>
     <string name="get_ready">Sois Prêt!</string>
 
-    <string name="you_won">But</string>
+    <string name="you_won">Mais</string>
     <string name="can_you_beat_that">Pouvez-vous battre ça!!</string>
     <string name="share">Partager</string>
     <string name="are_you_sure_you_want_to_exit">Êtes-vous sûr de vouloir quitter?</string>
     <string name="yes">Oui</string>
     <string name="no">Non</string>
     <string name="are_you_sure_you_want_to_take_500_and_leave_the_game">
-        Les abandons ne gagnent jamais. Nabandonnez pas, continuez à gagner</string>
+        Les abandons ne gagnent jamais. N\'abandonnez pas, continuez à gagner</string>
     <string name="take_money">Prend l\'argent</string>
-    <string name="continue_">Continuez</string>
+    <string name="continue_">Continuer</string>
     <string name="take">Prendre</string>
     <string name="replay_level">Niveau de relecture</string>
     <string name="watch_a_video">Conservez votre score</string>
     <string name="base_url">http://www.cbtportal.linkskool.com/api</string>
     <string name="hard_level">Niveau difficile</string>
-    <string name="failure_text">échouer ne signifie pas que vous êtes un échec continuez et devenez millionnaire </string>
+    <string name="failure_text">Échouer ne signifie pas que vous êtes un échec</string>
     <string name="play_again"><u>Rejouer</u></string>
     <string name="view_ranking"><u>voir le classement</u></string>
     <string name="count_down_amount">1000000</string>
@@ -82,14 +82,14 @@ Battez-moi si vous le pouvez !!!
     <string name="anonymous_user">Utilisateur anonyme</string>
     <string name="readmore">lire la suite</string>
     <string name="loading_image">Chargement de l\'image</string>
-    <string name="please_wait">Veuillez patienter…</string>
-    <string name="correct_answer">Réponse correcte</string>
-    <string name="you_missed_the_correct_answer">Vous avez manqué la bonne réponse</string>
-    <string name="continue_by_watching_ad">Continuez en regardant une publicité</string>
-    <string name="minus_2_questions">Moins 2 Questions</string>
+    <string name="please_wait">S\'il vous plaît, attendez…</string>
+    <string name="correct_answer">Bonne réponse</string>
+    <string name="you_missed_the_correct_answer">Vous avez raté la bonne réponse</string>
+    <string name="continue_by_watching_ad">Continuer en regardant une publicité</string>
+    <string name="minus_2_questions">Moins 2 questions</string>
     <string name="ask_computer">Demander à l\'Ordinateur</string>
-    <string name="take_a_poll">Faire un Sondage</string>
-    <string name="reset_question">Réinitialiser la Question</string>
+    <string name="take_a_poll">Répondez à un sondage</string>
+    <string name="reset_question">Réinitialiser la question</string>
     <string name="maybe_its">Peut-être que c\'est</string>
     <string name="all_time">Tout le Temps</string>
     <string name="weekly">Hebdomadaire</string>
@@ -114,5 +114,21 @@ Battez-moi si vous le pouvez !!!
     <string name="accuracy">% Précision</string>
     <string name="questions_answered">"questions répondues"</string>
     <string name="question_answered">"question répondues"</string>
+    <string name="create_your_player_profile">Créer votre profil de joueur</string>
+    <string name="select_an_avatar">Sélectionner un avatar</string>
+    <string name="select_country">Sélectionner le pays</string>
+    <string name="select_your_country">Sélectionner votre pays</string>
+    <string name="create_player_name">Créer un nom de joueu</string>
+    <string name="player_name_can_t_be_empty">Le nom du joueur ne peut pas être vide</string>
+    <string name="search">Recherche…</string>
+    <string name="permission_denied">Permission refusée</string>
+    <string name="web_development">Développement web</string>
+    <string name="mobile_development">Développement mobile</string>
+    <string name="digital_marketing">Le marketing numérique</string>
+    <string name="data_science">Science des données</string>
+    <string name="we_train_you_on">Nous vous formons sur:</string>
+    <string name="correct_answers">réponses correctes</string>
+    <string name="wrong_answers">mauvaises réponses</string>
+    <string name="session_score">Score de la séance</string>
 
 </resources>
