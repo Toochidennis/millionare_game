@@ -1,6 +1,7 @@
 package com.digitalDreams.millionaire_game;
 
 import static com.digitalDreams.millionaire_game.Utils.IS_INSERTED_ENGLISH_KEY;
+import static com.digitalDreams.millionaire_game.Utils.IS_INSERTED_FRENCH_KEY;
 import static com.digitalDreams.millionaire_game.Utils.IS_INSERTED_SPANISH_KEY;
 
 import android.app.Activity;
@@ -66,6 +67,7 @@ class LanguageDialog extends Dialog {
         int cardBackground = sharedPreferences.getInt("card_background", 0x03045e);
         boolean isEnglishInserted = sharedPreferences.getBoolean(IS_INSERTED_ENGLISH_KEY, false);
         boolean isSpanishInserted = sharedPreferences.getBoolean(IS_INSERTED_SPANISH_KEY, false);
+        boolean isFrenchInserted = sharedPreferences.getBoolean(IS_INSERTED_FRENCH_KEY, false);
 
         closeBtn.setOnClickListener(view -> dismiss());
 
@@ -88,6 +90,11 @@ class LanguageDialog extends Dialog {
         frenchBtn.setOnClickListener(view -> {
             languageCode = "fr";
             setLocale(unwrap(context), languageCode);
+
+            if (!isFrenchInserted) {
+                loadQuestions(languageCode);
+                editor.putBoolean(IS_INSERTED_FRENCH_KEY, true);
+            }
 
             //  context.sendBroadcast(new Intent("refresh"));
             LocalBroadcastManager.getInstance(context).sendBroadcast(new Intent("refresh"));
@@ -125,6 +132,8 @@ class LanguageDialog extends Dialog {
             try {
                 if (languageCode.equals("es")) {
                     text = readRawTextFile(R.raw.millionaire_es);
+                } else if (languageCode.equals("fr")) {
+                    text = readRawTextFile(R.raw.millionaire_fr);
                 } else {
                     text = readRawTextFile(R.raw.millionaire);
                 }

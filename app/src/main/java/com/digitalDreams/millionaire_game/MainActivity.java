@@ -1,18 +1,18 @@
 package com.digitalDreams.millionaire_game;
 
 import static com.digitalDreams.millionaire_game.Utils.IS_INSERTED_ENGLISH_KEY;
+import static com.digitalDreams.millionaire_game.Utils.IS_INSERTED_FRENCH_KEY;
 import static com.digitalDreams.millionaire_game.Utils.IS_INSERTED_SPANISH_KEY;
-
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
 
 import android.animation.Animator;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
+import android.app.Activity;
 import android.app.Application;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.BlendMode;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.graphics.Path;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -32,10 +32,10 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.google.android.gms.ads.MobileAds;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
+
 import com.google.android.gms.ads.RequestConfiguration;
-import com.google.android.gms.ads.initialization.InitializationStatus;
-import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -47,13 +47,12 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
 import java.io.StringWriter;
-import java.io.UnsupportedEncodingException;
 import java.io.Writer;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Iterator;
 import java.util.List;
+import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
     public final int SPLASH_SCREEN_DELAY = 100;
@@ -70,9 +69,9 @@ public class MainActivity extends AppCompatActivity {
     public static boolean ACTIVITY_PASSED = false;
     private String languageCode;
 
+    TextView trainTxt, webDevTxt, mobileDevTxt, digitalTxt, dataScienceTxt;
 
     private long secondsRemaining;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -104,8 +103,21 @@ public class MainActivity extends AppCompatActivity {
         Utils.IS_DONE_INSERTING = sharedPreferences.getBoolean("IS_DONE_INSERTING", false);
         languageCode = sharedPreferences.getString("language", "");
 
+        webDevContainer = findViewById(R.id.web_development);
+        mobileDevContainer = findViewById(R.id.mobile_development);
+        digitalMarketingContainer = findViewById(R.id.digital_marketing);
+        dataScienceContainer = findViewById(R.id.data_science);
+        container = findViewById(R.id.container);
+        trainTxt = findViewById(R.id.train_text);
+        webDevTxt = findViewById(R.id.web_dev_txt);
+        mobileDevTxt = findViewById(R.id.mobile_txt);
+        digitalTxt = findViewById(R.id.digital_marketing_txt);
+        dataScienceTxt = findViewById(R.id.data_science_txt);
+
+        updateTextViews();
 
         createTimer(COUNTER_TIME);
+
         new RequestConfiguration.Builder().setTestDeviceIds(Arrays.asList("C5C6588E00A996967AA2085A167B0F4E", "9D16E23BB90EF4BFA204300CCDCCF264"));
 //        appOpenAdManager = new AppOpenManager(this);
 //        appOpenAdManager.fetchAd();
@@ -120,16 +132,18 @@ public class MainActivity extends AppCompatActivity {
                     //  saveAnonymouseUser();
                     if (languageCode.equals("es")) {
                         text = readRawTextFile(R.raw.millionaire_es);
-                        parseJSON(text);
                         editor.putBoolean(IS_INSERTED_SPANISH_KEY, true);
+                    } else if (languageCode.equals("fr")) {
+                        text = readRawTextFile(R.raw.millionaire_fr);
+                        editor.putBoolean(IS_INSERTED_FRENCH_KEY, true);
                     } else {
                         text = readRawTextFile(R.raw.millionaire);
-                        parseJSON(text);
                         editor.putBoolean(IS_INSERTED_ENGLISH_KEY, true);
                     }
 
-                    editor.apply();
+                    parseJSON(text);
 
+                    editor.apply();
                 } else {
                     Utils.IS_DONE_INSERTING = true;
                     editor.putBoolean("IS_DONE_INSERTING", true);
@@ -139,14 +153,6 @@ public class MainActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
         }).start();
-
-
-        webDevContainer = findViewById(R.id.web_development);
-        mobileDevContainer = findViewById(R.id.mobile_development);
-        digitalMarketingContainer = findViewById(R.id.digital_marketing);
-        dataScienceContainer = findViewById(R.id.data_science);
-        container = findViewById(R.id.container);
-        TextView trainTxt = findViewById(R.id.train_text);
 
 
         //Animation infromBottom = inFromBottomAnimation(1500,logoStartTime);
@@ -259,6 +265,25 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    private void updateTextViews() {
+        setLocale(this, languageCode);
+
+        trainTxt.setText(getResources().getString(R.string.we_train_you_on));
+        webDevTxt.setText(getResources().getString(R.string.web_development));
+        mobileDevTxt.setText(getResources().getString(R.string.mobile_development));
+        digitalTxt.setText(getResources().getString(R.string.digital_marketing));
+        dataScienceTxt.setText(getResources().getString(R.string.data_science));
+    }
+
+    public static void setLocale(Activity activity, String languageCode) {
+        Locale locale = new Locale(languageCode);
+        Locale.setDefault(locale);
+        Resources resources = activity.getResources();
+        Configuration config = resources.getConfiguration();
+        config.locale = locale;
+        resources.updateConfiguration(config, resources.getDisplayMetrics());
+    }
+
 
     private String readRawTextFile(int resId) throws IOException {
         InputStream is = getResources().openRawResource(resId);
@@ -279,46 +304,6 @@ public class MainActivity extends AppCompatActivity {
         return writer.toString();
     }
 
-    private void createTable(String json) {
-        try {
-            JSONObject jsonObject = new JSONObject(json);
-            Iterator<String> iterator = jsonObject.keys();
-            while (iterator.hasNext()) {
-                String key = iterator.next();
-                if (!columnList.contains(key)) {
-                    columnList.add(key);
-                }
-                JSONObject obj1 = jsonObject.getJSONObject(key);
-                Iterator<String> iterator1 = obj1.keys();
-                while (iterator1.hasNext()) {
-                    String key1 = iterator1.next();
-                    if (!columnList.contains(key1)) {
-                        columnList.add(key1);
-                    }
-                    JSONArray jsonArray = obj1.getJSONArray(key1);
-                    for (int a = 0; a < jsonArray.length(); a++) {
-                        JSONObject obj2 = jsonArray.getJSONObject(a);
-                        Iterator<String> iterator2 = obj2.keys();
-                        while (iterator2.hasNext()) {
-                            String key2 = iterator2.next();
-                            if (!columnList.contains(key2)) {
-                                columnList.add(key2);
-                            }
-                            //Log.i("response",""+key2+" "+obj2.getString(key2));
-                            obj2.getString(key2);
-                        }
-                    }
-                }
-            }
-        } catch (JSONException e) {
-            e.printStackTrace();
-        } finally {
-            //dbHelper = new DBHelper(this)
-            //insertDataToTable(json);
-
-        }
-
-    }
 
     private void parseJSON(String json) {
         int lent = 0;
@@ -434,38 +419,6 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void insertDataToTable(String json) {
-        try {
-            JSONObject jsonObject = new JSONObject(json);
-            Iterator<String> iterator = jsonObject.keys();
-            while (iterator.hasNext()) {
-                List<String> dataList = new ArrayList<>();
-                String key = iterator.next();
-                dataList.add(key);
-                JSONObject obj1 = jsonObject.getJSONObject(key);
-                Iterator<String> iterator1 = obj1.keys();
-                while (iterator1.hasNext()) {
-                    String key1 = iterator1.next();
-                    dataList.add(key1);
-                    JSONArray jsonArray = obj1.getJSONArray(key1);
-                    for (int a = 0; a < jsonArray.length(); a++) {
-                        JSONObject obj2 = jsonArray.getJSONObject(a);
-                        Iterator<String> iterator2 = obj2.keys();
-                        while (iterator2.hasNext()) {
-                            String key2 = iterator2.next();
-                            Log.i("response", "" + key2 + " " + obj2.getString(key2));
-                            dataList.add(obj2.getString(key2));
-
-                            //String id = obj2.getString(columnList.get())
-                            //dbHelper.insertDetails(columnList,dataList);
-                        }
-                    }
-                }
-            }
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-    }
 
     private Animation inFromLeftAnimation(int duration, Long startTime) {
         Animation inFromLeft = new TranslateAnimation(
@@ -625,7 +578,7 @@ public class MainActivity extends AppCompatActivity {
 
                     Utils.IS_DONE_INSERTING = true;
                     editor.putBoolean("IS_DONE_INSERTING", true);
-                    editor.commit();
+                    editor.apply();
 
 
                     Intent intent = new Intent(MainActivity.this, Dashboard.class);
@@ -635,6 +588,5 @@ public class MainActivity extends AppCompatActivity {
             }, SPLASH_SCREEN_DELAY);
         }
     }
-
 
 }
