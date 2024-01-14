@@ -1,25 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Jeu du Millionnaire</string>
-    <string name="select_a_theme">Sélectionner un thème</string>
-    <string name="new_game">Nouvelle partie</string>
-    <string name="leaderboard"><u>Classement</u></string>
-    <string name="exit_game">Quitter le jeu</string>
-    <string name="settings">Paramètres</string>
-    <string name="sound_on">Son</string>
-    <string name="game_mode">Mode de jeu</string>
+    <string name="app_name">Juego Millonario</string>
+    <string name="select_a_theme">Selecciona un tema</string>
+    <string name="new_game">Nuevo juego</string>
+    <string name="leaderboard"><u>Tabla de clasificación</u></string>
+    <string name="exit_game">Salir del juego</string>
+    <string name="settings">Ajustes</string>
+    <string name="sound_on">Sonido</string>
+    <string name="game_mode">Modo de juego</string>
     <string name="taptic">Vibración</string>
     <string name="simple">Simple</string>
-    <string name="no_thanks"><u>Non merci</u></string>
-    <string name="language">Langue</string>
-    <string name="on">ON</string>
-    <string name="off">OFF</string>
+    <string name="no_thanks"><u>No, gracias</u></string>
+    <string name="language">Idioma</string>
+    <string name="on">EN</string>
+    <string name="off">APAGADO</string>
     <string name="timed">Chronométré</string>
-    <string name="credits">Crédits</string>
-    <string name="default_theme">Défaut</string>
-    <string name="theme_1">Thème 1</string>
-    <string name="theme_2">Thème 2</string>
-    <string name="theme_3">Thème 3</string>
+    <string name="credits">Créditos</string>
+    <string name="default_theme">Por defecto</string>
+    <string name="theme_1">Tema 1</string>
+    <string name="theme_2">Tema 2</string>
+    <string name="theme_3">Tema 3</string>
     <string name="english">English</string>
     <string name="french">French</string>
     <string name="spanish">Spanish</string>
@@ -27,71 +27,69 @@
     <string name="app_ad_id">ca-app-pub-4696224049420135~2129598410</string>
     <string name="interstitial_adunit">ca-app-pub-4696224049420135/9312479087</string>
     <string name="rewardedad_adunit">ca-app-pub-4696224049420135/7768937909</string>
-    <string name="ad_copy">Je viens de gagner 000 dans le jeu du millionnaire. Je t\'invite à jouer à ce jeu passionnant pour améliorer tes connaissances.
-
-\n\nEssaie de me battre si tu peux !!!
+    <string name="ad_copy">Acabo de ganar 000 en el juego millonario. Te invito a jugar el increíble y emocionante juego millonario para mejorar tus conocimientos.
+\n\n¡¡¡Venceme si puedes!!!
        \n111
     </string>
-    <string name="ad_copy2">Mon nom d\'utilisateur est usernamevariable. Je t\'invite à jouer à ce jeu passionnant pour améliorer tes connaissances.
+    <string name="ad_copy2">Mi nombre de usuario es nombre de usuariovariable. Te invito a jugar el increíble y emocionante juego millonario para mejorar tus conocimientos.
 
-\n\nEssaie de me battre si tu peux !!!
+\n\n¡¡¡Venceme si puedes!!!
        \n111
     </string>
-    <string name="play">JOUER</string>
-    <string name="see_your_ranking">Voir ton classement</string>
-    <string name="goto_youtube"><u>Apprends des compétences numériques</u></string>
-    <string name="won">Félicitations, tu as gagné</string>
-    <string name="more_games"><u>Rejoins notre communauté</u></string>
-    <string name="more_games2">Plus de jeux</string>
+    <string name="play">Jugar</string>
+    <string name="see_your_ranking">Ver tu clasificación</string>
+    <string name="goto_youtube"><u>Aprenda habilidades digitales</u></string>
+    <string name="won">Felicitaciones has ganado</string>
+    <string name="more_games"><u>Únete a nuestra comunidad</u></string>
+    <string name="more_games2">Más juegos</string>
     <string name="reach_us_on_facebook"><u>@Digitaldreamsng</u></string>
     <string name="call_us"><u>09064660137</u></string>
     <string name="send_us_an_email"><u>info@digitaldreamsng.com</u></string>
     <string name="twitter"><u>@DigitalDreamsNG</u></string>
-    <string name="get_ready">Prépare-toi !</string>
-    <string name="you_won">Puntuación</string>
-    <string name="next">Niveau suivant</string>
-    <string name="winner">Gagnant</string>
-    <string name="home">Accueil</string>
-    <string name="winning_congrats">Félicitations !</string>
-    <string name="next_level">Niveau terminé</string>
+    <string name="get_ready">¡Prepararse!</string>
+    <string name="you_won">Puntaje</string>
+    <string name="next">Siguiente nivel</string>
+    <string name="winner">Ganador</string>
+    <string name="home">Hogar</string>
+    <string name="winning_congrats">¡Felicidades!</string>
+    <string name="next_level">Etapa completada</string>
 
-    <string name="can_you_beat_that">Tu peux battre ce puntuación !</string>
-    <string name="share">Partager</string>
-    <string name="are_you_sure_you_want_to_exit">Es-tu sûr de vouloir quitter ?</string>
-    <string name="yes">Quitter</string>
-    <string name="no">Non</string>
+    <string name="can_you_beat_that">¡Puedes superar esta puntuación!</string>
+    <string name="share">Compartir</string>
+    <string name="are_you_sure_you_want_to_exit">¿Estás seguro de que quieres salir?</string>
+    <string name="yes">Abandonar</string>
+    <string name="no">No</string>
     <string name="are_you_sure_you_want_to_take_500_and_leave_the_game">
-        Les quitters ne gagnent jamais. Ne quitte pas, continue de gagner.
+        Los que se dan por vencidos nunca ganan. No te rindas, sigue ganando
     </string>
-    <string name="take_money">Quitter le jeu</string>
-    <string name="continue_">Continuer</string>
-    <string name="take">Prendre</string>
-    <string name="replay_level">Rejouer le niveau</string>
-    <string name="watch_a_video">Garde ton puntuación</string>
+    <string name="take_money">Salir del juego</string>
+    <string name="continue_">Continuar</string>
+    <string name="take">Llevar</string>
+    <string name="replay_level">Nivel de repetición</string>
+    <string name="watch_a_video">Conserva tu puntuación</string>
     <string name="base_url">http://www.cbtportal.linkskool.com/api</string>
-    <string name="hard_level">Niveau suivant</string>
-
-    <string name="failure_text">Échouer ne signifie pas que tu es un échec</string>
-    <string name="play_again"><u>Rejouer</u></string>
-    <string name="view_ranking"><u>Voir le classement</u></string>
-    <string name="view_history"><u>Voir les réponses</u></string>
+    <string name="hard_level">Siguiente nivel</string>
+    <string name="failure_text">Fracasar no significa que seas un fracaso</string>
+    <string name="play_again"><u>Juega de nuevo</u></string>
+    <string name="view_ranking"><u>Ver clasificación</u></string>
+    <string name="view_history"><u>Ver historial</u></string>
     <string name="count_down_amount">1000000</string>
-    <string name="count_down_level">Niveau</string>
+    <string name="count_down_level">Nivel</string>
     <string name="play_history">Historique de jeu</string>
-    <string name="give_up"><u>Abandonner</u></string>
+    <string name="give_up"><u>Abandonar</u></string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Salut fragment vide</string>
-    <string name="anonymous_user">Utilisateur anonyme</string>
-    <string name="readmore">Lire la suite</string>
-    <string name="loading_image">Chargement de l\'image</string>
+    <string name="anonymous_user">Usuario anónimo</string>
+    <string name="readmore">Leer más</string>
+    <string name="loading_image">Cargando imagen</string>
     <string name="please_wait">Espere por favor…</string>
     <string name="correct_answer">Respuesta correcta</string>
-    <string name="you_missed_the_correct_answer">Te has equivocado de respuesta</string>
-    <string name="continue_by_watching_ad">Continúa viendo un anuncio</string>
+    <string name="you_missed_the_correct_answer">Te perdiste la respuesta correcta</string>
+    <string name="continue_by_watching_ad">Continuar viendo un anuncio</string>
     <string name="minus_2_questions">Menos 2 Preguntas</string>
     <string name="ask_computer">Preguntar a la Computadora</string>
-    <string name="take_a_poll">Realizar una Encuesta</string>
-    <string name="reset_question">Reiniciar Pregunta</string>
+    <string name="take_a_poll">hacer una encuesta</string>
+    <string name="reset_question">Restablecer pregunta</string>
     <string name="maybe_its">Quizás sea</string>
     <string name="all_time">Todo el Tiempo</string>
     <string name="weekly">Semanal</string>
@@ -113,7 +111,23 @@
     <string name="beat_today_s_highest_score_of">Supera el puntaje más alto de hoy de - $</string>
     <string name="beat_today_s_highest_score">Supera el puntaje más alto de hoy - $</string>
     <string name="file_does_not_exist">El archivo no existe</string>
-    <string name="accuracy">% Precisión</string>
-    <string name="questions_answered">"preguntas respondidas"</string>
-    <string name="question_answered">"pregunta respondidas"</string>
+    <string name="accuracy">% exactitud</string>
+    <string name="questions_answered">preguntas respondidas</string>
+    <string name="question_answered">pregunta respondidas</string>
+    <string name="create_your_player_profile">Crea tu perfil de jugador</string>
+    <string name="select_an_avatar">Seleccionar un avata</string>
+    <string name="select_country">Seleccionar país</string>
+    <string name="select_your_country">Seleccionar tu país</string>
+    <string name="create_player_name">Crear nombre de jugador</string>
+    <string name="player_name_can_t_be_empty">El nombre del jugador no puede estar vacío.</string>
+    <string name="search">Buscar…</string>
+    <string name="permission_denied">Permiso denegado</string>
+    <string name="web_development">Desarrollo web</string>
+    <string name="mobile_development">Desarrollo Móvil</string>
+    <string name="digital_marketing">Publicidad digital</string>
+    <string name="data_science">Ciencia de los datos</string>
+    <string name="we_train_you_on">Te capacitamos en:</string>
+    <string name="correct_answers">respuestas correctas</string>
+    <string name="wrong_answers">respuestas incorrectas</string>
+    <string name="session_score">Puntuación de la sesión</string>
 </resources>

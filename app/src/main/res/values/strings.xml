@@ -28,12 +28,10 @@
     <string name="interstitial_adunit">ca-app-pub-4696224049420135/9312479087</string>
     <string name="rewardedad_adunit">ca-app-pub-4696224049420135/7768937909</string>
     <string name="ad_copy">I just won 000 in the millionaire game. I invite you to play the awesome and exciting millionaire game to improve your knowledge.
-
 \n\nBeat me if you can !!!
        \n111
     </string>
     <string name="ad_copy2">My username is usernamevariable I invite you to play the awesome and exciting millionaire game to improve your knowledge.
-
 \n\nBeat me if you can !!!
        \n111
     </string>
@@ -61,7 +59,7 @@
     <string name="yes">Quit</string>
     <string name="no">No</string>
     <string name="are_you_sure_you_want_to_take_500_and_leave_the_game">
-        Quiters never win. Do not quit, continue to win
+        Quitters never win. Do not quit, continue to win
     </string>
     <string name="take_money">Exit Game</string>
     <string name="continue_">Continue</string>
@@ -71,7 +69,7 @@
     <string name="base_url">http://www.cbtportal.linkskool.com/api</string>
     <string name="hard_level">Next Level</string>
 
-    <string name="failure_text">Failing does not mean you are a failure </string>
+    <string name="failure_text">Failing does not mean you are a failure</string>
     <string name="play_again"><u>Play Again</u></string>
     <string name="view_ranking"><u>View Ranking</u></string>
     <string name="view_history"><u>View Answers</u></string>
@@ -116,4 +114,20 @@
     <string name="accuracy">% Accuracy</string>
     <string name="questions_answered">"questions answered"</string>
     <string name="question_answered">"question answered"</string>
+    <string name="create_your_player_profile">Create your player profile</string>
+    <string name="select_an_avatar">Select an Avatar</string>
+    <string name="select_country">Select country</string>
+    <string name="select_your_country">Select your Country</string>
+    <string name="create_player_name">Create player name</string>
+    <string name="player_name_can_t_be_empty">Player name can\'t be empty</string>
+    <string name="search">Search…</string>
+    <string name="permission_denied">Permission denied</string>
+    <string name="web_development">Web Development</string>
+    <string name="mobile_development">Mobile Development</string>
+    <string name="digital_marketing">Digital Marketing</string>
+    <string name="data_science">Data Science</string>
+    <string name="we_train_you_on">We train you on:</string>
+    <string name="correct_answers">correct answers</string>
+    <string name="wrong_answers">wrong answers</string>
+    <string name="session_score">Session Score</string>
 </resources>
