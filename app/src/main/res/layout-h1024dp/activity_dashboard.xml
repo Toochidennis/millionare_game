@@ -150,13 +150,14 @@
                 android:layout_centerInParent="true"
                 android:src="@drawable/ic_rays" />
 
-                <ImageView
-                    android:layout_width="350dp"
-                    android:layout_height="300dp"
-                    android:layout_gravity="center"
-                    android:scaleType="centerCrop"
-                    android:layout_centerInParent="true"
-                    android:background="@drawable/game_logo" />
+            <ImageView
+                android:layout_width="350dp"
+                android:layout_height="300dp"
+                android:layout_centerInParent="true"
+                android:layout_gravity="center"
+                android:id="@+id/gameLogoImageView"
+                android:background="@drawable/game_logo"
+                android:scaleType="centerCrop" />
         </RelativeLayout>
 
         <RelativeLayout
