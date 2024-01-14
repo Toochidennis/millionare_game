@@ -39,7 +39,7 @@
         android:layout_centerInParent="true"
         android:layout_marginBottom="60dp"
         android:gravity="center"
-        android:text="Please wait...."
+        android:text="@string/please_wait"
         android:textColor="@color/white"
         android:textSize="16sp" />
 
