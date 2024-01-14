@@ -2,29 +2,25 @@ package com.digitalDreams.millionaire_game;
 
 import static com.digitalDreams.millionaire_game.GameActivity2.hasOldWinningAmount;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-import androidx.core.content.FileProvider;
-
 import android.Manifest;
 import android.app.Activity;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
+import android.content.ContentResolver;
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
 import android.graphics.drawable.GradientDrawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import android.provider.MediaStore;
 import android.provider.Settings;
 import android.util.Base64;
 import android.util.Base64OutputStream;
@@ -35,6 +31,13 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -56,6 +59,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
 import java.text.DecimalFormat;
 import java.util.HashMap;
 import java.util.Map;
@@ -73,6 +77,8 @@ public class PlayDetailsActivity extends AppCompatActivity {
     boolean AdsFromExitGameDialog = false;
     TextView wonTxt, usernameField, new_game_text;
     public static Activity playerDetailsActivity;
+
+    private static final int REQUEST_CODE_SCREEN_CAPTURE = 1;
     // AdManager  adManager;
 
     @RequiresApi(api = Build.VERSION_CODES.M)
@@ -235,6 +241,7 @@ public class PlayDetailsActivity extends AppCompatActivity {
             startActivity(intent);
             finish();
         });
+
         shareBtn.setOnClickListener(view -> checkPermission());
 
         newGame.setOnClickListener(view -> {
@@ -263,6 +270,7 @@ public class PlayDetailsActivity extends AppCompatActivity {
 
 
         checkScore();
+
         //sendScoreToSever("2000", "dking");
 
         deviceId = getDeviceId(this);
@@ -283,11 +291,59 @@ public class PlayDetailsActivity extends AppCompatActivity {
         return id;
     }
 
-    public Bitmap takeScreenshot() {
+    public void takeScreenshot() {
         View rootView = findViewById(android.R.id.content).getRootView();
-        rootView.setDrawingCacheEnabled(true);
-        return rootView.getDrawingCache();
+
+        Bitmap bitmap = Bitmap.createBitmap(
+                rootView.getWidth(),
+                rootView.getHeight(),
+                Bitmap.Config.ARGB_8888
+        );
+
+        Canvas canvas = new Canvas(bitmap);
+        rootView.draw(canvas);
+
+        saveScreenshot(bitmap);
     }
+
+    private void saveScreenshot(Bitmap bitmap) {
+        // Use MediaStore to insert the screenshot into the MediaStore.Images.Media
+        ContentResolver resolver = getContentResolver();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(MediaStore.Images.Media.DISPLAY_NAME, "screenshot");
+        contentValues.put(MediaStore.Images.Media.MIME_TYPE, "image/png");
+        contentValues.put(MediaStore.Images.Media.WIDTH, bitmap.getWidth());
+        contentValues.put(MediaStore.Images.Media.HEIGHT, bitmap.getHeight());
+
+        // Insert the screenshot into the MediaStore
+        final Uri contentUri = MediaStore.Images.Media.EXTERNAL_CONTENT_URI;
+        final Uri uri = resolver.insert(contentUri, contentValues);
+
+        try {
+            if (uri != null) {
+                // Open an OutputStream to the content URI
+                OutputStream outputStream = resolver.openOutputStream(uri);
+
+                if (outputStream != null) {
+                    bitmap.compress(Bitmap.CompressFormat.PNG, 100, outputStream);
+
+                    // Close the OutputStream
+                    outputStream.close();
+
+                    // Share the screenshot
+                    shareScreenshot(uri);
+                }
+
+                // Compress the Bitmap to PNG format and write it to the OutputStream
+            } else {
+                Toast.makeText(getApplicationContext(), getResources().getString(R.string.file_does_not_exist), Toast.LENGTH_SHORT).show();
+            }
+        } catch (Exception e) {
+            // Handle any exceptions that might occur during the process
+            e.printStackTrace();
+        }
+    }
+
 
     public void saveBitmap(Bitmap bitmap) {
         imagePath = new File(Environment.getExternalStorageDirectory() + "/screenshotxyz.jpg");
@@ -304,25 +360,21 @@ public class PlayDetailsActivity extends AppCompatActivity {
         }
     }
 
-    private void shareIt() {
-        if (imagePath.exists()) {
-            Uri uri = FileProvider.getUriForFile(this, getApplicationContext().getPackageName() + ".provider", imagePath);
-            final String appPackageName = getPackageName(); // getPackageName() from Context or Activity object
-            String url = "https://play.google.com/store/apps/details?id=" + appPackageName;
-            Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
-            sharingIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-            sharingIntent.setType("image/jpeg");
-            String shareText = getResources().getString(R.string.ad_copy);
-            shareText = shareText.replace("000", GameActivity2.amountWon);
-            shareText = shareText.replace("111", url);
-            sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "");
-            sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, shareText);
-            sharingIntent.putExtra(Intent.EXTRA_STREAM, uri);
+    private void shareScreenshot(Uri screenshotUri) {
+        // Uri uri = FileProvider.getUriForFile(this, getApplicationContext().getPackageName() + ".provider", imagePath);
+        // final String appPackageName = ; // getPackageName() from Context or Activity object
+        String url = "https://play.google.com/store/apps/details?id=" + getPackageName();
+        Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
+        sharingIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+        sharingIntent.setType("text/plain");
+        String shareText = getResources().getString(R.string.ad_copy);
+        shareText = shareText.replace("000", GameActivity2.amountWon);
+        shareText = shareText.replace("111", url);
+        sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "");
+        sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, shareText);
+        sharingIntent.putExtra(Intent.EXTRA_STREAM, screenshotUri);
 
-            startActivity(Intent.createChooser(sharingIntent, "Share via"));
-        } else {
-            Toast.makeText(getApplicationContext(), getResources().getString(R.string.file_does_not_exist), Toast.LENGTH_SHORT).show();
-        }
+        startActivity(Intent.createChooser(sharingIntent, "Share via"));
     }
 
 
@@ -356,23 +408,22 @@ public class PlayDetailsActivity extends AppCompatActivity {
             }
         } else {
             // Permission has already been granted
-            Bitmap bitmap = takeScreenshot();
+            /*Bitmap bitmap = takeScreenshot();
             saveBitmap(bitmap);
-            shareIt();
+            shareScreenshot();*/
+
+            takeScreenshot();
         }
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == MY_PERMISSIONS_WRITE_EXTERNAL_STORAGE) {
-            if (resultCode == RESULT_OK) {
-                Bitmap bitmap = takeScreenshot();
-                saveBitmap(bitmap);
-                shareIt();
-            } else {
-                Toast.makeText(PlayDetailsActivity.this, "Permission denied", Toast.LENGTH_SHORT).show();
-            }
+        if (requestCode == MY_PERMISSIONS_WRITE_EXTERNAL_STORAGE && requestCode == RESULT_OK) {
+
+
+        } else {
+            Toast.makeText(PlayDetailsActivity.this, getResources().getString(R.string.permission_denied), Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -382,9 +433,11 @@ public class PlayDetailsActivity extends AppCompatActivity {
 
         if (requestCode == MY_PERMISSIONS_WRITE_EXTERNAL_STORAGE) {
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                Bitmap bitmap = takeScreenshot();
+               /* Bitmap bitmap = takeScreenshot();
                 saveBitmap(bitmap);
-                shareIt();
+                shareScreenshot();*/
+
+                takeScreenshot();
             }
         }
     }
@@ -642,4 +695,6 @@ public class PlayDetailsActivity extends AppCompatActivity {
         DecimalFormat formatter = new DecimalFormat("###,###,##0.00");
         return formatter.format(Double.parseDouble(amount));
     }
+
+
 }

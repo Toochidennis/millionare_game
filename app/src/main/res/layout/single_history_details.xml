@@ -35,15 +35,15 @@
                   android:layout_height="wrap_content"
                   android:layout_gravity="center"
                   android:textColor="@color/black"
-                  android:text="Session Score"/>
+                  android:text="@string/session_score"/>
               <TextView
-                  android:textSize="30dp"
+                  android:textSize="30sp"
                   android:textStyle="bold"
                   android:textColor="@color/black"
                   android:layout_gravity="center_horizontal"
                   android:layout_width="wrap_content"
                   android:layout_height="wrap_content"
-                  android:text="HIGH SCORE"
+                  android:text="@string/high_score"
                   android:id="@+id/high_score"
                   />
 
