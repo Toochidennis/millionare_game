@@ -25,8 +25,6 @@ import com.google.android.gms.ads.LoadAdError;
 import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.ads.appopen.AppOpenAd;
 import com.google.android.gms.ads.appopen.AppOpenAd.AppOpenAdLoadCallback;
-import com.google.android.gms.ads.initialization.InitializationStatus;
-import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 
 import java.util.Date;
 import java.util.Locale;
@@ -55,44 +53,42 @@ public class MyApplication extends Application
 
         MobileAds.initialize(
                 this,
-                new OnInitializationCompleteListener() {
-                    @Override
-                    public void onInitializationComplete(
-                            @NonNull InitializationStatus initializationStatus) {
-                    }
+                initializationStatus -> {
                 });
 
         ProcessLifecycleOwner.get().getLifecycle().addObserver(this);
         appOpenAdManager = new AppOpenAdManager();
-
-
-        sharedPreferences = getSharedPreferences("settings", MODE_PRIVATE);
-        String savedLanguage = sharedPreferences.getString("language", "");
-
-        if (savedLanguage.isEmpty()) {
-            setAppLanguage(getDeviceLanguage());
-        } else {
-            setAppLanguage(savedLanguage);
-        }
-
     }
 
-    private String getDeviceLanguage() {
+    @Override
+    protected void attachBaseContext(Context base) {
+        sharedPreferences = base.getSharedPreferences("settings", MODE_PRIVATE);
+        String savedLanguage = sharedPreferences.getString("language", getDefaultLanguage(base));
+
+        saveLanguagePreference(savedLanguage);
+
+        Locale locale = new Locale(savedLanguage);
+        Context context = updateResourcesLegacy(base, locale);
+
+        super.attachBaseContext(context);
+    }
+
+
+    private Context updateResourcesLegacy(Context context, Locale locale) {
+        Locale.setDefault(locale);
+        Configuration configuration = context.getResources().getConfiguration();
+        configuration.locale = locale;
+        context.getResources().updateConfiguration(configuration, context.getResources().getDisplayMetrics());
+        return context;
+    }
+
+    @SuppressWarnings("deprecation")
+    private String getDefaultLanguage(Context context) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            return getResources().getConfiguration().getLocales().get(0).getLanguage();
+            return context.getResources().getConfiguration().getLocales().get(0).getLanguage();
         } else {
-            return getResources().getConfiguration().locale.getLanguage();
+            return context.getResources().getConfiguration().locale.getLanguage();
         }
-    }
-
-    // Method to set the app's language
-    private void setAppLanguage(String languageCode) {
-        Locale appLocale = new Locale(languageCode);
-        Locale.setDefault(appLocale);
-        Configuration configuration = new Configuration();
-        configuration.locale = appLocale;
-        getResources().updateConfiguration(configuration, getResources().getDisplayMetrics());
-        saveLanguagePreference(languageCode);
     }
 
     // Method to save the user's language preference
