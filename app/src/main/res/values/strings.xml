@@ -130,4 +130,5 @@
     <string name="correct_answers">correct answers</string>
     <string name="wrong_answers">wrong answers</string>
     <string name="session_score">Session Score</string>
+    <string name="select_a_language">Select a Language</string>
 </resources>
