@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:alpha="0.8"
-        android:background="@color/black"></RelativeLayout>
+        android:background="@color/black" />
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -22,14 +22,13 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="50dp"
                 android:fontFamily="@font/montserrat"
-                android:text="Select a Language"
+                android:text="@string/select_a_language"
                 android:textColor="@color/white"
                 android:textSize="22sp"
                 android:textStyle="bold" />
@@ -59,7 +58,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
-                        android:layout_marginLeft="10dp"
+                        android:layout_marginStart="10dp"
                         android:fontFamily="@font/arimo"
                         android:text="@string/english"
                         android:textColor="@color/white"
@@ -100,7 +99,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
-                        android:layout_marginLeft="10dp"
+                        android:layout_marginStart="10dp"
                         android:fontFamily="@font/arimo"
                         android:text="@string/french"
                         android:textColor="@color/white"
@@ -114,9 +113,7 @@
                     android:layout_margin="10dp"
                     android:orientation="vertical"
                     android:src="@drawable/ic_hexnow"
-                    app:tint="@color/purple_500"
-
-                    />
+                    app:tint="@color/purple_500" />
             </RelativeLayout>
 
             <RelativeLayout
