@@ -320,6 +320,7 @@ public class Dashboard extends AppCompatActivity {
             SettingActivity.gameModeTxt.setText(getResources().getString(R.string.game_mode));
             SettingActivity.crediTxt.setText(getResources().getString(R.string.credits));
             SettingActivity.language.setText(getResources().getString(R.string.language));
+            SettingActivity.settingsTxt.setText(getResources().getString(R.string.settings));
 
             leaderboardText.setText(getResources().getString(R.string.leaderboard));
 
