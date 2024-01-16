@@ -23,7 +23,7 @@ public class SettingActivity extends AppCompatActivity {
     public static TextView themeNameTxt;
     public static ImageView flagImg;
     public static TextView languageTxt;
-    public static TextView soundTxt, themeTxt, gameModeTxt, vibrationTxt, crediTxt, language, soundModeTxt;
+    public static TextView soundTxt, themeTxt, gameModeTxt, vibrationTxt, crediTxt, language, soundModeTxt, settingsTxt;
     public static TextView modeText;
     public static ImageView badIcon;
 
@@ -80,6 +80,7 @@ public class SettingActivity extends AppCompatActivity {
         vibrationTxt = findViewById(R.id.vibration_txt);
         crediTxt = findViewById(R.id.credit_txt);
         language = findViewById(R.id.language_txt);
+        settingsTxt = findViewById(R.id.settingsTextView);
 
         String sound = sharedPreferences.getString("sound", "1");
 
