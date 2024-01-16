@@ -23,7 +23,7 @@ public class SettingActivity extends AppCompatActivity {
     public static TextView themeNameTxt;
     public static ImageView flagImg;
     public static TextView languageTxt;
-    public static TextView soundTxt,themeTxt,gameModeTxt,vibrationTxt,crediTxt,language,soundModeTxt;
+    public static TextView soundTxt, themeTxt, gameModeTxt, vibrationTxt, crediTxt, language, soundModeTxt;
     public static TextView modeText;
     public static ImageView badIcon;
 
@@ -33,11 +33,11 @@ public class SettingActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_setting);
         SharedPreferences sharedPreferences = getSharedPreferences("settings", Context.MODE_PRIVATE);
-        String languageCode = sharedPreferences.getString("language","en");
-        int endcolor = sharedPreferences.getInt("end_color",getResources().getColor(R.color.purple_dark));
-        int startColor = sharedPreferences.getInt("start_color",getResources().getColor(R.color.purple_500));
-        int cardBackground = sharedPreferences.getInt("card_background",0x219ebc);
-        String theme = sharedPreferences.getString("theme","Default");
+        String languageCode = sharedPreferences.getString("language", "en");
+        int endcolor = sharedPreferences.getInt("end_color", getResources().getColor(R.color.purple_dark));
+        int startColor = sharedPreferences.getInt("start_color", getResources().getColor(R.color.purple_500));
+        int cardBackground = sharedPreferences.getInt("card_background", 0x219ebc);
+        String theme = sharedPreferences.getString("theme", "Default");
         //setTheme();
 
 
@@ -46,10 +46,10 @@ public class SettingActivity extends AppCompatActivity {
                 | View.SYSTEM_UI_FLAG_IMMERSIVE);
 
         bg = findViewById(R.id.rootview);
-        new Particles(this,bg,R.layout.image_xml,20);
+        new Particles(this, bg, R.layout.image_xml, 20);
         GradientDrawable gd = new GradientDrawable(
                 GradientDrawable.Orientation.TOP_BOTTOM,
-                new int[] {startColor,endcolor});
+                new int[]{startColor, endcolor});
 
         bg.setBackgroundDrawable(gd);
 
@@ -81,43 +81,43 @@ public class SettingActivity extends AppCompatActivity {
         crediTxt = findViewById(R.id.credit_txt);
         language = findViewById(R.id.language_txt);
 
-        String sound = sharedPreferences.getString("sound","1");
+        String sound = sharedPreferences.getString("sound", "1");
 
         soundModeTxt = findViewById(R.id.sound_value);
-        if(sound.equalsIgnoreCase("1")) {
+        if (sound.equalsIgnoreCase("1")) {
             soundModeTxt.setText(getResources().getString(R.string.on));
-        }else {
+        } else {
             soundModeTxt.setText(getResources().getString(R.string.off));
 
         }
         ImageView soundIcon = findViewById(R.id.sound_img);
-        if(sound.equals("0")){
+        if (sound.equals("0")) {
             soundIcon.setImageResource(R.drawable.ic_baseline_volume_off_24);
-        }else{
+        } else {
             soundIcon.setImageResource(R.drawable.ic_baseline_volume_up_24);
         }
         soundBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Utils.darkBlueBlink(soundBtn, getApplicationContext());
-                String sound = sharedPreferences.getString("sound","1");
+                String sound = sharedPreferences.getString("sound", "1");
                 SharedPreferences.Editor editor = sharedPreferences.edit();
-                if((sound.equals("1"))){
-                    editor.putString("sound","0");
-                }else if(sound.equals("0")){
-                    editor.putString("sound","1");
+                if ((sound.equals("1"))) {
+                    editor.putString("sound", "0");
+                } else if (sound.equals("0")) {
+                    editor.putString("sound", "1");
                 }
                 editor.apply();
-                sound = sharedPreferences.getString("sound","1");
-                if(sound.equalsIgnoreCase("1")) {
+                sound = sharedPreferences.getString("sound", "1");
+                if (sound.equalsIgnoreCase("1")) {
                     soundModeTxt.setText(getResources().getString(R.string.on));
-                }else {
+                } else {
                     soundModeTxt.setText(getResources().getString(R.string.off));
 
                 }
-                if(sound.equals("0")){
+                if (sound.equals("0")) {
                     soundIcon.setImageResource(R.drawable.ic_baseline_volume_off_24);
-                }else{
+                } else {
                     soundIcon.setImageResource(R.drawable.ic_baseline_volume_up_24);
                 }
             }
@@ -136,14 +136,14 @@ public class SettingActivity extends AppCompatActivity {
             }
         });
 
-        if(theme.equals("0")) {
+        if (theme.equals("0")) {
             SettingActivity.themeNameTxt.setText(getResources().getString(R.string.default_theme));
-        }else if(theme.equals("1")){
+        } else if (theme.equals("1")) {
             SettingActivity.themeNameTxt.setText(getResources().getString(R.string.theme_1));
 
-        }else if(theme.equals("2")){
+        } else if (theme.equals("2")) {
             SettingActivity.themeNameTxt.setText(getResources().getString(R.string.theme_2));
-        }else if(theme.equals("3")){
+        } else if (theme.equals("3")) {
             SettingActivity.themeNameTxt.setText(getResources().getString(R.string.theme_3));
         }
 
@@ -159,42 +159,42 @@ public class SettingActivity extends AppCompatActivity {
                 dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
             }
         });
-        String mode = sharedPreferences.getString("game_mode","0");
-         modeText = findViewById(R.id.game_mode_value);
-        if(mode.equals("0")){
+        String mode = sharedPreferences.getString("game_mode", "0");
+        modeText = findViewById(R.id.game_mode_value);
+        if (mode.equals("0")) {
             modeText.setText(getResources().getString(R.string.simple));
-        }else {
+        } else {
             modeText.setText(getResources().getString(R.string.timed));
         }
         gameModeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Utils.darkBlueBlink(gameModeBtn, getApplicationContext());
-                String mode = sharedPreferences.getString("game_mode","0");
+                String mode = sharedPreferences.getString("game_mode", "0");
                 SharedPreferences.Editor editor = sharedPreferences.edit();
-                if(mode.equals("0")){
-                    editor.putString("game_mode","1");
-                }else if(mode.equals("1")){
-                    editor.putString("game_mode","0");
+                if (mode.equals("0")) {
+                    editor.putString("game_mode", "1");
+                } else if (mode.equals("1")) {
+                    editor.putString("game_mode", "0");
 
                 }
                 editor.apply();
-                mode = sharedPreferences.getString("game_mode","0");
-                if(mode.equals("0")){
+                mode = sharedPreferences.getString("game_mode", "0");
+                if (mode.equals("0")) {
                     modeText.setText(getResources().getString(R.string.simple));
-                }else {
+                } else {
                     modeText.setText(getResources().getString(R.string.timed));
                 }
 
             }
         });
-         vibrationTxt = findViewById(R.id.vibration_value);
-        String vibrate = sharedPreferences.getString("vibrate","1");
+        vibrationTxt = findViewById(R.id.vibration_value);
+        String vibrate = sharedPreferences.getString("vibrate", "1");
         badIcon = findViewById(R.id.bad);
-        if(vibrate.equals("0")){
+        if (vibrate.equals("0")) {
             badIcon.setVisibility(View.VISIBLE);
             vibrationTxt.setText(getResources().getString(R.string.off));
-        }else{
+        } else {
             badIcon.setVisibility(View.GONE);
             vibrationTxt.setText(getResources().getString(R.string.on));
         }
@@ -203,20 +203,20 @@ public class SettingActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Utils.darkBlueBlink(vibrationBtn, getApplicationContext());
-                String vibrate = sharedPreferences.getString("vibrate","1");
+                String vibrate = sharedPreferences.getString("vibrate", "1");
                 SharedPreferences.Editor editor = sharedPreferences.edit();
-                if((vibrate.equals("1"))){
-                    editor.putString("vibrate","0");
-                }else if(vibrate.equals("0")){
-                    editor.putString("vibrate","1");
+                if ((vibrate.equals("1"))) {
+                    editor.putString("vibrate", "0");
+                } else if (vibrate.equals("0")) {
+                    editor.putString("vibrate", "1");
                 }
                 editor.apply();
-                vibrate = sharedPreferences.getString("vibrate","1");
-                if(vibrate.equals("0")){
+                vibrate = sharedPreferences.getString("vibrate", "1");
+                if (vibrate.equals("0")) {
                     ImageView badIcon = findViewById(R.id.bad);
                     badIcon.setVisibility(View.VISIBLE);
                     vibrationTxt.setText(getResources().getString(R.string.off));
-                }else{
+                } else {
                     ImageView badIcon = findViewById(R.id.bad);
                     badIcon.setVisibility(View.GONE);
                     vibrationTxt.setText(getResources().getString(R.string.on));
@@ -227,7 +227,7 @@ public class SettingActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Utils.darkBlueBlink(creditBtn, getApplicationContext());
-               CreditDialog dialog = new CreditDialog(SettingActivity.this);
+                CreditDialog dialog = new CreditDialog(SettingActivity.this);
                 dialog.show();
                 Window window = dialog.getWindow();
                 window.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
@@ -236,13 +236,13 @@ public class SettingActivity extends AppCompatActivity {
         });
 
         TextView versionTxt = findViewById(R.id.version);
-        String version="";
+        String version = "";
         try {
             PackageInfo pInfo = getPackageManager().getPackageInfo(getPackageName(), 0);
             version = pInfo.versionName;
         } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
         }
-        versionTxt.setText("v"+version);
+        versionTxt.setText("v" + version);
     }
 }

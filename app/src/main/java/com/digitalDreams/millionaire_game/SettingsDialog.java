@@ -19,8 +19,10 @@ class SettingsDialog extends Dialog {
     private Context context;
     public static TextView soundTxt,languageTxt,themeTxt,gameModeTxt,vibrationTxt;
     public static ImageView languageFlag;
+
     public static CardView rootView;
     public static CardView languageBtn,selectThemeBtn,soundBtn,gameModeBtn,vibrationBtn;
+
     public SettingsDialog(@NonNull Context context) {
         super(context);
         this.context = context;
