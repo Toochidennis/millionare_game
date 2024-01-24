@@ -264,12 +264,8 @@ public class GameActivity2 extends AppCompatActivity {
             Intent intent = new Intent(GameActivity2.this, ProgressActivity.class);
             intent.putExtra("number", p1);
             intent.putExtra("timer", "false");
-            if (Build.VERSION.SDK_INT > 20) {
-                ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(GameActivity2.this);
-                startActivity(intent, options.toBundle());
-            } else {
-                startActivity(intent);
-            }
+            ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(GameActivity2.this);
+            startActivity(intent, options.toBundle());
         });
 
         exitBtn.setOnClickListener(view -> {
@@ -403,6 +399,7 @@ public class GameActivity2 extends AppCompatActivity {
             if (js != null) {
                 String gid = js.optString("id");
                 String ty = js.getString("type");
+                Log.i("typeOf", ty);
                 Log.i("render2", js.optString("correct"));
                 Log.i("render2", String.valueOf(singleQuestion));
                 switch (ty) {
@@ -425,87 +422,6 @@ public class GameActivity2 extends AppCompatActivity {
 
     }
 
-
-    public void render2(String a, JSONArray b, JSONObject j, int d) throws JSONException {
-        LinearLayout lay = findViewById(R.id.displayExam);
-
-        try {
-            if (b.getJSONArray(0) == null) return;
-            JSONArray g = null;
-            try {
-                g = b.optJSONArray(Integer.parseInt(a));
-            } catch (NumberFormatException e) {
-                e.printStackTrace();
-            }
-            if (b == null || g == null) return;
-            if (g != null) {
-
-                for (int i = 0; i < g.length(); i++) {
-                    JSONObject js = g.getJSONObject(i);
-                    if (js != null) {
-                        String gid = js.optString("id");
-                        String ty = js.getString("type");
-                        switch (ty) {
-                            case "section":
-                                break;
-                            case "qp":
-                                break;
-                            case "qo":
-                                qo(lay, js, d);
-                                break;
-                            case "af":
-                                af(lay, js, false, d);
-                                break;
-
-                        }
-                        render2(gid, b, j, d);
-                    }
-
-                }
-            }
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-    }
-
-
-    public void render2(String a, JSONObject b, JSONObject j, int d) throws JSONException {
-        LinearLayout lay = findViewById(R.id.displayExam);
-
-
-        try {
-            if (b.getJSONArray(a) == null) return;
-            JSONArray g = b.getJSONArray(a);
-            if (b == null || g == null) return;
-            if (g != null) {
-                for (int i = 0; i < g.length(); i++) {
-
-                    JSONObject js = g.getJSONObject(i);
-                    if (js != null) {
-                        String gid = js.getString("id");
-                        String ty = js.getString("type");
-
-                        switch (ty) {
-                            case "section":
-                                break;
-                            case "qp":
-                                break;
-                            case "qo":
-                                qo(lay, js, d);
-                                break;
-                            case "af":
-                                af(lay, js, false, d);
-                                break;
-
-                        }
-                        render2(gid, b, j, d);
-                    }
-                }
-            }
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-    }
 
 
     public void takeTest() {
@@ -531,6 +447,7 @@ public class GameActivity2 extends AppCompatActivity {
 
     private void setTime() {
         h2 = new Handler();
+
         run = new Runnable() {
 
             @Override
