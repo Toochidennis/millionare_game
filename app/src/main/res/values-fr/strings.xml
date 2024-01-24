@@ -70,7 +70,7 @@
     <string name="take">Prendre</string>
     <string name="replay_level">Niveau de relecture</string>
     <string name="watch_a_video">Conservez votre score</string>
-    <string name="base_url">http://www.cbtportal.linkskool.com/api</string>
+    <string name="base_url">http://www.cbtportal.linkskool.com/api/1</string>
     <string name="hard_level">Niveau difficile</string>
     <string name="failure_text">Échouer ne signifie pas que vous êtes un échec</string>
     <string name="play_again"><u>Rejouer</u></string>

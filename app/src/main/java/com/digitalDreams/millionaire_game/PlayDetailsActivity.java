@@ -468,53 +468,53 @@ public class PlayDetailsActivity extends AppCompatActivity {
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     private void checkScore() {
-        SharedPreferences sharedPreferences = getSharedPreferences("settings", MODE_PRIVATE);
-        String highscore = sharedPreferences.getString("high_score", "0");
-        String username = sharedPreferences.getString("username", "");
-        String oldAmountWon = sharedPreferences.getString("amountWon", "");
-
-        String country = sharedPreferences.getString("country", "");
-        String country_flag = sharedPreferences.getString("country_flag", "");
-        //Log.i("flag",country_flag);
-
-        int h;
-
         try {
-            h = Integer.parseInt(Utils.removeExtra(highscore));
-        } catch (Exception e) {
-            h = Utils.highScore;
+            SharedPreferences sharedPreferences = getSharedPreferences("settings", MODE_PRIVATE);
+            String highscore = sharedPreferences.getString("high_score", "0");
+            String username = sharedPreferences.getString("username", "");
+            String oldAmountWon = sharedPreferences.getString("amountWon", "");
 
-        }
+            String country = sharedPreferences.getString("country", "");
+            String country_flag = sharedPreferences.getString("country_flag", "");
+            //Log.i("flag",country_flag);
 
-        String score = GameActivity2.amountWon;
-        //score = score.substring(1);
-        score = score.replace(",", "");
-        int s = Integer.parseInt(score);
+            int h;
 
+            try {
+                h = Integer.parseInt(Utils.removeExtra(highscore));
+            } catch (Exception e) {
+                h = Utils.highScore;
 
-        if (hasOldWinningAmount) {
+            }
 
-            String amountWon = GameActivity2.amountWon.replace("$", "").replace(",", "");
-            oldAmountWon = oldAmountWon.replace("$", "").replace(",", "");
-            s = Integer.parseInt(amountWon) + Integer.parseInt(oldAmountWon);
-
-        }
-
-
-        if (s > h) {
-            SharedPreferences.Editor editor = sharedPreferences.edit();
-            editor.putString("high_score", String.valueOf(s));
-            editor.apply();
+            String score = GameActivity2.amountWon;
+            //score = score.substring(1);
+            score = score.replace(",", "").replace("$", "");
+            int s = Integer.parseInt(score);
 
 
-        }
-        Map userDetails = new HashMap();
-        userDetails.put("username", username);
-        userDetails.put("country", country);
-        userDetails.put("country_flag", country_flag);
+            if (hasOldWinningAmount) {
+
+                String amountWon = GameActivity2.amountWon.replace("$", "").replace(",", "");
+                oldAmountWon = oldAmountWon.replace("$", "").replace(",", "");
+                s = Integer.parseInt(amountWon) + Integer.parseInt(oldAmountWon);
+
+            }
 
 
-        try {
+            if (s > h) {
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putString("high_score", String.valueOf(s));
+                editor.apply();
+
+
+            }
+            Map<String, String> userDetails = new HashMap<>();
+            userDetails.put("username", username);
+            userDetails.put("country", country);
+            userDetails.put("country_flag", country_flag);
+
+
             sendScoreToSever(String.valueOf(s), userDetails);
         } catch (Exception e) {
             e.printStackTrace();
@@ -524,11 +524,7 @@ public class PlayDetailsActivity extends AppCompatActivity {
     //@RequiresApi(api = Build.VERSION_CODES.M)
     private void sendScoreToSever(String score, Map<String, String> userDetails) {
         Log.i("ogabet3", String.valueOf(userDetails));
-        try {
-            /// initializeNotification();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+
         String url = getResources().getString(R.string.base_url) + "/post_score.php";
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url, response -> {
             try {
@@ -577,12 +573,7 @@ public class PlayDetailsActivity extends AppCompatActivity {
             }
 
 
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                error.printStackTrace();
-            }
-        }) {
+        }, Throwable::printStackTrace) {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 super.getParams();

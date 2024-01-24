@@ -67,7 +67,7 @@
     <string name="take">Llevar</string>
     <string name="replay_level">Nivel de repetición</string>
     <string name="watch_a_video">Conserva tu puntuación</string>
-    <string name="base_url">http://www.cbtportal.linkskool.com/api</string>
+    <string name="base_url">http://www.cbtportal.linkskool.com/api/1</string>
     <string name="hard_level">Siguiente nivel</string>
     <string name="failure_text">Fracasar no significa que seas un fracaso</string>
     <string name="play_again"><u>Juega de nuevo</u></string>
