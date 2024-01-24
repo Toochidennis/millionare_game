@@ -122,7 +122,7 @@ public class Dashboard extends AppCompatActivity {
             ///  newGameBtn.startAnimation(buttonClick);
             Utils.greenBlink(newGameBtn, getApplicationContext());
 
-            Intent intent = new Intent(Dashboard.this, GameActivity2.class);
+            Intent intent = new Intent(Dashboard.this, GameActivity3.class);
             startActivity(intent);
             finish();
         });

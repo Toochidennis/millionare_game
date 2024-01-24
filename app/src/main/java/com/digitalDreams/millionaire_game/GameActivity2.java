@@ -54,7 +54,6 @@ import android.view.animation.TranslateAnimation;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.PopupMenu;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -64,7 +63,6 @@ import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.FullScreenContentCallback;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
-import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -74,7 +72,6 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.security.PublicKey;
 import java.text.DateFormat;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
@@ -87,10 +84,6 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class GameActivity2 extends AppCompatActivity {
-
-    // public static MediaPlayer mMediaPlayer;
-    // public static MediaPlayer mSuccessPlayer;
-    //  public static MediaPlayer mFailurePlayer;
 
 
     static boolean active = false;
@@ -126,13 +119,13 @@ public class GameActivity2 extends AppCompatActivity {
     public static int ab = 0;
     public static int qPosition = -1;
     private String type;
-    public static int userScore, totalScore, lifeline = 3, level = 1;
-    TextView levelTxt, scoreTxt, lifelineTxt, progressTxt;
+
+    public static int level = 1;
+
     public static boolean continueGame = false;
     public static boolean isStartAtFresh = false;
     boolean continueSound;
 
-    int totalQuestionCount = 0;
     int failCount = 0;
     int progress = 0;
     public static Integer[] moneyArr = {};
@@ -143,8 +136,7 @@ public class GameActivity2 extends AppCompatActivity {
     boolean _2question = true;
     boolean askFriend = true;
     boolean vote = true;
-    boolean skip = true;
-    String[] answerDescriptionArr = {"I dont know. Choose", "Maybe it's ", "Don't really know, Go for "};
+    String[] answerDescriptionArr;
     float[] answerPercentages = {70, 80, 65};
     public static String amountWon = "0";
     public static boolean hasOldWinningAmount = false;
@@ -186,7 +178,7 @@ public class GameActivity2 extends AppCompatActivity {
             countDown();
         }
 
-        playStong();
+        playSong();
 
         try {
             DateFormat df = new SimpleDateFormat("EEE, d MMM, HH:mm", Locale.getDefault());
@@ -194,6 +186,8 @@ public class GameActivity2 extends AppCompatActivity {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+        answerDescriptionArr = new String[]{"I don't know. Choose", getResources().getString(R.string.maybe_its), "Don't really know, Go for "};
 
         setContentView(R.layout.activity_exam_game2);
         fromProgress = getIntent().getBooleanExtra("fromProgress", false);
@@ -215,7 +209,7 @@ public class GameActivity2 extends AppCompatActivity {
         AdManager.initRewardedVideo(this);
         //mRewardedVideoAd = AdManager.rewardedAd; //MobileAds.getRewardedVideoAdInstance(this);
         loadVideoAd();
-        loadInterstialAd();
+        loadInterstitialAd();
 
         //Log.i("hasOldWinningAmount", String.valueOf(hasOldWinningAmount));
 
@@ -283,17 +277,7 @@ public class GameActivity2 extends AppCompatActivity {
         });
 
 
-        Bundle bundle = null;
-
-        bundle = this.getIntent().getExtras();
-        //course = bundle.getString("course");
-
         if (savedInstanceState != null) {
-
-            // noOfCorrectAnswer = savedInstanceState.getInt("noOfCorrectAnswer", 0);
-            // number = savedInstanceState.getInt("number", 1);
-            Log.i("instantstate", String.valueOf(readNoOfCorrectAnswer()));
-
 
             noOfCorrectAnswer = readNoOfCorrectAnswer();
             LinearLayout parent = findViewById(R.id.displayExam);
@@ -303,7 +287,7 @@ public class GameActivity2 extends AppCompatActivity {
             //setAmountWon();
             readSavedData();
             noOfPagesPassed = noOfCorrectAnswer;
-            Log.i("instantstate", String.valueOf(noOfPagesPassed));
+            Log.i("instant state", String.valueOf(noOfPagesPassed));
 
             // next2(current, nextView);
             json = sharedPreferences.getString("saved_json", "");
@@ -312,9 +296,9 @@ public class GameActivity2 extends AppCompatActivity {
             try {
                 json = dbHelper.buildJson();
             } catch (Exception e) {
-                e.printStackTrace();//bundle.getString("Json");
+                e.printStackTrace();
             }
-            //from = bundle.getString("from");
+
 
             sharedPreferences.edit().putString("saved_json", json).apply();
         }
@@ -323,30 +307,9 @@ public class GameActivity2 extends AppCompatActivity {
         startDisplay(json);
 
 
-//        ImageView video_ad_Icon2 = current.findViewById(R.id.video_ad2);
-//        video_ad_Icon2.setVisibility(View.VISIBLE);
-////        video_ad_Icon2.setImageResource(R.drawable.videoicon);
-////        video_ad_Icon2.setColorFilter(R.color.green);
-////
-////        video_ad_Icon2.setScaleType(ImageView.ScaleType.CENTER_CROP);
-//        video_ad_Icon2.setImageResource(R.drawable.vicon2);
         cancel_button = findViewById(R.id.cancel_button);
         guid_layout = findViewById(R.id.guid_layout);
 
-        //////////GUIDE LAYOUT HIDE AND SHOW/////
-//        if(isFirstTime) {
-//            new Handler().postDelayed(new Runnable() {
-//                @Override
-//                public void run() {
-//                   // guid_layout.setVisibility(View.VISIBLE);
-//                    SharedPreferences.Editor editor = sharedPreferences.edit();
-//                            editor.putBoolean("isFirstTime",false);
-//                            editor.commit();
-//
-//                }
-//            }, 10000);
-//
-//        }
 
         cancel_button.setOnClickListener(view -> guid_layout.setVisibility(View.GONE));
 
@@ -358,7 +321,7 @@ public class GameActivity2 extends AppCompatActivity {
             JSONArray jsonArray = new JSONArray(result);
             for (int b = 0; b < jsonArray.length(); b++) {
                 JSONObject p = jsonArray.getJSONObject(b);
-                setUpDisplay(p, b);
+                setUpDisplay(p);
             }
             takeTest();
 
@@ -367,11 +330,12 @@ public class GameActivity2 extends AppCompatActivity {
         }
     }
 
-    private void setUpDisplay(JSONObject p, int a) throws JSONException {
-
-        int c = 1;
+    private void setUpDisplay(JSONObject p) throws JSONException {
         try {
-            JSONArray exm = p.getJSONArray("q");
+            // JSONArray exm = p.getJSONArray("q");
+            JSONObject exm = p.getJSONObject("q");
+            //render2("0", exm, p,c);
+            allQuestion = exm.getJSONArray("0");
             // render2("0", exm, p,c);
         } catch (JSONException e) {
             e.printStackTrace();
@@ -402,26 +366,13 @@ public class GameActivity2 extends AppCompatActivity {
                 Log.i("typeOf", ty);
                 Log.i("render2", js.optString("correct"));
                 Log.i("render2", String.valueOf(singleQuestion));
-                switch (ty) {
-                    case "section":
-                        break;
-                    case "qp":
-                        break;
-                    case "qo":
-                        qo(lay, js, index);
-                        break;
-                    case "af":
-                        af(lay, js, false, index);
-                        break;
-
-                }
-                // render2(gid, b, j,d);
+                qo(lay, js, index);
             }
         } catch (JSONException e) {
+            e.printStackTrace();
         }
 
     }
-
 
 
     public void takeTest() {
@@ -431,7 +382,10 @@ public class GameActivity2 extends AppCompatActivity {
         LinearLayout parent = findViewById(R.id.displayExam);
         current = parent.getChildAt(parent.indexOfChild(current) + 1);
 
-        current.setVisibility(View.VISIBLE);
+        if (current != null) {
+            current.setVisibility(View.VISIBLE);
+        }
+
         SharedPreferences sharedPreferences = getSharedPreferences("settings", Context.MODE_PRIVATE);
         String mode = sharedPreferences.getString("game_mode", "0");
 
@@ -446,21 +400,23 @@ public class GameActivity2 extends AppCompatActivity {
     }
 
     private void setTime() {
+
         h2 = new Handler();
 
         run = new Runnable() {
 
             @Override
             public void run() {
-                long millis = System.currentTimeMillis();
+               /* long millis = System.currentTimeMillis();
                 int seconds = (int) (millis / 1000);
                 int minutes = seconds / 60;
-                seconds = seconds % 60;
+                seconds = seconds % 60;*/
                 timing = timing + 1000;
 
                 h2.postDelayed(this, 1000);
             }
         };
+
         h2.postDelayed(run, 1000);
 
     }
@@ -531,7 +487,7 @@ public class GameActivity2 extends AppCompatActivity {
             p++;
 
 
-            //////////////FEDANIMATION/////
+            //////////////FaDeANIMATION/////
 
 
             fedInAnimation(_question, 1000);
@@ -674,18 +630,7 @@ public class GameActivity2 extends AppCompatActivity {
                     ImageView video_ad_Icon2 = a.findViewById(R.id.video_ad2);
 
                     AdManager.showInterstitial(GameActivity2.this);
-//                        if(hasRefreshed && fromProgress2){
-//                            showInterstitial();
-//                            hasRefreshed = false;
-//                            //fromProgress2 = false;
-//                            video_ad_Icon2.setVisibility(View.GONE);
-//                            // hideQuestion(q,ans.getText().toString());
-//                        }else{
-//
-//                            hasRefreshed = true;
-//                            //fromProgress2 = false;
-//
-//                        }
+
 
                     showInterstitial();
 
@@ -725,52 +670,48 @@ public class GameActivity2 extends AppCompatActivity {
                         r.setBackground(gd);
                         final RelativeLayout[] relativeLayout = {(RelativeLayout) q.getChildAt(finalC)};
                         final Drawable[] vectorDrawable = {gd};
-                        new Handler().postDelayed(new Runnable() {
-                            @Override
-                            public void run() {
-                                try {
-                                    for (int c1 = 0; c1 < q.getChildCount(); c1++) {
+                        new Handler().postDelayed(() -> {
+                            try {
+                                for (int c1 = 0; c1 < q.getChildCount(); c1++) {
 
 
-                                        TextView k1 = q.getChildAt(c1).findViewById(R.id.opt);
+                                    TextView k1 = q.getChildAt(c1).findViewById(R.id.opt);
 
 
-                                        if (k1.getText().toString().trim().equals(ans.getText().toString().trim())) {
-                                            relativeLayout[0] = (RelativeLayout) q.getChildAt(c1);
-                                            vectorDrawable[0] = relativeLayout[0].getBackground().mutate();
+                                    if (k1.getText().toString().trim().equals(ans.getText().toString().trim())) {
+                                        relativeLayout[0] = (RelativeLayout) q.getChildAt(c1);
+                                        vectorDrawable[0] = relativeLayout[0].getBackground().mutate();
 
-                                            if (number_of_failure >= 1) {
-                                                vectorDrawable[0].setColorFilter(ContextCompat.getColor(GameActivity2.this, R.color.green), PorterDuff.Mode.SRC_IN);
-                                                relativeLayout[0].setBackground(vectorDrawable[0]);
-                                            }
-
+                                        if (number_of_failure >= 1) {
+                                            vectorDrawable[0].setColorFilter(ContextCompat.getColor(GameActivity2.this, R.color.green), PorterDuff.Mode.SRC_IN);
+                                            relativeLayout[0].setBackground(vectorDrawable[0]);
                                         }
 
                                     }
-                                    if (!k.getText().toString().trim().equals(ans.getText().toString().trim())) {
-                                        VectorDrawable gd = (VectorDrawable) r.getBackground().mutate();
-                                        gd.setColorFilter(ContextCompat.getColor(GameActivity2.this, R.color.redH), PorterDuff.Mode.SRC_IN);
-                                        r.setBackground(gd);
-                                        failCount++;
-                                    }
-                                    int questionId = 0;
-                                    try {
-                                        questionId = b.getInt("id");
-                                        // Log.i("checking", String.valueOf(questionId));
-                                    } catch (JSONException e) {
-                                        e.printStackTrace();
-                                    }
-                                    int currentProgress = noOfPagesPassed + 2;
-                                    Log.i("renderpp", String.valueOf(noOfPagesPassed));
-                                    checkAnswer(k.getText().toString(), ans.getText().toString(), currentProgress, vectorDrawable[0], relativeLayout[0], questionId);
 
-
-                                } catch (Exception e) {
+                                }
+                                if (!k.getText().toString().trim().equals(ans.getText().toString().trim())) {
+                                    VectorDrawable gd1 = (VectorDrawable) r.getBackground().mutate();
+                                    gd1.setColorFilter(ContextCompat.getColor(GameActivity2.this, R.color.redH), PorterDuff.Mode.SRC_IN);
+                                    r.setBackground(gd1);
+                                    failCount++;
+                                }
+                                int questionId = 0;
+                                try {
+                                    questionId = b.getInt("id");
+                                    // Log.i("checking", String.valueOf(questionId));
+                                } catch (JSONException e) {
                                     e.printStackTrace();
                                 }
+                                int currentProgress = noOfPagesPassed + 2;
+                                Log.i("renderpp", String.valueOf(noOfPagesPassed));
+                                checkAnswer(k.getText().toString(), ans.getText().toString(), currentProgress, vectorDrawable[0], relativeLayout[0], questionId);
+
+
+                            } catch (Exception e) {
+                                e.printStackTrace();
                             }
                         }, 1000);
-
 
                     });
 
@@ -895,45 +836,6 @@ public class GameActivity2 extends AppCompatActivity {
         qPosition = ab;
     }
 
-    public void next2(View current_old, View nextView) {
-        checkNext = true;
-        resetQuestion = false;
-        LinearLayout parent = findViewById(R.id.displayExam);
-        int i = parent.indexOfChild(current_old);
-        try {
-            setQuestion(noOfPagesPassed);
-        } catch (Exception e) {
-        }
-
-
-        RelativeLayout r = findViewById(R.id.nav);
-
-
-        ImageButton f = findViewById(R.id.fwd);
-        ImageButton p = findViewById(R.id.prev);
-        nextView = parent.getChildAt(i);
-
-        // updateLifelines(nextView);
-/*        if(parent.getChildAt(i+2)==null)f.setVisibility(View.GONE);
-        if(nextView !=null) {
-            current_old.setVisibility(View.GONE);
-            current = nextView;
-            nextView.setVisibility(View.VISIBLE);
-            if(nextView.getTag()!=null) {
-                if (nextView.getTag().equals("intro")) {
-                    r.setVisibility(View.GONE);
-                } else {
-                    r.setVisibility(View.VISIBLE);
-                }
-            }
-        }*/
-        p.setVisibility(View.GONE);
-        f.setVisibility(View.GONE);
-        r.setVisibility(View.GONE);
-        ab = ab + 1;
-        qPosition = ab;
-    }
-
 
     void startTimer() {
         cTimer = new CountDownTimer(time, 1000) {
@@ -1018,7 +920,6 @@ public class GameActivity2 extends AppCompatActivity {
                 q.addView(vi);
 
                 //card.startAnimation(inFromLeftAnimation(duration,j*startTimev));
-
 
             }
         } catch (NumberFormatException | JSONException e) {//finish();
@@ -1257,13 +1158,9 @@ public class GameActivity2 extends AppCompatActivity {
                         Intent intent = new Intent(GameActivity2.this, ProgressActivity.class);
                         intent.putExtra("number", number1);
                         intent.putExtra("timer", "true");
-                        if (Build.VERSION.SDK_INT > 20) {
-                            ActivityOptions options =
-                                    ActivityOptions.makeSceneTransitionAnimation(GameActivity2.this);
-                            startActivity(intent);
-                        } else {
-                            startActivity(intent);
-                        }
+                        ActivityOptions options =
+                                ActivityOptions.makeSceneTransitionAnimation(GameActivity2.this);
+                        startActivity(intent);
                         wonder();
                     }
                 }, 1000);
@@ -1349,7 +1246,6 @@ public class GameActivity2 extends AppCompatActivity {
                         assert readMore != null;
                         readMore.setOnClickListener(view1 -> Utils.navigateToWebview(String.valueOf(questionID), GameActivity2.this));
 //
-
                     } catch (Exception e) {
                         e.printStackTrace();
 
@@ -1478,7 +1374,7 @@ public class GameActivity2 extends AppCompatActivity {
         super.onResume();
 
         try {
-            loadInterstialAd();
+            loadInterstitialAd();
             loadVideoAd();
 
 
@@ -1585,7 +1481,7 @@ public class GameActivity2 extends AppCompatActivity {
                 askFriend = true;
                 vote = true;
                 startDisplay(json);
-                playStong();
+                playSong();
                 playBackgroundSound();
                 number_of_failure = 0;
                 noOfCorrectAnswer = 0;
@@ -1779,7 +1675,6 @@ public class GameActivity2 extends AppCompatActivity {
             LinearLayout[] l1 = {progressATotal, progressCTotal, progressDtotal};
             TextView[] t = {progressTextA, progressTextC, progressTextD};
             setUpNonAnswerBars(progressWeigth, l, l1, t);
-
         } else if (option.equalsIgnoreCase("C")) {
             float progressWeigth = answerPercentages[new Random().nextInt(answerPercentages.length)];
             float remainingWeigth = 100 - progressWeigth;
@@ -1864,13 +1759,11 @@ public class GameActivity2 extends AppCompatActivity {
             for (int c = 0; c < q.getChildCount(); c++) {
                 final RelativeLayout r = (RelativeLayout) q.getChildAt(c);
                 r.setClickable(false);
-                Log.i("Cliiiii", "Cliiiii22222222222" + String.valueOf(c));
             }
         }
     }
 
     private void enableOptions(LinearLayout q) {
-        Log.i("Cliiiii", "Cliiiii");
         for (int c = 0; c < q.getChildCount(); c++) {
 
             final RelativeLayout r = (RelativeLayout) q.getChildAt(c);
@@ -1888,12 +1781,10 @@ public class GameActivity2 extends AppCompatActivity {
             r.setVisibility(View.VISIBLE);
             r.setActivated(true);
             r.setClickable(true);
-            Log.i("Cliiiii", "Cliiiii" + String.valueOf(c));
         }
     }
 
     private void hideOptions(LinearLayout q) {
-        Log.i("Cliiiii", "Cliiiii");
         for (int c = 0; c < q.getChildCount(); c++) {
 
             final RelativeLayout r = (RelativeLayout) q.getChildAt(c);
@@ -1909,12 +1800,11 @@ public class GameActivity2 extends AppCompatActivity {
             // r.setVisibility(View.GONE);
 //            r.setActivated(true);
 //            r.setClickable(true);
-//            Log.i("Cliiiii","Cliiiii"+String.valueOf(c));
+//
         }
     }
 
     private void showOptions2(LinearLayout q) {
-        Log.i("Cliiiii", "Cliiiii");
         for (int c = 0; c < q.getChildCount(); c++) {
 
             final RelativeLayout r = (RelativeLayout) q.getChildAt(c);
@@ -1937,7 +1827,7 @@ public class GameActivity2 extends AppCompatActivity {
             r.setAnimation(animation);
 //            r.setActivated(true);
 //            r.setClickable(true);
-//            Log.i("Cliiiii","Cliiiii"+String.valueOf(c));
+//
         }
     }
 
@@ -2058,24 +1948,22 @@ public class GameActivity2 extends AppCompatActivity {
                                 bottomSheetDialog.dismiss();
 
                             });
-                            bottomSheetDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
-                                @Override
-                                public void onDismiss(DialogInterface dialogInterface) {
+
+                            bottomSheetDialog.setOnDismissListener(dialogInterface -> {
 
 
-                                    bottomSheetDialog.dismiss();
+                                bottomSheetDialog.dismiss();
 
 //
-                                    if (CountDownActivity.mMediaPlayer != null) {
-                                        CountDownActivity.mMediaPlayer.pause();
-                                    }
-
-
-                                    Intent intent = new Intent(GameActivity2.this, FailureActivity.class);
-                                    startActivity(intent);
-
-
+                                if (CountDownActivity.mMediaPlayer != null) {
+                                    CountDownActivity.mMediaPlayer.pause();
                                 }
+
+
+                                Intent intent = new Intent(GameActivity2.this, FailureActivity.class);
+                                startActivity(intent);
+
+
                             });
 
                         });
@@ -2097,6 +1985,7 @@ public class GameActivity2 extends AppCompatActivity {
     private void displayOrHideBar(String option1, String option2) {
         int position1 = 0;
         int position2 = 0;
+
         if (option1 != null && option2 != null) {
             switch (option1.trim().toLowerCase()) {
                 case "a":
@@ -2345,7 +2234,7 @@ public class GameActivity2 extends AppCompatActivity {
     }
 
 
-    private void loadInterstialAd() {
+    private void loadInterstitialAd() {
 
 //        interstitialAd = new InterstitialAd(this) ;
 //        interstitialAd.setAdUnitId (getResources().getString(R.string.interstitial_adunit) ) ;
@@ -2356,24 +2245,10 @@ public class GameActivity2 extends AppCompatActivity {
 
         AdManager.initInterstitialAd(GameActivity2.this);
 
-
     }
 
 
     private void showInterstitial() {
-//        Log.i("checkInt",String.valueOf(interstitialAd.isLoaded()));
-//        if (interstitialAd.isLoaded()) {
-//
-//            interstitialAd.show();
-//        }else{
-//            interstitialAd.setAdListener(new AdListener() {
-//                public void onAdLoaded() {
-//                    loadInterstialAd();
-//                }
-//            });
-//        }
-
-
         AdManager.initInterstitialAd(GameActivity2.this);
     }
 
@@ -2392,7 +2267,6 @@ public class GameActivity2 extends AppCompatActivity {
         set.setDuration(1000);
         set.setStartOffset(100);
         view.startAnimation(set);
-
 
     }
 
@@ -2444,7 +2318,7 @@ public class GameActivity2 extends AppCompatActivity {
     protected void onStart() {
         active = true;
         loadVideoAd();
-        loadInterstialAd();
+        loadInterstitialAd();
         super.onStart();
     }
 
@@ -2539,6 +2413,7 @@ public class GameActivity2 extends AppCompatActivity {
             e.printStackTrace();
 
         }
+
         return 3;
     }
 
@@ -2548,9 +2423,8 @@ public class GameActivity2 extends AppCompatActivity {
         active = false;
     }
 
-    public void playStong() {
+    public void playSong() {
         try {
-
             CountDownActivity.mMediaPlayer = MediaPlayer.create(GameActivity2.this, R.raw.background_sound);
             CountDownActivity.mFailurePlayer = MediaPlayer.create(GameActivity2.this, R.raw.failure_sound2);
             CountDownActivity.mSuccessPlayer = MediaPlayer.create(GameActivity2.this, R.raw.success_sound);
