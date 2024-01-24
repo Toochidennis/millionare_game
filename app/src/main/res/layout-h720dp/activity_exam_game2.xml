@@ -1,116 +1,110 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rootview"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:id="@+id/rootview"
+    android:orientation="vertical">
 
-   >
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        >
+        android:layout_height="wrap_content">
+
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            >
+            android:layout_height="wrap_content">
 
-    <RelativeLayout
-        android:id="@+id/c1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:elevation="1dp"
-        android:background="@android:color/transparent"
-        >
-        <RelativeLayout
-            android:id="@+id/exitBtn"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
-            android:orientation="vertical">
-
-            <ImageView
-                android:layout_width="wrap_content"
+            <RelativeLayout
+                android:id="@+id/c1"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:src="@drawable/hexagon"
-                app:tint="@color/basic_color" />
+                android:layout_marginTop="20dp"
+                android:background="@android:color/transparent"
+                android:elevation="1dp">
 
-            <ImageView
-                android:layout_width="32dp"
-                android:layout_height="32dp"
-                android:layout_centerInParent="true"
-                android:src="@drawable/ic_baseline_close_24"
-                app:tint="@color/white" />
+                <RelativeLayout
+                    android:id="@+id/exitBtn"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:orientation="vertical">
 
-        </RelativeLayout>
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/hexagon"
+                        app:tint="@color/basic_color" />
 
-        <RelativeLayout
-            android:id="@+id/timer_container"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            >
+                    <ImageView
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:layout_centerInParent="true"
+                        android:src="@drawable/ic_baseline_close_24"
+                        app:tint="@color/white" />
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:src="@drawable/hexagon"
-                app:tint="@color/orange" />
+                </RelativeLayout>
 
-            <TextView
-                android:id="@+id/time"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:fontFamily="@font/montserrat"
-                android:text="60"
-                android:textColor="@color/white"
-                android:textSize="16sp"
-                android:textStyle="bold" />
+                <RelativeLayout
+                    android:id="@+id/timer_container"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true">
 
-        </RelativeLayout>
-        <RelativeLayout
-            android:id="@+id/check"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            />
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:src="@drawable/hexagon"
+                        app:tint="@color/orange" />
 
+                    <TextView
+                        android:id="@+id/time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:fontFamily="@font/montserrat"
+                        android:text="60"
+                        android:textColor="@color/white"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
 
-        <RelativeLayout
-            android:id="@+id/progressBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:orientation="vertical">
+                </RelativeLayout>
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:src="@drawable/hexagon"
-                app:tint="@color/basic_color" />
-
-            <TextView
-                android:id="@+id/amount_won"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:fontFamily="@font/montserrat"
-                android:text="$500"
-                android:textColor="@color/white"
-                android:textSize="14sp"
-                android:textStyle="bold" />
-
-        </RelativeLayout>
+                <RelativeLayout
+                    android:id="@+id/check"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
 
 
-    </RelativeLayout>
+                <RelativeLayout
+                    android:id="@+id/progressBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:src="@drawable/hexagon"
+                        app:tint="@color/basic_color" />
+
+                    <TextView
+                        android:id="@+id/amount_won"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:fontFamily="@font/montserrat"
+                        android:text="$500"
+                        android:textColor="@color/white"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+
+                </RelativeLayout>
+
+            </RelativeLayout>
 
 
             <LinearLayout
@@ -127,7 +121,7 @@
                     android:layout_marginRight="8dp"
                     android:layout_marginBottom="200dp"
                     android:elevation="10dp"
-                    android:orientation="vertical"/>
+                    android:orientation="vertical" />
 
             </LinearLayout>
 
@@ -135,34 +129,34 @@
                 android:id="@+id/nav"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="15dp"
+                android:layout_alignParentBottom="true"
                 android:layout_marginLeft="15dp"
                 android:layout_marginRight="15dp"
-                android:layout_alignParentBottom="true"
-                android:visibility="gone"
-                >
+                android:layout_marginBottom="15dp"
+                android:visibility="gone">
 
                 <ImageButton
                     android:id="@+id/prev"
                     android:layout_width="35dp"
                     android:layout_height="35dp"
-                    android:layout_centerVertical="true"
                     android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
                     android:onClick="back"
-                    android:visibility="gone"/>
+                    android:visibility="gone" />
 
                 <RelativeLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@android:color/transparent"
-                    android:layout_centerHorizontal="true">
+                    android:layout_centerHorizontal="true"
+                    android:background="@android:color/transparent">
+
                     <Button
                         android:id="@+id/myclick"
                         android:layout_width="wrap_content"
                         android:layout_height="50dp"
-                        android:text="Submit"
                         android:onClick="check"
                         android:padding="10dp"
+                        android:text="Submit"
                         android:textAllCaps="false"
 
                         />
@@ -174,9 +168,9 @@
                     android:id="@+id/fwd"
                     android:layout_width="35dp"
                     android:layout_height="35dp"
-                    android:layout_centerVertical="true"
                     android:layout_alignParentRight="true"
-                    android:onClick="next"/>
+                    android:layout_centerVertical="true"
+                    android:onClick="next" />
 
             </RelativeLayout>
 
@@ -189,15 +183,15 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         ads:adSize="FULL_BANNER"
-        ads:adUnitId="@string/banner_adunit"/>
+        ads:adUnitId="@string/banner_adunit" />
 
     <LinearLayout
-        android:visibility="gone"
+        android:id="@+id/guid_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#f0000000"
-        android:id="@+id/guid_layout"
         android:orientation="vertical"
+        android:visibility="gone"
 
 
         >
@@ -207,24 +201,25 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
 
-
             >
+
             <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
-                android:layout_marginLeft="40dp"
                 android:layout_centerInParent="true"
-                android:textStyle="bold"
-                android:textSize="30dp"
+                android:layout_marginLeft="40dp"
+                android:text="GUIDE"
                 android:textColor="@color/white"
-                android:text="GUIDE"/>
-            <RelativeLayout
-                android:layout_alignParentRight="true"
+                android:textSize="30dp"
+                android:textStyle="bold" />
 
+            <RelativeLayout
                 android:id="@+id/cancel_button"
+
                 android:layout_width="wrap_content"
                 android:layout_height="60dp"
+                android:layout_alignParentRight="true"
                 android:layout_margin="10dp"
 
                 android:layout_weight="1">
@@ -248,13 +243,12 @@
         </RelativeLayout>
 
         <LinearLayout
-            android:gravity="center_horizontal"
-            android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="fill_parent"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
 
-            android:paddingBottom="0dp"
-            >
+            android:paddingBottom="0dp">
 
 
             <LinearLayout
@@ -275,7 +269,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="40dp"
-
 
 
                     >
@@ -309,11 +302,11 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginLeft="-15dp"
                         android:layout_marginTop="10dp"
                         android:layout_toRightOf="@id/arrow1"
                         android:text="Minus two (-2)"
                         android:textColor="@color/white"
-                        android:layout_marginLeft="-15dp"
 
                         android:textStyle="bold" />
 
@@ -396,8 +389,6 @@
                         android:layout_marginEnd="10dp"
                         android:layout_marginBottom="10dp"
                         android:layout_weight="1">
-
-
 
 
                         <ImageView
@@ -543,12 +534,11 @@
                             app:tint="@color/white" />
 
 
-
-
                     </RelativeLayout>
 
 
                 </LinearLayout>
+
                 <RelativeLayout
 
 
@@ -667,13 +657,7 @@
         </LinearLayout>
 
 
-
-
-
-
-
     </LinearLayout>
-
 
 
 </RelativeLayout>
