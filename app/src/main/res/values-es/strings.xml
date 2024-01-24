@@ -131,4 +131,5 @@
     <string name="wrong_answers">respuestas incorrectas</string>
     <string name="session_score">Puntuación de la sesión</string>
     <string name="select_a_language">Selecciona un idioma</string>
+    <string name="_2">-2</string>
 </resources>
