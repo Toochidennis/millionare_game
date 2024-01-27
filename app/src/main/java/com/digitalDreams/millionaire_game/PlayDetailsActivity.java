@@ -46,6 +46,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.digitalDreams.millionaire_game.alpha.activity.GameActivity3;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 
@@ -62,6 +63,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.text.DecimalFormat;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 
@@ -121,7 +123,7 @@ public class PlayDetailsActivity extends AppCompatActivity {
 
         newGameBtn.setOnClickListener(view -> {
             Utils.greenBlink(newGameBtn, getApplicationContext());
-            Intent intent = new Intent(PlayDetailsActivity.this, GameActivity2.class);
+            Intent intent = new Intent(PlayDetailsActivity.this, GameActivity3.class);
             startActivity(intent);
             finish();
 
@@ -132,6 +134,9 @@ public class PlayDetailsActivity extends AppCompatActivity {
         SharedPreferences sharedPreferences1 = getSharedPreferences("settings", MODE_PRIVATE);
         String username = sharedPreferences1.getString("username", "");
         String oldAmountWon = sharedPreferences1.getString("amountWon", "");
+        hasOldWinningAmount = sharedPreferences1.getBoolean("hasOldWinningAmount", false);
+        int noOfAnsweredQuestion = sharedPreferences1.getInt("noOfAnsweredQuestion", 0);
+        int nofCorrectQuestions = sharedPreferences1.getInt("noOfCorrect", 0);
 
 
         dbHelper = new DBHelper(this);
@@ -141,6 +146,7 @@ public class PlayDetailsActivity extends AppCompatActivity {
         AdsFromExitGameDialog = getIntent().getBooleanExtra("AdsFromExitGameDialog", false);
         wonTxt = findViewById(R.id.wontxt);
         usernameField = findViewById(R.id.username);
+
         if (username.length() > 1) {
             usernameField.setText(username.substring(0, 1).toUpperCase() + username.substring(1, username.length()));
         } else {
@@ -156,15 +162,8 @@ public class PlayDetailsActivity extends AppCompatActivity {
         try {
             //  boolean hasOldWinningAmount = getIntent().getBooleanExtra("hasOldWinningAmount",false);
             if (hasOldWinningAmount) {
-
-                String amountWon = GameActivity2.amountWon.replace("$", "").replace(",", "");
-                oldAmountWon = oldAmountWon.replace("$", "").replace(",", "");
-                int newAmount = Integer.parseInt(amountWon) + Integer.parseInt(oldAmountWon);
-
-                DecimalFormat formatter = new DecimalFormat("#,###,###");
-                String formatted_newAmount = formatter.format(newAmount);
-                amountWonTxt.setText("$" + formatted_newAmount);
-
+                String formattedAmount = String.format(Locale.getDefault(), "$%s", currencyFormat(oldAmountWon));
+                amountWonTxt.setText(formattedAmount);
             } else {
                 amountWonTxt.setText(Utils.addCommaAndDollarSign(Integer.parseInt(GameActivity2.amountWon)));
             }
@@ -175,15 +174,15 @@ public class PlayDetailsActivity extends AppCompatActivity {
 
         TextView noOfQuestionsAnsweredText = findViewById(R.id.no_question_answered);
         String questionsAnsweredText;
-        if (GameActivity2.noOfQuestionAnswered != 0) {
-            questionsAnsweredText = GameActivity2.noOfQuestionAnswered + " " + getResources().getString(R.string.questions_answered);
+        if (noOfAnsweredQuestion != 0) {
+            questionsAnsweredText = noOfAnsweredQuestion + " " + getResources().getString(R.string.questions_answered);
             noOfQuestionsAnsweredText.setText(questionsAnsweredText);
         } else {
-            questionsAnsweredText = GameActivity2.noOfQuestionAnswered + " " + getResources().getString(R.string.question_answered);
+            questionsAnsweredText = noOfAnsweredQuestion + " " + getResources().getString(R.string.question_answered);
             noOfQuestionsAnsweredText.setText(questionsAnsweredText);
         }
         TextView accuracyTextView = findViewById(R.id.accuracy);
-        float accuracy = (float) GameActivity2.noOfCorrectAnswer / (float) GameActivity2.noOfQuestionAnswered;
+        float accuracy = (float) nofCorrectQuestions / (float) noOfAnsweredQuestion;
 
         accuracy = accuracy * 100;
 

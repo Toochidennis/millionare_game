@@ -1,22 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rootview"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".WinnersActivity"
-    android:id="@+id/rootview"
     android:orientation="vertical"
+    tools:context=".WinnersActivity"
 
 
     >
-
-
-
-
-
-
 
 
     <RelativeLayout
@@ -54,17 +47,17 @@
             android:textStyle="bold" />
 
         <TextView
-            android:gravity="center"
             android:id="@+id/stage"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@id/congrats"
+            android:layout_gravity="center"
             android:layout_marginTop="0dp"
             android:fontFamily="@font/arimo"
+            android:gravity="center"
             android:text="@string/next_level"
             android:textColor="@color/white"
             android:textSize="18sp"
-            android:layout_gravity="center"
-            android:layout_below="@id/congrats"
             android:textStyle="bold" />
 
         <RelativeLayout
@@ -89,7 +82,6 @@
                 app:tint="@color/white" />
 
 
-
             <ImageView
                 android:id="@+id/king"
 
@@ -102,10 +94,7 @@
                 android:background="@drawable/money_bag" />
 
 
-
-
         </RelativeLayout>
-
 
 
         <LinearLayout
@@ -170,9 +159,6 @@
             </LinearLayout>
 
 
-
-
-
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -230,157 +216,150 @@
         android:id="@+id/button_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-      android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp"
         android:layout_alignParentBottom="true"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
         android:orientation="vertical"
 
         >
 
-       <RelativeLayout
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content">
-           <RelativeLayout
-               android:layout_width="match_parent"
-               android:layout_height="wrap_content"
-               android:id="@+id/btn_forAnim"
-               android:layout_marginTop="30dp"
-               android:layout_marginBottom="35dp"
-               android:layout_marginLeft="30dp"
-               android:layout_marginRight="30dp"
-               android:background="@drawable/playbtn_bg"
-               >
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
 
-           </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/btn_forAnim"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginBottom="35dp"
+                android:background="@drawable/playbtn_bg">
+
+            </RelativeLayout>
 
 
-           <RelativeLayout
-               android:id="@+id/new_game"
-               android:layout_width="match_parent"
-               android:layout_height="wrap_content"
-               android:layout_marginLeft="30dp"
-               android:layout_marginTop="30dp"
-               android:layout_marginRight="30dp"
-               android:layout_marginBottom="30dp"
-               android:background="@drawable/playbtn_bg">
+            <RelativeLayout
+                android:id="@+id/new_game"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginBottom="30dp"
+                android:background="@drawable/playbtn_bg">
 
-               <LinearLayout
-                   android:layout_width="wrap_content"
-                   android:layout_height="wrap_content"
-                   android:layout_centerInParent="true"
-                   android:orientation="horizontal">
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:orientation="horizontal">
 
-                   <ImageView
-                       android:layout_width="70dp"
-                       android:layout_height="70dp"
-                       android:layout_gravity="center_vertical"
-                       android:layout_marginLeft="10dp"
-                       android:src="@drawable/ic_sports_esports_black_48dp"
-                       app:tint="@color/white" />
+                    <ImageView
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="10dp"
+                        android:src="@drawable/ic_sports_esports_black_48dp"
+                        app:tint="@color/white" />
 
-                   <RelativeLayout
-                       android:layout_width="wrap_content"
-                       android:layout_height="wrap_content"
-                       android:layout_gravity="center_vertical">
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical">
 
-                       <LinearLayout
-                           android:layout_width="wrap_content"
-                           android:layout_height="wrap_content"
-                           android:layout_gravity="center_vertical"
-                           android:layout_marginLeft="30dp"
-                           android:orientation="vertical">
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginStart="30dp"
+                            android:orientation="vertical">
 
-                           <TextView
-                               android:id="@+id/play_text1"
-                               android:layout_width="wrap_content"
-                               android:layout_height="wrap_content"
-                               android:layout_centerInParent="true"
-                               android:elevation="5dp"
-                               android:shadowColor="@color/black"
-                               android:text="@string/play"
-                               android:textColor="@color/black"
-                               android:textSize="30sp"
-                               android:textStyle="bold" />
+                            <TextView
+                                android:id="@+id/play_text1"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:elevation="5dp"
+                                android:shadowColor="@color/black"
+                                android:text="@string/play"
+                                android:textColor="@color/black"
+                                android:textSize="30sp"
+                                android:textStyle="bold" />
 
-                       </LinearLayout>
+                        </LinearLayout>
 
-                       <LinearLayout
-                           android:layout_width="wrap_content"
-                           android:layout_height="wrap_content"
-                           android:layout_gravity="center_vertical"
-                           android:layout_marginLeft="30dp"
-                           android:layout_marginTop="-2dp"
-                           android:layout_marginRight="40dp"
-                           android:orientation="vertical">
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginStart="30dp"
+                            android:layout_marginTop="-2dp"
+                            android:layout_marginEnd="40dp"
+                            android:orientation="vertical">
 
-                           <TextView
-                               android:id="@+id/play_text"
-                               android:layout_width="wrap_content"
-                               android:layout_height="match_parent"
-                               android:layout_centerInParent="true"
-                               android:elevation="5dp"
-                               android:shadowColor="@color/black"
-                               android:text="@string/play"
-                               android:textColor="@color/white"
-                               android:textSize="30sp"
-                               android:textStyle="bold" />
+                            <TextView
+                                android:id="@+id/play_text"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:elevation="5dp"
+                                android:shadowColor="@color/black"
+                                android:text="@string/play"
+                                android:textColor="@color/white"
+                                android:textSize="30sp"
+                                android:textStyle="bold" />
 
-                           <TextView
-                               android:id="@+id/new_game_text"
-                               android:layout_width="wrap_content"
-                               android:layout_height="wrap_content"
-                               android:text="@string/hard_level"
-                               android:textColor="@color/white"
-                               android:textSize="16sp"
-                               android:textStyle="bold" />
-                       </LinearLayout>
+                            <TextView
+                                android:id="@+id/new_game_text"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/hard_level"
+                                android:textColor="@color/white"
+                                android:textSize="16sp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
 
-                   </RelativeLayout>
+                    </RelativeLayout>
 
-               </LinearLayout>
-           </RelativeLayout>
-       </RelativeLayout>
+                </LinearLayout>
+            </RelativeLayout>
+        </RelativeLayout>
 
         <LinearLayout
             android:id="@+id/share_layout"
             android:layout_width="match_parent"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="20dp"
             android:layout_height="50dp"
-            android:layout_marginLeft="70dp"
-            android:layout_marginRight="70dp"
-            android:gravity="center"
             android:layout_gravity="center"
-            android:orientation="horizontal"
-            android:background="@drawable/hex_blue">
+            android:layout_marginLeft="70dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="70dp"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/hex_blue"
+            android:gravity="center"
+            android:orientation="horizontal">
+
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="center"
                 android:layout_gravity="center"
-                android:layout_marginRight="10dp"
-                android:src="@drawable/ic_baseline_share_24"/>
+                android:layout_marginEnd="10dp"
+                android:gravity="center"
+                android:src="@drawable/ic_baseline_share_24" />
 
 
             <TextView
-                android:layout_gravity="center"
-                android:gravity="center"
-                android:fontFamily="@font/fjalla_one"
-                android:textColor="@color/white"
-
-                android:textSize="18dp"
-
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-
-                android:text="Share"/>
+                android:layout_gravity="center"
+                android:fontFamily="@font/fjalla_one"
+                android:gravity="center"
+                android:text="@string/share"
+                android:textColor="@color/white"
+                android:textSize="18sp" />
         </LinearLayout>
 
 
-
-
     </LinearLayout>
-
 
 
 </RelativeLayout>

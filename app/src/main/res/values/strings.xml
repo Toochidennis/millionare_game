@@ -132,4 +132,12 @@
     <string name="session_score">Session Score</string>
     <string name="select_a_language">Select a Language</string>
     <string name="_2">-2</string>
+    <string name="no_internet">Oop! something went wrong. Please check your internet connection and try again.</string>
+    <string name="i_don_t_know">I don\'t know.</string>
+    <string name="you_could_try">You could try</string>
+    <string name="i_guess_it_s">I guess it\'s</string>
+    <string name="a">A</string>
+    <string name="b">B</string>
+    <string name="c">C</string>
+    <string name="d">D</string>
 </resources>

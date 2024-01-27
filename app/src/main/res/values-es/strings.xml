@@ -132,4 +132,12 @@
     <string name="session_score">Puntuación de la sesión</string>
     <string name="select_a_language">Selecciona un idioma</string>
     <string name="_2">-2</string>
+    <string name="no_internet">¡Uy! algo salió mal. Por favor verifique su conexión a Internet e inténtelo nuevamente.</string>
+    <string name="i_don_t_know">No sé.</string>
+    <string name="you_could_try">Tu podrías intentar</string>
+    <string name="i_guess_it_s">supongo que es</string>
+    <string name="a">A</string>
+    <string name="b">B</string>
+    <string name="c">C</string>
+    <string name="d">D</string>
 </resources>

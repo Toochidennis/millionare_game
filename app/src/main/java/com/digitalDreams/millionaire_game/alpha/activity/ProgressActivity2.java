@@ -1,5 +1,6 @@
 package com.digitalDreams.millionaire_game.alpha.activity;
 
+import static com.digitalDreams.millionaire_game.alpha.Constants.FROM_PROGRESS;
 import static com.digitalDreams.millionaire_game.alpha.Constants.PREF_NAME;
 import static com.digitalDreams.millionaire_game.alpha.Constants.SOUND;
 
@@ -109,6 +110,17 @@ public class ProgressActivity2 extends AppCompatActivity {
         getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
     }
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+        updateSoundState();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        updateSoundState();
+    }
 
     @Override
     protected void onDestroy() {
@@ -119,6 +131,7 @@ public class ProgressActivity2 extends AppCompatActivity {
     private void updateSoundState() {
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putBoolean(SOUND, false);
+        editor.putBoolean(FROM_PROGRESS, true);
         editor.apply();
     }
 }

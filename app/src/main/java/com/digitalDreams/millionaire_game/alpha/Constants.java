@@ -1,5 +1,6 @@
 package com.digitalDreams.millionaire_game.alpha;
 
+import android.content.Context;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.view.View;
@@ -12,6 +13,7 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import java.util.Random;
 
 public class Constants {
     public static long DELAY_INTERVAL_LONG = 1000;
@@ -28,6 +30,7 @@ public class Constants {
     public static String APPLICATION_DATA = "application_data";
     public static String PREF_NAME = "settings";
     public static String SHOULD_REFRESH_QUESTION = "Failure activity";
+    public static String FROM_PROGRESS = "From progress";
     public static String SOUND = "Sound";
 
 
@@ -80,6 +83,18 @@ public class Constants {
         } else {
             return String.format(Locale.getDefault(), "%,d", (long) number);
         }
+    }
+
+    public static String getRandomSuggestion(Context context) {
+        String[] helpList = {
+                context.getResources().getString(R.string.maybe_its),
+                context.getString(R.string.you_could_try),
+                context.getString(R.string.i_guess_it_s)
+        };
+
+        int index = new Random().nextInt(helpList.length);
+
+        return helpList[index];
     }
 
 }

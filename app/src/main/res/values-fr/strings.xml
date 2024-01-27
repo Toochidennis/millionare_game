@@ -132,5 +132,13 @@
     <string name="session_score">Score de la séance</string>
     <string name="select_a_language">Sélectionnez une langue</string>
     <string name="_2">-2</string>
+    <string name="no_internet">Oups ! quelque chose s\'est mal passé. S\'il vous plaît, vérifiez votre connexion à internet et réessayez.</string>
+    <string name="i_don_t_know">Je ne sais pas.</string>
+    <string name="you_could_try">Tu pourrais essayer</string>
+    <string name="i_guess_it_s">Je suppose que c\'est</string>
+    <string name="a">A</string>
+    <string name="b">B</string>
+    <string name="c">C</string>
+    <string name="d">D</string>
 
 </resources>

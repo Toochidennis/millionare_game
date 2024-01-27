@@ -1,5 +1,14 @@
 package com.digitalDreams.millionaire_game;
 
+import static com.digitalDreams.millionaire_game.alpha.AudioManager.pauseBackgroundMusic;
+import static com.digitalDreams.millionaire_game.alpha.AudioManager.playBackgroundMusic;
+import static com.digitalDreams.millionaire_game.alpha.AudioManager.stopBackgroundMusic;
+import static com.digitalDreams.millionaire_game.alpha.Constants.APPLICATION_DATA;
+import static com.digitalDreams.millionaire_game.alpha.Constants.PREF_NAME;
+import static com.digitalDreams.millionaire_game.alpha.Constants.SHOULD_CONTINUE_GAME;
+import static com.digitalDreams.millionaire_game.alpha.Constants.SHOULD_REFRESH_QUESTION;
+import static com.digitalDreams.millionaire_game.alpha.Constants.SOUND;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -14,7 +23,6 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.drawable.GradientDrawable;
-import android.media.AudioManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -22,7 +30,6 @@ import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.LinearInterpolator;
 import android.view.animation.RotateAnimation;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -30,7 +37,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
@@ -63,9 +69,6 @@ public class WinnersActivity extends AppCompatActivity {
         raysImg.startAnimation(rotateAnimation);
 
 
-        ///////////////PLAYSOUND//////////
-        playBackgroundSound();
-
         //////////////SET AVATAR/////////////////////
         imageView = findViewById(R.id.king);
         //setAvatar(imageView,getAvatar());
@@ -81,13 +84,8 @@ public class WinnersActivity extends AppCompatActivity {
         share_layout.setOnClickListener(view -> checkPermission());
 
         newGameBtn.setOnClickListener(view -> {
-            GameActivity2.hasOldWinningAmount = true;
-//                Intent intent = new Intent(WinnersActivity.this,GameActivity2.class);
-//                intent.putExtra("hasOldWinningAmount",true);
-//                startActivity(intent);
-//                finish();
-            GameActivity2.hasOldWinningAmount = true;
-            Utils.continueGame(WinnersActivity.this);
+            startActivity(new Intent(this, CountDownActivity.class));
+            finish();
         });
 
         RelativeLayout btnAnim = findViewById(R.id.btn_forAnim);
@@ -119,7 +117,8 @@ public class WinnersActivity extends AppCompatActivity {
         ///////////////////////////
 
         try {
-            usernameTXT.setText(username.substring(0, 1).toUpperCase() + username.substring(1, username.length()));
+            String usernameText = username.substring(0, 1).toUpperCase() + username.substring(1, username.length());
+            usernameTXT.setText(usernameText);
             amountWonTXT.setText(Utils.addDollarSign(Utils.addCommaToNumber(Integer.parseInt(amountWon))));
         } catch (Exception e) {
             e.printStackTrace();
@@ -127,60 +126,14 @@ public class WinnersActivity extends AppCompatActivity {
         bg = findViewById(R.id.rootview);
         imageRoot = findViewById(R.id.imageroot);
         new Particles(this, bg, R.layout.image_xml, 20);
-        GradientDrawable gd = new GradientDrawable(
+        GradientDrawable gradientDrawable = new GradientDrawable(
                 GradientDrawable.Orientation.TOP_BOTTOM,
                 new int[]{startColor, endcolor});
 
-        bg.setBackgroundDrawable(gd);
+        bg.setBackground(gradientDrawable);
 
-        //share = findViewById(R.id.share);
-        //next =  findViewById(R.id.next);
-        /// home = findViewById(R.id.home);
-
-
-        // new NewParticle(this, R.layout.single_star,imageRoot,100,5000);
-
-
-//        shareBTN = findViewById(R.id.shareBTN);
-//        backBTN = findViewById(R.id.backBTN);
-//
-//        share.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent intent = new Intent(WinnersActivity.this,PlayDetailsActivity.class);
-//                intent.setFlags( Intent.FLAG_ACTIVITY_CLEAR_TOP );
-//                intent.putExtra("isWon",true);
-//                intent.putExtra("isShowAd",false);
-//                startActivity(intent);
-//                finish();
-//            }
-//        });
-////
-//        home.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent intent = new Intent(WinnersActivity.this, Dashboard.class);
-//                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-//                startActivity(intent);
-//                finish();
-//
-//            }
-//        });
     }
 
-    private void playBackgroundSound() {
-        try {
-            if (GameActivity2.mWinning_sound != null) {
-                CountDownActivity.mMediaPlayer.stop();
-
-                GameActivity2.mWinning_sound.setAudioStreamType(AudioManager.STREAM_MUSIC);
-                GameActivity2.mWinning_sound.setLooping(true);
-                GameActivity2.mWinning_sound.start();
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
 
     private String setAvatar(ImageView imageView, String avatar) {
         //SharedPreferences sharedPreferences = getSharedPreferences("settings", Context.MODE_PRIVATE);
@@ -242,8 +195,6 @@ public class WinnersActivity extends AppCompatActivity {
             bitmap.compress(Bitmap.CompressFormat.JPEG, 80, fos);
             fos.flush();
             fos.close();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -274,6 +225,14 @@ public class WinnersActivity extends AppCompatActivity {
 
     }
 
+    private void updateSharedPreference() {
+        SharedPreferences sharedPreferences = getSharedPreferences(APPLICATION_DATA, MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putBoolean(SHOULD_CONTINUE_GAME, false);
+        editor.putBoolean(SHOULD_REFRESH_QUESTION, false);
+        editor.apply();
+    }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -302,19 +261,39 @@ public class WinnersActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onPause() {
-        super.onPause();
-        if (GameActivity2.mWinning_sound != null) {
-            GameActivity2.mWinning_sound.pause();
+    protected void onResume() {
+        super.onResume();
 
+        if (shouldPlayMusic()) {
+            playBackgroundMusic(this);
+            updateMusicState(false);
         }
+
     }
 
     @Override
-    protected void onPostResume() {
-        super.onPostResume();
-        if (GameActivity2.mWinning_sound != null) {
-            GameActivity2.mWinning_sound.start();
-        }
+    protected void onPause() {
+        super.onPause();
+        pauseBackgroundMusic();
+        updateMusicState(true);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        stopBackgroundMusic();
+        updateMusicState(true);
+    }
+
+    private boolean shouldPlayMusic() {
+        SharedPreferences sharedPreferences = getSharedPreferences(PREF_NAME, MODE_PRIVATE);
+        return sharedPreferences.getBoolean(SOUND, false);
+    }
+
+    private void updateMusicState(boolean musicState) {
+        SharedPreferences sharedPreferences = getSharedPreferences(PREF_NAME, MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putBoolean(SOUND, musicState);
+        editor.apply();
     }
 }
