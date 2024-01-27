@@ -98,15 +98,8 @@ public class Utils {
     public static boolean isOnline(Context context) {
         ConnectivityManager mgr = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo netInfo = mgr.getActiveNetworkInfo();
-
         if (netInfo != null) {
-            if (netInfo.isConnected()) {
-                // Internet Available
-                return true;
-            } else {
-                //No internet
-                return false;
-            }
+            return netInfo.isConnected();
         } else {
             //No internet
             return false;

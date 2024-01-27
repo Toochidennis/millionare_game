@@ -1,23 +1,28 @@
 package com.digitalDreams.millionaire_game;
 
+import static android.content.Context.MODE_PRIVATE;
+import static com.digitalDreams.millionaire_game.alpha.AudioManager.pauseBackgroundMusic;
+import static com.digitalDreams.millionaire_game.alpha.AudioManager.playBackgroundMusic;
+import static com.digitalDreams.millionaire_game.alpha.AudioManager.stopBackgroundMusic;
+import static com.digitalDreams.millionaire_game.alpha.Constants.APPLICATION_DATA;
+import static com.digitalDreams.millionaire_game.alpha.Constants.SHOULD_CONTINUE_GAME;
+import static com.digitalDreams.millionaire_game.alpha.Constants.SHOULD_REFRESH_QUESTION;
+
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.drawable.GradientDrawable;
-import android.media.MediaPlayer;
 import android.os.Bundle;
-import android.view.View;
-import android.view.WindowManager;
-import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
 
+import com.digitalDreams.millionaire_game.alpha.ExplanationBottomSheetDialog;
+import com.digitalDreams.millionaire_game.alpha.models.QuestionModel;
 import com.google.android.gms.ads.AdError;
 import com.google.android.gms.ads.FullScreenContentCallback;
 import com.google.android.gms.ads.rewarded.RewardedAd;
@@ -26,121 +31,85 @@ import com.google.android.gms.ads.rewarded.RewardedAd;
 public class WrongAnswerDialog extends Dialog {
     Context context;
     RewardedAd mRewardedVideoAd;
-    MediaPlayer mMediaPlayer;
-    ImageView cancel_icon;
-   // AdManager adManager;
 
-    public WrongAnswerDialog(@NonNull Context context,
+    QuestionModel questionModel;
 
-                             MediaPlayer mMediaPlayer) {
+    private SharedPreferences sharedPreferences;
 
+
+    public WrongAnswerDialog(@NonNull Context context, QuestionModel questionModel) {
         super(context);
         this.context = context;
 
-        this.mMediaPlayer = mMediaPlayer;
-        AdManager.initInterstitialAd((Activity)context);
+        this.questionModel = questionModel;
+        AdManager.initInterstitialAd((Activity) context);
         AdManager.initRewardedVideo((Activity) context);
-
 
     }
 
-    RelativeLayout continue_btn,close_dialog;
-    RelativeLayout give_up;
+    LinearLayout continueButton, closeButton, giveUpButton;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.wrong_answer_layout);
-        continue_btn = findViewById(R.id.play_again);
-        give_up = findViewById(R.id.give_up);
-        close_dialog =findViewById(R.id.close_dialog);
-        cancel_icon =  findViewById(R.id.cancel_icon);
-        close_dialog.setVisibility(View.GONE);
 
+        continueButton = findViewById(R.id.continue_game);
+        giveUpButton = findViewById(R.id.give_up);
+        closeButton = findViewById(R.id.exit_btn);
 
-
-
-
-        SharedPreferences sharedPreferences = context.getSharedPreferences("settings", Context.MODE_PRIVATE);
-        String languageCode = sharedPreferences.getString("language","en");
-        int endcolor = sharedPreferences.getInt("end_color",context.getResources().getColor(R.color.purple_dark));
-        int startColor = sharedPreferences.getInt("start_color",context.getResources().getColor(R.color.purple_500));
-        String game_level = sharedPreferences.getString("game_level","1");
-
-        getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
-                | View.SYSTEM_UI_FLAG_IMMERSIVE);
-
-        RelativeLayout bg = findViewById(R.id.rootview);
-
-        GradientDrawable gd = new GradientDrawable(
-                GradientDrawable.Orientation.TOP_BOTTOM,
-                new int[] {startColor,endcolor});
-
-        bg.setBackgroundDrawable(gd);
-
-//        cancel_icon.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                dismiss();
-//
-//                if (mMediaPlayer != null) {
-//                    mMediaPlayer.pause();
-//                }
-//
-//
-//
-//                Intent intent = new Intent(getContext(), FailureActivity.class);
-//                context.startActivity(intent);
-//
-//            }
-//        });
-
-        close_dialog.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                dismiss();
-
-                if (mMediaPlayer != null) {
-                    mMediaPlayer.pause();
-                }
-
-
-
-                Intent intent = new Intent(getContext(), FailureActivity.class);
-                context.startActivity(intent);
-
-            }
-        });
-
-//        continue_btn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//
-//
-//
-//            }
-//        });
-
-
-
-
+        setRootViewBackgroundColor();
+        handleViewClicks();
     }
 
-    public   void  showRewarededAdWithListener(){
+    private void setRootViewBackgroundColor() {
+        sharedPreferences = context.getSharedPreferences("settings", MODE_PRIVATE);
+        int endColor = sharedPreferences.getInt("end_color", context.getResources().getColor(R.color.purple_dark));
+        int startColor = sharedPreferences.getInt("start_color", context.getResources().getColor(R.color.purple_500));
 
-        Utils.greenBlink(continue_btn, context);
-        if (CountDownActivity. mMediaPlayer != null) {
-            CountDownActivity. mMediaPlayer.pause();
-        }
+        RelativeLayout relativeLayout = findViewById(R.id.rootView);
 
-        if(Utils.isOnline(context)) {
+        GradientDrawable gradientDrawable = new GradientDrawable(
+                GradientDrawable.Orientation.TOP_BOTTOM,
+                new int[]{startColor, endColor});
 
-            // if (mRewardedVideoAd != null) {
+        relativeLayout.setBackground(gradientDrawable);
+    }
 
+
+    private void handleViewClicks() {
+        continueButton.setOnClickListener(continue_btn ->
+                showRewardedAdWithListener()
+        );
+
+        giveUpButton.setOnClickListener(giveUpButton -> {
+            showExplanationDialog();
+        });
+
+        closeButton.setOnClickListener(view -> {
+            showExplanationDialog();
+        });
+    }
+
+    private void showExplanationDialog() {
+        dismiss();
+        ExplanationBottomSheetDialog explanationBottomSheetDialog = new ExplanationBottomSheetDialog(getContext(), questionModel);
+        explanationBottomSheetDialog.show();
+
+        explanationBottomSheetDialog.setOnDismissListener(dialog -> {
+            dialog.dismiss();
+
+            startFailureActivity();
+        });
+    }
+
+    public void showRewardedAdWithListener() {
+        Utils.greenBlink(continueButton, context);
+
+        if (Utils.isOnline(context)) {
             AdManager.showRewardAd((Activity) context);
-            try{
+            try {
                 AdManager.rewardedAd.setFullScreenContentCallback(new FullScreenContentCallback() {
                     @Override
                     public void onAdClicked() {
@@ -151,22 +120,14 @@ public class WrongAnswerDialog extends Dialog {
                     @Override
                     public void onAdDismissedFullScreenContent() {
                         // Called when ad is dismissed.
-                        // Set the ad reference to null so you don't show the ad a second time.
-                        //Log.d(TAG, "Ad dismissed fullscreen content.");
-                        //rewardedAd = null;
+                        updateSharedPreference();
+                        playBackgroundMusic(getContext());
                     }
 
                     @Override
-                    public void onAdFailedToShowFullScreenContent(AdError adError) {
+                    public void onAdFailedToShowFullScreenContent(@NonNull AdError adError) {
                         // Called when ad fails to show.
-                        //Log.e(TAG, "Ad failed to show fullscreen content.");
-                        // rewardedAd = null;
-                        Toast.makeText(context,"Error: Loading video Ad failed, Please connect to the internet",Toast.LENGTH_LONG).show();
-
-                        dismiss();
-
-                        Intent intent = new Intent(getContext(), FailureActivity.class);
-                        context.startActivity(intent);
+                        dismissDialogAndStartFailureActivity();
                     }
 
                     @Override
@@ -180,40 +141,46 @@ public class WrongAnswerDialog extends Dialog {
                         // Called when ad is shown.
                         // Log.d(TAG, "Ad showed fullscreen content.");
                     }
+
                 });
-            }catch (Exception e){
+            } catch (Exception e) {
                 e.printStackTrace();
 
                 AdManager.showInterstitial((Activity) context);
-                if(AdManager.mInterstitialAd != null){
+                if (AdManager.mInterstitialAd != null) {
                     AdManager.mInterstitialAd.setFullScreenContentCallback(new FullScreenContentCallback() {
                         @Override
                         public void onAdFailedToShowFullScreenContent(@NonNull AdError adError) {
                             super.onAdFailedToShowFullScreenContent(adError);
                         }
                     });
-                }else{
-                    dismiss();
-                    Intent i = new Intent(context,FailureActivity.class);
-                    context.startActivity(i);
-
+                } else {
+                    dismissDialogAndStartFailureActivity();
                 }
-
-
             }
-            // }
+
             dismiss();
-        }
-
-        else {
-            Toast.makeText(context,"Connect to internet and try again",Toast.LENGTH_LONG).show();
-            dismiss();
-            Intent intent = new Intent(getContext(), FailureActivity.class);
-            context.startActivity(intent);
-
-
+        } else {
+            dismissDialogAndStartFailureActivity();
         }
 
     }
 
+    private void dismissDialogAndStartFailureActivity() {
+        dismiss();
+        context.startActivity(new Intent(getContext(), FailureActivity.class));
+    }
+
+    private void startFailureActivity() {
+        stopBackgroundMusic();
+        context.startActivity(new Intent(getContext(), FailureActivity.class));
+    }
+
+    private void updateSharedPreference() {
+        SharedPreferences sharedPreferences = context.getSharedPreferences(APPLICATION_DATA, MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putBoolean(SHOULD_CONTINUE_GAME, true);
+        editor.putBoolean(SHOULD_REFRESH_QUESTION, false);
+        editor.apply();
+    }
 }
