@@ -1,10 +1,11 @@
 package com.digitalDreams.millionaire_game;
 
-import static com.digitalDreams.millionaire_game.GameActivity2.continueGame;
 import static com.digitalDreams.millionaire_game.GameActivity2.hasOldWinningAmount;
-
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
+import static com.digitalDreams.millionaire_game.alpha.AudioManager.playBackgroundMusic;
+import static com.digitalDreams.millionaire_game.alpha.AudioManager.stopBackgroundMusic;
+import static com.digitalDreams.millionaire_game.alpha.Constants.APPLICATION_DATA;
+import static com.digitalDreams.millionaire_game.alpha.Constants.SHOULD_CONTINUE_GAME;
+import static com.digitalDreams.millionaire_game.alpha.Constants.SHOULD_REFRESH_QUESTION;
 
 import android.content.Context;
 import android.content.Intent;
@@ -13,12 +14,8 @@ import android.graphics.drawable.GradientDrawable;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.os.CountDownTimer;
-import android.os.Handler;
-import android.provider.Settings;
 import android.util.Log;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.Window;
 import android.view.WindowManager;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
@@ -29,7 +26,9 @@ import android.view.animation.TranslateAnimation;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -39,22 +38,18 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.android.gms.ads.AdError;
-import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.FullScreenContentCallback;
-
-import com.google.android.gms.ads.LoadAdError;
-import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.identifier.AdvertisingIdClient;
 import com.google.android.gms.ads.interstitial.InterstitialAd;
-
 import com.google.android.gms.ads.rewarded.RewardedAd;
 
 import org.json.JSONObject;
 
-import java.text.DecimalFormat;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
 public class FailureActivity extends AppCompatActivity {
     long time;
@@ -82,8 +77,6 @@ public class FailureActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_failure);
 
-        //adManager =  new AdManager(this);
-
         AdManager.initInterstitialAd(this);
         AdManager.initRewardedVideo(this);
 
@@ -99,7 +92,7 @@ public class FailureActivity extends AppCompatActivity {
         continueBtn.setVisibility(View.GONE);
         failureTxt.setVisibility(View.GONE);
         new MyAnimation(hex);
-        // hex.setVisibility(View.GONE);
+
         noThankBtn.setVisibility(View.GONE);
         r.setVisibility(View.GONE);
 
@@ -109,16 +102,8 @@ public class FailureActivity extends AppCompatActivity {
         continueBtn.startAnimation(aniFade);
         r.startAnimation(aniFade);
 
-        // AdManager adManager = new AdManager(this);
+        loadInterstitialAd();
 
-        loadInterstialAd();
-
-        Log.i("obioga", String.valueOf(GameActivity2.active));
-
-
-        // mRewardedVideoAd = MobileAds.getRewardedVideoAdInstance(this);
-
-        //loadVideoAd();
 
         AdView mAdView;
         mAdView = findViewById(R.id.adView);
@@ -127,10 +112,8 @@ public class FailureActivity extends AppCompatActivity {
 
 
         SharedPreferences sharedPreferences = getSharedPreferences("settings", Context.MODE_PRIVATE);
-        String languageCode = sharedPreferences.getString("language", "en");
-        int endcolor = sharedPreferences.getInt("end_color", getResources().getColor(R.color.purple_dark));
+        int endColor = sharedPreferences.getInt("end_color", getResources().getColor(R.color.purple_dark));
         int startColor = sharedPreferences.getInt("start_color", getResources().getColor(R.color.purple_500));
-        int cardBackground = sharedPreferences.getInt("card_background", 0x219ebc);
         username = sharedPreferences.getString("username", "");
 
         String mode = sharedPreferences.getString("game_mode", "0");
@@ -142,16 +125,18 @@ public class FailureActivity extends AppCompatActivity {
             // modeTxt.setText("Mode: Hard");
             modeValue = "hard";
         }
+
         checkScore();
+
         new MyAnimation(r);
         LinearLayout rootview = findViewById(R.id.rootview);
 
         new Particles(this, rootview, R.layout.image_xml, 20);
         GradientDrawable gd = new GradientDrawable(
                 GradientDrawable.Orientation.TOP_BOTTOM,
-                new int[]{startColor, endcolor});
+                new int[]{startColor, endColor});
 
-        rootview.setBackgroundDrawable(gd);
+        rootview.setBackground(gd);
 
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
         getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
@@ -163,10 +148,7 @@ public class FailureActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Utils.darkBlueBlink(new_games, getApplicationContext());
 
-
-                if (CountDownActivity.mMediaPlayer != null) {
-                    CountDownActivity.mMediaPlayer.stop();
-                }
+                stopBackgroundMusic();
 
                 if (AdManager.mInterstitialAd != null) {
                     AdManager.showInterstitial(FailureActivity.this);
@@ -175,49 +157,25 @@ public class FailureActivity extends AppCompatActivity {
                         @Override
                         public void onAdClicked() {
                             // Called when a click is recorded for an ad.
-                            Log.d("Admob", "Ad was clicked.");
+                            //Log.d("Admob", "Ad was clicked.");
                         }
 
                         @Override
                         public void onAdFailedToShowFullScreenContent(@NonNull AdError adError) {
-//                                Intent i = new Intent(FailureActivity.this, GameActivity2.class);
-//                                // startActivity(i);
-//
-//                                startActivity(i);
-//                                finish();
-                            backToGameActivity();
+                            restartGame();
                             super.onAdFailedToShowFullScreenContent(adError);
                         }
 
                         @Override
                         public void onAdDismissedFullScreenContent() {
-                            // Intent i = new Intent(FailureActivity.this, GameActivity2.class);
-//                                // startActivity(i);
-//
-//                                startActivity(i);
-//                                finish();
-                            backToGameActivity();
+                            restartGame();
                             super.onAdDismissedFullScreenContent();
                         }
                     });
 
-//                    interstitialAd.show();
-
-
                 } else {
-//                    Intent i = new Intent(FailureActivity.this, CountDownActivity.class);
-//                    // startActivity(i);
-//
-//                    startActivity(i);
-//                    finish();
-
-                    backToGameActivity();
+                    restartGame();
                 }
-
-
-                // Do something after 5s = 5000ms
-                finishGameActivity();
-
             }
         });
 
@@ -226,20 +184,7 @@ public class FailureActivity extends AppCompatActivity {
             Utils.destination_activity = PlayDetailsActivity.class;
             username = sharedPreferences.getString("username", "");
 
-//                if(username.equals(getResources().getString(R.string.anonymous_user))){
-//                    Utils.destination_activity = PlayDetailsActivity.class;
-//                    Intent i =  new Intent(FailureFActivity.this, UserDetails.class);
-//
-//                    startActivity(i);
-//                    finish();
-//                    return;
-//                }
-
-            //showInterstitial();
-
-            if (CountDownActivity.mMediaPlayer != null) {
-                CountDownActivity.mMediaPlayer.stop();
-            }
+            stopBackgroundMusic();
 
             Intent intent = new Intent(FailureActivity.this, PlayDetailsActivity.class);
 
@@ -248,29 +193,13 @@ public class FailureActivity extends AppCompatActivity {
 
             if (hasOldWinningAmount) {
                 intent.putExtra("hasOldWinningAmount", true);
-
             }
 
             intent.putExtra("noThanks", true);
 
             startActivity(intent);
 
-            finishGameActivity();
             finish();
-
-
-//                final Handler handler = new Handler();
-//                handler.postDelayed(new Runnable() {
-//                    @Override
-//                    public void run() {
-//                        startActivity(intent);
-//                        finish();
-//                        // Do something after 5s = 5000ms
-//                        //buttons[inew][jnew].setBackgroundColor(Color.BLACK);
-//                    }
-//                }, 7000);
-
-
         });
 
         TextView countDownTxt = findViewById(R.id.count_down_text);
@@ -281,7 +210,7 @@ public class FailureActivity extends AppCompatActivity {
             public void onTick(long l) {
                 int sec = (int) (l / 1000);
                 int seconds = (sec % 3600) % 60;
-                countDownTxt.setText("" + seconds);
+                countDownTxt.setText(String.valueOf(seconds));
             }
 
             @Override
@@ -291,40 +220,18 @@ public class FailureActivity extends AppCompatActivity {
 
         countDownTimer.start();
 
-
         continueBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Utils.greenBlink(continueBtn, FailureActivity.this);
 
-                //  Log.i("Loadeddd", "onClick");
-//                GameActivity2.continueGame=true;
-//                finish();
-
                 if (!isNetworkConnected()) {
                     startActivity(new Intent(FailureActivity.this, PlayDetailsActivity.class));
-                    finishGameActivity();
                     finish();
-
-                    Toast.makeText(FailureActivity.this, "No Internet Connection", Toast.LENGTH_LONG).show();
-
                 }
-
 
                 clicked = true;
 
-//               if (CountDownActivity.mRewardedVideoAd == null) {
-//                    showInterstitial();
-//
-//                } else if (!CountDownActivity.mRewardedVideoAd.isLoaded()) {
-//                    showInterstitial();
-//                    Log.i("mRewardedVideoAd", "Not LOaded");
-//                    CountDownActivity.mRewardedVideoAd.loadAd("ca-app-pub-4696224049420135/7768937909", new AdRequest.Builder().build());
-//                } else {
-//                    Log.i("mRewardedVideoAd", "LOaded");
-//                     CountDownActivity.mRewardedVideoAd.show();
-//
-//                }
                 AdManager.showRewardAd(FailureActivity.this);
 
                 try {
@@ -332,50 +239,42 @@ public class FailureActivity extends AppCompatActivity {
                         AdManager.rewardedAd.setFullScreenContentCallback(new FullScreenContentCallback() {
                             @Override
                             public void onAdClicked() {
-                                continueGame = true;
-                                finish();
                                 super.onAdClicked();
                             }
 
                             @Override
                             public void onAdFailedToShowFullScreenContent(@NonNull AdError adError) {
+                                startActivity(new Intent(FailureActivity.this, PlayDetailsActivity.class));
+                                finish();
                                 super.onAdFailedToShowFullScreenContent(adError);
                             }
 
                             @Override
                             public void onAdDismissedFullScreenContent() {
-                                continueGame = true;
                                 finish();
+                                playBackgroundMusic(FailureActivity.this);
+                                updateSharedPreference(true);
                                 super.onAdDismissedFullScreenContent();
                             }
                         });
                     } else {
-                        Toast.makeText(FailureActivity.this, "Ad failed to load0", Toast.LENGTH_LONG).show();
-                        Intent i = new Intent(FailureActivity.this, CountDownActivity.class);
-                        startActivity(i);
-
-                        finishGameActivity();
-                        finish();
+                        restartGame();
                     }
 
                 } catch (Exception e) {
                     e.printStackTrace();
-                    Toast.makeText(FailureActivity.this, "Ad failed to load1", Toast.LENGTH_LONG).show();
-//                   Intent i =  new Intent(FailureActivity.this,GameActivity2.class);
-//                   startActivity(i);
-//                    finishGameActivity();
-//
-//                   finish();
                     backToGameActivity();
-
                 }
-
             }
         });
 
+        loadInterstitialAd();
+    }
 
-        loadInterstialAd();
-
+    private void restartGame() {
+        updateSharedPreference(false);
+        startActivity(new Intent(FailureActivity.this, CountDownActivity.class));
+        finish();
     }
 
 
@@ -447,32 +346,17 @@ public class FailureActivity extends AppCompatActivity {
         fadeIn.setInterpolator(new DecelerateInterpolator()); //add this
         fadeIn.setDuration(2000);
 
-//        AlphaAnimation fadeIn=new AlphaAnimation(0,1);
-//        final AnimationSet set = new AnimationSet(false);
-//        Animation inFromRigth = new TranslateAnimation(
-//                Animation.RELATIVE_TO_PARENT, 1.0f,
-//                Animation.RELATIVE_TO_PARENT, 0.0f,
-//                Animation.RELATIVE_TO_PARENT, 0.0f,
-//                Animation.RELATIVE_TO_PARENT, 0.0f);
-
-//        set.addAnimation(inFromRigth);
-//        set.addAnimation(fadeIn);
-//        set.setDuration(1000);
-//        set.setStartOffset(100);
         view.startAnimation(fadeIn);
         fadeIn.setAnimationListener(new Animation.AnimationListener() {
             @Override
             public void onAnimationStart(Animation animation) {
                 animationCount++;
-
             }
 
             @Override
             public void onAnimationEnd(Animation animation) {
                 noThankBtn.setVisibility(View.VISIBLE);
                 animateWebContainer(noThankBtn);
-
-
             }
 
             @Override
@@ -493,12 +377,6 @@ public class FailureActivity extends AppCompatActivity {
 
     @Override
     public void onResume() {
-//        if(GameActivity2.mRewardedVideoAd==null) {
-//            mRewardedVideoAd.resume(this);
-//        }else {
-//           GameActivity2. mRewardedVideoAd.resume(this);
-//
-//        }
 
 
         super.onResume();
@@ -533,45 +411,8 @@ public class FailureActivity extends AppCompatActivity {
     }
 
 
-    public void showRewardedVideo() {
-//
-//        if (mRewardedVideoAd.isLoaded()) {
-//            if(CountDownActivity.mMediaPlayer!=null) {
-//                CountDownActivity.mMediaPlayer.stop();
-//            }
-//            mRewardedVideoAd.show();
-//
-//        }
-        AdManager.showRewardAd(FailureActivity.this);
-    }
-
-    public void showRewardedVideo2() {
-        ///GameActivity2.mRewardedVideoAd.loadAd("ca-app-pub-4696224049420135/7768937909", new AdRequest.Builder().build());
-//
-//        if (GameActivity2.mRewardedVideoAd.isLoaded()) {
-//            if(CountDownActivity.mMediaPlayer!=null) {
-//                CountDownActivity.mMediaPlayer.stop();
-//            }
-//            GameActivity2.mRewardedVideoAd.show();
-//
-//        }
-        AdManager.showRewardAd(FailureActivity.this);
-    }
-
-
-    private void loadInterstialAd() {
-//        interstitialAd = new InterstitialAd(this) ;
-//        interstitialAd.setAdUnitId (getResources().getString(R.string.interstitial_adunit) ) ;
-//        interstitialAd.loadAd(new AdRequest.Builder().addTestDevice("9D16E23BB90EF4BFA204300CCDCCF264").build());
-//
+    private void loadInterstitialAd() {
         AdManager.showInterstitial(FailureActivity.this);
-        // mInterstitialAd.loadAd(adRequest);
-
-//        interstitialAd.setAdListener(new AdListener() {
-//            public void onAdLoaded() {
-//                showInterstitial();
-//            }
-//        });
     }
 
     private void checkScore() {
@@ -594,11 +435,7 @@ public class FailureActivity extends AppCompatActivity {
             if (!score.isEmpty())
                 s = Integer.parseInt(score);
 
-            Log.i("highscore", score);
-
-
             if (hasOldWinningAmount) {
-
                 String amountWon = GameActivity2.amountWon.replace("$", "").replace(",", "");
                 oldAmountWon = oldAmountWon.replace("$", "").replace(",", "");
 
@@ -612,7 +449,6 @@ public class FailureActivity extends AppCompatActivity {
 
             }
 
-
             if (s > h) {
                 SharedPreferences.Editor editor = sharedPreferences.edit();
                 editor.putString("high_score", String.valueOf(s));
@@ -621,7 +457,7 @@ public class FailureActivity extends AppCompatActivity {
 
             }
 
-            Map userDetails = new HashMap();
+            Map<String, String> userDetails = new HashMap<>();
             userDetails.put("username", username);
             userDetails.put("country", country);
             userDetails.put("country_flag", country_flag);
@@ -634,7 +470,6 @@ public class FailureActivity extends AppCompatActivity {
     }
 
     private void sendScoreToSever(String score, Map<String, String> userDetails) {
-        Log.i("ogabet", String.valueOf(userDetails));
         String url = getResources().getString(R.string.base_url) + "/post_score.php";
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url, response ->
                 Log.i("response", "response " + response), new Response.ErrorListener() {
@@ -663,7 +498,6 @@ public class FailureActivity extends AppCompatActivity {
                 param.put("device_id", getDeviceId(FailureActivity.this));
                 param.put("game_type", "millionaire");
                 param.put("mode", modeValue);
-                Log.i("praram", String.valueOf(param));
                 return param;
             }
         };
@@ -674,27 +508,26 @@ public class FailureActivity extends AppCompatActivity {
 
     private String getAvatar() {
         SharedPreferences sharedPreferences = getSharedPreferences("settings", Context.MODE_PRIVATE);
-        String avatar = sharedPreferences.getString("avatar", "");
-        return avatar;
+        return sharedPreferences.getString("avatar", "");
     }
 
     public static String getDeviceId(Context context) {
-
-        String id = Settings.Secure.getString(context.getContentResolver(),
+    /*    String id = Settings.Secure.getString(context.getContentResolver(),
                 Settings.Secure.ANDROID_ID);
-        return id;
+        return id;*/
+        try {
+            return AdvertisingIdClient.getAdvertisingIdInfo(context).getId();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return UUID.randomUUID().toString();
     }
 
 
     private void showInterstitial() {
-//        if (interstitialAd.isLoaded()) {
-//            interstitialAd.show();
-//
-//        }
-
         AdManager.showInterstitial(FailureActivity.this);
 
-        loadInterstialAd();
+        loadInterstitialAd();
     }
 
 
@@ -707,21 +540,19 @@ public class FailureActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        loadInterstialAd();
+        loadInterstitialAd();
     }
 
     public void backToGameActivity() {
-        GameActivity2.isStartAtFresh = true;
-
+        updateSharedPreference(true);
         finish();
     }
 
-
-    void finishGameActivity() {
-//        if( GameActivity2.gameActivity2 != null){
-//            GameActivity2.gameActivity2.finish();
-//        }
-
-        Log.i("obioga", String.valueOf(GameActivity2.active));
+    private void updateSharedPreference(boolean continueGame) {
+        SharedPreferences sharedPreferences = getSharedPreferences(APPLICATION_DATA, MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putBoolean(SHOULD_CONTINUE_GAME, continueGame);
+        editor.putBoolean(SHOULD_REFRESH_QUESTION, true);
+        editor.apply();
     }
 }

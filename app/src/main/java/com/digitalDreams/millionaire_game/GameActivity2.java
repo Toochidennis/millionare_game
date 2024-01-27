@@ -12,7 +12,6 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.ActivityOptions;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
@@ -59,6 +58,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
+import com.digitalDreams.millionaire_game.alpha.models.QuestionModel;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.FullScreenContentCallback;
@@ -1033,7 +1033,6 @@ public class GameActivity2 extends AppCompatActivity {
             RelativeLayout relativeLayout,
             int questionID
     ) {
-
         loadVideoAd();
 
         continueSound = true;
@@ -1200,23 +1199,23 @@ public class GameActivity2 extends AppCompatActivity {
             if (number_of_failure < 1) {
                 //////First Failure//////
                 number_of_failure++;
-                WrongAnswerDialog wrongAnswerDialog = new WrongAnswerDialog(GameActivity2.this, CountDownActivity.mMediaPlayer);
+                WrongAnswerDialog wrongAnswerDialog = new WrongAnswerDialog(GameActivity2.this, new QuestionModel());
 
                 wrongAnswerDialog.show();
                 wrongAnswerDialog.setCancelable(false);
                 RelativeLayout giveUp = wrongAnswerDialog.findViewById(R.id.give_up);
                 RelativeLayout play_again = wrongAnswerDialog.findViewById(R.id.play_again);
-                ImageView cancel_icon = wrongAnswerDialog.findViewById(R.id.cancel_icon);
+              //  ImageView cancel_icon = wrongAnswerDialog.findViewById(R.id.cancel_icon);
 
-                cancel_icon.setOnClickListener(view -> {
+               /* cancel_icon.setOnClickListener(view -> {
 
                     cancel_icon.setEnabled(false);
                     giveUp.performClick();
-                });
+                });*/
 
                 play_again.setOnClickListener(view -> {
                     if (Utils.isOnline(GameActivity2.this)) {
-                        wrongAnswerDialog.showRewarededAdWithListener();
+                        wrongAnswerDialog.showRewardedAdWithListener();
 
                     } else {
 
@@ -1878,25 +1877,25 @@ public class GameActivity2 extends AppCompatActivity {
                         // dialog.show();
                         final ImageButton jl = findViewById(R.id.fwd);
 
-                        WrongAnswerDialog wrongAnswerDialog = new WrongAnswerDialog(GameActivity2.this, CountDownActivity.mMediaPlayer);
+                        WrongAnswerDialog wrongAnswerDialog = new WrongAnswerDialog(GameActivity2.this, new QuestionModel());
 
                         wrongAnswerDialog.show();
                         wrongAnswerDialog.setCancelable(false);
                         RelativeLayout giveUp = wrongAnswerDialog.findViewById(R.id.give_up);
                         RelativeLayout play_again = wrongAnswerDialog.findViewById(R.id.play_again);
-                        ImageView cancel_icon = wrongAnswerDialog.findViewById(R.id.cancel_icon);
+                       // ImageView cancel_icon = wrongAnswerDialog.findViewById(R.id.cancel_icon);
 
-                        cancel_icon.setOnClickListener(view -> {
+                       /* cancel_icon.setOnClickListener(view -> {
 
                             cancel_icon.setEnabled(false);
                             giveUp.performClick();
-                        });
+                        });*/
 
                         play_again.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
                                 if (Utils.isOnline(GameActivity2.this)) {
-                                    wrongAnswerDialog.showRewarededAdWithListener();
+                                    wrongAnswerDialog.showRewardedAdWithListener();
                                     wrongAnswerDialog.mRewardedVideoAd.setFullScreenContentCallback(new FullScreenContentCallback() {
                                         @Override
                                         public void onAdDismissedFullScreenContent() {
