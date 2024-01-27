@@ -1,4 +1,5 @@
 package com.digitalDreams.millionaire_game;
+
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -23,8 +24,8 @@ import com.google.android.gms.ads.rewarded.RewardedAdLoadCallback;
 import com.google.android.gms.ads.rewarded.ServerSideVerificationOptions;
 
 public class AdManager {
-    public static  InterstitialAd mInterstitialAd;
-    public static  RewardedAd rewardedAd;
+    public static InterstitialAd mInterstitialAd;
+    public static RewardedAd rewardedAd;
     //Context context;
     //Activity activity;
     //Activity activity;
@@ -40,57 +41,55 @@ public class AdManager {
 //    }
 
 
+    public static void initInterstitialAd(Activity context) {
+        // if(mInterstitialAd == null) {
+        MobileAds.initialize(context, new OnInitializationCompleteListener() {
+            @Override
+            public void onInitializationComplete(InitializationStatus initializationStatus) {
+            }
+        });
+        AdRequest adRequest = new AdRequest.Builder().build();
 
-    public  static void  initInterstitialAd(Activity context){
-       // if(mInterstitialAd == null) {
-            MobileAds.initialize(context, new OnInitializationCompleteListener() {
-                @Override
-                public void onInitializationComplete(InitializationStatus initializationStatus) {
-                }
-            });
-            AdRequest adRequest = new AdRequest.Builder().build();
+        InterstitialAd.load(context, context.getResources().getString(R.string.interstitial_adunit), adRequest,
+                new InterstitialAdLoadCallback() {
+                    @Override
+                    public void onAdLoaded(@NonNull InterstitialAd interstitialAd) {
+                        // The mInterstitialAd reference will be null until
+                        // an ad is loaded.
+                        mInterstitialAd = interstitialAd;
+                        Log.i("InterstitialAdd", "onAdLoaded");
+                    }
 
-            InterstitialAd.load(context, context.getResources().getString(R.string.interstitial_adunit), adRequest,
-                    new InterstitialAdLoadCallback() {
-                        @Override
-                        public void onAdLoaded(@NonNull InterstitialAd interstitialAd) {
-                            // The mInterstitialAd reference will be null until
-                            // an ad is loaded.
-                            mInterstitialAd = interstitialAd;
-                            Log.i("InterstitialAdd", "onAdLoaded");
+                    @Override
+                    public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
+                        // Handle the error
+                        Log.d("InterstitialAdd", loadAdError.toString());
+                        if (mInterstitialAd == null) {
+                            mInterstitialAd = null;
                         }
+                    }
+                });
 
-                        @Override
-                        public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
-                            // Handle the error
-                            Log.d("InterstitialAdd", loadAdError.toString());
-                            if (mInterstitialAd == null) {
-                                mInterstitialAd = null;
-                            }
-                        }
-                    });
-
-       // }
+        // }
     }
 
 
+    public static void showInterstitial(Activity context) {
+        try {
+            if (mInterstitialAd != null) {
+                mInterstitialAd.show(context);
+            } else {
+                initInterstitialAd(context);
+                Log.d("TAG", "The interstitial ad wasn't ready yet.");
+            }
 
-public static   void showInterstitial(Activity context){
-    try{
-        if (mInterstitialAd != null) {
-            mInterstitialAd.show(context);
-        } else {
-            initInterstitialAd(context);
-            Log.d("TAG", "The interstitial ad wasn't ready yet.");
+        } catch (Exception e) {
+
         }
-
-    }catch (Exception e){
-
     }
-}
 
-public static   void  initRewardedVideo(Activity context){
-   // if(rewardedAd == null) {
+    public static void initRewardedVideo(Activity context) {
+        // if(rewardedAd == null) {
         AdRequest adRequest = new AdRequest.Builder().build();
         RewardedAd.load(context, "ca-app-pub-4696224049420135/7768937909",
                 adRequest, new RewardedAdLoadCallback() {
@@ -112,7 +111,7 @@ public static   void  initRewardedVideo(Activity context){
                     }
                 });
 
-   // }
+        // }
 
 
 //    rewardedAd.setFullScreenContentCallback(new FullScreenContentCallback() {
@@ -151,34 +150,27 @@ public static   void  initRewardedVideo(Activity context){
 //    });
 
 
-}
+    }
 
-public static void showRewardAd(Activity context){
-    try {
-        if (rewardedAd != null) {
-            //Activity activityContext = MainActivity.this;
+    public static void showRewardAd(Activity context) {
+        try {
+            if (rewardedAd != null) {
+                //Activity activityContext = MainActivity.this;
 
-            rewardedAd.show( context, new OnUserEarnedRewardListener() {
-
-                @Override
-                public void onUserEarnedReward(@NonNull RewardItem rewardItem) {
+                rewardedAd.show(context, rewardItem -> {
                     // Handle the reward.
                     Log.d("rewarded", "The user earned the reward.");
                     int rewardAmount = rewardItem.getAmount();
                     String rewardType = rewardItem.getType();
-                }
-            });
-        } else {
-            Log.d("rewarded", "The rewarded ad wasn't ready yet.");
-            initRewardedVideo(context);
+                });
+            } else {
+                Log.d("rewarded", "The rewarded ad wasn't ready yet.");
+                initRewardedVideo(context);
+            }
+        } catch (Exception e) {
+
         }
-    }catch (Exception e){
-
     }
-}
-
-
-
 
 
 }
