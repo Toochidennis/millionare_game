@@ -52,26 +52,19 @@ public class ProgressActivity extends AppCompatActivity {
                 GradientDrawable.Orientation.TOP_BOTTOM,
                 new int[]{startColor, endcolor});
 
-        bg.setBackgroundDrawable(gd);
+        bg.setBackground(gd);
         ImageView closeBtn = findViewById(R.id.close);
-        closeBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                onBackPressed();
-            }
-        });
+
+        closeBtn.setOnClickListener(view -> onBackPressed());
 
 
         Intent intent = getIntent();
         int position = intent.getIntExtra("number", 0);
         String timer = intent.getStringExtra("timer");
+
+        assert timer != null;
         if (timer.equals("true")) {
-            new Handler().postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    finishPage();
-                }
-            }, 4000);
+            new Handler().postDelayed(this::finishPage, 4000);
         }
 
         LinearLayout container = findViewById(R.id.container);
@@ -118,7 +111,6 @@ public class ProgressActivity extends AppCompatActivity {
 
                 }
 
-
             }
             container.addView(v);
         }
@@ -140,16 +132,14 @@ public class ProgressActivity extends AppCompatActivity {
     }
 
     public void setAnimation() {
-        if (Build.VERSION.SDK_INT > 20) {
-            Slide slide = new Slide();
-            slide.setSlideEdge(Gravity.LEFT);
-            slide.setDuration(800);
-            slide.setInterpolator(new AccelerateDecelerateInterpolator());
-            getWindow().setExitTransition(slide);
-            getWindow().setEnterTransition(slide);
-            getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        Slide slide = new Slide();
+        slide.setSlideEdge(Gravity.START);
+        slide.setDuration(800);
+        slide.setInterpolator(new AccelerateDecelerateInterpolator());
+        getWindow().setExitTransition(slide);
+        getWindow().setEnterTransition(slide);
+        getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
-        }
     }
 
     public void slideInAnimation(View currentItemView, long position) {
