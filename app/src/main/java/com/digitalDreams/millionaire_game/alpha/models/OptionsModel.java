@@ -1,6 +1,8 @@
 package com.digitalDreams.millionaire_game.alpha.models;
 
-public class OptionsModel {
+import java.io.Serializable;
+
+public class OptionsModel implements Serializable {
 
     private String optionId;
     private String optionText;
