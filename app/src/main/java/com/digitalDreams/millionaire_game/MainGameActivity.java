@@ -57,6 +57,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
+import com.digitalDreams.millionaire_game.alpha.models.QuestionModel;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 
@@ -1262,7 +1263,7 @@ public class MainGameActivity extends AppCompatActivity {
             if(number_of_failure < 1){
                 //////First Failure//////
                 number_of_failure++;
-                WrongAnswerDialog wrongAnswerDialog = new WrongAnswerDialog(MainGameActivity.this,CountDownActivity.mMediaPlayer);
+                WrongAnswerDialog wrongAnswerDialog = new WrongAnswerDialog(MainGameActivity.this, new QuestionModel());
 
                 wrongAnswerDialog.show();
                 wrongAnswerDialog.setCancelable(false);
