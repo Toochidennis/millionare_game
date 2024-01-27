@@ -707,7 +707,6 @@ public class GameActivity2 extends AppCompatActivity {
                                 Log.i("renderpp", String.valueOf(noOfPagesPassed));
                                 checkAnswer(k.getText().toString(), ans.getText().toString(), currentProgress, vectorDrawable[0], relativeLayout[0], questionId);
 
-
                             } catch (Exception e) {
                                 e.printStackTrace();
                             }
@@ -1205,7 +1204,7 @@ public class GameActivity2 extends AppCompatActivity {
                 wrongAnswerDialog.setCancelable(false);
                 RelativeLayout giveUp = wrongAnswerDialog.findViewById(R.id.give_up);
                 RelativeLayout play_again = wrongAnswerDialog.findViewById(R.id.play_again);
-              //  ImageView cancel_icon = wrongAnswerDialog.findViewById(R.id.cancel_icon);
+                //  ImageView cancel_icon = wrongAnswerDialog.findViewById(R.id.cancel_icon);
 
                /* cancel_icon.setOnClickListener(view -> {
 
@@ -1259,8 +1258,6 @@ public class GameActivity2 extends AppCompatActivity {
 
                     });
                     bottomSheetDialog.setOnDismissListener(dialogInterface -> {
-
-
                         bottomSheetDialog.dismiss();
 
 //
@@ -1883,7 +1880,7 @@ public class GameActivity2 extends AppCompatActivity {
                         wrongAnswerDialog.setCancelable(false);
                         RelativeLayout giveUp = wrongAnswerDialog.findViewById(R.id.give_up);
                         RelativeLayout play_again = wrongAnswerDialog.findViewById(R.id.play_again);
-                       // ImageView cancel_icon = wrongAnswerDialog.findViewById(R.id.cancel_icon);
+                        // ImageView cancel_icon = wrongAnswerDialog.findViewById(R.id.cancel_icon);
 
                        /* cancel_icon.setOnClickListener(view -> {
 
@@ -2075,36 +2072,6 @@ public class GameActivity2 extends AppCompatActivity {
             e.printStackTrace();
         }
 
-//        TextView questionTxt=current.findViewById(R.id.qo_text);
-//        try {
-//            question = question.substring(0,1).toUpperCase()+""+question.substring(1);
-//        }catch (StringIndexOutOfBoundsException e){
-//            e.printStackTrace();
-//        }
-//        questionTxt.setText(question);
-//        TextView correctAnsText=current.findViewById(R.id.correct_ans);
-//
-//
-//        final LinearLayout q = current.findViewById(R.id.qd);
-//        try {
-//            JSONArray answerArr = new JSONArray(answer);
-//            for (int c = 0; c < q.getChildCount(); c++) {
-//                JSONObject optObj = answerArr.getJSONObject(c);
-//
-//
-//
-//                String opt = optObj.getString("text");
-//                opt = opt.substring(0,1).toUpperCase()+""+opt.substring(1)+" ";
-//                TextView k = q.getChildAt(c).findViewById(R.id.opt);
-//                k.setText(opt);
-//
-//                if(opt.equalsIgnoreCase(correct)){
-//                    correctAnsText.setText(opt);
-//                }
-//            }
-//        }catch (JSONException e){
-//            e.printStackTrace();
-//        }
 
     }
 

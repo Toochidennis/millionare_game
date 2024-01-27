@@ -141,8 +141,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/arimo"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
                 android:lineSpacingMultiplier="1.36"
-                android:text="In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying"
                 android:textColor="@color/white"
                 android:textSize="16sp" />
 

@@ -328,6 +328,7 @@ public class DBHelper extends SQLiteOpenHelper {
         return jsonArray.toString();
     }
 
+
     public void saveHistory(String questionId, String answer,
                             String correctAnswer,
                             String session,
@@ -343,12 +344,10 @@ public class DBHelper extends SQLiteOpenHelper {
         contentValues.put("IS_CORRECT", is_correct);
         contentValues.put("REASON", getReason(questionId));
 
-
         boolean questionExists = checkHistory(questionId);
 
         if (!questionExists) {
             db.insert(HISTORY_TABLE, null, contentValues);
-
         }
 
     }
@@ -365,6 +364,7 @@ public class DBHelper extends SQLiteOpenHelper {
             reason = cursor.getString(cursor.getColumnIndex("REASON"));
 
         }
+        cursor.close();
 
         return reason;
     }
