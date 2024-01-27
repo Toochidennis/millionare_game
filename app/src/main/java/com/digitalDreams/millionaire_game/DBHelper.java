@@ -19,7 +19,7 @@ import java.util.Random;
 
 import androidx.annotation.Nullable;
 
-class DBHelper extends SQLiteOpenHelper {
+public class DBHelper extends SQLiteOpenHelper {
     public static String DATABASE_NAME = "trivia.db";
     //SQLiteDatabase db;
     public static String JSON_TABLE = "json_table";

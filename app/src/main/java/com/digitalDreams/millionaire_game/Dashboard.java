@@ -29,6 +29,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
+import com.digitalDreams.millionaire_game.alpha.activity.GameActivity3;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 
