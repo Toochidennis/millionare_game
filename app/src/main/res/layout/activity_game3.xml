@@ -6,7 +6,7 @@
     android:id="@+id/rootView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".GameActivity3">
+    tools:context=".alpha.activity.GameActivity3">
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
@@ -72,7 +72,6 @@
 
             </RelativeLayout>
 
-
             <RelativeLayout
                 android:id="@+id/amount_container"
                 android:layout_width="wrap_content"
@@ -90,26 +89,25 @@
                     app:tint="@color/basic_color" />
 
                 <TextView
-                    android:id="@+id/amount_won"
+                    android:id="@+id/amount_won_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
                     android:fontFamily="@font/montserrat"
-                    android:text=""
+                    android:text="$0"
                     android:textColor="@color/white"
                     android:textSize="14sp"
                     android:textStyle="bold" />
 
             </RelativeLayout>
 
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/exitBtn"
                 android:layout_marginStart="8dp"
-                android:layout_marginEnd="8dp"
                 android:layout_marginTop="-10dp"
+                android:layout_marginEnd="8dp"
                 android:orientation="vertical">
 
                 <RelativeLayout
@@ -129,7 +127,7 @@
                         android:layout_height="wrap_content"
                         android:layout_centerInParent="true"
                         android:fontFamily="@font/ultra"
-                        android:text="1/15"
+                        android:text=""
                         android:textColor="@color/white"
                         android:textSize="23sp" />
 
@@ -391,8 +389,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
-                    android:visibility="gone"
-                    android:padding="10dp">
+                    android:padding="10dp"
+                    android:visibility="gone">
 
                     <androidx.cardview.widget.CardView
                         android:id="@+id/imageCard"
@@ -453,8 +451,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:orientation="horizontal"
-                    android:baselineAligned="false">
+                    android:baselineAligned="false"
+                    android:orientation="horizontal">
 
                     <RelativeLayout
                         android:id="@+id/minus_two_questions"
@@ -475,8 +473,8 @@
                             android:id="@+id/bad1"
                             android:layout_width="48dp"
                             android:layout_height="48dp"
-                            android:contentDescription="@string/app_name"
                             android:layout_centerInParent="true"
+                            android:contentDescription="@string/app_name"
                             android:src="@drawable/bad"
                             android:visibility="gone" />
 
@@ -520,15 +518,15 @@
                             android:id="@+id/bad2"
                             android:layout_width="48dp"
                             android:layout_height="48dp"
-                            android:contentDescription="@string/app_name"
                             android:layout_centerInParent="true"
+                            android:contentDescription="@string/app_name"
                             android:src="@drawable/bad"
                             android:visibility="gone" />
 
                     </RelativeLayout>
 
                     <RelativeLayout
-                        android:id="@+id/voting"
+                        android:id="@+id/take_a_poll"
                         android:layout_width="0dp"
                         android:layout_height="60dp"
                         android:layout_margin="10dp"
@@ -554,15 +552,15 @@
                             android:id="@+id/bad3"
                             android:layout_width="48dp"
                             android:layout_height="48dp"
-                            android:contentDescription="@string/app_name"
                             android:layout_centerInParent="true"
+                            android:contentDescription="@string/app_name"
                             android:src="@drawable/bad"
                             android:visibility="gone" />
                     </RelativeLayout>
 
 
                     <RelativeLayout
-                        android:id="@+id/skip"
+                        android:id="@+id/reset_question"
                         android:layout_width="0dp"
                         android:layout_height="60dp"
                         android:layout_margin="10dp"
@@ -580,9 +578,9 @@
                             android:id="@+id/refresh"
                             android:layout_width="40dp"
                             android:layout_height="40dp"
-                            android:contentDescription="@string/app_name"
                             android:layout_centerInParent="true"
                             android:layout_gravity="center"
+                            android:contentDescription="@string/app_name"
                             android:src="@drawable/ic_baseline_autorenew_24"
                             app:tint="@color/white" />
 
@@ -590,17 +588,17 @@
                             android:id="@+id/video_ad2"
                             android:layout_width="20dp"
                             android:layout_height="20dp"
-                            android:contentDescription="@string/app_name"
                             android:layout_alignParentBottom="true"
                             android:layout_marginStart="40dp"
+                            android:contentDescription="@string/app_name"
                             android:src="@drawable/vicon2" />
 
                         <ImageView
                             android:id="@+id/bad4"
                             android:layout_width="48dp"
                             android:layout_height="48dp"
-                            android:contentDescription="@string/app_name"
                             android:layout_centerInParent="true"
+                            android:contentDescription="@string/app_name"
                             android:src="@drawable/bad"
                             android:visibility="gone" />
 
@@ -662,9 +660,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="40dp"
-                    android:nestedScrollingEnabled="false"
                     android:layout_marginEnd="8dp"
                     android:clipToPadding="false"
+                    android:nestedScrollingEnabled="false"
                     ads:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     tools:listitem="@layout/item_options" />
 
