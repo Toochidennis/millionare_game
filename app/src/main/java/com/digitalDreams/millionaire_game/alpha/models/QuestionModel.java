@@ -1,18 +1,24 @@
 package com.digitalDreams.millionaire_game.alpha.models;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class QuestionModel {
+public class QuestionModel implements Serializable {
     private String questionId;
     private String questionText;
     private String correctText;
+    private String reasonText;
     private List<OptionsModel> optionsList;
 
+    public QuestionModel() {
+    }
 
-    public QuestionModel(String questionText, String correctText, List<OptionsModel> optionsList) {
+    public QuestionModel(String questionId, String questionText, String correctText, String reasonText, List<OptionsModel> optionsList) {
+        this.questionId = questionId;
         this.questionText = questionText;
         this.correctText = correctText;
         this.optionsList = optionsList;
+        this.reasonText = reasonText;
     }
 
 
@@ -38,6 +44,10 @@ public class QuestionModel {
 
     public void setCorrectText(String correctText) {
         this.correctText = correctText;
+    }
+
+    public String getReasonText() {
+        return reasonText;
     }
 
     public List<OptionsModel> getOptionsList() {
