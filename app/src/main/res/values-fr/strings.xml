@@ -140,5 +140,9 @@
     <string name="b">B</string>
     <string name="c">C</string>
     <string name="d">D</string>
+    <string name="d_hours_02d_minutes_02d_seconds">%d heures %02d minutes %02d secondes</string>
+    <string name="d_minutes_02d_seconds">%d minutes %02d secondes</string>
+    <string name="d_seconds">%d secondes</string>
+    <string name="_0_second">0 seconde</string>
 
 </resources>

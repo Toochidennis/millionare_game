@@ -501,20 +501,8 @@ public class UserDetails extends AppCompatActivity {
         startActivity(i);
         finish();
 
-//        Intent intent;
-//
-//        intent = new Intent(UserDetails.this, Utils.destination_activity);
-//
-//        startActivity(intent);
-//        finish();
-//        Intent i =  new Intent(UserDetails.this,Dashboard.class);
-//        startActivity(i);
-
 
     }
 
-
-    //@SuppressLint("ResourceAsColor")
-    // @SuppressLint("ResourceAsColor")
 
 }
