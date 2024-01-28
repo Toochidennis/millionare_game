@@ -4,6 +4,7 @@ import static com.digitalDreams.millionaire_game.alpha.Constants.DELAY_INTERVAL_
 import static com.digitalDreams.millionaire_game.alpha.Constants.DELAY_INTERVAL_SHORT;
 import static com.digitalDreams.millionaire_game.alpha.Constants.GREEN;
 import static com.digitalDreams.millionaire_game.alpha.Constants.ORANGE;
+import static com.digitalDreams.millionaire_game.alpha.Constants.formatCurrency;
 import static com.digitalDreams.millionaire_game.alpha.Constants.getBackgroundDrawable;
 
 import android.graphics.PorterDuff;
@@ -70,7 +71,7 @@ public class ProgressAdapter extends RecyclerView.Adapter<ProgressAdapter.Progre
 
         void bind(int item) {
             String position = String.valueOf(getAdapterPosition() + 1);
-            String amount = String.format(Locale.getDefault(), "$%d", item);
+            String amount = String.format(Locale.getDefault(), "$%s", formatCurrency(item));
 
             positionTextView.setText(position);
             amountTextView.setText(amount);
