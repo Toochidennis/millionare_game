@@ -25,7 +25,6 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.Objects;
 
 import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
@@ -37,7 +36,7 @@ import com.google.android.gms.ads.FullScreenContentCallback;
 import com.google.android.gms.ads.interstitial.InterstitialAd;
 
 public class ExitGameDialog extends Dialog {
-    Context context;
+    Activity context;
     String amountWon;
 
     public static int MY_PERMISSIONS_WRITE_EXTERNAL_STORAGE = 100;
@@ -45,7 +44,7 @@ public class ExitGameDialog extends Dialog {
     public static InterstitialAd interstitialAd;
     //  AdManager adManager;
 
-    public ExitGameDialog(@NonNull Context context, String amountWon) {
+    public ExitGameDialog(@NonNull Activity context, String amountWon) {
         super(context);
         this.context = context;
         this.amountWon = amountWon;
@@ -59,20 +58,20 @@ public class ExitGameDialog extends Dialog {
         //adManager =  new AdManager(context);
 
 
-        AdManager.initInterstitialAd((Activity) context);
-        AdManager.initRewardedVideo((Activity) context);
+        AdManager.initInterstitialAd(context);
+        AdManager.initRewardedVideo(context);
 
         loadInterstialAd();
+
         SharedPreferences sharedPreferences = context.getSharedPreferences("settings", Context.MODE_PRIVATE);
-        String languageCode = sharedPreferences.getString("language", "en");
-        int endcolor = sharedPreferences.getInt("end_color", context.getResources().getColor(R.color.purple_dark));
+        int endColor = sharedPreferences.getInt("end_color", context.getResources().getColor(R.color.purple_dark));
         int startColor = sharedPreferences.getInt("start_color", context.getResources().getColor(R.color.purple_500));
-        int cardBackground = sharedPreferences.getInt("card_background", 0x03045e);
+
         LinearLayout bg = findViewById(R.id.rootview);
         new Particles(context, bg, R.layout.image_xml, 20);
         GradientDrawable gd = new GradientDrawable(
                 GradientDrawable.Orientation.TOP_BOTTOM,
-                new int[]{startColor, endcolor});
+                new int[]{startColor, endColor});
 
         bg.setBackground(gd);
         ImageView closeBtn = findViewById(R.id.close);
@@ -87,6 +86,7 @@ public class ExitGameDialog extends Dialog {
             takeMoneyBtn.setClickable(false);
 
         });
+
         TextView amountwonText = findViewById(R.id.amount_won);
         amountwonText.setText(Utils.addCommaAndDollarSign(Integer.parseInt(amountWon)));
 
@@ -111,30 +111,27 @@ public class ExitGameDialog extends Dialog {
 
     private void loadInterstialAd() {
         interstitialAd = AdManager.mInterstitialAd; //new InterstitialAd(context) ;
-//        interstitialAd.setAdUnitId (context.getResources().getString(R.string.interstitial_adunit) ) ;
-//        interstitialAd.loadAd(new AdRequest.Builder().build());
+
     }
 
     private void showInterstitial() {
-        AdManager.showInterstitial((Activity) context);
+        AdManager.showInterstitial(context);
 
         if (AdManager.mInterstitialAd != null) {
             AdManager.mInterstitialAd.setFullScreenContentCallback(new FullScreenContentCallback() {
                 @Override
                 public void onAdFailedToShowFullScreenContent(@NonNull AdError adError) {
                     super.onAdFailedToShowFullScreenContent(adError);
-                    exit();
+                    exitGame();
                 }
 
                 @Override
                 public void onAdDismissedFullScreenContent() {
-                    exit();
-                    super.onAdDismissedFullScreenContent();
+                    exitGame();
                 }
 
                 @Override
                 public void onAdClicked() {
-                    exit();
                     super.onAdClicked();
                 }
 
@@ -142,17 +139,18 @@ public class ExitGameDialog extends Dialog {
 
         } else {
 
-            exit();
+            exitGame();
 
         }
     }
 
-    public void exit() {
+    public void exitGame() {
+        dismiss();
         Intent intent = new Intent(context, PlayDetailsActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         intent.putExtra("isShowAd", false);
         context.startActivity(intent);
-        Objects.requireNonNull(getOwnerActivity()).finish();
+        context.finish();
     }
 
 
@@ -199,8 +197,6 @@ public class ExitGameDialog extends Dialog {
             bitmap.compress(Bitmap.CompressFormat.JPEG, 100, fos);
             fos.flush();
             fos.close();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
