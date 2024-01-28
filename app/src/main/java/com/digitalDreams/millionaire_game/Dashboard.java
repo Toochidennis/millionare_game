@@ -223,6 +223,7 @@ public class Dashboard extends AppCompatActivity {
             Intent intent = new Intent(Dashboard.this, UserDetails.class);
             intent.putExtra("type", "edit");
             startActivity(intent);
+            finish();
         });
 
 //        WelcomeDialog welcomeDialog = new WelcomeDialog(this);
@@ -366,11 +367,6 @@ public class Dashboard extends AppCompatActivity {
 
         updateGameLogo();
 
-       /* if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            registerReceiver(refreshBroadCast, new IntentFilter("refresh"), Context.RECEIVER_NOT_EXPORTED);
-        } else {
-            registerReceiver(refreshBroadCast, new IntentFilter("refresh"));
-        }*/
 
         LocalBroadcastManager.getInstance(this).registerReceiver(refreshBroadCast, new IntentFilter("refresh"));
 
