@@ -1,12 +1,12 @@
 package com.digitalDreams.millionaire_game;
 
-import static com.digitalDreams.millionaire_game.GameActivity2.hasOldWinningAmount;
 import static com.digitalDreams.millionaire_game.alpha.AudioManager.playBackgroundMusic;
 import static com.digitalDreams.millionaire_game.alpha.AudioManager.stopBackgroundMusic;
 import static com.digitalDreams.millionaire_game.alpha.Constants.APPLICATION_DATA;
 import static com.digitalDreams.millionaire_game.alpha.Constants.SHOULD_CONTINUE_GAME;
 import static com.digitalDreams.millionaire_game.alpha.Constants.SHOULD_REFRESH_QUESTION;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -37,6 +37,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.digitalDreams.millionaire_game.alpha.activity.GameActivity3;
 import com.google.android.gms.ads.AdError;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
@@ -54,9 +55,7 @@ import java.util.UUID;
 public class FailureActivity extends AppCompatActivity {
     long time;
     String countdownTime = "9000";
-    public RewardedAd mRewardedVideoAd;
-    private boolean clicked = false;
-    public static InterstitialAd interstitialAd;
+
     String modeValue = "";
     TextView replay_level;
     int animationCount = 1;
@@ -66,6 +65,7 @@ public class FailureActivity extends AppCompatActivity {
     RelativeLayout continueBtn;
     RelativeLayout r;
     CountDownTimer countDownTimer;
+    boolean hasOldWinningAmount = false;
 
     RelativeLayout new_games;
     //  AdManager adManager;
@@ -107,13 +107,13 @@ public class FailureActivity extends AppCompatActivity {
 
         AdView mAdView;
         mAdView = findViewById(R.id.adView);
-        AdRequest adRequest = new AdRequest.Builder().build();
+        @SuppressLint("VisibleForTests") AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
-
 
         SharedPreferences sharedPreferences = getSharedPreferences("settings", Context.MODE_PRIVATE);
         int endColor = sharedPreferences.getInt("end_color", getResources().getColor(R.color.purple_dark));
         int startColor = sharedPreferences.getInt("start_color", getResources().getColor(R.color.purple_500));
+        hasOldWinningAmount = sharedPreferences.getBoolean("hasOldWinningAmount", false);
         username = sharedPreferences.getString("username", "");
 
         String mode = sharedPreferences.getString("game_mode", "0");
@@ -129,14 +129,14 @@ public class FailureActivity extends AppCompatActivity {
         checkScore();
 
         new MyAnimation(r);
-        LinearLayout rootview = findViewById(R.id.rootview);
+        LinearLayout rootView = findViewById(R.id.rootview);
 
-        new Particles(this, rootview, R.layout.image_xml, 20);
+        new Particles(this, rootView, R.layout.image_xml, 20);
         GradientDrawable gd = new GradientDrawable(
                 GradientDrawable.Orientation.TOP_BOTTOM,
                 new int[]{startColor, endColor});
 
-        rootview.setBackground(gd);
+        rootView.setBackground(gd);
 
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
         getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
@@ -147,6 +147,8 @@ public class FailureActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Utils.darkBlueBlink(new_games, getApplicationContext());
+
+                new_games.setClickable(false);
 
                 stopBackgroundMusic();
 
@@ -183,22 +185,19 @@ public class FailureActivity extends AppCompatActivity {
         noThankBtn.setOnClickListener(view -> {
             Utils.destination_activity = PlayDetailsActivity.class;
             username = sharedPreferences.getString("username", "");
+            noThankBtn.setClickable(false);
 
             stopBackgroundMusic();
+            GameActivity3.gameActivity.finish();
 
             Intent intent = new Intent(FailureActivity.this, PlayDetailsActivity.class);
-
-            // intent.setFlags( Intent.FLAG_ACTIVITY_CLEAR_TOP );
-            boolean hasOldWinningAmount = getIntent().getBooleanExtra("hasOldWinningAmount", false);
 
             if (hasOldWinningAmount) {
                 intent.putExtra("hasOldWinningAmount", true);
             }
 
             intent.putExtra("noThanks", true);
-
             startActivity(intent);
-
             finish();
         });
 
@@ -221,6 +220,7 @@ public class FailureActivity extends AppCompatActivity {
         countDownTimer.start();
 
         continueBtn.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View view) {
                 Utils.greenBlink(continueBtn, FailureActivity.this);
@@ -230,7 +230,7 @@ public class FailureActivity extends AppCompatActivity {
                     finish();
                 }
 
-                clicked = true;
+                continueBtn.setClickable(false);
 
                 AdManager.showRewardAd(FailureActivity.this);
 
@@ -305,8 +305,6 @@ public class FailureActivity extends AppCompatActivity {
                 if (animationCount == 2) {
                     failureTxt.setVisibility(View.VISIBLE);
                     animateWebContainer(failureTxt);
-
-
                 } else if (animationCount == 3) {
 
                     continueBtn.setVisibility(View.VISIBLE);
@@ -368,10 +366,7 @@ public class FailureActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-//        ExitDialog dialog = new ExitDialog(this);
-//        dialog.show();
-//        Window window = dialog.getWindow();
-//        window.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+
     }
 
 
@@ -385,76 +380,46 @@ public class FailureActivity extends AppCompatActivity {
     @Override
     public void onPause() {
         super.onPause();
-//       try{
-//           if(GameActivity2.mRewardedVideoAd==null) {
-//               mRewardedVideoAd.pause(this);
-//           }else {
-//               GameActivity2.mRewardedVideoAd.pause(this);
-//
-//           }
-//
-//           if( CountDownActivity.mMediaPlayer!=null){
-//               CountDownActivity.mMediaPlayer.pause();
-//           }
-//       }catch (Exception e){}
+
 
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
-//        if(GameActivity2.mRewardedVideoAd==null) {
-//            mRewardedVideoAd.destroy(this);
-//        }else {
-//            GameActivity2.mRewardedVideoAd.destroy(this);
-//        }
+
     }
 
 
     private void loadInterstitialAd() {
         AdManager.showInterstitial(FailureActivity.this);
+        AdManager.mInterstitialAd.setFullScreenContentCallback(new FullScreenContentCallback() {
+            @Override
+            public void onAdDismissedFullScreenContent() {
+                animateWebContainer(replay_level);
+            }
+        });
     }
 
     private void checkScore() {
         SharedPreferences sharedPreferences = getSharedPreferences("settings", MODE_PRIVATE);
-        String highscore = sharedPreferences.getString("high_score", "0");
+        String highScore = sharedPreferences.getString("high_score", "0");
         String username = sharedPreferences.getString("username", "");
         String country = sharedPreferences.getString("country", "");
         String country_flag = sharedPreferences.getString("country_flag", "");
-        String oldAmountWon = sharedPreferences.getString("amountWon", "");
-
-        int h;
+        String newAmountWon = sharedPreferences.getString("amountWon", "0");
+        int totalAmountWon = sharedPreferences.getInt("totalAmountWon", 0);
 
         try {
-            h = Integer.parseInt(Utils.removeExtra(highscore));
+            int parsedHighScore = Integer.parseInt(highScore);
 
-            String score = GameActivity2.amountWon;
-            ///score = score.substring(1);
-            score = score.replace(",", "").replace("$", "");
-            int s = 0;
-            if (!score.isEmpty())
-                s = Integer.parseInt(score);
+            int parsedNewAmount = Integer.parseInt(newAmountWon);
+            totalAmountWon += parsedNewAmount;
 
-            if (hasOldWinningAmount) {
-                String amountWon = GameActivity2.amountWon.replace("$", "").replace(",", "");
-                oldAmountWon = oldAmountWon.replace("$", "").replace(",", "");
-
-                if (!amountWon.isEmpty()) {
-                    s = Integer.parseInt(amountWon);
-                }
-
-                if (!oldAmountWon.isEmpty()) {
-                    s += Integer.parseInt(oldAmountWon);
-                }
-
-            }
-
-            if (s > h) {
+            if (totalAmountWon > parsedHighScore) {
                 SharedPreferences.Editor editor = sharedPreferences.edit();
-                editor.putString("high_score", String.valueOf(s));
+                editor.putString("high_score", String.valueOf(totalAmountWon));
                 editor.apply();
-
-
             }
 
             Map<String, String> userDetails = new HashMap<>();
@@ -462,7 +427,7 @@ public class FailureActivity extends AppCompatActivity {
             userDetails.put("country", country);
             userDetails.put("country_flag", country_flag);
 
-            sendScoreToSever(String.valueOf(s), userDetails);
+            // sendScoreToSever(String.valueOf(s), userDetails);
 
         } catch (Exception e) {
             e.printStackTrace();

@@ -509,7 +509,7 @@ public class GameActivity2 extends AppCompatActivity {
             //////////////////////////////////////
             af((LinearLayout) v, b, true, number);
         } catch (JSONException e) {
-
+            e.printStackTrace();
         }
     }
 
