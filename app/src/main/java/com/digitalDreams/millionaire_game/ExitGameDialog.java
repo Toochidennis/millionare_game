@@ -1,6 +1,7 @@
 package com.digitalDreams.millionaire_game;
 
 import static com.digitalDreams.millionaire_game.alpha.AudioManager.stopBackgroundMusic;
+import static com.digitalDreams.millionaire_game.alpha.Constants.formatCurrency;
 
 import android.Manifest;
 import android.app.Activity;
@@ -25,6 +26,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.Locale;
 
 import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
@@ -66,6 +68,9 @@ public class ExitGameDialog extends Dialog {
         SharedPreferences sharedPreferences = context.getSharedPreferences("settings", Context.MODE_PRIVATE);
         int endColor = sharedPreferences.getInt("end_color", context.getResources().getColor(R.color.purple_dark));
         int startColor = sharedPreferences.getInt("start_color", context.getResources().getColor(R.color.purple_500));
+        String newAmountWon = sharedPreferences.getString("amountWon", "0");
+        int totalAmountWon = sharedPreferences.getInt("totalAmountWon", 0);
+        boolean isFinishLevel = sharedPreferences.getBoolean("isFinishLevel", false);
 
         LinearLayout bg = findViewById(R.id.rootview);
         new Particles(context, bg, R.layout.image_xml, 20);
@@ -84,12 +89,21 @@ public class ExitGameDialog extends Dialog {
             showInterstitial();
             stopBackgroundMusic();
             takeMoneyBtn.setClickable(false);
-
         });
 
-        TextView amountwonText = findViewById(R.id.amount_won);
-        amountwonText.setText(Utils.addCommaAndDollarSign(Integer.parseInt(amountWon)));
+        TextView amountWonText = findViewById(R.id.amount_won);
 
+        int parsedNewAmount = Integer.parseInt(newAmountWon);
+        String formattedAmount;
+
+        if (isFinishLevel) {
+            totalAmountWon += parsedNewAmount;
+            formattedAmount = String.format(Locale.getDefault(), "$%s", formatCurrency(totalAmountWon));
+        } else {
+            formattedAmount = String.format(Locale.getDefault(), "$%s", formatCurrency(parsedNewAmount));
+        }
+
+        amountWonText.setText(formattedAmount);
 
         continueBtn.setOnClickListener(view -> {
             Utils.darkBlueBlink(continueBtn, context);
