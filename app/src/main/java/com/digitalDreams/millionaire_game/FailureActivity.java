@@ -244,6 +244,7 @@ public class FailureActivity extends AppCompatActivity {
 
                             @Override
                             public void onAdFailedToShowFullScreenContent(@NonNull AdError adError) {
+                                GameActivity3.gameActivity.finish();
                                 startActivity(new Intent(FailureActivity.this, PlayDetailsActivity.class));
                                 finish();
                                 super.onAdFailedToShowFullScreenContent(adError);
@@ -409,16 +410,22 @@ public class FailureActivity extends AppCompatActivity {
         String country_flag = sharedPreferences.getString("country_flag", "");
         String newAmountWon = sharedPreferences.getString("amountWon", "0");
         int totalAmountWon = sharedPreferences.getInt("totalAmountWon", 0);
+        boolean isFinishLevel = sharedPreferences.getBoolean("isFinishLevel", false);
 
         try {
             int parsedHighScore = Integer.parseInt(highScore);
-
             int parsedNewAmount = Integer.parseInt(newAmountWon);
-            totalAmountWon += parsedNewAmount;
+            int totalAmount2;
 
-            if (totalAmountWon > parsedHighScore) {
+            if (isFinishLevel){
+                totalAmount2 =  totalAmountWon + parsedNewAmount;
+            }else {
+                totalAmount2 = parsedNewAmount;
+            }
+
+            if (totalAmount2 > parsedHighScore) {
                 SharedPreferences.Editor editor = sharedPreferences.edit();
-                editor.putString("high_score", String.valueOf(totalAmountWon));
+                editor.putString("high_score", String.valueOf(totalAmount2));
                 editor.apply();
             }
 
@@ -427,7 +434,7 @@ public class FailureActivity extends AppCompatActivity {
             userDetails.put("country", country);
             userDetails.put("country_flag", country_flag);
 
-            // sendScoreToSever(String.valueOf(s), userDetails);
+            // sendScoreToSever(String.valueOf(totalAmount2), userDetails);
 
         } catch (Exception e) {
             e.printStackTrace();
