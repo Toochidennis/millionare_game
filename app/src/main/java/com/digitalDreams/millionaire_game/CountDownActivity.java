@@ -47,6 +47,10 @@ public class CountDownActivity extends AppCompatActivity {
         TextView counterText = findViewById(R.id.count_down_text);
 
 
+        boolean fromWinners = getIntent().getBooleanExtra("fromWinners", false);
+
+        isFromWinnersActivity(fromWinners);
+
         SharedPreferences sharedPreferences = getSharedPreferences("settings", Context.MODE_PRIVATE);
         int endColor = sharedPreferences.getInt("end_color", getResources().getColor(R.color.purple_dark));
         int startColor = sharedPreferences.getInt("start_color", getResources().getColor(R.color.purple_500));
@@ -122,6 +126,14 @@ public class CountDownActivity extends AppCompatActivity {
         SharedPreferences sharedPref = getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPref.edit();
         editor.putBoolean(SOUND, false);
+        editor.apply();
+    }
+
+    private void isFromWinnersActivity(boolean isWon) {
+        SharedPreferences sharedPref = getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPref.edit();
+        editor.putString("amountWon", "0");
+        editor.putBoolean("isFinishLevel", isWon);
         editor.apply();
     }
 }
