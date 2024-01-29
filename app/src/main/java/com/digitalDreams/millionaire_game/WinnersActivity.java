@@ -84,7 +84,8 @@ public class WinnersActivity extends AppCompatActivity {
         share_layout.setOnClickListener(view -> checkPermission());
 
         newGameBtn.setOnClickListener(view -> {
-            startActivity(new Intent(this, CountDownActivity.class));
+            startActivity(new Intent(this, CountDownActivity.class)
+                    .putExtra("fromWinners", true));
             finish();
         });
 
@@ -94,10 +95,9 @@ public class WinnersActivity extends AppCompatActivity {
 
         SharedPreferences sharedPreferences = getSharedPreferences("settings", Context.MODE_PRIVATE);
         String languageCode = sharedPreferences.getString("language", "en");
-        int endcolor = sharedPreferences.getInt("end_color", getResources().getColor(R.color.purple_dark));
+        int endColor = sharedPreferences.getInt("end_color", getResources().getColor(R.color.purple_dark));
         int startColor = sharedPreferences.getInt("start_color", getResources().getColor(R.color.purple_500));
         int cardBackground = sharedPreferences.getInt("card_background", 0x219ebc);
-        String highscore = sharedPreferences.getString("high_score", "0");
         String username = sharedPreferences.getString("username", "");
         amountWon = sharedPreferences.getString("amountWon", "1000000");
         String game_level = sharedPreferences.getString("game_level", "1");
@@ -117,7 +117,7 @@ public class WinnersActivity extends AppCompatActivity {
         ///////////////////////////
 
         try {
-            String usernameText = username.substring(0, 1).toUpperCase() + username.substring(1, username.length());
+            String usernameText = username.substring(0, 1).toUpperCase() + username.substring(1);
             usernameTXT.setText(usernameText);
             amountWonTXT.setText(Utils.addDollarSign(Utils.addCommaToNumber(Integer.parseInt(amountWon))));
         } catch (Exception e) {
@@ -128,7 +128,7 @@ public class WinnersActivity extends AppCompatActivity {
         new Particles(this, bg, R.layout.image_xml, 20);
         GradientDrawable gradientDrawable = new GradientDrawable(
                 GradientDrawable.Orientation.TOP_BOTTOM,
-                new int[]{startColor, endcolor});
+                new int[]{startColor, endColor});
 
         bg.setBackground(gradientDrawable);
 
@@ -225,13 +225,6 @@ public class WinnersActivity extends AppCompatActivity {
 
     }
 
-    private void updateSharedPreference() {
-        SharedPreferences sharedPreferences = getSharedPreferences(APPLICATION_DATA, MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putBoolean(SHOULD_CONTINUE_GAME, false);
-        editor.putBoolean(SHOULD_REFRESH_QUESTION, false);
-        editor.apply();
-    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
