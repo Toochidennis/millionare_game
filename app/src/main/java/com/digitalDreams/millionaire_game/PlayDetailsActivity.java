@@ -81,7 +81,6 @@ public class PlayDetailsActivity extends AppCompatActivity {
     public static Activity playerDetailsActivity;
 
 
-
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -137,6 +136,8 @@ public class PlayDetailsActivity extends AppCompatActivity {
         int startColor = sharedPreferences.getInt("start_color", getResources().getColor(R.color.purple_500));
         String mode = sharedPreferences.getString("game_mode", "0");
         String duration = sharedPreferences.getString("duration", "0");
+        boolean isFinishLevel = sharedPreferences.getBoolean("isFinishLevel", false);
+
 
         dbHelper = new DBHelper(this);
 
@@ -162,8 +163,15 @@ public class PlayDetailsActivity extends AppCompatActivity {
 
         try {
             int parsedNewAmount = Integer.parseInt(newAmountWon);
-            totalAmountWon += parsedNewAmount;
-            String formattedAmount = String.format(Locale.getDefault(), "$%s", formatCurrency(totalAmountWon));
+            String formattedAmount;
+
+            if (isFinishLevel) {
+                totalAmountWon += parsedNewAmount;
+                formattedAmount = String.format(Locale.getDefault(), "$%s", formatCurrency(totalAmountWon));
+            } else {
+                formattedAmount = String.format(Locale.getDefault(), "$%s", formatCurrency(parsedNewAmount));
+            }
+
             amountWonTxt.setText(formattedAmount);
         } catch (Exception e) {
             e.printStackTrace();
@@ -416,15 +424,23 @@ public class PlayDetailsActivity extends AppCompatActivity {
 
             String country = sharedPreferences.getString("country", "");
             String country_flag = sharedPreferences.getString("country_flag", "");
+            boolean isFinishLevel = sharedPreferences.getBoolean("isFinishLevel", false);
+
 
             int parsedHighScore = Integer.parseInt(highScore);
 
             int parsedNewAmount = Integer.parseInt(newAmountWon);
-            totalAmountWon += parsedNewAmount;
+            int totalAmount2;
 
-            if (totalAmountWon > parsedHighScore) {
+            if (isFinishLevel){
+                totalAmount2 =  totalAmountWon + parsedNewAmount;
+            }else {
+                totalAmount2 = parsedNewAmount;
+            }
+
+            if (totalAmount2 > parsedHighScore) {
                 SharedPreferences.Editor editor = sharedPreferences.edit();
-                editor.putString("high_score", String.valueOf(totalAmountWon));
+                editor.putString("high_score", String.valueOf(totalAmount2));
                 editor.apply();
             }
 
@@ -434,7 +450,7 @@ public class PlayDetailsActivity extends AppCompatActivity {
             userDetails.put("country_flag", country_flag);
 
 
-            // sendScoreToSever(String.valueOf(s), userDetails);
+            // sendScoreToSever(String.valueOf(totalAmount2), userDetails);
         } catch (Exception e) {
             e.printStackTrace();
         }
