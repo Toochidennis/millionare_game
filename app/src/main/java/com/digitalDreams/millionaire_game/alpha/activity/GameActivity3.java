@@ -793,7 +793,7 @@ public class GameActivity3 extends AppCompatActivity implements OnOptionsClickLi
 
     private void animateViews() {
         View[] views = {minus2QuestionsButton, lifeLineDescriptionTextView1, askComputerButton,
-                lifeLineDescriptionTextView2, votingContainer, lifeLineDescriptionTextView3,
+                lifeLineDescriptionTextView2, takeAPollButton, lifeLineDescriptionTextView3,
                 resetQuestionButton, lifeLineDescriptionTextView4, questionCardView,
                 questionTextView, exitButton, amountContainer, questionProgressTextView
         };
