@@ -19,20 +19,17 @@ public class Constants {
     public static long DELAY_INTERVAL_LONG = 1000;
     public static long DELAY_INTERVAL_MEDIUM = 500L;
     public static long DELAY_INTERVAL_SHORT = 200L;
-    public static String[] labelList = {"A", "B", "C", "D", "E", "F"};
     public static String FAILED = "Failed";
     public static String PASSED = "Passed";
     public static int RED = 1;
     public static int GREEN = 2;
     public static int ORANGE = 0;
-
     public static String SHOULD_CONTINUE_GAME = "shouldContinueGame";
     public static String APPLICATION_DATA = "application_data";
     public static String PREF_NAME = "settings";
     public static String SHOULD_REFRESH_QUESTION = "Failure activity";
     public static String FROM_PROGRESS = "From progress";
     public static String SOUND = "Sound";
-
 
     private static final char[] SUFFIX = {' ', 'k', 'M', 'B', 'T', 'P', 'E'};
     private static final DecimalFormat DECIMAL_FORMAT = new DecimalFormat("#0");
@@ -81,7 +78,7 @@ public class Constants {
         if (value >= 3 && base < SUFFIX.length) {
             return DECIMAL_FORMAT.format((long) number / POWERS_OF_TEN[base]) + SUFFIX[base];
         } else {
-            return String.format(Locale.getDefault(), "%,d", (long) number);
+            return String.format(Locale.getDefault(), "%d", (long) number);
         }
     }
 
@@ -97,4 +94,13 @@ public class Constants {
         return helpList[index];
     }
 
+    public static String getLabelFromList(Context context, int index) {
+        String[] labels = {context.getResources().getString(R.string.a),
+                context.getResources().getString(R.string.b),
+                context.getResources().getString(R.string.c),
+                context.getResources().getString(R.string.d)
+        };
+
+        return labels[index];
+    }
 }
