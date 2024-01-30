@@ -1,12 +1,9 @@
 package com.digitalDreams.millionaire_game;
 
-import static com.digitalDreams.millionaire_game.alpha.AudioManager.pauseBackgroundMusic;
-import static com.digitalDreams.millionaire_game.alpha.AudioManager.playBackgroundMusic;
+import static com.digitalDreams.millionaire_game.alpha.AudioManager.playWinningSound;
+import static com.digitalDreams.millionaire_game.alpha.AudioManager.releaseAll;
 import static com.digitalDreams.millionaire_game.alpha.AudioManager.stopBackgroundMusic;
-import static com.digitalDreams.millionaire_game.alpha.Constants.APPLICATION_DATA;
 import static com.digitalDreams.millionaire_game.alpha.Constants.PREF_NAME;
-import static com.digitalDreams.millionaire_game.alpha.Constants.SHOULD_CONTINUE_GAME;
-import static com.digitalDreams.millionaire_game.alpha.Constants.SHOULD_REFRESH_QUESTION;
 import static com.digitalDreams.millionaire_game.alpha.Constants.SOUND;
 
 import androidx.annotation.NonNull;
@@ -35,6 +32,8 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.digitalDreams.millionaire_game.alpha.activity.GameActivity3;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -222,7 +221,6 @@ public class WinnersActivity extends AppCompatActivity {
         sharingIntent.putExtra(Intent.EXTRA_STREAM, uri);
 
         startActivity(Intent.createChooser(sharingIntent, "Share via"));
-
     }
 
 
@@ -256,37 +254,27 @@ public class WinnersActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        stopBackgroundMusic();
 
-        if (shouldPlayMusic()) {
-            playBackgroundMusic(this);
-            updateMusicState(false);
-        }
-
+        playWinningSound(this);
+        updateMusicState();
     }
 
     @Override
-    protected void onPause() {
-        super.onPause();
-        pauseBackgroundMusic();
-        updateMusicState(true);
+    public void onBackPressed() {
+
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        stopBackgroundMusic();
-        updateMusicState(true);
+        releaseAll();
     }
 
-    private boolean shouldPlayMusic() {
-        SharedPreferences sharedPreferences = getSharedPreferences(PREF_NAME, MODE_PRIVATE);
-        return sharedPreferences.getBoolean(SOUND, false);
-    }
-
-    private void updateMusicState(boolean musicState) {
+    private void updateMusicState() {
         SharedPreferences sharedPreferences = getSharedPreferences(PREF_NAME, MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putBoolean(SOUND, musicState);
+        editor.putBoolean(SOUND, true);
         editor.apply();
     }
 }

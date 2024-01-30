@@ -1,8 +1,12 @@
 package com.digitalDreams.millionaire_game.alpha.models;
 
-import java.io.Serializable;
+import android.os.Parcel;
+import android.os.Parcelable;
 
-public class OptionsModel implements Serializable {
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
+public class OptionsModel implements Parcelable {
 
     private String optionId;
     private String optionText;
@@ -13,20 +17,52 @@ public class OptionsModel implements Serializable {
         this.optionText = optionText;
     }
 
-    public String getOptionId() {
-        return optionId;
+    @Override
+    public int describeContents() {
+        return 0;
     }
 
-    public void setOptionId(String optionId) {
-        this.optionId = optionId;
+    protected OptionsModel(Parcel in) {
+        optionId = in.readString();
+        optionText = in.readString();
+    }
+
+    @Override
+    public void writeToParcel(@NonNull Parcel dest, int flags) {
+        dest.writeString(optionId);
+        dest.writeString(optionText);
+    }
+
+    public static final Creator<OptionsModel> CREATOR = new Creator<OptionsModel>() {
+        @Override
+        public OptionsModel createFromParcel(Parcel source) {
+            return new OptionsModel(source);
+        }
+
+        @Override
+        public OptionsModel[] newArray(int size) {
+            return new OptionsModel[size];
+        }
+    };
+
+    @Override
+    public int hashCode() {
+        return optionId.hashCode();
+    }
+
+    @Override
+    public boolean equals(@Nullable Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+
+        OptionsModel that = (OptionsModel) obj;
+
+        return optionId.equals(that.optionId);
     }
 
     public String getOptionText() {
         return optionText;
     }
 
-    public void setOptionText(String optionText) {
-        this.optionText = optionText;
-    }
 
 }
