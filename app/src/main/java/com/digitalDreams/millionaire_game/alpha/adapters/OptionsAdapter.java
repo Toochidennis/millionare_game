@@ -2,7 +2,7 @@ package com.digitalDreams.millionaire_game.alpha.adapters;
 
 import static com.digitalDreams.millionaire_game.alpha.Constants.DELAY_INTERVAL_LONG;
 import static com.digitalDreams.millionaire_game.alpha.Constants.DELAY_INTERVAL_SHORT;
-import static com.digitalDreams.millionaire_game.alpha.Constants.labelList;
+import static com.digitalDreams.millionaire_game.alpha.Constants.getLabelFromList;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -72,7 +72,7 @@ public class OptionsAdapter extends RecyclerView.Adapter<OptionsAdapter.OptionsV
         }
 
         void bind(OptionsModel optionsModel) {
-            String label = labelList[getAdapterPosition()];
+            String label = getLabelFromList(itemView.getContext(), getAdapterPosition());
             labelTextView.setText(label);
             optionTextView.setText(optionsModel.getOptionText());
 
