@@ -72,7 +72,6 @@
                 android:src="@drawable/hexagon_2"
                 app:tint="@color/white" />
 
-
             <TextView
                 android:id="@+id/count_down_text"
                 android:layout_width="wrap_content"

@@ -10,6 +10,7 @@ public class AudioManager {
     private static MediaPlayer backgroundMediaPlayer;
     private static MediaPlayer successMediaPlayer;
     private static MediaPlayer failureMediaPlayer;
+    private static MediaPlayer winningMediaPlayer;
 
     public static void playBackgroundMusic(Context context) {
         if (backgroundMediaPlayer == null) {
@@ -51,6 +52,15 @@ public class AudioManager {
         failureMediaPlayer.start();
     }
 
+    public static void playWinningSound(Context context){
+        if (winningMediaPlayer == null){
+            winningMediaPlayer = MediaPlayer.create(context, R.raw.winning_sound);
+        }
+        winningMediaPlayer.start();
+    }
+
+
+
     public static void releaseAll() {
         if (backgroundMediaPlayer != null) {
             backgroundMediaPlayer.release();
@@ -63,6 +73,11 @@ public class AudioManager {
         if (failureMediaPlayer != null) {
             failureMediaPlayer.release();
             failureMediaPlayer = null;
+        }
+
+        if (winningMediaPlayer != null){
+            winningMediaPlayer.release();
+            winningMediaPlayer = null;
         }
     }
 }
