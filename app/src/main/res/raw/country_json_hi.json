@@ -1,0 +1,1829 @@
+[
+ {
+   "name": "अफ़ग़ानिस्तान",
+   "code": "AF",
+   "emoji": "🇦🇫",
+   "unicode": "U+1F1E6 U+1F1EB",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/AF.svg"
+ },
+ {
+   "name": "एलैंड द्वीप समूह",
+   "code": "AX",
+   "emoji": "🇦🇽",
+   "unicode": "U+1F1E6 U+1F1FD",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/AX.svg"
+ },
+ {
+   "name": "अल्बानिया",
+   "code": "AL",
+   "emoji": "🇦🇱",
+   "unicode": "U+1F1E6 U+1F1F1",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/AL.svg"
+ },
+ {
+   "name": "एलजीरिया",
+   "code": "DZ",
+   "emoji": "🇩🇿",
+   "unicode": "U+1F1E9 U+1F1FF",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/DZ.svg"
+ },
+ {
+   "name": "अमेरिकी समोआ",
+   "code": "AS",
+   "emoji": "🇦🇸",
+   "unicode": "U+1F1E6 U+1F1F8",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/AS.svg"
+ },
+ {
+   "name": "एंडोरा",
+   "code": "AD",
+   "emoji": "🇦🇩",
+   "unicode": "U+1F1E6 U+1F1E9",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/AD.svg"
+ },
+ {
+   "name": "अंगोला",
+   "code": "AO",
+   "emoji": "🇦🇴",
+   "unicode": "U+1F1E6 U+1F1F4",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/AO.svg"
+ },
+ {
+   "name": "बाम मछली",
+   "code": "AI",
+   "emoji": "🇦🇮",
+   "unicode": "U+1F1E6 U+1F1EE",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/AI.svg"
+ },
+ {
+   "name": "अंटार्कटिका",
+   "code": "AQ",
+   "emoji": "🇦🇶",
+   "unicode": "U+1F1E6 U+1F1F6",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/AQ.svg"
+ },
+ {
+   "name": "पुराना और दाढ़ी वाला",
+   "code": "AG",
+   "emoji": "🇦🇬",
+   "unicode": "U+1F1E6 U+1F1EC",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/AG.svg"
+ },
+ {
+   "name": "अर्जेंटीना",
+   "code": "AR",
+   "emoji": "🇦🇷",
+   "unicode": "U+1F1E6 U+1F1F7",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/AR.svg"
+ },
+ {
+   "name": "आर्मीनिया",
+   "code": "AM",
+   "emoji": "🇦🇲",
+   "unicode": "U+1F1E6 U+1F1F2",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/AM.svg"
+ },
+ {
+   "name": "अरूबा",
+   "code": "AW",
+   "emoji": "🇦🇼",
+   "unicode": "U+1F1E6 U+1F1FC",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/AW.svg"
+ },
+ {
+   "name": "एस्केंसियन आइलैंड",
+   "code": "AC",
+   "emoji": "🇦🇨",
+   "unicode": "U+1F1E6 U+1F1E8",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/AC.svg"
+ },
+ {
+   "name": "ऑस्ट्रेलिया",
+   "code": "AU",
+   "emoji": "🇦🇺",
+   "unicode": "U+1F1E6 U+1F1FA",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/AU.svg"
+ },
+ {
+   "name": "ऑस्ट्रिया",
+   "code": "AT",
+   "emoji": "🇦🇹",
+   "unicode": "U+1F1E6 U+1F1F9",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/AT.svg"
+ },
+ {
+   "name": "आज़रबाइजान",
+   "code": "AZ",
+   "emoji": "🇦🇿",
+   "unicode": "U+1F1E6 U+1F1FF",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/AZ.svg"
+ },
+ {
+   "name": "बहामा",
+   "code": "BS",
+   "emoji": "🇧🇸",
+   "unicode": "U+1F1E7 U+1F1F8",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/BS.svg"
+ },
+ {
+   "name": "बहरीन",
+   "code": "BH",
+   "emoji": "🇧🇭",
+   "unicode": "U+1F1E7 U+1F1ED",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/BH.svg"
+ },
+ {
+   "name": "बांग्लादेश",
+   "code": "BD",
+   "emoji": "🇧🇩",
+   "unicode": "U+1F1E7 U+1F1E9",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/BD.svg"
+ },
+ {
+   "name": "बारबाडोस",
+   "code": "BB",
+   "emoji": "🇧🇧",
+   "unicode": "U+1F1E7 U+1F1E7",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/BB.svg"
+ },
+ {
+   "name": "बेलोरूस",
+   "code": "BY",
+   "emoji": "🇧🇾",
+   "unicode": "U+1F1E7 U+1F1FE",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/BY.svg"
+ },
+ {
+   "name": "बेल्जियम",
+   "code": "BE",
+   "emoji": "🇧🇪",
+   "unicode": "U+1F1E7 U+1F1EA",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/BE.svg"
+ },
+ {
+   "name": "बेल्गो",
+   "code": "BZ",
+   "emoji": "🇧🇿",
+   "unicode": "U+1F1E7 U+1F1FF",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/BZ.svg"
+ },
+ {
+   "name": "बेनिन",
+   "code": "BJ",
+   "emoji": "🇧🇯",
+   "unicode": "U+1F1E7 U+1F1EF",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/BJ.svg"
+ },
+ {
+   "name": "बरमूडा आइलैंड्स",
+   "code": "BM",
+   "emoji": "🇧🇲",
+   "unicode": "U+1F1E7 U+1F1F2",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/BM.svg"
+ },
+ {
+   "name": "बुथन",
+   "code": "BT",
+   "emoji": "🇧🇹",
+   "unicode": "U+1F1E7 U+1F1F9",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/BT.svg"
+ },
+ {
+   "name": "बोलीविया",
+   "code": "BO",
+   "emoji": "🇧🇴",
+   "unicode": "U+1F1E7 U+1F1F4",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/BO.svg"
+ },
+ {
+   "name": "बोस्निया और हर्जेगोविना",
+   "code": "BA",
+   "emoji": "🇧🇦",
+   "unicode": "U+1F1E7 U+1F1E6",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/BA.svg"
+ },
+ {
+   "name": "बोत्सवाना",
+   "code": "BW",
+   "emoji": "🇧🇼",
+   "unicode": "U+1F1E7 U+1F1FC",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/BW.svg"
+ },
+ {
+   "name": "बाउवेट आइलैंड",
+   "code": "BV",
+   "emoji": "🇧🇻",
+   "unicode": "U+1F1E7 U+1F1FB",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/BV.svg"
+ },
+ {
+   "name": "ब्राज़िल",
+   "code": "BR",
+   "emoji": "🇧🇷",
+   "unicode": "U+1F1E7 U+1F1F7",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/BR.svg"
+ },
+ {
+   "name": "ब्रिटेन और भारतीय समुद्री क्षेत्र",
+   "code": "IO",
+   "emoji": "🇮🇴",
+   "unicode": "U+1F1EE U+1F1F4",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/IO.svg"
+ },
+ {
+   "name": "ब्रिटिश वर्जिन आइसलैण्ड्स",
+   "code": "VG",
+   "emoji": "🇻🇬",
+   "unicode": "U+1F1FB U+1F1EC",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/VG.svg"
+ },
+ {
+   "name": "ब्रुनेई",
+   "code": "BN",
+   "emoji": "🇧🇳",
+   "unicode": "U+1F1E7 U+1F1F3",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/BN.svg"
+ },
+ {
+   "name": "बुल्गारिया",
+   "code": "BG",
+   "emoji": "🇧🇬",
+   "unicode": "U+1F1E7 U+1F1EC",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/BG.svg"
+ },
+ {
+   "name": "बुर्किना फासो",
+   "code": "BF",
+   "emoji": "🇧🇫",
+   "unicode": "U+1F1E7 U+1F1EB",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/BF.svg"
+ },
+ {
+   "name": "बुस्र्न्दी",
+   "code": "BI",
+   "emoji": "🇧🇮",
+   "unicode": "U+1F1E7 U+1F1EE",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/BI.svg"
+ },
+ {
+   "name": "कंबोडिया",
+   "code": "KH",
+   "emoji": "🇰🇭",
+   "unicode": "U+1F1F0 U+1F1ED",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/KH.svg"
+ },
+ {
+   "name": "कैमरून",
+   "code": "CM",
+   "emoji": "🇨🇲",
+   "unicode": "U+1F1E8 U+1F1F2",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/CM.svg"
+ },
+ {
+   "name": "कनाडा",
+   "code": "CA",
+   "emoji": "🇨🇦",
+   "unicode": "U+1F1E8 U+1F1E6",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/CA.svg"
+ },
+ {
+   "name": "कैनेरी द्वीप समूह",
+   "code": "IC",
+   "emoji": "🇮🇨",
+   "unicode": "U+1F1EE U+1F1E8",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/IC.svg"
+ },
+ {
+   "name": "केप वर्ड",
+   "code": "CV",
+   "emoji": "🇨🇻",
+   "unicode": "U+1F1E8 U+1F1FB",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/CV.svg"
+ },
+ {
+   "name": "कैरिबियन के नीदरलैंड",
+   "code": "BQ",
+   "emoji": "🇧🇶",
+   "unicode": "U+1F1E7 U+1F1F6",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/BQ.svg"
+ },
+ {
+   "name": "केमन द्वीपसमूह",
+   "code": "KY",
+   "emoji": "🇰🇾",
+   "unicode": "U+1F1F0 U+1F1FE",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/KY.svg"
+ },
+ {
+   "name": "केन्द्रीय अफ़्रीकी गणराज्य",
+   "code": "CF",
+   "emoji": "🇨🇫",
+   "unicode": "U+1F1E8 U+1F1EB",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/CF.svg"
+ },
+ {
+   "name": "सेउटा और मेलिला",
+   "code": "EA",
+   "emoji": "🇪🇦",
+   "unicode": "U+1F1EA U+1F1E6",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/EA.svg"
+ },
+ {
+   "name": "काग़ज़ का टुकड़ा",
+   "code": "TD",
+   "emoji": "🇹🇩",
+   "unicode": "U+1F1F9 U+1F1E9",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/TD.svg"
+ },
+ {
+   "name": "मिर्च",
+   "code": "CL",
+   "emoji": "🇨🇱",
+   "unicode": "U+1F1E8 U+1F1F1",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/CL.svg"
+ },
+ {
+   "name": "चीनी मिटटी",
+   "code": "CN",
+   "emoji": "🇨🇳",
+   "unicode": "U+1F1E8 U+1F1F3",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/CN.svg"
+ },
+ {
+   "name": "क्रिसमस द्वीप",
+   "code": "CX",
+   "emoji": "🇨🇽",
+   "unicode": "U+1F1E8 U+1F1FD",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/CX.svg"
+ },
+ {
+   "name": "क्लिपरटन आइलैंड",
+   "code": "CP",
+   "emoji": "🇨🇵",
+   "unicode": "U+1F1E8 U+1F1F5",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/CP.svg"
+ },
+ {
+   "name": "कोकोस द्वीप समूह (कीलिंग)",
+   "code": "CC",
+   "emoji": "🇨🇨",
+   "unicode": "U+1F1E8 U+1F1E8",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/CC.svg"
+ },
+ {
+   "name": "कोलंबिया",
+   "code": "CO",
+   "emoji": "🇨🇴",
+   "unicode": "U+1F1E8 U+1F1F4",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/CO.svg"
+ },
+ {
+   "name": "कोमोरस",
+   "code": "KM",
+   "emoji": "🇰🇲",
+   "unicode": "U+1F1F0 U+1F1F2",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/KM.svg"
+ },
+ {
+   "name": "कांगो - ब्रेज़ाविल",
+   "code": "CG",
+   "emoji": "🇨🇬",
+   "unicode": "U+1F1E8 U+1F1EC",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/CG.svg"
+ },
+ {
+   "name": "कांगो - किंशासा",
+   "code": "CD",
+   "emoji": "🇨🇩",
+   "unicode": "U+1F1E8 U+1F1E9",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/CD.svg"
+ },
+ {
+   "name": "कुक द्वीपसमूह",
+   "code": "CK",
+   "emoji": "🇨🇰",
+   "unicode": "U+1F1E8 U+1F1F0",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/CK.svg"
+ },
+ {
+   "name": "कोस्टा रिका",
+   "code": "CR",
+   "emoji": "🇨🇷",
+   "unicode": "U+1F1E8 U+1F1F7",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/CR.svg"
+ },
+ {
+   "name": "हाथीदांत का किनारा",
+   "code": "CI",
+   "emoji": "🇨🇮",
+   "unicode": "U+1F1E8 U+1F1EE",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/CI.svg"
+ },
+ {
+   "name": "क्रोएशिया",
+   "code": "HR",
+   "emoji": "🇭🇷",
+   "unicode": "U+1F1ED U+1F1F7",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/HR.svg"
+ },
+ {
+   "name": "क्यूबा",
+   "code": "CU",
+   "emoji": "🇨🇺",
+   "unicode": "U+1F1E8 U+1F1FA",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/CU.svg"
+ },
+ {
+   "name": "कुराकाओ",
+   "code": "CW",
+   "emoji": "🇨🇼",
+   "unicode": "U+1F1E8 U+1F1FC",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/CW.svg"
+ },
+ {
+   "name": "साइप्रस",
+   "code": "CY",
+   "emoji": "🇨🇾",
+   "unicode": "U+1F1E8 U+1F1FE",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/CY.svg"
+ },
+ {
+   "name": "चेक",
+   "code": "CZ",
+   "emoji": "🇨🇿",
+   "unicode": "U+1F1E8 U+1F1FF",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/CZ.svg"
+ },
+ {
+   "name": "डेनमार्क",
+   "code": "DK",
+   "emoji": "🇩🇰",
+   "unicode": "U+1F1E9 U+1F1F0",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/DK.svg"
+ },
+ {
+   "name": "डिएगो गार्सिया",
+   "code": "DG",
+   "emoji": "🇩🇬",
+   "unicode": "U+1F1E9 U+1F1EC",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/DG.svg"
+ },
+ {
+   "name": "ज़िबूटी",
+   "code": "DJ",
+   "emoji": "🇩🇯",
+   "unicode": "U+1F1E9 U+1F1EF",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/DJ.svg"
+ },
+ {
+   "name": "कार्यक्षेत्र",
+   "code": "DM",
+   "emoji": "🇩🇲",
+   "unicode": "U+1F1E9 U+1F1F2",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/DM.svg"
+ },
+ {
+   "name": "डोमिनिकन गणराज्य",
+   "code": "DO",
+   "emoji": "🇩🇴",
+   "unicode": "U+1F1E9 U+1F1F4",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/DO.svg"
+ },
+ {
+   "name": "इक्वेडोर",
+   "code": "EC",
+   "emoji": "🇪🇨",
+   "unicode": "U+1F1EA U+1F1E8",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/EC.svg"
+ },
+ {
+   "name": "मिस्र",
+   "code": "EG",
+   "emoji": "🇪🇬",
+   "unicode": "U+1F1EA U+1F1EC",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/EG.svg"
+ },
+ {
+   "name": "रक्षक",
+   "code": "SV",
+   "emoji": "🇸🇻",
+   "unicode": "U+1F1F8 U+1F1FB",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/SV.svg"
+ },
+ {
+   "name": "इंगलैंड",
+   "code": "ENGLAND",
+   "emoji": "🏴󠁧󠁢󠁥󠁮󠁧󠁿",
+   "unicode": "U+1F3F4 U+E0067 U+E0062 U+E0065 U+E006E U+E0067 U+E007F",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/ENGLAND.svg"
+ },
+ {
+   "name": "भूमध्यवर्ती गिनी",
+   "code": "GQ",
+   "emoji": "🇬🇶",
+   "unicode": "U+1F1EC U+1F1F6",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/GQ.svg"
+ },
+ {
+   "name": "इरिट्रिया",
+   "code": "ER",
+   "emoji": "🇪🇷",
+   "unicode": "U+1F1EA U+1F1F7",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/ER.svg"
+ },
+ {
+   "name": "एस्तोनिया",
+   "code": "EE",
+   "emoji": "🇪🇪",
+   "unicode": "U+1F1EA U+1F1EA",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/EE.svg"
+ },
+ {
+   "name": "एस्वातिनी",
+   "code": "SZ",
+   "emoji": "🇸🇿",
+   "unicode": "U+1F1F8 U+1F1FF",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/SZ.svg"
+ },
+ {
+   "name": "इथियोपिया",
+   "code": "ET",
+   "emoji": "🇪🇹",
+   "unicode": "U+1F1EA U+1F1F9",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/ET.svg"
+ },
+ {
+   "name": "यूरोपीय संघ",
+   "code": "EU",
+   "emoji": "🇪🇺",
+   "unicode": "U+1F1EA U+1F1FA",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/EU.svg"
+ },
+ {
+   "name": "फ़ॉकलैंड आइलैंड",
+   "code": "FK",
+   "emoji": "🇫🇰",
+   "unicode": "U+1F1EB U+1F1F0",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/FK.svg"
+ },
+ {
+   "name": "फ़ैरो द्वीप",
+   "code": "FO",
+   "emoji": "🇫🇴",
+   "unicode": "U+1F1EB U+1F1F4",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/FO.svg"
+ },
+ {
+   "name": "फ़िजी",
+   "code": "FJ",
+   "emoji": "🇫🇯",
+   "unicode": "U+1F1EB U+1F1EF",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/FJ.svg"
+ },
+ {
+   "name": "फिनलैंड",
+   "code": "FI",
+   "emoji": "🇫🇮",
+   "unicode": "U+1F1EB U+1F1EE",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/FI.svg"
+ },
+ {
+   "name": "फ्रांस",
+   "code": "FR",
+   "emoji": "🇫🇷",
+   "unicode": "U+1F1EB U+1F1F7",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/FR.svg"
+ },
+ {
+   "name": "फ्रेंच गुयाना",
+   "code": "GF",
+   "emoji": "🇬🇫",
+   "unicode": "U+1F1EC U+1F1EB",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/GF.svg"
+ },
+ {
+   "name": "फ़्रेंच पोलिनेशिया",
+   "code": "PF",
+   "emoji": "🇵🇫",
+   "unicode": "U+1F1F5 U+1F1EB",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/PF.svg"
+ },
+ {
+   "name": "दक्षिण के फ्रांसीसी क्षेत्र",
+   "code": "TF",
+   "emoji": "🇹🇫",
+   "unicode": "U+1F1F9 U+1F1EB",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/TF.svg"
+ },
+ {
+   "name": "गैबॉन",
+   "code": "GA",
+   "emoji": "🇬🇦",
+   "unicode": "U+1F1EC U+1F1E6",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/GA.svg"
+ },
+ {
+   "name": "गाम्बिया",
+   "code": "GM",
+   "emoji": "🇬🇲",
+   "unicode": "U+1F1EC U+1F1F2",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/GM.svg"
+ },
+ {
+   "name": "जॉर्जिया",
+   "code": "GE",
+   "emoji": "🇬🇪",
+   "unicode": "U+1F1EC U+1F1EA",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/GE.svg"
+ },
+ {
+   "name": "जर्मनी",
+   "code": "DE",
+   "emoji": "🇩🇪",
+   "unicode": "U+1F1E9 U+1F1EA",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/DE.svg"
+ },
+ {
+   "name": "घाना",
+   "code": "GH",
+   "emoji": "🇬🇭",
+   "unicode": "U+1F1EC U+1F1ED",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/GH.svg"
+ },
+ {
+   "name": "जिब्राल्टर",
+   "code": "GI",
+   "emoji": "🇬🇮",
+   "unicode": "U+1F1EC U+1F1EE",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/GI.svg"
+ },
+ {
+   "name": "यूनान",
+   "code": "GR",
+   "emoji": "🇬🇷",
+   "unicode": "U+1F1EC U+1F1F7",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/GR.svg"
+ },
+ {
+   "name": "ग्रीनलैंड",
+   "code": "GL",
+   "emoji": "🇬🇱",
+   "unicode": "U+1F1EC U+1F1F1",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/GL.svg"
+ },
+ {
+   "name": "ग्रेनेड",
+   "code": "GD",
+   "emoji": "🇬🇩",
+   "unicode": "U+1F1EC U+1F1E9",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/GD.svg"
+ },
+ {
+   "name": "ग्वाडेलूपो",
+   "code": "GP",
+   "emoji": "🇬🇵",
+   "unicode": "U+1F1EC U+1F1F5",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/GP.svg"
+ },
+ {
+   "name": "गुआम",
+   "code": "GU",
+   "emoji": "🇬🇺",
+   "unicode": "U+1F1EC U+1F1FA",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/GU.svg"
+ },
+ {
+   "name": "ग्वाटेमाला",
+   "code": "GT",
+   "emoji": "🇬🇹",
+   "unicode": "U+1F1EC U+1F1F9",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/GT.svg"
+ },
+ {
+   "name": "मार्गदर्शक",
+   "code": "GG",
+   "emoji": "🇬🇬",
+   "unicode": "U+1F1EC U+1F1EC",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/GG.svg"
+ },
+ {
+   "name": "गिनी",
+   "code": "GN",
+   "emoji": "🇬🇳",
+   "unicode": "U+1F1EC U+1F1F3",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/GN.svg"
+ },
+ {
+   "name": "गिनी-बिसाऊ",
+   "code": "GW",
+   "emoji": "🇬🇼",
+   "unicode": "U+1F1EC U+1F1FC",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/GW.svg"
+ },
+ {
+   "name": "गयाना",
+   "code": "GY",
+   "emoji": "🇬🇾",
+   "unicode": "U+1F1EC U+1F1FE",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/GY.svg"
+ },
+ {
+   "name": "हैती",
+   "code": "HT",
+   "emoji": "🇭🇹",
+   "unicode": "U+1F1ED U+1F1F9",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/HT.svg"
+ },
+ {
+   "name": "हर्ड एंड मैकडोनाल्ड आइलैंड्स",
+   "code": "HM",
+   "emoji": "🇭🇲",
+   "unicode": "U+1F1ED U+1F1F2",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/HM.svg"
+ },
+ {
+   "name": "होंडुरस",
+   "code": "HN",
+   "emoji": "🇭🇳",
+   "unicode": "U+1F1ED U+1F1F3",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/HN.svg"
+ },
+ {
+   "name": "हांगकांग सर चाइना",
+   "code": "HK",
+   "emoji": "🇭🇰",
+   "unicode": "U+1F1ED U+1F1F0",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/HK.svg"
+ },
+ {
+   "name": "हंगरी",
+   "code": "HU",
+   "emoji": "🇭🇺",
+   "unicode": "U+1F1ED U+1F1FA",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/HU.svg"
+ },
+ {
+   "name": "आइसलैंड",
+   "code": "IS",
+   "emoji": "🇮🇸",
+   "unicode": "U+1F1EE U+1F1F8",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/IS.svg"
+ },
+ {
+   "name": "भारत",
+   "code": "IN",
+   "emoji": "🇮🇳",
+   "unicode": "U+1F1EE U+1F1F3",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/IN.svg"
+ },
+ {
+   "name": "इंडोनेशिया",
+   "code": "ID",
+   "emoji": "🇮🇩",
+   "unicode": "U+1F1EE U+1F1E9",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/ID.svg"
+ },
+ {
+   "name": "ईरान",
+   "code": "IR",
+   "emoji": "🇮🇷",
+   "unicode": "U+1F1EE U+1F1F7",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/IR.svg"
+ },
+ {
+   "name": "इराक",
+   "code": "IQ",
+   "emoji": "🇮🇶",
+   "unicode": "U+1F1EE U+1F1F6",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/IQ.svg"
+ },
+ {
+   "name": "आयरलैंड",
+   "code": "IE",
+   "emoji": "🇮🇪",
+   "unicode": "U+1F1EE U+1F1EA",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/IE.svg"
+ },
+ {
+   "name": "आदमी का आदमी",
+   "code": "IM",
+   "emoji": "🇮🇲",
+   "unicode": "U+1F1EE U+1F1F2",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/IM.svg"
+ },
+ {
+   "name": "इजराइल",
+   "code": "IL",
+   "emoji": "🇮🇱",
+   "unicode": "U+1F1EE U+1F1F1",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/IL.svg"
+ },
+ {
+   "name": "इटली",
+   "code": "IT",
+   "emoji": "🇮🇹",
+   "unicode": "U+1F1EE U+1F1F9",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/IT.svg"
+ },
+ {
+   "name": "जमैका",
+   "code": "JM",
+   "emoji": "🇯🇲",
+   "unicode": "U+1F1EF U+1F1F2",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/JM.svg"
+ },
+ {
+   "name": "जापान",
+   "code": "JP",
+   "emoji": "🇯🇵",
+   "unicode": "U+1F1EF U+1F1F5",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/JP.svg"
+ },
+ {
+   "name": "स्वेटर",
+   "code": "JE",
+   "emoji": "🇯🇪",
+   "unicode": "U+1F1EF U+1F1EA",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/JE.svg"
+ },
+ {
+   "name": "जॉर्डन",
+   "code": "JO",
+   "emoji": "🇯🇴",
+   "unicode": "U+1F1EF U+1F1F4",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/JO.svg"
+ },
+ {
+   "name": "कजाखस्तान",
+   "code": "KZ",
+   "emoji": "🇰🇿",
+   "unicode": "U+1F1F0 U+1F1FF",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/KZ.svg"
+ },
+ {
+   "name": "केन्या",
+   "code": "KE",
+   "emoji": "🇰🇪",
+   "unicode": "U+1F1F0 U+1F1EA",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/KE.svg"
+ },
+ {
+   "name": "किरिबाती",
+   "code": "KI",
+   "emoji": "🇰🇮",
+   "unicode": "U+1F1F0 U+1F1EE",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/KI.svg"
+ },
+ {
+   "name": "कोसोवो",
+   "code": "XK",
+   "emoji": "🇽🇰",
+   "unicode": "U+1F1FD U+1F1F0",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/XK.svg"
+ },
+ {
+   "name": "कुवैट",
+   "code": "KW",
+   "emoji": "🇰🇼",
+   "unicode": "U+1F1F0 U+1F1FC",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/KW.svg"
+ },
+ {
+   "name": "किर्गुस्तैन",
+   "code": "KG",
+   "emoji": "🇰🇬",
+   "unicode": "U+1F1F0 U+1F1EC",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/KG.svg"
+ },
+ {
+   "name": "लाओस",
+   "code": "LA",
+   "emoji": "🇱🇦",
+   "unicode": "U+1F1F1 U+1F1E6",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/LA.svg"
+ },
+ {
+   "name": "लातविया",
+   "code": "LV",
+   "emoji": "🇱🇻",
+   "unicode": "U+1F1F1 U+1F1FB",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/LV.svg"
+ },
+ {
+   "name": "लेबनान",
+   "code": "LB",
+   "emoji": "🇱🇧",
+   "unicode": "U+1F1F1 U+1F1E7",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/LB.svg"
+ },
+ {
+   "name": "लिसोटो",
+   "code": "LS",
+   "emoji": "🇱🇸",
+   "unicode": "U+1F1F1 U+1F1F8",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/LS.svg"
+ },
+ {
+   "name": "लाइबेरिया",
+   "code": "LR",
+   "emoji": "🇱🇷",
+   "unicode": "U+1F1F1 U+1F1F7",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/LR.svg"
+ },
+ {
+   "name": "लीबिया",
+   "code": "LY",
+   "emoji": "🇱🇾",
+   "unicode": "U+1F1F1 U+1F1FE",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/LY.svg"
+ },
+ {
+   "name": "लिकटेंस्टाइन",
+   "code": "LI",
+   "emoji": "🇱🇮",
+   "unicode": "U+1F1F1 U+1F1EE",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/LI.svg"
+ },
+ {
+   "name": "लिथुआनिया",
+   "code": "LT",
+   "emoji": "🇱🇹",
+   "unicode": "U+1F1F1 U+1F1F9",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/LT.svg"
+ },
+ {
+   "name": "लक्समबर्ग",
+   "code": "LU",
+   "emoji": "🇱🇺",
+   "unicode": "U+1F1F1 U+1F1FA",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/LU.svg"
+ },
+ {
+   "name": "मकाओ सर चाइना",
+   "code": "MO",
+   "emoji": "🇲🇴",
+   "unicode": "U+1F1F2 U+1F1F4",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/MO.svg"
+ },
+ {
+   "name": "मेडागास्कर",
+   "code": "MG",
+   "emoji": "🇲🇬",
+   "unicode": "U+1F1F2 U+1F1EC",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/MG.svg"
+ },
+ {
+   "name": "मलोवी",
+   "code": "MW",
+   "emoji": "🇲🇼",
+   "unicode": "U+1F1F2 U+1F1FC",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/MW.svg"
+ },
+ {
+   "name": "मलेशिया",
+   "code": "MY",
+   "emoji": "🇲🇾",
+   "unicode": "U+1F1F2 U+1F1FE",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/MY.svg"
+ },
+ {
+   "name": "मालदीव",
+   "code": "MV",
+   "emoji": "🇲🇻",
+   "unicode": "U+1F1F2 U+1F1FB",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/MV.svg"
+ },
+ {
+   "name": "माली",
+   "code": "ML",
+   "emoji": "🇲🇱",
+   "unicode": "U+1F1F2 U+1F1F1",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/ML.svg"
+ },
+ {
+   "name": "कुंडली",
+   "code": "MT",
+   "emoji": "🇲🇹",
+   "unicode": "U+1F1F2 U+1F1F9",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/MT.svg"
+ },
+ {
+   "name": "मार्शल द्वीपसमूह",
+   "code": "MH",
+   "emoji": "🇲🇭",
+   "unicode": "U+1F1F2 U+1F1ED",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/MH.svg"
+ },
+ {
+   "name": "मार्टीनिक",
+   "code": "MQ",
+   "emoji": "🇲🇶",
+   "unicode": "U+1F1F2 U+1F1F6",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/MQ.svg"
+ },
+ {
+   "name": "मॉरिटानिया",
+   "code": "MR",
+   "emoji": "🇲🇷",
+   "unicode": "U+1F1F2 U+1F1F7",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/MR.svg"
+ },
+ {
+   "name": "मौरिसियो",
+   "code": "MU",
+   "emoji": "🇲🇺",
+   "unicode": "U+1F1F2 U+1F1FA",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/MU.svg"
+ },
+ {
+   "name": "मैयट",
+   "code": "YT",
+   "emoji": "🇾🇹",
+   "unicode": "U+1F1FE U+1F1F9",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/YT.svg"
+ },
+ {
+   "name": "मेक्सिको",
+   "code": "MX",
+   "emoji": "🇲🇽",
+   "unicode": "U+1F1F2 U+1F1FD",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/MX.svg"
+ },
+ {
+   "name": "माइक्रोनेशिया",
+   "code": "FM",
+   "emoji": "🇫🇲",
+   "unicode": "U+1F1EB U+1F1F2",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/FM.svg"
+ },
+ {
+   "name": "मोलदोवा",
+   "code": "MD",
+   "emoji": "🇲🇩",
+   "unicode": "U+1F1F2 U+1F1E9",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/MD.svg"
+ },
+ {
+   "name": "मोनाको",
+   "code": "MC",
+   "emoji": "🇲🇨",
+   "unicode": "U+1F1F2 U+1F1E8",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/MC.svg"
+ },
+ {
+   "name": "मंगोलिया",
+   "code": "MN",
+   "emoji": "🇲🇳",
+   "unicode": "U+1F1F2 U+1F1F3",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/MN.svg"
+ },
+ {
+   "name": "मोंटेनेग्रो",
+   "code": "ME",
+   "emoji": "🇲🇪",
+   "unicode": "U+1F1F2 U+1F1EA",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/ME.svg"
+ },
+ {
+   "name": "मोंटेसेराट",
+   "code": "MS",
+   "emoji": "🇲🇸",
+   "unicode": "U+1F1F2 U+1F1F8",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/MS.svg"
+ },
+ {
+   "name": "मोरक्को",
+   "code": "MA",
+   "emoji": "🇲🇦",
+   "unicode": "U+1F1F2 U+1F1E6",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/MA.svg"
+ },
+ {
+   "name": "मोज़ाम्बिक",
+   "code": "MZ",
+   "emoji": "🇲🇿",
+   "unicode": "U+1F1F2 U+1F1FF",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/MZ.svg"
+ },
+ {
+   "name": "म्यांमार (बर्मा)",
+   "code": "MM",
+   "emoji": "🇲🇲",
+   "unicode": "U+1F1F2 U+1F1F2",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/MM.svg"
+ },
+ {
+   "name": "नामिबिया",
+   "code": "NA",
+   "emoji": "🇳🇦",
+   "unicode": "U+1F1F3 U+1F1E6",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/NA.svg"
+ },
+ {
+   "name": "नाउरू",
+   "code": "NR",
+   "emoji": "🇳🇷",
+   "unicode": "U+1F1F3 U+1F1F7",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/NR.svg"
+ },
+ {
+   "name": "नेपाल",
+   "code": "NP",
+   "emoji": "🇳🇵",
+   "unicode": "U+1F1F3 U+1F1F5",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/NP.svg"
+ },
+ {
+   "name": "नीदरलैंड",
+   "code": "NL",
+   "emoji": "🇳🇱",
+   "unicode": "U+1F1F3 U+1F1F1",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/NL.svg"
+ },
+ {
+   "name": "नया केलडोनिया",
+   "code": "NC",
+   "emoji": "🇳🇨",
+   "unicode": "U+1F1F3 U+1F1E8",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/NC.svg"
+ },
+ {
+   "name": "न्यूज़ीलैंड",
+   "code": "NZ",
+   "emoji": "🇳🇿",
+   "unicode": "U+1F1F3 U+1F1FF",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/NZ.svg"
+ },
+ {
+   "name": "निकारागुआ",
+   "code": "NI",
+   "emoji": "🇳🇮",
+   "unicode": "U+1F1F3 U+1F1EE",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/NI.svg"
+ },
+ {
+   "name": "नाइजर",
+   "code": "NE",
+   "emoji": "🇳🇪",
+   "unicode": "U+1F1F3 U+1F1EA",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/NE.svg"
+ },
+ {
+   "name": "नाइजीरिया",
+   "code": "NG",
+   "emoji": "🇳🇬",
+   "unicode": "U+1F1F3 U+1F1EC",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/NG.svg"
+ },
+ {
+   "name": "नियू",
+   "code": "NU",
+   "emoji": "🇳🇺",
+   "unicode": "U+1F1F3 U+1F1FA",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/NU.svg"
+ },
+ {
+   "name": "नॉरफ़ॉक आइलैंड",
+   "code": "NF",
+   "emoji": "🇳🇫",
+   "unicode": "U+1F1F3 U+1F1EB",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/NF.svg"
+ },
+ {
+   "name": "उत्तर कोरिया",
+   "code": "KP",
+   "emoji": "🇰🇵",
+   "unicode": "U+1F1F0 U+1F1F5",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/KP.svg"
+ },
+ {
+   "name": "मैसेडोनिया डेल नॉर्ट",
+   "code": "MK",
+   "emoji": "🇲🇰",
+   "unicode": "U+1F1F2 U+1F1F0",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/MK.svg"
+ },
+ {
+   "name": "उत्तर से मारियाना द्वीप",
+   "code": "MP",
+   "emoji": "🇲🇵",
+   "unicode": "U+1F1F2 U+1F1F5",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/MP.svg"
+ },
+ {
+   "name": "नॉर्वे",
+   "code": "NO",
+   "emoji": "🇳🇴",
+   "unicode": "U+1F1F3 U+1F1F4",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/NO.svg"
+ },
+ {
+   "name": "ओमान",
+   "code": "OM",
+   "emoji": "🇴🇲",
+   "unicode": "U+1F1F4 U+1F1F2",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/OM.svg"
+ },
+ {
+   "name": "पाकिस्तान",
+   "code": "PK",
+   "emoji": "🇵🇰",
+   "unicode": "U+1F1F5 U+1F1F0",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/PK.svg"
+ },
+ {
+   "name": "पलाउ",
+   "code": "PW",
+   "emoji": "🇵🇼",
+   "unicode": "U+1F1F5 U+1F1FC",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/PW.svg"
+ },
+ {
+   "name": "फिलीस्तीनी इलाके",
+   "code": "PS",
+   "emoji": "🇵🇸",
+   "unicode": "U+1F1F5 U+1F1F8",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/PS.svg"
+ },
+ {
+   "name": "पनामा",
+   "code": "PA",
+   "emoji": "🇵🇦",
+   "unicode": "U+1F1F5 U+1F1E6",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/PA.svg"
+ },
+ {
+   "name": "पापुआ न्यू गिनी",
+   "code": "PG",
+   "emoji": "🇵🇬",
+   "unicode": "U+1F1F5 U+1F1EC",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/PG.svg"
+ },
+ {
+   "name": "परागुआ",
+   "code": "PY",
+   "emoji": "🇵🇾",
+   "unicode": "U+1F1F5 U+1F1FE",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/PY.svg"
+ },
+ {
+   "name": "पेरू",
+   "code": "PE",
+   "emoji": "🇵🇪",
+   "unicode": "U+1F1F5 U+1F1EA",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/PE.svg"
+ },
+ {
+   "name": "फिलिपींस",
+   "code": "PH",
+   "emoji": "🇵🇭",
+   "unicode": "U+1F1F5 U+1F1ED",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/PH.svg"
+ },
+ {
+   "name": "पिटकेर्न आइलैंड्स",
+   "code": "PN",
+   "emoji": "🇵🇳",
+   "unicode": "U+1F1F5 U+1F1F3",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/PN.svg"
+ },
+ {
+   "name": "पोलैंड",
+   "code": "PL",
+   "emoji": "🇵🇱",
+   "unicode": "U+1F1F5 U+1F1F1",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/PL.svg"
+ },
+ {
+   "name": "पुर्तगाल",
+   "code": "PT",
+   "emoji": "🇵🇹",
+   "unicode": "U+1F1F5 U+1F1F9",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/PT.svg"
+ },
+ {
+   "name": "प्यूर्टो रिको",
+   "code": "PR",
+   "emoji": "🇵🇷",
+   "unicode": "U+1F1F5 U+1F1F7",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/PR.svg"
+ },
+ {
+   "name": "कतर",
+   "code": "QA",
+   "emoji": "🇶🇦",
+   "unicode": "U+1F1F6 U+1F1E6",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/QA.svg"
+ },
+ {
+   "name": "बैठक",
+   "code": "RE",
+   "emoji": "🇷🇪",
+   "unicode": "U+1F1F7 U+1F1EA",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/RE.svg"
+ },
+ {
+   "name": "रोमानिया",
+   "code": "RO",
+   "emoji": "🇷🇴",
+   "unicode": "U+1F1F7 U+1F1F4",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/RO.svg"
+ },
+ {
+   "name": "रूस",
+   "code": "RU",
+   "emoji": "🇷🇺",
+   "unicode": "U+1F1F7 U+1F1FA",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/RU.svg"
+ },
+ {
+   "name": "रवांडा",
+   "code": "RW",
+   "emoji": "🇷🇼",
+   "unicode": "U+1F1F7 U+1F1FC",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/RW.svg"
+ },
+ {
+   "name": "समोआ",
+   "code": "WS",
+   "emoji": "🇼🇸",
+   "unicode": "U+1F1FC U+1F1F8",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/WS.svg"
+ },
+ {
+   "name": "सैन मारिनो",
+   "code": "SM",
+   "emoji": "🇸🇲",
+   "unicode": "U+1F1F8 U+1F1F2",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/SM.svg"
+ },
+ {
+   "name": "साओ मैंने लिया और राजकुमार",
+   "code": "ST",
+   "emoji": "🇸🇹",
+   "unicode": "U+1F1F8 U+1F1F9",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/ST.svg"
+ },
+ {
+   "name": "सऊदी अरब",
+   "code": "SA",
+   "emoji": "🇸🇦",
+   "unicode": "U+1F1F8 U+1F1E6",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/SA.svg"
+ },
+ {
+   "name": "स्कॉटलैंड",
+   "code": "SCOTLAND",
+   "emoji": "🏴󠁧󠁢󠁳󠁣󠁴󠁿",
+   "unicode": "U+1F3F4 U+E0067 U+E0062 U+E0073 U+E0063 U+E0074 U+E007F",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/SCOTLAND.svg"
+ },
+ {
+   "name": "सेनेगल",
+   "code": "SN",
+   "emoji": "🇸🇳",
+   "unicode": "U+1F1F8 U+1F1F3",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/SN.svg"
+ },
+ {
+   "name": "सर्बिया",
+   "code": "RS",
+   "emoji": "🇷🇸",
+   "unicode": "U+1F1F7 U+1F1F8",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/RS.svg"
+ },
+ {
+   "name": "सेशल्स",
+   "code": "SC",
+   "emoji": "🇸🇨",
+   "unicode": "U+1F1F8 U+1F1E8",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/SC.svg"
+ },
+ {
+   "name": "सेरा लिओन",
+   "code": "SL",
+   "emoji": "🇸🇱",
+   "unicode": "U+1F1F8 U+1F1F1",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/SL.svg"
+ },
+ {
+   "name": "सिंगापुर",
+   "code": "SG",
+   "emoji": "🇸🇬",
+   "unicode": "U+1F1F8 U+1F1EC",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/SG.svg"
+ },
+ {
+   "name": "सिंट मार्टेन",
+   "code": "SX",
+   "emoji": "🇸🇽",
+   "unicode": "U+1F1F8 U+1F1FD",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/SX.svg"
+ },
+ {
+   "name": "स्लोवाकिया",
+   "code": "SK",
+   "emoji": "🇸🇰",
+   "unicode": "U+1F1F8 U+1F1F0",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/SK.svg"
+ },
+ {
+   "name": "स्लोवेनिया",
+   "code": "SI",
+   "emoji": "🇸🇮",
+   "unicode": "U+1F1F8 U+1F1EE",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/SI.svg"
+ },
+ {
+   "name": "सोलोमन इस्लैंडस",
+   "code": "SB",
+   "emoji": "🇸🇧",
+   "unicode": "U+1F1F8 U+1F1E7",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/SB.svg"
+ },
+ {
+   "name": "सोमालिया",
+   "code": "SO",
+   "emoji": "🇸🇴",
+   "unicode": "U+1F1F8 U+1F1F4",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/SO.svg"
+ },
+ {
+   "name": "दक्षिण अफ्रीका",
+   "code": "ZA",
+   "emoji": "🇿🇦",
+   "unicode": "U+1F1FF U+1F1E6",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/ZA.svg"
+ },
+ {
+   "name": "दक्षिण जॉर्जिया और सैंडविच दक्षिण द्वीप",
+   "code": "GS",
+   "emoji": "🇬🇸",
+   "unicode": "U+1F1EC U+1F1F8",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/GS.svg"
+ },
+ {
+   "name": "दक्षिण कोरिया",
+   "code": "KR",
+   "emoji": "🇰🇷",
+   "unicode": "U+1F1F0 U+1F1F7",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/KR.svg"
+ },
+ {
+   "name": "दक्षिण सूडान",
+   "code": "SS",
+   "emoji": "🇸🇸",
+   "unicode": "U+1F1F8 U+1F1F8",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/SS.svg"
+ },
+ {
+   "name": "स्पेन",
+   "code": "ES",
+   "emoji": "🇪🇸",
+   "unicode": "U+1F1EA U+1F1F8",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/ES.svg"
+ },
+ {
+   "name": "श्रीलंका",
+   "code": "LK",
+   "emoji": "🇱🇰",
+   "unicode": "U+1F1F1 U+1F1F0",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/LK.svg"
+ },
+ {
+   "name": "सान बार्थेलेमी",
+   "code": "BL",
+   "emoji": "🇧🇱",
+   "unicode": "U+1F1E7 U+1F1F1",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/BL.svg"
+ },
+ {
+   "name": "सांता हेलेना",
+   "code": "SH",
+   "emoji": "🇸🇭",
+   "unicode": "U+1F1F8 U+1F1ED",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/SH.svg"
+ },
+ {
+   "name": "सान किट्स एंड नेविस",
+   "code": "KN",
+   "emoji": "🇰🇳",
+   "unicode": "U+1F1F0 U+1F1F3",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/KN.svg"
+ },
+ {
+   "name": "सेंट लूसिया",
+   "code": "LC",
+   "emoji": "🇱🇨",
+   "unicode": "U+1F1F1 U+1F1E8",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/LC.svg"
+ },
+ {
+   "name": "सान मार्टिन",
+   "code": "MF",
+   "emoji": "🇲🇫",
+   "unicode": "U+1F1F2 U+1F1EB",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/MF.svg"
+ },
+ {
+   "name": "सेंट पियरे और मिकेलोन",
+   "code": "PM",
+   "emoji": "🇵🇲",
+   "unicode": "U+1F1F5 U+1F1F2",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/PM.svg"
+ },
+ {
+   "name": "सान विसेंट और ग्रेनाडाइन",
+   "code": "VC",
+   "emoji": "🇻🇨",
+   "unicode": "U+1F1FB U+1F1E8",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/VC.svg"
+ },
+ {
+   "name": "सूडान",
+   "code": "SD",
+   "emoji": "🇸🇩",
+   "unicode": "U+1F1F8 U+1F1E9",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/SD.svg"
+ },
+ {
+   "name": "सूरीनाम",
+   "code": "SR",
+   "emoji": "🇸🇷",
+   "unicode": "U+1F1F8 U+1F1F7",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/SR.svg"
+ },
+ {
+   "name": "स्वालबार्ड और जान मयेन",
+   "code": "SJ",
+   "emoji": "🇸🇯",
+   "unicode": "U+1F1F8 U+1F1EF",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/SJ.svg"
+ },
+ {
+   "name": "स्वीडन",
+   "code": "SE",
+   "emoji": "🇸🇪",
+   "unicode": "U+1F1F8 U+1F1EA",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/SE.svg"
+ },
+ {
+   "name": "स्विस",
+   "code": "CH",
+   "emoji": "🇨🇭",
+   "unicode": "U+1F1E8 U+1F1ED",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/CH.svg"
+ },
+ {
+   "name": "सीरिया",
+   "code": "SY",
+   "emoji": "🇸🇾",
+   "unicode": "U+1F1F8 U+1F1FE",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/SY.svg"
+ },
+ {
+   "name": "ताइवान",
+   "code": "TW",
+   "emoji": "🇹🇼",
+   "unicode": "U+1F1F9 U+1F1FC",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/TW.svg"
+ },
+ {
+   "name": "टायिकिस्तान",
+   "code": "TJ",
+   "emoji": "🇹🇯",
+   "unicode": "U+1F1F9 U+1F1EF",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/TJ.svg"
+ },
+ {
+   "name": "तंजानिया",
+   "code": "TZ",
+   "emoji": "🇹🇿",
+   "unicode": "U+1F1F9 U+1F1FF",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/TZ.svg"
+ },
+ {
+   "name": "थाईलैंड",
+   "code": "TH",
+   "emoji": "🇹🇭",
+   "unicode": "U+1F1F9 U+1F1ED",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/TH.svg"
+ },
+ {
+   "name": "तिमोर",
+   "code": "TL",
+   "emoji": "🇹🇱",
+   "unicode": "U+1F1F9 U+1F1F1",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/TL.svg"
+ },
+ {
+   "name": "जाना",
+   "code": "TG",
+   "emoji": "🇹🇬",
+   "unicode": "U+1F1F9 U+1F1EC",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/TG.svg"
+ },
+ {
+   "name": "टोकेलाऊ",
+   "code": "TK",
+   "emoji": "🇹🇰",
+   "unicode": "U+1F1F9 U+1F1F0",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/TK.svg"
+ },
+ {
+   "name": "टोंगा",
+   "code": "TO",
+   "emoji": "🇹🇴",
+   "unicode": "U+1F1F9 U+1F1F4",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/TO.svg"
+ },
+ {
+   "name": "त्रिनिदाद और टोबैगो",
+   "code": "TT",
+   "emoji": "🇹🇹",
+   "unicode": "U+1F1F9 U+1F1F9",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/TT.svg"
+ },
+ {
+   "name": "ट्रिस्टन दा कुन्हा",
+   "code": "TA",
+   "emoji": "🇹🇦",
+   "unicode": "U+1F1F9 U+1F1E6",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/TA.svg"
+ },
+ {
+   "name": "ट्यूनीशिया",
+   "code": "TN",
+   "emoji": "🇹🇳",
+   "unicode": "U+1F1F9 U+1F1F3",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/TN.svg"
+ },
+ {
+   "name": "टर्की",
+   "code": "TR",
+   "emoji": "🇹🇷",
+   "unicode": "U+1F1F9 U+1F1F7",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/TR.svg"
+ },
+ {
+   "name": "तुर्कमेनिस्तान",
+   "code": "TM",
+   "emoji": "🇹🇲",
+   "unicode": "U+1F1F9 U+1F1F2",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/TM.svg"
+ },
+ {
+   "name": "तुर्क और कैकोस द्वीप समूह",
+   "code": "TC",
+   "emoji": "🇹🇨",
+   "unicode": "U+1F1F9 U+1F1E8",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/TC.svg"
+ },
+ {
+   "name": "तुवालू",
+   "code": "TV",
+   "emoji": "🇹🇻",
+   "unicode": "U+1F1F9 U+1F1FB",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/TV.svg"
+ },
+ {
+   "name": "हमें परिधीय द्वीप। यूयू।",
+   "code": "UM",
+   "emoji": "🇺🇲",
+   "unicode": "U+1F1FA U+1F1F2",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/UM.svg"
+ },
+ {
+   "name": "यूएस वर्जिन द्वीप",
+   "code": "VI",
+   "emoji": "🇻🇮",
+   "unicode": "U+1F1FB U+1F1EE",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/VI.svg"
+ },
+ {
+   "name": "युगांडा",
+   "code": "UG",
+   "emoji": "🇺🇬",
+   "unicode": "U+1F1FA U+1F1EC",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/UG.svg"
+ },
+ {
+   "name": "यूक्रेन",
+   "code": "UA",
+   "emoji": "🇺🇦",
+   "unicode": "U+1F1FA U+1F1E6",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/UA.svg"
+ },
+ {
+   "name": "संयुक्त अरब अमीरात",
+   "code": "AE",
+   "emoji": "🇦🇪",
+   "unicode": "U+1F1E6 U+1F1EA",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/AE.svg"
+ },
+ {
+   "name": "यूनाइटेड किंगडम",
+   "code": "GB",
+   "emoji": "🇬🇧",
+   "unicode": "U+1F1EC U+1F1E7",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/GB.svg"
+ },
+ {
+   "name": "संयुक्त राष्ट्र",
+   "code": "UN",
+   "emoji": "🇺🇳",
+   "unicode": "U+1F1FA U+1F1F3",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/UN.svg"
+ },
+ {
+   "name": "यूएसए",
+   "code": "US",
+   "emoji": "🇺🇸",
+   "unicode": "U+1F1FA U+1F1F8",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/US.svg"
+ },
+ {
+   "name": "उरुग्वे",
+   "code": "UY",
+   "emoji": "🇺🇾",
+   "unicode": "U+1F1FA U+1F1FE",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/UY.svg"
+ },
+ {
+   "name": "उज़्बेकिस्तान",
+   "code": "UZ",
+   "emoji": "🇺🇿",
+   "unicode": "U+1F1FA U+1F1FF",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/UZ.svg"
+ },
+ {
+   "name": "वानुअतु",
+   "code": "VU",
+   "emoji": "🇻🇺",
+   "unicode": "U+1F1FB U+1F1FA",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/VU.svg"
+ },
+ {
+   "name": "वेटिकन सिटी",
+   "code": "VA",
+   "emoji": "🇻🇦",
+   "unicode": "U+1F1FB U+1F1E6",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/VA.svg"
+ },
+ {
+   "name": "वेनेज़ुएला",
+   "code": "VE",
+   "emoji": "🇻🇪",
+   "unicode": "U+1F1FB U+1F1EA",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/VE.svg"
+ },
+ {
+   "name": "वियतनाम",
+   "code": "VN",
+   "emoji": "🇻🇳",
+   "unicode": "U+1F1FB U+1F1F3",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/VN.svg"
+ },
+ {
+   "name": "वेल्श",
+   "code": "WALES",
+   "emoji": "🏴󠁧󠁢󠁷󠁬󠁳󠁿",
+   "unicode": "U+1F3F4 U+E0067 U+E0062 U+E0077 U+E006C U+E0073 U+E007F",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/WALES.svg"
+ },
+ {
+   "name": "वाली और फ़्युटुना",
+   "code": "WF",
+   "emoji": "🇼🇫",
+   "unicode": "U+1F1FC U+1F1EB",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/WF.svg"
+ },
+ {
+   "name": "चतुर्थक सहारा",
+   "code": "EH",
+   "emoji": "🇪🇭",
+   "unicode": "U+1F1EA U+1F1ED",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/EH.svg"
+ },
+ {
+   "name": "यमन",
+   "code": "YE",
+   "emoji": "🇾🇪",
+   "unicode": "U+1F1FE U+1F1EA",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/YE.svg"
+ },
+ {
+   "name": "जाम्बिया",
+   "code": "ZM",
+   "emoji": "🇿🇲",
+   "unicode": "U+1F1FF U+1F1F2",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/ZM.svg"
+ },
+ {
+   "name": "ज़िम्बाब्वे",
+   "code": "ZW",
+   "emoji": "🇿🇼",
+   "unicode": "U+1F1FF U+1F1FC",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/ZW.svg"
+ }
+]
