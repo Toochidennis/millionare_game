@@ -29,9 +29,13 @@
     <string name="theme_1">Thème 1</string>
     <string name="theme_2">Thème 2</string>
     <string name="theme_3">Thème 3</string>
-    <string name="english">English</string>
-    <string name="french">French</string>
-    <string name="spanish">Spanish</string>
+    <string name="english">Anglais</string>
+    <string name="french">Français</string>
+    <string name="spanish">Espagnol</string>
+    <string name="portuguese">Portugais</string>
+    <string name="arabic">arabe</string>
+    <string name="hindi">hindi</string>
+    <string name="urdu">Ourdou</string>
     <string name="banner_adunit">ca-app-pub-4696224049420135/8152081288</string>
     <string name="app_ad_id">ca-app-pub-4696224049420135~2129598410</string>
     <string name="interstitial_adunit">ca-app-pub-4696224049420135/9312479087</string>
@@ -56,7 +60,6 @@
     <string name="send_us_an_email"><u>Envoyez-nous un e-mail</u></string>
     <string name="twitter"><u>Twitter</u></string>
     <string name="get_ready">Sois Prêt!</string>
-
     <string name="you_won">Mais</string>
     <string name="can_you_beat_that">Pouvez-vous battre ça!!</string>
     <string name="share">Partager</string>
