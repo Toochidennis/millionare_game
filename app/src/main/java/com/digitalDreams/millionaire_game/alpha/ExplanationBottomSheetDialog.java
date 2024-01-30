@@ -75,7 +75,7 @@ public class ExplanationBottomSheetDialog extends BottomSheetDialog {
     }
 
     private String getLabel() {
-        List<OptionsModel> optionsList = questionModel.getOptionsList();
+        List<OptionsModel> optionsList = questionModel.getOptions();
         String correctAnswer = questionModel.getCorrectText().trim();
 
         for (int i = 0; i < optionsList.size(); i++) {

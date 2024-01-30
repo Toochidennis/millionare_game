@@ -1,5 +1,7 @@
 package com.digitalDreams.millionaire_game;
 
+import static com.digitalDreams.millionaire_game.alpha.Constants.prettyCount;
+
 import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -36,48 +38,41 @@ import com.google.android.gms.ads.AdView;
 import java.util.Locale;
 
 public class Dashboard extends AppCompatActivity {
-    //public static InterstitialAd interstitialAd;
-    // public static boolean refresh =false;
     TextView newGameTxt, playTxt, leaderboardText, seeRankTxt, moreTxt, playTxt2, gotoYotubetxt;
     RelativeLayout bg;
     RelativeLayout newGameBtn, leaderBoardBtn, exitBtn, gotoYoutubeBtn, new_particle;
     ImageView settingBtn;
     String languageCode;
-    //AdManager adManager;
-    //DBHelper dbHelper;
-    // public static RewardedVideoAd mRewardedVideoAd;
+
     AlphaAnimation buttonClick = new AlphaAnimation(1F, 0.8F);
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        // mRewardedVideoAd = MobileAds.getRewardedVideoAdInstance(this);
-
         setContentView(R.layout.activity_dashboard);
         AdManager.initInterstitialAd(this);
 
 
         loadInterstialAd();
-        //loadVideoAd();
 
 
         SharedPreferences sharedPreferences = getSharedPreferences("settings", Context.MODE_PRIVATE);
         languageCode = sharedPreferences.getString("language", "en");
-        int endcolor = sharedPreferences.getInt("end_color", getResources().getColor(R.color.purple_dark));
+        int endColor = sharedPreferences.getInt("end_color", getResources().getColor(R.color.purple_dark));
         int startColor = sharedPreferences.getInt("start_color", getResources().getColor(R.color.purple_500));
         int cardBackground = sharedPreferences.getInt("card_background", 0x219ebc);
-        String highscore = sharedPreferences.getString("high_score", "0");
+        String highScore = sharedPreferences.getString("high_score", "0");
         String game_level = sharedPreferences.getString("game_level", "1");
-        //setTheme();
-        //dbHelper = new DBHelper(this);
+
 
         setLocale(this, languageCode);
 
+        TextView highScoreTxt = findViewById(R.id.highscore);
 
-        TextView highscoreTxt = findViewById(R.id.highscore);
         try {
-            highscoreTxt.setText("$" + Utils.prettyCount(Integer.parseInt(highscore)));
+            String score = String.format(Locale.getDefault(), "$%s", prettyCount(Integer.parseInt(highScore)));
+            highScoreTxt.setText(score);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -90,6 +85,7 @@ public class Dashboard extends AppCompatActivity {
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
         getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
                 | View.SYSTEM_UI_FLAG_IMMERSIVE);
+
         newGameTxt = findViewById(R.id.new_game_text);
         gotoYotubetxt = findViewById(R.id.goto_youtube_txt);
         new_particle = findViewById(R.id.new_particle);
@@ -99,14 +95,14 @@ public class Dashboard extends AppCompatActivity {
         moreTxt = findViewById(R.id.more_text);
         leaderboardText = findViewById(R.id.leaderboard_text);
         bg = findViewById(R.id.rootview);
+
         new Particles(this, bg, R.layout.image_xml, 20);
         GradientDrawable gd = new GradientDrawable(
                 GradientDrawable.Orientation.TOP_BOTTOM,
-                new int[]{startColor, endcolor});
+                new int[]{startColor, endColor});
 
-        bg.setBackgroundDrawable(gd);
+        bg.setBackground(gd);
 
-        //bg.setBackgroundColor(backgroundcolor);
         newGameBtn = findViewById(R.id.new_game);
         gotoYoutubeBtn = findViewById(R.id.goto_youtube);
         RelativeLayout btnAnim = findViewById(R.id.btn_forAnim);
@@ -226,15 +222,6 @@ public class Dashboard extends AppCompatActivity {
             finish();
         });
 
-//        WelcomeDialog welcomeDialog = new WelcomeDialog(this);
-////        Window window = welcomeDialog.getWindow();
-////        window.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
-//       // welcomeDialog.se
-////        int width = (int)(getResources().getDisplayMetrics().widthPixels*1);
-////        int height = (int)(getResources().getDisplayMetrics().heightPixels*1);
-////
-////        welcomeDialog.getWindow().setLayout(width, height);
-//        welcomeDialog.show();
     }
 
     public static void setLocale(Activity activity, String languageCode) {
@@ -289,7 +276,6 @@ public class Dashboard extends AppCompatActivity {
 
             setLocale(Dashboard.this, languageCode);
 
-            //bg.setBackgroundColor(backgroundcolor);
             GradientDrawable gd = new GradientDrawable(
                     GradientDrawable.Orientation.TOP_BOTTOM,
                     new int[]{startColor, endcolor});

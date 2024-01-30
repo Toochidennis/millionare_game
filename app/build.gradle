@@ -10,7 +10,7 @@ android {
         minSdkVersion 21
         targetSdk 34
 
-        versionCode 125
+        versionCode 126
 
         versionName "6.2.1"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -42,8 +42,9 @@ dependencies {
     implementation 'com.google.android.material:material:1.2.1'
     //implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
     implementation 'com.android.volley:volley:1.1.1'
+    implementation 'androidx.localbroadcastmanager:localbroadcastmanager:1.1.0'
     //noinspection GradleCompatible
-    implementation 'com.google.android.gms:play-services-ads:20.5.0'
+    implementation 'com.google.android.gms:play-services-ads:22.6.0'
     implementation 'androidx.core:core-animation:1.0.0-alpha02'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     //implementation 'androidx.lifecycle:lifecycle-process:2.5.1'
