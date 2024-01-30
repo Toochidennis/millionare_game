@@ -73,7 +73,6 @@ public class MyApplication extends Application
         super.attachBaseContext(context);
     }
 
-
     private Context updateResourcesLegacy(Context context, Locale locale) {
         Locale.setDefault(locale);
         Configuration configuration = context.getResources().getConfiguration();
@@ -91,7 +90,9 @@ public class MyApplication extends Application
         }
     }
 
-    // Method to save the user's language preference
+    /**
+     *  Method to save the user's language preference
+     */
     private void saveLanguagePreference(String languageCode) {
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString("language", languageCode);

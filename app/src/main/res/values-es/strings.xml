@@ -20,9 +20,13 @@
     <string name="theme_1">Tema 1</string>
     <string name="theme_2">Tema 2</string>
     <string name="theme_3">Tema 3</string>
-    <string name="english">English</string>
-    <string name="french">French</string>
-    <string name="spanish">Spanish</string>
+    <string name="english">Inglés</string>
+    <string name="french">Francés</string>
+    <string name="spanish">Español</string>
+    <string name="portuguese">Portugués</string>
+    <string name="arabic">Arábica</string>
+    <string name="hindi">hindi</string>
+    <string name="urdu">urdu</string>
     <string name="banner_adunit">ca-app-pub-4696224049420135/8152081288</string>
     <string name="app_ad_id">ca-app-pub-4696224049420135~2129598410</string>
     <string name="interstitial_adunit">ca-app-pub-4696224049420135/9312479087</string>
