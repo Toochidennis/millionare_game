@@ -43,8 +43,6 @@ import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.FullScreenContentCallback;
 import com.google.android.gms.ads.identifier.AdvertisingIdClient;
-import com.google.android.gms.ads.interstitial.InterstitialAd;
-import com.google.android.gms.ads.rewarded.RewardedAd;
 
 import org.json.JSONObject;
 
@@ -58,12 +56,12 @@ public class FailureActivity extends AppCompatActivity {
 
     String modeValue = "";
     TextView replay_level;
-    int animationCount = 1;
+    int animationCount = 0;
     RelativeLayout hex;
     TextView failureTxt;
     TextView noThankBtn;
     RelativeLayout continueBtn;
-    RelativeLayout r;
+    RelativeLayout btn_forAnim;
     CountDownTimer countDownTimer;
     boolean hasOldWinningAmount = false;
 
@@ -77,32 +75,28 @@ public class FailureActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_failure);
 
-        AdManager.initInterstitialAd(this);
-        AdManager.initRewardedVideo(this);
-
         replay_level = findViewById(R.id.replay);
         hex = findViewById(R.id.hex);
         failureTxt = findViewById(R.id.failureTxt);
         noThankBtn = findViewById(R.id.no_thanks);
         continueBtn = findViewById(R.id.continue_game);
-        r = findViewById(R.id.btn_forAnim);
+        btn_forAnim = findViewById(R.id.btn_forAnim);
         new_games = findViewById(R.id.new_games);
         new_games.setVisibility(View.GONE);
 
         continueBtn.setVisibility(View.GONE);
         failureTxt.setVisibility(View.GONE);
-        new MyAnimation(hex);
 
         noThankBtn.setVisibility(View.GONE);
-        r.setVisibility(View.GONE);
+        btn_forAnim.setVisibility(View.GONE);
+
+        new MyAnimation(hex);
 
         animateWebContainer(replay_level);
 
         Animation aniFade = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fadding);
         continueBtn.startAnimation(aniFade);
-        r.startAnimation(aniFade);
-
-        loadInterstitialAd();
+        btn_forAnim.startAnimation(aniFade);
 
 
         AdView mAdView;
@@ -128,7 +122,7 @@ public class FailureActivity extends AppCompatActivity {
 
         checkScore();
 
-        new MyAnimation(r);
+        new MyAnimation(btn_forAnim);
         LinearLayout rootView = findViewById(R.id.rootview);
 
         new Particles(this, rootView, R.layout.image_xml, 20);
@@ -298,35 +292,24 @@ public class FailureActivity extends AppCompatActivity {
             @Override
             public void onAnimationStart(Animation animation) {
                 animationCount++;
-
             }
 
             @Override
             public void onAnimationEnd(Animation animation) {
-                if (animationCount == 2) {
+                if (animationCount == 1) {
                     failureTxt.setVisibility(View.VISIBLE);
                     animateWebContainer(failureTxt);
-                } else if (animationCount == 3) {
-
+                } else if (animationCount == 2) {
                     continueBtn.setVisibility(View.VISIBLE);
-                    r.setVisibility(View.VISIBLE);
-                    animateWebContainer(r);
+                    btn_forAnim.setVisibility(View.VISIBLE);
+                    animateWebContainer(btn_forAnim);
                     animateWebContainer(continueBtn);
-
-
-                } else if (animationCount == 5) {
-
+                } else if (animationCount == 4) {
                     new_games.setVisibility(View.VISIBLE);
-                    //r.setVisibility(View.VISIBLE);
-                    // animateWebContainer(new_games);
                     animateMobileContainer(new_games);
-
-
-                } else if (animationCount == 6) {
+                } else if (animationCount == 5) {
                     noThankBtn.setVisibility(View.VISIBLE);
                     // animateWebContainer(noThankBtn);
-
-
                 }
 
             }
@@ -336,9 +319,7 @@ public class FailureActivity extends AppCompatActivity {
 
             }
         });
-
     }
-
 
     private void animateMobileContainer(View view) {
         Animation fadeIn = new AlphaAnimation(0, 1);
@@ -370,18 +351,14 @@ public class FailureActivity extends AppCompatActivity {
 
     }
 
-
     @Override
     public void onResume() {
-
-
         super.onResume();
     }
 
     @Override
     public void onPause() {
         super.onPause();
-
 
     }
 
@@ -391,15 +368,18 @@ public class FailureActivity extends AppCompatActivity {
 
     }
 
-
     private void loadInterstitialAd() {
         AdManager.showInterstitial(FailureActivity.this);
-        AdManager.mInterstitialAd.setFullScreenContentCallback(new FullScreenContentCallback() {
-            @Override
-            public void onAdDismissedFullScreenContent() {
-                animateWebContainer(replay_level);
-            }
-        });
+
+        if (AdManager.mInterstitialAd !=null){
+            AdManager.mInterstitialAd.setFullScreenContentCallback(new FullScreenContentCallback() {
+                @Override
+                public void onAdDismissedFullScreenContent() {
+                    animateWebContainer(replay_level);
+                }
+
+            });
+        }
     }
 
     private void checkScore() {
@@ -496,12 +476,6 @@ public class FailureActivity extends AppCompatActivity {
     }
 
 
-    private void showInterstitial() {
-        AdManager.showInterstitial(FailureActivity.this);
-
-        loadInterstitialAd();
-    }
-
 
     private boolean isNetworkConnected() {
         ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -512,6 +486,9 @@ public class FailureActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
+        AdManager.initInterstitialAd(this);
+        AdManager.initRewardedVideo(this);
+
         loadInterstitialAd();
     }
 

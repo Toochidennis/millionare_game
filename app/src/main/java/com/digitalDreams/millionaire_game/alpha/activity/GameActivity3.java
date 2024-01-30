@@ -38,6 +38,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.VibrationEffect;
 import android.os.Vibrator;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -94,8 +95,6 @@ import java.util.Random;
  * questions, handling user selections, managing game flow, and providing feedback to users.
  * <p>
  * <p>
- * <p>
- * <p>
  * Functionality:
  * - Display questions retrieved from a database.
  * - Allow users to select options to answer questions.
@@ -103,7 +102,6 @@ import java.util.Random;
  * - Manage game flow by progressing to the next question or displaying explanations/failure dialogs.
  * - Update the amount won by the user based on correct answers.
  * - Control background music, sound effects, and timer during the game.
- * <p>
  * <p>
  * <p>
  * Key Components:
@@ -114,18 +112,14 @@ import java.util.Random;
  * - Game Flow: Control the progression of the game and update the amount won by the user.
  * <p>
  * <p>
- * <p>
- * <p>
  * Usage:
  * GameActivity3 is used as the main activity for the quiz game module within the application.
  * It can be launched from other activities or components using intents.
  * <p>
  * <p>
- * <p>
  * Notes:
  * - This activity is part of a larger application and may interact with other modules or components.
  * - Additional features and enhancements can be implemented based on project requirements and user feedback.
- * <p>
  * <p>
  * <p>
  * Author: [ToochiDennis]
@@ -165,8 +159,9 @@ public class GameActivity3 extends AppCompatActivity implements OnOptionsClickLi
     private boolean optionsClickable = true;
     private boolean hasAskedComputer = false;
     private boolean hasTakenPoll = false;
+    private boolean isMinus2Question = false;
     private List<Integer> amountList;
-    private final List<Integer> amountWonList = new ArrayList<>();
+    private List<Integer> amountWonList = new ArrayList<>();
 
     private int amountWonText;
     private String selectedAnswer;
@@ -186,7 +181,12 @@ public class GameActivity3 extends AppCompatActivity implements OnOptionsClickLi
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        initializeGame();
+        if (savedInstanceState == null) {
+            initializeGame();
+        } else {
+            reInitializeGame();
+        }
+
     }
 
     /**
@@ -199,11 +199,25 @@ public class GameActivity3 extends AppCompatActivity implements OnOptionsClickLi
         prepareQuestion();
         handleViewsClick();
 
-        gameActivity = this;
-
         startTimeMillis = System.currentTimeMillis();
+        gameActivity = this;
     }
 
+
+    private void reInitializeGame() {
+        initializeViews();
+        setRootViewBackgroundColor();
+        handleViewsClick();
+
+        String gameLevel = sharedPreferences.getString("game_level", "1");
+        int level = Integer.parseInt(gameLevel);
+        amountList = generateAmount(level);
+
+        gameActivity = this;
+        enableLifeLines();
+
+        Log.d("Saved", "restored state");
+    }
 
     /**
      * Initializes UI components by finding and assigning views from the layout XML file.
@@ -246,6 +260,7 @@ public class GameActivity3 extends AppCompatActivity implements OnOptionsClickLi
         questionProgressTextView = findViewById(R.id.question_progress);
         adView = findViewById(R.id.adView);
 
+        timerContainer.setVisibility(View.GONE);
 
         sharedPreferences = getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
         editor = sharedPreferences.edit();
@@ -258,14 +273,11 @@ public class GameActivity3 extends AppCompatActivity implements OnOptionsClickLi
     private void handleViewsClick() {
         exitButton.setOnClickListener(v -> super.onBackPressed());
 
-        timerContainer.setVisibility(View.GONE);
-
         minus2QuestionsButton.setOnClickListener(minus -> {
             hideTwoQuestions();
-            minus2QuestionsButton.setClickable(false);
         });
 
-        resetQuestionButton.setOnClickListener(reset -> showRewardAds());
+        resetQuestionButton.setOnClickListener(reset -> skipQuestion());
 
         askComputerButton.setOnClickListener(ask -> askComputer());
 
@@ -280,7 +292,6 @@ public class GameActivity3 extends AppCompatActivity implements OnOptionsClickLi
 
         adView.loadAd(createAdRequest());
     }
-
 
     /**
      * Prepares questions for the game from a JSON array.
@@ -366,7 +377,7 @@ public class GameActivity3 extends AppCompatActivity implements OnOptionsClickLi
     }
 
     private void inflateOptions() {
-        optionsAdapter = new OptionsAdapter(questionModel.getOptionsList(), this);
+        optionsAdapter = new OptionsAdapter(questionModel.getOptions(), this);
         optionsRecyclerView.hasFixedSize();
         optionsRecyclerView.setAdapter(optionsAdapter);
     }
@@ -392,7 +403,7 @@ public class GameActivity3 extends AppCompatActivity implements OnOptionsClickLi
      */
 
     private void handleUserSelection(int position, View itemView) {
-        selectedAnswer = questionModel.getOptionsList().get(position).getOptionText().trim();
+        selectedAnswer = questionModel.getOptions().get(position).getOptionText().trim();
         String correctAnswer = questionModel.getCorrectText().trim();
 
         if (selectedAnswer.equalsIgnoreCase(correctAnswer)) {
@@ -416,7 +427,6 @@ public class GameActivity3 extends AppCompatActivity implements OnOptionsClickLi
             }
         }
     }
-
 
     private void showExplanationDialog(String from) {
         vibrate();
@@ -449,6 +459,7 @@ public class GameActivity3 extends AppCompatActivity implements OnOptionsClickLi
                 });
 
                 updateRefreshQuestionState(true);
+                updateShouldContinueGame(false);
             }
 
             optionsClickable = true;
@@ -467,6 +478,7 @@ public class GameActivity3 extends AppCompatActivity implements OnOptionsClickLi
             startWinnersActivity();
         } else {
             updateRefreshQuestionState(false);
+            updateShouldContinueGame(true);
             updateProgressState(true);
 
             startActivity(new Intent(this, ProgressActivity2.class)
@@ -572,10 +584,15 @@ public class GameActivity3 extends AppCompatActivity implements OnOptionsClickLi
         sharedPreferences = getSharedPreferences(APPLICATION_DATA, MODE_PRIVATE);
         editor = sharedPreferences.edit();
         editor.putBoolean(SHOULD_REFRESH_QUESTION, refreshState);
-        editor.putBoolean(SHOULD_CONTINUE_GAME, !refreshState);
         editor.apply();
     }
 
+    private void updateShouldContinueGame(boolean savedState) {
+        sharedPreferences = getSharedPreferences(APPLICATION_DATA, MODE_PRIVATE);
+        editor = sharedPreferences.edit();
+        editor.putBoolean(SHOULD_CONTINUE_GAME, savedState);
+        editor.apply();
+    }
 
     private void startCountDownActivity() {
         startActivity(new Intent(this, CountDownActivity.class));
@@ -586,7 +603,7 @@ public class GameActivity3 extends AppCompatActivity implements OnOptionsClickLi
         AdManager.initRewardedVideo(this);
     }
 
-    private void showRewardAds() {
+    private void skipQuestion() {
         if (Utils.isOnline(this)) {
             try {
                 initializeAds();
@@ -596,11 +613,15 @@ public class GameActivity3 extends AppCompatActivity implements OnOptionsClickLi
                     @Override
                     public void onAdFailedToShowFullScreenContent(@NonNull AdError adError) {
                         showToast();
+                        optionsClickable = true;
                     }
 
                     @Override
                     public void onAdDismissedFullScreenContent() {
-                        updateProgressState(true);
+                        updateRefreshQuestionState(true);
+                        updateShouldContinueGame(true);
+                        updateProgressState(false);
+                        optionsClickable = true;
                     }
                 });
 
@@ -616,6 +637,8 @@ public class GameActivity3 extends AppCompatActivity implements OnOptionsClickLi
         String correctAnswer = questionModel.getCorrectText();
         optionsAdapter.hideRandomOptions(correctAnswer);
         minus2QuestionsImageView.setVisibility(View.VISIBLE);
+        minus2QuestionsButton.setClickable(false);
+        isMinus2Question = true;
     }
 
     private void askComputer() {
@@ -680,7 +703,6 @@ public class GameActivity3 extends AppCompatActivity implements OnOptionsClickLi
         valueAnimator.start();
     }
 
-
     private void updateSuggestionAndPollVisibility() {
         if (hasTakenPoll) {
             votingContainer.setVisibility(View.GONE);
@@ -691,7 +713,7 @@ public class GameActivity3 extends AppCompatActivity implements OnOptionsClickLi
         }
     }
 
-    private void updateLifeLines() {
+    private void enableLifeLines() {
         minus2QuestionsButton.setClickable(true);
         minus2QuestionsImageView.setVisibility(View.GONE);
         askComputerButton.setClickable(true);
@@ -706,9 +728,29 @@ public class GameActivity3 extends AppCompatActivity implements OnOptionsClickLi
         amountWonText = 0;
     }
 
+    private void disableLifeLines() {
+        if (hasTakenPoll) {
+            takeAPollButton.setClickable(false);
+            takeAPollImageView.setVisibility(View.VISIBLE);
+        }
+
+        if (hasAskedComputer) {
+            askComputerButton.setClickable(false);
+            askComputerImageView.setVisibility(View.VISIBLE);
+        }
+
+        if (isMinus2Question) {
+            minus2QuestionsButton.setClickable(false);
+            minus2QuestionsImageView.setVisibility(View.VISIBLE);
+        }
+
+        updateRefreshQuestionState(false);
+        updateShouldContinueGame(true);
+        updateProgressState(false);
+    }
 
     private String getCorrectLabel() {
-        List<OptionsModel> optionsList = questionModel.getOptionsList();
+        List<OptionsModel> optionsList = questionModel.getOptions();
         String correctAnswer = questionModel.getCorrectText().trim();
 
         for (int i = 0; i < optionsList.size(); i++) {
@@ -815,6 +857,47 @@ public class GameActivity3 extends AppCompatActivity implements OnOptionsClickLi
                 .start();
     }
 
+    @Override
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putInt("questionIndex", questionIndex);
+        outState.putInt("numberOfPassed", numberOfPassed);
+        outState.putInt("numberOfFailure", numberOfFailure);
+        outState.putInt("numberOfAnswered", numberOfAnswered);
+        outState.putBoolean("hasAskedComputer", hasAskedComputer);
+        outState.putBoolean("hasTakenPoll", hasTakenPoll);
+        outState.putBoolean("isMinus2Questions", isMinus2Question);
+        outState.putInt("amountWonText", amountWonText);
+        outState.putLong("startTimeMillis", startTimeMillis);
+        outState.putIntegerArrayList("amountWonList", new ArrayList<>(amountWonList));
+        outState.putString("questionJSONArray", questionJSONArray.toString());
+    }
+
+    @Override
+    protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        questionIndex = savedInstanceState.getInt("questionIndex");
+        numberOfPassed = savedInstanceState.getInt("numberOfPassed");
+        numberOfFailure = savedInstanceState.getInt("numberOfFailure");
+        numberOfAnswered = savedInstanceState.getInt("numberOfAnswered");
+        hasAskedComputer = savedInstanceState.getBoolean("hasAskedComputer");
+        hasTakenPoll = savedInstanceState.getBoolean("hasTakenPoll");
+        isMinus2Question = savedInstanceState.getBoolean("isMinus2Questions");
+        amountWonText = savedInstanceState.getInt("amountWonText");
+        startTimeMillis = savedInstanceState.getLong("startTimeMillis");
+        amountWonList = savedInstanceState.getIntegerArrayList("amountWonList");
+        String questionJson = savedInstanceState.getString("questionJSONArray");
+
+        disableLifeLines();
+
+        try {
+            questionJSONArray = new JSONArray(questionJson);
+        } catch (Exception e) {
+            prepareQuestion();
+        }
+
+        showQuestion();
+    }
 
     @Override
     protected void onResume() {
@@ -826,9 +909,10 @@ public class GameActivity3 extends AppCompatActivity implements OnOptionsClickLi
             } else if (isShouldRefreshQuestion()) {
                 prepareQuestion();
                 updateRefreshQuestionState(false);
+                updateShouldContinueGame(true);
             }
         } else {
-            updateLifeLines();
+            enableLifeLines();
             prepareQuestion();
         }
 
@@ -850,6 +934,7 @@ public class GameActivity3 extends AppCompatActivity implements OnOptionsClickLi
         }
 
         updateRefreshQuestionState(false);
+        updateShouldContinueGame(true);
         updateProgressState(false);
     }
 
