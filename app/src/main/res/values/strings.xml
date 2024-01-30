@@ -23,6 +23,10 @@
     <string name="english">English</string>
     <string name="french">French</string>
     <string name="spanish">Spanish</string>
+    <string name="portuguese">Portuguese</string>
+    <string name="arabic">Arabic</string>
+    <string name="hindi">Hindi</string>
+    <string name="urdu">Urdu</string>
     <string name="banner_adunit">ca-app-pub-4696224049420135/8152081288</string>
     <string name="app_ad_id">ca-app-pub-4696224049420135~2129598410</string>
     <string name="interstitial_adunit">ca-app-pub-4696224049420135/9312479087</string>
