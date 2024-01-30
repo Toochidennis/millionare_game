@@ -1,6 +1,6 @@
 package com.digitalDreams.millionaire_game.alpha;
 
-import static com.digitalDreams.millionaire_game.alpha.Constants.labelList;
+import static com.digitalDreams.millionaire_game.alpha.Constants.getLabelFromList;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -82,7 +82,7 @@ public class ExplanationBottomSheetDialog extends BottomSheetDialog {
             OptionsModel model = optionsList.get(i);
 
             if (model.getOptionText().trim().equalsIgnoreCase(correctAnswer)) {
-                return labelList[i];
+                return getLabelFromList(getContext(), i);
             }
         }
 

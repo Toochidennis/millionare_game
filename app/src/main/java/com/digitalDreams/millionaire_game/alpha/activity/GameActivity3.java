@@ -22,7 +22,7 @@ import static com.digitalDreams.millionaire_game.alpha.Constants.SOUND;
 import static com.digitalDreams.millionaire_game.alpha.Constants.generateAmount;
 import static com.digitalDreams.millionaire_game.alpha.Constants.getBackgroundDrawable;
 import static com.digitalDreams.millionaire_game.alpha.Constants.getRandomSuggestion;
-import static com.digitalDreams.millionaire_game.alpha.Constants.labelList;
+import static com.digitalDreams.millionaire_game.alpha.Constants.getLabelFromList;
 import static com.digitalDreams.millionaire_game.alpha.Constants.prettyCount;
 
 import android.animation.ObjectAnimator;
@@ -757,7 +757,7 @@ public class GameActivity3 extends AppCompatActivity implements OnOptionsClickLi
             OptionsModel model = optionsList.get(i);
 
             if (model.getOptionText().trim().equalsIgnoreCase(correctAnswer)) {
-                return labelList[i];
+                return getLabelFromList(this, i);
             }
         }
 
