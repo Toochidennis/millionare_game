@@ -1,8 +1,15 @@
 package com.digitalDreams.millionaire_game;
 
-import static com.digitalDreams.millionaire_game.Utils.IS_INSERTED_ENGLISH_KEY;
-import static com.digitalDreams.millionaire_game.Utils.IS_INSERTED_FRENCH_KEY;
-import static com.digitalDreams.millionaire_game.Utils.IS_INSERTED_SPANISH_KEY;
+import static com.digitalDreams.millionaire_game.Utils.ARABIC_KEY;
+import static com.digitalDreams.millionaire_game.Utils.ENGLISH_KEY;
+import static com.digitalDreams.millionaire_game.Utils.FRENCH_KEY;
+import static com.digitalDreams.millionaire_game.Utils.HINDI_KEY;
+import static com.digitalDreams.millionaire_game.Utils.PORTUGUESE_KEY;
+import static com.digitalDreams.millionaire_game.Utils.SPANISH_KEY;
+import static com.digitalDreams.millionaire_game.Utils.URDU_KEY;
+import static com.digitalDreams.millionaire_game.alpha.Constants.PREF_NAME;
+import static com.digitalDreams.millionaire_game.alpha.Constants.getLanguageResource;
+import static com.digitalDreams.millionaire_game.alpha.Constants.getLanguageText;
 
 import android.app.Activity;
 import android.app.Dialog;
@@ -12,13 +19,12 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.content.res.Resources;
-import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
+import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
@@ -35,14 +41,14 @@ import java.io.StringWriter;
 import java.io.Writer;
 import java.nio.charset.StandardCharsets;
 import java.util.Locale;
+import java.util.Objects;
 
 class LanguageDialog extends Dialog {
 
     Context context;
 
-    String languageCode = "en";
-
     private LoadingDialog loadingDialog;
+    private String gameLevel;
 
     public LanguageDialog(@NonNull Context context) {
         super(context);
@@ -56,87 +62,70 @@ class LanguageDialog extends Dialog {
         setContentView(R.layout.languages_dialog);
 
         ImageView closeBtn = findViewById(R.id.close);
-        RelativeLayout englishBtn = findViewById(R.id.english_language);
-        RelativeLayout frenchBtn = findViewById(R.id.french_language);
-        RelativeLayout spanishBtn = findViewById(R.id.spanish_language);
+        LinearLayout englishBtn = findViewById(R.id.english_language);
+        LinearLayout frenchBtn = findViewById(R.id.french_language);
+        LinearLayout spanishBtn = findViewById(R.id.spanish_language);
+        LinearLayout portugueseBtn = findViewById(R.id.portuguese_language);
+        LinearLayout arabicBtn = findViewById(R.id.arabic_language);
+        LinearLayout hindiBtn = findViewById(R.id.hindi_language);
+        LinearLayout urduBtn = findViewById(R.id.urdu_language);
 
         SharedPreferences sharedPreferences = context.getSharedPreferences("settings", Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        int endcolor = sharedPreferences.getInt("end_color", 0xFF6200EE);
-        int startColor = sharedPreferences.getInt("start_color", 0xFFBB86FC);
-        int cardBackground = sharedPreferences.getInt("card_background", 0x03045e);
-        boolean isEnglishInserted = sharedPreferences.getBoolean(IS_INSERTED_ENGLISH_KEY, false);
-        boolean isSpanishInserted = sharedPreferences.getBoolean(IS_INSERTED_SPANISH_KEY, false);
-        boolean isFrenchInserted = sharedPreferences.getBoolean(IS_INSERTED_FRENCH_KEY, false);
+        boolean isEnglishInserted = sharedPreferences.getBoolean(ENGLISH_KEY, false);
+        boolean isSpanishInserted = sharedPreferences.getBoolean(SPANISH_KEY, false);
+        boolean isFrenchInserted = sharedPreferences.getBoolean(FRENCH_KEY, false);
+        boolean isArabicInserted = sharedPreferences.getBoolean(ARABIC_KEY, false);
+        boolean isPortugueseInserted = sharedPreferences.getBoolean(PORTUGUESE_KEY, false);
+        boolean isHindiInserted = sharedPreferences.getBoolean(HINDI_KEY, false);
+        boolean isUrduInserted = sharedPreferences.getBoolean(URDU_KEY, false);
+        gameLevel = sharedPreferences.getString("game_level", "1");
 
         closeBtn.setOnClickListener(view -> dismiss());
 
-        englishBtn.setOnClickListener(view -> {
-            languageCode = "en";
-            setLocale(unwrap(context), languageCode);
+        // Define an array of language buttons along with their keys
+        LinearLayout[] languageButtons = {englishBtn, frenchBtn, spanishBtn, arabicBtn, portugueseBtn, hindiBtn, urduBtn};
+        String[] languageKeys = {ENGLISH_KEY, FRENCH_KEY, SPANISH_KEY, ARABIC_KEY, PORTUGUESE_KEY, HINDI_KEY, URDU_KEY};
+        boolean[] isLanguageInserted = {isEnglishInserted, isFrenchInserted, isSpanishInserted,
+                isArabicInserted, isPortugueseInserted, isHindiInserted, isUrduInserted
+        };
 
-            if (!isEnglishInserted) {
-                loadQuestions(languageCode);
-                editor.putBoolean(IS_INSERTED_ENGLISH_KEY, true);
-            }
+        for (int i = 0; i < languageButtons.length; i++) {
+            LinearLayout button = languageButtons[i];
+            String languageKey = languageKeys[i];
+            boolean isInserted = isLanguageInserted[i];
 
-            // context.sendBroadcast(new Intent("refresh"));
-            LocalBroadcastManager.getInstance(context).sendBroadcast(new Intent("refresh"));
-            editor.putString("language", languageCode);
-            editor.apply();
-            dismiss();
-        });
+            button.setOnClickListener(view -> changeLanguage(languageKey, isInserted));
+        }
+    }
 
-        frenchBtn.setOnClickListener(view -> {
-            languageCode = "fr";
-            setLocale(unwrap(context), languageCode);
+    private void changeLanguage(String key, boolean isInserted) {
+        SharedPreferences sharedPreferences = context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
 
-            if (!isFrenchInserted) {
-                loadQuestions(languageCode);
-                editor.putBoolean(IS_INSERTED_FRENCH_KEY, true);
-            }
+        setLocale(unwrap(context), key);
 
-            //  context.sendBroadcast(new Intent("refresh"));
-            LocalBroadcastManager.getInstance(context).sendBroadcast(new Intent("refresh"));
-            editor.putString("language", languageCode);
-            editor.apply();
-            dismiss();
-        });
+        if (!isInserted) {
+            loadQuestions(key);
+            editor.putBoolean(key, true);
+        }
 
-        spanishBtn.setOnClickListener(view -> {
-            languageCode = "es";
-            setLocale(unwrap(context), languageCode);
+        editor.putString("language", key);
+        editor.apply();
 
-            if (!isSpanishInserted) {
-                loadQuestions(languageCode);
-                editor.putBoolean(IS_INSERTED_SPANISH_KEY, true);
-            }
+        LocalBroadcastManager.getInstance(context).sendBroadcast(new Intent("refresh"));
 
-            // context.sendBroadcast(new Intent("refresh"));
-            LocalBroadcastManager.getInstance(context).sendBroadcast(new Intent("refresh"));
-            editor.putString("language", languageCode);
-            editor.apply();
-            dismiss();
-        });
-
+        dismiss();
     }
 
     // ToochiDennis
     private void loadQuestions(String languageCode) {
         loadingDialog = new LoadingDialog(unwrap(context));
-        loadingDialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+        Objects.requireNonNull(loadingDialog.getWindow()).setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
         loadingDialog.show();
 
         new Thread(() -> {
-            String text;
             try {
-                if (languageCode.equals("es")) {
-                    text = readRawTextFile(R.raw.millionaire_es);
-                } else if (languageCode.equals("fr")) {
-                    text = readRawTextFile(R.raw.millionaire_fr);
-                } else {
-                    text = readRawTextFile(R.raw.millionaire);
-                }
+                String text = readRawTextFile(getLanguageResource(languageCode));
                 parseJSON(text, languageCode);
             } catch (IOException e) {
                 e.printStackTrace();
@@ -144,8 +133,8 @@ class LanguageDialog extends Dialog {
             }
 
         }).start();
-
     }
+
 
     private String readRawTextFile(int resId) throws IOException {
         InputStream is = context.getResources().openRawResource(resId);
@@ -167,48 +156,29 @@ class LanguageDialog extends Dialog {
     }
 
     private void parseJSON(String json, String languageCode) {
-        DBHelper dbHelper;
         int lent = 0;
 
         try {
-            dbHelper = new DBHelper(context);
+            DBHelper dbHelper = new DBHelper(context);
 
             JSONArray jsonArray = new JSONArray(json);
 
             for (int a = 0; a < jsonArray.length(); a++) {
-                Log.i("index", String.valueOf(a));
                 lent++;
-
-                Utils.NUMBER_OF_INSERT++;
-
 
                 if (lent == jsonArray.length()) {
                     loadingDialog.dismiss();
                 }
 
                 JSONArray question = jsonArray.getJSONArray(a);
-                String id = String.valueOf(question.getInt(0)); //object.getString("id");
-                String content = question.getString(1); //object.getString("content");
-                String type = "qo";//object.getString("type");
+                String id = String.valueOf(question.getInt(0));
+                String content = question.getString(1);
+                String type = "qo";
                 String level = String.valueOf(question.getString(2));
-                String language;
-
-                switch (languageCode) {
-                    case "fr":
-                        language = context.getString(R.string.french);
-                        break;
-                    case "es":
-                        language = context.getString(R.string.spanish);
-                        break;
-
-                    default:
-                        language = context.getString(R.string.english);
-                        break;
-                }
-
+                String language = getLanguageText(context, languageCode);
 
                 String stage_name = "GENERAL";
-                String stage = "1";
+                // String stage = "1";
 
                 String correct = question.getString(3).trim();
                 String reason = question.getString(4).trim();
@@ -225,7 +195,7 @@ class LanguageDialog extends Dialog {
                 String answer = String.valueOf(answers);
 
 
-                dbHelper.insertDetails(language, level, id, content, type, answer, correct, stage_name, stage, reason);
+                dbHelper.insertDetails(language, level, id, content, type, answer, correct, stage_name, gameLevel, reason);
             }
 
 
@@ -245,8 +215,6 @@ class LanguageDialog extends Dialog {
         Configuration config = new Configuration();
         config.locale = locale;
         resources.updateConfiguration(config, resources.getDisplayMetrics());
-
-        Log.d("changed1", languageCode);
     }
 
     private static Activity unwrap(Context context) {
