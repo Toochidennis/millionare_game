@@ -181,6 +181,8 @@ public class GameActivity3 extends AppCompatActivity implements OnOptionsClickLi
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        gameActivity = this;
+
         if (savedInstanceState == null) {
             initializeGame();
         } else {
@@ -200,7 +202,6 @@ public class GameActivity3 extends AppCompatActivity implements OnOptionsClickLi
         handleViewsClick();
 
         startTimeMillis = System.currentTimeMillis();
-        gameActivity = this;
     }
 
 
@@ -213,7 +214,6 @@ public class GameActivity3 extends AppCompatActivity implements OnOptionsClickLi
         int level = Integer.parseInt(gameLevel);
         amountList = generateAmount(level);
 
-        gameActivity = this;
         enableLifeLines();
 
         Log.d("Saved", "restored state");
@@ -273,9 +273,7 @@ public class GameActivity3 extends AppCompatActivity implements OnOptionsClickLi
     private void handleViewsClick() {
         exitButton.setOnClickListener(v -> super.onBackPressed());
 
-        minus2QuestionsButton.setOnClickListener(minus -> {
-            hideTwoQuestions();
-        });
+        minus2QuestionsButton.setOnClickListener(minus -> hideTwoQuestions());
 
         resetQuestionButton.setOnClickListener(reset -> skipQuestion());
 
@@ -870,7 +868,10 @@ public class GameActivity3 extends AppCompatActivity implements OnOptionsClickLi
         outState.putInt("amountWonText", amountWonText);
         outState.putLong("startTimeMillis", startTimeMillis);
         outState.putIntegerArrayList("amountWonList", new ArrayList<>(amountWonList));
-        outState.putString("questionJSONArray", questionJSONArray.toString());
+        if (questionJSONArray != null) {
+            outState.putString("questionJSONArray", questionJSONArray.toString());
+        }
+
     }
 
     @Override

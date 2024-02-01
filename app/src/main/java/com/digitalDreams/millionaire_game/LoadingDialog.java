@@ -10,6 +10,8 @@ import android.widget.ImageView;
 
 import androidx.core.animation.ObjectAnimator;
 
+import java.util.Objects;
+
 
 public class LoadingDialog extends Dialog {
 
@@ -21,12 +23,11 @@ public class LoadingDialog extends Dialog {
         super(context);
     }
 
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
-        getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        Objects.requireNonNull(getWindow()).setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
         setContentView(R.layout.dialog_loading);
 
