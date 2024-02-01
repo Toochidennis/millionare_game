@@ -8,7 +8,7 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
-    <ScrollView
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fillViewport="true">
@@ -22,10 +22,9 @@
                 android:id="@+id/dd_logo"
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
-                android:layout_centerHorizontal="true"
-                android:layout_marginLeft="50dp"
+                android:layout_marginStart="50dp"
                 android:layout_marginTop="20dp"
-                android:layout_marginRight="50dp"
+                android:layout_marginEnd="50dp"
                 android:layout_marginBottom="20dp"
                 android:alpha="0"
                 android:src="@mipmap/dd_logo" />
@@ -34,7 +33,6 @@
                 android:id="@+id/container"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/dd_logo"
                 android:gravity="center"
                 android:orientation="vertical"
                 android:visibility="invisible">
@@ -53,9 +51,9 @@
                     android:id="@+id/web_development"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="50dp"
+                    android:layout_marginStart="50dp"
                     android:layout_marginTop="10dp"
-                    android:layout_marginRight="50dp"
+                    android:layout_marginEnd="50dp"
                     android:orientation="horizontal">
 
                     <RelativeLayout
@@ -95,9 +93,9 @@
                     android:id="@+id/mobile_development"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="50dp"
+                    android:layout_marginStart="50dp"
                     android:layout_marginTop="10dp"
-                    android:layout_marginRight="50dp"
+                    android:layout_marginEnd="50dp"
                     android:orientation="horizontal">
 
                     <RelativeLayout
@@ -137,9 +135,9 @@
                     android:id="@+id/digital_marketing"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="50dp"
+                    android:layout_marginStart="50dp"
                     android:layout_marginTop="10dp"
-                    android:layout_marginRight="50dp"
+                    android:layout_marginEnd="50dp"
                     android:orientation="horizontal">
 
                     <RelativeLayout
@@ -179,9 +177,9 @@
                     android:id="@+id/data_science"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="50dp"
+                    android:layout_marginStart="50dp"
                     android:layout_marginTop="10dp"
-                    android:layout_marginRight="50dp"
+                    android:layout_marginEnd="50dp"
                     android:orientation="horizontal">
 
                     <RelativeLayout
@@ -220,6 +218,6 @@
 
 
         </LinearLayout>
-    </ScrollView>
+    </androidx.core.widget.NestedScrollView>
 
 </LinearLayout>
