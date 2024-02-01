@@ -8,19 +8,17 @@
     android:orientation="vertical"
     tools:context=".Dashboard">
 
-
     <LinearLayout
         android:id="@+id/main"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_marginLeft="25dp"
-            android:layout_marginRight="25dp"
+            android:layout_marginStart="25dp"
+            android:layout_marginEnd="25dp"
             android:layout_weight="1"
             android:gravity="center">
 
@@ -35,15 +33,13 @@
                     android:id="@+id/profile"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:elevation="1dp"
-
-                    >
+                    android:elevation="1dp">
 
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
-                        android:layout_marginLeft="-5dp"
+                        android:layout_marginStart="-5dp"
                         android:layout_marginTop="10dp"
                         android:layout_marginBottom="10dp"
                         android:rotation="90"
@@ -54,7 +50,7 @@
                         android:layout_width="32dp"
                         android:layout_height="32dp"
                         android:layout_centerInParent="true"
-                        android:layout_marginLeft="15dp"
+                        android:layout_marginStart="15dp"
 
                         android:src="@drawable/ic_baseline_person_outline_24" />
                 </RelativeLayout>
@@ -81,12 +77,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
-                    android:layout_marginLeft="70dp"
+                    android:layout_marginStart="70dp"
                     android:fontFamily="@font/montserrat"
                     android:text=""
                     android:textColor="@color/white"
                     android:textSize="16sp"
-
                     android:textStyle="bold" />
 
             </LinearLayout>
@@ -145,18 +140,18 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="20dp"
-            android:layout_marginLeft="20dp"
+            android:layout_marginStart="20dp"
             android:layout_marginTop="-20dp"
-            android:layout_marginRight="20dp"
+            android:layout_marginEnd="20dp"
             android:layout_weight="1.2">
 
             <RelativeLayout
                 android:id="@+id/btn_forAnim"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="30dp"
+                android:layout_marginStart="30dp"
                 android:layout_marginTop="35dp"
-                android:layout_marginRight="30dp"
+                android:layout_marginEnd="30dp"
                 android:layout_marginBottom="35dp"
                 android:background="@drawable/playbtn_bg">
 
@@ -166,9 +161,9 @@
                 android:id="@+id/new_game"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="30dp"
+                android:layout_marginStart="30dp"
                 android:layout_marginTop="35dp"
-                android:layout_marginRight="30dp"
+                android:layout_marginEnd="30dp"
                 android:layout_marginBottom="35dp"
                 android:background="@drawable/playbtn_bg">
 
@@ -183,7 +178,7 @@
                         android:layout_width="70dp"
                         android:layout_height="70dp"
                         android:layout_gravity="center_vertical"
-                        android:layout_marginLeft="10dp"
+                        android:layout_marginStart="10dp"
                         android:src="@drawable/ic_sports_esports_black_48dp"
                         app:tint="@color/white" />
 
@@ -197,14 +192,13 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_vertical"
-                            android:layout_marginLeft="30dp"
+                            android:layout_marginStart="30dp"
                             android:orientation="vertical">
 
                             <TextView
                                 android:id="@+id/play_text1"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_centerInParent="true"
                                 android:elevation="5dp"
                                 android:shadowColor="@color/black"
                                 android:text="@string/play"
@@ -218,16 +212,15 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_vertical"
-                            android:layout_marginLeft="30dp"
+                            android:layout_marginStart="30dp"
                             android:layout_marginTop="-2dp"
-                            android:layout_marginRight="40dp"
+                            android:layout_marginEnd="40dp"
                             android:orientation="vertical">
 
                             <TextView
                                 android:id="@+id/play_text"
                                 android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
-                                android:layout_centerInParent="true"
                                 android:elevation="5dp"
                                 android:shadowColor="@color/black"
                                 android:text="@string/play"
@@ -252,8 +245,8 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="80dp"
-            android:layout_marginLeft="25dp"
-            android:layout_marginRight="25dp">
+            android:layout_marginStart="25dp"
+            android:layout_marginEnd="25dp">
 
             <RelativeLayout
                 android:id="@+id/leaderboard"
@@ -267,7 +260,7 @@
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:layout_centerVertical="true"
-                    android:layout_marginLeft="10dp"
+                    android:layout_marginStart="10dp"
                     android:alpha="0.8"
                     android:src="@drawable/ic_leaderboard_black_48dp"
                     app:tint="@color/white" />
@@ -285,7 +278,7 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="50dp"
+                android:layout_marginStart="50dp"
                 android:background="@drawable/whitepolygon">
 
                 <LinearLayout
@@ -298,12 +291,11 @@
                         android:id="@+id/leaderboard_text"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/leaderboard"
-                        android:textStyle="bold"
-                        android:textSize="20sp"
                         android:layout_marginStart="40dp"
+                        android:text="@string/leaderboard"
                         android:textColor="@color/black"
-                        />
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/see_rank_text"
@@ -322,9 +314,9 @@
             android:id="@+id/more_games"
             android:layout_width="match_parent"
             android:layout_height="80dp"
-            android:layout_marginLeft="25dp"
+            android:layout_marginStart="25dp"
             android:layout_marginTop="10dp"
-            android:layout_marginRight="25dp"
+            android:layout_marginEnd="25dp"
             android:background="@drawable/ic_hexnow"
             android:padding="10dp">
 
@@ -347,9 +339,9 @@
             android:id="@+id/goto_youtube"
             android:layout_width="match_parent"
             android:layout_height="80dp"
-            android:layout_marginLeft="25dp"
+            android:layout_marginStart="25dp"
             android:layout_marginTop="10dp"
-            android:layout_marginRight="25dp"
+            android:layout_marginEnd="25dp"
             android:background="@drawable/ic_hexnow"
             android:padding="10dp">
 
@@ -362,7 +354,7 @@
                 android:text="@string/goto_youtube"
                 android:textAlignment="center"
                 android:textColor="@color/white"
-                android:textSize="20dp"
+                android:textSize="20sp"
                 android:textStyle="bold" />
 
 
@@ -374,9 +366,9 @@
 
             android:layout_width="match_parent"
             android:layout_height="80dp"
-            android:layout_marginLeft="25dp"
+            android:layout_marginStart="25dp"
             android:layout_marginTop="10dp"
-            android:layout_marginRight="25dp"
+            android:layout_marginEnd="25dp"
             android:background="@drawable/ic_hexnow"
             android:padding="10dp"
             android:visibility="gone">
@@ -389,7 +381,7 @@
                 android:layout_centerInParent="true"
                 android:text="new Particl"
                 android:textColor="@color/white"
-                android:textSize="20dp"
+                android:textSize="20sp"
                 android:textStyle="bold" />
 
 
@@ -402,6 +394,6 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         ads:adSize="FULL_BANNER"
-        ads:adUnitId="@string/banner_adunit"/>
+        ads:adUnitId="@string/banner_adunit" />
 
 </RelativeLayout>
