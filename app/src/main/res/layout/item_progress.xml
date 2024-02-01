@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="40dp"
     android:layout_marginLeft="5dp"
     android:layout_marginTop="1dp"
     android:layout_marginRight="5dp"
-    android:background="@drawable/ic_hexnow"
-    android:orientation="horizontal">
+    android:background="@drawable/ic_hexnow">
 
     <RelativeLayout
+        android:id="@+id/count_container"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true">
 
         <ImageView
             android:layout_width="wrap_content"
@@ -26,7 +27,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:layout_centerVertical="true"
             android:fontFamily="@font/montserrat"
             android:textColor="@color/black"
             android:textSize="13sp"
@@ -38,12 +38,13 @@
         android:id="@+id/amount_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
+        android:layout_centerVertical="true"
         android:layout_marginEnd="20dp"
+        android:layout_toEndOf="@id/count_container"
         android:fontFamily="@font/fjalla_one"
         android:textAlignment="center"
         android:textColor="@color/white"
         android:textSize="16sp"
         android:textStyle="bold" />
 
-</LinearLayout>
+</RelativeLayout>
