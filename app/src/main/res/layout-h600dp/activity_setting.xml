@@ -18,6 +18,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
+            android:contentDescription="@string/app_name"
             android:src="@drawable/hexagon"
             app:tint="@color/basic_color" />
 
@@ -26,6 +27,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
+            android:contentDescription="@string/app_name"
             android:src="@drawable/ic_baseline_close_24" />
 
     </RelativeLayout>
@@ -60,9 +62,9 @@
                     android:id="@+id/sound"
                     android:layout_width="match_parent"
                     android:layout_height="80dp"
-                    android:layout_marginLeft="25dp"
+                    android:layout_marginStart="25dp"
                     android:layout_marginTop="10dp"
-                    android:layout_marginRight="25dp">
+                    android:layout_marginEnd="25dp">
 
                     <RelativeLayout
                         android:layout_width="match_parent"
@@ -76,8 +78,9 @@
                             android:layout_width="40dp"
                             android:layout_height="40dp"
                             android:layout_centerVertical="true"
-                            android:layout_marginLeft="10dp"
+                            android:layout_marginStart="10dp"
                             android:alpha="0.8"
+                            android:contentDescription="@string/app_name"
                             android:src="@drawable/ic_baseline_volume_up_24"
                             app:tint="@color/white" />
 
@@ -86,7 +89,7 @@
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_marginLeft="50dp"
+                        android:layout_marginStart="50dp"
                         android:background="@drawable/whitepolygon">
 
                         <LinearLayout
@@ -99,18 +102,18 @@
                                 android:id="@+id/sound_txt"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginLeft="40dp"
+                                android:layout_marginStart="40dp"
                                 android:fontFamily="@font/montserrat"
                                 android:text="@string/sound_on"
                                 android:textColor="@color/black"
-                                android:textSize="20dp"
+                                android:textSize="20sp"
                                 android:textStyle="bold" />
 
                             <TextView
                                 android:id="@+id/sound_value"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginLeft="40dp"
+                                android:layout_marginStart="40dp"
                                 android:text="@string/on"
                                 android:textColor="@color/basic_color"
                                 android:textSize="14sp" />
@@ -123,9 +126,9 @@
                     android:id="@+id/language"
                     android:layout_width="match_parent"
                     android:layout_height="80dp"
-                    android:layout_marginLeft="25dp"
+                    android:layout_marginStart="25dp"
                     android:layout_marginTop="10dp"
-                    android:layout_marginRight="25dp">
+                    android:layout_marginEnd="25dp">
 
                     <RelativeLayout
                         android:layout_width="match_parent"
@@ -139,8 +142,9 @@
                             android:layout_width="40dp"
                             android:layout_height="40dp"
                             android:layout_centerVertical="true"
-                            android:layout_marginLeft="10dp"
+                            android:layout_marginStart="10dp"
                             android:alpha="0.8"
+                            android:contentDescription="@string/app_name"
                             android:src="@drawable/united_kingdom" />
 
                     </RelativeLayout>
@@ -148,7 +152,7 @@
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_marginLeft="50dp"
+                        android:layout_marginStart="50dp"
                         android:background="@drawable/whitepolygon">
 
                         <LinearLayout
@@ -161,18 +165,18 @@
                                 android:id="@+id/language_txt"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginLeft="40dp"
+                                android:layout_marginStart="40dp"
                                 android:fontFamily="@font/montserrat"
                                 android:text="@string/language"
                                 android:textColor="@color/black"
-                                android:textSize="20dp"
+                                android:textSize="20sp"
                                 android:textStyle="bold" />
 
                             <TextView
                                 android:id="@+id/language_value"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginLeft="40dp"
+                                android:layout_marginStart="40dp"
                                 android:text="@string/english"
                                 android:textColor="@color/basic_color"
                                 android:textSize="14sp" />
@@ -185,9 +189,9 @@
                     android:id="@+id/select_theme"
                     android:layout_width="match_parent"
                     android:layout_height="80dp"
-                    android:layout_marginLeft="25dp"
+                    android:layout_marginStart="25dp"
                     android:layout_marginTop="10dp"
-                    android:layout_marginRight="25dp">
+                    android:layout_marginEnd="25dp">
 
                     <RelativeLayout
                         android:layout_width="match_parent"
@@ -200,7 +204,7 @@
                             android:layout_width="40dp"
                             android:layout_height="40dp"
                             android:layout_centerVertical="true"
-                            android:layout_marginLeft="10dp"
+                            android:layout_marginStart="10dp"
                             android:alpha="0.8"
                             android:src="@drawable/ic_baseline_color_lens_24"
                             app:tint="@color/white" />
@@ -210,7 +214,7 @@
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_marginLeft="50dp"
+                        android:layout_marginStart="50dp"
                         android:background="@drawable/whitepolygon">
 
                         <LinearLayout
@@ -223,18 +227,18 @@
                                 android:id="@+id/select_theme_txt"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginLeft="40dp"
+                                android:layout_marginStart="40dp"
                                 android:fontFamily="@font/montserrat"
                                 android:text="@string/select_a_theme"
                                 android:textColor="@color/black"
-                                android:textSize="20dp" />
+                                android:textSize="20sp" />
 
                             <TextView
                                 android:id="@+id/theme_name"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginLeft="40dp"
-                                android:text="Default"
+                                android:layout_marginStart="40dp"
+                                android:text="@string/default_theme"
                                 android:textColor="@color/basic_color"
                                 android:textSize="14sp" />
                         </LinearLayout>
@@ -246,9 +250,9 @@
                     android:id="@+id/game_mode"
                     android:layout_width="match_parent"
                     android:layout_height="80dp"
-                    android:layout_marginLeft="25dp"
+                    android:layout_marginStart="25dp"
                     android:layout_marginTop="10dp"
-                    android:layout_marginRight="25dp">
+                    android:layout_marginEnd="25dp">
 
                     <RelativeLayout
                         android:layout_width="match_parent"
@@ -261,8 +265,9 @@
                             android:layout_width="40dp"
                             android:layout_height="40dp"
                             android:layout_centerVertical="true"
-                            android:layout_marginLeft="10dp"
+                            android:layout_marginStart="10dp"
                             android:alpha="0.8"
+                            android:contentDescription="@string/app_name"
                             android:src="@drawable/ic_sports_esports_black_48dp"
                             app:tint="@color/white" />
 
@@ -271,7 +276,7 @@
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_marginLeft="50dp"
+                        android:layout_marginStart="50dp"
                         android:background="@drawable/whitepolygon">
 
                         <LinearLayout
@@ -284,17 +289,17 @@
                                 android:id="@+id/game_mode_txt"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginLeft="40dp"
+                                android:layout_marginStart="40dp"
                                 android:fontFamily="@font/montserrat"
                                 android:text="@string/game_mode"
                                 android:textColor="@color/black"
-                                android:textSize="20dp" />
+                                android:textSize="20sp" />
 
                             <TextView
                                 android:id="@+id/game_mode_value"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginLeft="40dp"
+                                android:layout_marginStart="40dp"
                                 android:text="@string/simple"
                                 android:textColor="@color/basic_color"
                                 android:textSize="14sp" />
@@ -307,9 +312,9 @@
                     android:id="@+id/vibration"
                     android:layout_width="match_parent"
                     android:layout_height="80dp"
-                    android:layout_marginLeft="25dp"
+                    android:layout_marginStart="25dp"
                     android:layout_marginTop="10dp"
-                    android:layout_marginRight="25dp">
+                    android:layout_marginEnd="25dp">
 
                     <RelativeLayout
                         android:layout_width="match_parent"
@@ -328,6 +333,7 @@
                                 android:layout_centerInParent="true"
                                 android:layout_centerVertical="true"
                                 android:alpha="0.8"
+                                android:contentDescription="@string/app_name"
                                 android:src="@drawable/ic_baseline_vibration_24"
                                 app:tint="@color/white" />
 
@@ -336,6 +342,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_centerInParent="true"
+                                android:contentDescription="@string/app_name"
                                 android:src="@drawable/ic_baseline_close_24"
                                 android:visibility="gone"
                                 app:tint="@color/white" />
@@ -345,7 +352,7 @@
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_marginLeft="50dp"
+                        android:layout_marginStart="50dp"
                         android:background="@drawable/whitepolygon">
 
                         <LinearLayout
@@ -358,18 +365,19 @@
                                 android:id="@+id/vibration_txt"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginLeft="40dp"
+                                android:layout_marginStart="40dp"
                                 android:fontFamily="@font/montserrat"
                                 android:text="@string/taptic"
                                 android:textColor="@color/black"
-                                android:textSize="20dp" />
+                                android:textSize="20sp" />
 
                             <TextView
                                 android:id="@+id/vibration_value"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginLeft="40dp"
-                                android:text="On"
+                                android:layout_marginStart="40dp"
+                                android:contentDescription="@string/app_name"
+                                android:text="@string/on"
                                 android:textColor="@color/basic_color"
                                 android:textSize="14sp" />
                         </LinearLayout>
@@ -381,9 +389,9 @@
                     android:id="@+id/credits"
                     android:layout_width="match_parent"
                     android:layout_height="80dp"
-                    android:layout_marginLeft="25dp"
+                    android:layout_marginStart="25dp"
                     android:layout_marginTop="10dp"
-                    android:layout_marginRight="25dp">
+                    android:layout_marginEnd="25dp">
 
                     <RelativeLayout
                         android:layout_width="match_parent"
@@ -396,8 +404,9 @@
                             android:layout_width="40dp"
                             android:layout_height="40dp"
                             android:layout_centerVertical="true"
-                            android:layout_marginLeft="10dp"
+                            android:layout_marginStart="10dp"
                             android:alpha="0.8"
+                            android:contentDescription="@string/app_name"
                             android:src="@drawable/ic_baseline_info_24"
                             app:tint="@color/white" />
 
@@ -406,7 +415,7 @@
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_marginLeft="50dp"
+                        android:layout_marginStart="50dp"
                         android:background="@drawable/whitepolygon">
 
                         <LinearLayout
@@ -419,18 +428,17 @@
                                 android:id="@+id/credit_txt"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginLeft="40dp"
+                                android:layout_marginStart="40dp"
                                 android:fontFamily="@font/montserrat"
                                 android:text="@string/credits"
                                 android:textColor="@color/black"
-                                android:textSize="20dp" />
+                                android:textSize="20sp" />
 
                             <TextView
                                 android:id="@+id/version"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginLeft="40dp"
-                                android:text="v0.1"
+                                android:layout_marginStart="40dp"
                                 android:textColor="@color/basic_color"
                                 android:textSize="14sp" />
                         </LinearLayout>
