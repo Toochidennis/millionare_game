@@ -53,9 +53,7 @@ public class Dashboard extends AppCompatActivity {
         setContentView(R.layout.activity_dashboard);
         AdManager.initInterstitialAd(this);
 
-
-        loadInterstialAd();
-
+        loadInterstitialAd();
 
         SharedPreferences sharedPreferences = getSharedPreferences("settings", Context.MODE_PRIVATE);
         languageCode = sharedPreferences.getString("language", "en");
@@ -64,7 +62,6 @@ public class Dashboard extends AppCompatActivity {
         int cardBackground = sharedPreferences.getInt("card_background", 0x219ebc);
         String highScore = sharedPreferences.getString("high_score", "0");
         String game_level = sharedPreferences.getString("game_level", "1");
-
 
         setLocale(this, languageCode);
 
@@ -198,9 +195,7 @@ public class Dashboard extends AppCompatActivity {
         RelativeLayout moreBtn = findViewById(R.id.more_games);
         moreBtn.setOnClickListener(view -> {
             Utils.darkBlueBlink(moreBtn, getApplicationContext());
-//                MediaPlayer.create(Dashboard.this, R.raw.others).start();
-//                Utils.blink(moreBtn, R.drawable.ic_hex_2, R.drawable.ic_hexnow);
-            // Uri uri = Uri.parse("https://play.google.com/store/apps/developer?id=DIGITAL+DREAMS+LIMITED");
+
             Uri uri = Uri.parse("https://www.facebook.com/MillionaireGameApp");
 
             try {
@@ -244,7 +239,7 @@ public class Dashboard extends AppCompatActivity {
         public void onReceive(Context context, Intent intent) {
             SharedPreferences sharedPreferences = getSharedPreferences("settings", Context.MODE_PRIVATE);
             String languageCode = sharedPreferences.getString("language", "");
-            int endcolor = sharedPreferences.getInt("end_color", 0x230253);
+            int endColor = sharedPreferences.getInt("end_color", 0x230253);
             int startColor = sharedPreferences.getInt("start_color", 0xFF6200EE);
             int cardBackground = sharedPreferences.getInt("card_background", 0x03045e);
 
@@ -278,13 +273,13 @@ public class Dashboard extends AppCompatActivity {
 
             GradientDrawable gd = new GradientDrawable(
                     GradientDrawable.Orientation.TOP_BOTTOM,
-                    new int[]{startColor, endcolor});
+                    new int[]{startColor, endColor});
 
-            bg.setBackgroundDrawable(gd);
+            bg.setBackground(gd);
 
             if (SettingActivity.bg != null) {
                 String theme = sharedPreferences.getString("theme", "0");
-                SettingActivity.bg.setBackgroundDrawable(gd);
+                SettingActivity.bg.setBackground(gd);
                 switch (theme) {
                     case "0":
                         SettingActivity.themeNameTxt.setText(getResources().getString(R.string.default_theme));
@@ -353,7 +348,6 @@ public class Dashboard extends AppCompatActivity {
 
         updateGameLogo();
 
-
         LocalBroadcastManager.getInstance(this).registerReceiver(refreshBroadCast, new IntentFilter("refresh"));
 
         SharedPreferences sharedPreferences = getSharedPreferences("settings", MODE_PRIVATE);
@@ -369,6 +363,8 @@ public class Dashboard extends AppCompatActivity {
             playTxt2.setTextSize(32);
             playTxt.setTextSize(32);
         }
+
+        setLocale(this, languageCode);
 
     }
 
@@ -390,6 +386,26 @@ public class Dashboard extends AppCompatActivity {
                 SettingActivity.flagImg.setImageResource(R.drawable.spain);
                 SettingActivity.languageTxt.setText(context.getResources().getString(R.string.spanish));
                 break;
+
+            case "pt":
+                SettingActivity.flagImg.setImageResource(R.drawable.portugal);
+                SettingActivity.languageTxt.setText(context.getResources().getString(R.string.portuguese));
+                break;
+
+            case "ur":
+                SettingActivity.flagImg.setImageResource(R.drawable.pakistan);
+                SettingActivity.languageTxt.setText(context.getResources().getString(R.string.urdu));
+                break;
+
+            case "hi":
+                SettingActivity.flagImg.setImageResource(R.drawable.india);
+                SettingActivity.languageTxt.setText(context.getResources().getString(R.string.hindi));
+                break;
+
+            case "ar":
+                SettingActivity.flagImg.setImageResource(R.drawable.arab);
+                SettingActivity.languageTxt.setText(context.getResources().getString(R.string.arabic));
+                break;
         }
     }
 
@@ -406,24 +422,11 @@ public class Dashboard extends AppCompatActivity {
     //////
 
 
-    private void loadInterstialAd() {
+    private void loadInterstitialAd() {
         // interstitialAd = AdManager.mInterstitialAd; //new InterstitialAd(this) ;
         AdManager.initInterstitialAd(Dashboard.this);
-//        interstitialAd.setAdUnitId (getResources().getString(R.string.interstitial_adunit) ) ;
-//        interstitialAd.loadAd(new AdRequest.Builder().build());
-    }
 
-//    public  void loadVideoAd() {
-//        // Load a reward based video ad
-//        if(!mRewardedVideoAd.isLoaded()){
-//            Log.i("mRewardedVideoAd","Not LOaded");
-//            mRewardedVideoAd.loadAd("ca-app-pub-4696224049420135/7768937909", new AdRequest.Builder().build());
-//        }else{
-//            Log.i("mRewardedVideoAd","LOaded");
-//
-//        }
-//
-//    }
+    }
 
 
 }

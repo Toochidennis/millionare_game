@@ -1,5 +1,7 @@
 package com.digitalDreams.millionaire_game;
 
+import static com.digitalDreams.millionaire_game.alpha.Constants.getLanguageText;
+
 import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
@@ -129,20 +131,7 @@ public class DBHelper extends SQLiteOpenHelper {
                 String game_level = sharedPreferences.getString("game_level", "1");
                 String current_play_level = sharedPreferences.getString("current_play_level", "1");
                 String languageCode = sharedPreferences.getString("language", "");
-                String language;
-
-                switch (languageCode) {
-                    case "fr":
-                        language = context.getString(R.string.french);
-                        break;
-                    case "es":
-                        language = context.getString(R.string.spanish);
-                        break;
-
-                    default:
-                        language = context.getString(R.string.english);
-                        break;
-                }
+                String language = getLanguageText(context, languageCode);
 
                 Log.i("current_play_level", current_play_level + " Language " + language);
 
