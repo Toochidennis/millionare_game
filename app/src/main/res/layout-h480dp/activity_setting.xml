@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rootview"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/rootview"
     tools:context=".SettingActivity">
 
     <RelativeLayout
@@ -18,36 +17,42 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/hexagon"
             android:layout_centerInParent="true"
-            app:tint="@color/basic_color"/>
+            android:contentDescription="@string/app_name"
+            android:src="@drawable/hexagon"
+            app:tint="@color/basic_color" />
+
         <ImageView
             android:id="@+id/close"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:src="@drawable/ic_baseline_close_24"/>
+            android:contentDescription="@string/app_name"
+            android:src="@drawable/ic_baseline_close_24" />
 
     </RelativeLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/close_container"
         android:orientation="vertical">
+
         <TextView
             android:id="@+id/settingsTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/settings"
-            android:textSize="24sp"
-            android:fontFamily="@font/ultra"
-            android:textColor="@color/white"
             android:layout_gravity="center_horizontal"
-            android:layout_margin="20dp"/>
+            android:layout_margin="20dp"
+            android:fontFamily="@font/ultra"
+            android:text="@string/settings"
+            android:textColor="@color/white"
+            android:textSize="24sp" />
+
         <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            >
+            android:layout_height="wrap_content">
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -57,397 +62,385 @@
                     android:id="@+id/sound"
                     android:layout_width="match_parent"
                     android:layout_height="80dp"
-                    android:layout_marginLeft="25dp"
-                    android:layout_marginRight="25dp"
+                    android:layout_marginStart="25dp"
                     android:layout_marginTop="10dp"
-                    >
+                    android:layout_marginEnd="25dp">
 
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:padding="10dp"
                         android:background="@drawable/ic_hexnow"
-                        >
+                        android:padding="10dp">
 
 
                         <ImageView
                             android:id="@+id/sound_img"
                             android:layout_width="40dp"
                             android:layout_height="40dp"
-                            android:src="@drawable/ic_baseline_volume_up_24"
-                            app:tint="@color/white"
-                            android:alpha="0.8"
                             android:layout_centerVertical="true"
-                            android:layout_marginLeft="10dp"
-                            />
+                            android:layout_marginStart="10dp"
+                            android:alpha="0.8"
+                            android:contentDescription="@string/app_name"
+                            android:src="@drawable/ic_baseline_volume_up_24"
+                            app:tint="@color/white" />
 
                     </RelativeLayout>
+
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_marginLeft="50dp"
-                        android:background="@drawable/whitepolygon"
-                        >
+                        android:layout_marginStart="50dp"
+                        android:background="@drawable/whitepolygon">
+
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:orientation="vertical"
                             android:layout_centerVertical="true"
-                            >
+                            android:orientation="vertical">
 
                             <TextView
                                 android:id="@+id/sound_txt"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:layout_marginStart="40dp"
                                 android:fontFamily="@font/montserrat"
-                                android:text="@string/sound_on"                        android:textStyle="bold"
-                                android:textSize="20dp"
-                                android:layout_marginLeft="40dp"
+                                android:text="@string/sound_on"
                                 android:textColor="@color/black"
-                                />
+                                android:textSize="20sp"
+                                android:textStyle="bold" />
+
                             <TextView
                                 android:id="@+id/sound_value"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:layout_marginStart="40dp"
                                 android:text="@string/on"
-                                android:textSize="14sp"
-                                android:layout_marginLeft="40dp"
                                 android:textColor="@color/basic_color"
-                                />
+                                android:textSize="14sp" />
                         </LinearLayout>
                     </RelativeLayout>
 
                 </RelativeLayout>
+
                 <RelativeLayout
                     android:id="@+id/language"
                     android:layout_width="match_parent"
                     android:layout_height="80dp"
-                    android:layout_marginLeft="25dp"
-                    android:layout_marginRight="25dp"
+                    android:layout_marginStart="25dp"
                     android:layout_marginTop="10dp"
-                    >
+                    android:layout_marginEnd="25dp">
 
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:padding="10dp"
                         android:background="@drawable/ic_hexnow"
-                        >
+                        android:padding="10dp">
 
 
                         <ImageView
                             android:id="@+id/flag"
                             android:layout_width="40dp"
                             android:layout_height="40dp"
-                            android:src="@drawable/united_kingdom"
-                            android:alpha="0.8"
                             android:layout_centerVertical="true"
-                            android:layout_marginLeft="10dp"
-                            />
+                            android:layout_marginStart="10dp"
+                            android:alpha="0.8"
+                            android:contentDescription="@string/app_name"
+                            android:src="@drawable/united_kingdom" />
 
                     </RelativeLayout>
+
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_marginLeft="50dp"
-                        android:background="@drawable/whitepolygon"
-                        >
+                        android:layout_marginStart="50dp"
+                        android:background="@drawable/whitepolygon">
+
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:orientation="vertical"
                             android:layout_centerVertical="true"
-                            >
+                            android:orientation="vertical">
 
                             <TextView
                                 android:id="@+id/language_txt"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:layout_marginStart="40dp"
                                 android:fontFamily="@font/montserrat"
-                                android:text="@string/language"                        android:textStyle="bold"
-                                android:textSize="20dp"
-                                android:layout_marginLeft="40dp"
+                                android:text="@string/language"
                                 android:textColor="@color/black"
-                                />
+                                android:textSize="20sp"
+                                android:textStyle="bold" />
+
                             <TextView
                                 android:id="@+id/language_value"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:layout_marginStart="40dp"
                                 android:text="@string/english"
-                                android:textSize="14sp"
-                                android:layout_marginLeft="40dp"
                                 android:textColor="@color/basic_color"
-                                />
+                                android:textSize="14sp" />
                         </LinearLayout>
                     </RelativeLayout>
 
                 </RelativeLayout>
+
                 <RelativeLayout
                     android:id="@+id/select_theme"
                     android:layout_width="match_parent"
                     android:layout_height="80dp"
-                    android:layout_marginLeft="25dp"
-                    android:layout_marginRight="25dp"
+                    android:layout_marginStart="25dp"
                     android:layout_marginTop="10dp"
-                    >
+                    android:layout_marginEnd="25dp">
 
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:padding="10dp"
                         android:background="@drawable/ic_hexnow"
-                        >
+                        android:padding="10dp">
 
 
                         <ImageView
                             android:layout_width="40dp"
                             android:layout_height="40dp"
-                            android:src="@drawable/ic_baseline_color_lens_24"
-                            app:tint="@color/white"
-                            android:alpha="0.8"
                             android:layout_centerVertical="true"
-                            android:layout_marginLeft="10dp"
-                            />
+                            android:layout_marginStart="10dp"
+                            android:alpha="0.8"
+                            android:src="@drawable/ic_baseline_color_lens_24"
+                            app:tint="@color/white" />
 
                     </RelativeLayout>
+
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_marginLeft="50dp"
-                        android:background="@drawable/whitepolygon"
-                        >
+                        android:layout_marginStart="50dp"
+                        android:background="@drawable/whitepolygon">
+
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:orientation="vertical"
                             android:layout_centerVertical="true"
-                            >
+                            android:orientation="vertical">
 
                             <TextView
                                 android:id="@+id/select_theme_txt"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:layout_marginStart="40dp"
                                 android:fontFamily="@font/montserrat"
                                 android:text="@string/select_a_theme"
-                                android:textSize="20dp"
-                                android:layout_marginLeft="40dp"
                                 android:textColor="@color/black"
-                                />
+                                android:textSize="20sp" />
+
                             <TextView
                                 android:id="@+id/theme_name"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Default"
-                                android:textSize="14sp"
-                                android:layout_marginLeft="40dp"
+                                android:layout_marginStart="40dp"
+                                android:text="@string/default_theme"
                                 android:textColor="@color/basic_color"
-                                />
+                                android:textSize="14sp" />
                         </LinearLayout>
                     </RelativeLayout>
 
                 </RelativeLayout>
+
                 <RelativeLayout
                     android:id="@+id/game_mode"
                     android:layout_width="match_parent"
                     android:layout_height="80dp"
-                    android:layout_marginLeft="25dp"
-                    android:layout_marginRight="25dp"
+                    android:layout_marginStart="25dp"
                     android:layout_marginTop="10dp"
-                    >
+                    android:layout_marginEnd="25dp">
 
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:padding="10dp"
                         android:background="@drawable/ic_hexnow"
-                        >
+                        android:padding="10dp">
 
 
                         <ImageView
                             android:layout_width="40dp"
                             android:layout_height="40dp"
-                            android:src="@drawable/ic_sports_esports_black_48dp"
-                            app:tint="@color/white"
-                            android:alpha="0.8"
                             android:layout_centerVertical="true"
-                            android:layout_marginLeft="10dp"
-                            />
+                            android:layout_marginStart="10dp"
+                            android:alpha="0.8"
+                            android:contentDescription="@string/app_name"
+                            android:src="@drawable/ic_sports_esports_black_48dp"
+                            app:tint="@color/white" />
 
                     </RelativeLayout>
+
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_marginLeft="50dp"
-                        android:background="@drawable/whitepolygon"
-                        >
+                        android:layout_marginStart="50dp"
+                        android:background="@drawable/whitepolygon">
+
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:orientation="vertical"
                             android:layout_centerVertical="true"
-                            >
+                            android:orientation="vertical">
 
                             <TextView
                                 android:id="@+id/game_mode_txt"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:layout_marginStart="40dp"
                                 android:fontFamily="@font/montserrat"
                                 android:text="@string/game_mode"
-                                android:textSize="20dp"
-                                android:layout_marginLeft="40dp"
                                 android:textColor="@color/black"
-                                />
+                                android:textSize="20sp" />
+
                             <TextView
                                 android:id="@+id/game_mode_value"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:layout_marginStart="40dp"
                                 android:text="@string/simple"
-                                android:textSize="14sp"
-                                android:layout_marginLeft="40dp"
                                 android:textColor="@color/basic_color"
-                                />
+                                android:textSize="14sp" />
                         </LinearLayout>
                     </RelativeLayout>
 
                 </RelativeLayout>
+
                 <RelativeLayout
                     android:id="@+id/vibration"
                     android:layout_width="match_parent"
                     android:layout_height="80dp"
-                    android:layout_marginLeft="25dp"
-                    android:layout_marginRight="25dp"
+                    android:layout_marginStart="25dp"
                     android:layout_marginTop="10dp"
-                    >
+                    android:layout_marginEnd="25dp">
 
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:padding="10dp"
                         android:background="@drawable/ic_hexnow"
-                        >
+                        android:padding="10dp">
 
                         <RelativeLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_centerVertical="true"
-                            >
+                            android:layout_centerVertical="true">
+
                             <ImageView
                                 android:layout_width="40dp"
                                 android:layout_height="40dp"
-                                android:src="@drawable/ic_baseline_vibration_24"
-                                app:tint="@color/white"
-                                android:alpha="0.8"
                                 android:layout_centerInParent="true"
                                 android:layout_centerVertical="true"
-                                />
+                                android:alpha="0.8"
+                                android:contentDescription="@string/app_name"
+                                android:src="@drawable/ic_baseline_vibration_24"
+                                app:tint="@color/white" />
 
                             <ImageView
                                 android:id="@+id/bad"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                app:tint="@color/white"
-                                android:visibility="gone"
                                 android:layout_centerInParent="true"
+                                android:contentDescription="@string/app_name"
                                 android:src="@drawable/ic_baseline_close_24"
-                                />
+                                android:visibility="gone"
+                                app:tint="@color/white" />
                         </RelativeLayout>
                     </RelativeLayout>
+
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_marginLeft="50dp"
-                        android:background="@drawable/whitepolygon"
-                        >
+                        android:layout_marginStart="50dp"
+                        android:background="@drawable/whitepolygon">
+
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:orientation="vertical"
                             android:layout_centerVertical="true"
-                            >
+                            android:orientation="vertical">
 
                             <TextView
                                 android:id="@+id/vibration_txt"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:layout_marginStart="40dp"
                                 android:fontFamily="@font/montserrat"
                                 android:text="@string/taptic"
-                                android:textSize="20dp"
-                                android:layout_marginLeft="40dp"
                                 android:textColor="@color/black"
-                                />
+                                android:textSize="20sp" />
+
                             <TextView
                                 android:id="@+id/vibration_value"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="On"
-                                android:textSize="14sp"
-                                android:layout_marginLeft="40dp"
+                                android:layout_marginStart="40dp"
+                                android:contentDescription="@string/app_name"
+                                android:text="@string/on"
                                 android:textColor="@color/basic_color"
-                                />
+                                android:textSize="14sp" />
                         </LinearLayout>
                     </RelativeLayout>
 
                 </RelativeLayout>
+
                 <RelativeLayout
                     android:id="@+id/credits"
                     android:layout_width="match_parent"
                     android:layout_height="80dp"
-                    android:layout_marginLeft="25dp"
-                    android:layout_marginRight="25dp"
+                    android:layout_marginStart="25dp"
                     android:layout_marginTop="10dp"
-                    >
+                    android:layout_marginEnd="25dp">
 
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:padding="10dp"
                         android:background="@drawable/ic_hexnow"
-                        >
+                        android:padding="10dp">
 
 
                         <ImageView
                             android:layout_width="40dp"
                             android:layout_height="40dp"
-                            android:src="@drawable/ic_baseline_info_24"
-                            app:tint="@color/white"
-                            android:alpha="0.8"
                             android:layout_centerVertical="true"
-                            android:layout_marginLeft="10dp"
-                            />
+                            android:layout_marginStart="10dp"
+                            android:alpha="0.8"
+                            android:contentDescription="@string/app_name"
+                            android:src="@drawable/ic_baseline_info_24"
+                            app:tint="@color/white" />
 
                     </RelativeLayout>
+
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_marginLeft="50dp"
-                        android:background="@drawable/whitepolygon"
-                        >
+                        android:layout_marginStart="50dp"
+                        android:background="@drawable/whitepolygon">
+
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:orientation="vertical"
                             android:layout_centerVertical="true"
-                            >
+                            android:orientation="vertical">
 
                             <TextView
                                 android:id="@+id/credit_txt"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:layout_marginStart="40dp"
                                 android:fontFamily="@font/montserrat"
                                 android:text="@string/credits"
-                                android:textSize="20dp"
-                                android:layout_marginLeft="40dp"
                                 android:textColor="@color/black"
-                                />
+                                android:textSize="20sp" />
+
                             <TextView
                                 android:id="@+id/version"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="v0.1"
-                                android:textSize="14sp"
-                                android:layout_marginLeft="40dp"
+                                android:layout_marginStart="40dp"
                                 android:textColor="@color/basic_color"
-                                />
+                                android:textSize="14sp" />
                         </LinearLayout>
                     </RelativeLayout>
 

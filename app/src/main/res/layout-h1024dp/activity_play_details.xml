@@ -47,9 +47,9 @@
                     android:id="@+id/view_forAnim"
                     android:layout_width="match_parent"
                     android:layout_height="120dp"
-                    android:layout_marginLeft="40dp"
+                    android:layout_marginStart="40dp"
                     android:layout_marginTop="20dp"
-                    android:layout_marginRight="40dp"
+                    android:layout_marginEnd="40dp"
                     android:layout_marginBottom="20dp"
                     android:background="@drawable/ic_hexnow"
                     android:elevation="5dp"
@@ -63,9 +63,9 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="150dp"
-                    android:layout_marginLeft="40dp"
+                    android:layout_marginStart="40dp"
                     android:layout_marginTop="0dp"
-                    android:layout_marginRight="40dp"
+                    android:layout_marginEnd="40dp"
                     android:layout_marginBottom="20dp"
                     android:background="@drawable/ic_hexnow"
                     android:elevation="5dp"
@@ -145,7 +145,7 @@
                         android:id="@+id/no_question_answered"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="20dp"
+                        android:layout_marginStart="20dp"
                         android:fontFamily="@font/arimo"
                         android:text="15 questions answered"
                         android:textColor="@color/white"
@@ -167,7 +167,7 @@
                         android:id="@+id/time_taken"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="20dp"
+                        android:layout_marginStart="20dp"
                         android:fontFamily="@font/arimo"
                         android:text="45 Minutes"
                         android:textColor="@color/white"
@@ -189,7 +189,7 @@
                         android:id="@+id/accuracy"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="20dp"
+                        android:layout_marginStart="20dp"
                         android:fontFamily="@font/arimo"
                         android:text="80% Accurate"
                         android:textColor="@color/white"
@@ -211,7 +211,7 @@
                         android:id="@+id/mode"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="20dp"
+                        android:layout_marginStart="20dp"
                         android:fontFamily="@font/arimo"
                         android:text="80% Accurate"
                         android:textColor="@color/white"
@@ -231,8 +231,8 @@
                     android:id="@+id/btn_forAnim"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="30dp"
-                    android:layout_marginRight="30dp"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginEnd="30dp"
                     android:layout_marginBottom="35dp"
                     android:background="@drawable/playbtn_bg">
 
@@ -243,9 +243,9 @@
                     android:id="@+id/new_game1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="30dp"
+                    android:layout_marginStart="30dp"
 
-                    android:layout_marginRight="30dp"
+                    android:layout_marginEnd="30dp"
                     android:background="@drawable/playbtn_bg">
 
                     <LinearLayout
@@ -258,7 +258,7 @@
                             android:layout_width="70dp"
                             android:layout_height="70dp"
                             android:layout_gravity="center_vertical"
-                            android:layout_marginLeft="10dp"
+                            android:layout_marginStart="10dp"
                             android:src="@drawable/ic_sports_esports_black_48dp"
                             app:tint="@color/white" />
 
@@ -271,7 +271,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_vertical"
-                                android:layout_marginLeft="30dp"
+                                android:layout_marginStart="30dp"
                                 android:orientation="vertical">
 
                                 <TextView
@@ -292,9 +292,9 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_vertical"
-                                android:layout_marginLeft="30dp"
+                                android:layout_marginStart="30dp"
                                 android:layout_marginTop="-2dp"
-                                android:layout_marginRight="40dp"
+                                android:layout_marginEnd="40dp"
                                 android:orientation="vertical">
 
                                 <TextView
@@ -378,7 +378,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
+                android:layout_marginStart="5dp"
                 android:fontFamily="@font/arimo"
                 android:text="@string/share"
                 android:textColor="@color/black"
