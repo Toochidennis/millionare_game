@@ -1,5 +1,7 @@
 package com.digitalDreams.millionaire_game;
 
+import static com.digitalDreams.millionaire_game.alpha.Constants.getCountryResource;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
@@ -49,7 +51,7 @@ public class UserDetails extends AppCompatActivity {
     //AutoCompleteTextView spinner;
     CountryAdapter countryAdapter;
     ArrayList<String> countries = new ArrayList<>();
-    ArrayList flags = new ArrayList();
+    ArrayList<String> flags = new ArrayList<>();
     EditText country_name;
     Dialog dialog;
     CardView card;
@@ -64,11 +66,6 @@ public class UserDetails extends AppCompatActivity {
 
         Intent intent = getIntent();
         String type = intent.getStringExtra("type");
-        // Toolbar toolbar = findViewById(R.id.toolbar);
-        //setSupportActionBar(toolbar);
-//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-//        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_baseline_arrow_back_24);
-//        getSupportActionBar().setTitle("");
         close_container = findViewById(R.id.close_container);
         country_name = findViewById(R.id.country_name);
 
@@ -85,7 +82,7 @@ public class UserDetails extends AppCompatActivity {
         country = sharedPreferences.getString("country", "");
         flag = sharedPreferences.getString("country_flag", "");
         languageCode = sharedPreferences.getString("language", "");
-        int endcolor = sharedPreferences.getInt("end_color", getResources().getColor(R.color.purple_dark));
+        int endColor = sharedPreferences.getInt("end_color", getResources().getColor(R.color.purple_dark));
         int startColor = sharedPreferences.getInt("start_color", getResources().getColor(R.color.purple_500));
         int cardBackground = sharedPreferences.getInt("card_background", 0x219ebc);
 
@@ -96,7 +93,7 @@ public class UserDetails extends AppCompatActivity {
         new Particles(this, bg, R.layout.image_xml, 20);
         GradientDrawable gd = new GradientDrawable(
                 GradientDrawable.Orientation.TOP_BOTTOM,
-                new int[]{startColor, endcolor});
+                new int[]{startColor, endColor});
 
         bg.setBackgroundDrawable(gd);
         usernameEdt.requestFocus();
@@ -134,9 +131,6 @@ public class UserDetails extends AppCompatActivity {
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_dropdown_item_1line, countries);
 
 
-        //   ArrayAdapter arrayAdapter = new ArrayAdapter(this,android.R.layout.simple_spinner_dropdown_item,countries);
-        //spinner.setAdapter(adapter);
-        // int spinnerPosition = countryAdapter.getPosition(country);
         if (!country.equals("default")) {
             country_name.setText(country);
         }
@@ -308,14 +302,12 @@ public class UserDetails extends AppCompatActivity {
         } else if (country.equals("") || country.equals(getResources().getString(R.string.select_country)) || country.equals("default")) {
             Toast.makeText(UserDetails.this, getResources().getString(R.string.select_your_country), Toast.LENGTH_SHORT).show();
 
-
         } else {
             //Random = new Random()
             final int min = 1;
             final int max = 3;
             int random = new Random().nextInt((max - min) + 1) + min;
             avatar = String.valueOf(random);
-
 
             SharedPreferences sharedPreferences = getSharedPreferences("settings", MODE_PRIVATE);
             SharedPreferences.Editor editor = sharedPreferences.edit();
@@ -340,8 +332,6 @@ public class UserDetails extends AppCompatActivity {
 
     @Override
     protected void onResume() {
-
-
         super.onResume();
     }
 
@@ -357,21 +347,12 @@ public class UserDetails extends AppCompatActivity {
     }
 
     public void addCountries() {
-        // Log.i("llllll","flag");
-        String json = "";
+
         try {
-            if (languageCode.equals("es")) {
-                json = readRawTextFile(R.raw.country_json_es);
-            } else if (languageCode.equals("fr")) {
-                json = readRawTextFile(R.raw.country_json_fr);
-            } else {
-                json = readRawTextFile(R.raw.country_json_en);
-            }
+            String json = readRawTextFile(getCountryResource(languageCode));
 
             JSONArray jsonArray = new JSONArray(json);
-            //Iterator<String> iterator = jsonObject.keys();
 
-            //Log.i("llllll","flag");
             for (int j = 0; j < jsonArray.length(); j++) {
                 JSONObject obj1 = jsonArray.getJSONObject(j);
                 String name = obj1.getString("name");
@@ -380,57 +361,11 @@ public class UserDetails extends AppCompatActivity {
                 flags.add(flag);
             }
 
-//            while (iterator.hasNext()){
-//                String key = iterator.next();
-//                JSONObject obj1 = jsonObject.getJSONObject(key);
-//                String name = obj1.getString("name");
-//                String flag = obj1.getString("image");
-//                countries.add(name);
-//                flags.add(flag);
-//
-//                Log.i("llllll",flag);
-//
-//               /// countryAdapter.notifyDataSetChanged();
-//            }
-
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    String[] countries4ii = new String[]{"Select country", "Afghanistan", "Albania", "Algeria", "American Samoa", "Andorra", "Angola", "Anguilla",
-            "Antarctica", "Antigua and Barbuda", "Argentina", "Armenia", "Aruba", "Australia", "Austria", "Azerbaijan", "Bahamas",
-            "Bahrain", "Bangladesh", "Barbados", "Belarus", "Belgium", "Belize", "Benin", "Bermuda", "Bhutan", "Bolivia",
-            "Bosnia and Herzegowina", "Botswana", "Bouvet Island", "Brazil", "British Indian Ocean Territory", "Brunei Darussalam",
-            "Bulgaria", "Burkina Faso", "Burundi", "Cambodia", "Cameroon", "Canada", "Cape Verde", "Cayman Islands",
-            "Central African Republic", "Chad", "Chile", "China, People's republic of", "Christmas Island", "Cocos (Keeling) Islands", "Colombia",
-            "Comoros", "Congo", "Congo, the Democratic Republic of the", "Cook Islands", "Costa Rica", "Cote d'Ivoire",
-            "Croatia (Hrvatska)", "Cuba", "Cyprus", "Czech Republic", "Denmark", "Djibouti", "Dominica", "Dominican Republic",
-            "East Timor", "Ecuador", "Egypt", "El Salvador", "Equatorial Guinea", "Eritrea", "Estonia", "Ethiopia",
-            "Falkland Islands (Malvinas)", "Faroe Islands", "Fiji", "Finland", "France", "France Metropolitan", "French Guiana",
-            "French Polynesia", "French Southern Territories", "Gabon", "Gambia", "Georgia", "Germany", "Ghana", "Gibraltar",
-            "Greece", "Greenland", "Grenada", "Guadeloupe", "Guam", "Guatemala", "Guinea", "Guinea-Bissau", "Guyana", "Haiti",
-            "Heard and Mc Donald Islands", "Holy See (Vatican City State)", "Honduras", "Hong Kong", "Hungary", "Iceland", "India",
-            "Indonesia", "Iran (Islamic Republic of)", "Iraq", "Ireland", "Israel", "Italy", "Jamaica", "Japan", "Jordan",
-            "Kazakhstan", "Kenya", "Kiribati", "Korea, Democratic People's Republic of", "Korea, Republic of", "Kosovo", "Kuwait",
-            "Kyrgyzstan", "Lao, People's Democratic Republic", "Latvia", "Lebanon", "Lesotho", "Liberia", "Libyan Arab Jamahiriya",
-            "Liechtenstein", "Lithuania", "Luxembourg", "Macau", "Macedonia, The Former Yugoslav Republic of", "Madagascar",
-            "Malawi", "Malaysia", "Maldives", "Mali", "Malta", "Marshall Islands", "Martinique", "Mauritania", "Mauritius",
-            "Mayotte", "Mexico", "Micronesia, Federated States of", "Moldova, Republic of", "Monaco", "Mongolia", "Montserrat",
-            "Morocco", "Mozambique", "Myanmar", "Namibia", "Nauru", "Nepal", "Netherlands", "Netherlands Antilles",
-            "New Caledonia", "New Zealand", "Nicaragua", "Niger", "Nigeria", "Niue", "Norfolk Island", "Northern Mariana Islands",
-            "Norway", "Oman", "Pakistan", "Palau", "Panama", "Papua New Guinea", "Paraguay", "Palestine", "Peru", "Philippines", "Pitcairn",
-            "Poland", "Portugal", "Puerto Rico", "Qatar", "Reunion", "Romania", "Russian Federation", "Rwanda",
-            "Saint Kitts and Nevis", "Saint Lucia", "Saint Vincent and the Grenadines", "Samoa", "San Marino",
-            "Sao Tome and Principe", "Saudi Arabia", "Senegal", "Seychelles", "Sierra Leone", "Singapore",
-            "Slovakia (Slovak Republic)", "Slovenia", "Solomon Islands", "Somalia", "South Africa",
-            "South Georgia and the South Sandwich Islands", "Spain", "Sri Lanka", "St. Helena", "St. Pierre and Miquelon",
-            "Sudan", "Suriname", "Svalbard and Jan Mayen Islands", "Swaziland", "Sweden", "Switzerland", "Syrian Arab Republic",
-            "Taiwan", "Tajikistan", "Tanzania, United Republic of", "Thailand", "Tibet", "Togo", "Tokelau", "Tonga",
-            "Trinidad and Tobago", "Tunisia", "Turkey", "Turkmenistan", "Turks and Caicos Islands", "Tuvalu", "Uganda", "Ukraine",
-            "United Arab Emirates", "United Kingdom", "United States", "United States Minor Outlying Islands", "Uruguay",
-            "Uzbekistan", "Vanuatu", "Venezuela", "Vietnam", "Virgin Islands (British)", "Virgin Islands (U.S.)",
-            "Wallis and Futuna Islands", "Western Sahara", "Yemen", "Yugoslavia", "Zambia", "Zimbabwe"};
 
 
     private String readRawTextFile(int resId) throws IOException {

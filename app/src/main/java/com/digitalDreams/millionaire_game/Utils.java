@@ -36,9 +36,13 @@ import java.util.Map;
 public class Utils {
     public static boolean IS_DONE_INSERTING = false;
 
-    public static String IS_INSERTED_ENGLISH_KEY = "is_inserted_english";
-    public static String IS_INSERTED_SPANISH_KEY = "is_inserted_spanish";
-    public static String IS_INSERTED_FRENCH_KEY = "is_inserted_french";
+    public static String ENGLISH_KEY = "en";
+    public static String SPANISH_KEY = "es";
+    public static String FRENCH_KEY = "fr";
+    public static String ARABIC_KEY = "ar";
+    public static String HINDI_KEY = "hi";
+    public static String PORTUGUESE_KEY = "pt";
+    public static String URDU_KEY = "ur";
 
     public static int NUMBER_OF_INSERT = 0;
     public static Class destination_activity = Dashboard.class;
@@ -74,7 +78,6 @@ public class Utils {
     public static String addDollarSign(String number) {
 
         return "$" + number;
-
     }
 
     public static String addCommaAndDollarSign(double number) {
