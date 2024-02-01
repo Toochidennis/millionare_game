@@ -1,5 +1,13 @@
 package com.digitalDreams.millionaire_game.alpha;
 
+import static com.digitalDreams.millionaire_game.Utils.ARABIC_KEY;
+import static com.digitalDreams.millionaire_game.Utils.ENGLISH_KEY;
+import static com.digitalDreams.millionaire_game.Utils.FRENCH_KEY;
+import static com.digitalDreams.millionaire_game.Utils.HINDI_KEY;
+import static com.digitalDreams.millionaire_game.Utils.PORTUGUESE_KEY;
+import static com.digitalDreams.millionaire_game.Utils.SPANISH_KEY;
+import static com.digitalDreams.millionaire_game.Utils.URDU_KEY;
+
 import android.content.Context;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
@@ -11,8 +19,10 @@ import com.digitalDreams.millionaire_game.R;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 import java.util.Random;
 
 public class Constants {
@@ -30,11 +40,82 @@ public class Constants {
     public static String SHOULD_REFRESH_QUESTION = "Failure activity";
     public static String FROM_PROGRESS = "From progress";
     public static String SOUND = "Sound";
-
     private static final char[] SUFFIX = {' ', 'k', 'M', 'B', 'T', 'P', 'E'};
     private static final DecimalFormat DECIMAL_FORMAT = new DecimalFormat("#0");
 
     private static final double[] POWERS_OF_TEN = {1e0, 1e3, 1e6, 1e9, 1e12, 1e15};
+
+    private static final Map<String, Integer> languageResourceMap = new HashMap<>();
+    private static final Map<String, String> languageTexts = new HashMap<>();
+    private static final Map<String, Integer> countryResourceMap = new HashMap<>();
+
+    static {
+        languageResourceMap.put(ENGLISH_KEY, R.raw.millionaire);
+        languageResourceMap.put(ARABIC_KEY, R.raw.millionare_ar);
+        languageResourceMap.put(FRENCH_KEY, R.raw.millionaire_fr);
+        languageResourceMap.put(SPANISH_KEY, R.raw.millionaire_es);
+        languageResourceMap.put(HINDI_KEY, R.raw.millionare_hi);
+        languageResourceMap.put(PORTUGUESE_KEY, R.raw.millionaire_pt);
+        languageResourceMap.put(URDU_KEY, R.raw.millionare_ur);
+
+        countryResourceMap.put(ENGLISH_KEY, R.raw.country_json_en);
+        countryResourceMap.put(ARABIC_KEY, R.raw.country_json_ar);
+        countryResourceMap.put(FRENCH_KEY, R.raw.country_json_fr);
+        countryResourceMap.put(SPANISH_KEY, R.raw.country_json_es);
+        countryResourceMap.put(HINDI_KEY, R.raw.country_json_hi);
+        countryResourceMap.put(PORTUGUESE_KEY, R.raw.country_json_pt);
+        countryResourceMap.put(URDU_KEY, R.raw.country_json_ur);
+
+        languageTexts.put(ENGLISH_KEY, null);
+        languageTexts.put(ARABIC_KEY, null);
+        languageTexts.put(FRENCH_KEY, null);
+        languageTexts.put(SPANISH_KEY, null);
+        languageTexts.put(HINDI_KEY, null);
+        languageTexts.put(PORTUGUESE_KEY, null);
+        languageTexts.put(URDU_KEY, null);
+    }
+
+    public static Integer getLanguageResource(String languageCode) {
+        return languageResourceMap.get(languageCode);
+    }
+
+    public static Integer getCountryResource(String languageCode) {
+        return countryResourceMap.get(languageCode);
+    }
+
+    public static String getLanguageText(Context context, String languageCode) {
+        // Fetch language text from the map
+        String text = languageTexts.get(languageCode);
+
+        // If text is not fetched yet, fetch it from resources
+        if (text == null) {
+            text = context.getResources().getString(getResourceIdByLanguageCode(languageCode));
+            // Store the fetched text in the map for later retrieval
+            languageTexts.put(languageCode, text);
+        }
+
+        return text;
+    }
+
+    private static int getResourceIdByLanguageCode(String languageCode) {
+        // Get resource ID based on language code
+        switch (languageCode) {
+            case "ar":
+                return R.string.arabic;
+            case "fr":
+                return R.string.french;
+            case "es":
+                return R.string.spanish;
+            case "hi":
+                return R.string.hindi;
+            case "pt":
+                return R.string.portuguese;
+            case "ur":
+                return R.string.urdu;
+            default:
+                return R.string.english;
+        }
+    }
 
 
     public static List<Integer> generateAmount(int gameLevel) {
@@ -78,7 +159,7 @@ public class Constants {
         if (value >= 3 && base < SUFFIX.length) {
             return DECIMAL_FORMAT.format((long) number / POWERS_OF_TEN[base]) + SUFFIX[base];
         } else {
-            return String.format(Locale.getDefault(), "%d", (long) number);
+            return String.format(Locale.getDefault(), "%,d", (long) number);
         }
     }
 
@@ -103,4 +184,5 @@ public class Constants {
 
         return labels[index];
     }
+
 }
