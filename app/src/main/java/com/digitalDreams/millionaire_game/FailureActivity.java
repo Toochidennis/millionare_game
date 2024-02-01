@@ -182,7 +182,8 @@ public class FailureActivity extends AppCompatActivity {
             noThankBtn.setClickable(false);
 
             stopBackgroundMusic();
-            GameActivity3.gameActivity.finish();
+
+            finishGameActivity();
 
             Intent intent = new Intent(FailureActivity.this, PlayDetailsActivity.class);
 
@@ -238,7 +239,7 @@ public class FailureActivity extends AppCompatActivity {
 
                             @Override
                             public void onAdFailedToShowFullScreenContent(@NonNull AdError adError) {
-                                GameActivity3.gameActivity.finish();
+                                finishGameActivity();
                                 startActivity(new Intent(FailureActivity.this, PlayDetailsActivity.class));
                                 finish();
                                 super.onAdFailedToShowFullScreenContent(adError);
@@ -264,6 +265,12 @@ public class FailureActivity extends AppCompatActivity {
         });
 
         loadInterstitialAd();
+    }
+
+    private void finishGameActivity() {
+        if (GameActivity3.gameActivity != null) {
+            GameActivity3.gameActivity.finish();
+        }
     }
 
     private void restartGame() {
@@ -371,7 +378,7 @@ public class FailureActivity extends AppCompatActivity {
     private void loadInterstitialAd() {
         AdManager.showInterstitial(FailureActivity.this);
 
-        if (AdManager.mInterstitialAd !=null){
+        if (AdManager.mInterstitialAd != null) {
             AdManager.mInterstitialAd.setFullScreenContentCallback(new FullScreenContentCallback() {
                 @Override
                 public void onAdDismissedFullScreenContent() {
@@ -397,9 +404,9 @@ public class FailureActivity extends AppCompatActivity {
             int parsedNewAmount = Integer.parseInt(newAmountWon);
             int totalAmount2;
 
-            if (isFinishLevel){
-                totalAmount2 =  totalAmountWon + parsedNewAmount;
-            }else {
+            if (isFinishLevel) {
+                totalAmount2 = totalAmountWon + parsedNewAmount;
+            } else {
                 totalAmount2 = parsedNewAmount;
             }
 
@@ -474,7 +481,6 @@ public class FailureActivity extends AppCompatActivity {
         }
         return UUID.randomUUID().toString();
     }
-
 
 
     private boolean isNetworkConnected() {
