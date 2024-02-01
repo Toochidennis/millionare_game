@@ -10,9 +10,9 @@ android {
         minSdkVersion 21
         targetSdk 34
 
-        versionCode 127
+        versionCode 128
 
-        versionName "6.2.1"
+        versionName "6.2.2"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -40,14 +40,12 @@ dependencies {
 
     implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'com.google.android.material:material:1.2.1'
-    //implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
     implementation 'com.android.volley:volley:1.1.1'
     implementation 'androidx.localbroadcastmanager:localbroadcastmanager:1.1.0'
     //noinspection GradleCompatible
     implementation 'com.google.android.gms:play-services-ads:22.6.0'
     implementation 'androidx.core:core-animation:1.0.0-alpha02'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
-    //implementation 'androidx.lifecycle:lifecycle-process:2.5.1'
     //implementation 'androidx.lifecycle:lifecycle-process:2.5.1'
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
@@ -63,5 +61,4 @@ dependencies {
     // implementation 'androidx.work:work-runtime-ktx:2.7.0-alpha05'
     //implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.22'
     implementation 'org.conscrypt:conscrypt-android:2.5.1'
-    // implementation 'com.google.android.gms:play-services-ads:21.3.0'
 }

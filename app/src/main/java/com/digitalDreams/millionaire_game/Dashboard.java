@@ -38,14 +38,13 @@ import com.google.android.gms.ads.AdView;
 import java.util.Locale;
 
 public class Dashboard extends AppCompatActivity {
-    TextView newGameTxt, playTxt, leaderboardText, seeRankTxt, moreTxt, playTxt2, gotoYotubetxt;
+    TextView newGameTxt, playTxt, leaderboardText, seeRankTxt, moreTxt, playTxt2, gotoYotubeTxt;
     RelativeLayout bg;
     RelativeLayout newGameBtn, leaderBoardBtn, exitBtn, gotoYoutubeBtn, new_particle;
     ImageView settingBtn;
     String languageCode;
 
     AlphaAnimation buttonClick = new AlphaAnimation(1F, 0.8F);
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,7 +83,7 @@ public class Dashboard extends AppCompatActivity {
                 | View.SYSTEM_UI_FLAG_IMMERSIVE);
 
         newGameTxt = findViewById(R.id.new_game_text);
-        gotoYotubetxt = findViewById(R.id.goto_youtube_txt);
+        gotoYotubeTxt = findViewById(R.id.goto_youtube_txt);
         new_particle = findViewById(R.id.new_particle);
         playTxt = findViewById(R.id.play_text);
         playTxt2 = findViewById(R.id.play_text1);
@@ -237,6 +236,7 @@ public class Dashboard extends AppCompatActivity {
     private final BroadcastReceiver refreshBroadCast = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
+            recreate();
             SharedPreferences sharedPreferences = getSharedPreferences("settings", Context.MODE_PRIVATE);
             String languageCode = sharedPreferences.getString("language", "");
             int endColor = sharedPreferences.getInt("end_color", 0x230253);
@@ -340,7 +340,7 @@ public class Dashboard extends AppCompatActivity {
         super.onResume();
         playTxt.setText(getResources().getString(R.string.play));
         newGameTxt.setText(getResources().getString(R.string.new_game));
-        gotoYotubetxt.setText(getResources().getString(R.string.goto_youtube));
+        gotoYotubeTxt.setText(getResources().getString(R.string.goto_youtube));
         seeRankTxt.setText(getResources().getString(R.string.see_your_ranking));
         moreTxt.setText(getResources().getString(R.string.more_games));
         playTxt2.setText(getResources().getString(R.string.play));
@@ -353,19 +353,19 @@ public class Dashboard extends AppCompatActivity {
         SharedPreferences sharedPreferences = getSharedPreferences("settings", MODE_PRIVATE);
         String languageCode = sharedPreferences.getString("language", "");
 
-        if (languageCode.equals("fr")) {
-            playTxt.setTextSize(18);
-            playTxt2.setTextSize(18);
-        } else if (languageCode.equals("es")) {
-            playTxt.setTextSize(18);
-            playTxt2.setTextSize(18);
-        } else {
-            playTxt2.setTextSize(32);
-            playTxt.setTextSize(32);
+        switch (languageCode) {
+            case "fr":
+            case "es":
+            case "pt":
+                playTxt.setTextSize(18);
+                playTxt2.setTextSize(18);
+                break;
+            default:
+                playTxt2.setTextSize(32);
+                playTxt.setTextSize(32);
         }
 
         setLocale(this, languageCode);
-
     }
 
     public void setLanguage(Context context) {
@@ -419,14 +419,8 @@ public class Dashboard extends AppCompatActivity {
     }
 
 
-    //////
-
-
     private void loadInterstitialAd() {
-        // interstitialAd = AdManager.mInterstitialAd; //new InterstitialAd(this) ;
         AdManager.initInterstitialAd(Dashboard.this);
-
     }
-
 
 }
