@@ -12,8 +12,8 @@
     <string name="simple">سادہ</string>
     <string name="no_thanks"><u>نہیں شکریہ</u></string>
     <string name="language">زبان</string>
-    <string name="on">ON</string>
-    <string name="off">OFF</string>
+    <string name="on">آن</string>
+    <string name="off">بند</string>
     <string name="timed">وقت</string>
     <string name="credits"> کریڈٹس</string>
     <string name="default_theme"> ڈیفالٹ</string>
@@ -147,10 +147,10 @@
     <string name="d_seconds">%d سیکنڈز</string>
     <string name="_0_second">0 سیکنڈ</string>
     <string name = "chukwudi_edoga">چکوودی ایڈوگا</string>
-    <string name = "clinton_onuigbo">Clinton Onuigbo</string>
-    <string name = "dike_kingsley_oneh">Dike Kingsley Oneh</string>
+    <string name = "clinton_onuigbo">کلنٹن اونیوگبو</string>
+    <string name = "dike_kingsley_oneh">ڈائک کنگسلے اونہ</string>
     <string name="ubesie_kenechukwu">Ubesie Kenechukwu</string>
     <string name = "vincent_sunday"> ونسنٹ سنڈے</string>
-    <string name = "toochukwu_dennis">Toochukwu Dennis</string>
-    <string name = "amos_lucky_chibueze">Amos Lucky Chibueze</string>
+    <string name = "toochukwu_dennis">ٹوچوکو ڈینس</string>
+    <string name = "amos_lucky_chibueze">اموس لکی چیبیوز</string>
 </resources>

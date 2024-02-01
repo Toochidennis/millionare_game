@@ -146,11 +146,11 @@
     <string name="d_minutes_02d_seconds">%d मिनट %02d सेकंड</string>
     <string name="d_seconds">%d सेकंड</string>
     <string name="_0_second">0 सेकंड</string>
-    <string name = "chukwudi_edoga">Chukwudi Edoga</string>
-    <string name = "clinton_onuigbo">क्लिंटन onuigbo</string>
+    <string name = "chukwudi_edoga">चुक्वुडी एडोगा</string>
+    <string name = "clinton_onuigbo">क्लिंटन ओनुइग्बो</string>
     <string name='dike_kingsley_oneh'>डाइक किंग्सले ओनेह</string>
-    <string name = "ubesie_kenechukwu">Ubesie Kenechukwu</string>
+    <string name = "ubesie_kenechukwu">उबेसी केनेचुकु</string>
     <string name = "vincent_sunday">विन्सेंट रविवार</string>
-    <string name='toochukwu_dennis'>Toochukwu डेनिस</string>
+    <string name='toochukwu_dennis'>टूचुकुवु डेनिस</string>
     <string name = "amos_lucky_chibueze">अमोस लकी चिबुएज़</string>
 </resources>
