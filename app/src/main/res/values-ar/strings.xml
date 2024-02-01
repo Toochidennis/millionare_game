@@ -147,4 +147,11 @@
     <string name="d_minutes_02d_seconds">%d دقيقة %02d ثانية</string>
     <string name="d_seconds">%d ثانية</string>
     <string name="_0_second">0 ثانية</string>
+    <string name="chukwudi_edoga">تشوكوودي إيدوجا</string>
+    <string name="clinton_onuigbo">كلينتون أونويجبو</string>
+    <string name="dike_kingsley_oneh">دايك كينغسلي أونيه</string>
+    <string name="ubesie_kenechukwu">أوبيسي كينيتشوكو</string>
+    <string name="vincent_sunday">فنسنت صنداي</string>
+    <string name="toochukwu_dennis">توتشوكوو دينيس</string>
+    <string name="amos_lucky_chibueze">عاموس لاكي تشيبويز</string>
 </resources>
