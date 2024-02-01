@@ -1,5 +1,6 @@
 package com.digitalDreams.millionaire_game.alpha.activity;
 
+import static com.digitalDreams.millionaire_game.Utils.ARABIC_KEY;
 import static com.digitalDreams.millionaire_game.alpha.AudioManager.pauseBackgroundMusic;
 import static com.digitalDreams.millionaire_game.alpha.AudioManager.playBackgroundMusic;
 import static com.digitalDreams.millionaire_game.alpha.AudioManager.playFailureSound;
@@ -38,7 +39,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.VibrationEffect;
 import android.os.Vibrator;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -215,8 +215,6 @@ public class GameActivity3 extends AppCompatActivity implements OnOptionsClickLi
         amountList = generateAmount(level);
 
         enableLifeLines();
-
-        Log.d("Saved", "restored state");
     }
 
     /**
@@ -291,6 +289,12 @@ public class GameActivity3 extends AppCompatActivity implements OnOptionsClickLi
         adView.loadAd(createAdRequest());
     }
 
+    private void showQuestion() {
+        updateAmountWon();
+        parseQuestionJSONArray(questionIndex);
+        animateViews();
+    }
+
     /**
      * Prepares questions for the game from a JSON array.
      */
@@ -347,11 +351,6 @@ public class GameActivity3 extends AppCompatActivity implements OnOptionsClickLi
         return Character.toUpperCase(word.charAt(0)) + word.substring(1);
     }
 
-    private void showQuestion() {
-        updateAmountWon();
-        parseQuestionJSONArray(questionIndex);
-        animateViews();
-    }
 
     private void setRootViewBackgroundColor() {
         int endColor = sharedPreferences.getInt("end_color", getResources().getColor(R.color.purple_dark));
@@ -379,7 +378,6 @@ public class GameActivity3 extends AppCompatActivity implements OnOptionsClickLi
         optionsRecyclerView.hasFixedSize();
         optionsRecyclerView.setAdapter(optionsAdapter);
     }
-
 
     /**
      * Handles user clicks on options.
@@ -674,13 +672,26 @@ public class GameActivity3 extends AppCompatActivity implements OnOptionsClickLi
         ProgressBar[] progressBars = {progressBarA, progressBarB, progressBarC, progressBarD};
         TextView[] textViews = {textViewA, textViewB, textViewC, textViewD};
 
+        // Detect the language being used (Latin or Arabic)
+        boolean isArabic = isArabic();
+
+        // Determine the starting character based on the language
+        char startingChar = isArabic ? 'أ' : 'A';
+
         for (int i = 0; i < progressBars.length; i++) {
+            // Compare characters dynamically
             animateProgressBar(
                     progressBars[i],
                     textViews[i],
-                    (correctLabel.equals(String.valueOf((char) ('A' + i)))) ?
-                            correctProgress : incorrectProgress);
+                    (correctLabel.equals(String.valueOf((char) (startingChar + i)))) ? correctProgress : incorrectProgress
+            );
         }
+    }
+
+    private boolean isArabic() {
+        sharedPreferences = getSharedPreferences(PREF_NAME, MODE_PRIVATE);
+        String languageCode = sharedPreferences.getString("language", "");
+        return languageCode.equals(ARABIC_KEY);
     }
 
     /**
@@ -827,7 +838,8 @@ public class GameActivity3 extends AppCompatActivity implements OnOptionsClickLi
         } else {
             return String.format(Locale.getDefault(),
                     getResources().getString(R.string.d_seconds),
-                    seconds);
+                    seconds
+            );
         }
     }
 
@@ -871,7 +883,6 @@ public class GameActivity3 extends AppCompatActivity implements OnOptionsClickLi
         if (questionJSONArray != null) {
             outState.putString("questionJSONArray", questionJSONArray.toString());
         }
-
     }
 
     @Override

@@ -104,17 +104,21 @@ class LanguageDialog extends Dialog {
 
         setLocale(unwrap(context), key);
 
+        editor.putString("language", key);
+
         if (!isInserted) {
             loadQuestions(key);
             editor.putBoolean(key, true);
+        }else{
+           sendBroadcast();
         }
 
-        editor.putString("language", key);
         editor.apply();
-
-        LocalBroadcastManager.getInstance(context).sendBroadcast(new Intent("refresh"));
-
         dismiss();
+    }
+
+    private void sendBroadcast(){
+        LocalBroadcastManager.getInstance(context).sendBroadcast(new Intent("refresh"));
     }
 
     // ToochiDennis
@@ -130,6 +134,7 @@ class LanguageDialog extends Dialog {
             } catch (IOException e) {
                 e.printStackTrace();
                 loadingDialog.dismiss();
+                sendBroadcast();
             }
 
         }).start();
@@ -168,6 +173,7 @@ class LanguageDialog extends Dialog {
 
                 if (lent == jsonArray.length()) {
                     loadingDialog.dismiss();
+                    sendBroadcast();
                 }
 
                 JSONArray question = jsonArray.getJSONArray(a);
