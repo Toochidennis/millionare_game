@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rootview"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/rootview"
     android:background="@color/basic_color"
     tools:context=".PlayDetailsActivity">
 
@@ -112,12 +111,12 @@
             </RelativeLayout>
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
                 android:layout_marginTop="0dp"
                 android:fontFamily="@font/ultra"
                 android:text="@string/can_you_beat_that"
+                android:textAlignment="center"
                 android:textColor="@color/white"
                 android:textSize="18sp" />
 
@@ -127,8 +126,8 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="5dp"
                 android:gravity="center"
-                android:visibility="gone"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:visibility="gone">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -224,8 +223,7 @@
             <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
-                >
+                android:layout_marginTop="30dp">
 
                 <RelativeLayout
                     android:id="@+id/btn_forAnim"
@@ -326,11 +324,12 @@
 
         </LinearLayout>
     </ScrollView>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
         android:layout_alignParentBottom="true"
+        android:layout_marginTop="10dp"
         android:layout_marginBottom="70dp"
         android:orientation="horizontal">
 
@@ -338,21 +337,22 @@
             android:id="@+id/home"
             android:layout_width="0dp"
             android:layout_height="60dp"
-            android:layout_weight="1"
-            android:layout_margin="10dp">
+            android:layout_margin="10dp"
+            android:layout_weight="1">
+
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/hexagon"
                 android:layout_centerInParent="true"
-                app:tint="@color/white"/>
+                android:src="@drawable/hexagon"
+                app:tint="@color/white" />
+
             <ImageView
                 android:layout_width="32dp"
                 android:layout_height="32dp"
                 android:layout_centerInParent="true"
-                app:tint="@color/black"
                 android:src="@drawable/ic_baseline_home_24"
-                 />
+                app:tint="@color/black" />
 
 
         </RelativeLayout>
@@ -362,27 +362,27 @@
             android:id="@+id/share"
             android:layout_width="0dp"
             android:layout_height="60dp"
+            android:layout_margin="10dp"
             android:layout_weight="2"
-            android:gravity="center"
-            android:orientation="horizontal"
             android:background="@drawable/ic_newhex"
-            android:layout_margin="10dp">
+            android:gravity="center"
+            android:orientation="horizontal">
 
             <ImageView
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:src="@drawable/ic_baseline_share_24"
-                app:tint="@color/black"
-                />
+                app:tint="@color/black" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/share"
-                android:textStyle="bold"
                 android:layout_marginStart="5dp"
+                android:fontFamily="@font/arimo"
+                android:text="@string/share"
                 android:textColor="@color/black"
                 android:textSize="18sp"
-                android:fontFamily="@font/arimo"/>
+                android:textStyle="bold" />
 
 
         </LinearLayout>
@@ -391,35 +391,35 @@
             android:id="@+id/new_game"
             android:layout_width="0dp"
             android:layout_height="60dp"
-            android:layout_weight="1"
-            android:layout_margin="10dp">
+            android:layout_margin="10dp"
+            android:layout_weight="1">
+
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/hexagon"
                 android:layout_centerInParent="true"
-                app:tint="@color/white"/>
+                android:src="@drawable/hexagon"
+                app:tint="@color/white" />
 
             <ImageView
                 android:id="@+id/bad4"
                 android:layout_width="32dp"
-                app:tint="@color/black"
                 android:layout_height="32dp"
-                android:src="@drawable/ic_trophy"
                 android:layout_centerInParent="true"
-                />
+                android:src="@drawable/ic_trophy"
+                app:tint="@color/black" />
         </RelativeLayout>
 
 
     </LinearLayout>
-    <com.google.android.gms.ads.AdView
-        xmlns:ads="http://schemas.android.com/apk/res-auto"
+
+    <com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"
         android:id="@+id/adView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        ads:adSize="FULL_BANNER"
         android:layout_marginBottom="0dp"
+        ads:adSize="FULL_BANNER"
         ads:adUnitId="@string/banner_adunit">
 
     </com.google.android.gms.ads.AdView>

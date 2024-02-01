@@ -112,10 +112,10 @@
             </RelativeLayout>
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
                 android:layout_marginTop="0dp"
+                android:textAlignment="center"
                 android:fontFamily="@font/ultra"
                 android:text="@string/can_you_beat_that"
                 android:textColor="@color/white"

@@ -112,19 +112,17 @@
 
             <TextView
                 android:id="@+id/wontxt"
-                android:layout_width="wrap_content"
-
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="20dp"
                 android:fontFamily="@font/ultra"
-                android:gravity="center"
+                android:textAlignment="center"
                 android:paddingStart="20dp"
                 android:paddingEnd="20dp"
                 android:text="@string/can_you_beat_that"
                 android:textColor="@color/white"
                 android:textSize="22sp" />
-
 
             <LinearLayout
                 android:visibility="gone"
