@@ -30,6 +30,7 @@ import android.widget.TextView;
 import java.util.Locale;
 
 public class SettingActivity extends AppCompatActivity {
+
     public static RelativeLayout bg;
     public static TextView themeNameTxt;
     public static ImageView flagImg;
@@ -248,23 +249,10 @@ public class SettingActivity extends AppCompatActivity {
     private final BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
-            SharedPreferences sharedPreferences = getSharedPreferences(PREF_NAME, MODE_PRIVATE);
-            String languageCode = sharedPreferences.getString("language", "en");
-
-            setLocale(languageCode);
-
-            new Dashboard().setLanguage(SettingActivity.this);
+            recreate();
         }
     };
 
-    private void setLocale(String languageCode) {
-        Locale locale = new Locale(languageCode);
-        Locale.setDefault(locale);
-        Resources resources = getResources();
-        Configuration config = resources.getConfiguration();
-        config.locale = locale;
-        resources.updateConfiguration(config, resources.getDisplayMetrics());
-    }
 
     @Override
     protected void onResume() {

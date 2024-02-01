@@ -254,7 +254,7 @@ public class LeaderBoard extends AppCompatActivity {
 
         SharedPreferences sharedPreferences = getSharedPreferences("settings", Context.MODE_PRIVATE);
         String languageCode = sharedPreferences.getString("language", "en");
-        int endcolor = sharedPreferences.getInt("end_color", getResources().getColor(R.color.purple_dark));
+        int endColor = sharedPreferences.getInt("end_color", getResources().getColor(R.color.purple_dark));
         int startColor = sharedPreferences.getInt("start_color", getResources().getColor(R.color.purple_500));
         int cardBackground = sharedPreferences.getInt("card_background", 0x219ebc);
         username = sharedPreferences.getString("username", "");
@@ -268,7 +268,7 @@ public class LeaderBoard extends AppCompatActivity {
         new Particles(this, bg, R.layout.image_xml, 20);
         GradientDrawable gd = new GradientDrawable(
                 GradientDrawable.Orientation.TOP_BOTTOM,
-                new int[]{startColor, endcolor});
+                new int[]{startColor, endColor});
 
         bg.setBackgroundDrawable(gd);
 
