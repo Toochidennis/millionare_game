@@ -15,13 +15,15 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 
+import java.util.Locale;
+
 class SettingsDialog extends Dialog {
     private Context context;
-    public static TextView soundTxt,languageTxt,themeTxt,gameModeTxt,vibrationTxt;
+    public static TextView soundTxt, languageTxt, themeTxt, gameModeTxt, vibrationTxt;
     public static ImageView languageFlag;
 
     public static CardView rootView;
-    public static CardView languageBtn,selectThemeBtn,soundBtn,gameModeBtn,vibrationBtn;
+    public static CardView languageBtn, selectThemeBtn, soundBtn, gameModeBtn, vibrationBtn;
 
     public SettingsDialog(@NonNull Context context) {
         super(context);
@@ -45,16 +47,17 @@ class SettingsDialog extends Dialog {
         vibrationBtn = findViewById(R.id.vibration_);
         gameModeBtn = findViewById(R.id.game_mode_);
         languageBtn = findViewById(R.id.change_language);
-        selectThemeBtn =findViewById(R.id.select_theme);
-        SharedPreferences sharedPreferences = context.getSharedPreferences("settings",Context.MODE_PRIVATE);
-        int endcolor = sharedPreferences.getInt("end_color",0xFF6200EE);
-        int startColor = sharedPreferences.getInt("start_color",0xFFBB86FC);        int cardBackground = sharedPreferences.getInt("card_background",0x03045e);
+        selectThemeBtn = findViewById(R.id.select_theme);
+
+        SharedPreferences sharedPreferences = context.getSharedPreferences("settings", Context.MODE_PRIVATE);
+        int endColor = sharedPreferences.getInt("end_color", 0xFF6200EE);
+        int cardBackground = sharedPreferences.getInt("card_background", 0x03045e);
         soundBtn.setCardBackgroundColor(cardBackground);
         languageBtn.setCardBackgroundColor(cardBackground);
         vibrationBtn.setCardBackgroundColor(cardBackground);
         gameModeBtn.setCardBackgroundColor(cardBackground);
         selectThemeBtn.setCardBackgroundColor(cardBackground);
-        rootView.setCardBackgroundColor(endcolor);
+        rootView.setCardBackgroundColor(endColor);
         new Dashboard().setLanguage(context);
 
         languageBtn.setOnClickListener(view -> {
@@ -76,48 +79,49 @@ class SettingsDialog extends Dialog {
             dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         });
 
-        String mode = sharedPreferences.getString("game_mode",context.getResources().getString(R.string.simple));
+        String mode = sharedPreferences.getString("game_mode", context.getResources().getString(R.string.simple));
 
         TextView modeText = findViewById(R.id.mode_setting);
         modeText.setText(mode);
         gameModeBtn.setOnClickListener(view -> {
-            String mode1 = sharedPreferences.getString("game_mode",context.getResources().getString(R.string.simple));
+            String mode1 = sharedPreferences.getString("game_mode", context.getResources().getString(R.string.simple));
             SharedPreferences.Editor editor = sharedPreferences.edit();
 
-            if(mode1.equals("simple")){
-                editor.putString("game_mode","timed");
-            }else if(mode1.equals("timed")){
-                editor.putString("game_mode","simple");
+            if (mode1.equals("simple")) {
+                editor.putString("game_mode", "timed");
+            } else if (mode1.equals("timed")) {
+                editor.putString("game_mode", "simple");
 
             }
             editor.apply();
-            mode1 = sharedPreferences.getString("game_mode",context.getResources().getString(R.string.simple));
+            mode1 = sharedPreferences.getString("game_mode", context.getResources().getString(R.string.simple));
             modeText.setText(mode1);
         });
-        String sound = sharedPreferences.getString("sound","on");
+        String sound = sharedPreferences.getString("sound", "on");
 
-        TextView soundModeTxt = findViewById(R.id.sound);
-        soundModeTxt.setText("Sound "+sound);
+        String soundText = String.format(Locale.getDefault(), "%s%s", getContext().getResources().getString(R.string.sound_on), sound);
+        soundTxt.setText(soundText);
         ImageView soundIcon = findViewById(R.id.sound_img);
-        if(sound.equals("off")){
+        if (sound.equals("off")) {
             soundIcon.setImageResource(R.drawable.ic_baseline_volume_off_24);
-        }else{
+        } else {
             soundIcon.setImageResource(R.drawable.ic_baseline_volume_up_24);
         }
         soundBtn.setOnClickListener(view -> {
-            String sound1 = sharedPreferences.getString("sound","on");
+            String sound1 = sharedPreferences.getString("sound", "on");
             SharedPreferences.Editor editor = sharedPreferences.edit();
-            if((sound1.equals("on"))){
-                editor.putString("sound","off");
-            }else if(sound1.equals("off")){
-                editor.putString("sound","on");
+            String soundText1 = String.format(Locale.getDefault(), "%s%s", getContext().getResources().getString(R.string.sound_on), sound1);
+            if ((sound1.equals("on"))) {
+                editor.putString("sound", "off");
+            } else if (sound1.equals("off")) {
+                editor.putString("sound", "on");
             }
             editor.apply();
-            sound1 = sharedPreferences.getString("sound","on");
-            soundModeTxt.setText("Sound "+ sound1);
-            if(sound1.equals("off")){
+            sound1 = sharedPreferences.getString("sound", "on");
+            soundTxt.setText(soundText1);
+            if (sound1.equals("off")) {
                 soundIcon.setImageResource(R.drawable.ic_baseline_volume_off_24);
-            }else{
+            } else {
                 soundIcon.setImageResource(R.drawable.ic_baseline_volume_up_24);
             }
 
@@ -125,29 +129,25 @@ class SettingsDialog extends Dialog {
 
         ImageView vibrationIcon = findViewById(R.id.vibration_icon);
         TextView vibrationTxt = findViewById(R.id.vibration);
-        vibrationBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String vibrate = sharedPreferences.getString("vibrate","on");
-                SharedPreferences.Editor editor = sharedPreferences.edit();
-                if((vibrate.equals("on"))){
-                    editor.putString("vibrate","off");
-                }else if(vibrate.equals("off")){
-                    editor.putString("vibrate","on");
-                }
-                editor.apply();
-                vibrate = sharedPreferences.getString("vibrate","on");
-                soundModeTxt.setText("Vibration "+vibrate);
-                if(vibrate.equals("off")){
-                    ImageView badIcon = findViewById(R.id.bad);
-                    badIcon.setVisibility(View.VISIBLE);
-                    vibrationTxt.setText("Vibration "+vibrate);
-                }else{
-                    ImageView badIcon = findViewById(R.id.bad);
-                    badIcon.setVisibility(View.GONE);
-                    vibrationTxt.setText("Vibration "+vibrate);
-                }
+        vibrationBtn.setOnClickListener(view -> {
+            String vibrate = sharedPreferences.getString("vibrate", "on");
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            if ((vibrate.equals("on"))) {
+                editor.putString("vibrate", "off");
+            } else if (vibrate.equals("off")) {
+                editor.putString("vibrate", "on");
             }
+            editor.apply();
+            vibrate = sharedPreferences.getString("vibrate", "on");
+            String vibration = String.format(Locale.getDefault(), "%s%s", getContext().getResources().getString(R.string.taptic), vibrate);
+            soundTxt.setText(vibration);
+            ImageView badIcon = findViewById(R.id.bad);
+            if (vibrate.equals("off")) {
+                badIcon.setVisibility(View.VISIBLE);
+            } else {
+                badIcon.setVisibility(View.GONE);
+            }
+            vibrationTxt.setText(vibration);
         });
     }
 

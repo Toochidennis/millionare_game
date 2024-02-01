@@ -1,11 +1,20 @@
 package com.digitalDreams.millionaire_game;
 
-import androidx.appcompat.app.AppCompatActivity;
+import static com.digitalDreams.millionaire_game.alpha.Constants.PREF_NAME;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
+
+import android.app.Activity;
+import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.GradientDrawable;
@@ -17,6 +26,8 @@ import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
+import java.util.Locale;
 
 public class SettingActivity extends AppCompatActivity {
     public static RelativeLayout bg;
@@ -32,14 +43,12 @@ public class SettingActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_setting);
-        SharedPreferences sharedPreferences = getSharedPreferences("settings", Context.MODE_PRIVATE);
-        String languageCode = sharedPreferences.getString("language", "en");
-        int endcolor = sharedPreferences.getInt("end_color", getResources().getColor(R.color.purple_dark));
-        int startColor = sharedPreferences.getInt("start_color", getResources().getColor(R.color.purple_500));
-        int cardBackground = sharedPreferences.getInt("card_background", 0x219ebc);
-        String theme = sharedPreferences.getString("theme", "Default");
-        //setTheme();
 
+        SharedPreferences sharedPreferences = getSharedPreferences("settings", Context.MODE_PRIVATE);
+        int endColor = sharedPreferences.getInt("end_color", getResources().getColor(R.color.purple_dark));
+        int startColor = sharedPreferences.getInt("start_color", getResources().getColor(R.color.purple_500));
+        String theme = sharedPreferences.getString("theme", getResources().getString(R.string.default_theme));
+        //setTheme();
 
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
         getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
@@ -49,18 +58,15 @@ public class SettingActivity extends AppCompatActivity {
         new Particles(this, bg, R.layout.image_xml, 20);
         GradientDrawable gd = new GradientDrawable(
                 GradientDrawable.Orientation.TOP_BOTTOM,
-                new int[]{startColor, endcolor});
+                new int[]{startColor, endColor});
 
-        bg.setBackgroundDrawable(gd);
+        bg.setBackground(gd);
 
         RelativeLayout closeBtn = findViewById(R.id.close_container);
-        closeBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Utils.darkBlueBlink(closeBtn, getApplicationContext());
+        closeBtn.setOnClickListener(view -> {
+            Utils.darkBlueBlink(closeBtn, getApplicationContext());
 
-                onBackPressed();
-            }
+            onBackPressed();
         });
 
         RelativeLayout soundBtn = findViewById(R.id.sound);
@@ -89,77 +95,74 @@ public class SettingActivity extends AppCompatActivity {
             soundModeTxt.setText(getResources().getString(R.string.on));
         } else {
             soundModeTxt.setText(getResources().getString(R.string.off));
-
         }
+
         ImageView soundIcon = findViewById(R.id.sound_img);
         if (sound.equals("0")) {
             soundIcon.setImageResource(R.drawable.ic_baseline_volume_off_24);
         } else {
             soundIcon.setImageResource(R.drawable.ic_baseline_volume_up_24);
         }
-        soundBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Utils.darkBlueBlink(soundBtn, getApplicationContext());
-                String sound = sharedPreferences.getString("sound", "1");
-                SharedPreferences.Editor editor = sharedPreferences.edit();
-                if ((sound.equals("1"))) {
-                    editor.putString("sound", "0");
-                } else if (sound.equals("0")) {
-                    editor.putString("sound", "1");
-                }
-                editor.apply();
-                sound = sharedPreferences.getString("sound", "1");
-                if (sound.equalsIgnoreCase("1")) {
-                    soundModeTxt.setText(getResources().getString(R.string.on));
-                } else {
-                    soundModeTxt.setText(getResources().getString(R.string.off));
 
-                }
-                if (sound.equals("0")) {
-                    soundIcon.setImageResource(R.drawable.ic_baseline_volume_off_24);
-                } else {
-                    soundIcon.setImageResource(R.drawable.ic_baseline_volume_up_24);
-                }
+        soundBtn.setOnClickListener(view -> {
+            Utils.darkBlueBlink(soundBtn, getApplicationContext());
+            String sound1 = sharedPreferences.getString("sound", "1");
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            if ((sound1.equals("1"))) {
+                editor.putString("sound", "0");
+            } else if (sound1.equals("0")) {
+                editor.putString("sound", "1");
             }
-        });
-        languageBtn.setOnClickListener(new View.OnClickListener() {
+            editor.apply();
+            sound1 = sharedPreferences.getString("sound", "1");
 
+            if (sound1.equalsIgnoreCase("1")) {
+                soundModeTxt.setText(getResources().getString(R.string.on));
+            } else {
+                soundModeTxt.setText(getResources().getString(R.string.off));
 
-            @Override
-            public void onClick(View view) {
-                Utils.darkBlueBlink(languageBtn, getApplicationContext());
-                LanguageDialog dialog = new LanguageDialog(SettingActivity.this);
-                dialog.show();
-                Window window = dialog.getWindow();
-                window.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+            }
+            if (sound1.equals("0")) {
+                soundIcon.setImageResource(R.drawable.ic_baseline_volume_off_24);
+            } else {
+                soundIcon.setImageResource(R.drawable.ic_baseline_volume_up_24);
             }
         });
 
-        if (theme.equals("0")) {
-            SettingActivity.themeNameTxt.setText(getResources().getString(R.string.default_theme));
-        } else if (theme.equals("1")) {
-            SettingActivity.themeNameTxt.setText(getResources().getString(R.string.theme_1));
+        languageBtn.setOnClickListener(view -> {
+            Utils.darkBlueBlink(languageBtn, getApplicationContext());
+            LanguageDialog dialog = new LanguageDialog(SettingActivity.this);
+            dialog.show();
+            Window window = dialog.getWindow();
+            window.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+            dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        });
 
-        } else if (theme.equals("2")) {
-            SettingActivity.themeNameTxt.setText(getResources().getString(R.string.theme_2));
-        } else if (theme.equals("3")) {
-            SettingActivity.themeNameTxt.setText(getResources().getString(R.string.theme_3));
+        switch (theme) {
+            case "0":
+                SettingActivity.themeNameTxt.setText(getResources().getString(R.string.default_theme));
+                break;
+            case "1":
+                SettingActivity.themeNameTxt.setText(getResources().getString(R.string.theme_1));
+
+                break;
+            case "2":
+                SettingActivity.themeNameTxt.setText(getResources().getString(R.string.theme_2));
+                break;
+            case "3":
+                SettingActivity.themeNameTxt.setText(getResources().getString(R.string.theme_3));
+                break;
         }
 
-
-        themeBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Utils.darkBlueBlink(themeBtn, getApplicationContext());
-                ThemeDialog dialog = new ThemeDialog(SettingActivity.this);
-                dialog.show();
-                Window window = dialog.getWindow();
-                window.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-            }
+        themeBtn.setOnClickListener(view -> {
+            Utils.darkBlueBlink(themeBtn, getApplicationContext());
+            ThemeDialog dialog = new ThemeDialog(SettingActivity.this);
+            dialog.show();
+            Window window = dialog.getWindow();
+            window.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+            dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         });
+
         String mode = sharedPreferences.getString("game_mode", "0");
         modeText = findViewById(R.id.game_mode_value);
         if (mode.equals("0")) {
@@ -167,27 +170,24 @@ public class SettingActivity extends AppCompatActivity {
         } else {
             modeText.setText(getResources().getString(R.string.timed));
         }
-        gameModeBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Utils.darkBlueBlink(gameModeBtn, getApplicationContext());
-                String mode = sharedPreferences.getString("game_mode", "0");
-                SharedPreferences.Editor editor = sharedPreferences.edit();
-                if (mode.equals("0")) {
-                    editor.putString("game_mode", "1");
-                } else if (mode.equals("1")) {
-                    editor.putString("game_mode", "0");
-
-                }
-                editor.apply();
-                mode = sharedPreferences.getString("game_mode", "0");
-                if (mode.equals("0")) {
-                    modeText.setText(getResources().getString(R.string.simple));
-                } else {
-                    modeText.setText(getResources().getString(R.string.timed));
-                }
+        gameModeBtn.setOnClickListener(view -> {
+            Utils.darkBlueBlink(gameModeBtn, getApplicationContext());
+            String mode1 = sharedPreferences.getString("game_mode", "0");
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            if (mode1.equals("0")) {
+                editor.putString("game_mode", "1");
+            } else if (mode1.equals("1")) {
+                editor.putString("game_mode", "0");
 
             }
+            editor.apply();
+            mode1 = sharedPreferences.getString("game_mode", "0");
+            if (mode1.equals("0")) {
+                modeText.setText(getResources().getString(R.string.simple));
+            } else {
+                modeText.setText(getResources().getString(R.string.timed));
+            }
+
         });
         vibrationTxt = findViewById(R.id.vibration_value);
         String vibrate = sharedPreferences.getString("vibrate", "1");
@@ -200,50 +200,76 @@ public class SettingActivity extends AppCompatActivity {
             vibrationTxt.setText(getResources().getString(R.string.on));
         }
 
-        vibrationBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Utils.darkBlueBlink(vibrationBtn, getApplicationContext());
-                String vibrate = sharedPreferences.getString("vibrate", "1");
-                SharedPreferences.Editor editor = sharedPreferences.edit();
-                if ((vibrate.equals("1"))) {
-                    editor.putString("vibrate", "0");
-                } else if (vibrate.equals("0")) {
-                    editor.putString("vibrate", "1");
-                }
-                editor.apply();
-                vibrate = sharedPreferences.getString("vibrate", "1");
-                if (vibrate.equals("0")) {
-                    ImageView badIcon = findViewById(R.id.bad);
-                    badIcon.setVisibility(View.VISIBLE);
-                    vibrationTxt.setText(getResources().getString(R.string.off));
-                } else {
-                    ImageView badIcon = findViewById(R.id.bad);
-                    badIcon.setVisibility(View.GONE);
-                    vibrationTxt.setText(getResources().getString(R.string.on));
-                }
+        vibrationBtn.setOnClickListener(view -> {
+            Utils.darkBlueBlink(vibrationBtn, getApplicationContext());
+            String vibrate1 = sharedPreferences.getString("vibrate", "1");
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            if ((vibrate1.equals("1"))) {
+                editor.putString("vibrate", "0");
+            } else if (vibrate1.equals("0")) {
+                editor.putString("vibrate", "1");
+            }
+            editor.apply();
+            vibrate1 = sharedPreferences.getString("vibrate", "1");
+            ImageView badIcon = findViewById(R.id.bad);
+            if (vibrate1.equals("0")) {
+                badIcon.setVisibility(View.VISIBLE);
+                vibrationTxt.setText(getResources().getString(R.string.off));
+            } else {
+                badIcon.setVisibility(View.GONE);
+                vibrationTxt.setText(getResources().getString(R.string.on));
             }
         });
-        creditBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Utils.darkBlueBlink(creditBtn, getApplicationContext());
-                CreditDialog dialog = new CreditDialog(SettingActivity.this);
-                dialog.show();
-                Window window = dialog.getWindow();
-                window.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-            }
+
+        creditBtn.setOnClickListener(view -> {
+            Utils.darkBlueBlink(creditBtn, getApplicationContext());
+            CreditDialog dialog = new CreditDialog(SettingActivity.this);
+            dialog.show();
+            Window window = dialog.getWindow();
+            window.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+            dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         });
 
         TextView versionTxt = findViewById(R.id.version);
         String version = "";
+
         try {
             PackageInfo pInfo = getPackageManager().getPackageInfo(getPackageName(), 0);
             version = pInfo.versionName;
         } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
         }
-        versionTxt.setText("v" + version);
+
+        String versionText = "v" + version;
+        versionTxt.setText(versionText);
     }
+
+
+    private final BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            SharedPreferences sharedPreferences = getSharedPreferences(PREF_NAME, MODE_PRIVATE);
+            String languageCode = sharedPreferences.getString("language", "en");
+
+            setLocale(languageCode);
+
+            new Dashboard().setLanguage(SettingActivity.this);
+        }
+    };
+
+    private void setLocale(String languageCode) {
+        Locale locale = new Locale(languageCode);
+        Locale.setDefault(locale);
+        Resources resources = getResources();
+        Configuration config = resources.getConfiguration();
+        config.locale = locale;
+        resources.updateConfiguration(config, resources.getDisplayMetrics());
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        LocalBroadcastManager.getInstance(this).registerReceiver(broadcastReceiver, new IntentFilter("refresh"));
+    }
+
 }
