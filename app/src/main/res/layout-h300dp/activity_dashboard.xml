@@ -25,8 +25,8 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_marginLeft="25dp"
-            android:layout_marginRight="25dp"
+            android:layout_marginStart="25dp"
+            android:layout_marginEnd="25dp"
             android:gravity="center"
             android:layout_weight="1"
             >
@@ -49,13 +49,13 @@
                         android:src="@drawable/hexagon"
                         android:rotation="90"
                         android:layout_centerVertical="true"
-                        android:layout_marginLeft="-5dp"
+                        android:layout_marginStart="-5dp"
                         android:layout_marginTop="10dp"
                         android:layout_marginBottom="10dp"
                         app:tint="@color/basic_color"/>
                     <ImageView
                         android:layout_width="32dp"
-                        android:layout_marginLeft="15dp"
+                        android:layout_marginStart="15dp"
                         android:layout_height="32dp"
                         android:layout_centerInParent="true"
                         android:src="@drawable/ic_baseline_person_outline_24"/>
@@ -82,7 +82,7 @@
                     android:textSize="16sp"
                     android:textStyle="bold"
                     android:layout_gravity="center_vertical"
-                    android:layout_marginLeft="70dp"
+                    android:layout_marginStart="70dp"
 
                     android:fontFamily="@font/montserrat"/>
 
@@ -94,8 +94,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="80dp"
                 android:background="@drawable/ic_hexnow"
-                android:layout_marginLeft="25dp"
-                android:layout_marginRight="25dp"
+                android:layout_marginStart="25dp"
+                android:layout_marginEnd="25dp"
                 android:layout_marginTop="10dp"
                 android:padding="10dp"
                 >
@@ -167,8 +167,8 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
             android:layout_marginTop="-40dp"
             android:layout_weight="1.2"
             >
@@ -202,7 +202,7 @@
                         android:layout_width="72dp"
                         android:layout_height="72dp"
                         android:layout_gravity="center_vertical"
-                        android:layout_marginLeft="10dp"
+                        android:layout_marginStart="10dp"
                         android:src="@drawable/ic_sports_esports_black_48dp"
                         app:tint="@color/white" />
 
@@ -215,8 +215,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_vertical"
-                            android:layout_marginLeft="30dp"
-                            android:layout_marginRight="40dp"
+                            android:layout_marginStart="30dp"
+                            android:layout_marginEnd="40dp"
                             android:orientation="vertical">
 
                             <TextView
@@ -237,9 +237,9 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_vertical"
-                            android:layout_marginLeft="30dp"
+                            android:layout_marginStart="30dp"
                             android:layout_marginTop="-2dp"
-                            android:layout_marginRight="40dp"
+                            android:layout_marginEnd="40dp"
                             android:orientation="vertical">
 
                             <TextView
@@ -271,8 +271,8 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="80dp"
-            android:layout_marginLeft="25dp"
-            android:layout_marginRight="25dp"
+            android:layout_marginStart="25dp"
+            android:layout_marginEnd="25dp"
             >
 
         <RelativeLayout
@@ -291,7 +291,7 @@
                 app:tint="@color/white"
                 android:alpha="0.8"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="10dp"
+                android:layout_marginStart="10dp"
                 />
             <TextView
                 android:layout_width="wrap_content"
@@ -306,7 +306,7 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="50dp"
+                android:layout_marginStart="50dp"
                 android:background="@drawable/whitepolygon"
                 >
                 <LinearLayout
@@ -323,7 +323,7 @@
                         android:text="@string/leaderboard"
                         android:textStyle="bold"
                         android:textSize="20sp"
-                        android:layout_marginLeft="40dp"
+                        android:layout_marginStart="40dp"
                         android:textColor="@color/black"
                         />
                     <TextView
@@ -332,7 +332,7 @@
                         android:layout_height="wrap_content"
                         android:text="@string/see_your_ranking"
                         android:textSize="14sp"
-                        android:layout_marginLeft="40dp"
+                        android:layout_marginStart="40dp"
                         android:textColor="@color/basic_color"
                         />
                 </LinearLayout>
@@ -344,8 +344,8 @@
             android:layout_width="match_parent"
             android:layout_height="80dp"
             android:background="@drawable/ic_hexnow"
-            android:layout_marginLeft="25dp"
-            android:layout_marginRight="25dp"
+            android:layout_marginStart="25dp"
+            android:layout_marginEnd="25dp"
             android:layout_marginTop="10dp"
             android:padding="10dp"
             android:layout_marginBottom="20dp"
@@ -372,8 +372,8 @@
             android:layout_width="match_parent"
             android:layout_height="80dp"
             android:background="@drawable/ic_hexnow"
-            android:layout_marginLeft="25dp"
-            android:layout_marginRight="25dp"
+            android:layout_marginStart="25dp"
+            android:layout_marginEnd="25dp"
             android:layout_marginTop="10dp"
             android:padding="10dp"
             android:layout_marginBottom="20dp"

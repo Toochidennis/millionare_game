@@ -1,230 +1,184 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:alpha="0.8"
+    android:background="@color/black"
     tools:context=".CreditActivity">
-    <RelativeLayout
+
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/black"
-        android:alpha="0.8"
-        >
-
-    </RelativeLayout>
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@android:color/transparent"
-        >
-
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:gravity="center">
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/meet_our_team"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="50dp"
-        android:fontFamily="@font/arimo"
-        android:textColor="@color/white"
-        android:textStyle="bold"
-        android:textSize="18sp"
-        />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Chukwudi Edoga"
-            android:layout_marginTop="50dp"
-            android:fontFamily="@font/arimo"
-            android:textSize="14sp"
-            android:textColor="@color/white"
-            />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Clinton Onuigbo"
-            android:layout_marginTop="10dp"
-            android:fontFamily="@font/arimo"
-            android:textColor="@color/white"
-            android:textSize="14sp"
-            />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Dike Kingsley Oneh"
-            android:layout_marginTop="10dp"
-            android:fontFamily="@font/arimo"
-            android:textColor="@color/white"
-            android:textSize="14sp"
-            />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Ubesie Kenechukwu"
-            android:layout_marginTop="10dp"
-            android:fontFamily="@font/arimo"
-            android:textSize="14sp"
-            android:textColor="@color/white"
-            />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Vincent Sunday"
-            android:layout_marginTop="10dp"
-            android:fontFamily="@font/arimo"
-            android:textSize="14sp"
-            android:textColor="@color/white"
-            />
+        android:fillViewport="true">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:layout_marginTop="50dp"
+            android:layout_height="match_parent"
+            android:gravity="center|top"
             android:orientation="vertical">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/contact_us"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="50dp"
+                android:fontFamily="@font/arimo"
+                android:text="@string/meet_our_team"
+                android:textColor="@color/white"
                 android:textSize="18sp"
-                android:textStyle="bold"
-                android:fontFamily="@font/montserrat"
-                android:textColor="@color/white"/>
+                android:textStyle="bold" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
+            <TextView
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:layout_marginTop="20dp"
-                android:gravity="center"
-                android:clickable="true"
-                android:orientation="horizontal">
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:tint="@color/white"
-                    android:src="@drawable/ic_baseline_facebook_24"/>
-                <TextView
-                    android:id="@+id/facebook_link"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/white"
-                    android:layout_marginLeft="20dp"
-                    android:text="@string/reach_us_on_facebook"/>
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
+                android:layout_marginTop="50dp"
+                android:fontFamily="@font/arimo"
+                android:text="@string/chukwudi_edoga"
+                android:textColor="@color/white"
+                android:textSize="14sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:layout_marginTop="20dp"
-                android:gravity="center"
-                android:clickable="true"
-                android:orientation="horizontal">
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:tint="@color/white"
-                    android:src="@drawable/twitter"/>
-                <TextView
-                    android:id="@+id/twitter_link"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/white"
-                    android:layout_marginLeft="20dp"
-                    android:text="@string/twitter"/>
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/arimo"
+                android:text="@string/clinton_onuigbo"
+                android:textColor="@color/white"
+                android:textSize="14sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:layout_marginTop="20dp"
-                android:gravity="center"
-                android:clickable="true"
-                android:orientation="horizontal">
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:tint="@color/white"
-                    android:src="@drawable/ic_baseline_mail_outline_24"/>
-                <TextView
-                    android:id="@+id/email_link"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/white"
-                    android:layout_marginLeft="20dp"
-                    android:text="@string/send_us_an_email"/>
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/arimo"
+                android:text="@string/dike_kingsley_oneh"
+                android:textColor="@color/white"
+                android:textSize="14sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:layout_marginTop="20dp"
-                android:gravity="center"
-                android:clickable="true"
-                android:orientation="horizontal">
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:tint="@color/white"
-                    android:src="@drawable/ic_baseline_phone_24"/>
-                <TextView
-                    android:id="@+id/phone_link"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/white"
-                    android:layout_marginLeft="20dp"
-                    android:text="@string/call_us"/>
-            </LinearLayout>
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/arimo"
+                android:text="@string/ubesie_kenechukwu"
+                android:textColor="@color/white"
+                android:textSize="14sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/arimo"
+                android:text="@string/vincent_sunday"
+                android:textColor="@color/white"
+                android:textSize="14sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/arimo"
+                android:text="@string/amos_lucky_chibueze"
+                android:textColor="@color/white"
+                android:textSize="14sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/arimo"
+                android:text="@string/toochukwu_dennis"
+                android:textColor="@color/white"
+                android:textSize="14sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="50dp"
+                android:fontFamily="@font/montserrat"
+                android:text="@string/contact_us"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/facebook_link"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawablePadding="10dp"
+                android:padding="10dp"
+                android:text="@string/reach_us_on_facebook"
+                android:textColor="@color/white"
+                app:drawableStartCompat="@drawable/ic_baseline_facebook_24"
+                app:drawableTint="@color/white" />
+
+            <TextView
+                android:id="@+id/twitter_link"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawablePadding="10dp"
+                android:padding="10dp"
+                android:text="@string/twitter"
+                android:textColor="@color/white"
+                app:drawableStartCompat="@drawable/twitter"
+                app:drawableTint="@color/white" />
+
+            <TextView
+                android:id="@+id/email_link"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawablePadding="10dp"
+                android:padding="10dp"
+                android:text="@string/send_us_an_email"
+                android:textColor="@color/white"
+                app:drawableStartCompat="@drawable/ic_baseline_mail_outline_24"
+                app:drawableTint="@color/white" />
+
+            <TextView
+                android:id="@+id/phone_link"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawablePadding="10dp"
+                android:padding="10dp"
+                android:text="@string/call_us"
+                android:textColor="@color/white"
+                app:drawableStartCompat="@drawable/ic_baseline_phone_24"
+                app:drawableTint="@color/white" />
+
 
         </LinearLayout>
 
+    </androidx.core.widget.NestedScrollView>
 
-</LinearLayout>
-    </RelativeLayout>
+
     <RelativeLayout
-        android:layout_width="match_parent"
+        android:id="@+id/close_container"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingBottom="40dp"
         android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="40dp"
+        android:layout_marginBottom="40dp">
 
-        >
-        <RelativeLayout
-            android:id="@+id/close_container"
+        <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="40dp"
-            android:layout_marginBottom="40dp">
+            android:layout_centerInParent="true"
+            android:contentDescription="@string/app_name"
+            android:src="@drawable/hexagon"
+            app:tint="@color/white" />
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/hexagon"
-                android:layout_centerInParent="true"
-                app:tint="@color/white"
-                />
-            <ImageView
-                android:id="@+id/close"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                app:tint="@color/black"
-                android:src="@drawable/ic_baseline_close_24"/>
+        <ImageView
+            android:id="@+id/close"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:contentDescription="@string/app_name"
+            android:src="@drawable/ic_baseline_close_24"
+            app:tint="@color/black" />
 
-        </RelativeLayout>
     </RelativeLayout>
+
 </RelativeLayout>
