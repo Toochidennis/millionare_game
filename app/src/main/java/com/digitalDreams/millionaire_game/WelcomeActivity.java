@@ -16,8 +16,6 @@ import androidx.core.animation.ObjectAnimator;
 public class WelcomeActivity extends AppCompatActivity {
     RelativeLayout rootView;
     ImageView loadingImageView;
-    //  Timer timer;
-    // ProgressBar progressBar;
 
     private static final int CHECK_INTERVAL = 1000;
 
@@ -33,52 +31,21 @@ public class WelcomeActivity extends AppCompatActivity {
         loadingImageView = findViewById(R.id.loadingImageView);
 
         SharedPreferences sharedPreferences = getSharedPreferences("settings", Context.MODE_PRIVATE);
-        String languageCode = sharedPreferences.getString("language", "en");
         int endColor = sharedPreferences.getInt("end_color", getResources().getColor(R.color.purple_dark));
         int startColor = sharedPreferences.getInt("start_color", getResources().getColor(R.color.purple_500));
-        int cardBackground = sharedPreferences.getInt("card_background", 0x219ebc);
-        String highScore = sharedPreferences.getString("high_score", "0");
-        String gameLevel = sharedPreferences.getString("game_level", "1");
-        boolean IS_DONE_INSERTING = sharedPreferences.getBoolean("IS_DONE_INSERTING", false);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        String username = sharedPreferences.getString("username", "");
-
- /*       if (IS_DONE_INSERTING) {
-            Utils.IS_DONE_INSERTING = true;
-            editor.putBoolean("IS_DONE_INSERTING", true);
-            editor.commit();
-
-            startActivity(new Intent(WelcomeActivity.this, Dashboard.class));
-            finish();
-        }*/
-
 
         new Particles(this, rootView, R.layout.image_xml, 20);
-        GradientDrawable gd = new GradientDrawable(
+        GradientDrawable gradientDrawable = new GradientDrawable(
                 GradientDrawable.Orientation.TOP_BOTTOM,
                 new int[]{startColor, endColor});
 
-        // bg.setBackgroundDrawable(gd);
-        rootView.setBackground(gd);
+        rootView.setBackground(gradientDrawable);
 
         animateImage("scaleX");
         animateImage("scaleY");
 
         checkBackgroundThreadStatus();
 
-
-/*        TimerTask timerTask = new TimerTask() {
-            @Override
-            public void run() {
-                if (Utils.IS_DONE_INSERTING || IS_DONE_INSERTING) {
-                    Intent i = new Intent(WelcomeActivity.this, Dashboard.class);
-                    startActivity(i);
-                    finish();
-                }
-            }
-        };
-
-        new Timer().schedule(timerTask, 3000, 3000);*/
     }
 
     // New code added for animating logo
