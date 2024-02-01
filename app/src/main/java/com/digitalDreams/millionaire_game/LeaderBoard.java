@@ -690,8 +690,7 @@ public class LeaderBoard extends AppCompatActivity {
 
         LinearLayout[] arrCon = {allBtn, weekBtn, dailyBtn, countryBtn};
 
-        for (int a = 0; a < arrCon.length; a++) {
-            LinearLayout layout = arrCon[a];
+        for (LinearLayout layout : arrCon) {
             layout.setBackgroundColor(getResources().getColor(android.R.color.transparent));
         }
     }

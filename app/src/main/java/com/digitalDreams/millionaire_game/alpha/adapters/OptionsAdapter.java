@@ -135,5 +135,4 @@ public class OptionsAdapter extends RecyclerView.Adapter<OptionsAdapter.OptionsV
         return -1; // Option not found
     }
 
-
 }
