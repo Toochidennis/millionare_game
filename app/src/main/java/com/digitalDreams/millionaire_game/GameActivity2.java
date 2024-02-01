@@ -84,11 +84,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class GameActivity2 extends AppCompatActivity {
-
-
     static boolean active = false;
-
-
     String time_1;
 
     public static MediaPlayer mWinning_sound;
@@ -1850,17 +1846,6 @@ public class GameActivity2 extends AppCompatActivity {
 
     private void timeOut() {
 
-//        disableOptions(findViewById(R.id.qd));
-//        TextView correctAns = findViewById(R.id.correct_ans);
-//        LinearLayout q = findViewById(R.id.qd);
-//        for(int a=0;a<q.getChildCount();a++){
-//            RelativeLayout ansContainer = (RelativeLayout) q.getChildAt(a);
-//            TextView answer = ansContainer.findViewById(R.id.opt);
-//            if(correctAns.getText().toString().equalsIgnoreCase(answer.getText().toString())){
-//                ansContainer.setBackgroundColor(getResources().getColor(R.color.green));
-//                answer.setTextColor(getResources().getColor(R.color.white));
-//            }
-//        }
 
         try {
             new Handler().postDelayed(new Runnable() {
