@@ -23,8 +23,8 @@
        android:id="@+id/dd_logo"
        android:layout_width="match_parent"
        android:layout_height="150dp"
-       android:layout_marginRight="50dp"
-       android:layout_marginLeft="50dp"
+       android:layout_marginEnd="50dp"
+       android:layout_marginStart="50dp"
        android:layout_centerHorizontal="true"
        android:alpha="0"
        android:layout_marginBottom="20dp"
@@ -54,8 +54,8 @@
         android:id="@+id/web_development"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="50dp"
-        android:layout_marginRight="50dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginEnd="50dp"
         android:layout_marginTop="10dp"
         android:orientation="horizontal">
      <RelativeLayout
@@ -94,8 +94,8 @@
         android:id="@+id/mobile_development"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="50dp"
-        android:layout_marginRight="50dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginEnd="50dp"
         android:layout_marginTop="10dp"
         android:orientation="horizontal">
      <RelativeLayout
@@ -133,8 +133,8 @@
         android:id="@+id/digital_marketing"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="50dp"
-        android:layout_marginRight="50dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginEnd="50dp"
         android:layout_marginTop="10dp"
         android:orientation="horizontal">
      <RelativeLayout
@@ -172,8 +172,8 @@
         android:id="@+id/data_science"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="50dp"
-        android:layout_marginRight="50dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginEnd="50dp"
         android:layout_marginTop="10dp"
         android:orientation="horizontal">
      <RelativeLayout
