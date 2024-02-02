@@ -83,7 +83,7 @@ public class AudioManager {
         }
     }
 
-    public static void releaseAll() {
+    public static void releaseMusicResources() {
         try {
             if (backgroundMediaPlayer != null) {
                 backgroundMediaPlayer.release();
