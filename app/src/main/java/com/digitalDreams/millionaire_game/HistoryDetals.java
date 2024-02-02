@@ -41,7 +41,7 @@ public class HistoryDetals extends AppCompatActivity {
         String regex = "[^0-9]";
         String cleanedHighScore = highscore.replaceAll(regex, "");
 
-        AdManager.initInterstitialAd(this);
+        AdManager.loadInterstitialAd(this);
         date_played = getIntent().getStringExtra("date_played");
 
         AdView mAdView;

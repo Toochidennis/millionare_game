@@ -7,14 +7,10 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.graphics.drawable.GradientDrawable;
-import android.media.AudioManager;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.animation.AnimationUtils;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 
-import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.interstitial.InterstitialAd;
@@ -47,8 +43,8 @@ public class LevelActivity extends AppCompatActivity {
 
        // adManager =  new AdManager(this);
 
-        AdManager.initInterstitialAd(this);
-        AdManager.initRewardedVideo(this);
+        AdManager.loadInterstitialAd(this);
+        AdManager.loadRewardedAd(this);
 
 
 
@@ -137,7 +133,7 @@ public class LevelActivity extends AppCompatActivity {
 
 
     private void loadInterstialAd(){
-        interstitialAd = AdManager.mInterstitialAd; // new InterstitialAd(LevelActivity.this) ;
+        interstitialAd = AdManager.interstitialAd; // new InterstitialAd(LevelActivity.this) ;
 //        interstitialAd.setAdUnitId (LevelActivity.this.getResources().getString(R.string.interstitial_adunit) ) ;
 //        interstitialAd.loadAd(new AdRequest.Builder().build());
         AdManager.showInterstitial(LevelActivity.this);
