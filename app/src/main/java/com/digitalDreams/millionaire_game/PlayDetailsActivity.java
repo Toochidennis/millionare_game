@@ -15,7 +15,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.drawable.GradientDrawable;
 import android.net.Uri;
@@ -24,8 +23,6 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.provider.Settings;
-import android.util.Base64;
-import android.util.Base64OutputStream;
 import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
@@ -53,13 +50,8 @@ import com.google.android.gms.ads.AdView;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
 import java.io.OutputStream;
 import java.text.DecimalFormat;
 import java.util.HashMap;
@@ -80,6 +72,12 @@ public class PlayDetailsActivity extends AppCompatActivity {
     TextView wonTxt, usernameField;
     public static Activity playerDetailsActivity;
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        AdManager.loadInterstitialAd(this);
+        AdManager.loadRewardedAd(this);
+    }
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
@@ -88,12 +86,11 @@ public class PlayDetailsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_play_details);
 
 
-        AdManager.initInterstitialAd(this);
-        AdManager.initRewardedVideo(this);
-
         playerDetailsActivity = this;
 
         RelativeLayout bg = findViewById(R.id.rootview);
+
+      //  AdManager.showInterstitial(PlayDetailsActivity.this);
 
 
         AdView mAdView;
@@ -102,15 +99,15 @@ public class PlayDetailsActivity extends AppCompatActivity {
         mAdView.loadAd(adRequest);
 
 
-        boolean fromNoThanks = getIntent().getBooleanExtra("noThanks", false);
+   /*     boolean fromNoThanks = getIntent().getBooleanExtra("noThanks", false);
         if (fromNoThanks) {
             try {
                 AdManager.showInterstitial(PlayDetailsActivity.this);
             } catch (Exception e) {
                 e.printStackTrace();
 
-            }
-        }
+            }*/
+        //}
 
 
         newGameBtn = findViewById(R.id.new_game1);
@@ -251,16 +248,6 @@ public class PlayDetailsActivity extends AppCompatActivity {
             finish();
         });
 
-        if (AdsFromFailureActivity) {
-            AdManager.showInterstitial(PlayDetailsActivity.this);
-        }
-
-        if (AdsFromExitGameDialog) {
-
-            AdManager.showInterstitial(PlayDetailsActivity.this);
-        }
-
-
         checkScore();
 
 
@@ -287,38 +274,45 @@ public class PlayDetailsActivity extends AppCompatActivity {
         Canvas canvas = new Canvas(bitmap);
         rootView.draw(canvas);
 
-        saveScreenshot(bitmap);
+        try {
+            saveScreenshot(bitmap);
+        }catch (Exception e){
+            e.printStackTrace();
+            Toast.makeText(getApplicationContext(), getResources().getString(R.string.file_does_not_exist), Toast.LENGTH_SHORT).show();
+        }
+
     }
 
     private void saveScreenshot(Bitmap bitmap) {
         // Use MediaStore to insert the screenshot into the MediaStore.Images.Media
         ContentResolver resolver = getContentResolver();
-        ContentValues contentValues = new ContentValues();
-        contentValues.put(MediaStore.Images.Media.DISPLAY_NAME, "screenshot");
-        contentValues.put(MediaStore.Images.Media.MIME_TYPE, "image/png");
-        contentValues.put(MediaStore.Images.Media.WIDTH, bitmap.getWidth());
-        contentValues.put(MediaStore.Images.Media.HEIGHT, bitmap.getHeight());
-
-        // Insert the screenshot into the MediaStore
-        final Uri contentUri = MediaStore.Images.Media.EXTERNAL_CONTENT_URI;
-        final Uri uri = resolver.insert(contentUri, contentValues);
 
         try {
-            if (uri != null) {
-                // Open an OutputStream to the content URI
-                OutputStream outputStream = resolver.openOutputStream(uri);
+            if (resolver != null) {
+                ContentValues contentValues = new ContentValues();
+                contentValues.put(MediaStore.Images.Media.DISPLAY_NAME, "screenshot.png");
+                contentValues.put(MediaStore.Images.Media.MIME_TYPE, "image/png");
 
-                if (outputStream != null) {
-                    bitmap.compress(Bitmap.CompressFormat.PNG, 100, outputStream);
+                // Insert the screenshot into the MediaStore
+                Uri contentUri = resolver.insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, contentValues);
 
-                    // Close the OutputStream
-                    outputStream.close();
+                if (contentUri != null) {
+                    // Open an OutputStream to the content URI
+                    OutputStream outputStream = resolver.openOutputStream(contentUri);
 
-                    // Share the screenshot
-                    shareScreenshot(uri);
+                    if (outputStream != null) {
+                        // Compress the Bitmap to PNG format and write it to the OutputStream
+                        bitmap.compress(Bitmap.CompressFormat.PNG, 100, outputStream);
+
+                        // Close the OutputStream
+                        outputStream.close();
+
+                        // Share the screenshot
+                        shareScreenshot(contentUri);
+                    }
+                } else {
+                    Toast.makeText(getApplicationContext(), getResources().getString(R.string.file_does_not_exist), Toast.LENGTH_SHORT).show();
                 }
-
-                // Compress the Bitmap to PNG format and write it to the OutputStream
             } else {
                 Toast.makeText(getApplicationContext(), getResources().getString(R.string.file_does_not_exist), Toast.LENGTH_SHORT).show();
             }
@@ -327,7 +321,6 @@ public class PlayDetailsActivity extends AppCompatActivity {
             e.printStackTrace();
         }
     }
-
 
     private void shareScreenshot(Uri screenshotUri) {
         String url = "https://play.google.com/store/apps/details?id=" + getPackageName();
@@ -575,5 +568,9 @@ public class PlayDetailsActivity extends AppCompatActivity {
         return formatter.format(Double.parseDouble(amount));
     }
 
-
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        AdManager.disposeAds();
+    }
 }
