@@ -1,7 +1,7 @@
 package com.digitalDreams.millionaire_game;
 
 import static com.digitalDreams.millionaire_game.alpha.AudioManager.playWinningSound;
-import static com.digitalDreams.millionaire_game.alpha.AudioManager.releaseAll;
+import static com.digitalDreams.millionaire_game.alpha.AudioManager.releaseMusicResources;
 import static com.digitalDreams.millionaire_game.alpha.AudioManager.stopBackgroundMusic;
 import static com.digitalDreams.millionaire_game.alpha.Constants.PREF_NAME;
 import static com.digitalDreams.millionaire_game.alpha.Constants.SOUND;
@@ -32,8 +32,6 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import com.digitalDreams.millionaire_game.alpha.activity.GameActivity3;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -268,7 +266,7 @@ public class WinnersActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        releaseAll();
+        releaseMusicResources();
     }
 
     private void updateMusicState() {

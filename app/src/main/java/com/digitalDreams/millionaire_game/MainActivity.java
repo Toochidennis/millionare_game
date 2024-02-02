@@ -96,13 +96,6 @@ public class MainActivity extends AppCompatActivity {
 
         ddLogo = findViewById(R.id.dd_logo);
 
-//        MobileAds.initialize(this, new OnInitializationCompleteListener() {
-//            @Override
-//            public void onInitializationComplete(InitializationStatus initializationStatus) {
-//
-//            }
-//
-//        });
 
         SharedPreferences sharedPreferences = getSharedPreferences("settings", MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
@@ -126,11 +119,7 @@ public class MainActivity extends AppCompatActivity {
         createTimer(COUNTER_TIME);
 
         new RequestConfiguration.Builder().setTestDeviceIds(Arrays.asList("C5C6588E00A996967AA2085A167B0F4E", "9D16E23BB90EF4BFA204300CCDCCF264"));
-//        appOpenAdManager = new AppOpenManager(this);
-//        appOpenAdManager.fetchAd();
 
-
-        //Log.i("response","t "+text);
         loadQuestionJson(editor);
 
 
@@ -184,45 +173,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         int yValue1 = height - 400;
-        /*ObjectAnimator objectAnimator4 = ObjectAnimator.ofFloat(container,"alpha", 1);
-        ObjectAnimator objectAnimator3 = ObjectAnimator.ofFloat(container, "translationY", 1000);
-        AnimatorSet animatorSet1 = new AnimatorSet();
-        animatorSet1.playTogether(objectAnimator3, objectAnimator4);
-        animatorSet1.setDuration(2000);
-        animatorSet1.setInterpolator(new DecelerateInterpolator());
-        animatorSet1.start();
 
-        animatorSet1.addListener(new Animator.AnimatorListener() {
-            @Override
-            public void onAnimationStart(Animator animator) {
-
-            }
-
-            @Override
-            public void onAnimationEnd(Animator animator) {
-                container.setVisibility(View.VISIBLE);
-                trainTxt.setVisibility(View.VISIBLE);
-                webDevContainer.setVisibility(View.VISIBLE);
-                mobileDevContainer.setVisibility(View.VISIBLE);
-                dataScienceContainer.setVisibility(View.VISIBLE);
-                digitalMarketingContainer.setVisibility(View.VISIBLE);
-                animateWebContainer();
-                animateMobileContainer();
-                animateDigtalContainer();
-                animateDataScienceContainer();
-                trainTxt.startAnimation(set);
-            }
-
-            @Override
-            public void onAnimationCancel(Animator animator) {
-
-            }
-
-            @Override
-            public void onAnimationRepeat(Animator animator) {
-
-            }
-        });*/
 
         new Handler().postDelayed(() -> {
             container.setVisibility(View.VISIBLE);
