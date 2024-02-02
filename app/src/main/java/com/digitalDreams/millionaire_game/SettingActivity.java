@@ -1,11 +1,8 @@
 package com.digitalDreams.millionaire_game;
 
-import static com.digitalDreams.millionaire_game.alpha.Constants.PREF_NAME;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
-import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -13,8 +10,6 @@ import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
-import android.content.res.Configuration;
-import android.content.res.Resources;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.GradientDrawable;
@@ -27,15 +22,13 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import java.util.Locale;
-
 public class SettingActivity extends AppCompatActivity {
 
     public static RelativeLayout bg;
     public static TextView themeNameTxt;
     public static ImageView flagImg;
     public static TextView languageTxt;
-    public static TextView soundTxt, themeTxt, gameModeTxt, vibrationTxt, crediTxt, language, soundModeTxt, settingsTxt;
+    public static TextView soundTxt, themeTxt, gameModeTxt, vibrationTxt, creditTxt, language, soundModeTxt, settingsTxt;
     public static TextView modeText;
     public static ImageView badIcon;
 
@@ -85,7 +78,7 @@ public class SettingActivity extends AppCompatActivity {
         themeTxt = findViewById(R.id.select_theme_txt);
         gameModeTxt = findViewById(R.id.game_mode_txt);
         vibrationTxt = findViewById(R.id.vibration_txt);
-        crediTxt = findViewById(R.id.credit_txt);
+        creditTxt = findViewById(R.id.credit_txt);
         language = findViewById(R.id.language_txt);
         settingsTxt = findViewById(R.id.settingsTextView);
 
@@ -190,6 +183,7 @@ public class SettingActivity extends AppCompatActivity {
             }
 
         });
+
         vibrationTxt = findViewById(R.id.vibration_value);
         String vibrate = sharedPreferences.getString("vibrate", "1");
         badIcon = findViewById(R.id.bad);
