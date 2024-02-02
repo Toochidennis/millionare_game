@@ -30,7 +30,6 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -44,11 +43,9 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.android.gms.ads.AdError;
-import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.FullScreenContentCallback;
-import com.google.android.gms.ads.interstitial.InterstitialAd;
 ;
 
 import org.json.JSONArray;
@@ -102,8 +99,8 @@ public class LeaderBoard extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_leader_board);
         // adManager = new AdManager(this);
-        AdManager.initRewardedVideo(this);
-        AdManager.initInterstitialAd(this);
+        AdManager.loadRewardedAd(this);
+        AdManager.loadInterstitialAd(this);
 
 
         /////////////
@@ -711,7 +708,7 @@ public class LeaderBoard extends AppCompatActivity {
         //interstitialAd = AdManager.mInterstitialAd; //new InterstitialAd(LeaderBoard.this) ;
 //        interstitialAd.setAdUnitId (LeaderBoard.this.getResources().getString(R.string.interstitial_adunit) ) ;
 //        interstitialAd.loadAd(new AdRequest.Builder().build());
-        AdManager.initInterstitialAd(LeaderBoard.this);
+        AdManager.loadInterstitialAd(LeaderBoard.this);
     }
 
     private void showInterstitial() {
@@ -725,8 +722,8 @@ public class LeaderBoard extends AppCompatActivity {
 //            });
 //        }
         AdManager.showInterstitial(LeaderBoard.this);
-        if (AdManager.mInterstitialAd != null) {
-            AdManager.mInterstitialAd.setFullScreenContentCallback(new FullScreenContentCallback() {
+        if (AdManager.interstitialAd != null) {
+            AdManager.interstitialAd.setFullScreenContentCallback(new FullScreenContentCallback() {
                 @Override
                 public void onAdFailedToShowFullScreenContent(@NonNull AdError adError) {
                     Intent i = new Intent(LeaderBoard.this, Dashboard.class);

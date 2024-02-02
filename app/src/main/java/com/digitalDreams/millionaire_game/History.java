@@ -5,17 +5,13 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
-import android.database.Cursor;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
 
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
@@ -46,7 +42,7 @@ public class History extends AppCompatActivity {
         String regex = "[^0-9]";
         String cleanedHighScore = highscore.replaceAll(regex,"");
 
-        AdManager.initInterstitialAd(this);
+        AdManager.loadInterstitialAd(this);
 
         AdView mAdView;
         mAdView = findViewById(R.id.adView);
