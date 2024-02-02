@@ -69,7 +69,6 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.security.PublicKey;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -172,8 +171,8 @@ public class MainGameActivity extends AppCompatActivity {
         noOfPagesPassed = 0;
 
 
-        AdManager.initInterstitialAd(this);
-        AdManager.initRewardedVideo(this);
+        AdManager.loadInterstitialAd(this);
+        AdManager.loadRewardedAd(this);
         //mRewardedVideoAd = AdManager.rewardedAd; //MobileAds.getRewardedVideoAdInstance(this);
         loadVideoAd();
         loadInterstialAd();
@@ -1422,7 +1421,7 @@ public class MainGameActivity extends AppCompatActivity {
 //            mRewardedVideoAd.show();
 //
 //        }
-        AdManager.showRewardAd(MainGameActivity.this);
+        AdManager.showRewardedAd(MainGameActivity.this);
     }
 
 
@@ -1981,7 +1980,7 @@ public class MainGameActivity extends AppCompatActivity {
 //            Log.i("mRewardedVideoAd","LOaded");
 //
 //        }
-        AdManager.initRewardedVideo(MainGameActivity.this);
+        AdManager.loadRewardedAd(MainGameActivity.this);
 
 
     }
@@ -2008,7 +2007,7 @@ public class MainGameActivity extends AppCompatActivity {
 //        //mInterstitialAd.loadAd(adRequest);
 
 
-        AdManager.initInterstitialAd(MainGameActivity.this);
+        AdManager.loadInterstitialAd(MainGameActivity.this);
 
 
     }
@@ -2028,7 +2027,7 @@ public class MainGameActivity extends AppCompatActivity {
 //        }
 
 
-        AdManager.initInterstitialAd(MainGameActivity.this);
+        AdManager.loadInterstitialAd(MainGameActivity.this);
     }
 
 

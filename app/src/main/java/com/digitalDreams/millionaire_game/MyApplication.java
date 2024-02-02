@@ -22,7 +22,6 @@ import com.google.android.gms.ads.AdError;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.FullScreenContentCallback;
 import com.google.android.gms.ads.LoadAdError;
-import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.ads.appopen.AppOpenAd;
 import com.google.android.gms.ads.appopen.AppOpenAd.AppOpenAdLoadCallback;
 
@@ -46,17 +45,8 @@ public class MyApplication extends Application
     public void onCreate() {
         super.onCreate();
         this.registerActivityLifecycleCallbacks(this);
-
-
-        // Log the Mobile Ads SDK version.
-        // Log.d(TAG, "Google Mobile Ads SDK Version: " + MobileAds.getVersion());
-
-        MobileAds.initialize(
-                this,
-                initializationStatus -> {
-                });
-
         ProcessLifecycleOwner.get().getLifecycle().addObserver(this);
+        AdManager.initializeAds(this);
         appOpenAdManager = new AppOpenAdManager();
     }
 
@@ -64,12 +54,9 @@ public class MyApplication extends Application
     protected void attachBaseContext(Context base) {
         sharedPreferences = base.getSharedPreferences("settings", MODE_PRIVATE);
         String savedLanguage = sharedPreferences.getString("language", getDefaultLanguage(base));
-
         saveLanguagePreference(savedLanguage);
-
         Locale locale = new Locale(savedLanguage);
         Context context = updateResourcesLegacy(base, locale);
-
         super.attachBaseContext(context);
     }
 
@@ -112,8 +99,7 @@ public class MyApplication extends Application
      * ActivityLifecycleCallback methods.
      */
     @Override
-    public void onActivityCreated(@NonNull Activity activity, @Nullable Bundle savedInstanceState) {
-    }
+    public void onActivityCreated(@NonNull Activity activity, @Nullable Bundle savedInstanceState) {}
 
     @Override
     public void onActivityStarted(@NonNull Activity activity) {
@@ -127,24 +113,19 @@ public class MyApplication extends Application
     }
 
     @Override
-    public void onActivityResumed(@NonNull Activity activity) {
-    }
+    public void onActivityResumed(@NonNull Activity activity) {}
 
     @Override
-    public void onActivityPaused(@NonNull Activity activity) {
-    }
+    public void onActivityPaused(@NonNull Activity activity) {}
 
     @Override
-    public void onActivityStopped(@NonNull Activity activity) {
-    }
+    public void onActivityStopped(@NonNull Activity activity) {}
 
     @Override
-    public void onActivitySaveInstanceState(@NonNull Activity activity, @NonNull Bundle outState) {
-    }
+    public void onActivitySaveInstanceState(@NonNull Activity activity, @NonNull Bundle outState) {}
 
     @Override
-    public void onActivityDestroyed(@NonNull Activity activity) {
-    }
+    public void onActivityDestroyed(@NonNull Activity activity) {}
 
     /**
      * Shows an app open ad.
@@ -171,7 +152,7 @@ public class MyApplication extends Application
     /**
      * Inner class that loads and shows app open ads.
      */
-    private class AppOpenAdManager {
+    private static class AppOpenAdManager {
 
         private static final String LOG_TAG = "AppOpenAdManager";
         private static final String AD_UNIT_ID = "ca-app-pub-4696224049420135/6884269329";
@@ -181,6 +162,10 @@ public class MyApplication extends Application
         private boolean isShowingAd = false;
 
         /**
+         * initInterstitialAd
+         * showInterstitial
+         * initRewardedVideo
+         * showRewardAd
          * Keep track of the time an app open ad is loaded to ensure you don't show an expired ad.
          */
         private long loadTime = 0;
@@ -188,8 +173,7 @@ public class MyApplication extends Application
         /**
          * Constructor.
          */
-        public AppOpenAdManager() {
-        }
+        public AppOpenAdManager() {}
 
         /**
          * Load an ad.
@@ -216,13 +200,11 @@ public class MyApplication extends Application
                          * @param ad the loaded app open ad.
                          */
                         @Override
-                        public void onAdLoaded(AppOpenAd ad) {
+                        public void onAdLoaded(@NonNull AppOpenAd ad) {
                             appOpenAd = ad;
                             isLoadingAd = false;
                             loadTime = (new Date()).getTime();
 
-                            //Log.d(LOG_TAG, "onAdLoaded.");
-                            //Toast.makeText(context, "onAdLoaded", Toast.LENGTH_SHORT).show();
                         }
 
                         /**
@@ -231,10 +213,8 @@ public class MyApplication extends Application
                          * @param loadAdError the error.
                          */
                         @Override
-                        public void onAdFailedToLoad(LoadAdError loadAdError) {
+                        public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
                             isLoadingAd = false;
-                            //Log.d(LOG_TAG, "onAdFailedToLoad: " + loadAdError.getMessage());
-                            //Toast.makeText(context, "onAdFailedToLoad", Toast.LENGTH_SHORT).show();
                         }
                     });
         }
@@ -242,10 +222,10 @@ public class MyApplication extends Application
         /**
          * Check if ad was loaded more than n hours ago.
          */
-        private boolean wasLoadTimeLessThanNHoursAgo(long numHours) {
+        private boolean wasLoadTimeLessThanNHoursAgo() {
             long dateDifference = (new Date()).getTime() - loadTime;
             long numMilliSecondsPerHour = 3600000;
-            return (dateDifference < (numMilliSecondsPerHour * numHours));
+            return (dateDifference < (numMilliSecondsPerHour * (long) 4));
         }
 
         /**
@@ -255,7 +235,7 @@ public class MyApplication extends Application
             // Ad references in the app open beta will time out after four hours, but this time limit
             // may change in future beta versions. For details, see:
             // https://support.google.com/admob/answer/9341964?hl=en
-            return appOpenAd != null && wasLoadTimeLessThanNHoursAgo(4);
+            return appOpenAd != null && wasLoadTimeLessThanNHoursAgo();
         }
 
         /**
@@ -264,13 +244,8 @@ public class MyApplication extends Application
          * @param activity the activity that shows the app open ad
          */
         private void showAdIfAvailable(@NonNull final Activity activity) {
-            showAdIfAvailable(
-                    activity,
-                    new OnShowAdCompleteListener() {
-                        @Override
-                        public void onShowAdComplete() {
-                            // Empty because the user will go back to the activity that shows the ad.
-                        }
+            showAdIfAvailable(activity, () -> {
+                        // Empty because the user will go back to the activity that shows the ad.
                     });
         }
 
@@ -317,13 +292,9 @@ public class MyApplication extends Application
 
                         /** Called when fullscreen content failed to show. */
                         @Override
-                        public void onAdFailedToShowFullScreenContent(AdError adError) {
+                        public void onAdFailedToShowFullScreenContent(@NonNull AdError adError) {
                             appOpenAd = null;
                             isShowingAd = false;
-
-                            //  Log.d(LOG_TAG, "onAdFailedToShowFullScreenContent: " + adError.getMessage());
-                            //Toast.makeText(activity, "onAdFailedToShowFullScreenContent", Toast.LENGTH_SHORT)
-                            // .show();
 
                             onShowAdCompleteListener.onShowAdComplete();
                             loadAd(activity);
@@ -332,8 +303,6 @@ public class MyApplication extends Application
                         /** Called when fullscreen content is shown. */
                         @Override
                         public void onAdShowedFullScreenContent() {
-                            //Log.d(LOG_TAG, "onAdShowedFullScreenContent.");
-                            //Toast.makeText(activity, "onAdShowedFullScreenContent", Toast.LENGTH_SHORT).show();
                         }
                     });
 
