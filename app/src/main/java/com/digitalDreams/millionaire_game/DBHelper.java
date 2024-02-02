@@ -259,8 +259,14 @@ public class DBHelper extends SQLiteOpenHelper {
                 SQLiteDatabase db = this.getWritableDatabase();
                 String selectQuery = "SELECT * FROM " + JSON_TABLE;
                 Cursor res = db.rawQuery(selectQuery, null);
+                int count = 0;
 
-                return res.getCount();
+                if (res != null) {
+                    count = res.getCount();
+                    res.close();
+                }
+
+                return count;
 
             } catch (Exception e) {
                 e.printStackTrace();

@@ -23,7 +23,6 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Locale;
@@ -60,8 +59,8 @@ public class ExitGameDialog extends Dialog {
         //adManager =  new AdManager(context);
 
 
-        AdManager.initInterstitialAd(context);
-        AdManager.initRewardedVideo(context);
+        AdManager.loadInterstitialAd(context);
+        AdManager.loadRewardedAd(context);
 
         loadInterstialAd();
 
@@ -124,15 +123,15 @@ public class ExitGameDialog extends Dialog {
     }
 
     private void loadInterstialAd() {
-        interstitialAd = AdManager.mInterstitialAd; //new InterstitialAd(context) ;
+        interstitialAd = AdManager.interstitialAd; //new InterstitialAd(context) ;
 
     }
 
     private void showInterstitial() {
         AdManager.showInterstitial(context);
 
-        if (AdManager.mInterstitialAd != null) {
-            AdManager.mInterstitialAd.setFullScreenContentCallback(new FullScreenContentCallback() {
+        if (AdManager.interstitialAd != null) {
+            AdManager.interstitialAd.setFullScreenContentCallback(new FullScreenContentCallback() {
                 @Override
                 public void onAdFailedToShowFullScreenContent(@NonNull AdError adError) {
                     super.onAdFailedToShowFullScreenContent(adError);

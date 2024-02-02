@@ -201,8 +201,8 @@ public class GameActivity2 extends AppCompatActivity {
         dbHelper = new DBHelper(this);
 
 
-        AdManager.initInterstitialAd(this);
-        AdManager.initRewardedVideo(this);
+        AdManager.loadInterstitialAd(this);
+        AdManager.loadRewardedAd(this);
         //mRewardedVideoAd = AdManager.rewardedAd; //MobileAds.getRewardedVideoAdInstance(this);
         loadVideoAd();
         loadInterstitialAd();
@@ -1516,7 +1516,7 @@ public class GameActivity2 extends AppCompatActivity {
 //            mRewardedVideoAd.show();
 //
 //        }
-        AdManager.showRewardAd(GameActivity2.this);
+        AdManager.showRewardedAd(GameActivity2.this);
     }
 
 
@@ -2170,7 +2170,7 @@ public class GameActivity2 extends AppCompatActivity {
 //            Log.i("mRewardedVideoAd","LOaded");
 //
 //        }
-        AdManager.initRewardedVideo(GameActivity2.this);
+        AdManager.loadRewardedAd(GameActivity2.this);
 
 
     }
@@ -2194,13 +2194,13 @@ public class GameActivity2 extends AppCompatActivity {
 //        //mInterstitialAd.loadAd(adRequest);
 
 
-        AdManager.initInterstitialAd(GameActivity2.this);
+        AdManager.loadInterstitialAd(GameActivity2.this);
 
     }
 
 
     private void showInterstitial() {
-        AdManager.initInterstitialAd(GameActivity2.this);
+        AdManager.loadInterstitialAd(GameActivity2.this);
     }
 
 
