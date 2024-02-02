@@ -38,8 +38,8 @@ public class CountDownActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_count_down);
 
-        AdManager.initInterstitialAd(this);
-        AdManager.initRewardedVideo(CountDownActivity.this);
+        AdManager.loadInterstitialAd(this);
+        AdManager.loadRewardedAd(CountDownActivity.this);
 
         RelativeLayout relativeLayout = findViewById(R.id.rootview);
         amount_to_win = findViewById(R.id.amount_to_win);

@@ -47,12 +47,18 @@ public class Dashboard extends AppCompatActivity {
     AlphaAnimation buttonClick = new AlphaAnimation(1F, 0.8F);
 
     @Override
+    protected void onStart() {
+        super.onStart();
+        AdManager.loadInterstitialAd(this);
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
-        AdManager.initInterstitialAd(this);
 
-        loadInterstitialAd();
+
+        showInterstitialAd();
 
         SharedPreferences sharedPreferences = getSharedPreferences("settings", Context.MODE_PRIVATE);
         languageCode = sharedPreferences.getString("language", "en");
@@ -301,7 +307,7 @@ public class Dashboard extends AppCompatActivity {
             SettingActivity.themeTxt.setText(getResources().getString(R.string.select_a_theme));
             SettingActivity.vibrationTxt.setText(getResources().getString(R.string.taptic));
             SettingActivity.gameModeTxt.setText(getResources().getString(R.string.game_mode));
-            SettingActivity.crediTxt.setText(getResources().getString(R.string.credits));
+            SettingActivity.creditTxt.setText(getResources().getString(R.string.credits));
             SettingActivity.language.setText(getResources().getString(R.string.language));
             SettingActivity.settingsTxt.setText(getResources().getString(R.string.settings));
 
@@ -419,8 +425,13 @@ public class Dashboard extends AppCompatActivity {
     }
 
 
-    private void loadInterstitialAd() {
-        AdManager.initInterstitialAd(Dashboard.this);
+    private void showInterstitialAd() {
+        AdManager.showInterstitial(this);
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        AdManager.disposeAds();
+    }
 }

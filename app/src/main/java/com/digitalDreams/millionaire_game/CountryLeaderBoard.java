@@ -29,7 +29,6 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -43,12 +42,9 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.android.gms.ads.AdError;
-import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.FullScreenContentCallback;
-import com.google.android.gms.ads.interstitial.InterstitialAd;
-import com.google.android.gms.ads.rewarded.RewardedAd;
 
 
 import org.json.JSONArray;
@@ -132,8 +128,8 @@ public class CountryLeaderBoard extends AppCompatActivity {
         mAdView.loadAd(adRequest);
 
         //loadInterstialAd();
-            AdManager.initInterstitialAd(this);
-        AdManager.initInterstitialAd(this);
+            AdManager.loadInterstitialAd(this);
+        AdManager.loadInterstitialAd(this);
 
 
         share_container = findViewById(R.id.share_container);
@@ -898,8 +894,8 @@ public class CountryLeaderBoard extends AppCompatActivity {
 //            });
 //        }
         AdManager.showInterstitial(CountryLeaderBoard.this);
-        if(AdManager.mInterstitialAd != null){
-            AdManager.mInterstitialAd.setFullScreenContentCallback(new FullScreenContentCallback() {
+        if(AdManager.interstitialAd != null){
+            AdManager.interstitialAd.setFullScreenContentCallback(new FullScreenContentCallback() {
                 @Override
                 public void onAdFailedToShowFullScreenContent(@NonNull AdError adError) {
                     goBack();
