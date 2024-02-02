@@ -1,7 +1,6 @@
 package com.digitalDreams.millionaire_game;
 
 import static android.content.Context.MODE_PRIVATE;
-import static com.digitalDreams.millionaire_game.alpha.AudioManager.pauseBackgroundMusic;
 import static com.digitalDreams.millionaire_game.alpha.AudioManager.playBackgroundMusic;
 import static com.digitalDreams.millionaire_game.alpha.AudioManager.stopBackgroundMusic;
 import static com.digitalDreams.millionaire_game.alpha.Constants.APPLICATION_DATA;
@@ -42,8 +41,8 @@ public class WrongAnswerDialog extends Dialog {
         this.context = context;
 
         this.questionModel = questionModel;
-        AdManager.initInterstitialAd((Activity) context);
-        AdManager.initRewardedVideo((Activity) context);
+        AdManager.loadInterstitialAd((Activity) context);
+        AdManager.loadRewardedAd((Activity) context);
 
     }
 
@@ -108,7 +107,7 @@ public class WrongAnswerDialog extends Dialog {
         Utils.greenBlink(continueButton, context);
 
         if (Utils.isOnline(context)) {
-            AdManager.showRewardAd((Activity) context);
+            AdManager.showRewardedAd((Activity) context);
             try {
                 AdManager.rewardedAd.setFullScreenContentCallback(new FullScreenContentCallback() {
                     @Override
@@ -147,8 +146,8 @@ public class WrongAnswerDialog extends Dialog {
                 e.printStackTrace();
 
                 AdManager.showInterstitial((Activity) context);
-                if (AdManager.mInterstitialAd != null) {
-                    AdManager.mInterstitialAd.setFullScreenContentCallback(new FullScreenContentCallback() {
+                if (AdManager.interstitialAd != null) {
+                    AdManager.interstitialAd.setFullScreenContentCallback(new FullScreenContentCallback() {
                         @Override
                         public void onAdFailedToShowFullScreenContent(@NonNull AdError adError) {
                             super.onAdFailedToShowFullScreenContent(adError);
