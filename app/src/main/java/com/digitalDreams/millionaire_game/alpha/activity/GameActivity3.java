@@ -1,11 +1,12 @@
 package com.digitalDreams.millionaire_game.alpha.activity;
 
+import static com.digitalDreams.millionaire_game.AdManager.disposeAds;
 import static com.digitalDreams.millionaire_game.Utils.ARABIC_KEY;
 import static com.digitalDreams.millionaire_game.alpha.AudioManager.pauseBackgroundMusic;
 import static com.digitalDreams.millionaire_game.alpha.AudioManager.playBackgroundMusic;
 import static com.digitalDreams.millionaire_game.alpha.AudioManager.playFailureSound;
 import static com.digitalDreams.millionaire_game.alpha.AudioManager.playSuccessSound;
-import static com.digitalDreams.millionaire_game.alpha.AudioManager.releaseAll;
+import static com.digitalDreams.millionaire_game.alpha.AudioManager.releaseMusicResources;
 import static com.digitalDreams.millionaire_game.alpha.AudioManager.stopBackgroundMusic;
 import static com.digitalDreams.millionaire_game.alpha.Constants.APPLICATION_DATA;
 import static com.digitalDreams.millionaire_game.alpha.Constants.DELAY_INTERVAL_LONG;
@@ -39,6 +40,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.VibrationEffect;
 import android.os.Vibrator;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -198,7 +200,7 @@ public class GameActivity3 extends AppCompatActivity implements OnOptionsClickLi
         startCountDownActivity();
         initializeViews();
         setRootViewBackgroundColor();
-        prepareQuestion();
+        loadQuestions();
         handleViewsClick();
 
         startTimeMillis = System.currentTimeMillis();
@@ -298,7 +300,7 @@ public class GameActivity3 extends AppCompatActivity implements OnOptionsClickLi
     /**
      * Prepares questions for the game from a JSON array.
      */
-    private void prepareQuestion() {
+    private void loadQuestions() {
         try {
             sharedPreferences = getSharedPreferences(PREF_NAME, MODE_PRIVATE);
             String gameLevel = sharedPreferences.getString("game_level", "1");
@@ -595,15 +597,14 @@ public class GameActivity3 extends AppCompatActivity implements OnOptionsClickLi
     }
 
     private void initializeAds() {
-        AdManager.initInterstitialAd(this);
-        AdManager.initRewardedVideo(this);
+        AdManager.loadInterstitialAd(this);
+        AdManager.loadRewardedAd(this);
     }
 
     private void skipQuestion() {
         if (Utils.isOnline(this)) {
             try {
-                initializeAds();
-                AdManager.showRewardAd(this);
+                AdManager.showRewardedAd(this);
 
                 AdManager.rewardedAd.setFullScreenContentCallback(new FullScreenContentCallback() {
                     @Override
@@ -635,6 +636,8 @@ public class GameActivity3 extends AppCompatActivity implements OnOptionsClickLi
         minus2QuestionsImageView.setVisibility(View.VISIBLE);
         minus2QuestionsButton.setClickable(false);
         isMinus2Question = true;
+
+        updateSuggestionAndPollVisibility();
     }
 
     private void askComputer() {
@@ -880,8 +883,21 @@ public class GameActivity3 extends AppCompatActivity implements OnOptionsClickLi
         outState.putInt("amountWonText", amountWonText);
         outState.putLong("startTimeMillis", startTimeMillis);
         outState.putIntegerArrayList("amountWonList", new ArrayList<>(amountWonList));
-        if (questionJSONArray != null) {
-            outState.putString("questionJSONArray", questionJSONArray.toString());
+        if (questionJSONArray == null) {
+            reloadQuestions();
+            Log.d("question", " " + questionJSONArray);
+        }
+        outState.putString("questionJSONArray", questionJSONArray.toString());
+    }
+
+    private void reloadQuestions() {
+        try {
+            String questionsJson = dbHelper.buildJson();
+            JSONArray jsonArray = new JSONArray(questionsJson);
+            JSONObject jsonObject = jsonArray.getJSONObject(0).getJSONObject("q");
+            questionJSONArray = jsonObject.getJSONArray("0");
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
@@ -905,7 +921,7 @@ public class GameActivity3 extends AppCompatActivity implements OnOptionsClickLi
         try {
             questionJSONArray = new JSONArray(questionJson);
         } catch (Exception e) {
-            prepareQuestion();
+            loadQuestions();
         }
 
         showQuestion();
@@ -919,13 +935,13 @@ public class GameActivity3 extends AppCompatActivity implements OnOptionsClickLi
             if (isFromProgress()) {
                 showQuestion();
             } else if (isShouldRefreshQuestion()) {
-                prepareQuestion();
+                loadQuestions();
                 updateRefreshQuestionState(false);
                 updateShouldContinueGame(true);
             }
         } else {
             enableLifeLines();
-            prepareQuestion();
+            loadQuestions();
         }
 
         if (shouldPlayMusic()) {
@@ -954,11 +970,11 @@ public class GameActivity3 extends AppCompatActivity implements OnOptionsClickLi
     protected void onDestroy() {
         super.onDestroy();
         stopBackgroundMusic();
-        releaseAll();
+        releaseMusicResources();
         updateMusicState(false);
+        disposeAds();
 
         long durationMillis = System.currentTimeMillis() - startTimeMillis;
-
         String durationString = formatDuration(durationMillis);
 
         sharedPreferences = getSharedPreferences(PREF_NAME, MODE_PRIVATE);

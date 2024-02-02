@@ -71,6 +71,13 @@ public class FailureActivity extends AppCompatActivity {
 
 
     @Override
+    protected void onStart() {
+        super.onStart();
+        AdManager.loadInterstitialAd(this);
+        AdManager.loadRewardedAd(this);
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_failure);
@@ -103,6 +110,8 @@ public class FailureActivity extends AppCompatActivity {
         mAdView = findViewById(R.id.adView);
         @SuppressLint("VisibleForTests") AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
+
+        showInterstitialAd();
 
         SharedPreferences sharedPreferences = getSharedPreferences("settings", Context.MODE_PRIVATE);
         int endColor = sharedPreferences.getInt("end_color", getResources().getColor(R.color.purple_dark));
@@ -146,10 +155,10 @@ public class FailureActivity extends AppCompatActivity {
 
                 stopBackgroundMusic();
 
-                if (AdManager.mInterstitialAd != null) {
-                    AdManager.showInterstitial(FailureActivity.this);
+                AdManager.showInterstitial(FailureActivity.this);
 
-                    AdManager.mInterstitialAd.setFullScreenContentCallback(new FullScreenContentCallback() {
+                if (AdManager.interstitialAd != null) {
+                    AdManager.interstitialAd.setFullScreenContentCallback(new FullScreenContentCallback() {
                         @Override
                         public void onAdClicked() {
                             // Called when a click is recorded for an ad.
@@ -227,7 +236,7 @@ public class FailureActivity extends AppCompatActivity {
 
                 continueBtn.setClickable(false);
 
-                AdManager.showRewardAd(FailureActivity.this);
+                AdManager.showRewardedAd(FailureActivity.this);
 
                 try {
                     if (AdManager.rewardedAd != null) {
@@ -264,7 +273,6 @@ public class FailureActivity extends AppCompatActivity {
             }
         });
 
-        loadInterstitialAd();
     }
 
     private void finishGameActivity() {
@@ -372,14 +380,14 @@ public class FailureActivity extends AppCompatActivity {
     @Override
     public void onDestroy() {
         super.onDestroy();
-
+        AdManager.disposeAds();
     }
 
-    private void loadInterstitialAd() {
+    private void showInterstitialAd() {
         AdManager.showInterstitial(FailureActivity.this);
 
-        if (AdManager.mInterstitialAd != null) {
-            AdManager.mInterstitialAd.setFullScreenContentCallback(new FullScreenContentCallback() {
+        if (AdManager.interstitialAd != null) {
+            AdManager.interstitialAd.setFullScreenContentCallback(new FullScreenContentCallback() {
                 @Override
                 public void onAdDismissedFullScreenContent() {
                     animateWebContainer(replay_level);
@@ -489,14 +497,6 @@ public class FailureActivity extends AppCompatActivity {
         return cm.getActiveNetworkInfo() != null && cm.getActiveNetworkInfo().isConnected();
     }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-        AdManager.initInterstitialAd(this);
-        AdManager.initRewardedVideo(this);
-
-        loadInterstitialAd();
-    }
 
     public void backToGameActivity() {
         updateSharedPreference(true);
