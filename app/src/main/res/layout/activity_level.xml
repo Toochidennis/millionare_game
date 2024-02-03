@@ -1,48 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rootview"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".LevelActivity"
-    android:id="@+id/rootview"
-    android:paddingRight="20dp"
     android:background="@color/dark_blue_dark"
-    android:paddingLeft="20dp"
     android:orientation="vertical"
+    android:paddingLeft="20dp"
     android:paddingTop="20dp"
+    android:paddingRight="20dp"
     android:paddingBottom="20dp"
-    >
+    tools:context=".LevelActivity">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
+
         <TextView
-            android:layout_gravity="center"
-            android:gravity="center"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="28dp"
-            android:text="Select Stage"
-            android:fontFamily="@font/ultra"
+            android:layout_gravity="center"
             android:layout_marginBottom="10dp"
-            android:textColor="@color/white"/>
-      <ListView
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:id="@+id/listview"
-          />
+            android:fontFamily="@font/ultra"
+            android:gravity="center"
+            android:text="Select Stage"
+            android:textColor="@color/white"
+            android:textSize="28sp" />
+
+        <ListView
+            android:id="@+id/listview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
 
     </LinearLayout>
+
     <com.google.android.gms.ads.AdView
         xmlns:ads="http://schemas.android.com/apk/res-auto"
         android:id="@+id/adView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        ads:adSize="FULL_BANNER"
         android:layout_alignParentBottom="true"
-        ads:adUnitId="@string/banner_adunit">
-    </com.google.android.gms.ads.AdView>
+        ads:adSize="FULL_BANNER"
+        ads:adUnitId="@string/banner_adunit" />
 
 </RelativeLayout>
