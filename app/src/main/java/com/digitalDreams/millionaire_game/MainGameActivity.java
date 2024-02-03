@@ -245,7 +245,7 @@ public class MainGameActivity extends AppCompatActivity {
         });
 
         exitBtn.setOnClickListener(view -> {
-            Utils.darkBlueBlink(exitBtn, getApplicationContext());
+           // Utils.darkBlueBlink(exitBtn, getApplicationContext());
 
             ExitGameDialog dialog = new ExitGameDialog(MainGameActivity.this,amountWon);
             dialog.setCancelable(false);
@@ -2183,7 +2183,7 @@ public class MainGameActivity extends AppCompatActivity {
         Log.i("checking", String.valueOf(questionId));
         String date = Utils.getDate();
         String time = Utils.getTime();
-        dbHelper.saveHistory(String.valueOf(questionId), answer,correctAnswer,time,date,high_score,true);
+       // dbHelper.saveHistory(String.valueOf(questionId), answer,correctAnswer,time,date,high_score,true);
 
 
     }

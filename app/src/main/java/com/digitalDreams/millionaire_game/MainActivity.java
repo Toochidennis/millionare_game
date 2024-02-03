@@ -194,6 +194,8 @@ public class MainActivity extends AppCompatActivity {
     private void loadQuestionJson(SharedPreferences.Editor editor) {
         new Thread(() -> {
             try {
+                dbHelper = new DBHelper(this);
+
                 if (dbHelper.getQuestionSize() == 0) {
                     Utils.IS_DONE_INSERTING = false;
 

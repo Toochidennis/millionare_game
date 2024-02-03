@@ -63,19 +63,18 @@ public class LevelActivity extends AppCompatActivity {
 
         SharedPreferences sharedPreferences = getSharedPreferences("settings", Context.MODE_PRIVATE);
         String languageCode = sharedPreferences.getString("language","en");
-        int endcolor = sharedPreferences.getInt("end_color",getResources().getColor(R.color.purple_dark));
+        int endColor = sharedPreferences.getInt("end_color",getResources().getColor(R.color.purple_dark));
         int startColor = sharedPreferences.getInt("start_color",getResources().getColor(R.color.purple_500));
         int cardBackground = sharedPreferences.getInt("card_background",0x219ebc);
-        String highscore = sharedPreferences.getString("high_score","0");
         String game_level = sharedPreferences.getString("game_level","1");
 
         bg = findViewById(R.id.rootview);
         new Particles(this,bg,R.layout.image_xml,20);
         GradientDrawable gd = new GradientDrawable(
                 GradientDrawable.Orientation.TOP_BOTTOM,
-                new int[] {startColor,endcolor});
+                new int[] {startColor,endColor});
 
-        bg.setBackgroundDrawable(gd);
+        bg.setBackground(gd);
 
         /////////////////END OF SETTINGS///////////////
 
@@ -94,6 +93,7 @@ public class LevelActivity extends AppCompatActivity {
         Cursor res = dbHelper.getLevels();
         ArrayList checks = new ArrayList();
         checks.clear();
+
         while (res.moveToNext()) {
 
             @SuppressLint("Range") String id = res.getString(res.getColumnIndex("ID"));
