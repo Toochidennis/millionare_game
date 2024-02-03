@@ -31,6 +31,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
+import com.digitalDreams.millionaire_game.alpha.AudioManager;
 import com.digitalDreams.millionaire_game.alpha.activity.GameActivity3;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
@@ -119,7 +120,7 @@ public class Dashboard extends AppCompatActivity {
 
         newGameBtn.setOnClickListener(view -> {
             ///  newGameBtn.startAnimation(buttonClick);
-            Utils.greenBlink(newGameBtn, getApplicationContext());
+            AudioManager.greenBlink(getApplicationContext(), newGameBtn);
 
             Intent intent = new Intent(Dashboard.this, GameActivity3.class);
             startActivity(intent);
@@ -128,7 +129,7 @@ public class Dashboard extends AppCompatActivity {
 
         gotoYoutubeBtn.setOnClickListener(view -> {
             try {
-                Utils.darkBlueBlink(gotoYoutubeBtn, getApplicationContext());
+                AudioManager.darkBlueBlink(getApplicationContext(), gotoYoutubeBtn);
 
                 startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.youtube.com/channel/UC7AAQdgwQ204aU5ztp19FKg")));
             } catch (Exception e) {
@@ -153,7 +154,7 @@ public class Dashboard extends AppCompatActivity {
         leaderBoardBtn.setOnClickListener(view -> {
             try {
                 Utils.destination_activity = LeaderBoard.class;
-                Utils.darkBlueBlink(leaderBoardBtn, getApplicationContext());
+                AudioManager.darkBlueBlink(getApplicationContext(), leaderBoardBtn);
                 MediaPlayer.create(Dashboard.this, R.raw.others).start();
             } catch (Exception e) {
                 e.printStackTrace();
@@ -167,11 +168,8 @@ public class Dashboard extends AppCompatActivity {
 
         settingBtn.setOnClickListener(view -> {
             settingBtn.startAnimation(buttonClick);
-            try {
-                MediaPlayer.create(Dashboard.this, R.raw.others).start();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+
+            AudioManager.darkBlueBlink(this, settingBtn);
 
             Intent intent = new Intent(Dashboard.this, SettingActivity.class);
             startActivity(intent);
@@ -192,14 +190,14 @@ public class Dashboard extends AppCompatActivity {
         LinearLayout accountBtn = findViewById(R.id.account);
         accountBtn.setOnClickListener(view -> {
             Intent intent = new Intent(Dashboard.this, History.class);
-            Utils.darkBlueBlink(accountBtn, Dashboard.this);
+            AudioManager.darkBlueBlink(Dashboard.this, accountBtn);
 
             startActivity(intent);
         });
 
         RelativeLayout moreBtn = findViewById(R.id.more_games);
         moreBtn.setOnClickListener(view -> {
-            Utils.darkBlueBlink(moreBtn, getApplicationContext());
+            AudioManager.darkBlueBlink(getApplicationContext(), moreBtn);
 
             Uri uri = Uri.parse("https://www.facebook.com/MillionaireGameApp");
 
@@ -214,14 +212,13 @@ public class Dashboard extends AppCompatActivity {
 
         RelativeLayout profileBtn = findViewById(R.id.profile);
         profileBtn.setOnClickListener(view -> {
-            Utils.darkBlueBlink(profileBtn, Dashboard.this);
+            AudioManager.darkBlueBlink(Dashboard.this, profileBtn);
             Utils.destination_activity = Dashboard.class;
             Intent intent = new Intent(Dashboard.this, UserDetails.class);
             intent.putExtra("type", "edit");
             startActivity(intent);
             finish();
         });
-
     }
 
     public static void setLocale(Activity activity, String languageCode) {
@@ -433,5 +430,6 @@ public class Dashboard extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         AdManager.disposeAds();
+        AudioManager.releaseMusicResources();
     }
 }

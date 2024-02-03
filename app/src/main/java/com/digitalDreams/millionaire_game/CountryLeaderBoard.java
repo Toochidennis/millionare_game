@@ -41,6 +41,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.digitalDreams.millionaire_game.alpha.AudioManager;
 import com.google.android.gms.ads.AdError;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
@@ -158,7 +159,7 @@ public class CountryLeaderBoard extends AppCompatActivity {
         allBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Utils.darkBlueBlink(allBtn, getApplicationContext());
+                AudioManager.darkBlueBlink(getApplicationContext(),allBtn);
                 list.clear();
                 emptyText.setVisibility(View.GONE);
                 selector(0);
@@ -179,7 +180,7 @@ public class CountryLeaderBoard extends AppCompatActivity {
         weekBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Utils.darkBlueBlink(weekBtn, getApplicationContext());
+                AudioManager.darkBlueBlink(getApplicationContext(),weekBtn);
                 list.clear();
                 emptyText.setVisibility(View.GONE);
                 container.removeAllViews();
@@ -201,7 +202,7 @@ public class CountryLeaderBoard extends AppCompatActivity {
         dailyBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Utils.darkBlueBlink(dailyBtn, getApplicationContext());
+                AudioManager.darkBlueBlink(getApplicationContext(),dailyBtn);
                 list.clear();
                 emptyText.setVisibility(View.GONE);
                 selector(2);
@@ -282,7 +283,7 @@ public class CountryLeaderBoard extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                Utils.darkBlueBlink(closeBtn, getApplicationContext());
+                AudioManager.darkBlueBlink(getApplicationContext(),closeBtn);
                 showInterstitial();
 
 
@@ -713,23 +714,7 @@ public class CountryLeaderBoard extends AppCompatActivity {
     }
 
 
-//    private void loadInterstialAd(){
-//        interstitialAd = new InterstitialAd(CountryLeaderBoard.this) ;
-//        interstitialAd.setAdUnitId (CountryLeaderBoard.this.getResources().getString(R.string.interstitial_adunit) ) ;
-//        interstitialAd.loadAd(new AdRequest.Builder().build());
-//    }
 
-//    private void showInterstitial() {
-//        if (interstitialAd.isLoaded()) {
-//            interstitialAd.show();
-//        }else{
-//            interstitialAd.setAdListener(new AdListener() {
-//                public void onAdLoaded() {
-//                    showInterstitial();
-//                }
-//            });
-//        }
-//    }
     public void checkPermission() {
         if (ContextCompat.checkSelfPermission(CountryLeaderBoard.this,
                 Manifest.permission.WRITE_EXTERNAL_STORAGE)
@@ -930,6 +915,10 @@ public class CountryLeaderBoard extends AppCompatActivity {
         }
     }
 
-
-
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        AudioManager.releaseMusicResources();
+        AdManager.disposeAds();
+    }
 }
