@@ -42,6 +42,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.digitalDreams.millionaire_game.alpha.AudioManager;
 import com.google.android.gms.ads.AdError;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
@@ -141,7 +142,7 @@ public class LeaderBoard extends AppCompatActivity {
         list = new ArrayList<>();
         setView(view);
         allBtn.setOnClickListener(view -> {
-            Utils.darkBlueBlink(allBtn, getApplicationContext());
+            AudioManager.darkBlueBlink(this, allBtn);
             list.clear();
             emptyText.setVisibility(View.GONE);
             selector(0);
@@ -158,34 +159,31 @@ public class LeaderBoard extends AppCompatActivity {
             }
         });
 
-        weekBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Utils.darkBlueBlink(weekBtn, getApplicationContext());
-                list.clear();
-                emptyText.setVisibility(View.GONE);
-                container.removeAllViews();
-                selector(1);
-                view2 = inflater.inflate(R.layout.week_layout, container, false);
-                container.addView(view2);
-                setView(view2);
-                if (json2 != null) {
-                    try {
-                        parseJSON(json2);
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-                } else {
-                    try {
-                        getWeeklyLeaderBoard();
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
+        weekBtn.setOnClickListener(view -> {
+            AudioManager.darkBlueBlink(this, weekBtn);
+            list.clear();
+            emptyText.setVisibility(View.GONE);
+            container.removeAllViews();
+            selector(1);
+            view2 = inflater.inflate(R.layout.week_layout, container, false);
+            container.addView(view2);
+            setView(view2);
+            if (json2 != null) {
+                try {
+                    parseJSON(json2);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            } else {
+                try {
+                    getWeeklyLeaderBoard();
+                } catch (Exception e) {
+                    e.printStackTrace();
                 }
             }
         });
         dailyBtn.setOnClickListener(view -> {
-            Utils.darkBlueBlink(dailyBtn, getApplicationContext());
+            AudioManager.darkBlueBlink(this, dailyBtn);
             list.clear();
             emptyText.setVisibility(View.GONE);
             selector(2);
@@ -208,35 +206,32 @@ public class LeaderBoard extends AppCompatActivity {
             }
         });
 
-        countryBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Utils.darkBlueBlink(countryBtn, getApplicationContext());
+        countryBtn.setOnClickListener(view -> {
+            AudioManager.darkBlueBlink(this, countryBtn);
 
-                list.clear();
-                jsonObjects.clear();
-                emptyText.setVisibility(View.GONE);
-                selector(3);
-                container.removeAllViews();
-                country_layout_container.removeAllViews();
-                view4 = inflater.inflate(R.layout.country_leader_board, container, false);
-                container.addView(view4);
-                setView(view4);
-                if (json4 != null) {
-                    try {
-                        country_layout_container.removeAllViews();
-                        solveCountryJson(json4);
-                        parseJSON(json4);
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-                } else {
+            list.clear();
+            jsonObjects.clear();
+            emptyText.setVisibility(View.GONE);
+            selector(3);
+            container.removeAllViews();
+            country_layout_container.removeAllViews();
+            view4 = inflater.inflate(R.layout.country_leader_board, container, false);
+            container.addView(view4);
+            setView(view4);
+            if (json4 != null) {
+                try {
                     country_layout_container.removeAllViews();
-                    try {
-                        getCountryLeaderBoard();
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
+                    solveCountryJson(json4);
+                    parseJSON(json4);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            } else {
+                country_layout_container.removeAllViews();
+                try {
+                    getCountryLeaderBoard();
+                } catch (Exception e) {
+                    e.printStackTrace();
                 }
             }
         });
@@ -273,14 +268,9 @@ public class LeaderBoard extends AppCompatActivity {
         //loadAnimation(mCardBackLayout);
         loadAnimations(mCardBackLayout);
         RelativeLayout closeBtn = findViewById(R.id.close_container);
-        closeBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Utils.darkBlueBlink(closeBtn, getApplicationContext());
-                showInterstitial();
-
-
-            }
+        closeBtn.setOnClickListener(view -> {
+            AudioManager.darkBlueBlink(this, closeBtn);
+            showInterstitial();
         });
 
 
@@ -941,26 +931,17 @@ public class LeaderBoard extends AppCompatActivity {
 
                 //Value {"name":"Ascension Island","url":""} at country_json of type java.lang.String cannot be converted to JSONObject
 
-                convertView.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        Intent intent = new Intent(LeaderBoard.this, CountryLeaderBoard.class);
-                        Utils.darkBlueBlink(convertView, getApplicationContext());
+                convertView.setOnClickListener(view -> {
+                    Intent intent = new Intent(LeaderBoard.this, CountryLeaderBoard.class);
+                    AudioManager.darkBlueBlink(this, convertView);
 
-
-//                   Map<String,String> map = new HashMap<>();
-//                   map.put("country",country);
-//                   map.put("country_flag",country_flag);
-                        //intent.putExtra("country_map", (Serializable) map);
-                        intent.putExtra("country", country_name);
-                        intent.putExtra("country_flag", country_flag);
-                        startActivity(intent);
-                    }
+                    intent.putExtra("country", country_name);
+                    intent.putExtra("country_flag", country_flag);
+                    startActivity(intent);
                 });
 
 
             } catch (Exception e) {
-                /// Log.i("ooooopp",e.toString());
                 e.printStackTrace();
 
             }
@@ -974,20 +955,6 @@ public class LeaderBoard extends AppCompatActivity {
 
     public void moveToSignUp(String username) {
         Utils.destination_activity = LeaderBoard.class;
-
-
-//        if(username.equals(getResources().getString(R.string.anonymous_user))){
-//            Utils.leaderboardClick = Utils.leaderboardClick+1;
-//           if( Utils.leaderboardClick < 2) {
-//               Intent i = new Intent(LeaderBoard.this, UserDetails.class);
-//               startActivity(i);
-//               finish();
-//           }else{
-//
-//               Utils.leaderboardClick = 0;
-//
-//           }
-//        }
 
 
     }
@@ -1007,5 +974,13 @@ public class LeaderBoard extends AppCompatActivity {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        AudioManager.releaseMusicResources();
+        AdManager.disposeAds();
     }
 }

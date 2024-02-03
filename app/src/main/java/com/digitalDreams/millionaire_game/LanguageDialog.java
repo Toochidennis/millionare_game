@@ -124,6 +124,7 @@ class LanguageDialog extends Dialog {
     // ToochiDennis
     private void loadQuestions(String languageCode) {
         loadingDialog = new LoadingDialog(unwrap(context));
+        loadingDialog.setCancelable(false);
         Objects.requireNonNull(loadingDialog.getWindow()).setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
         loadingDialog.show();
 

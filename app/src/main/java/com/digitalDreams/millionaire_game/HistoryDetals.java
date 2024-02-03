@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
+import com.digitalDreams.millionaire_game.alpha.AudioManager;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 
@@ -74,7 +75,7 @@ public class HistoryDetals extends AppCompatActivity {
         close_container.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Utils.darkBlueBlink(close_container, HistoryDetals.this);
+                AudioManager.darkBlueBlink(HistoryDetals.this, close_container);
                 AdManager.showInterstitial(HistoryDetals.this);
                 onBackPressed();
 
@@ -82,15 +83,11 @@ public class HistoryDetals extends AppCompatActivity {
             }
         });
 
-        arrow_back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Utils.darkBlueBlink(arrow_back, HistoryDetals.this);
-                AdManager.showInterstitial(HistoryDetals.this);
-                onBackPressed();
+        arrow_back.setOnClickListener(view -> {
+            AudioManager.darkBlueBlink(HistoryDetals.this, arrow_back);
+            AdManager.showInterstitial(HistoryDetals.this);
+            onBackPressed();
 
-
-            }
         });
 
         String languageCode = sharedPreferences.getString("language", "en");
@@ -99,7 +96,7 @@ public class HistoryDetals extends AppCompatActivity {
         int cardBackground = sharedPreferences.getInt("card_background", 0x219ebc);
         String game_level = sharedPreferences.getString("game_level", "1");
 
-        // high_score.setText(Utils.addCommaAndDollarSign(Double.parseDouble(highscore)));
+        // high_score.setText(AudioManager.addCommaAndDollarSign(Double.parseDouble(highscore)));
 
 
         bg = findViewById(R.id.rootview);
@@ -118,6 +115,12 @@ public class HistoryDetals extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        finish();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        AudioManager.releaseMusicResources();
+        AdManager.disposeAds();
     }
 }
