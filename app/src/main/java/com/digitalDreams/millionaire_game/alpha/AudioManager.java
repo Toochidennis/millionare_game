@@ -1,7 +1,10 @@
 package com.digitalDreams.millionaire_game.alpha;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.media.MediaPlayer;
+import android.view.MotionEvent;
+import android.view.View;
 
 import com.digitalDreams.millionaire_game.R;
 
@@ -11,6 +14,8 @@ public class AudioManager {
     private static MediaPlayer successMediaPlayer;
     private static MediaPlayer failureMediaPlayer;
     private static MediaPlayer winningMediaPlayer;
+    private static MediaPlayer darkBlueMediaPlayer;
+    private static MediaPlayer greenMediaPlayer;
 
     public static void playBackgroundMusic(Context context) {
         try {
@@ -83,6 +88,56 @@ public class AudioManager {
         }
     }
 
+    @SuppressLint("ClickableViewAccessibility")
+    public static void greenBlink(Context context, View view) {
+        try {
+            if (greenMediaPlayer == null) {
+                 greenMediaPlayer=  MediaPlayer.create(context, R.raw.play);
+            }
+            greenMediaPlayer.start();
+
+            view.setOnTouchListener((v, event)->{
+                if (event.getAction() == MotionEvent.ACTION_DOWN || event.getAction() == MotionEvent.ACTION_MOVE){
+                    view.setBackgroundResource(R.drawable.dark_play);
+                }
+
+                if (event.getAction() == MotionEvent.ACTION_UP || event.getAction() == MotionEvent.ACTION_CANCEL){
+                    view.setBackgroundResource(R.drawable.playbtn_bg);
+                }
+
+                return false;
+            });
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @SuppressLint("ClickableViewAccessibility")
+    public static void darkBlueBlink(Context context, View view) {
+        try {
+            if (darkBlueMediaPlayer == null) {
+                darkBlueMediaPlayer = MediaPlayer.create(context, R.raw.others);
+            }
+            darkBlueMediaPlayer.start();
+
+            view.setOnTouchListener((v, event)->{
+                if (event.getAction() == MotionEvent.ACTION_DOWN || event.getAction() == MotionEvent.ACTION_MOVE){
+                    view.setBackgroundResource(R.drawable.ic_hex_2);
+                }
+
+                if (event.getAction() == MotionEvent.ACTION_UP || event.getAction() == MotionEvent.ACTION_CANCEL){
+                    view.setBackgroundResource(R.drawable.ic_hexnow);
+                }
+
+                return false;
+            });
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     public static void releaseMusicResources() {
         try {
             if (backgroundMediaPlayer != null) {
@@ -100,6 +155,16 @@ public class AudioManager {
             if (winningMediaPlayer != null) {
                 winningMediaPlayer.release();
                 winningMediaPlayer = null;
+            }
+
+            if (greenMediaPlayer != null) {
+                greenMediaPlayer.release();
+                greenMediaPlayer = null;
+            }
+
+            if (darkBlueMediaPlayer != null) {
+                darkBlueMediaPlayer.release();
+                darkBlueMediaPlayer = null;
             }
         } catch (Exception e) {
             e.printStackTrace();

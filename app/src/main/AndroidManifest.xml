@@ -39,7 +39,7 @@
             android:name=".alpha.activity.GameActivity3"
             android:exported="false" />
         <activity
-            android:name=".WebviewActivity"
+            android:name=".WebViewActivity"
             android:exported="false" />
         <activity
             android:name=".HistoryDetals"
