@@ -259,7 +259,7 @@ public class GameActivity2 extends AppCompatActivity {
         });
 
         exitBtn.setOnClickListener(view -> {
-            Utils.darkBlueBlink(exitBtn, this);
+           // Utils.darkBlueBlink(exitBtn, this);
 
             ExitGameDialog dialog = new ExitGameDialog(GameActivity2.this, amountWon);
             dialog.setCancelable(false);
@@ -2346,7 +2346,7 @@ public class GameActivity2 extends AppCompatActivity {
     public void saveHistory(int questionId, String answer, String correctAnswer, String high_score, boolean is_correct) {
         Log.i("checking", String.valueOf(questionId));
 
-        dbHelper.saveHistory(String.valueOf(questionId), answer, correctAnswer, time_1, time_1, high_score, is_correct);
+      //  dbHelper.saveHistory(String.valueOf(questionId), answer, correctAnswer, time_1, time_1, high_score, is_correct);
 
     }
 

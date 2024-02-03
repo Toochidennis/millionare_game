@@ -23,8 +23,8 @@ import static com.digitalDreams.millionaire_game.alpha.Constants.SHOULD_REFRESH_
 import static com.digitalDreams.millionaire_game.alpha.Constants.SOUND;
 import static com.digitalDreams.millionaire_game.alpha.Constants.generateAmount;
 import static com.digitalDreams.millionaire_game.alpha.Constants.getBackgroundDrawable;
-import static com.digitalDreams.millionaire_game.alpha.Constants.getRandomSuggestion;
 import static com.digitalDreams.millionaire_game.alpha.Constants.getLabelFromList;
+import static com.digitalDreams.millionaire_game.alpha.Constants.getRandomSuggestion;
 import static com.digitalDreams.millionaire_game.alpha.Constants.prettyCount;
 
 import android.animation.ObjectAnimator;
@@ -37,10 +37,10 @@ import android.content.SharedPreferences;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.os.Handler;
 import android.os.VibrationEffect;
 import android.os.Vibrator;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -65,6 +65,7 @@ import com.digitalDreams.millionaire_game.R;
 import com.digitalDreams.millionaire_game.Utils;
 import com.digitalDreams.millionaire_game.WinnersActivity;
 import com.digitalDreams.millionaire_game.WrongAnswerDialog;
+import com.digitalDreams.millionaire_game.alpha.AudioManager;
 import com.digitalDreams.millionaire_game.alpha.ExplanationBottomSheetDialog;
 import com.digitalDreams.millionaire_game.alpha.adapters.OnOptionsClickListener;
 import com.digitalDreams.millionaire_game.alpha.adapters.OptionsAdapter;
@@ -133,7 +134,7 @@ public class GameActivity3 extends AppCompatActivity implements OnOptionsClickLi
 
 
     private RelativeLayout exitButton, timerContainer, amountContainer;
-    private TextView questionTextView, amountWonTextView, questionProgressTextView;
+    private TextView questionTextView, amountWonTextView, questionProgressTextView, countdownTextView;
 
     RelativeLayout minus2QuestionsButton, askComputerButton, takeAPollButton, resetQuestionButton;
     RelativeLayout askComputerContainer;
@@ -168,6 +169,8 @@ public class GameActivity3 extends AppCompatActivity implements OnOptionsClickLi
     private int amountWonText;
     private String selectedAnswer;
     private long startTimeMillis;
+    private String gameMode;
+    private CountDownTimer countDownTimer;
 
     @SuppressLint("StaticFieldLeak")
     public static Activity gameActivity;
@@ -227,6 +230,7 @@ public class GameActivity3 extends AppCompatActivity implements OnOptionsClickLi
 
         exitButton = findViewById(R.id.exitBtn);
         timerContainer = findViewById(R.id.timer_container);
+        countdownTextView = findViewById(R.id.time);
         amountContainer = findViewById(R.id.amount_container);
         amountWonTextView = findViewById(R.id.amount_won_text);
         questionTextView = findViewById(R.id.question_text);
@@ -260,11 +264,14 @@ public class GameActivity3 extends AppCompatActivity implements OnOptionsClickLi
         questionProgressTextView = findViewById(R.id.question_progress);
         adView = findViewById(R.id.adView);
 
-        timerContainer.setVisibility(View.GONE);
-
-        sharedPreferences = getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
+        sharedPreferences = getSharedPreferences(PREF_NAME, MODE_PRIVATE);
         editor = sharedPreferences.edit();
         dbHelper = new DBHelper(this);
+
+        String gameLevel = sharedPreferences.getString("game_level", "1");
+        gameMode = sharedPreferences.getString("game_mode", "0");
+        int level = Integer.parseInt(gameLevel);
+        amountList = generateAmount(level);
     }
 
     /**
@@ -295,6 +302,7 @@ public class GameActivity3 extends AppCompatActivity implements OnOptionsClickLi
         updateAmountWon();
         parseQuestionJSONArray(questionIndex);
         animateViews();
+        startCountdownTimerIfGameModeIsTimed();
     }
 
     /**
@@ -302,18 +310,16 @@ public class GameActivity3 extends AppCompatActivity implements OnOptionsClickLi
      */
     private void loadQuestions() {
         try {
-            sharedPreferences = getSharedPreferences(PREF_NAME, MODE_PRIVATE);
-            String gameLevel = sharedPreferences.getString("game_level", "1");
-            int level = Integer.parseInt(gameLevel);
-            amountList = generateAmount(level);
-
             String questionsJson = dbHelper.buildJson();
+
+            if (questionsJson == null) {
+                questionsJson = dbHelper.buildJson();
+            }
             JSONArray jsonArray = new JSONArray(questionsJson);
             JSONObject jsonObject = jsonArray.getJSONObject(0).getJSONObject("q");
             questionJSONArray = jsonObject.getJSONArray("0");
 
             showQuestion();
-
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -368,7 +374,6 @@ public class GameActivity3 extends AppCompatActivity implements OnOptionsClickLi
 
         rootView.setBackground(gradientDrawable);
     }
-
 
     private void processQuestion() {
         questionTextView.setText(questionModel.getQuestionText());
@@ -440,30 +445,25 @@ public class GameActivity3 extends AppCompatActivity implements OnOptionsClickLi
                 new Handler().postDelayed(this::startProgressActivity, DELAY_INTERVAL_LONG);
             });
 
+            saveHistory(
+                    questionModel.getQuestionId(),
+                    selectedAnswer,
+                    questionModel.getCorrectText().trim(),
+                    String.valueOf(amountWonText),
+                    true
+            );
+
         } else {
-            if (numberOfFailure < 1) {
-                showFailureDialog();
-                numberOfFailure++;
-            } else {
-                pauseBackgroundMusic();
+            explanationBottomSheetDialog = new ExplanationBottomSheetDialog(this, questionModel);
+            startFailureActivities(explanationBottomSheetDialog);
 
-                explanationBottomSheetDialog = new ExplanationBottomSheetDialog(this, questionModel);
-                explanationBottomSheetDialog.show();
-
-                explanationBottomSheetDialog.setOnDismissListener(dialog -> {
-                    dialog.dismiss();
-                    numberOfFailure = 0;
-                    startActivity(new Intent(this, FailureActivity.class));
-                });
-
-                updateRefreshQuestionState(true);
-                updateShouldContinueGame(false);
-            }
-
-            optionsClickable = true;
-
-            updateProgressState(false);
-            saveHistory(questionModel.getQuestionId(), selectedAnswer, questionModel.getCorrectText().trim(), String.valueOf(amountWonText), false);
+            saveHistory(
+                    questionModel.getQuestionId(),
+                    selectedAnswer,
+                    questionModel.getCorrectText().trim(),
+                    String.valueOf(amountWonText),
+                    false
+            );
         }
     }
 
@@ -491,13 +491,30 @@ public class GameActivity3 extends AppCompatActivity implements OnOptionsClickLi
         }
         optionsClickable = true;
         updateMusicState(true);
+    }
 
-        saveHistory(
-                questionModel.getQuestionId(),
-                selectedAnswer, questionModel.getCorrectText().trim(),
-                String.valueOf(amountWonText),
-                true
-        );
+    private void startFailureActivities(ExplanationBottomSheetDialog explanationBottomSheetDialog) {
+        if (numberOfFailure < 1) {
+            showFailureDialog();
+            numberOfFailure++;
+        } else {
+            pauseBackgroundMusic();
+
+            explanationBottomSheetDialog.show();
+
+            explanationBottomSheetDialog.setOnDismissListener(dialog -> {
+                dialog.dismiss();
+                numberOfFailure = 0;
+                startActivity(new Intent(this, FailureActivity.class));
+            });
+
+            updateRefreshQuestionState(true);
+            updateShouldContinueGame(false);
+        }
+
+        optionsClickable = true;
+
+        updateProgressState(false);
     }
 
     private void startWinnersActivity() {
@@ -789,7 +806,17 @@ public class GameActivity3 extends AppCompatActivity implements OnOptionsClickLi
         try {
             DateFormat dateFormat = new SimpleDateFormat("EEE, d MMM, HH:mm", Locale.getDefault());
             String datePlayed = dateFormat.format(Calendar.getInstance().getTime());
-            dbHelper.saveHistory(questionId, answer, correctAnswer, datePlayed, datePlayed, highScore, isCorrect);
+
+            dbHelper.saveHistory(
+                    questionId,
+                    answer,
+                    correctAnswer,
+                    questionModel.getReasonText(),
+                    datePlayed,
+                    datePlayed,
+                    highScore,
+                    isCorrect
+            );
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -805,7 +832,7 @@ public class GameActivity3 extends AppCompatActivity implements OnOptionsClickLi
      */
 
     private void showExitDialog() {
-        Utils.darkBlueBlink(exitButton, this);
+        AudioManager.darkBlueBlink(this, exitButton);
 
         ExitGameDialog dialog = new ExitGameDialog(this, String.valueOf(amountWonText));
         dialog.setCancelable(false);
@@ -883,22 +910,7 @@ public class GameActivity3 extends AppCompatActivity implements OnOptionsClickLi
         outState.putInt("amountWonText", amountWonText);
         outState.putLong("startTimeMillis", startTimeMillis);
         outState.putIntegerArrayList("amountWonList", new ArrayList<>(amountWonList));
-        if (questionJSONArray == null) {
-            reloadQuestions();
-            Log.d("question", " " + questionJSONArray);
-        }
         outState.putString("questionJSONArray", questionJSONArray.toString());
-    }
-
-    private void reloadQuestions() {
-        try {
-            String questionsJson = dbHelper.buildJson();
-            JSONArray jsonArray = new JSONArray(questionsJson);
-            JSONObject jsonObject = jsonArray.getJSONObject(0).getJSONObject("q");
-            questionJSONArray = jsonObject.getJSONArray("0");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
     }
 
     @Override
@@ -926,6 +938,44 @@ public class GameActivity3 extends AppCompatActivity implements OnOptionsClickLi
 
         showQuestion();
     }
+
+    private void startCountdownTimer() {
+        countDownTimer = new CountDownTimer(30000, DELAY_INTERVAL_LONG) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+                updateCountdownText(millisUntilFinished);
+            }
+
+            @Override
+            public void onFinish() {
+                vibrate();
+                showFailureDialog();
+                countDownTimer.cancel();
+                countDownTimer = null;
+            }
+        };
+
+        countDownTimer.start();
+    }
+
+    private void updateCountdownText(long millisUntilFinished) {
+        long seconds = millisUntilFinished / DELAY_INTERVAL_LONG;
+        String timeRemaining = String.valueOf(seconds);
+        countdownTextView.setText(timeRemaining);
+    }
+
+    private void startCountdownTimerIfGameModeIsTimed() {
+        if (gameMode.equals("1")) {
+            timerContainer.setVisibility(View.VISIBLE);
+            if (countDownTimer != null) {
+                countDownTimer.cancel();
+            }
+            startCountdownTimer();
+        } else {
+            timerContainer.setVisibility(View.GONE);
+        }
+    }
+
 
     @Override
     protected void onResume() {
@@ -973,6 +1023,10 @@ public class GameActivity3 extends AppCompatActivity implements OnOptionsClickLi
         releaseMusicResources();
         updateMusicState(false);
         disposeAds();
+
+        if (countDownTimer != null) {
+            countDownTimer.cancel();
+        }
 
         long durationMillis = System.currentTimeMillis() - startTimeMillis;
         String durationString = formatDuration(durationMillis);
