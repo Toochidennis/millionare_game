@@ -24,6 +24,8 @@ import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+import com.digitalDreams.millionaire_game.alpha.AudioManager;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -95,7 +97,7 @@ public class UserDetails extends AppCompatActivity {
                 GradientDrawable.Orientation.TOP_BOTTOM,
                 new int[]{startColor, endColor});
 
-        bg.setBackgroundDrawable(gd);
+        bg.setBackground(gd);
         usernameEdt.requestFocus();
         usernameEdt.setText(username);
         Button continueBtn = findViewById(R.id.continueBtn);
@@ -103,7 +105,7 @@ public class UserDetails extends AppCompatActivity {
         countryAdapter = new CountryAdapter(this, countries, flags);
 
         continueBtn.setOnClickListener(view -> {
-            Utils.darkBlueBlink(continueBtn, getApplicationContext());
+            AudioManager.darkBlueBlink(this,continueBtn);
 
             validateInput();
         });
@@ -175,7 +177,7 @@ public class UserDetails extends AppCompatActivity {
         close_container.setOnClickListener(view -> {
 
             Utils.saveAnonymouseUser(UserDetails.this);
-            naviget();
+            navigate();
 
         });
 
@@ -324,7 +326,7 @@ public class UserDetails extends AppCompatActivity {
 
             checkScore();
 
-            naviget();
+            navigate();
 
         }
     }
@@ -390,7 +392,7 @@ public class UserDetails extends AppCompatActivity {
     @Override
     public void onBackPressed() {
 
-        naviget();
+        navigate();
         super.onBackPressed();
     }
 
@@ -421,7 +423,7 @@ public class UserDetails extends AppCompatActivity {
     }
 
 
-    public void naviget() {
+    public void navigate() {
 
         Intent i;
 
@@ -436,8 +438,11 @@ public class UserDetails extends AppCompatActivity {
         startActivity(i);
         finish();
 
-
     }
 
-
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        AudioManager.releaseMusicResources();
+    }
 }

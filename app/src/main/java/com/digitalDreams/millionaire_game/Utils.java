@@ -3,7 +3,6 @@ package com.digitalDreams.millionaire_game;
 import static com.digitalDreams.millionaire_game.FailureActivity.getDeviceId;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -55,11 +54,6 @@ public class Utils {
 
     }
 
-    public static String removeExtra(String data) {
-        return data.replaceAll(",", "").replaceAll("$", "")
-                .replaceAll(".", "");
-
-    }
 
     public static String addCommaToNumber(double number) {
         String pattern = "#,###,###.###";
@@ -121,9 +115,7 @@ public class Utils {
             e.printStackTrace();
         }
 
-
         btn.setOnTouchListener((v, event) -> {
-
 
             if (event.getAction() == MotionEvent.ACTION_DOWN || event.getAction() == MotionEvent.ACTION_MOVE) {
                 btn.setBackgroundResource(dark);
@@ -135,11 +127,8 @@ public class Utils {
                 //newGameBtn.startAnimation( new AlphaAnimation(1F, 1F));
             }
 
-
             return false;
         });
-
-        //btn.performClick();
     }
 
     @SuppressLint("ClickableViewAccessibility")
@@ -154,7 +143,6 @@ public class Utils {
             e.printStackTrace();
         }
 
-
         btn.setOnTouchListener((v, event) -> {
 
 
@@ -175,12 +163,8 @@ public class Utils {
         //btn.performClick();
     }
 
-    public static void pressSound(Context context) {
-        MediaPlayer.create(context, R.raw.others).start();
-    }
 
     public static void sendScoreToSever(Context context, String score, Map<String, String> userDetails, String modeValue) {
-        Log.i("ogabet2", String.valueOf(userDetails));
         String url = context.getResources().getString(R.string.base_url) + "/post_score.php";
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
@@ -247,7 +231,6 @@ public class Utils {
     }
 
     public static String getDate() {
-
         Date c = Calendar.getInstance().getTime();
         System.out.println("Current time => " + c);
 
@@ -276,15 +259,9 @@ public class Utils {
     }
 
     public static void navigateToWebview(String questionId, Context context) {
-        Intent intent = new Intent(context, WebviewActivity.class);
+        Intent intent = new Intent(context, WebViewActivity.class);
         intent.putExtra("questionId", questionId);
         context.startActivity(intent);
-
-    }
-
-    public static void continueGame(Activity context) {
-        GameActivity2.isStartAtFresh = true;
-        context.finish();
 
     }
 

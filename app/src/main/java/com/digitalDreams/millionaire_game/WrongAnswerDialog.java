@@ -18,8 +18,10 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 
+import com.digitalDreams.millionaire_game.alpha.AudioManager;
 import com.digitalDreams.millionaire_game.alpha.ExplanationBottomSheetDialog;
 import com.digitalDreams.millionaire_game.alpha.models.QuestionModel;
 import com.google.android.gms.ads.AdError;
@@ -104,7 +106,7 @@ public class WrongAnswerDialog extends Dialog {
     }
 
     public void showRewardedAdWithListener() {
-        Utils.greenBlink(continueButton, context);
+        AudioManager.greenBlink(context, continueButton);
 
         if (Utils.isOnline(context)) {
             AdManager.showRewardedAd((Activity) context);
@@ -181,5 +183,11 @@ public class WrongAnswerDialog extends Dialog {
         editor.putBoolean(SHOULD_CONTINUE_GAME, true);
         editor.putBoolean(SHOULD_REFRESH_QUESTION, false);
         editor.apply();
+    }
+
+    @Override
+    public void setOnDismissListener(@Nullable OnDismissListener listener) {
+        super.setOnDismissListener(listener);
+        AudioManager.releaseMusicResources();
     }
 }

@@ -2,6 +2,7 @@ package com.digitalDreams.millionaire_game;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.util.Log;
@@ -12,15 +13,23 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 
+import com.digitalDreams.millionaire_game.alpha.AudioManager;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 
-public class WebviewActivity extends AppCompatActivity {
+public class WebViewActivity extends AppCompatActivity {
     String questionId = "";
     ImageView arrow_back;
     RelativeLayout close_container;
     ProgressBar progress_bar;
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        AdManager.loadInterstitialAd(this);
+    }
+
+    @SuppressLint("SetJavaScriptEnabled")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,44 +47,33 @@ public class WebviewActivity extends AppCompatActivity {
         arrow_back = findViewById(R.id.arrow_back);
         close_container = findViewById(R.id.close_container);
 
-        close_container.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Utils.darkBlueBlink(close_container, WebviewActivity.this);
-                AdManager.showInterstitial(WebviewActivity.this);
-                onBackPressed();
-
-
-            }
+        close_container.setOnClickListener(view -> {
+            AudioManager.darkBlueBlink(WebViewActivity.this, close_container);
+            AdManager.showInterstitial(WebViewActivity.this);
+            onBackPressed();
         });
 
-        arrow_back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Utils.darkBlueBlink(arrow_back, WebviewActivity.this);
-                AdManager.showInterstitial(WebviewActivity.this);
-                onBackPressed();
-
-
-            }
+        arrow_back.setOnClickListener(view -> {
+            AudioManager.darkBlueBlink(WebViewActivity.this, arrow_back);
+            AdManager.showInterstitial(WebViewActivity.this);
+            onBackPressed();
         });
-
 
         // Find the WebView by its unique ID
         WebView webView = findViewById(R.id.webview);
 
         // loading http://www.google.com url in the WebView.
-        webView.loadUrl(Utils.readMoreUrl+questionId);
+        webView.loadUrl(Utils.readMoreUrl + questionId);
 
         // this will enable the javascript.
         webView.getSettings().setJavaScriptEnabled(true);
 
         // WebViewClient allows you to handle
         // onPageFinished and override Url loading.
-        webView.setWebViewClient(new WebViewClient(){
+        webView.setWebViewClient(new WebViewClient() {
             @Override
             public void onPageStarted(WebView view, String url, Bitmap favicon) {
-                Log.i("url",url);
+                Log.i("url", url);
                 progress_bar.setVisibility(View.VISIBLE);
                 super.onPageStarted(view, url, favicon);
             }
@@ -86,7 +84,12 @@ public class WebviewActivity extends AppCompatActivity {
                 super.onPageFinished(view, url);
             }
         });
+    }
 
-
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        AudioManager.releaseMusicResources();
+        AdManager.disposeAds();
     }
 }
