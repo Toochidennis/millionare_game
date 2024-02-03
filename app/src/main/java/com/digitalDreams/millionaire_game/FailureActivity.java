@@ -37,6 +37,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.digitalDreams.millionaire_game.alpha.AudioManager;
 import com.digitalDreams.millionaire_game.alpha.activity.GameActivity3;
 import com.google.android.gms.ads.AdError;
 import com.google.android.gms.ads.AdRequest;
@@ -149,7 +150,7 @@ public class FailureActivity extends AppCompatActivity {
         new_games.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Utils.darkBlueBlink(new_games, getApplicationContext());
+                AudioManager.darkBlueBlink(getApplicationContext(),new_games);
 
                 new_games.setClickable(false);
 
@@ -227,7 +228,7 @@ public class FailureActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View view) {
-                Utils.greenBlink(continueBtn, FailureActivity.this);
+                AudioManager.greenBlink(FailureActivity.this, continueBtn);
 
                 if (!isNetworkConnected()) {
                     startActivity(new Intent(FailureActivity.this, PlayDetailsActivity.class));
@@ -381,6 +382,7 @@ public class FailureActivity extends AppCompatActivity {
     public void onDestroy() {
         super.onDestroy();
         AdManager.disposeAds();
+        AudioManager.releaseMusicResources();
     }
 
     private void showInterstitialAd() {
@@ -510,4 +512,5 @@ public class FailureActivity extends AppCompatActivity {
         editor.putBoolean(SHOULD_REFRESH_QUESTION, true);
         editor.apply();
     }
+
 }

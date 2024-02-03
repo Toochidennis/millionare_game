@@ -11,15 +11,14 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
+import androidx.annotation.Nullable;
+
 import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-
-import androidx.annotation.Nullable;
 
 public class DBHelper extends SQLiteOpenHelper {
     public static String DATABASE_NAME = "trivia.db";
@@ -32,8 +31,8 @@ public class DBHelper extends SQLiteOpenHelper {
     public static final String TYPE = "TYPE";
     public static final String CORRECT = "CORRECT";
     public static final String LANGUAGE = "LANGUAGE";
-    public static final String QUESTION_IMAGE = "QUESTION_IMAGE";
-    public static final String TITLE = "TITLE";
+   // public static final String QUESTION_IMAGE = "QUESTION_IMAGE";
+  //  public static final String TITLE = "TITLE";
     public static final String LEVEL = "LEVEL";
     public static final String STAGE_NAME = "STAGE_NAME";
     public static final String STAGE = "STAGE";
@@ -67,12 +66,12 @@ public class DBHelper extends SQLiteOpenHelper {
 
 
     public void createTable(List<String> columnList, SQLiteDatabase db) {
-        String sqlText = "";
+        StringBuilder sqlText = new StringBuilder();
         for (int a = 0; a < columnList.size(); a++) {
             String column = columnList.get(a);
-            sqlText += column + " TEXT, ";
+            sqlText.append(column).append(" TEXT, ");
         }
-        sqlText = sqlText.substring(0, sqlText.length() - 2);
+        sqlText = new StringBuilder(sqlText.substring(0, sqlText.length() - 2));
         String CREATE_TABLE_SQL = "CREATE TABLE " + JSON_TABLE + " ( sqlText )";
         db.execSQL(CREATE_TABLE_SQL);
     }
@@ -118,51 +117,36 @@ public class DBHelper extends SQLiteOpenHelper {
 
     public Cursor getQuestionByLevel2(String level) {
         synchronized (lock) {
-            Cursor res = null;
-            try {
-                SQLiteDatabase db = getWritableDatabase();
-                // this line was changed
-              /*  if (db.isOpen()) {
-                    //db.close();
-                    db = getWritableDatabase();
+            Cursor cursor = null;
+            SQLiteDatabase db = null;
 
-                }*/
+            try {
+                db = getWritableDatabase();
+
                 SharedPreferences sharedPreferences = context.getSharedPreferences("settings", Context.MODE_PRIVATE);
-                String game_level = sharedPreferences.getString("game_level", "1");
-                String current_play_level = sharedPreferences.getString("current_play_level", "1");
                 String languageCode = sharedPreferences.getString("language", "");
                 String language = getLanguageText(context, languageCode);
 
-                Log.i("current_play_level", current_play_level + " Language " + language);
+                String selectQuery = "SELECT * FROM " + JSON_TABLE + " WHERE LEVEL = ? AND  LANGUAGE = ? ORDER BY RANDOM() LIMIT 1";
+                Log.i("query", selectQuery);
 
+                cursor = db.rawQuery(selectQuery, new String[]{level, language});
 
-                String selectQuery = "SELECT * FROM " + JSON_TABLE + " WHERE LEVEL = '" + level + "' AND " + " LANGUAGE = '" + language + "' ORDER BY RANDOM() LIMIT 1";
-                //String selectQuery = "SELECT * FROM " + JSON_TABLE + " where LEVEL = "+level+" and STAGE = " +current_play_level+ " ORDER BY RANDOM() LIMIT 1";
-
-                Log.i("99999999", selectQuery);
-                res = db.rawQuery(selectQuery, null);
-//        Cursor res1 = res;
-//      while (res1.moveToNext()){
-//          String id = res1.getString(res.getColumnIndex("ID"));
-//          Log.i("99999999",id);
-//
-//      }
-                if (res.getCount() < 1) {
-                    String selectQuery2 = "SELECT * FROM " + JSON_TABLE + " WHERE LANGUAGE = '" + language + "' ORDER BY RANDOM() LIMIT 1";
-                    //where  STAGE = " +current_play_level+
-
-                    Cursor res2 = db.rawQuery(selectQuery2, null);
-                    /// db.close(); ///new removal
-                    return res2;
-
+                if (cursor != null && cursor.getCount() < 1) {
+                    String selectQuery2 = "SELECT * FROM " + JSON_TABLE + " WHERE LANGUAGE = ? ORDER BY RANDOM() LIMIT 1";
+                    cursor.close();
+                    cursor = db.rawQuery(selectQuery2, new String[]{language});
                 }
-
-                db.close(); ///new addition
 
             } catch (Exception e) {
                 e.printStackTrace();
+            } finally {
+                if (db != null && db.isOpen()) {
+                    db.close();
+                }
             }
-            return res;
+
+            return cursor;
         }
     }
 
@@ -174,25 +158,12 @@ public class DBHelper extends SQLiteOpenHelper {
 
                 SharedPreferences sharedPreferences = context.getSharedPreferences("settings", Context.MODE_PRIVATE);
                 String languageCode = sharedPreferences.getString("language", "");
-                String language;
-
-                switch (languageCode) {
-                    case "fr":
-                        language = context.getString(R.string.french);
-                        break;
-                    case "es":
-                        language = context.getString(R.string.spanish);
-                        break;
-
-                    default:
-                        language = context.getString(R.string.english);
-                        break;
-                }
+                String language = getLanguageText(context, languageCode);
 
                 //String selectQuery = "SELECT * FROM " + JSON_TABLE + " where LEVEL = "+level+" ORDER BY RANDOM() LIMIT 1";
-                String selectQuery = "SELECT * FROM " + JSON_TABLE + " WHERE  LANGUAGE = '" + language + "' ORDER BY  STAGE ASC";
+                String selectQuery = "SELECT * FROM " + JSON_TABLE + " WHERE  LANGUAGE = ? ORDER BY  STAGE ASC";
 
-                res = db.rawQuery(selectQuery, null);
+                res = db.rawQuery(selectQuery, new String[]{language});
 
             } catch (Exception e) {
                 e.printStackTrace();
@@ -204,20 +175,18 @@ public class DBHelper extends SQLiteOpenHelper {
 
     public Cursor getQuestionByLevel(String level) {
         synchronized (lock) { // Added this line for a synchronizing access to the database///more below
-            // Log.i("uuuuuuu",level);
-
             Cursor res1 = null;
+
             try {
                 SQLiteDatabase db = this.getWritableDatabase();
 
                 SharedPreferences sharedPreferences = context.getSharedPreferences("settings", Context.MODE_PRIVATE);
-                String game_level = sharedPreferences.getString("game_level", "1");
-                String current_play_level = sharedPreferences.getString("current_play_level", "1");
+               /* String game_level = sharedPreferences.getString("game_level", "1");
+                String current_play_level = sharedPreferences.getString("current_play_level", "1");*/
 
 
                 String selectQuery = "SELECT * FROM " + JSON_TABLE + " where LEVEL = " + level;
                 Cursor res = db.rawQuery(selectQuery, null);
-
 
                 int count = res.getCount();
                 int randomNumber;
@@ -244,34 +213,35 @@ public class DBHelper extends SQLiteOpenHelper {
         }
     }
 
-    public Cursor allQuestion() {
-        SQLiteDatabase db = this.getWritableDatabase();
-        String selectQuery = "SELECT * FROM " + JSON_TABLE;
-        Cursor res = db.rawQuery(selectQuery, null);
-        db.close();
-        return res;
-    }
-
 
     public int getQuestionSize() {
         synchronized (lock) {
+            SQLiteDatabase db = null;
+            Cursor cursor = null;
+            int count = 0;
+
             try {
-                SQLiteDatabase db = this.getWritableDatabase();
+                db = this.getWritableDatabase();
                 String selectQuery = "SELECT * FROM " + JSON_TABLE;
-                Cursor res = db.rawQuery(selectQuery, null);
-                int count = 0;
+                cursor = db.rawQuery(selectQuery, null);
 
-                if (res != null) {
-                    count = res.getCount();
-                    res.close();
+                if (cursor != null && cursor.moveToFirst()) {
+                    count = cursor.getInt(0);
                 }
-
-                return count;
 
             } catch (Exception e) {
                 e.printStackTrace();
-                return 0;
+            } finally {
+                if (cursor != null) {
+                    cursor.close();
+                }
+
+                if (db != null && db.isOpen()) {
+                    db.close();
+                }
             }
+
+            return count;
         }
     }
 
@@ -279,22 +249,22 @@ public class DBHelper extends SQLiteOpenHelper {
         JSONArray jsonArray = new JSONArray();
         try {
             JSONObject jsonObject = new JSONObject();
-            JSONObject qObj = new JSONObject();
-            JSONArray arr = new JSONArray();
+            JSONObject questionObject = new JSONObject();
+            JSONArray jsonArray1 = new JSONArray();
 
             for (int a = 1; a < 16; a++) {
-                Cursor res = getQuestionByLevel2(String.valueOf(a));
+                Cursor cursor = getQuestionByLevel2(String.valueOf(a));
 
-                if (res != null) {
-                    res.moveToNext();
+                if (cursor != null) {
+                    cursor.moveToNext();
 
-                    @SuppressLint("Range") String id = res.getString(res.getColumnIndex("ID"));
-                    @SuppressLint("Range") String language = res.getString(res.getColumnIndex("LANGUAGE"));
-                    @SuppressLint("Range") String question = res.getString(res.getColumnIndex("QUESTION"));
-                    @SuppressLint("Range") String answer = res.getString(res.getColumnIndex("ANSWER"));
-                    @SuppressLint("Range") String type = res.getString(res.getColumnIndex("TYPE"));
-                    @SuppressLint("Range") String correct = res.getString(res.getColumnIndex("CORRECT"));
-                    @SuppressLint("Range") String reason = res.getString(res.getColumnIndex("REASON"));
+                    @SuppressLint("Range") String id = cursor.getString(cursor.getColumnIndex(ID));
+                    @SuppressLint("Range") String language = cursor.getString(cursor.getColumnIndex(LANGUAGE));
+                    @SuppressLint("Range") String question = cursor.getString(cursor.getColumnIndex(QUESTION));
+                    @SuppressLint("Range") String answer = cursor.getString(cursor.getColumnIndex(ANSWER));
+                    @SuppressLint("Range") String type = cursor.getString(cursor.getColumnIndex(TYPE));
+                    @SuppressLint("Range") String correct = cursor.getString(cursor.getColumnIndex(CORRECT));
+                    @SuppressLint("Range") String reason = cursor.getString(cursor.getColumnIndex(REASON));
 
                     Log.d("reason", reason + " " + answer + " " + language);
 
@@ -308,90 +278,97 @@ public class DBHelper extends SQLiteOpenHelper {
                     contentObj.put("correct", correct);
                     contentObj.put("question_image", "");
                     contentObj.put("reason", reason);
-                    arr.put(contentObj);
+                    jsonArray1.put(contentObj);
 
-                    res.close();
+                    cursor.close();
                 }
-
             }
-            qObj.put("0", arr);
-            jsonObject.put("q", qObj);
+
+            questionObject.put("0", jsonArray1);
+            jsonObject.put("q", questionObject);
             jsonArray.put(jsonObject);
         } catch (Exception e) {
             e.printStackTrace();
+            return null;
         }
         return jsonArray.toString();
     }
 
+    public void saveHistory(
+            String questionId,
+            String answer,
+            String correctAnswer,
+            String reason,
+            String session,
+            String date_played,
+            String high_score,
+            boolean is_correct
+    ) {
+        synchronized (lock) {
+            SQLiteDatabase db = null;
 
-    public void saveHistory(String questionId, String answer,
-                            String correctAnswer,
-                            String session,
-                            String date_played, String high_score, boolean is_correct) {
-        SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues contentValues = new ContentValues();
-        contentValues.put("QUESTION_ID", questionId);
-        contentValues.put("ANSWER", answer);
-        contentValues.put("CORRECT_ANSWER", correctAnswer);
-        contentValues.put("SESSION", session);
-        contentValues.put("DATE_PLAYED", date_played);
-        contentValues.put("HIGH_SCORE", high_score);
-        contentValues.put("IS_CORRECT", is_correct);
-        contentValues.put("REASON", getReason(questionId));
+            try {
+                db = this.getWritableDatabase();
+                ContentValues contentValues = new ContentValues();
+                contentValues.put("QUESTION_ID", questionId);
+                contentValues.put("ANSWER", answer);
+                contentValues.put("CORRECT_ANSWER", correctAnswer);
+                contentValues.put("SESSION", session);
+                contentValues.put("DATE_PLAYED", date_played);
+                contentValues.put("HIGH_SCORE", high_score);
+                contentValues.put("IS_CORRECT", is_correct);
+                contentValues.put("REASON", reason);
 
-        boolean questionExists = checkHistory(questionId);
-
-        if (!questionExists) {
-            db.insert(HISTORY_TABLE, null, contentValues);
+                if (!checkHistory(db, questionId)) {
+                    db.insert(HISTORY_TABLE, null, contentValues);
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            } finally {
+                if (db != null && db.isOpen()) {
+                    db.close();
+                }
+            }
         }
-
     }
 
-    @SuppressLint("Range")
-    public String getReason(String questionId) {
-        String reason = "";
-        SQLiteDatabase db = this.getWritableDatabase();
-        String sql = "SELECT * FROM " + JSON_TABLE + " WHERE ID = " + questionId;
-        Cursor cursor = db.rawQuery(sql, null);
 
-        while (cursor.moveToNext()) {
+    public boolean checkHistory(SQLiteDatabase db, String questionId) {
+        synchronized (lock) {
+            Cursor cursor = null;
+            boolean isQuestionExist = false;
 
-            reason = cursor.getString(cursor.getColumnIndex("REASON"));
+            try {
+                String sql = "SELECT * FROM " + HISTORY_TABLE + " WHERE QUESTION_ID = ?";
+                cursor = db.rawQuery(sql, new String[]{questionId});
 
+                isQuestionExist = cursor != null && cursor.moveToFirst();
+            } catch (Exception e) {
+                e.printStackTrace();
+            } finally {
+                if (cursor != null) {
+                    cursor.close();
+                }
+            }
+
+            return isQuestionExist;
         }
-        cursor.close();
-
-        return reason;
-    }
-
-    public boolean checkHistory(String questionId) {
-        SQLiteDatabase db = this.getWritableDatabase();
-        String sql = "SELECT * FROM " + HISTORY_TABLE + " WHERE QUESTION_ID = '" + questionId + "'";
-
-        Cursor cursor = db.rawQuery(sql, null);
-
-        return cursor.getCount() > 0;
-
     }
 
     public Cursor getHistory() {
         SQLiteDatabase db = this.getWritableDatabase();
         String sql = "SELECT * FROM " + HISTORY_TABLE + " ORDER BY ID DESC";
         return db.rawQuery(sql, null);
-
     }
 
     public Cursor getHistoryByDate(String dateTime) {
         SQLiteDatabase db = this.getWritableDatabase();
         String sql = "SELECT  * FROM " + HISTORY_TABLE + " WHERE DATE_PLAYED = '" + dateTime + "' GROUP BY QUESTION_ID  ORDER BY ID DESC";
         return db.rawQuery(sql, null);
-
-
     }
 
     public JSONArray buildHistoriesByDateTime(String dateTime) {
         JSONArray jsonArray = new JSONArray();
-
 
         try {
 

@@ -22,19 +22,19 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.util.Locale;
-
 import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
 
+import com.digitalDreams.millionaire_game.alpha.AudioManager;
 import com.google.android.gms.ads.AdError;
 import com.google.android.gms.ads.FullScreenContentCallback;
-import com.google.android.gms.ads.interstitial.InterstitialAd;
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.Locale;
 
 public class ExitGameDialog extends Dialog {
     Activity context;
@@ -42,8 +42,6 @@ public class ExitGameDialog extends Dialog {
 
     public static int MY_PERMISSIONS_WRITE_EXTERNAL_STORAGE = 100;
     File imagePath;
-    public static InterstitialAd interstitialAd;
-    //  AdManager adManager;
 
     public ExitGameDialog(@NonNull Activity context, String amountWon) {
         super(context);
@@ -58,11 +56,8 @@ public class ExitGameDialog extends Dialog {
         setContentView(R.layout.exit_dialog_2);
         //adManager =  new AdManager(context);
 
-
         AdManager.loadInterstitialAd(context);
         AdManager.loadRewardedAd(context);
-
-        loadInterstialAd();
 
         SharedPreferences sharedPreferences = context.getSharedPreferences("settings", Context.MODE_PRIVATE);
         int endColor = sharedPreferences.getInt("end_color", context.getResources().getColor(R.color.purple_dark));
@@ -84,7 +79,7 @@ public class ExitGameDialog extends Dialog {
         RelativeLayout continueBtn = findViewById(R.id.continue_);
 
         takeMoneyBtn.setOnClickListener(view -> {
-            Utils.darkBlueBlink(takeMoneyBtn, context);
+            AudioManager.darkBlueBlink(context,takeMoneyBtn);
             showInterstitial();
             stopBackgroundMusic();
             takeMoneyBtn.setClickable(false);
@@ -105,7 +100,7 @@ public class ExitGameDialog extends Dialog {
         amountWonText.setText(formattedAmount);
 
         continueBtn.setOnClickListener(view -> {
-            Utils.darkBlueBlink(continueBtn, context);
+            AudioManager.darkBlueBlink(context,continueBtn);
 
             dismiss();
         });
@@ -115,17 +110,13 @@ public class ExitGameDialog extends Dialog {
 
         LinearLayout shareBtn = findViewById(R.id.share);
         shareBtn.setOnClickListener(view -> {
-            Utils.darkBlueBlink(shareBtn, context);
+            AudioManager.darkBlueBlink(context,shareBtn);
 
             checkPermission();
             stopBackgroundMusic();
         });
     }
 
-    private void loadInterstialAd() {
-        interstitialAd = AdManager.interstitialAd; //new InterstitialAd(context) ;
-
-    }
 
     private void showInterstitial() {
         AdManager.showInterstitial(context);
@@ -195,7 +186,6 @@ public class ExitGameDialog extends Dialog {
         }
     }
 
-
     public Bitmap takeScreenshot() {
         View rootView = findViewById(android.R.id.content).getRootView();
         rootView.setDrawingCacheEnabled(true);
@@ -230,6 +220,5 @@ public class ExitGameDialog extends Dialog {
 
         context.startActivity(Intent.createChooser(sharingIntent, "Share via"));
     }
-
 
 }
