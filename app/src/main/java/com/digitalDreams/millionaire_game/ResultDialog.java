@@ -15,6 +15,9 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
+import com.digitalDreams.millionaire_game.alpha.AudioManager;
 
 public class ResultDialog extends Dialog {
     Context context;
@@ -59,21 +62,21 @@ public class ResultDialog extends Dialog {
 
 
         closeBtn.setOnClickListener(view -> {
-            Utils.darkBlueBlink(closeBtn, context);
+            AudioManager.darkBlueBlink(context,closeBtn);
 
             dismiss();
         });
 
         view_history.setOnClickListener(view -> {
             Intent i = new Intent(context, HistoryDetals.class);
-            Utils.darkBlueBlink(view_history, context);
+            AudioManager.darkBlueBlink(context,view_history);
             i.putExtra("date_played", Utils.lastDatePlayed);
 
             context.startActivity(i);
         });
 
         play_again.setOnClickListener(view -> {
-            Utils.greenBlink(play_again, context);
+            AudioManager.greenBlink(context, play_again);
             Intent intent = new Intent(context, GameActivity2.class);
             context.startActivity(intent);
             dismiss();
@@ -82,7 +85,7 @@ public class ResultDialog extends Dialog {
         });
 
         view_ranking.setOnClickListener(view -> {
-            Utils.darkBlueBlink(view_ranking, context);
+            AudioManager.darkBlueBlink(context,view_ranking);
 
             Utils.destination_activity = LeaderBoard.class;
             Intent i = new Intent(context, LeaderBoard.class);
@@ -114,14 +117,14 @@ public class ResultDialog extends Dialog {
 
         SharedPreferences sharedPreferences = context.getSharedPreferences("settings", Context.MODE_PRIVATE);
         String languageCode = sharedPreferences.getString("language", "en");
-        int endcolor = sharedPreferences.getInt("end_color", context.getResources().getColor(R.color.purple_dark));
+        int endColor = sharedPreferences.getInt("end_color", context.getResources().getColor(R.color.purple_dark));
         int startColor = sharedPreferences.getInt("start_color", context.getResources().getColor(R.color.purple_500));
 
         GradientDrawable gd = new GradientDrawable(
                 GradientDrawable.Orientation.TOP_BOTTOM,
-                new int[]{startColor, endcolor});
+                new int[]{startColor, endColor});
 
-        background.setBackgroundDrawable(gd);
+        background.setBackground(gd);
     }
 
 
@@ -177,7 +180,12 @@ public class ResultDialog extends Dialog {
             return position;
 
         }
-
     }
 
+    @Override
+    public void setOnDismissListener(@Nullable OnDismissListener listener) {
+        super.setOnDismissListener(listener);
+        AudioManager.releaseMusicResources();
+
+    }
 }

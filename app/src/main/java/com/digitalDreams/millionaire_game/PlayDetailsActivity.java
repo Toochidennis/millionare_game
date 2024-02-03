@@ -43,6 +43,7 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.digitalDreams.millionaire_game.alpha.AudioManager;
 import com.digitalDreams.millionaire_game.alpha.activity.GameActivity3;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
@@ -115,7 +116,7 @@ public class PlayDetailsActivity extends AppCompatActivity {
         new MyAnimation(btnAnim);
 
         newGameBtn.setOnClickListener(view -> {
-            Utils.greenBlink(newGameBtn, getApplicationContext());
+            AudioManager.greenBlink(getApplicationContext(), newGameBtn);
             Intent intent = new Intent(PlayDetailsActivity.this, GameActivity3.class);
             startActivity(intent);
             finish();
@@ -227,7 +228,7 @@ public class PlayDetailsActivity extends AppCompatActivity {
         RelativeLayout newGame = findViewById(R.id.new_game);
 
         homeBtn.setOnClickListener(view -> {
-            Utils.darkBlueBlink(homeBtn, getApplicationContext());
+            AudioManager.darkBlueBlink(this,homeBtn);
             Intent intent = new Intent(PlayDetailsActivity.this, Dashboard.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(intent);
@@ -241,7 +242,7 @@ public class PlayDetailsActivity extends AppCompatActivity {
 
         newGame.setOnClickListener(view -> {
             Utils.destination_activity = LeaderBoard.class;
-            Utils.darkBlueBlink(newGame, getApplicationContext());
+            AudioManager.darkBlueBlink(this,newGame);
             Intent intent = new Intent(PlayDetailsActivity.this, LeaderBoard.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(intent);
@@ -572,5 +573,6 @@ public class PlayDetailsActivity extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         AdManager.disposeAds();
+        AudioManager.releaseMusicResources();
     }
 }

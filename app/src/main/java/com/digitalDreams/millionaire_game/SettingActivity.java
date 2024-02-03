@@ -22,6 +22,8 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.digitalDreams.millionaire_game.alpha.AudioManager;
+
 public class SettingActivity extends AppCompatActivity {
 
     public static RelativeLayout bg;
@@ -57,9 +59,9 @@ public class SettingActivity extends AppCompatActivity {
         bg.setBackground(gd);
 
         RelativeLayout closeBtn = findViewById(R.id.close_container);
-        closeBtn.setOnClickListener(view -> {
-            Utils.darkBlueBlink(closeBtn, getApplicationContext());
 
+        closeBtn.setOnClickListener(view -> {
+            AudioManager.darkBlueBlink(this, closeBtn);
             onBackPressed();
         });
 
@@ -99,7 +101,7 @@ public class SettingActivity extends AppCompatActivity {
         }
 
         soundBtn.setOnClickListener(view -> {
-            Utils.darkBlueBlink(soundBtn, getApplicationContext());
+            AudioManager.darkBlueBlink(this, soundBtn);
             String sound1 = sharedPreferences.getString("sound", "1");
             SharedPreferences.Editor editor = sharedPreferences.edit();
             if ((sound1.equals("1"))) {
@@ -124,7 +126,7 @@ public class SettingActivity extends AppCompatActivity {
         });
 
         languageBtn.setOnClickListener(view -> {
-            Utils.darkBlueBlink(languageBtn, getApplicationContext());
+            AudioManager.darkBlueBlink(this, languageBtn);
             LanguageDialog dialog = new LanguageDialog(SettingActivity.this);
             dialog.show();
             Window window = dialog.getWindow();
@@ -149,7 +151,7 @@ public class SettingActivity extends AppCompatActivity {
         }
 
         themeBtn.setOnClickListener(view -> {
-            Utils.darkBlueBlink(themeBtn, getApplicationContext());
+            AudioManager.darkBlueBlink(this, themeBtn);
             ThemeDialog dialog = new ThemeDialog(SettingActivity.this);
             dialog.show();
             Window window = dialog.getWindow();
@@ -159,34 +161,37 @@ public class SettingActivity extends AppCompatActivity {
 
         String mode = sharedPreferences.getString("game_mode", "0");
         modeText = findViewById(R.id.game_mode_value);
+
         if (mode.equals("0")) {
             modeText.setText(getResources().getString(R.string.simple));
         } else {
             modeText.setText(getResources().getString(R.string.timed));
         }
+
         gameModeBtn.setOnClickListener(view -> {
-            Utils.darkBlueBlink(gameModeBtn, getApplicationContext());
+            AudioManager.darkBlueBlink(this, gameModeBtn);
             String mode1 = sharedPreferences.getString("game_mode", "0");
             SharedPreferences.Editor editor = sharedPreferences.edit();
+
             if (mode1.equals("0")) {
                 editor.putString("game_mode", "1");
             } else if (mode1.equals("1")) {
                 editor.putString("game_mode", "0");
-
             }
             editor.apply();
             mode1 = sharedPreferences.getString("game_mode", "0");
+
             if (mode1.equals("0")) {
                 modeText.setText(getResources().getString(R.string.simple));
             } else {
                 modeText.setText(getResources().getString(R.string.timed));
             }
-
         });
 
         vibrationTxt = findViewById(R.id.vibration_value);
         String vibrate = sharedPreferences.getString("vibrate", "1");
         badIcon = findViewById(R.id.bad);
+
         if (vibrate.equals("0")) {
             badIcon.setVisibility(View.VISIBLE);
             vibrationTxt.setText(getResources().getString(R.string.off));
@@ -196,7 +201,7 @@ public class SettingActivity extends AppCompatActivity {
         }
 
         vibrationBtn.setOnClickListener(view -> {
-            Utils.darkBlueBlink(vibrationBtn, getApplicationContext());
+            AudioManager.darkBlueBlink(this, vibrationBtn);
             String vibrate1 = sharedPreferences.getString("vibrate", "1");
             SharedPreferences.Editor editor = sharedPreferences.edit();
             if ((vibrate1.equals("1"))) {
@@ -217,7 +222,7 @@ public class SettingActivity extends AppCompatActivity {
         });
 
         creditBtn.setOnClickListener(view -> {
-            Utils.darkBlueBlink(creditBtn, getApplicationContext());
+            AudioManager.darkBlueBlink(this, creditBtn);
             CreditDialog dialog = new CreditDialog(SettingActivity.this);
             dialog.show();
             Window window = dialog.getWindow();
@@ -254,4 +259,9 @@ public class SettingActivity extends AppCompatActivity {
         LocalBroadcastManager.getInstance(this).registerReceiver(broadcastReceiver, new IntentFilter("refresh"));
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        AudioManager.releaseMusicResources();
+    }
 }
