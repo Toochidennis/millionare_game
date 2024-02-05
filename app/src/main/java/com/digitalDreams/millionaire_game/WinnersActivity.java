@@ -48,6 +48,7 @@ public class WinnersActivity extends AppCompatActivity {
     ImageView imageView;
     LinearLayout share_layout;
     public static int MY_PERMISSIONS_WRITE_EXTERNAL_STORAGE = 100;
+    private String sound;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -98,6 +99,7 @@ public class WinnersActivity extends AppCompatActivity {
         String username = sharedPreferences.getString("username", "");
         amountWon = sharedPreferences.getString("amountWon", "1000000");
         String game_level = sharedPreferences.getString("game_level", "1");
+        String sound = sharedPreferences.getString("sound", "1");
 
         /////////////Save level//////
 
@@ -252,10 +254,12 @@ public class WinnersActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        stopBackgroundMusic();
 
-        playWinningSound(this);
-        updateMusicState();
+        if (sound.equals("1")) {
+            stopBackgroundMusic();
+            playWinningSound(this);
+            updateMusicState();
+        }
     }
 
     @Override

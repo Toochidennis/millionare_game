@@ -204,12 +204,14 @@ public class SettingActivity extends AppCompatActivity {
             AudioManager.darkBlueBlink(this, vibrationBtn);
             String vibrate1 = sharedPreferences.getString("vibrate", "1");
             SharedPreferences.Editor editor = sharedPreferences.edit();
+
             if ((vibrate1.equals("1"))) {
                 editor.putString("vibrate", "0");
             } else if (vibrate1.equals("0")) {
                 editor.putString("vibrate", "1");
             }
             editor.apply();
+
             vibrate1 = sharedPreferences.getString("vibrate", "1");
             ImageView badIcon = findViewById(R.id.bad);
             if (vibrate1.equals("0")) {
