@@ -170,6 +170,8 @@ public class GameActivity3 extends AppCompatActivity implements OnOptionsClickLi
     private String selectedAnswer;
     private long startTimeMillis;
     private String gameMode;
+    private String sound;
+    private String vibration;
     private CountDownTimer countDownTimer;
 
     @SuppressLint("StaticFieldLeak")
@@ -270,6 +272,8 @@ public class GameActivity3 extends AppCompatActivity implements OnOptionsClickLi
 
         String gameLevel = sharedPreferences.getString("game_level", "1");
         gameMode = sharedPreferences.getString("game_mode", "0");
+        sound = sharedPreferences.getString("sound", "1");
+        vibration = sharedPreferences.getString("vibrate", "1");
         int level = Integer.parseInt(gameLevel);
         amountList = generateAmount(level);
     }
@@ -411,28 +415,40 @@ public class GameActivity3 extends AppCompatActivity implements OnOptionsClickLi
 
         if (selectedAnswer.equalsIgnoreCase(correctAnswer)) {
             itemView.setBackground(getBackgroundDrawable(GREEN, itemView));
-            playSuccessSound(this);
+
+            if (sound.equals("1")) {
+                playSuccessSound(this);
+            }
+
             showExplanationDialog(PASSED);
         } else {
             itemView.setBackground(getBackgroundDrawable(RED, itemView));
-            playFailureSound(this);
+
+            if (sound.equals("1")) {
+                playFailureSound(this);
+            }
+
             showExplanationDialog(FAILED);
         }
     }
 
     private void vibrate() {
-        Vibrator vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
-        if (vibrator != null) {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                vibrator.vibrate(VibrationEffect.createOneShot(DELAY_INTERVAL_MEDIUM, VibrationEffect.DEFAULT_AMPLITUDE));
-            } else {
-                vibrator.vibrate(DELAY_INTERVAL_MEDIUM);
+        if (vibration.equals("1")) {
+            Vibrator vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+            if (vibrator != null) {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                    vibrator.vibrate(VibrationEffect.createOneShot(DELAY_INTERVAL_MEDIUM, VibrationEffect.DEFAULT_AMPLITUDE));
+                } else {
+                    vibrator.vibrate(DELAY_INTERVAL_MEDIUM);
+                }
             }
         }
     }
 
     private void showExplanationDialog(String from) {
         vibrate();
+        cancelTimer();
+
         ExplanationBottomSheetDialog explanationBottomSheetDialog;
 
         if (Objects.equals(from, PASSED)) {
@@ -950,8 +966,7 @@ public class GameActivity3 extends AppCompatActivity implements OnOptionsClickLi
             public void onFinish() {
                 vibrate();
                 showFailureDialog();
-                countDownTimer.cancel();
-                countDownTimer = null;
+                cancelTimer();
             }
         };
 
@@ -967,13 +982,33 @@ public class GameActivity3 extends AppCompatActivity implements OnOptionsClickLi
     private void startCountdownTimerIfGameModeIsTimed() {
         if (gameMode.equals("1")) {
             timerContainer.setVisibility(View.VISIBLE);
-            if (countDownTimer != null) {
-                countDownTimer.cancel();
-            }
+            cancelTimer();
             startCountdownTimer();
         } else {
             timerContainer.setVisibility(View.GONE);
         }
+    }
+
+    private void cancelTimer() {
+        if (countDownTimer != null) {
+            countDownTimer.cancel();
+        }
+    }
+
+    private void disposeResources() {
+        stopBackgroundMusic();
+        releaseMusicResources();
+        updateMusicState(false);
+        disposeAds();
+        cancelTimer();
+
+        long durationMillis = System.currentTimeMillis() - startTimeMillis;
+        String durationString = formatDuration(durationMillis);
+
+        sharedPreferences = getSharedPreferences(PREF_NAME, MODE_PRIVATE);
+        editor = sharedPreferences.edit();
+        editor.putString("duration", durationString);
+        editor.apply();
     }
 
 
@@ -988,13 +1023,15 @@ public class GameActivity3 extends AppCompatActivity implements OnOptionsClickLi
                 loadQuestions();
                 updateRefreshQuestionState(false);
                 updateShouldContinueGame(true);
+            } else {
+                startCountdownTimerIfGameModeIsTimed();
             }
         } else {
             enableLifeLines();
             loadQuestions();
         }
 
-        if (shouldPlayMusic()) {
+        if (shouldPlayMusic() && sound.equals("1")) {
             playBackgroundMusic(this);
             updateMusicState(false);
         }
@@ -1019,21 +1056,6 @@ public class GameActivity3 extends AppCompatActivity implements OnOptionsClickLi
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        stopBackgroundMusic();
-        releaseMusicResources();
-        updateMusicState(false);
-        disposeAds();
-
-        if (countDownTimer != null) {
-            countDownTimer.cancel();
-        }
-
-        long durationMillis = System.currentTimeMillis() - startTimeMillis;
-        String durationString = formatDuration(durationMillis);
-
-        sharedPreferences = getSharedPreferences(PREF_NAME, MODE_PRIVATE);
-        editor = sharedPreferences.edit();
-        editor.putString("duration", durationString);
-        editor.apply();
+        disposeResources();
     }
 }

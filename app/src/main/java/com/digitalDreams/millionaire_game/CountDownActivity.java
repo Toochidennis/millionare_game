@@ -55,6 +55,7 @@ public class CountDownActivity extends AppCompatActivity {
         int endColor = sharedPreferences.getInt("end_color", getResources().getColor(R.color.purple_dark));
         int startColor = sharedPreferences.getInt("start_color", getResources().getColor(R.color.purple_500));
         String game_level = sharedPreferences.getString("game_level", "1");
+        String sound = sharedPreferences.getString("sound", "1");
 
 
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
@@ -99,8 +100,11 @@ public class CountDownActivity extends AppCompatActivity {
             public void onFinish() {
                 //  GameActivity2.isStartAtFresh= false;
                 finish();
-                updateSoundState();
-                playBackgroundMusic(CountDownActivity.this);
+
+                if (sound.equals("1")) {
+                    updateSoundState();
+                    playBackgroundMusic(CountDownActivity.this);
+                }
             }
         };
 
