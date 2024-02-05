@@ -126,7 +126,7 @@ import java.util.Random;
  * <p>
  * <p>
  * Author: [ToochiDennis]
- * Version: 1.0
+ * Version: 6.2.2
  * Date: [27th Jan, 2024]
  */
 
@@ -362,7 +362,6 @@ public class GameActivity3 extends AppCompatActivity implements OnOptionsClickLi
         }
         return Character.toUpperCase(word.charAt(0)) + word.substring(1);
     }
-
 
     private void setRootViewBackgroundColor() {
         int endColor = sharedPreferences.getInt("end_color", getResources().getColor(R.color.purple_dark));
@@ -1010,7 +1009,6 @@ public class GameActivity3 extends AppCompatActivity implements OnOptionsClickLi
         editor.putString("duration", durationString);
         editor.apply();
     }
-
 
     @Override
     protected void onResume() {
