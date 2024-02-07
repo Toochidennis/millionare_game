@@ -3,7 +3,9 @@ package com.digitalDreams.millionaire_game;
 import static com.digitalDreams.millionaire_game.Utils.ARABIC_KEY;
 import static com.digitalDreams.millionaire_game.Utils.ENGLISH_KEY;
 import static com.digitalDreams.millionaire_game.Utils.FRENCH_KEY;
+import static com.digitalDreams.millionaire_game.Utils.GERMAN_KEY;
 import static com.digitalDreams.millionaire_game.Utils.HINDI_KEY;
+import static com.digitalDreams.millionaire_game.Utils.JAPANESE_KEY;
 import static com.digitalDreams.millionaire_game.Utils.PORTUGUESE_KEY;
 import static com.digitalDreams.millionaire_game.Utils.SPANISH_KEY;
 import static com.digitalDreams.millionaire_game.Utils.URDU_KEY;
@@ -69,6 +71,8 @@ class LanguageDialog extends Dialog {
         LinearLayout arabicBtn = findViewById(R.id.arabic_language);
         LinearLayout hindiBtn = findViewById(R.id.hindi_language);
         LinearLayout urduBtn = findViewById(R.id.urdu_language);
+        LinearLayout germanBtn = findViewById(R.id.german_language);
+        LinearLayout japaneseBtn = findViewById(R.id.japanese_language);
 
         SharedPreferences sharedPreferences = context.getSharedPreferences("settings", Context.MODE_PRIVATE);
         boolean isEnglishInserted = sharedPreferences.getBoolean(ENGLISH_KEY, false);
@@ -78,15 +82,27 @@ class LanguageDialog extends Dialog {
         boolean isPortugueseInserted = sharedPreferences.getBoolean(PORTUGUESE_KEY, false);
         boolean isHindiInserted = sharedPreferences.getBoolean(HINDI_KEY, false);
         boolean isUrduInserted = sharedPreferences.getBoolean(URDU_KEY, false);
+        boolean isGermanInserted = sharedPreferences.getBoolean(GERMAN_KEY, false);
+        boolean isJapaneseInserted = sharedPreferences.getBoolean(JAPANESE_KEY, false);
         gameLevel = sharedPreferences.getString("game_level", "1");
 
         closeBtn.setOnClickListener(view -> dismiss());
 
         // Define an array of language buttons along with their keys
-        LinearLayout[] languageButtons = {englishBtn, frenchBtn, spanishBtn, arabicBtn, portugueseBtn, hindiBtn, urduBtn};
-        String[] languageKeys = {ENGLISH_KEY, FRENCH_KEY, SPANISH_KEY, ARABIC_KEY, PORTUGUESE_KEY, HINDI_KEY, URDU_KEY};
-        boolean[] isLanguageInserted = {isEnglishInserted, isFrenchInserted, isSpanishInserted,
-                isArabicInserted, isPortugueseInserted, isHindiInserted, isUrduInserted
+        LinearLayout[] languageButtons = {
+                englishBtn, frenchBtn, spanishBtn,
+                arabicBtn, portugueseBtn, hindiBtn,
+                urduBtn, germanBtn, japaneseBtn
+        };
+        String[] languageKeys = {
+                ENGLISH_KEY, FRENCH_KEY, SPANISH_KEY,
+                ARABIC_KEY, PORTUGUESE_KEY, HINDI_KEY,
+                URDU_KEY, GERMAN_KEY, JAPANESE_KEY
+        };
+        boolean[] isLanguageInserted = {
+                isEnglishInserted, isFrenchInserted, isSpanishInserted,
+                isArabicInserted, isPortugueseInserted, isHindiInserted,
+                isUrduInserted, isGermanInserted, isJapaneseInserted
         };
 
         for (int i = 0; i < languageButtons.length; i++) {
@@ -109,15 +125,15 @@ class LanguageDialog extends Dialog {
         if (!isInserted) {
             loadQuestions(key);
             editor.putBoolean(key, true);
-        }else{
-           sendBroadcast();
+        } else {
+            sendBroadcast();
         }
 
         editor.apply();
         dismiss();
     }
 
-    private void sendBroadcast(){
+    private void sendBroadcast() {
         LocalBroadcastManager.getInstance(context).sendBroadcast(new Intent("refresh"));
     }
 
@@ -204,8 +220,6 @@ class LanguageDialog extends Dialog {
 
                 dbHelper.insertDetails(language, level, id, content, type, answer, correct, stage_name, gameLevel, reason);
             }
-
-
         } catch (Exception e) {
             e.printStackTrace();
         }
