@@ -1,16 +1,8 @@
 package com.digitalDreams.millionaire_game;
 
-import static com.digitalDreams.millionaire_game.Utils.ARABIC_KEY;
-import static com.digitalDreams.millionaire_game.Utils.ENGLISH_KEY;
-import static com.digitalDreams.millionaire_game.Utils.FRENCH_KEY;
-import static com.digitalDreams.millionaire_game.Utils.HINDI_KEY;
-import static com.digitalDreams.millionaire_game.Utils.PORTUGUESE_KEY;
-import static com.digitalDreams.millionaire_game.Utils.SPANISH_KEY;
-import static com.digitalDreams.millionaire_game.Utils.URDU_KEY;
 import static com.digitalDreams.millionaire_game.alpha.Constants.getLanguageResource;
 import static com.digitalDreams.millionaire_game.alpha.Constants.getLanguageText;
 
-import android.animation.Animator;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.app.Activity;
@@ -28,7 +20,6 @@ import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-import android.view.animation.AccelerateInterpolator;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.animation.AnimationSet;
@@ -41,7 +32,6 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
-import com.digitalDreams.millionaire_game.alpha.Constants;
 import com.google.android.gms.ads.RequestConfiguration;
 
 import org.json.JSONArray;
@@ -85,7 +75,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Window window = getWindow();
-        AppOpenManager appOpenAdManager;
+   //     AppOpenManager appOpenAdManager;
 
 
         window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
@@ -99,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
 
         SharedPreferences sharedPreferences = getSharedPreferences("settings", MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        String username = sharedPreferences.getString("username", "");
+       // String username = sharedPreferences.getString("username", "");
         Utils.IS_DONE_INSERTING = sharedPreferences.getBoolean("IS_DONE_INSERTING", false);
         languageCode = sharedPreferences.getString("language", "");
 
@@ -150,30 +140,8 @@ public class MainActivity extends AppCompatActivity {
         animatorSet.setDuration(2000);
         animatorSet.setInterpolator(new DecelerateInterpolator());
         animatorSet.start();
-        animatorSet.addListener(new Animator.AnimatorListener() {
-            @Override
-            public void onAnimationStart(Animator animator) {
 
-            }
-
-            @Override
-            public void onAnimationEnd(Animator animator) {
-
-            }
-
-            @Override
-            public void onAnimationCancel(Animator animator) {
-
-            }
-
-            @Override
-            public void onAnimationRepeat(Animator animator) {
-
-            }
-        });
-
-        int yValue1 = height - 400;
-
+//        int yValue1 = height - 400;
 
         new Handler().postDelayed(() -> {
             container.setVisibility(View.VISIBLE);
@@ -184,7 +152,7 @@ public class MainActivity extends AppCompatActivity {
             digitalMarketingContainer.setVisibility(View.VISIBLE);
             animateWebContainer();
             animateMobileContainer();
-            animateDigtalContainer();
+            animateDigitalContainer();
             animateDataScienceContainer();
             trainTxt.startAnimation(set);
         }, 2000);
@@ -202,30 +170,7 @@ public class MainActivity extends AppCompatActivity {
                     String text = readRawTextFile(getLanguageResource(languageCode));
                     parseJSON(text);
 
-                    switch (languageCode) {
-                        case "ar":
-                            editor.putBoolean(ARABIC_KEY, true);
-                            break;
-                        case "es":
-                            editor.putBoolean(SPANISH_KEY, true);
-                            break;
-                        case "fr":
-                            editor.putBoolean(FRENCH_KEY, true);
-                            break;
-                        case "ur":
-                            editor.putBoolean(URDU_KEY, true);
-                            break;
-                        case "hi":
-                            editor.putBoolean(HINDI_KEY, true);
-                            break;
-                        case "pt":
-                            editor.putBoolean(PORTUGUESE_KEY, true);
-                            break;
-                        default:
-                            editor.putBoolean(ENGLISH_KEY, true);
-                            break;
-                    }
-
+                    editor.putBoolean(languageCode, true);
                     editor.apply();
                 } else {
                     Utils.IS_DONE_INSERTING = true;
@@ -283,7 +228,6 @@ public class MainActivity extends AppCompatActivity {
         try {
             JSONArray jsonArray = new JSONArray(json);
 
-
             for (int a = 0; a < jsonArray.length(); a++) {
                 Log.i("index", String.valueOf(a));
                 lent++;
@@ -297,9 +241,9 @@ public class MainActivity extends AppCompatActivity {
 
 
                 JSONArray question = jsonArray.getJSONArray(a);
-                String id = String.valueOf(question.getInt(0)); //object.getString("id");
-                String content = question.getString(1); //object.getString("content");
-                String type = "qo";//object.getString("type");
+                String id = String.valueOf(question.getInt(0));
+                String content = question.getString(1);
+                String type = "qo";
                 String level = String.valueOf(question.getString(2));
                 String language = getLanguageText(this, languageCode);
 
@@ -315,21 +259,17 @@ public class MainActivity extends AppCompatActivity {
                     JSONObject obj = new JSONObject();
                     obj.put("text", question.getString(j));
                     answers.put(obj);
-
                 }
 
                 String answer = String.valueOf(answers);
 
-
                 dbHelper.insertDetails(language, level, id, content, type, answer, correct, stage_name, stage, reason);
             }
-
 
         } catch (JSONException e) {
             e.printStackTrace();
         }
         Log.i("JsonDetails", String.valueOf(lent));
-
 
     }
 
@@ -352,20 +292,20 @@ public class MainActivity extends AppCompatActivity {
     private void animateMobileContainer() {
         AlphaAnimation fadeIn = new AlphaAnimation(0, 1);
         final AnimationSet set = new AnimationSet(false);
-        Animation inFromRigth = new TranslateAnimation(
+        Animation inFromRight = new TranslateAnimation(
                 Animation.RELATIVE_TO_PARENT, 1.0f,
                 Animation.RELATIVE_TO_PARENT, 0.0f,
                 Animation.RELATIVE_TO_PARENT, 0.0f,
                 Animation.RELATIVE_TO_PARENT, 0.0f);
 
-        set.addAnimation(inFromRigth);
+        set.addAnimation(inFromRight);
         set.addAnimation(fadeIn);
         set.setDuration(1500);
         set.setStartOffset(100);
         mobileDevContainer.startAnimation(set);
     }
 
-    private void animateDigtalContainer() {
+    private void animateDigitalContainer() {
         AlphaAnimation fadeIn = new AlphaAnimation(0, 1);
         final AnimationSet set = new AnimationSet(false);
         Animation inFromLeft = new TranslateAnimation(
@@ -383,13 +323,13 @@ public class MainActivity extends AppCompatActivity {
     private void animateDataScienceContainer() {
         AlphaAnimation fadeIn = new AlphaAnimation(0, 1);
         final AnimationSet set = new AnimationSet(false);
-        Animation inFromRigth = new TranslateAnimation(
+        Animation inFromRight = new TranslateAnimation(
                 Animation.RELATIVE_TO_PARENT, 1.0f,
                 Animation.RELATIVE_TO_PARENT, 0.0f,
                 Animation.RELATIVE_TO_PARENT, 0.0f,
                 Animation.RELATIVE_TO_PARENT, 0.0f);
 
-        set.addAnimation(inFromRigth);
+        set.addAnimation(inFromRight);
         set.addAnimation(fadeIn);
         set.setDuration(1500);
         set.setStartOffset(100);

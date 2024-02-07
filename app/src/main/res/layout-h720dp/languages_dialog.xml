@@ -7,7 +7,6 @@
     android:alpha="0.8"
     android:background="@color/black">
 
-
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -129,6 +128,37 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/german_language"
+                android:layout_width="291dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="60dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="60dp"
+                android:background="@drawable/ic_hexnow"
+                android:backgroundTint="@color/purple_500"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="70dp"
+                    android:contentDescription="@string/app_name"
+                    android:src="@drawable/germany" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="10dp"
+                    android:fontFamily="@font/arimo"
+                    android:text="@string/german"
+                    android:textColor="@color/white"
+                    android:textSize="18sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
                 android:id="@+id/hindi_language"
                 android:layout_width="291dp"
                 android:layout_height="50dp"
@@ -155,6 +185,37 @@
                     android:layout_marginStart="10dp"
                     android:fontFamily="@font/arimo"
                     android:text="@string/hindi"
+                    android:textColor="@color/white"
+                    android:textSize="18sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/japanese_language"
+                android:layout_width="291dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="60dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="60dp"
+                android:background="@drawable/ic_hexnow"
+                android:backgroundTint="@color/purple_500"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="70dp"
+                    android:contentDescription="@string/app_name"
+                    android:src="@drawable/japan" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="10dp"
+                    android:fontFamily="@font/arimo"
+                    android:text="@string/japanese"
                     android:textColor="@color/white"
                     android:textSize="18sp" />
 
