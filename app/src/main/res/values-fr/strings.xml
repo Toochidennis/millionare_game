@@ -36,7 +36,9 @@
     <string name="arabic">arabe</string>
     <string name="hindi">hindi</string>
     <string name="urdu">Ourdou</string>
-    <string name="banner_adunit">ca-app-pub-4696224049420135/8152081288</string>
+    <string name="german">Allemand</string>
+    <string name="japanese">Japonais</string>
+    <string name="banner_ad_unit">ca-app-pub-4696224049420135/8152081288</string>
     <string name="app_ad_id">ca-app-pub-4696224049420135~2129598410</string>
     <string name="interstitial_ad_unit_id">ca-app-pub-4696224049420135/9312479087</string>
     <string name="rewarded_ad_unit_id">ca-app-pub-4696224049420135/7768937909</string>
