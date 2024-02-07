@@ -236,7 +236,7 @@
             android:layout_alignParentBottom="true"
             android:layout_marginBottom="0dp"
             ads:adSize="FULL_BANNER"
-            ads:adUnitId="@string/banner_adunit">
+            ads:adUnitId="@string/banner_ad_unit">
 
         </com.google.android.gms.ads.AdView>
     </RelativeLayout>

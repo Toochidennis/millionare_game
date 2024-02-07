@@ -240,7 +240,7 @@
             android:layout_alignParentBottom="true"
             ads:adSize="FULL_BANNER"
             android:layout_marginBottom="0dp"
-            ads:adUnitId="@string/banner_adunit">
+            ads:adUnitId="@string/banner_ad_unit">
 
         </com.google.android.gms.ads.AdView>
     </RelativeLayout>
