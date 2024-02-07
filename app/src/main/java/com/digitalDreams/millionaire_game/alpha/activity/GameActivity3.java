@@ -41,6 +41,7 @@ import android.os.CountDownTimer;
 import android.os.Handler;
 import android.os.VibrationEffect;
 import android.os.Vibrator;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -169,9 +170,6 @@ public class GameActivity3 extends AppCompatActivity implements OnOptionsClickLi
     private int amountWonText;
     private String selectedAnswer;
     private long startTimeMillis;
-    private String gameMode;
-    private String sound;
-    private String vibration;
     private CountDownTimer countDownTimer;
 
     @SuppressLint("StaticFieldLeak")
@@ -271,9 +269,6 @@ public class GameActivity3 extends AppCompatActivity implements OnOptionsClickLi
         dbHelper = new DBHelper(this);
 
         String gameLevel = sharedPreferences.getString("game_level", "1");
-        gameMode = sharedPreferences.getString("game_mode", "0");
-        sound = sharedPreferences.getString("sound", "1");
-        vibration = sharedPreferences.getString("vibrate", "1");
         int level = Integer.parseInt(gameLevel);
         amountList = generateAmount(level);
     }
@@ -316,14 +311,17 @@ public class GameActivity3 extends AppCompatActivity implements OnOptionsClickLi
         try {
             String questionsJson = dbHelper.buildJson();
 
-            if (questionsJson == null) {
-                questionsJson = dbHelper.buildJson();
-            }
-            JSONArray jsonArray = new JSONArray(questionsJson);
-            JSONObject jsonObject = jsonArray.getJSONObject(0).getJSONObject("q");
-            questionJSONArray = jsonObject.getJSONArray("0");
+            if (questionsJson != null) {
+                JSONArray jsonArray = new JSONArray(questionsJson);
+                JSONObject jsonObject = jsonArray.getJSONObject(0).getJSONObject("q");
+                questionJSONArray = jsonObject.getJSONArray("0");
 
-            showQuestion();
+                showQuestion();
+            }else {
+                showToast();
+                Log.d("TAG", "recreated");
+            }
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -415,7 +413,7 @@ public class GameActivity3 extends AppCompatActivity implements OnOptionsClickLi
         if (selectedAnswer.equalsIgnoreCase(correctAnswer)) {
             itemView.setBackground(getBackgroundDrawable(GREEN, itemView));
 
-            if (sound.equals("1")) {
+            if (soundStatus().equals("1")) {
                 playSuccessSound(this);
             }
 
@@ -423,7 +421,7 @@ public class GameActivity3 extends AppCompatActivity implements OnOptionsClickLi
         } else {
             itemView.setBackground(getBackgroundDrawable(RED, itemView));
 
-            if (sound.equals("1")) {
+            if (soundStatus().equals("1")) {
                 playFailureSound(this);
             }
 
@@ -432,7 +430,7 @@ public class GameActivity3 extends AppCompatActivity implements OnOptionsClickLi
     }
 
     private void vibrate() {
-        if (vibration.equals("1")) {
+        if (vibrationStatus().equals("1")) {
             Vibrator vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
             if (vibrator != null) {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
@@ -589,6 +587,21 @@ public class GameActivity3 extends AppCompatActivity implements OnOptionsClickLi
     private boolean isFromProgress() {
         sharedPreferences = getSharedPreferences(PREF_NAME, MODE_PRIVATE);
         return sharedPreferences.getBoolean(FROM_PROGRESS, false);
+    }
+
+    private String soundStatus() {
+        sharedPreferences = getSharedPreferences(PREF_NAME, MODE_PRIVATE);
+        return sharedPreferences.getString("sound", "1");
+    }
+
+    private String vibrationStatus() {
+        sharedPreferences = getSharedPreferences(PREF_NAME, MODE_PRIVATE);
+        return sharedPreferences.getString("vibrate", "1");
+    }
+
+    private String gameMode() {
+        sharedPreferences = getSharedPreferences(PREF_NAME, MODE_PRIVATE);
+        return sharedPreferences.getString("game_mode", "0");
     }
 
     private void updateProgressState(boolean progressState) {
@@ -925,7 +938,11 @@ public class GameActivity3 extends AppCompatActivity implements OnOptionsClickLi
         outState.putInt("amountWonText", amountWonText);
         outState.putLong("startTimeMillis", startTimeMillis);
         outState.putIntegerArrayList("amountWonList", new ArrayList<>(amountWonList));
-        outState.putString("questionJSONArray", questionJSONArray.toString());
+        if (questionJSONArray != null) {
+            outState.putString("questionJSONArray", questionJSONArray.toString());
+        } else {
+            outState.putString("questionJSONArray", "");
+        }
     }
 
     @Override
@@ -945,9 +962,13 @@ public class GameActivity3 extends AppCompatActivity implements OnOptionsClickLi
 
         disableLifeLines();
 
-        try {
-            questionJSONArray = new JSONArray(questionJson);
-        } catch (Exception e) {
+        if (questionJson != null && !questionJson.isEmpty()){
+            try {
+                questionJSONArray = new JSONArray(questionJson);
+            } catch (Exception e) {
+                loadQuestions();
+            }
+        }else {
             loadQuestions();
         }
 
@@ -979,7 +1000,7 @@ public class GameActivity3 extends AppCompatActivity implements OnOptionsClickLi
     }
 
     private void startCountdownTimerIfGameModeIsTimed() {
-        if (gameMode.equals("1")) {
+        if (gameMode().equals("1")) {
             timerContainer.setVisibility(View.VISIBLE);
             cancelTimer();
             startCountdownTimer();
@@ -1029,7 +1050,7 @@ public class GameActivity3 extends AppCompatActivity implements OnOptionsClickLi
             loadQuestions();
         }
 
-        if (shouldPlayMusic() && sound.equals("1")) {
+        if (shouldPlayMusic() && soundStatus().equals("1")) {
             playBackgroundMusic(this);
             updateMusicState(false);
         }

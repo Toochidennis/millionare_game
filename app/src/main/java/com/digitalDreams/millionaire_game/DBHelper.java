@@ -31,8 +31,8 @@ public class DBHelper extends SQLiteOpenHelper {
     public static final String TYPE = "TYPE";
     public static final String CORRECT = "CORRECT";
     public static final String LANGUAGE = "LANGUAGE";
-   // public static final String QUESTION_IMAGE = "QUESTION_IMAGE";
-  //  public static final String TITLE = "TITLE";
+    // public static final String QUESTION_IMAGE = "QUESTION_IMAGE";
+    //  public static final String TITLE = "TITLE";
     public static final String LEVEL = "LEVEL";
     public static final String STAGE_NAME = "STAGE_NAME";
     public static final String STAGE = "STAGE";
@@ -212,7 +212,6 @@ public class DBHelper extends SQLiteOpenHelper {
             return res1;
         }
     }
-
 
     public int getQuestionSize() {
         synchronized (lock) {

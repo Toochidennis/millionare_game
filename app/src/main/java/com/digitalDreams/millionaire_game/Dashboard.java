@@ -235,7 +235,6 @@ public class Dashboard extends AppCompatActivity {
         gameLogo.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.game_logo));
     }
 
-
     private final BroadcastReceiver refreshBroadCast = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
@@ -360,6 +359,7 @@ public class Dashboard extends AppCompatActivity {
             case "fr":
             case "es":
             case "pt":
+            case "de":
                 playTxt.setTextSize(18);
                 playTxt2.setTextSize(18);
                 break;
@@ -408,6 +408,16 @@ public class Dashboard extends AppCompatActivity {
             case "ar":
                 SettingActivity.flagImg.setImageResource(R.drawable.arab);
                 SettingActivity.languageTxt.setText(context.getResources().getString(R.string.arabic));
+                break;
+
+            case "de":
+                SettingActivity.flagImg.setImageResource(R.drawable.germany);
+                SettingActivity.languageTxt.setText(context.getResources().getString(R.string.german));
+                break;
+
+            case "ja":
+                SettingActivity.flagImg.setImageResource(R.drawable.japan);
+                SettingActivity.languageTxt.setText(context.getResources().getString(R.string.japanese));
                 break;
         }
     }
