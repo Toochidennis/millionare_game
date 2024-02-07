@@ -3,7 +3,9 @@ package com.digitalDreams.millionaire_game.alpha;
 import static com.digitalDreams.millionaire_game.Utils.ARABIC_KEY;
 import static com.digitalDreams.millionaire_game.Utils.ENGLISH_KEY;
 import static com.digitalDreams.millionaire_game.Utils.FRENCH_KEY;
+import static com.digitalDreams.millionaire_game.Utils.GERMAN_KEY;
 import static com.digitalDreams.millionaire_game.Utils.HINDI_KEY;
+import static com.digitalDreams.millionaire_game.Utils.JAPANESE_KEY;
 import static com.digitalDreams.millionaire_game.Utils.PORTUGUESE_KEY;
 import static com.digitalDreams.millionaire_game.Utils.SPANISH_KEY;
 import static com.digitalDreams.millionaire_game.Utils.URDU_KEY;
@@ -51,12 +53,14 @@ public class Constants {
 
     static {
         languageResourceMap.put(ENGLISH_KEY, R.raw.millionaire);
-        languageResourceMap.put(ARABIC_KEY, R.raw.millionare_ar);
+        languageResourceMap.put(ARABIC_KEY, R.raw.millionaire_ar);
         languageResourceMap.put(FRENCH_KEY, R.raw.millionaire_fr);
         languageResourceMap.put(SPANISH_KEY, R.raw.millionaire_es);
-        languageResourceMap.put(HINDI_KEY, R.raw.millionare_hi);
+        languageResourceMap.put(HINDI_KEY, R.raw.millionaire_hi);
         languageResourceMap.put(PORTUGUESE_KEY, R.raw.millionaire_pt);
-        languageResourceMap.put(URDU_KEY, R.raw.millionare_ur);
+        languageResourceMap.put(URDU_KEY, R.raw.millionaire_ur);
+        languageResourceMap.put(JAPANESE_KEY, R.raw.millionaire_ja);
+        languageResourceMap.put(GERMAN_KEY, R.raw.millionaire_de);
 
         countryResourceMap.put(ENGLISH_KEY, R.raw.country_json_en);
         countryResourceMap.put(ARABIC_KEY, R.raw.country_json_ar);
@@ -65,6 +69,8 @@ public class Constants {
         countryResourceMap.put(HINDI_KEY, R.raw.country_json_hi);
         countryResourceMap.put(PORTUGUESE_KEY, R.raw.country_json_pt);
         countryResourceMap.put(URDU_KEY, R.raw.country_json_ur);
+        countryResourceMap.put(JAPANESE_KEY, R.raw.country_json_ja);
+        countryResourceMap.put(GERMAN_KEY, R.raw.country_json_de);
 
         languageTexts.put(ENGLISH_KEY, null);
         languageTexts.put(ARABIC_KEY, null);
@@ -73,6 +79,8 @@ public class Constants {
         languageTexts.put(HINDI_KEY, null);
         languageTexts.put(PORTUGUESE_KEY, null);
         languageTexts.put(URDU_KEY, null);
+        languageTexts.put(JAPANESE_KEY, null);
+        languageTexts.put(GERMAN_KEY, null);
     }
 
     public static Integer getLanguageResource(String languageCode) {
@@ -112,6 +120,10 @@ public class Constants {
                 return R.string.portuguese;
             case "ur":
                 return R.string.urdu;
+            case "de":
+                return R.string.german;
+            case "ja":
+                return R.string.japanese;
             default:
                 return R.string.english;
         }
