@@ -45,6 +45,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
@@ -170,7 +171,7 @@ public class GameActivity3 extends AppCompatActivity implements OnOptionsClickLi
     private int amountWonText;
     private String selectedAnswer;
     private long startTimeMillis;
-    private CountDownTimer countDownTimer;
+    private CountDownTimer countDownTimer = null;
 
     @SuppressLint("StaticFieldLeak")
     public static Activity gameActivity;
@@ -227,6 +228,10 @@ public class GameActivity3 extends AppCompatActivity implements OnOptionsClickLi
      */
     private void initializeViews() {
         setContentView(R.layout.activity_game3);
+
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                | View.SYSTEM_UI_FLAG_IMMERSIVE);
 
         exitButton = findViewById(R.id.exitBtn);
         timerContainer = findViewById(R.id.timer_container);
@@ -317,7 +322,7 @@ public class GameActivity3 extends AppCompatActivity implements OnOptionsClickLi
                 questionJSONArray = jsonObject.getJSONArray("0");
 
                 showQuestion();
-            }else {
+            } else {
                 showToast();
                 Log.d("TAG", "recreated");
             }
@@ -413,17 +418,13 @@ public class GameActivity3 extends AppCompatActivity implements OnOptionsClickLi
         if (selectedAnswer.equalsIgnoreCase(correctAnswer)) {
             itemView.setBackground(getBackgroundDrawable(GREEN, itemView));
 
-            if (soundStatus().equals("1")) {
-                playSuccessSound(this);
-            }
+            playSuccessSound(this);
 
             showExplanationDialog(PASSED);
         } else {
             itemView.setBackground(getBackgroundDrawable(RED, itemView));
 
-            if (soundStatus().equals("1")) {
-                playFailureSound(this);
-            }
+            playFailureSound(this);
 
             showExplanationDialog(FAILED);
         }
@@ -589,10 +590,10 @@ public class GameActivity3 extends AppCompatActivity implements OnOptionsClickLi
         return sharedPreferences.getBoolean(FROM_PROGRESS, false);
     }
 
-    private String soundStatus() {
+ /*   private String soundStatus() {
         sharedPreferences = getSharedPreferences(PREF_NAME, MODE_PRIVATE);
         return sharedPreferences.getString("sound", "1");
-    }
+    }*/
 
     private String vibrationStatus() {
         sharedPreferences = getSharedPreferences(PREF_NAME, MODE_PRIVATE);
@@ -676,6 +677,10 @@ public class GameActivity3 extends AppCompatActivity implements OnOptionsClickLi
     }
 
     private void hideTwoQuestions() {
+        if (questionModel == null) {
+            parseQuestionJSONArray(questionIndex);
+        }
+
         String correctAnswer = questionModel.getCorrectText();
         optionsAdapter.hideRandomOptions(correctAnswer);
         minus2QuestionsImageView.setVisibility(View.VISIBLE);
@@ -807,6 +812,9 @@ public class GameActivity3 extends AppCompatActivity implements OnOptionsClickLi
     }
 
     private String getCorrectLabel() {
+        if (questionModel == null) {
+            parseQuestionJSONArray(questionIndex);
+        }
         List<OptionsModel> optionsList = questionModel.getOptions();
         String correctAnswer = questionModel.getCorrectText().trim();
 
@@ -962,13 +970,13 @@ public class GameActivity3 extends AppCompatActivity implements OnOptionsClickLi
 
         disableLifeLines();
 
-        if (questionJson != null && !questionJson.isEmpty()){
+        if (questionJson != null && !questionJson.isEmpty()) {
             try {
                 questionJSONArray = new JSONArray(questionJson);
             } catch (Exception e) {
                 loadQuestions();
             }
-        }else {
+        } else {
             loadQuestions();
         }
 
@@ -1050,7 +1058,7 @@ public class GameActivity3 extends AppCompatActivity implements OnOptionsClickLi
             loadQuestions();
         }
 
-        if (shouldPlayMusic() && soundStatus().equals("1")) {
+        if (shouldPlayMusic()) {
             playBackgroundMusic(this);
             updateMusicState(false);
         }
@@ -1070,6 +1078,11 @@ public class GameActivity3 extends AppCompatActivity implements OnOptionsClickLi
         updateRefreshQuestionState(false);
         updateShouldContinueGame(true);
         updateProgressState(false);
+    }
+
+    @Override
+    public void onBackPressed() {
+
     }
 
     @Override
