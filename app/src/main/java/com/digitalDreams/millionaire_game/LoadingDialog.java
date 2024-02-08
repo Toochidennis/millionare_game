@@ -1,5 +1,7 @@
 package com.digitalDreams.millionaire_game;
 
+import static com.digitalDreams.millionaire_game.alpha.Constants.DELAY_INTERVAL_LONG;
+
 import android.app.Dialog;
 import android.content.Context;
 import android.graphics.Color;
@@ -16,7 +18,6 @@ import java.util.Objects;
 public class LoadingDialog extends Dialog {
 
     private ImageView loadingImageView;
-    private static final int CHECK_INTERVAL = 1000;
 
 
     public LoadingDialog(Context context) {
@@ -35,13 +36,12 @@ public class LoadingDialog extends Dialog {
 
         animateImage("scaleX");
         animateImage("scaleY");
-
     }
 
 
     private void animateImage(String propertyName) {
         ObjectAnimator animator = ObjectAnimator.ofFloat(loadingImageView, propertyName, 1f, 1.2f);
-        animator.setDuration(CHECK_INTERVAL);
+        animator.setDuration(DELAY_INTERVAL_LONG);
         animator.setRepeatMode(ObjectAnimator.REVERSE);
         animator.setRepeatCount(ObjectAnimator.INFINITE);
         animator.start();

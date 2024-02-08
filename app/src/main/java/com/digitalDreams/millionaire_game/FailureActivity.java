@@ -133,7 +133,7 @@ public class FailureActivity extends AppCompatActivity {
         checkScore();
 
         new MyAnimation(btn_forAnim);
-        LinearLayout rootView = findViewById(R.id.rootview);
+        RelativeLayout rootView = findViewById(R.id.rootview);
 
         new Particles(this, rootView, R.layout.image_xml, 20);
         GradientDrawable gd = new GradientDrawable(
@@ -150,7 +150,7 @@ public class FailureActivity extends AppCompatActivity {
         new_games.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                AudioManager.darkBlueBlink(getApplicationContext(),new_games);
+                AudioManager.darkBlueBlink(getApplicationContext(), new_games);
 
                 new_games.setClickable(false);
 
