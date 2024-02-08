@@ -3,6 +3,7 @@ package com.digitalDreams.millionaire_game.alpha;
 import static com.digitalDreams.millionaire_game.alpha.Constants.getLabelFromList;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
@@ -13,6 +14,7 @@ import androidx.annotation.Nullable;
 
 import com.digitalDreams.millionaire_game.R;
 import com.digitalDreams.millionaire_game.Utils;
+import com.digitalDreams.millionaire_game.WebViewActivity;
 import com.digitalDreams.millionaire_game.alpha.models.OptionsModel;
 import com.digitalDreams.millionaire_game.alpha.models.QuestionModel;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
@@ -24,7 +26,7 @@ public class ExplanationBottomSheetDialog extends BottomSheetDialog {
     private final QuestionModel questionModel;
 
     private TextView labelTextView, optionTextView, reasonTextView;
-    RelativeLayout exitButton, readMoreButton;
+    RelativeLayout exitButton, readMoreButton, nextQuestionButton;
 
     public ExplanationBottomSheetDialog(@NonNull Context context, QuestionModel questionModel) {
         super(context);
@@ -51,6 +53,7 @@ public class ExplanationBottomSheetDialog extends BottomSheetDialog {
         reasonTextView = findViewById(R.id.reason);
         exitButton = findViewById(R.id.close_dialog);
         readMoreButton = findViewById(R.id.read_more);
+        nextQuestionButton = findViewById(R.id.next_question);
 
         initDisplay();
     }
@@ -69,9 +72,13 @@ public class ExplanationBottomSheetDialog extends BottomSheetDialog {
     private void handleViewClicks() {
         exitButton.setOnClickListener(exit -> dismiss());
 
-        readMoreButton.setOnClickListener(read ->
-                Utils.navigateToWebview(questionModel.getQuestionId(), getContext())
-        );
+        readMoreButton.setOnClickListener(read -> {
+            Intent intent = new Intent(getContext(), WebViewActivity.class);
+            intent.putExtra("questionId", questionModel.getQuestionId());
+            getContext().startActivity(intent);
+        });
+
+        nextQuestionButton.setOnClickListener(next -> dismiss());
     }
 
     private String getLabel() {
