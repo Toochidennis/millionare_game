@@ -1,95 +1,92 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
     android:id="@+id/rootview"
-    android:background="@color/basic_color"
-   >
-<LinearLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center"
+    android:background="@color/basic_color"
     android:orientation="vertical">
+
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginBottom="80dp"
+        android:layout_height="match_parent"
         android:gravity="center"
         android:orientation="vertical">
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="80dp"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/level"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="50dp"
+                android:fontFamily="@font/ultra"
+                android:text="@string/count_down_level"
+                android:textColor="@color/white"
+                android:textSize="40sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/amount_to_win"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/montserrat"
+
+                android:text="@string/count_down_amount"
+                android:textColor="@color/orange"
+                android:textSize="30sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/ultra"
-            android:text="@string/count_down_level"
+            android:text="@string/get_ready"
+            android:textAlignment="center"
             android:textColor="@color/white"
-            android:textSize="40sp"
-            android:textStyle="bold"
-            android:id="@+id/level"
-            android:layout_marginBottom="50dp"
-            />
+            android:textSize="26sp"
+            android:textStyle="bold" />
 
-        <TextView
-            android:id="@+id/amount_to_win"
+
+        <RelativeLayout
+            android:id="@+id/hex"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/montserrat"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="50dp">
 
-            android:text="@string/count_down_amount"
-            android:textColor="@color/orange"
-            android:textSize="30sp"
-            android:textStyle="bold" />
+            <ImageView
+                android:layout_width="160dp"
+                android:layout_height="140dp"
+                android:layout_margin="10dp"
+                android:rotation="90"
+                android:src="@drawable/hexagon_2"
+                app:tint="@color/white" />
+
+
+            <TextView
+                android:id="@+id/count_down_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_gravity="center"
+                android:fontFamily="@font/fjalla_one"
+                android:text="0"
+                android:textColor="@color/white"
+                android:textSize="40sp"
+                android:textStyle="bold" />
+
+        </RelativeLayout>
+
     </LinearLayout>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/get_ready"
-        android:textSize="26sp"
-        android:textStyle="bold"
-        android:textColor="@color/white"
-        android:fontFamily="@font/ultra"
-        />
-
-
-
-
-    <RelativeLayout
-        android:id="@+id/hex"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:layout_centerInParent="true"
-        android:layout_gravity="center_horizontal">
-        <ImageView
-            android:layout_width="160dp"
-            android:layout_height="140dp"
-            android:src="@drawable/hexagon_2"
-            android:rotation="90"
-            android:layout_margin="10dp"
-            app:tint="@color/white"/>
-
-
-        <TextView
-            android:id="@+id/count_down_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:layout_gravity="center"
-            android:fontFamily="@font/fjalla_one"
-            android:text="0"
-            android:textColor="@color/white"
-            android:textSize="40sp"
-            android:textStyle="bold" />
-
-    </RelativeLayout>
-
-</LinearLayout>
 
 
 </RelativeLayout>
