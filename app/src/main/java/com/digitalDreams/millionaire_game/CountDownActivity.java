@@ -100,11 +100,8 @@ public class CountDownActivity extends AppCompatActivity {
             public void onFinish() {
                 //  GameActivity2.isStartAtFresh= false;
                 finish();
-
-                if (sound.equals("1")) {
-                    updateSoundState();
-                    playBackgroundMusic(CountDownActivity.this);
-                }
+                updateSoundState();
+                playBackgroundMusic(CountDownActivity.this);
             }
         };
 

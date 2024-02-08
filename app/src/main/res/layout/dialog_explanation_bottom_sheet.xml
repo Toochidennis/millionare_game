@@ -135,7 +135,6 @@
             android:paddingHorizontal="10dp"
             android:paddingTop="20dp">
 
-
             <TextView
                 android:id="@+id/reason"
                 android:layout_width="wrap_content"
@@ -147,25 +146,52 @@
                 android:textColor="@color/white"
                 android:textSize="16sp" />
 
-            <RelativeLayout
-                android:id="@+id/read_more"
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:layout_marginStart="25dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginEnd="25dp"
-                android:background="@drawable/ic_hexnow"
-                android:padding="10dp">
+           <LinearLayout
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:layout_marginTop="20dp"
+               android:layout_marginStart="16dp"
+               android:layout_marginEnd="16dp"
+               android:orientation="horizontal"
+               android:baselineAligned="false">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
-                    android:text="@string/readmore"
-                    android:textColor="@color/white"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-            </RelativeLayout>
+               <RelativeLayout
+                   android:id="@+id/read_more"
+                   android:layout_width="0dp"
+                   android:layout_height="60dp"
+                   android:layout_weight="1"
+                   android:background="@drawable/ic_hexnow"
+                   android:padding="10dp">
+
+                   <TextView
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:layout_centerInParent="true"
+                       android:text="@string/readmore"
+                       android:textColor="@color/white"
+                       android:textSize="20sp"
+                       android:textStyle="bold" />
+               </RelativeLayout>
+
+               <RelativeLayout
+                   android:id="@+id/next_question"
+                   android:layout_width="0dp"
+                   android:layout_height="60dp"
+                   android:layout_weight="1"
+                   android:layout_marginStart="16dp"
+                   android:background="@drawable/ic_hexnow"
+                   android:padding="10dp">
+
+                   <TextView
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:layout_centerInParent="true"
+                       android:text="@string/next_question"
+                       android:textColor="@color/white"
+                       android:textSize="20sp"
+                       android:textStyle="bold" />
+               </RelativeLayout>
+           </LinearLayout>
 
 
         </LinearLayout>
