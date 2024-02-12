@@ -32,33 +32,25 @@
                 android:textColor="@color/white"
                 android:textSize="26sp" />
 
+
             <RelativeLayout
                 android:id="@+id/hex"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="160dp"
+                android:layout_height="140dp"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="10dp">
-
-                <ImageView
-                    android:layout_width="160dp"
-                    android:layout_height="140dp"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginEnd="10dp"
-                    android:layout_marginBottom="10dp"
-                    android:contentDescription="@string/next"
-                    android:rotation="90"
-                    android:src="@drawable/hexagon_2"
-                    app:tint="@color/white" />
-
+                android:layout_marginTop="10dp"
+                android:background="@drawable/hexagon_2"
+                android:rotation="90">
 
                 <TextView
                     android:id="@+id/count_down_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
-                    android:layout_gravity="center"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
                     android:fontFamily="@font/fjalla_one"
+                    android:rotation="-90"
+                    android:textAlignment="center"
                     android:textColor="@color/white"
                     android:textSize="40sp"
                     android:textStyle="bold" />

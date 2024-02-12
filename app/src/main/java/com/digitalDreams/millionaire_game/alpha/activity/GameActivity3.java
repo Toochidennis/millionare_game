@@ -128,8 +128,8 @@ import java.util.Random;
  * <p>
  * <p>
  * Author: [ToochiDennis]
- * Version: 6.2.2
- * Date: [27th Jan, 2024]
+ * Version: 6.2.4
+ * Date: [9th Feb, 2024]
  */
 
 public class GameActivity3 extends AppCompatActivity implements OnOptionsClickListener {
@@ -164,10 +164,9 @@ public class GameActivity3 extends AppCompatActivity implements OnOptionsClickLi
     private boolean optionsClickable = true;
     private boolean hasAskedComputer = false;
     private boolean hasTakenPoll = false;
-    private boolean isMinus2Question = false;
+    private boolean hasMinus2Question = false;
     private List<Integer> amountList;
     private List<Integer> amountWonList = new ArrayList<>();
-
     private int amountWonText;
     private String selectedAnswer;
     private long startTimeMillis;
@@ -220,7 +219,8 @@ public class GameActivity3 extends AppCompatActivity implements OnOptionsClickLi
         int level = Integer.parseInt(gameLevel);
         amountList = generateAmount(level);
 
-        enableLifeLines();
+        //enableLifeLines();
+        restoreSavedProgress();
     }
 
     /**
@@ -307,6 +307,7 @@ public class GameActivity3 extends AppCompatActivity implements OnOptionsClickLi
         parseQuestionJSONArray(questionIndex);
         animateViews();
         startCountdownTimerIfGameModeIsTimed();
+        saveGameProgress();
     }
 
     /**
@@ -529,6 +530,7 @@ public class GameActivity3 extends AppCompatActivity implements OnOptionsClickLi
         optionsClickable = true;
 
         updateProgressState(false);
+        clearSavedProgress();
     }
 
     private void startWinnersActivity() {
@@ -590,10 +592,12 @@ public class GameActivity3 extends AppCompatActivity implements OnOptionsClickLi
         return sharedPreferences.getBoolean(FROM_PROGRESS, false);
     }
 
- /*   private String soundStatus() {
-        sharedPreferences = getSharedPreferences(PREF_NAME, MODE_PRIVATE);
-        return sharedPreferences.getString("sound", "1");
-    }*/
+    /**
+     * private String soundStatus() {
+     * sharedPreferences = getSharedPreferences(PREF_NAME, MODE_PRIVATE);
+     * return sharedPreferences.getString("sound", "1");
+     * }
+     */
 
     private String vibrationStatus() {
         sharedPreferences = getSharedPreferences(PREF_NAME, MODE_PRIVATE);
@@ -677,15 +681,11 @@ public class GameActivity3 extends AppCompatActivity implements OnOptionsClickLi
     }
 
     private void hideTwoQuestions() {
-        if (questionModel == null) {
-            parseQuestionJSONArray(questionIndex);
-        }
-
         String correctAnswer = questionModel.getCorrectText();
         optionsAdapter.hideRandomOptions(correctAnswer);
         minus2QuestionsImageView.setVisibility(View.VISIBLE);
         minus2QuestionsButton.setClickable(false);
-        isMinus2Question = true;
+        hasMinus2Question = true;
 
         updateSuggestionAndPollVisibility();
     }
@@ -801,7 +801,7 @@ public class GameActivity3 extends AppCompatActivity implements OnOptionsClickLi
             askComputerImageView.setVisibility(View.VISIBLE);
         }
 
-        if (isMinus2Question) {
+        if (hasMinus2Question) {
             minus2QuestionsButton.setClickable(false);
             minus2QuestionsImageView.setVisibility(View.VISIBLE);
         }
@@ -812,7 +812,7 @@ public class GameActivity3 extends AppCompatActivity implements OnOptionsClickLi
     }
 
     private String getCorrectLabel() {
-        if (questionModel == null) {
+        if (questionModel == null){
             parseQuestionJSONArray(questionIndex);
         }
         List<OptionsModel> optionsList = questionModel.getOptions();
@@ -856,7 +856,6 @@ public class GameActivity3 extends AppCompatActivity implements OnOptionsClickLi
         } catch (Exception e) {
             e.printStackTrace();
         }
-
     }
 
     private void showToast() {
@@ -933,54 +932,66 @@ public class GameActivity3 extends AppCompatActivity implements OnOptionsClickLi
                 .start();
     }
 
-    @Override
-    protected void onSaveInstanceState(@NonNull Bundle outState) {
-        super.onSaveInstanceState(outState);
-        outState.putInt("questionIndex", questionIndex);
-        outState.putInt("numberOfPassed", numberOfPassed);
-        outState.putInt("numberOfFailure", numberOfFailure);
-        outState.putInt("numberOfAnswered", numberOfAnswered);
-        outState.putBoolean("hasAskedComputer", hasAskedComputer);
-        outState.putBoolean("hasTakenPoll", hasTakenPoll);
-        outState.putBoolean("isMinus2Questions", isMinus2Question);
-        outState.putInt("amountWonText", amountWonText);
-        outState.putLong("startTimeMillis", startTimeMillis);
-        outState.putIntegerArrayList("amountWonList", new ArrayList<>(amountWonList));
-        if (questionJSONArray != null) {
-            outState.putString("questionJSONArray", questionJSONArray.toString());
-        } else {
-            outState.putString("questionJSONArray", "");
-        }
+    private void saveGameProgress() {
+        sharedPreferences = getSharedPreferences("progress", MODE_PRIVATE);
+        editor = sharedPreferences.edit();
+        editor.putInt("questionIndex", questionIndex);
+        editor.putInt("numberOfPassed", numberOfPassed);
+        editor.putInt("numberOfFailure", numberOfFailure);
+        editor.putInt("numberOfAnswered", numberOfAnswered);
+        editor.putBoolean("hasAskedComputer", hasAskedComputer);
+        editor.putBoolean("hasTakenPoll", hasTakenPoll);
+        editor.putBoolean("isMinus2Questions", hasMinus2Question);
+        editor.putInt("amountWonText", amountWonText);
+        editor.putLong("startTimeMillis", startTimeMillis);
+        editor.putString("questionJSONArray", questionJSONArray.toString());
+        editor.apply();
     }
 
-    @Override
-    protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
-        super.onRestoreInstanceState(savedInstanceState);
-        questionIndex = savedInstanceState.getInt("questionIndex");
-        numberOfPassed = savedInstanceState.getInt("numberOfPassed");
-        numberOfFailure = savedInstanceState.getInt("numberOfFailure");
-        numberOfAnswered = savedInstanceState.getInt("numberOfAnswered");
-        hasAskedComputer = savedInstanceState.getBoolean("hasAskedComputer");
-        hasTakenPoll = savedInstanceState.getBoolean("hasTakenPoll");
-        isMinus2Question = savedInstanceState.getBoolean("isMinus2Questions");
-        amountWonText = savedInstanceState.getInt("amountWonText");
-        startTimeMillis = savedInstanceState.getLong("startTimeMillis");
-        amountWonList = savedInstanceState.getIntegerArrayList("amountWonList");
-        String questionJson = savedInstanceState.getString("questionJSONArray");
+    private void restoreSavedProgress() {
+        sharedPreferences = getSharedPreferences("progress", MODE_PRIVATE);
+        questionIndex = sharedPreferences.getInt("questionIndex", 0);
+        numberOfPassed = sharedPreferences.getInt("numberOfPassed", 0);
+        numberOfFailure = sharedPreferences.getInt("numberOfFailure", 0);
+        numberOfAnswered = sharedPreferences.getInt("numberOfAnswered", 0);
+        hasAskedComputer = sharedPreferences.getBoolean("hasAskedComputer", false);
+        hasTakenPoll = sharedPreferences.getBoolean("hasTakenPoll", false);
+        hasMinus2Question = sharedPreferences.getBoolean("isMinus2Questions", false);
+        amountWonText = sharedPreferences.getInt("amountWonText", 0);
+        startTimeMillis = sharedPreferences.getLong("startTimeMillis", 0);
+        String questionJson = sharedPreferences.getString("questionJSONArray", "");
 
         disableLifeLines();
 
-        if (questionJson != null && !questionJson.isEmpty()) {
+        if (!questionJson.isEmpty()) {
             try {
                 questionJSONArray = new JSONArray(questionJson);
+                showQuestion();
             } catch (Exception e) {
                 loadQuestions();
             }
         } else {
             loadQuestions();
         }
+    }
 
-        showQuestion();
+    private void clearSavedProgress() {
+        getSharedPreferences("progress", MODE_PRIVATE)
+                .edit()
+                .clear()
+                .apply();
+    }
+
+    @Override
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putIntegerArrayList("amountWonList", new ArrayList<>(amountWonList));
+    }
+
+    @Override
+    protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        amountWonList = savedInstanceState.getIntegerArrayList("amountWonList");
     }
 
     private void startCountdownTimer() {
@@ -1089,5 +1100,6 @@ public class GameActivity3 extends AppCompatActivity implements OnOptionsClickLi
     protected void onDestroy() {
         super.onDestroy();
         disposeResources();
+        clearSavedProgress();
     }
 }

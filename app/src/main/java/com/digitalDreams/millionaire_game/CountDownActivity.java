@@ -16,6 +16,7 @@ import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -41,11 +42,10 @@ public class CountDownActivity extends AppCompatActivity {
         AdManager.loadInterstitialAd(this);
         AdManager.loadRewardedAd(CountDownActivity.this);
 
-        RelativeLayout relativeLayout = findViewById(R.id.rootview);
+        LinearLayout relativeLayout = findViewById(R.id.rootview);
         amount_to_win = findViewById(R.id.amount_to_win);
         count_down_level = findViewById(R.id.level);
         TextView counterText = findViewById(R.id.count_down_text);
-
 
         boolean fromWinners = getIntent().getBooleanExtra("fromWinners", false);
 
@@ -115,7 +115,7 @@ public class CountDownActivity extends AppCompatActivity {
     }
 
 
-    void resetData() {
+    private void resetData() {
         SharedPreferences sharedPref = getSharedPreferences(APPLICATION_DATA, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPref.edit();
         editor.clear();

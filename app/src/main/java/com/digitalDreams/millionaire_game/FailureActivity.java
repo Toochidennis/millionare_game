@@ -3,8 +3,10 @@ package com.digitalDreams.millionaire_game;
 import static com.digitalDreams.millionaire_game.alpha.AudioManager.playBackgroundMusic;
 import static com.digitalDreams.millionaire_game.alpha.AudioManager.stopBackgroundMusic;
 import static com.digitalDreams.millionaire_game.alpha.Constants.APPLICATION_DATA;
+import static com.digitalDreams.millionaire_game.alpha.Constants.PREF_NAME;
 import static com.digitalDreams.millionaire_game.alpha.Constants.SHOULD_CONTINUE_GAME;
 import static com.digitalDreams.millionaire_game.alpha.Constants.SHOULD_REFRESH_QUESTION;
+import static com.digitalDreams.millionaire_game.alpha.Constants.SOUND;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -259,6 +261,7 @@ public class FailureActivity extends AppCompatActivity {
                             public void onAdDismissedFullScreenContent() {
                                 finish();
                                 playBackgroundMusic(FailureActivity.this);
+                                updateSoundState();
                                 updateSharedPreference(true);
                                 super.onAdDismissedFullScreenContent();
                             }
@@ -501,6 +504,8 @@ public class FailureActivity extends AppCompatActivity {
 
 
     public void backToGameActivity() {
+        playBackgroundMusic(this);
+        updateSoundState();
         updateSharedPreference(true);
         finish();
     }
@@ -510,6 +515,13 @@ public class FailureActivity extends AppCompatActivity {
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putBoolean(SHOULD_CONTINUE_GAME, continueGame);
         editor.putBoolean(SHOULD_REFRESH_QUESTION, true);
+        editor.apply();
+    }
+
+    private void updateSoundState() {
+        SharedPreferences sharedPref = getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPref.edit();
+        editor.putBoolean(SOUND, false);
         editor.apply();
     }
 
