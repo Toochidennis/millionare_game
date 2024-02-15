@@ -29,6 +29,8 @@
     <string name="urdu">urdu</string>
     <string name="german">Alemão</string>
     <string name="japanese">japonês</string>
+    <string name="turkish">Turco</string>
+    <string name="indonesian">Indonésio</string>
     <string name="banner_ad_unit">ca-app-pub-4696224049420135/8152081288</string>
     <string name="app_ad_id">ca-app-pub-4696224049420135~2129598410</string>
     <string name="interstitial_ad_unit_id">ca-app-pub-4696224049420135/9312479087</string>
@@ -155,5 +157,6 @@
     <string name="toochukwu_dennis">Toochukwu Dennis</string>
     <string name="amos_lucky_chibueze">Amos Lucky Chibueze</string>
     <string name="next_question">Próximo</string>
+    <string name="_15">15</string>
 
 </resources>

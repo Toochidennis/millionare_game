@@ -29,6 +29,8 @@
     <string name="urdu">الأردية</string>
     <string name="german">ألمانية</string>
     <string name="japanese">اليابانية</string>
+    <string name="turkish">اللغة التركية</string>
+    <string name="indonesian">الاندونيسية</string>
     <string name="banner_ad_unit">ca-app-pub-4696224049420135/8152081288</string>
     <string name="app_ad_id">ca-app-pub-4696224049420135~2129598410</string>
     <string name="interstitial_ad_unit_id">ca-app-pub-4696224049420135/9312479087</string>
@@ -157,4 +159,5 @@
     <string name="toochukwu_dennis">توتشوكوو دينيس</string>
     <string name="amos_lucky_chibueze">عاموس لاكي تشيبويز</string>
     <string name="next_question">التالي</string>
+    <string name="_15">15</string>
 </resources>
