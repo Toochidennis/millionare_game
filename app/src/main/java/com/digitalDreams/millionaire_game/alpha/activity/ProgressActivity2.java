@@ -16,6 +16,8 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.transition.Slide;
 import android.view.Gravity;
+import android.view.View;
+import android.view.WindowManager;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.widget.RelativeLayout;
 
@@ -27,7 +29,6 @@ import java.util.List;
 
 public class ProgressActivity2 extends AppCompatActivity {
 
-
     private RelativeLayout exitButton, rootView;
     private RecyclerView progressRecyclerView;
 
@@ -36,10 +37,14 @@ public class ProgressActivity2 extends AppCompatActivity {
     private SharedPreferences sharedPreferences;
     private boolean shouldUseTimer = false;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                | View.SYSTEM_UI_FLAG_IMMERSIVE);
+
         animateRoot();
         setContentView(R.layout.activity_progress2);
 

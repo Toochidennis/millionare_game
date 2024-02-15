@@ -1,6 +1,5 @@
 package com.digitalDreams.millionaire_game;
 
-import static com.digitalDreams.millionaire_game.GameActivity2.hasOldWinningAmount;
 import static com.digitalDreams.millionaire_game.alpha.Constants.formatCurrency;
 
 import android.Manifest;
@@ -44,7 +43,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.digitalDreams.millionaire_game.alpha.AudioManager;
-import com.digitalDreams.millionaire_game.alpha.activity.GameActivity3;
+import com.digitalDreams.millionaire_game.alpha.testing.GameActivity4;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 
@@ -117,7 +116,7 @@ public class PlayDetailsActivity extends AppCompatActivity {
 
         newGameBtn.setOnClickListener(view -> {
             AudioManager.greenBlink(getApplicationContext(), newGameBtn);
-            Intent intent = new Intent(PlayDetailsActivity.this, GameActivity3.class);
+            Intent intent = new Intent(PlayDetailsActivity.this, GameActivity4.class);
             startActivity(intent);
             finish();
         });
@@ -126,7 +125,7 @@ public class PlayDetailsActivity extends AppCompatActivity {
         SharedPreferences sharedPreferences = getSharedPreferences("settings", MODE_PRIVATE);
         String username = sharedPreferences.getString("username", "");
         String newAmountWon = sharedPreferences.getString("amountWon", "0");
-        hasOldWinningAmount = sharedPreferences.getBoolean("hasOldWinningAmount", false);
+       // hasOldWinningAmount = sharedPreferences.getBoolean("hasOldWinningAmount", false);
         int noOfAnsweredQuestion = sharedPreferences.getInt("noOfAnsweredQuestion", 0);
         int nofCorrectQuestions = sharedPreferences.getInt("noOfCorrect", 0);
         int totalAmountWon = sharedPreferences.getInt("totalAmountWon", 0);
@@ -329,7 +328,7 @@ public class PlayDetailsActivity extends AppCompatActivity {
         sharingIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
         sharingIntent.setType("text/plain");
         String shareText = getResources().getString(R.string.ad_copy);
-        shareText = shareText.replace("000", GameActivity2.amountWon);
+        shareText = shareText.replace("000", "");
         shareText = shareText.replace("111", url);
         sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "");
         sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, shareText);
