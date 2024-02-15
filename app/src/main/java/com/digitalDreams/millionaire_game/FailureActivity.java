@@ -25,7 +25,6 @@ import android.view.animation.AnimationSet;
 import android.view.animation.AnimationUtils;
 import android.view.animation.DecelerateInterpolator;
 import android.view.animation.TranslateAnimation;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -40,7 +39,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.digitalDreams.millionaire_game.alpha.AudioManager;
-import com.digitalDreams.millionaire_game.alpha.activity.GameActivity3;
+import com.digitalDreams.millionaire_game.alpha.testing.GameActivity4;
 import com.google.android.gms.ads.AdError;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
@@ -138,11 +137,11 @@ public class FailureActivity extends AppCompatActivity {
         RelativeLayout rootView = findViewById(R.id.rootview);
 
         new Particles(this, rootView, R.layout.image_xml, 20);
-        GradientDrawable gd = new GradientDrawable(
+        GradientDrawable gradientDrawable = new GradientDrawable(
                 GradientDrawable.Orientation.TOP_BOTTOM,
                 new int[]{startColor, endColor});
 
-        rootView.setBackground(gd);
+        rootView.setBackground(gradientDrawable);
 
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
         getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
@@ -251,17 +250,15 @@ public class FailureActivity extends AppCompatActivity {
 
                             @Override
                             public void onAdFailedToShowFullScreenContent(@NonNull AdError adError) {
-                                finishGameActivity();
-                                startActivity(new Intent(FailureActivity.this, PlayDetailsActivity.class));
-                                finish();
+                                restartGame();
                                 super.onAdFailedToShowFullScreenContent(adError);
                             }
 
                             @Override
                             public void onAdDismissedFullScreenContent() {
                                 finish();
-                                playBackgroundMusic(FailureActivity.this);
                                 updateSoundState();
+                                playBackgroundMusic(FailureActivity.this);
                                 updateSharedPreference(true);
                                 super.onAdDismissedFullScreenContent();
                             }
@@ -280,13 +277,12 @@ public class FailureActivity extends AppCompatActivity {
     }
 
     private void finishGameActivity() {
-        if (GameActivity3.gameActivity != null) {
-            GameActivity3.gameActivity.finish();
-        }
+        GameActivity4.Companion.getGameActivity().finish();
     }
 
     private void restartGame() {
         updateSharedPreference(false);
+        updateFirstTimeState();
         startActivity(new Intent(FailureActivity.this, CountDownActivity.class));
         finish();
     }
@@ -370,16 +366,6 @@ public class FailureActivity extends AppCompatActivity {
 
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-    }
-
-    @Override
-    public void onPause() {
-        super.onPause();
-
-    }
 
     @Override
     public void onDestroy() {
@@ -504,7 +490,6 @@ public class FailureActivity extends AppCompatActivity {
 
 
     public void backToGameActivity() {
-        playBackgroundMusic(this);
         updateSoundState();
         updateSharedPreference(true);
         finish();
@@ -521,7 +506,16 @@ public class FailureActivity extends AppCompatActivity {
     private void updateSoundState() {
         SharedPreferences sharedPref = getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPref.edit();
-        editor.putBoolean(SOUND, false);
+        editor.putBoolean(SOUND, true);
+        editor.apply();
+
+        updateFirstTimeState();
+    }
+
+    private void updateFirstTimeState() {
+        SharedPreferences sharedPref = getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPref.edit();
+        editor.putBoolean("is_first_time", false);
         editor.apply();
     }
 

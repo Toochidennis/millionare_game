@@ -13,17 +13,19 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.digitalDreams.millionaire_game.R;
-import com.digitalDreams.millionaire_game.Utils;
 import com.digitalDreams.millionaire_game.WebViewActivity;
 import com.digitalDreams.millionaire_game.alpha.models.OptionsModel;
 import com.digitalDreams.millionaire_game.alpha.models.QuestionModel;
+import com.digitalDreams.millionaire_game.alpha.testing.database.Question;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ExplanationBottomSheetDialog extends BottomSheetDialog {
 
-    private final QuestionModel questionModel;
+    private QuestionModel questionModel;
+    private Question question;
 
     private TextView labelTextView, optionTextView, reasonTextView;
     RelativeLayout exitButton, readMoreButton, nextQuestionButton;
@@ -31,6 +33,11 @@ public class ExplanationBottomSheetDialog extends BottomSheetDialog {
     public ExplanationBottomSheetDialog(@NonNull Context context, QuestionModel questionModel) {
         super(context);
         this.questionModel = questionModel;
+    }
+
+    public ExplanationBottomSheetDialog(@NonNull Context context, Question question) {
+        super(context);
+        this.question = question;
     }
 
 
@@ -64,6 +71,10 @@ public class ExplanationBottomSheetDialog extends BottomSheetDialog {
             labelTextView.setText(getLabel());
             optionTextView.setText(questionModel.getCorrectText());
             reasonTextView.setText(questionModel.getReasonText());
+        } else {
+            labelTextView.setText(getLabel());
+            optionTextView.setText(question.getCorrectAnswer());
+            reasonTextView.setText(question.getReason());
         }
 
         handleViewClicks();
@@ -74,7 +85,12 @@ public class ExplanationBottomSheetDialog extends BottomSheetDialog {
 
         readMoreButton.setOnClickListener(read -> {
             Intent intent = new Intent(getContext(), WebViewActivity.class);
-            intent.putExtra("questionId", questionModel.getQuestionId());
+            if (question == null) {
+                intent.putExtra("questionId", questionModel.getQuestionId());
+            } else {
+                intent.putExtra("questionId", question.getQuestionId());
+            }
+
             getContext().startActivity(intent);
         });
 
@@ -82,8 +98,21 @@ public class ExplanationBottomSheetDialog extends BottomSheetDialog {
     }
 
     private String getLabel() {
-        List<OptionsModel> optionsList = questionModel.getOptions();
-        String correctAnswer = questionModel.getCorrectText().trim();
+        List<OptionsModel> optionsList = new ArrayList<>();
+        String correctAnswer;
+
+        if (question != null) {
+            Question.Options options = question.getOptions();
+            optionsList.add(new OptionsModel(options.getA()));
+            optionsList.add(new OptionsModel(options.getB()));
+            optionsList.add(new OptionsModel(options.getC()));
+            optionsList.add(new OptionsModel(options.getD()));
+
+            correctAnswer = question.getCorrectAnswer().trim();
+        } else {
+            optionsList = questionModel.getOptions();
+            correctAnswer = questionModel.getCorrectText().trim();
+        }
 
         for (int i = 0; i < optionsList.size(); i++) {
             OptionsModel model = optionsList.get(i);
