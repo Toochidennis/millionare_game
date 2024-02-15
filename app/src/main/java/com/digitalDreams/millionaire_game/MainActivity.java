@@ -12,6 +12,7 @@ import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.graphics.Path;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
@@ -32,39 +33,40 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
+import com.digitalDreams.millionaire_game.alpha.testing.database.AppDatabase;
+import com.digitalDreams.millionaire_game.alpha.testing.database.DatabaseProvider;
+import com.digitalDreams.millionaire_game.alpha.testing.database.Question;
+import com.digitalDreams.millionaire_game.alpha.testing.database.QuestionDao;
 import com.google.android.gms.ads.RequestConfiguration;
 
 import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
-import java.io.BufferedReader;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.Reader;
-import java.io.StringWriter;
-import java.io.Writer;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
+import java.util.concurrent.Executors;
 
 public class MainActivity extends AppCompatActivity {
     public final int SPLASH_SCREEN_DELAY = 100;
-    public List<String> columnList = new ArrayList<>();
+    // public List<String> columnList = new ArrayList<>();
     DBHelper dbHelper;
     ImageView ddLogo;
-    long logoStartTime = 0;
+    //  long logoStartTime = 0;
     LinearLayout webDevContainer;
     LinearLayout mobileDevContainer;
     LinearLayout digitalMarketingContainer;
     LinearLayout dataScienceContainer;
     LinearLayout container;
     private static final long COUNTER_TIME = 5;
-    public static boolean ACTIVITY_PASSED = false;
+    //public static boolean ACTIVITY_PASSED = false;
     private String languageCode;
+
+    private QuestionDao questionDao;
 
     TextView trainTxt, webDevTxt, mobileDevTxt, digitalTxt, dataScienceTxt;
 
@@ -75,25 +77,25 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Window window = getWindow();
-   //     AppOpenManager appOpenAdManager;
+        //     AppOpenManager appOpenAdManager;
 
 
         window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
         window.setStatusBarColor(ContextCompat.getColor(this, R.color.white));
 
-        dbHelper = new DBHelper(this);
-
-        ddLogo = findViewById(R.id.dd_logo);
-
+        //dbHelper = new DBHelper(this);
+        AppDatabase database = DatabaseProvider.getInstance(this);
+        questionDao = database.questionDao();
 
         SharedPreferences sharedPreferences = getSharedPreferences("settings", MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
-       // String username = sharedPreferences.getString("username", "");
+        // String username = sharedPreferences.getString("username", "");
         Utils.IS_DONE_INSERTING = sharedPreferences.getBoolean("IS_DONE_INSERTING", false);
         languageCode = sharedPreferences.getString("language", "");
 
         webDevContainer = findViewById(R.id.web_development);
+        ddLogo = findViewById(R.id.dd_logo);
         mobileDevContainer = findViewById(R.id.mobile_development);
         digitalMarketingContainer = findViewById(R.id.digital_marketing);
         dataScienceContainer = findViewById(R.id.data_science);
@@ -106,12 +108,12 @@ public class MainActivity extends AppCompatActivity {
 
         updateTextViews();
 
-        createTimer(COUNTER_TIME);
+        createTimer();
 
         new RequestConfiguration.Builder().setTestDeviceIds(Arrays.asList("C5C6588E00A996967AA2085A167B0F4E", "9D16E23BB90EF4BFA204300CCDCCF264"));
 
         loadQuestionJson(editor);
-
+        Log.d("inserted", "3");
 
         AlphaAnimation fadeIn = new AlphaAnimation(0, 1);
         final AnimationSet set = new AnimationSet(false);
@@ -123,9 +125,9 @@ public class MainActivity extends AppCompatActivity {
         DisplayMetrics displayMetrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
         int height = displayMetrics.heightPixels;
-        int width = displayMetrics.widthPixels;
+        //   int width = displayMetrics.widthPixels;
 
-        int yValue = height - 500;
+        // int yValue = height - 500;
         Path path = new Path();
         path.moveTo(0, height);
         ObjectAnimator moveX = ObjectAnimator.ofFloat(ddLogo, "x", "y", path);
@@ -161,24 +163,17 @@ public class MainActivity extends AppCompatActivity {
 
     private void loadQuestionJson(SharedPreferences.Editor editor) {
         new Thread(() -> {
-            try {
-                dbHelper = new DBHelper(this);
+            if (questionDao.getQuestionSize() == 0) {
+                Utils.IS_DONE_INSERTING = false;
 
-                if (dbHelper.getQuestionSize() == 0) {
-                    Utils.IS_DONE_INSERTING = false;
-
-                    String text = readRawTextFile(getLanguageResource(languageCode));
-                    parseJSON(text);
-
-                    editor.putBoolean(languageCode, true);
-                    editor.apply();
-                } else {
-                    Utils.IS_DONE_INSERTING = true;
-                    editor.putBoolean("IS_DONE_INSERTING", true);
-                    editor.apply();
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
+                initializeDatabase();
+                Log.d("inserted", "2");
+                editor.putBoolean(languageCode, true);
+                editor.apply();
+            } else {
+                Utils.IS_DONE_INSERTING = true;
+                editor.putBoolean("IS_DONE_INSERTING", true);
+                editor.apply();
             }
         }).start();
     }
@@ -203,74 +198,93 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    private String readRawTextFile(int resId) throws IOException {
-        InputStream is = getResources().openRawResource(resId);
-        Writer writer = new StringWriter();
-        char[] buffer = new char[10024];
+    private void initializeDatabase() {
+        // Read the JSON file from the raw resources
+        Log.d("inserted", "1");
+        int resId = getLanguageResource(languageCode);
+        InputStream inputStream = getResources().openRawResource(resId);
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        byte[] buffer = new byte[1250];
+        String json;
+
+        Log.d("inserted", "start");
+
         try {
-            Reader reader = new BufferedReader(new InputStreamReader(is, StandardCharsets.UTF_8));
-            int n;
-            while ((n = reader.read(buffer)) != -1) {
-                writer.write(buffer, 0, n);
+            int length;
+            while ((length = inputStream.read(buffer)) != -1) {
+                outputStream.write(buffer, 0, length);
             }
+
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                json = outputStream.toString(StandardCharsets.UTF_8);
+            } else {
+                json = new String(outputStream.toByteArray(), StandardCharsets.UTF_8);
+            }
+
+            // Parse JSON data into a list of Question objects
+            List<Question> questions = parseJsonToQuestions(json);
+
+            // Insert questions into the database
+            questionDao.insertQuestion(questions);
+
+            Log.d("Inserted", " %d " + questions.size());
+
+            Utils.IS_DONE_INSERTING = true;
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            is.close();
+            try {
+                inputStream.close();
+            } catch (IOException exception) {
+                exception.printStackTrace();
+            }
+        }
+    }
+
+    private List<Question> parseJsonToQuestions(String json) {
+        List<Question> questions = new ArrayList<>();
+        try {
+            JSONArray jsonArray = new JSONArray(json);
+            for (int a = 0; a < jsonArray.length(); a++) {
+                JSONArray questionArray = jsonArray.getJSONArray(a);
+                String id = String.valueOf(questionArray.getInt(0));
+                String questionTitle = questionArray.getString(1);
+                String level = String.valueOf(questionArray.getString(2));
+                String correctAnswer = questionArray.getString(3).trim();
+                String reason = questionArray.getString(4).trim();
+                String optionA = questionArray.getString(5);
+                String optionB = questionArray.getString(6);
+                String optionC = questionArray.getString(7);
+                String optionD = questionArray.getString(8);
+                String language = getLanguageText(this, languageCode);
+
+                Question question = new Question(id,
+                        capitaliseFirstLetter(questionTitle),
+                        capitaliseFirstLetter(correctAnswer),
+                        new Question.Options(
+                                capitaliseFirstLetter(optionA),
+                                capitaliseFirstLetter(optionB),
+                                capitaliseFirstLetter(optionC),
+                                capitaliseFirstLetter(optionD)
+                        ),
+                        reason, "GENERAL", "1", level, language
+                );
+
+                questions.add(question);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
-        return writer.toString();
+        return questions;
     }
 
 
-    private void parseJSON(String json) {
-        int lent = 0;
-        try {
-            JSONArray jsonArray = new JSONArray(json);
-
-            for (int a = 0; a < jsonArray.length(); a++) {
-                Log.i("index", String.valueOf(a));
-                lent++;
-
-                Utils.NUMBER_OF_INSERT++;
-
-
-                if (lent == jsonArray.length()) {
-                    Utils.IS_DONE_INSERTING = true;
-                }
-
-
-                JSONArray question = jsonArray.getJSONArray(a);
-                String id = String.valueOf(question.getInt(0));
-                String content = question.getString(1);
-                String type = "qo";
-                String level = String.valueOf(question.getString(2));
-                String language = getLanguageText(this, languageCode);
-
-                String stage_name = "GENERAL";
-                String stage = "1";
-
-                String correct = question.getString(3).trim();
-                String reason = question.getString(4).trim();
-
-                JSONArray answers = new JSONArray();
-
-                for (int j = 5; j < question.length(); j++) {
-                    JSONObject obj = new JSONObject();
-                    obj.put("text", question.getString(j));
-                    answers.put(obj);
-                }
-
-                String answer = String.valueOf(answers);
-
-                dbHelper.insertDetails(language, level, id, content, type, answer, correct, stage_name, stage, reason);
-            }
-
-        } catch (JSONException e) {
-            e.printStackTrace();
+    private String capitaliseFirstLetter(String word) {
+        if (word == null || word.isEmpty()) {
+            return word;
         }
-        Log.i("JsonDetails", String.valueOf(lent));
-
+        return Character.toUpperCase(word.charAt(0)) + word.substring(1);
     }
 
 
@@ -337,15 +351,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    private void createTimer(long seconds) {
+    private void createTimer() {
         //final TextView counterTextView = findViewById(R.id.timer);
 
         CountDownTimer countDownTimer =
-                new CountDownTimer(seconds * 1000, 1000) {
+                new CountDownTimer(MainActivity.COUNTER_TIME * 1000, 1000) {
                     @Override
                     public void onTick(long millisUntilFinished) {
-                        // secondsRemaining = ((millisUntilFinished / 1000) + 1);
-                        // counterTextView.setText("App is done loading in: " + secondsRemaining);
+
                     }
 
                     @Override
@@ -367,12 +380,8 @@ public class MainActivity extends AppCompatActivity {
                         ((MyApplication) application)
                                 .showAdIfAvailable(
                                         MainActivity.this,
-                                        new MyApplication.OnShowAdCompleteListener() {
-                                            @Override
-                                            public void onShowAdComplete() {
-                                                startDashboardActivity();
-                                            }
-                                        });
+                                        () -> startDashboardActivity());
+
                     }
                 };
         countDownTimer.start();
@@ -382,29 +391,28 @@ public class MainActivity extends AppCompatActivity {
      * Start the Dashboard.
      */
     public void startDashboardActivity() {
-        if (dbHelper.getQuestionSize() > 0) {
-            new Handler().postDelayed(() -> {
+        Executors.newSingleThreadExecutor().execute(() -> {
+            if (questionDao.getQuestionSize() > 0) {
                 SharedPreferences sharedPreferences = getSharedPreferences("settings", MODE_PRIVATE);
                 String username = sharedPreferences.getString("username", "");
+
                 if (username.isEmpty()) {
                     Intent intent = new Intent(MainActivity.this, UserDetails.class);
                     startActivity(intent);
                     finish();
                 } else {
                     SharedPreferences.Editor editor = sharedPreferences.edit();
-
-
+                    Log.d("inserted", "7");
                     Utils.IS_DONE_INSERTING = true;
                     editor.putBoolean("IS_DONE_INSERTING", true);
                     editor.apply();
-
 
                     Intent intent = new Intent(MainActivity.this, Dashboard.class);
                     startActivity(intent);
                     finish();
                 }
-            }, SPLASH_SCREEN_DELAY);
-        }
+            }
+        });
     }
 
 }

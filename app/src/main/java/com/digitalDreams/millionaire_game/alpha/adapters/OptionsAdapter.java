@@ -23,11 +23,10 @@ import java.util.Random;
 
 public class OptionsAdapter extends RecyclerView.Adapter<OptionsAdapter.OptionsViewHolder> {
 
-
     private final List<OptionsModel> itemList;
 
     private OnOptionsClickListener optionsClickListener;
-    private String correctAnswerText = "";
+
     private List<String> hiddenPositions = new ArrayList<>();
 
     private boolean shouldSkipAnimation = false;
@@ -90,7 +89,7 @@ public class OptionsAdapter extends RecyclerView.Adapter<OptionsAdapter.OptionsV
     }
 
     public void hideRandomOptions(String correctAnswerText) {
-        this.correctAnswerText = correctAnswerText;
+        // this.correctAnswerText = correctAnswerText;
 
         hiddenPositions.clear();
 
