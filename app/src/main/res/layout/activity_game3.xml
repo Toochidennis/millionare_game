@@ -6,7 +6,7 @@
     android:id="@+id/rootView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".alpha.activity.GameActivity3">
+    tools:context=".alpha.testing.GameActivity4">
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
