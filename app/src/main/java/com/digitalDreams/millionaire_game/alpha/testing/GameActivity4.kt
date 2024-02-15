@@ -66,7 +66,6 @@ import com.digitalDreams.millionaire_game.alpha.testing.database.DatabaseProvide
 import com.digitalDreams.millionaire_game.alpha.testing.database.Question
 import com.digitalDreams.millionaire_game.alpha.testing.database.QuestionDao
 import com.digitalDreams.millionaire_game.databinding.ActivityGame3Binding
-import com.digitalDreams.millionaire_game.databinding.ActivityGame4Binding
 import com.google.android.gms.ads.AdError
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdView
