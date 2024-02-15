@@ -191,6 +191,37 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/indonesian_language"
+                android:layout_width="291dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="60dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="60dp"
+                android:background="@drawable/ic_hexnow"
+                android:backgroundTint="@color/purple_500"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="70dp"
+                    android:contentDescription="@string/app_name"
+                    android:src="@drawable/indonesian" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="10dp"
+                    android:fontFamily="@font/arimo"
+                    android:text="@string/indonesian"
+                    android:textColor="@color/white"
+                    android:textSize="18sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
                 android:id="@+id/japanese_language"
                 android:layout_width="291dp"
                 android:layout_height="50dp"
@@ -280,6 +311,37 @@
                     android:layout_marginStart="10dp"
                     android:fontFamily="@font/arimo"
                     android:text="@string/spanish"
+                    android:textColor="@color/white"
+                    android:textSize="18sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/turkish_language"
+                android:layout_width="291dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="60dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="60dp"
+                android:background="@drawable/ic_hexnow"
+                android:backgroundTint="@color/purple_500"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="70dp"
+                    android:contentDescription="@string/app_name"
+                    android:src="@drawable/turkish" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="10dp"
+                    android:fontFamily="@font/arimo"
+                    android:text="@string/turkish"
                     android:textColor="@color/white"
                     android:textSize="18sp" />
 
