@@ -44,6 +44,8 @@ public class Utils {
     public static String URDU_KEY = "ur";
     public static String JAPANESE_KEY = "ja";
     public static String GERMAN_KEY = "de";
+    public static String INDONESIAN_KEY = "id";
+    public static String TURKISH_KEY = "tr";
 
     public static int NUMBER_OF_INSERT = 0;
     public static Class destination_activity = Dashboard.class;

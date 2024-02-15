@@ -92,14 +92,14 @@ public class WinnersActivity extends AppCompatActivity {
 
 
         SharedPreferences sharedPreferences = getSharedPreferences("settings", Context.MODE_PRIVATE);
-        String languageCode = sharedPreferences.getString("language", "en");
+        // String languageCode = sharedPreferences.getString("language", "en");
         int endColor = sharedPreferences.getInt("end_color", getResources().getColor(R.color.purple_dark));
         int startColor = sharedPreferences.getInt("start_color", getResources().getColor(R.color.purple_500));
-        int cardBackground = sharedPreferences.getInt("card_background", 0x219ebc);
+        //  int cardBackground = sharedPreferences.getInt("card_background", 0x219ebc);
         String username = sharedPreferences.getString("username", "");
         amountWon = sharedPreferences.getString("amountWon", "1000000");
         String game_level = sharedPreferences.getString("game_level", "1");
-        String sound = sharedPreferences.getString("sound", "1");
+        //String sound = sharedPreferences.getString("sound", "1");
 
         /////////////Save level//////
 
@@ -138,18 +138,10 @@ public class WinnersActivity extends AppCompatActivity {
         //SharedPreferences sharedPreferences = getSharedPreferences("settings", Context.MODE_PRIVATE);
         //String avatar = sharedPreferences.getString("avatar","");
         switch (avatar) {
-            case "1":
-                imageView.setImageResource(R.drawable.avatar1);
-                break;
-            case "2":
-                imageView.setImageResource(R.drawable.avatar2);
-                break;
-            case "3":
-                imageView.setImageResource(R.drawable.avatar3);
-                break;
-            case "4":
-                imageView.setImageResource(R.drawable.avatar4);
-                break;
+            case "1" -> imageView.setImageResource(R.drawable.avatar1);
+            case "2" -> imageView.setImageResource(R.drawable.avatar2);
+            case "3" -> imageView.setImageResource(R.drawable.avatar3);
+            case "4" -> imageView.setImageResource(R.drawable.avatar4);
         }
         return avatar;
     }
@@ -255,16 +247,13 @@ public class WinnersActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
 
-        if (sound.equals("1")) {
-            stopBackgroundMusic();
-            playWinningSound(this);
-            updateMusicState();
-        }
+        stopBackgroundMusic();
+        playWinningSound(this);
+        updateMusicState();
     }
 
     @Override
     public void onBackPressed() {
-
     }
 
     @Override

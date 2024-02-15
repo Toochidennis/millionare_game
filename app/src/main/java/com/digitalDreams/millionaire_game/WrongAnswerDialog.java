@@ -23,6 +23,7 @@ import androidx.annotation.Nullable;
 
 import com.digitalDreams.millionaire_game.alpha.AudioManager;
 import com.digitalDreams.millionaire_game.alpha.ExplanationBottomSheetDialog;
+import com.digitalDreams.millionaire_game.alpha.testing.database.Question;
 import com.digitalDreams.millionaire_game.alpha.models.QuestionModel;
 import com.google.android.gms.ads.AdError;
 import com.google.android.gms.ads.FullScreenContentCallback;
@@ -34,6 +35,7 @@ public class WrongAnswerDialog extends Dialog {
     RewardedAd mRewardedVideoAd;
 
     QuestionModel questionModel;
+    Question question;
 
     private SharedPreferences sharedPreferences;
 
@@ -47,6 +49,16 @@ public class WrongAnswerDialog extends Dialog {
         AdManager.loadRewardedAd((Activity) context);
 
     }
+
+    public WrongAnswerDialog(@NonNull Context context, Question question) {
+        super(context);
+        this.context = context;
+
+        this.question = question;
+        AdManager.loadInterstitialAd((Activity) context);
+        AdManager.loadRewardedAd((Activity) context);
+    }
+
 
     LinearLayout continueButton, closeButton, giveUpButton;
 
@@ -95,7 +107,13 @@ public class WrongAnswerDialog extends Dialog {
 
     private void showExplanationDialog() {
         dismiss();
-        ExplanationBottomSheetDialog explanationBottomSheetDialog = new ExplanationBottomSheetDialog(getContext(), questionModel);
+        ExplanationBottomSheetDialog explanationBottomSheetDialog;
+
+        if (questionModel == null) {
+            explanationBottomSheetDialog = new ExplanationBottomSheetDialog(getContext(), question);
+        } else {
+            explanationBottomSheetDialog = new ExplanationBottomSheetDialog(getContext(), questionModel);
+        }
         explanationBottomSheetDialog.show();
 
         explanationBottomSheetDialog.setOnDismissListener(dialog -> {
