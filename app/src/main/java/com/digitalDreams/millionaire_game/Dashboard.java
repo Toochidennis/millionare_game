@@ -33,6 +33,7 @@ import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import com.digitalDreams.millionaire_game.alpha.AudioManager;
 import com.digitalDreams.millionaire_game.alpha.activity.GameActivity3;
+import com.digitalDreams.millionaire_game.alpha.testing.GameActivity4;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 
@@ -119,10 +120,9 @@ public class Dashboard extends AppCompatActivity {
 
 
         newGameBtn.setOnClickListener(view -> {
-            ///  newGameBtn.startAnimation(buttonClick);
+            sharedPreferences.edit().putBoolean("is_first_time", true).apply();
             AudioManager.greenBlink(getApplicationContext(), newGameBtn);
-
-            Intent intent = new Intent(Dashboard.this, GameActivity3.class);
+            Intent intent = new Intent(Dashboard.this, GameActivity4.class);
             startActivity(intent);
             finish();
         });
@@ -130,7 +130,6 @@ public class Dashboard extends AppCompatActivity {
         gotoYoutubeBtn.setOnClickListener(view -> {
             try {
                 AudioManager.darkBlueBlink(getApplicationContext(), gotoYoutubeBtn);
-
                 startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.youtube.com/channel/UC7AAQdgwQ204aU5ztp19FKg")));
             } catch (Exception e) {
                 e.printStackTrace();
@@ -139,16 +138,9 @@ public class Dashboard extends AppCompatActivity {
         });
 
         new_particle.setOnClickListener(view -> {
-            try {
-                MediaPlayer.create(Dashboard.this, R.raw.others).start();
-
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-
+            AudioManager.darkBlueBlink(this, new_particle);
             Intent i = new Intent(Dashboard.this, WinnersActivity.class);
             startActivity(i);
-
         });
 
         leaderBoardBtn.setOnClickListener(view -> {
@@ -168,9 +160,7 @@ public class Dashboard extends AppCompatActivity {
 
         settingBtn.setOnClickListener(view -> {
             settingBtn.startAnimation(buttonClick);
-
             AudioManager.darkBlueBlink(this, settingBtn);
-
             Intent intent = new Intent(Dashboard.this, SettingActivity.class);
             startActivity(intent);
 
@@ -273,29 +263,24 @@ public class Dashboard extends AppCompatActivity {
 
             setLocale(Dashboard.this, languageCode);
 
-            GradientDrawable gd = new GradientDrawable(
+            GradientDrawable gradientDrawable = new GradientDrawable(
                     GradientDrawable.Orientation.TOP_BOTTOM,
                     new int[]{startColor, endColor});
 
-            bg.setBackground(gd);
+            bg.setBackground(gradientDrawable);
 
             if (SettingActivity.bg != null) {
                 String theme = sharedPreferences.getString("theme", "0");
-                SettingActivity.bg.setBackground(gd);
+                SettingActivity.bg.setBackground(gradientDrawable);
                 switch (theme) {
-                    case "0":
-                        SettingActivity.themeNameTxt.setText(getResources().getString(R.string.default_theme));
-                        break;
-                    case "1":
-                        SettingActivity.themeNameTxt.setText(getResources().getString(R.string.theme_1));
-
-                        break;
-                    case "2":
-                        SettingActivity.themeNameTxt.setText(getResources().getString(R.string.theme_2));
-                        break;
-                    case "3":
-                        SettingActivity.themeNameTxt.setText(getResources().getString(R.string.theme_3));
-                        break;
+                    case "0" ->
+                            SettingActivity.themeNameTxt.setText(getResources().getString(R.string.default_theme));
+                    case "1" ->
+                            SettingActivity.themeNameTxt.setText(getResources().getString(R.string.theme_1));
+                    case "2" ->
+                            SettingActivity.themeNameTxt.setText(getResources().getString(R.string.theme_2));
+                    case "3" ->
+                            SettingActivity.themeNameTxt.setText(getResources().getString(R.string.theme_3));
                 }
             }
 
@@ -356,16 +341,14 @@ public class Dashboard extends AppCompatActivity {
         String languageCode = sharedPreferences.getString("language", "");
 
         switch (languageCode) {
-            case "fr":
-            case "es":
-            case "pt":
-            case "de":
+            case "fr", "es", "pt", "de", "id", "tr" -> {
                 playTxt.setTextSize(18);
                 playTxt2.setTextSize(18);
-                break;
-            default:
+            }
+            default -> {
                 playTxt2.setTextSize(32);
                 playTxt.setTextSize(32);
+            }
         }
 
         setLocale(this, languageCode);
@@ -374,51 +357,31 @@ public class Dashboard extends AppCompatActivity {
     public void setLanguage(Context context) {
         SharedPreferences sharedPreferences = context.getSharedPreferences("settings", MODE_PRIVATE);
         String languageCode = sharedPreferences.getString("language", "");
+        SettingActivity.flagImg.setImageResource(R.drawable.country_flag);
+
         switch (languageCode) {
-            case "en":
-                SettingActivity.flagImg.setImageResource(R.drawable.united_kingdom);
-                SettingActivity.languageTxt.setText(context.getResources().getString(R.string.english));
-                break;
-
-            case "fr":
-                SettingActivity.flagImg.setImageResource(R.drawable.france);
-                SettingActivity.languageTxt.setText(context.getResources().getString(R.string.french));
-                break;
-
-            case "es":
-                SettingActivity.flagImg.setImageResource(R.drawable.spain);
-                SettingActivity.languageTxt.setText(context.getResources().getString(R.string.spanish));
-                break;
-
-            case "pt":
-                SettingActivity.flagImg.setImageResource(R.drawable.portugal);
-                SettingActivity.languageTxt.setText(context.getResources().getString(R.string.portuguese));
-                break;
-
-            case "ur":
-                SettingActivity.flagImg.setImageResource(R.drawable.pakistan);
-                SettingActivity.languageTxt.setText(context.getResources().getString(R.string.urdu));
-                break;
-
-            case "hi":
-                SettingActivity.flagImg.setImageResource(R.drawable.india);
-                SettingActivity.languageTxt.setText(context.getResources().getString(R.string.hindi));
-                break;
-
-            case "ar":
-                SettingActivity.flagImg.setImageResource(R.drawable.arab);
-                SettingActivity.languageTxt.setText(context.getResources().getString(R.string.arabic));
-                break;
-
-            case "de":
-                SettingActivity.flagImg.setImageResource(R.drawable.germany);
-                SettingActivity.languageTxt.setText(context.getResources().getString(R.string.german));
-                break;
-
-            case "ja":
-                SettingActivity.flagImg.setImageResource(R.drawable.japan);
-                SettingActivity.languageTxt.setText(context.getResources().getString(R.string.japanese));
-                break;
+            case "en" ->
+                    SettingActivity.languageTxt.setText(context.getResources().getString(R.string.english));
+            case "fr" ->
+                    SettingActivity.languageTxt.setText(context.getResources().getString(R.string.french));
+            case "es" ->
+                    SettingActivity.languageTxt.setText(context.getResources().getString(R.string.spanish));
+            case "pt" ->
+                    SettingActivity.languageTxt.setText(context.getResources().getString(R.string.portuguese));
+            case "ur" ->
+                    SettingActivity.languageTxt.setText(context.getResources().getString(R.string.urdu));
+            case "hi" ->
+                    SettingActivity.languageTxt.setText(context.getResources().getString(R.string.hindi));
+            case "ar" ->
+                    SettingActivity.languageTxt.setText(context.getResources().getString(R.string.arabic));
+            case "de" ->
+                    SettingActivity.languageTxt.setText(context.getResources().getString(R.string.german));
+            case "ja" ->
+                    SettingActivity.languageTxt.setText(context.getResources().getString(R.string.japanese));
+            case "id" ->
+                    SettingActivity.languageTxt.setText(context.getResources().getString(R.string.indonesian));
+            case "tr" ->
+                    SettingActivity.languageTxt.setText(context.getResources().getString(R.string.turkish));
         }
     }
 
