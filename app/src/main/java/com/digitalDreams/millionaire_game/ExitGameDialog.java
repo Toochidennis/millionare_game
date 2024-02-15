@@ -79,7 +79,7 @@ public class ExitGameDialog extends Dialog {
         RelativeLayout continueBtn = findViewById(R.id.continue_);
 
         takeMoneyBtn.setOnClickListener(view -> {
-            AudioManager.darkBlueBlink(context,takeMoneyBtn);
+            AudioManager.darkBlueBlink(context, takeMoneyBtn);
             showInterstitial();
             stopBackgroundMusic();
             takeMoneyBtn.setClickable(false);
@@ -100,7 +100,7 @@ public class ExitGameDialog extends Dialog {
         amountWonText.setText(formattedAmount);
 
         continueBtn.setOnClickListener(view -> {
-            AudioManager.darkBlueBlink(context,continueBtn);
+            AudioManager.darkBlueBlink(context, continueBtn);
 
             dismiss();
         });
@@ -110,7 +110,7 @@ public class ExitGameDialog extends Dialog {
 
         LinearLayout shareBtn = findViewById(R.id.share);
         shareBtn.setOnClickListener(view -> {
-            AudioManager.darkBlueBlink(context,shareBtn);
+            AudioManager.darkBlueBlink(context, shareBtn);
 
             checkPermission();
             stopBackgroundMusic();
@@ -212,7 +212,7 @@ public class ExitGameDialog extends Dialog {
         Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
         sharingIntent.setType("image/*");
         String shareText = context.getResources().getString(R.string.ad_copy);
-        shareText = shareText.replace("000", GameActivity2.amountWon);
+        shareText = shareText.replace("000", amountWon);
         shareText = shareText.replace("111", url);
         sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "");
         sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, shareText);
