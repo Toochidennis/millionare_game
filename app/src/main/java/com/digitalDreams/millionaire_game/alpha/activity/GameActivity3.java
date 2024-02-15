@@ -209,7 +209,6 @@ public class GameActivity3 extends AppCompatActivity implements OnOptionsClickLi
         startTimeMillis = System.currentTimeMillis();
     }
 
-
     private void reInitializeGame() {
         initializeViews();
         setRootViewBackgroundColor();
@@ -282,8 +281,6 @@ public class GameActivity3 extends AppCompatActivity implements OnOptionsClickLi
      * Handles user interactions such as button clicks.
      */
     private void handleViewsClick() {
-        exitButton.setOnClickListener(v -> super.onBackPressed());
-
         minus2QuestionsButton.setOnClickListener(minus -> hideTwoQuestions());
 
         resetQuestionButton.setOnClickListener(reset -> skipQuestion());
@@ -349,7 +346,7 @@ public class GameActivity3 extends AppCompatActivity implements OnOptionsClickLi
             for (int i = 0; i < optionsArray.length(); i++) {
                 JSONObject optionsObject = optionsArray.getJSONObject(i);
                 String option = optionsObject.getString("text");
-                optionsList.add(new OptionsModel(String.valueOf(i), capitaliseFirstLetter(option).trim()));
+                optionsList.add(new OptionsModel(capitaliseFirstLetter(option).trim()));
             }
 
             questionModel = new QuestionModel(questionId, question, correct, reason, optionsList);
@@ -418,15 +415,11 @@ public class GameActivity3 extends AppCompatActivity implements OnOptionsClickLi
 
         if (selectedAnswer.equalsIgnoreCase(correctAnswer)) {
             itemView.setBackground(getBackgroundDrawable(GREEN, itemView));
-
             playSuccessSound(this);
-
             showExplanationDialog(PASSED);
         } else {
             itemView.setBackground(getBackgroundDrawable(RED, itemView));
-
             playFailureSound(this);
-
             showExplanationDialog(FAILED);
         }
     }
@@ -470,7 +463,7 @@ public class GameActivity3 extends AppCompatActivity implements OnOptionsClickLi
 
         } else {
             explanationBottomSheetDialog = new ExplanationBottomSheetDialog(this, questionModel);
-            startFailureActivities(explanationBottomSheetDialog);
+            startFailureActivity(explanationBottomSheetDialog);
 
             saveHistory(
                     questionModel.getQuestionId(),
@@ -508,7 +501,7 @@ public class GameActivity3 extends AppCompatActivity implements OnOptionsClickLi
         updateMusicState(true);
     }
 
-    private void startFailureActivities(ExplanationBottomSheetDialog explanationBottomSheetDialog) {
+    private void startFailureActivity(ExplanationBottomSheetDialog explanationBottomSheetDialog) {
         if (numberOfFailure < 1) {
             showFailureDialog();
             numberOfFailure++;
