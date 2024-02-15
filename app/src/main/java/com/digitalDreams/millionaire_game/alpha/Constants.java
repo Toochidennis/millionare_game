@@ -5,9 +5,11 @@ import static com.digitalDreams.millionaire_game.Utils.ENGLISH_KEY;
 import static com.digitalDreams.millionaire_game.Utils.FRENCH_KEY;
 import static com.digitalDreams.millionaire_game.Utils.GERMAN_KEY;
 import static com.digitalDreams.millionaire_game.Utils.HINDI_KEY;
+import static com.digitalDreams.millionaire_game.Utils.INDONESIAN_KEY;
 import static com.digitalDreams.millionaire_game.Utils.JAPANESE_KEY;
 import static com.digitalDreams.millionaire_game.Utils.PORTUGUESE_KEY;
 import static com.digitalDreams.millionaire_game.Utils.SPANISH_KEY;
+import static com.digitalDreams.millionaire_game.Utils.TURKISH_KEY;
 import static com.digitalDreams.millionaire_game.Utils.URDU_KEY;
 
 import android.content.Context;
@@ -61,6 +63,8 @@ public class Constants {
         languageResourceMap.put(URDU_KEY, R.raw.millionaire_ur);
         languageResourceMap.put(JAPANESE_KEY, R.raw.millionaire_ja);
         languageResourceMap.put(GERMAN_KEY, R.raw.millionaire_de);
+        languageResourceMap.put(INDONESIAN_KEY, R.raw.millionaire_id);
+        languageResourceMap.put(TURKISH_KEY, R.raw.millionaire_tr);
 
         countryResourceMap.put(ENGLISH_KEY, R.raw.country_json_en);
         countryResourceMap.put(ARABIC_KEY, R.raw.country_json_ar);
@@ -71,6 +75,8 @@ public class Constants {
         countryResourceMap.put(URDU_KEY, R.raw.country_json_ur);
         countryResourceMap.put(JAPANESE_KEY, R.raw.country_json_ja);
         countryResourceMap.put(GERMAN_KEY, R.raw.country_json_de);
+        countryResourceMap.put(INDONESIAN_KEY, R.raw.country_json_id);
+        countryResourceMap.put(TURKISH_KEY, R.raw.country_json_tr);
 
         languageTexts.put(ENGLISH_KEY, null);
         languageTexts.put(ARABIC_KEY, null);
@@ -81,6 +87,8 @@ public class Constants {
         languageTexts.put(URDU_KEY, null);
         languageTexts.put(JAPANESE_KEY, null);
         languageTexts.put(GERMAN_KEY, null);
+        languageTexts.put(INDONESIAN_KEY, null);
+        languageTexts.put(TURKISH_KEY, null);
     }
 
     public static Integer getLanguageResource(String languageCode) {
@@ -107,26 +115,19 @@ public class Constants {
 
     private static int getResourceIdByLanguageCode(String languageCode) {
         // Get resource ID based on language code
-        switch (languageCode) {
-            case "ar":
-                return R.string.arabic;
-            case "fr":
-                return R.string.french;
-            case "es":
-                return R.string.spanish;
-            case "hi":
-                return R.string.hindi;
-            case "pt":
-                return R.string.portuguese;
-            case "ur":
-                return R.string.urdu;
-            case "de":
-                return R.string.german;
-            case "ja":
-                return R.string.japanese;
-            default:
-                return R.string.english;
-        }
+        return switch (languageCode) {
+            case "ar" -> R.string.arabic;
+            case "fr" -> R.string.french;
+            case "es" -> R.string.spanish;
+            case "hi" -> R.string.hindi;
+            case "pt" -> R.string.portuguese;
+            case "ur" -> R.string.urdu;
+            case "de" -> R.string.german;
+            case "ja" -> R.string.japanese;
+            case "id" -> R.string.indonesian;
+            case "tr" -> R.string.turkish;
+            default -> R.string.english;
+        };
     }
 
 
