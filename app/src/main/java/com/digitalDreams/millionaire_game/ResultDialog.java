@@ -1,14 +1,11 @@
 package com.digitalDreams.millionaire_game;
 
-import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -18,6 +15,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.digitalDreams.millionaire_game.alpha.AudioManager;
+import com.digitalDreams.millionaire_game.alpha.testing.GameActivity4;
 
 public class ResultDialog extends Dialog {
     Context context;
@@ -77,7 +75,7 @@ public class ResultDialog extends Dialog {
 
         play_again.setOnClickListener(view -> {
             AudioManager.greenBlink(context, play_again);
-            Intent intent = new Intent(context, GameActivity2.class);
+            Intent intent = new Intent(context, GameActivity4.class);
             context.startActivity(intent);
             dismiss();
 

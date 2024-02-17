@@ -1,90 +1,86 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    android:orientation="vertical"
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="10dp"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:orientation="vertical">
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="80dp"
-        android:padding="10dp"
         android:background="@drawable/ic_hexnow"
-        >
-
-
+        android:padding="10dp">
+        
 
         <TextView
             android:id="@+id/position"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="1"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="20dp"
-            android:textStyle="bold"
-            android:textSize="18sp"
+            android:layout_marginStart="20dp"
             android:fontFamily="@font/fjalla_one"
-            android:textColor="@color/white"/>
+            android:text="1"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            android:textStyle="bold" />
 
     </RelativeLayout>
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="80dp"
-        android:layout_marginLeft="50dp"
-        android:background="@drawable/whitepolygon"
-        >
+        android:layout_marginStart="50dp"
+        android:background="@drawable/whitepolygon">
+
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
             android:layout_centerVertical="true"
-            >
+            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/player_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Player12345"
-                android:textSize="20dp"
+                android:layout_marginStart="40dp"
                 android:fontFamily="@font/montserrat"
-                android:layout_marginLeft="40dp"
+                android:text="Player12345"
                 android:textColor="@color/black"
-                />
+                android:textSize="20dp" />
+
             <TextView
                 android:id="@+id/highscore"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="40dp"
                 android:text="Highscore: 123"
-                android:textSize="13sp"
-                android:layout_marginLeft="40dp"
                 android:textColor="@color/basic_color"
-                />
+                android:textSize="13sp" />
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:orientation="vertical"
-            android:layout_marginRight="20dp"
+            android:layout_alignParentEnd="true"
             android:layout_marginTop="20dp"
-            >
+            android:layout_marginEnd="20dp"
+            android:orientation="vertical">
 
             <ImageView
-                android:layout_gravity="right"
+                android:id="@+id/flag_img"
                 android:layout_width="40dp"
                 android:layout_height="30dp"
-                android:id="@+id/flag_img"
-                android:src="@drawable/img"
-                />
+                android:layout_gravity="end"
+                android:src="@drawable/img" />
+
             <TextView
+                android:id="@+id/country"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Nigeria"
 
-                android:id="@+id/country"
-                android:textColor="@color/black"
-                />
+                android:text="Nigeria"
+                android:textColor="@color/black" />
 
 
         </LinearLayout>

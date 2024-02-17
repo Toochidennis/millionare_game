@@ -132,6 +132,7 @@ class LanguageDialog extends Dialog {
         SharedPreferences.Editor editor = sharedPreferences.edit();
 
         setLocale(unwrap(context), key);
+        Log.d("response", key);
 
         editor.putString("language", key);
 
@@ -187,8 +188,6 @@ class LanguageDialog extends Dialog {
             AppDatabase database = DatabaseProvider.getInstance(unwrap(context));
             QuestionDao questionDao = database.questionDao();
             questionDao.insertQuestion(questions);
-
-            Log.d("Inserted", " %d " + questions.size());
 
             loadingDialog.dismiss();
             sendBroadcast();

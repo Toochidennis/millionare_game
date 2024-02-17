@@ -14,7 +14,6 @@ import android.os.Handler
 import android.os.Looper
 import android.os.VibrationEffect
 import android.os.Vibrator
-import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
@@ -61,21 +60,19 @@ import com.digitalDreams.millionaire_game.alpha.Constants.getRandomSuggestion
 import com.digitalDreams.millionaire_game.alpha.ExplanationBottomSheetDialog
 import com.digitalDreams.millionaire_game.alpha.activity.ProgressActivity2
 import com.digitalDreams.millionaire_game.alpha.adapters.OnOptionsClickListener
-import com.digitalDreams.millionaire_game.alpha.models.OptionsModel
 import com.digitalDreams.millionaire_game.alpha.testing.database.DatabaseProvider
 import com.digitalDreams.millionaire_game.alpha.testing.database.Question
 import com.digitalDreams.millionaire_game.alpha.testing.database.QuestionDao
-import com.digitalDreams.millionaire_game.databinding.ActivityGame3Binding
+import com.digitalDreams.millionaire_game.alpha.models.OptionsModel
 import com.google.android.gms.ads.AdError
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdView
 import com.google.android.gms.ads.FullScreenContentCallback
-import com.google.gson.Gson
-import com.google.gson.reflect.TypeToken
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import org.json.JSONArray
 import java.text.DateFormat
 import java.text.SimpleDateFormat
 import java.util.Calendar
@@ -144,14 +141,15 @@ class GameActivity4 : AppCompatActivity(), OnOptionsClickListener {
     private var startTimeMillis: Long = 0
     private var countDownTimer: CountDownTimer? = null
 
-    private var _binding: ActivityGame3Binding? = null
-
-    private val binding = _binding!!
-
     companion object {
         @SuppressLint("StaticFieldLeak")
-        lateinit var gameActivity: GameActivity4
-            private set
+        private var gameActivity: GameActivity4? = null
+
+        fun setGameActivity(activity4: GameActivity4) {
+            gameActivity = activity4
+        }
+
+        fun getGameActivity(): GameActivity4? = gameActivity
     }
 
 
@@ -169,7 +167,7 @@ class GameActivity4 : AppCompatActivity(), OnOptionsClickListener {
             resumeGame()
         }
 
-        gameActivity = this
+        setGameActivity(this)
     }
 
     private fun initializeGame() {
@@ -590,11 +588,17 @@ class GameActivity4 : AppCompatActivity(), OnOptionsClickListener {
             putInt("amountWonText", amountWonText)
             putLong("startTimeMillis", startTimeMillis)
 
-            val gson = Gson()
-            val json = gson.toJson(questions)
-            putString("question_list", json)
-
+            val jsonArray = fromQuestions()
+            putString("question_list", jsonArray.toString())
             apply()
+        }
+    }
+
+    private fun fromQuestions(): JSONArray {
+        return JSONArray().apply {
+            questions.forEach { question ->
+                put(question.toJsonString())
+            }
         }
     }
 
@@ -612,9 +616,9 @@ class GameActivity4 : AppCompatActivity(), OnOptionsClickListener {
             startTimeMillis = getLong("startTimeMillis", 0)
             val json = getString("question_list", "")
 
-            val gson = Gson()
-            val type = object : TypeToken<MutableList<Question>>() {}.type
-            questions = gson.fromJson(json, type) ?: mutableListOf()
+            if (json != null) {
+                toQuestions(json)
+            }
 
             disableLifeLines()
 
@@ -623,6 +627,20 @@ class GameActivity4 : AppCompatActivity(), OnOptionsClickListener {
             } else {
                 loadQuestions()
             }
+        }
+    }
+
+    private fun toQuestions(json: String) {
+        try {
+            with(JSONArray(json)) {
+                for (i in 0 until length()) {
+                    val jsonObject = getJSONObject(i)
+                    val question = Question.fromJsonString(jsonString = jsonObject.toString())
+                    questions.add(question)
+                }
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
         }
     }
 
@@ -724,8 +742,6 @@ class GameActivity4 : AppCompatActivity(), OnOptionsClickListener {
         val index = Random().nextInt(correctOptions.size)
         val progress = correctOptions[index]
         updateProgressBar(label, progress)
-
-        Log.d("response", "label: $label progress: $progress")
     }
 
     private fun updateProgressBar(label: String, progress: Int) {
@@ -977,7 +993,6 @@ class GameActivity4 : AppCompatActivity(), OnOptionsClickListener {
             if (shouldContinueGame()) {
                 if (isFromProgress()) {
                     showQuestion()
-                    Log.d("response", "I ran")
                 } else if (isShouldRefreshQuestion()) {
                     loadQuestions()
                     updateRefreshQuestionState(false)
