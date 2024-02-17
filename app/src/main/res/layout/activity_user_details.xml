@@ -12,9 +12,7 @@
         android:id="@+id/toolbar_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
         app:cardElevation="5dp">
-
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -132,7 +130,6 @@
 
                 <EditText
                     android:id="@+id/country_name"
-
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
