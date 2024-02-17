@@ -26,13 +26,13 @@ class OptionsAdapter2(
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): OptionsAdapter2.OptionViewHolder {
+    ): OptionViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_options, parent, false)
 
         return OptionViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: OptionsAdapter2.OptionViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: OptionViewHolder, position: Int) {
         holder.bind(itemList[position])
     }
 

@@ -52,9 +52,7 @@ import java.util.Locale;
 import java.util.concurrent.Executors;
 
 public class MainActivity extends AppCompatActivity {
-    public final int SPLASH_SCREEN_DELAY = 100;
-    // public List<String> columnList = new ArrayList<>();
-    DBHelper dbHelper;
+
     ImageView ddLogo;
     //  long logoStartTime = 0;
     LinearLayout webDevContainer;
@@ -70,7 +68,6 @@ public class MainActivity extends AppCompatActivity {
 
     TextView trainTxt, webDevTxt, mobileDevTxt, digitalTxt, dataScienceTxt;
 
-    private long secondsRemaining;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -113,7 +110,6 @@ public class MainActivity extends AppCompatActivity {
         new RequestConfiguration.Builder().setTestDeviceIds(Arrays.asList("C5C6588E00A996967AA2085A167B0F4E", "9D16E23BB90EF4BFA204300CCDCCF264"));
 
         loadQuestionJson(editor);
-        Log.d("inserted", "3");
 
         AlphaAnimation fadeIn = new AlphaAnimation(0, 1);
         final AnimationSet set = new AnimationSet(false);
@@ -125,7 +121,6 @@ public class MainActivity extends AppCompatActivity {
         DisplayMetrics displayMetrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
         int height = displayMetrics.heightPixels;
-        //   int width = displayMetrics.widthPixels;
 
         // int yValue = height - 500;
         Path path = new Path();
@@ -158,7 +153,6 @@ public class MainActivity extends AppCompatActivity {
             animateDataScienceContainer();
             trainTxt.startAnimation(set);
         }, 2000);
-
     }
 
     private void loadQuestionJson(SharedPreferences.Editor editor) {
@@ -167,7 +161,6 @@ public class MainActivity extends AppCompatActivity {
                 Utils.IS_DONE_INSERTING = false;
 
                 initializeDatabase();
-                Log.d("inserted", "2");
                 editor.putBoolean(languageCode, true);
                 editor.apply();
             } else {
@@ -200,14 +193,11 @@ public class MainActivity extends AppCompatActivity {
 
     private void initializeDatabase() {
         // Read the JSON file from the raw resources
-        Log.d("inserted", "1");
         int resId = getLanguageResource(languageCode);
         InputStream inputStream = getResources().openRawResource(resId);
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         byte[] buffer = new byte[1250];
         String json;
-
-        Log.d("inserted", "start");
 
         try {
             int length;
@@ -227,8 +217,6 @@ public class MainActivity extends AppCompatActivity {
             // Insert questions into the database
             questionDao.insertQuestion(questions);
 
-            Log.d("Inserted", " %d " + questions.size());
-
             Utils.IS_DONE_INSERTING = true;
         } catch (Exception e) {
             e.printStackTrace();
@@ -246,6 +234,7 @@ public class MainActivity extends AppCompatActivity {
         try {
             JSONArray jsonArray = new JSONArray(json);
             for (int a = 0; a < jsonArray.length(); a++) {
+
                 JSONArray questionArray = jsonArray.getJSONArray(a);
                 String id = String.valueOf(questionArray.getInt(0));
                 String questionTitle = questionArray.getString(1);
@@ -286,7 +275,6 @@ public class MainActivity extends AppCompatActivity {
         }
         return Character.toUpperCase(word.charAt(0)) + word.substring(1);
     }
-
 
     private void animateWebContainer() {
         AlphaAnimation fadeIn = new AlphaAnimation(0, 1);
@@ -352,8 +340,6 @@ public class MainActivity extends AppCompatActivity {
 
 
     private void createTimer() {
-        //final TextView counterTextView = findViewById(R.id.timer);
-
         CountDownTimer countDownTimer =
                 new CountDownTimer(MainActivity.COUNTER_TIME * 1000, 1000) {
                     @Override
@@ -363,7 +349,6 @@ public class MainActivity extends AppCompatActivity {
 
                     @Override
                     public void onFinish() {
-                        secondsRemaining = 0;
                         //counterTextView.setText("Done.");
 
                         Application application = getApplication();
@@ -377,10 +362,10 @@ public class MainActivity extends AppCompatActivity {
                         }
 
                         // Show the app open ad.
-                        ((MyApplication) application)
-                                .showAdIfAvailable(
-                                        MainActivity.this,
-                                        () -> startDashboardActivity());
+                        ((MyApplication) application).showAdIfAvailable(
+                                MainActivity.this,
+                                () -> startDashboardActivity()
+                        );
 
                     }
                 };
@@ -402,17 +387,14 @@ public class MainActivity extends AppCompatActivity {
                     finish();
                 } else {
                     SharedPreferences.Editor editor = sharedPreferences.edit();
-                    Log.d("inserted", "7");
                     Utils.IS_DONE_INSERTING = true;
                     editor.putBoolean("IS_DONE_INSERTING", true);
                     editor.apply();
 
-                    Intent intent = new Intent(MainActivity.this, Dashboard.class);
-                    startActivity(intent);
+                    startActivity(new Intent(MainActivity.this, Dashboard.class));
                     finish();
                 }
             }
         });
     }
-
 }

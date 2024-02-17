@@ -78,7 +78,7 @@ public class MyApplication extends Application
     }
 
     /**
-     *  Method to save the user's language preference
+     * Method to save the user's language preference
      */
     private void saveLanguagePreference(String languageCode) {
         SharedPreferences.Editor editor = sharedPreferences.edit();
@@ -99,7 +99,8 @@ public class MyApplication extends Application
      * ActivityLifecycleCallback methods.
      */
     @Override
-    public void onActivityCreated(@NonNull Activity activity, @Nullable Bundle savedInstanceState) {}
+    public void onActivityCreated(@NonNull Activity activity, @Nullable Bundle savedInstanceState) {
+    }
 
     @Override
     public void onActivityStarted(@NonNull Activity activity) {
@@ -113,19 +114,24 @@ public class MyApplication extends Application
     }
 
     @Override
-    public void onActivityResumed(@NonNull Activity activity) {}
+    public void onActivityResumed(@NonNull Activity activity) {
+    }
 
     @Override
-    public void onActivityPaused(@NonNull Activity activity) {}
+    public void onActivityPaused(@NonNull Activity activity) {
+    }
 
     @Override
-    public void onActivityStopped(@NonNull Activity activity) {}
+    public void onActivityStopped(@NonNull Activity activity) {
+    }
 
     @Override
-    public void onActivitySaveInstanceState(@NonNull Activity activity, @NonNull Bundle outState) {}
+    public void onActivitySaveInstanceState(@NonNull Activity activity, @NonNull Bundle outState) {
+    }
 
     @Override
-    public void onActivityDestroyed(@NonNull Activity activity) {}
+    public void onActivityDestroyed(@NonNull Activity activity) {
+    }
 
     /**
      * Shows an app open ad.
@@ -173,7 +179,8 @@ public class MyApplication extends Application
         /**
          * Constructor.
          */
-        public AppOpenAdManager() {}
+        public AppOpenAdManager() {
+        }
 
         /**
          * Load an ad.
@@ -245,8 +252,8 @@ public class MyApplication extends Application
          */
         private void showAdIfAvailable(@NonNull final Activity activity) {
             showAdIfAvailable(activity, () -> {
-                        // Empty because the user will go back to the activity that shows the ad.
-                    });
+                // Empty because the user will go back to the activity that shows the ad.
+            });
         }
 
         /**
