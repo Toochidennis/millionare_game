@@ -46,19 +46,18 @@ public class UserDetails extends AppCompatActivity {
     EditText usernameEdt;
     RelativeLayout bg;
     RelativeLayout close_container;
-    CardView avatarContainer1, avatarContainer2, avatarContainer3, avatarContainer4;
     GridLayout gridLayout;
     String username = "", avatar = "",
-            country = "Afghanistan", flag = "", languageCode = "";
+            country = "Afghanistan", flag = "", languageCode = "", countryId = "0";
     //AutoCompleteTextView spinner;
     CountryAdapter countryAdapter;
     ArrayList<String> countries = new ArrayList<>();
     ArrayList<String> flags = new ArrayList<>();
+    ArrayList<String> countryIds = new ArrayList<>();
     EditText country_name;
     Dialog dialog;
+    String type;
     CardView card;
-
-    //private static boolean
 
 
     @Override
@@ -66,11 +65,10 @@ public class UserDetails extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_details);
 
-        Intent intent = getIntent();
-        String type = intent.getStringExtra("type");
+
+        type = getIntent().getStringExtra("type");
         close_container = findViewById(R.id.close_container);
         country_name = findViewById(R.id.country_name);
-
 
         bg = findViewById(R.id.rootview);
         card = findViewById(R.id.card);
@@ -78,26 +76,26 @@ public class UserDetails extends AppCompatActivity {
 
         usernameEdt = findViewById(R.id.username);
 
-
         SharedPreferences sharedPreferences = getSharedPreferences("settings", MODE_PRIVATE);
         String username = sharedPreferences.getString("username", "");
         country = sharedPreferences.getString("country", "");
         flag = sharedPreferences.getString("country_flag", "");
         languageCode = sharedPreferences.getString("language", "");
+        countryId = sharedPreferences.getString("country_id", "");
         int endColor = sharedPreferences.getInt("end_color", getResources().getColor(R.color.purple_dark));
         int startColor = sharedPreferences.getInt("start_color", getResources().getColor(R.color.purple_500));
-        int cardBackground = sharedPreferences.getInt("card_background", 0x219ebc);
+        //int cardBackground = sharedPreferences.getInt("card_background", 0x219ebc);
 
         if (username.equals(getResources().getString(R.string.anonymous_user))) {
             username = "";
         }
 
         new Particles(this, bg, R.layout.image_xml, 20);
-        GradientDrawable gd = new GradientDrawable(
+        GradientDrawable gradientDrawable = new GradientDrawable(
                 GradientDrawable.Orientation.TOP_BOTTOM,
                 new int[]{startColor, endColor});
 
-        bg.setBackground(gd);
+        bg.setBackground(gradientDrawable);
         usernameEdt.requestFocus();
         usernameEdt.setText(username);
         Button continueBtn = findViewById(R.id.continueBtn);
@@ -105,7 +103,7 @@ public class UserDetails extends AppCompatActivity {
         countryAdapter = new CountryAdapter(this, countries, flags);
 
         continueBtn.setOnClickListener(view -> {
-            AudioManager.darkBlueBlink(this,continueBtn);
+            AudioManager.darkBlueBlink(this, continueBtn);
 
             validateInput();
         });
@@ -129,50 +127,10 @@ public class UserDetails extends AppCompatActivity {
         }
 
 
-        //////////////////////////
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_dropdown_item_1line, countries);
-
-
         if (!country.equals("default")) {
             country_name.setText(country);
         }
-        Log.i("Flag", country);
-        Log.i("Flag", flag);
 
-
-//        spinner.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-//
-//
-//            }
-//        });
-
-
-        //////////////////////////
-//        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-//
-//            @Override
-//            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-//                String selectedItem = adapterView.getItemAtPosition(i).toString();
-//                country = selectedItem;
-//                flag = flags.get(i).toString();
-//                //spinner.setText(country);
-//                Log.i("Flag",flags.get(i).toString());
-//                Log.i("Flag",country);
-//
-//
-//
-//            }
-//
-//
-//
-//            @Override
-//            public void onNothingSelected(AdapterView<?> adapterView) {
-//                //adapterView.getItemAtPosition(5).toString();
-//
-//            }
-//        });
 
         close_container.setOnClickListener(view -> {
 
@@ -207,14 +165,11 @@ public class UserDetails extends AppCompatActivity {
 
             EditText editText = dialog.findViewById(R.id.edit_text);
             ListView listView = dialog.findViewById(R.id.list_view);
-            // editText.requestFocus();
-//                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-//                imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, InputMethodManager.SHOW_IMPLICIT);
+
             dialog.setOnDismissListener(dialogInterface -> {
 
-
                 editText.clearFocus();
-                // imm.toggleSoftInput(InputMethodManager.HIDE_IMPLICIT_ONLY, 0);
+
 
             });
 
@@ -253,15 +208,9 @@ public class UserDetails extends AppCompatActivity {
                 // set selected item on textView
                 country_name.setText(adapter1.getItem(position));
 
-                String selectedItem = adapter1.getItem(position).toString();
-                country = selectedItem;
-                flag = flags.get(countries.indexOf(country)).toString();
-                //spinner.setText(country);
-
-                // Log.i("Flag",flags.get( countries.indexOf(country)).toString());
-                // Log.i("Flag",selectedItem);
-                //Log.i("Flag",countries.get(i).toString());
-
+                country = adapter1.getItem(position);
+                flag = flags.get(countries.indexOf(country));
+                countryId = countryIds.get(countries.indexOf(country));
 
                 editText.clearFocus();
                 //imm.toggleSoftInput(InputMethodManager.HIDE_IMPLICIT_ONLY, 0);
@@ -317,17 +266,17 @@ public class UserDetails extends AppCompatActivity {
             ///editor.putString("avatar","1");
             editor.putString("country", country);
             editor.putString("country_flag", flag);
+            editor.putString("country_id", countryId);
             editor.putString("avatar", avatar);
             // editor.putString("current_play_level","1");
             editor.putBoolean("isFirstTime", true);
 
             editor.apply();
 
-
-            checkScore();
-
+            if (type != null && type.equals("edit")) {
+                checkScore();
+            }
             navigate();
-
         }
     }
 
@@ -359,15 +308,17 @@ public class UserDetails extends AppCompatActivity {
                 JSONObject obj1 = jsonArray.getJSONObject(j);
                 String name = obj1.getString("name");
                 String flag = obj1.getString("image");
+                String id = obj1.getString("id");
                 countries.add(name);
                 flags.add(flag);
+                countryIds.add(id);
+
             }
 
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
-
 
 
     private String readRawTextFile(int resId) throws IOException {
@@ -397,11 +348,12 @@ public class UserDetails extends AppCompatActivity {
     }
 
     public void checkScore() {
-        String modeValue = "";
+        String modeValue;
         SharedPreferences sharedPreferences = getSharedPreferences("settings", MODE_PRIVATE);
-        String highscore = sharedPreferences.getString("high_score", "0");
+        String highScore = sharedPreferences.getString("high_score", "0");
         String username = sharedPreferences.getString("username", "");
         String country = sharedPreferences.getString("country", "");
+        String countryId = sharedPreferences.getString("country_id", "0");
         String country_flag = sharedPreferences.getString("country_flag", "");
         String oldAmountWon = sharedPreferences.getString("amountWon", "");
         String mode = sharedPreferences.getString("game_mode", "0");
@@ -414,12 +366,14 @@ public class UserDetails extends AppCompatActivity {
             modeValue = "hard";
         }
 
-        Map userDetails = new HashMap();
+        Map<String, String> userDetails = new HashMap<>();
         userDetails.put("username", username);
         userDetails.put("country", country);
         userDetails.put("country_flag", country_flag);
+        userDetails.put("country_id", countryId);
+        Log.d("countryId", countryId);
 
-        Utils.sendScoreToSever(UserDetails.this, highscore, userDetails, modeValue);
+        Utils.sendScoreToSever(UserDetails.this, highScore, userDetails, modeValue);
     }
 
 
@@ -432,12 +386,10 @@ public class UserDetails extends AppCompatActivity {
 
         } else {
             i = new Intent(UserDetails.this, WelcomeActivity.class);
-
         }
 
         startActivity(i);
         finish();
-
     }
 
     @Override

@@ -73,7 +73,7 @@
     <string name = "take"> لیں</string>
     <string name = "replay_level"> ری پلے لیول</string>
     <string name="watch_a_video">اپنا سکور برقرار رکھیں</string>
-    <string name="base_url">http://www.cbtportal.linkskool.com/api/1</string>
+    <string name="post_url">https://www.ddgames.net/api/post</string>
     <string name = "hard_level"> اگلی سطح</string>
     <string name="failure_text">ناکامی کا مطلب یہ نہیں ہے کہ آپ ناکام ہیں</string>
     <string name="play_again"><u>دوبارہ چلائیں</u></string>
@@ -159,4 +159,5 @@
     <string name = "amos_lucky_chibueze">اموس لکی چیبیوز</string>
     <string name="next_question">اگلے</string>
     <string name="_15">15</string>
+    <string name="get_url">https://www.ddgames.net/api/get</string>
 </resources>
