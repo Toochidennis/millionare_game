@@ -71,6 +71,7 @@ public class PlayDetailsActivity extends AppCompatActivity {
     boolean AdsFromExitGameDialog = false;
     TextView wonTxt, usernameField;
     public static Activity playerDetailsActivity;
+    String formattedAmount;
 
     @Override
     protected void onStart() {
@@ -90,7 +91,7 @@ public class PlayDetailsActivity extends AppCompatActivity {
 
         RelativeLayout bg = findViewById(R.id.rootview);
 
-      //  AdManager.showInterstitial(PlayDetailsActivity.this);
+        //  AdManager.showInterstitial(PlayDetailsActivity.this);
 
 
         AdView mAdView;
@@ -125,7 +126,7 @@ public class PlayDetailsActivity extends AppCompatActivity {
         SharedPreferences sharedPreferences = getSharedPreferences("settings", MODE_PRIVATE);
         String username = sharedPreferences.getString("username", "");
         String newAmountWon = sharedPreferences.getString("amountWon", "0");
-       // hasOldWinningAmount = sharedPreferences.getBoolean("hasOldWinningAmount", false);
+        // hasOldWinningAmount = sharedPreferences.getBoolean("hasOldWinningAmount", false);
         int noOfAnsweredQuestion = sharedPreferences.getInt("noOfAnsweredQuestion", 0);
         int nofCorrectQuestions = sharedPreferences.getInt("noOfCorrect", 0);
         int totalAmountWon = sharedPreferences.getInt("totalAmountWon", 0);
@@ -160,7 +161,6 @@ public class PlayDetailsActivity extends AppCompatActivity {
 
         try {
             int parsedNewAmount = Integer.parseInt(newAmountWon);
-            String formattedAmount;
 
             if (isFinishLevel) {
                 totalAmountWon += parsedNewAmount;
@@ -227,7 +227,7 @@ public class PlayDetailsActivity extends AppCompatActivity {
         RelativeLayout newGame = findViewById(R.id.new_game);
 
         homeBtn.setOnClickListener(view -> {
-            AudioManager.darkBlueBlink(this,homeBtn);
+            AudioManager.darkBlueBlink(this, homeBtn);
             Intent intent = new Intent(PlayDetailsActivity.this, Dashboard.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(intent);
@@ -241,11 +241,11 @@ public class PlayDetailsActivity extends AppCompatActivity {
 
         newGame.setOnClickListener(view -> {
             Utils.destination_activity = LeaderBoard.class;
-            AudioManager.darkBlueBlink(this,newGame);
-            Intent intent = new Intent(PlayDetailsActivity.this, LeaderBoard.class);
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            startActivity(intent);
-            finish();
+            AudioManager.darkBlueBlink(this, newGame);
+            // Intent intent = ;
+            //intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(new Intent(PlayDetailsActivity.this, LeaderBoard.class));
+            //finish();
         });
 
         checkScore();
@@ -276,7 +276,7 @@ public class PlayDetailsActivity extends AppCompatActivity {
 
         try {
             saveScreenshot(bitmap);
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             Toast.makeText(getApplicationContext(), getResources().getString(R.string.file_does_not_exist), Toast.LENGTH_SHORT).show();
         }
@@ -328,7 +328,7 @@ public class PlayDetailsActivity extends AppCompatActivity {
         sharingIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
         sharingIntent.setType("text/plain");
         String shareText = getResources().getString(R.string.ad_copy);
-        shareText = shareText.replace("000", "");
+        shareText = shareText.replace("000", formattedAmount);
         shareText = shareText.replace("111", url);
         sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "");
         sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, shareText);
@@ -417,6 +417,7 @@ public class PlayDetailsActivity extends AppCompatActivity {
 
             String country = sharedPreferences.getString("country", "");
             String country_flag = sharedPreferences.getString("country_flag", "");
+            String countryId = sharedPreferences.getString("country_id", "0");
             boolean isFinishLevel = sharedPreferences.getBoolean("isFinishLevel", false);
 
 
@@ -425,9 +426,9 @@ public class PlayDetailsActivity extends AppCompatActivity {
             int parsedNewAmount = Integer.parseInt(newAmountWon);
             int totalAmount2;
 
-            if (isFinishLevel){
-                totalAmount2 =  totalAmountWon + parsedNewAmount;
-            }else {
+            if (isFinishLevel) {
+                totalAmount2 = totalAmountWon + parsedNewAmount;
+            } else {
                 totalAmount2 = parsedNewAmount;
             }
 
@@ -441,17 +442,16 @@ public class PlayDetailsActivity extends AppCompatActivity {
             userDetails.put("username", username);
             userDetails.put("country", country);
             userDetails.put("country_flag", country_flag);
+            userDetails.put("country_id", countryId);
 
-
-            // sendScoreToSever(String.valueOf(totalAmount2), userDetails);
+            sendScoreToSever(String.valueOf(totalAmount2), userDetails);
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    //@RequiresApi(api = Build.VERSION_CODES.M)
     private void sendScoreToSever(String score, Map<String, String> userDetails) {
-        String url = getResources().getString(R.string.base_url) + "/post_score.php";
+        String url = getResources().getString(R.string.post_url);
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url, response -> {
             try {
                 Log.i("response111", "response== " + response);
@@ -469,7 +469,6 @@ public class PlayDetailsActivity extends AppCompatActivity {
 
                     txt = getResources().getString(R.string.congratulations_improve_your_score_to_remain_at_the_top) + currencyFormat(dailyMax);
 
-
                 } else if (daily.equals("1")) {
                     txt = getResources().getString(R.string.beat_this_weeks_highest_score) + currencyFormat(weeklyMax);
 
@@ -481,19 +480,13 @@ public class PlayDetailsActivity extends AppCompatActivity {
 
                 }
 
-
                 ResultDialog r = new ResultDialog(PlayDetailsActivity.this, daily, weekly, txt);
-                // r.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.blue(444)));
-
-                // r.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.));
 
                 if (!isFinishing()) {
 
                     r.show();
 
                 }
-
-
             } catch (JSONException e) {
                 e.printStackTrace();
             }
@@ -509,19 +502,20 @@ public class PlayDetailsActivity extends AppCompatActivity {
                 try {
                     country_json.put("name", userDetails.get("country"));
                     country_json.put("url", userDetails.get("country_flag"));
+                    country_json.put("id", userDetails.get("country_id"));
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
                 param.put("score", score);
                 param.put("username", userDetails.get("username"));
-                param.put("country", userDetails.get("country"));
+                param.put("country", userDetails.get("country_id"));
                 param.put("country_json", country_json.toString());
                 param.put("country_flag", userDetails.get("country_flag"));
                 param.put("avatar", getAvatar());
                 param.put("device_id", getDeviceId(PlayDetailsActivity.this));
                 param.put("game_type", "millionaire");
                 param.put("mode", modeValue);
-                Log.i("praram", String.valueOf(param));
+                Log.i("param", String.valueOf(param));
                 return param;
             }
         };
@@ -533,8 +527,7 @@ public class PlayDetailsActivity extends AppCompatActivity {
 
     private String getAvatar() {
         SharedPreferences sharedPreferences = getSharedPreferences("settings", Context.MODE_PRIVATE);
-        String avatar = sharedPreferences.getString("avatar", "");
-        return avatar;
+        return sharedPreferences.getString("avatar", "");
     }
 
     @RequiresApi(api = Build.VERSION_CODES.M)
@@ -556,8 +549,6 @@ public class PlayDetailsActivity extends AppCompatActivity {
         } else {
             alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP, (delay), AlarmManager.INTERVAL_DAY, servicePendingIntent);
         }
-
-
     }
 
     public static String currencyFormat(String amount) {

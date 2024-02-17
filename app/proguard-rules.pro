@@ -20,7 +20,6 @@
 -keep class com.android.org.conscrypt.** { *; }
 -keep class org.apache.harmony.xnet.provider.jsse.** { *; }
 
-
 # Uncomment this to preserve the line number information for
 # debugging stack traces.
 #-keepattributes SourceFile,LineNumberTable
