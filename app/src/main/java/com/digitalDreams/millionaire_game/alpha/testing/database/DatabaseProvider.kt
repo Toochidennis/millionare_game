@@ -21,7 +21,8 @@ class DatabaseProvider {
                 context.applicationContext,
                 AppDatabase::class.java,
                 "app_database"
-            ).build()
+            ).fallbackToDestructiveMigration()
+                .build()
         }
     }
 

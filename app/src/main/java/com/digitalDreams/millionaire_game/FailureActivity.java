@@ -273,11 +273,13 @@ public class FailureActivity extends AppCompatActivity {
                 }
             }
         });
-
     }
 
     private void finishGameActivity() {
-        GameActivity4.Companion.getGameActivity().finish();
+        GameActivity4 gameActivity4 = GameActivity4.Companion.getGameActivity();
+        if (gameActivity4 != null) {
+            gameActivity4.finish();
+        }
     }
 
     private void restartGame() {
@@ -428,7 +430,7 @@ public class FailureActivity extends AppCompatActivity {
     }
 
     private void sendScoreToSever(String score, Map<String, String> userDetails) {
-        String url = getResources().getString(R.string.base_url) + "/post_score.php";
+        String url = getResources().getString(R.string.post_url) + "/post_score.php";
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url, response ->
                 Log.i("response", "response " + response), new Response.ErrorListener() {
             @Override

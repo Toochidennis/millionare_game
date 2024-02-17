@@ -93,6 +93,7 @@ public class CountryLeaderBoard extends AppCompatActivity {
     TextView activity_title;
     Map<String,Object> country_map;
     String country;
+    String countryId;
     String country_flag;
     //AdManager  adManager;
     @Override
@@ -108,6 +109,7 @@ public class CountryLeaderBoard extends AppCompatActivity {
         activity_title = findViewById(R.id.activity_title);
 
         country = getIntent().getStringExtra("country");
+        countryId = getIntent().getStringExtra("country_id");
         country_flag = getIntent().getStringExtra("country_flag");
 
        // country_map = (Map<String, Object>) getIntent().getSerializableExtra("country_map");
@@ -156,101 +158,86 @@ public class CountryLeaderBoard extends AppCompatActivity {
 
         list = new ArrayList<>();
         setView(view);
-        allBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                AudioManager.darkBlueBlink(getApplicationContext(),allBtn);
-                list.clear();
-                emptyText.setVisibility(View.GONE);
-                selector(0);
-                container.removeAllViews();
-                view = inflater.inflate(R.layout.all_time_layout,container,false);
-                container.addView(view);
-                setView(view);
-                if(json1!=null){
-                    try {
-                        parseJSON(json1);
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
+        allBtn.setOnClickListener(view -> {
+            AudioManager.darkBlueBlink(getApplicationContext(),allBtn);
+            list.clear();
+            emptyText.setVisibility(View.GONE);
+            selector(0);
+            container.removeAllViews();
+            view = inflater.inflate(R.layout.all_time_layout,container,false);
+            container.addView(view);
+            setView(view);
+            if(json1!=null){
+                try {
+                    parseJSON(json1);
+                } catch (JSONException e) {
+                    e.printStackTrace();
                 }
             }
         });
 
-        weekBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                AudioManager.darkBlueBlink(getApplicationContext(),weekBtn);
-                list.clear();
-                emptyText.setVisibility(View.GONE);
-                container.removeAllViews();
-                selector(1);
-                view2 = inflater.inflate(R.layout.week_layout,container,false);
-                container.addView(view2);
-                setView(view2);
-                if(json2!=null){
-                    try {
-                        parseJSON(json2);
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-                }else {
-                    getWeeklyLeaderBoard();
+        weekBtn.setOnClickListener(view -> {
+            AudioManager.darkBlueBlink(getApplicationContext(),weekBtn);
+            list.clear();
+            emptyText.setVisibility(View.GONE);
+            container.removeAllViews();
+            selector(1);
+            view2 = inflater.inflate(R.layout.week_layout,container,false);
+            container.addView(view2);
+            setView(view2);
+            if(json2!=null){
+                try {
+                    parseJSON(json2);
+                } catch (JSONException e) {
+                    e.printStackTrace();
                 }
+            }else {
+                getWeeklyLeaderBoard();
             }
         });
-        dailyBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                AudioManager.darkBlueBlink(getApplicationContext(),dailyBtn);
-                list.clear();
-                emptyText.setVisibility(View.GONE);
-                selector(2);
-                container.removeAllViews();
-                view3 = inflater.inflate(R.layout.daily_layout,container,false);
-                container.addView(view3);
-                setView(view3);
-                if(json3!=null){
-                    try {
-                        parseJSON(json3);
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-                }else {
-                    getDialyLeaderBoard();
+        dailyBtn.setOnClickListener(view -> {
+            AudioManager.darkBlueBlink(getApplicationContext(),dailyBtn);
+            list.clear();
+            emptyText.setVisibility(View.GONE);
+            selector(2);
+            container.removeAllViews();
+            view3 = inflater.inflate(R.layout.daily_layout,container,false);
+            container.addView(view3);
+            setView(view3);
+            if(json3!=null){
+                try {
+                    parseJSON(json3);
+                } catch (JSONException e) {
+                    e.printStackTrace();
                 }
+            }else {
+                getDialyLeaderBoard();
             }
         });
 
-        countryBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                list.clear();
-                emptyText.setVisibility(View.GONE);
-                selector(3);
-                container.removeAllViews();
-                view4 = inflater.inflate(R.layout.country_leader_board,container,false);
-                container.addView(view4);
-                setView(view4);
-                if(json4!=null){
-                    try {
-                        parseJSON(json4);
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-                }else {
-                    getCountryLeaderBoard();
+        countryBtn.setOnClickListener(view -> {
+            list.clear();
+            emptyText.setVisibility(View.GONE);
+            selector(3);
+            container.removeAllViews();
+            view4 = inflater.inflate(R.layout.country_leader_board,container,false);
+            container.addView(view4);
+            setView(view4);
+            if(json4!=null){
+                try {
+                    parseJSON(json4);
+                } catch (JSONException e) {
+                    e.printStackTrace();
                 }
+            }else {
+                getCountryLeaderBoard();
             }
         });
 
-        share_container.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-               try {
-                   checkPermission();
-               }catch (Exception e){}
-            }
+        share_container.setOnClickListener(view -> {
+           try {
+               checkPermission();
+           }catch (Exception e){}
         });
 
 
@@ -345,7 +332,7 @@ public class CountryLeaderBoard extends AppCompatActivity {
 
 
     private void getAllLeaderBoard(){
-        String url = getResources().getString(R.string.base_url)+"/get_leaderboard.php";
+        String url = getResources().getString(R.string.get_url);
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
@@ -374,7 +361,7 @@ public class CountryLeaderBoard extends AppCompatActivity {
                 super.getParams();
                 Map<String,String> param = new HashMap<>();
                 param.put("game_type","millionaire");
-                param.put("country_filter",country);
+                param.put("country_filter",countryId);
                 param.put("country_name",country);
                 param.put("country_flag",country_flag);
                 param.put("period","today");
@@ -389,7 +376,7 @@ public class CountryLeaderBoard extends AppCompatActivity {
     private void getWeeklyLeaderBoard(){
         emptyLayout.setVisibility(View.VISIBLE);
         progressBar.setVisibility(View.VISIBLE);
-        String url = getResources().getString(R.string.base_url)+"/get_leaderboard.php";
+        String url = getResources().getString(R.string.get_url);
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -417,7 +404,7 @@ public class CountryLeaderBoard extends AppCompatActivity {
                 super.getParams();
                 Map<String,String> param = new HashMap<>();
                 param.put("game_type","millionaire");
-                param.put("country_filter",country);
+                param.put("country_filter",countryId);
                 param.put("country_name",country);
                 param.put("country_flag",country_flag);
                 param.put("period","week");
@@ -432,7 +419,7 @@ public class CountryLeaderBoard extends AppCompatActivity {
     private void getDialyLeaderBoard(){
         emptyLayout.setVisibility(View.VISIBLE);
         progressBar.setVisibility(View.VISIBLE);
-        String url = getResources().getString(R.string.base_url)+"/get_leaderboard.php";
+        String url = getResources().getString(R.string.get_url);
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -460,7 +447,7 @@ public class CountryLeaderBoard extends AppCompatActivity {
                 super.getParams();
                 Map<String,String> param = new HashMap<>();
                 param.put("game_type","millionaire");
-                param.put("country_filter",country);
+                param.put("country_filter",countryId);
                 param.put("country_name",country);
                 param.put("country_flag",country_flag);
                 param.put("period","daily");
@@ -476,29 +463,26 @@ public class CountryLeaderBoard extends AppCompatActivity {
     private void getCountryLeaderBoard(){
         emptyLayout.setVisibility(View.VISIBLE);
         progressBar.setVisibility(View.VISIBLE);
-        String url = getResources().getString(R.string.base_url)+"/get_leaderboard.php";
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                Log.i("response_country","response "+response);
-                progressBar.setVisibility(View.GONE);
-                //solveCountryJson(response);
-                if(response!=null){
-                    try {
-                        list.clear();
+        String url = getString(R.string.get_url);
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, url, response -> {
+            Log.i("response_country","response "+response);
+            progressBar.setVisibility(View.GONE);
+            //solveCountryJson(response);
+            if(response!=null){
+                try {
+                    list.clear();
 
-                        json4 = response;
-                        JSONObject object =  new JSONObject(response);
-                        //solveCountryJson(response);
+                    json4 = response;
+                    JSONObject object =  new JSONObject(response);
+                    //solveCountryJson(response);
 
 
 
-                        Log.i("confirm",json4);
+                    Log.i("confirm",json4);
 
-                        // parseJSON(response);
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
+                    // parseJSON(response);
+                } catch (JSONException e) {
+                    e.printStackTrace();
                 }
             }
         }, new Response.ErrorListener() {
@@ -605,12 +589,9 @@ public class CountryLeaderBoard extends AppCompatActivity {
             }
         }
         adapter.notifyDataSetChanged();
-        if(jsonArray.length()==0|| jsonArray==null){
+        if(jsonArray.length() == 0){
             emptyText.setVisibility(View.VISIBLE);
-        }else if(jsonArray!=null && jsonArray.length()>0){
-
-        }
-        else {
+        } else {
             emptyLayout.setVisibility(View.GONE);
         }
 
