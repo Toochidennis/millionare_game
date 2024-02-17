@@ -73,7 +73,7 @@
     <string name="take">Almak</string>
     <string name="replay_level">Tekrar Oynatma Seviyesi</string>
     <string name="watch_a_video">Puanınızı koruyun</string>
-    <string name="base_url">http://www.cbtportal.linkskool.com/api/1</string>
+    <string name="post_url">https://www.ddgames.net/api/post</string>
     <string name="hard_level">Sonraki seviye</string>
     <string name="failure_text">Başarısızlık, senin bir başarısız olduğun anlamına gelmez</string>
     <string name="play_again"><u>Tekrar Oyna</u></string>
@@ -159,4 +159,5 @@
     <string name="amos_lucky_chibueze">Amos Lucky Chibueze</string>
     <string name="next_question">Sonraki</string>
     <string name="_15">15</string>
+    <string name="get_url">https://www.ddgames.net/api/get</string>
 </resources>

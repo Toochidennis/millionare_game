@@ -73,7 +73,7 @@
     <string name="take">Levar</string>
     <string name="replay_level">Repetir Nível</string>
     <string name="watch_a_video">Assistir a um Vídeo</string>
-    <string name="base_url">http://www.cbtportal.linkskool.com/api/1</string>
+    <string name="post_url">https://www.ddgames.net/api/post</string>
     <string name="hard_level">Nível Difícil</string>
     <string name="failure_text">Falhar não significa que você é um fracasso</string>
     <string name="play_again"><u>Jogar Novamente</u></string>
@@ -158,5 +158,6 @@
     <string name="amos_lucky_chibueze">Amos Lucky Chibueze</string>
     <string name="next_question">Próximo</string>
     <string name="_15">15</string>
+    <string name="get_url">https://www.ddgames.net/api/get</string>
 
 </resources>

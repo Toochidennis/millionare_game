@@ -73,7 +73,7 @@
     <string name="take">取る</string>
     <string name="replay_level">レベルをやり直す</string>
     <string name="watch_a_video">スコアを保持する</string>
-    <string name="base_url">http://www.cbtportal.linkskool.com/api/1</string>
+    <string name="post_url">https://www.ddgames.net/api/post</string>
     <string name="hard_level">次のレベル</string>
     <string name="failure_text">失敗したからといってあなたが失敗者であるわけではありません</string>
     <string name="play_again"><u>再びプレー</u></string>
@@ -159,5 +159,6 @@
     <string name="amos_lucky_chibueze">アモス ラッキー チブエゼ</string>
     <string name="next_question">次</string>
     <string name="_15">15</string>
+    <string name="get_url">https://www.ddgames.net/api/get</string>
 
 </resources>
