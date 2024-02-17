@@ -30,7 +30,7 @@
     <string name="german">Jerman</string>
     <string name="japanese">Jepang</string>
     <string name="turkish">Turki</string>
-    <string name="indonesian">Bahasa Indonesia</string>
+    <string name="indonesian">Indonesia</string>
     <string name="banner_ad_unit">ca-app-pub-4696224049420135/8152081288</string>
     <string name="app_ad_id">ca-app-pub-4696224049420135~2129598410</string>
     <string name="interstitial_ad_unit_id">ca-app-pub-4696224049420135/9312479087</string>
@@ -42,7 +42,7 @@
 \n\nKalahkan saya jika Anda bisa !!!
        \n111
 </string>
-    <string name="play">MAINKAN</string>
+    <string name="play">BERMAIN</string>
     <string name="see_your_ranking">Lihat peringkat Anda</string>
     <string name="goto_youtube"><u>Belajar Keterampilan Digital</u></string>
     <string name="won">Selamat Anda menang</string>
@@ -70,16 +70,16 @@
     <string name="take_money">Keluar dari Permainan</string>
     <string name="continue_">Lanjutkan</string>
     <string name="take">Ambil</string>
-    <string name="replay_level">Ulangi Level</string>
+    <string name="replay_level">Tingkat Pemutaran Ulang</string>
     <string name="watch_a_video">Pertahankan skor Anda</string>
-    <string name="base_url">http://www.cbtportal.linkskool.com/api/1</string>
+    <string name="post_url">https://www.ddgames.net/api/post</string>
     <string name="hard_level">Tingkat Selanjutnya</string>
     <string name="failure_text">Gagal tidak berarti Anda adalah seorang pecundang</string>
     <string name="play_again"><u>Main Lagi</u></string>
     <string name="view_ranking"><u>Lihat Peringkat</u></string>
     <string name="view_history"><u>Lihat Jawaban</u></string>
     <string name="count_down_amount">1000000</string>
-    <string name="count_down_level">Level</string>
+    <string name="count_down_level">Tingkat</string>
     <string name="play_history">Riwayat Permainan</string>
     <string name="give_up"><u>Menyerah</u></string>
     <!-- TODO: Remove or change this placeholder text -->
@@ -158,4 +158,5 @@
     <string name="amos_lucky_chibueze">Amos Lucky Chibueze</string>
     <string name="next_question">Selanjutnya</string>
     <string name="_15">15</string>
+    <string name="get_url">https://www.ddgames.net/api/get</string>
 </resources>

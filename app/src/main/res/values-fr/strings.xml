@@ -54,7 +54,6 @@
 \n\nBattez-moi si vous le pouvez !!!
        \n111
 </string>
-
     <string name="play">JOUER</string>
     <string name="see_your_ranking">Voir votre classement</string>
     <string name="more_games2">Plus de jeux</string>
@@ -77,7 +76,7 @@
     <string name="take">Prendre</string>
     <string name="replay_level">Niveau de relecture</string>
     <string name="watch_a_video">Conservez votre score</string>
-    <string name="base_url">http://www.cbtportal.linkskool.com/api/1</string>
+    <string name="post_url">https://www.ddgames.net/api/post</string>
     <string name="hard_level">Niveau difficile</string>
     <string name="failure_text">Échouer ne signifie pas que vous êtes un échec</string>
     <string name="play_again"><u>Rejouer</u></string>
@@ -160,5 +159,6 @@
     <string name="amos_lucky_chibueze">Amos Lucky Chibueze</string>
     <string name="next_question">Suivant</string>
     <string name="_15">15</string>
+    <string name="get_url">https://www.ddgames.net/api/get</string>
 
 </resources>
