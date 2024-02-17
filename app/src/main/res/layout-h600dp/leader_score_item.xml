@@ -21,7 +21,7 @@
             android:layout_height="wrap_content"
             android:text="1"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="20dp"
+            android:layout_marginStart="20dp"
             android:textStyle="bold"
             android:textSize="18sp"
             android:fontFamily="@font/fjalla_one"
@@ -31,7 +31,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="80dp"
-        android:layout_marginLeft="50dp"
+        android:layout_marginStart="50dp"
         android:background="@drawable/whitepolygon"
         >
         <LinearLayout
@@ -48,7 +48,7 @@
                 android:text="Player12345"
                 android:textSize="20dp"
                 android:fontFamily="@font/montserrat"
-                android:layout_marginLeft="40dp"
+                android:layout_marginStart="40dp"
                 android:textColor="@color/black"
                 />
             <TextView
@@ -57,21 +57,21 @@
                 android:layout_height="wrap_content"
                 android:text="Highscore: 123"
                 android:textSize="13sp"
-                android:layout_marginLeft="40dp"
+                android:layout_marginStart="40dp"
                 android:textColor="@color/basic_color"
                 />
         </LinearLayout>
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
             android:orientation="vertical"
-            android:layout_marginRight="30dp"
+            android:layout_marginEnd="30dp"
             android:layout_marginTop="20dp"
             >
 
             <ImageView
-                android:layout_gravity="right"
+                android:layout_gravity="end"
                 android:layout_width="40dp"
                 android:layout_height="30dp"
                 android:id="@+id/flag_img"

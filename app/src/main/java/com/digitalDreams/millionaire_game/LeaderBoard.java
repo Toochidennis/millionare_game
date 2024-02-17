@@ -1,5 +1,7 @@
 package com.digitalDreams.millionaire_game;
 
+import static com.digitalDreams.millionaire_game.alpha.Constants.getCountryResource;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -39,7 +41,6 @@ import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
-import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.digitalDreams.millionaire_game.alpha.AudioManager;
@@ -53,10 +54,17 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.Reader;
+import java.io.StringWriter;
+import java.io.Writer;
+import java.nio.charset.StandardCharsets;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -93,6 +101,8 @@ public class LeaderBoard extends AppCompatActivity {
     CountryJsonAdapter countryJsonAdapter;
     RecyclerView countryListView;
     LayoutInflater layoutInflater;
+
+    String languageCode;
 
     // AdManager adManager;
     @Override
@@ -245,7 +255,7 @@ public class LeaderBoard extends AppCompatActivity {
 
 
         SharedPreferences sharedPreferences = getSharedPreferences("settings", Context.MODE_PRIVATE);
-        String languageCode = sharedPreferences.getString("language", "en");
+        languageCode = sharedPreferences.getString("language", "en");
         int endColor = sharedPreferences.getInt("end_color", getResources().getColor(R.color.purple_dark));
         int startColor = sharedPreferences.getInt("start_color", getResources().getColor(R.color.purple_500));
         int cardBackground = sharedPreferences.getInt("card_background", 0x219ebc);
@@ -258,11 +268,11 @@ public class LeaderBoard extends AppCompatActivity {
 
         RelativeLayout bg = findViewById(R.id.rootview);
         new Particles(this, bg, R.layout.image_xml, 20);
-        GradientDrawable gd = new GradientDrawable(
+        GradientDrawable gradientDrawable = new GradientDrawable(
                 GradientDrawable.Orientation.TOP_BOTTOM,
                 new int[]{startColor, endColor});
 
-        bg.setBackgroundDrawable(gd);
+        bg.setBackground(gradientDrawable);
 
         mCardBackLayout = findViewById(R.id.avatar1);
         //loadAnimation(mCardBackLayout);
@@ -271,6 +281,7 @@ public class LeaderBoard extends AppCompatActivity {
         closeBtn.setOnClickListener(view -> {
             AudioManager.darkBlueBlink(this, closeBtn);
             showInterstitial();
+            closeBtn.setClickable(false);
         });
 
 
@@ -292,66 +303,26 @@ public class LeaderBoard extends AppCompatActivity {
         flip.setTarget(view);
         flip.setDuration(5000);
         flip.start();
-        flip.addListener(new Animator.AnimatorListener() {
-            @Override
-            public void onAnimationStart(Animator animator) {
-
-            }
-
-            @Override
-            public void onAnimationEnd(Animator animator) {
-                loadAnimations(view);
-            }
-
-            @Override
-            public void onAnimationCancel(Animator animator) {
-
-            }
-
-            @Override
-            public void onAnimationRepeat(Animator animator) {
-
-            }
-        });
-    }
-
-
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        super.onOptionsItemSelected(item);
-        if (item.getItemId() == android.R.id.home) {
-            onBackPressed();
-            return true;
-        }
-        return false;
     }
 
 
     private void getAllLeaderBoard() {
-        String url = getResources().getString(R.string.base_url) + "/get_leaderboard.php";
+        String url = "https://www.ddgames.net/api/get";
 
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                Log.i("response", "response " + response);
-                progressBar.setVisibility(View.GONE);
-                if (response != null) {
-                    try {
-                        adapter.notifyDataSetChanged();
-                        list.clear();
-                        json1 = response;
-                        parseJSON(response);
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, url, response -> {
+            Log.i("response", "response " + response);
+            progressBar.setVisibility(View.GONE);
+            if (response != null) {
+                try {
+                    adapter.notifyDataSetChanged();
+                    list.clear();
+                    json1 = response;
+                    parseJSON(response);
+                } catch (JSONException e) {
+                    e.printStackTrace();
                 }
             }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                error.printStackTrace();
-            }
-        }) {
+        }, Throwable::printStackTrace) {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 super.getParams();
@@ -369,29 +340,21 @@ public class LeaderBoard extends AppCompatActivity {
     private void getWeeklyLeaderBoard() {
         emptyLayout.setVisibility(View.VISIBLE);
         progressBar.setVisibility(View.VISIBLE);
-        String url = getResources().getString(R.string.base_url) + "/get_leaderboard.php";
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                Log.i("responseweek", "response " + response);
-                progressBar.setVisibility(View.GONE);
-                if (response != null) {
-                    try {
-                        list.clear();
-                        adapter.notifyDataSetChanged();
-                        json2 = response;
-                        parseJSON(response);
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
+        String url = "https://www.ddgames.net/api/get";
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, url, response -> {
+            Log.i("responseweek", "response " + response);
+            progressBar.setVisibility(View.GONE);
+            if (response != null) {
+                try {
+                    list.clear();
+                    adapter.notifyDataSetChanged();
+                    json2 = response;
+                    parseJSON(response);
+                } catch (JSONException e) {
+                    e.printStackTrace();
                 }
             }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                error.printStackTrace();
-            }
-        }) {
+        }, error -> error.printStackTrace()) {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 super.getParams();
@@ -409,29 +372,21 @@ public class LeaderBoard extends AppCompatActivity {
     private void getDialyLeaderBoard() {
         emptyLayout.setVisibility(View.VISIBLE);
         progressBar.setVisibility(View.VISIBLE);
-        String url = getResources().getString(R.string.base_url) + "/get_leaderboard.php";
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                Log.i("response099", "response " + response);
-                progressBar.setVisibility(View.GONE);
-                if (response != null) {
-                    try {
-                        list.clear();
+        String url = "https://www.ddgames.net/api/get";
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, url, response -> {
+            Log.i("response099", "response " + response);
+            progressBar.setVisibility(View.GONE);
+            if (response != null) {
+                try {
+                    list.clear();
 
-                        json3 = response;
-                        parseJSON(response);
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
+                    json3 = response;
+                    parseJSON(response);
+                } catch (JSONException e) {
+                    e.printStackTrace();
                 }
             }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                error.printStackTrace();
-            }
-        }) {
+        }, error -> error.printStackTrace()) {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 super.getParams();
@@ -450,36 +405,28 @@ public class LeaderBoard extends AppCompatActivity {
     private void getCountryLeaderBoard() {
         emptyLayout.setVisibility(View.VISIBLE);
         progressBar.setVisibility(View.VISIBLE);
-        String url = getResources().getString(R.string.base_url) + "/get_leaderboard.php";
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                Log.i("response_country", "response " + response);
-                progressBar.setVisibility(View.GONE);
-                solveCountryJson(response);
-                if (response != null) {
-                    try {
-                        list.clear();
+        String url = "https://www.ddgames.net/api/get";
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, url, response -> {
+            Log.i("response_country", "response " + response);
+            progressBar.setVisibility(View.GONE);
+            solveCountryJson(response);
+            if (response != null) {
+                try {
+                    list.clear();
 
-                        json4 = response;
-                        JSONObject object = new JSONObject(response);
-                        solveCountryJson(response);
+                    json4 = response;
+                    JSONObject object = new JSONObject(response);
+                    solveCountryJson(response);
 
 
-                        Log.i("confirm", json4);
+                    Log.i("confirm", json4);
 
-                        // parseJSON(response);
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
+                    // parseJSON(response);
+                } catch (JSONException e) {
+                    e.printStackTrace();
                 }
             }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                error.printStackTrace();
-            }
-        }) {
+        }, error -> error.printStackTrace()) {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 super.getParams();
@@ -510,9 +457,11 @@ public class LeaderBoard extends AppCompatActivity {
 
                 JSONObject country_json_object = new JSONObject(country_json.replaceAll("[\\\\]{1}[\"]{1}", "\""));
 
-                country = country_json_object.getString("name");
+                String id = country_json_object.getString("id");
                 country_flag = country_json_object.getString("url").replace("\\", "");
-                Log.i("efi", country_flag + " " + username + " " + country);
+          //      Log.i("efi", country_flag + " " + username + " " + country);
+                country = getCountryName(id);
+              //  Log.d("response", country);
 
             }
 //            Log.i("ok" +
@@ -524,9 +473,7 @@ public class LeaderBoard extends AppCompatActivity {
 //            username = username.substring(0,1).toUpperCase()+""+username.substring(1);
             String pattern = "#,###,###.###";
             DecimalFormat decimalFormat = new DecimalFormat(pattern);
-            if (country_flag.length() > 10) {
-                // Log.i("J9999",username+"  "+country_flag);
-            }
+
 
             if (a == 0) {
                 firstContainer.setVisibility(View.VISIBLE);
@@ -581,34 +528,64 @@ public class LeaderBoard extends AppCompatActivity {
             }
         }
         adapter.notifyDataSetChanged();
-        if (jsonArray.length() == 0 || jsonArray == null) {
-            emptyText.setVisibility(View.VISIBLE);
-        } else if (jsonArray != null && jsonArray.length() > 0) {
 
+        if (jsonArray.length() == 0) {
+            emptyText.setVisibility(View.VISIBLE);
         } else {
             emptyLayout.setVisibility(View.GONE);
         }
 
     }
 
-    private String getAvatar(ImageView imageView, String avatar) {
+    private String getCountryName(String countryId) {
+        try {
+            String json = readRawTextFile(getCountryResource(languageCode));
+
+            JSONArray jsonArray = new JSONArray(json);
+            int id = Integer.parseInt(countryId);
+
+            for (int j = 0; j < jsonArray.length(); j++) {
+                if (j == id) {
+                    JSONObject obj1 = jsonArray.getJSONObject(j);
+                    return obj1.getString("name");
+                }
+
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return "";
+    }
+
+    private String readRawTextFile(int resId) throws IOException {
+        InputStream is = getResources().openRawResource(resId);
+        Writer writer = new StringWriter();
+        char[] buffer = new char[10024];
+        try {
+            Reader reader = new BufferedReader(new InputStreamReader(is, StandardCharsets.UTF_8));
+            int n;
+            while ((n = reader.read(buffer)) != -1) {
+                writer.write(buffer, 0, n);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            is.close();
+        }
+
+        return writer.toString();
+    }
+
+    private void getAvatar(ImageView imageView, String avatar) {
         //SharedPreferences sharedPreferences = getSharedPreferences("settings", Context.MODE_PRIVATE);
         //String avatar = sharedPreferences.getString("avatar","");
         switch (avatar) {
-            case "1":
-                imageView.setImageResource(R.drawable.avatar1);
-                break;
-            case "2":
-                imageView.setImageResource(R.drawable.avatar2);
-                break;
-            case "3":
-                imageView.setImageResource(R.drawable.avatar3);
-                break;
-            case "4":
-                imageView.setImageResource(R.drawable.avatar4);
-                break;
+            case "1" -> imageView.setImageResource(R.drawable.avatar1);
+            case "2" -> imageView.setImageResource(R.drawable.avatar2);
+            case "3" -> imageView.setImageResource(R.drawable.avatar3);
+            case "4" -> imageView.setImageResource(R.drawable.avatar4);
         }
-        return avatar;
     }
 
     @SuppressLint("ResourceAsColor")
@@ -664,13 +641,6 @@ public class LeaderBoard extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
         recyclerView.setAdapter(adapter);
 
-        ///////
-//        countryJsonAdapter = new CountryJsonAdapter(this,jsonObjects);
-//        LinearLayoutManager layoutManager2 = new LinearLayoutManager(this);
-//        countryListView = view.findViewById(R.id.country_listview);
-//        countryListView.setLayoutManager(layoutManager2);
-//        countryListView.setHasFixedSize(true);
-//        countryListView.setAdapter(countryJsonAdapter);
     }
 
     private void deSelector() {
@@ -695,45 +665,34 @@ public class LeaderBoard extends AppCompatActivity {
 
 
     private void loadInterstialAd() {
-        //interstitialAd = AdManager.mInterstitialAd; //new InterstitialAd(LeaderBoard.this) ;
-//        interstitialAd.setAdUnitId (LeaderBoard.this.getResources().getString(R.string.interstitial_adunit) ) ;
-//        interstitialAd.loadAd(new AdRequest.Builder().build());
         AdManager.loadInterstitialAd(LeaderBoard.this);
     }
 
     private void showInterstitial() {
-//        if (interstitialAd.isLoaded()) {
-//            interstitialAd.show();
-//        }else{
-//            interstitialAd.setAdListener(new AdListener() {
-//                public void onAdLoaded() {
-//                    showInterstitial();
-//                }
-//            });
-//        }
+
         AdManager.showInterstitial(LeaderBoard.this);
         if (AdManager.interstitialAd != null) {
             AdManager.interstitialAd.setFullScreenContentCallback(new FullScreenContentCallback() {
                 @Override
                 public void onAdFailedToShowFullScreenContent(@NonNull AdError adError) {
-                    Intent i = new Intent(LeaderBoard.this, Dashboard.class);
-                    startActivity(i);
-                    finish();
                     super.onAdFailedToShowFullScreenContent(adError);
+                   /* Intent i = new Intent(LeaderBoard.this, Dashboard.class);
+                    startActivity(i);*/
+                    finish();
                 }
 
                 @Override
                 public void onAdDismissedFullScreenContent() {
                     super.onAdDismissedFullScreenContent();
-                    Intent i = new Intent(LeaderBoard.this, Dashboard.class);
-                    startActivity(i);
+                    /*Intent i = new Intent(LeaderBoard.this, Dashboard.class);
+                    startActivity(i);*/
                     finish();
                 }
             });
 
         } else {
-            Intent i = new Intent(LeaderBoard.this, Dashboard.class);
-            startActivity(i);
+            /*Intent i = new Intent(LeaderBoard.this, Dashboard.class);
+            startActivity(i);*/
             finish();
         }
     }
@@ -824,8 +783,6 @@ public class LeaderBoard extends AppCompatActivity {
             bitmap.compress(Bitmap.CompressFormat.JPEG, 80, fos);
             fos.flush();
             fos.close();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -865,7 +822,7 @@ public class LeaderBoard extends AppCompatActivity {
             for (int i = 0; i < jsonArray.length(); i++) {
                 JSONObject obj = jsonArray.getJSONObject(i);
                 jsonObjects.add(obj);
-                Log.i("jsonnnnnn" + String.valueOf(i), String.valueOf(obj));
+                Log.i("jsonnnnnn" + i, String.valueOf(obj));
 
 
             }
@@ -905,10 +862,11 @@ public class LeaderBoard extends AppCompatActivity {
             try {
                 JSONObject object = (JSONObject) jsonObjects.get(i);
                 String score = object.getString("score");
-                String country_name = object.getString("country");
+                String id = object.getString("country");
                 String country_json_string = object.getString("country_json");
                 JSONObject country_json_object = new JSONObject(country_json_string.replaceAll("[\\\\]{1}[\"]{1}", "\""));
                 String country_flag = country_json_object.getString("url");
+                String country_name = getCountryName(id);
 
                 if (!country_flag.isEmpty()) {
                     // SVGLoader.fetchSvg(LeaderBoard.this, country_flag, flag);
@@ -936,6 +894,7 @@ public class LeaderBoard extends AppCompatActivity {
                     AudioManager.darkBlueBlink(this, convertView);
 
                     intent.putExtra("country", country_name);
+                    intent.putExtra("country_id", id);
                     intent.putExtra("country_flag", country_flag);
                     startActivity(intent);
                 });
@@ -961,10 +920,6 @@ public class LeaderBoard extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-
-        Intent i = new Intent(LeaderBoard.this, Dashboard.class);
-        startActivity(i);
-
         super.onBackPressed();
     }
 
