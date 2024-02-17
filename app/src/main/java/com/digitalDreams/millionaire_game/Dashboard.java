@@ -11,7 +11,6 @@ import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.graphics.drawable.GradientDrawable;
-import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
@@ -32,7 +31,6 @@ import androidx.core.content.ContextCompat;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import com.digitalDreams.millionaire_game.alpha.AudioManager;
-import com.digitalDreams.millionaire_game.alpha.activity.GameActivity3;
 import com.digitalDreams.millionaire_game.alpha.testing.GameActivity4;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
@@ -144,17 +142,10 @@ public class Dashboard extends AppCompatActivity {
         });
 
         leaderBoardBtn.setOnClickListener(view -> {
-            try {
-                Utils.destination_activity = LeaderBoard.class;
-                AudioManager.darkBlueBlink(getApplicationContext(), leaderBoardBtn);
-                MediaPlayer.create(Dashboard.this, R.raw.others).start();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-
-            Intent intent = new Intent(Dashboard.this, LeaderBoard.class);
-            startActivity(intent);
-            finish();
+            Utils.destination_activity = LeaderBoard.class;
+            AudioManager.darkBlueBlink(getApplicationContext(), leaderBoardBtn);
+            startActivity(new Intent(Dashboard.this, LeaderBoard.class));
+            //finish();
         });
 
 
@@ -258,7 +249,6 @@ public class Dashboard extends AppCompatActivity {
             setLanguage(Dashboard.this);
             //SettingsDialog.languageBtn.setCardBackgroundColor(cardBackground);
 
-
             //newGameTxt.setText(getResources().getString(R.string.new_game));
 
             setLocale(Dashboard.this, languageCode);
@@ -341,7 +331,7 @@ public class Dashboard extends AppCompatActivity {
         String languageCode = sharedPreferences.getString("language", "");
 
         switch (languageCode) {
-            case "fr", "es", "pt", "de", "id", "tr" -> {
+            case "fr", "es", "pt", "de", "in", "tr" -> {
                 playTxt.setTextSize(18);
                 playTxt2.setTextSize(18);
             }
@@ -360,8 +350,6 @@ public class Dashboard extends AppCompatActivity {
         SettingActivity.flagImg.setImageResource(R.drawable.country_flag);
 
         switch (languageCode) {
-            case "en" ->
-                    SettingActivity.languageTxt.setText(context.getResources().getString(R.string.english));
             case "fr" ->
                     SettingActivity.languageTxt.setText(context.getResources().getString(R.string.french));
             case "es" ->
@@ -378,10 +366,12 @@ public class Dashboard extends AppCompatActivity {
                     SettingActivity.languageTxt.setText(context.getResources().getString(R.string.german));
             case "ja" ->
                     SettingActivity.languageTxt.setText(context.getResources().getString(R.string.japanese));
-            case "id" ->
+            case "in" ->
                     SettingActivity.languageTxt.setText(context.getResources().getString(R.string.indonesian));
             case "tr" ->
                     SettingActivity.languageTxt.setText(context.getResources().getString(R.string.turkish));
+            default ->
+                    SettingActivity.languageTxt.setText(context.getResources().getString(R.string.english));
         }
     }
 

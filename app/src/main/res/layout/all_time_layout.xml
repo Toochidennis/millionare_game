@@ -1,39 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="280dp"
-        android:orientation="horizontal"
-        >
+        android:orientation="horizontal">
+
         <LinearLayout
             android:id="@+id/second"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:orientation="vertical"
             android:layout_weight="1"
-            android:visibility="gone"
             android:gravity="center"
+            android:orientation="vertical"
+            android:visibility="gone"
 
             >
 
             <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
                 android:layout_marginTop="10dp"
-                >
+                android:gravity="center_horizontal">
+
                 <ImageView
                     android:layout_width="40dp"
                     android:layout_height="40dp"
-                    android:src="@drawable/hexagon"
-                    app:tint="@color/basic_color"
                     android:layout_centerInParent="true"
                     android:rotation="90"
-                    />
+                    android:src="@drawable/hexagon"
+                    app:tint="@color/basic_color" />
 
                 <TextView
                     android:id="@+id/position_2"
@@ -51,23 +51,23 @@
 
             <RelativeLayout
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                >
+                android:layout_height="wrap_content">
+
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/hexagon"
                     android:layout_centerInParent="true"
-                    android:rotation="90"
                     android:layout_marginTop="10dp"
-                    app:tint="@color/basic_color"/>
+                    android:rotation="90"
+                    android:src="@drawable/hexagon"
+                    app:tint="@color/basic_color" />
+
                 <ImageView
                     android:id="@+id/img2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/avatar3"
                     android:layout_centerInParent="true"
-                    />
+                    android:src="@drawable/avatar3" />
 
             </RelativeLayout>
 
@@ -76,38 +76,37 @@
                 android:id="@+id/name2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="John"
-                android:maxLines="1"
-                android:ellipsize="end"
-                android:textColor="@color/white"
                 android:layout_gravity="center_horizontal"
-                android:textSize="15sp"
                 android:layout_marginTop="20dp"
-                android:fontFamily="@font/arimo"/>
+                android:ellipsize="end"
+                android:fontFamily="@font/arimo"
+                android:maxLines="1"
+                android:text="John"
+                android:textColor="@color/white"
+                android:textSize="15sp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
-                android:orientation="horizontal"
-                android:background="@drawable/ic_hexnow"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
                 android:layout_marginBottom="20dp"
+                android:background="@drawable/ic_hexnow"
                 android:gravity="center"
-                >
+                android:orientation="horizontal">
 
 
                 <TextView
                     android:id="@+id/amount_won_2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="$12,000"
-                    android:maxLines="1"
-                    android:ellipsize="end"
-                    android:textColor="@color/white"
                     android:layout_gravity="center_vertical"
-                    android:textSize="16sp"
-                    android:fontFamily="@font/fjalla_one"/>
+                    android:ellipsize="end"
+                    android:fontFamily="@font/fjalla_one"
+                    android:maxLines="1"
+                    android:text="$12,000"
+                    android:textColor="@color/white"
+                    android:textSize="16sp" />
 
 
             </LinearLayout>
@@ -115,55 +114,52 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
                 android:layout_marginTop="-10dp"
-                >
+                android:orientation="vertical">
+
                 <ImageView
 
+                    android:id="@+id/flag1"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
-                    android:src="@drawable/img"
-                    android:id="@+id/flag1"
-                    android:layout_marginLeft="5dp"
-                    />
+                    android:layout_marginStart="5dp"
+                    android:src="@drawable/img" />
+
                 <TextView
+                    android:id="@+id/country_name1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Name"
-                    android:textSize="12sp"
                     android:textColor="@color/white"
 
-                    android:id="@+id/country_name1"/>
+                    android:textSize="12sp" />
             </LinearLayout>
 
 
-
-
-
         </LinearLayout>
+
         <LinearLayout
             android:id="@+id/first"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:orientation="vertical"
             android:layout_weight="1"
             android:gravity="center"
-            android:visibility="gone"
-            >
+            android:orientation="vertical"
+            android:visibility="gone">
+
             <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
                 android:layout_marginTop="10dp"
-                >
+                android:gravity="center_horizontal">
+
                 <ImageView
                     android:layout_width="40dp"
                     android:layout_height="40dp"
-                    android:src="@drawable/hexagon"
-                    app:tint="@color/basic_color"
                     android:layout_centerInParent="true"
                     android:rotation="90"
-                    />
+                    android:src="@drawable/hexagon"
+                    app:tint="@color/basic_color" />
 
                 <TextView
                     android:id="@+id/position_1"
@@ -181,8 +177,7 @@
             <RelativeLayout
                 android:id="@+id/avatar1"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                >
+                android:layout_height="wrap_content">
 
                 <ImageView
                     android:layout_width="match_parent"
@@ -192,49 +187,50 @@
                     android:rotation="90"
                     android:src="@drawable/hexagon_3"
                     app:tint="@color/basic_color" />
+
                 <ImageView
                     android:id="@+id/img1"
                     android:layout_width="72dp"
                     android:layout_height="72dp"
-                    android:src="@drawable/avatar1"
                     android:layout_centerInParent="true"
-                    />
+                    android:src="@drawable/avatar1" />
 
             </RelativeLayout>
+
             <TextView
                 android:id="@+id/name1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Mary"
-                android:maxLines="1"
-                android:ellipsize="end"
-                android:textColor="@color/white"
                 android:layout_gravity="center_horizontal"
-                android:textSize="15sp"
                 android:layout_marginTop="20dp"
-                android:fontFamily="@font/arimo"/>
+                android:ellipsize="end"
+                android:fontFamily="@font/arimo"
+                android:maxLines="1"
+                android:text="Mary"
+                android:textColor="@color/white"
+                android:textSize="15sp" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
-                android:orientation="horizontal"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
                 android:background="@drawable/ic_hexnow"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
                 android:gravity="center"
-                >
+                android:orientation="horizontal">
 
 
                 <TextView
                     android:id="@+id/amount_won_1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/fjalla_one"
+                    android:maxLines="1"
                     android:text="$250,000"
                     android:textColor="@color/white"
-                    android:layout_gravity="center_vertical"
-                    android:textSize="16sp"
-                    android:maxLines="1"
-                    android:ellipsize="end"
-                    android:fontFamily="@font/fjalla_one"/>
+                    android:textSize="16sp" />
 
 
             </LinearLayout>
@@ -242,56 +238,53 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
                 android:layout_marginTop="-10dp"
-                >
+                android:orientation="vertical">
 
                 <ImageView
 
+                    android:id="@+id/flag2"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
-                    android:src="@drawable/img"
-                    android:id="@+id/flag2"
-                    />
+                    android:src="@drawable/img" />
+
                 <TextView
 
+                    android:id="@+id/country_name2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="12sp"
                     android:text="Name"
                     android:textColor="@color/white"
-                    android:id="@+id/country_name2"/>
+                    android:textSize="12sp" />
             </LinearLayout>
 
 
-
-
-
         </LinearLayout>
+
         <LinearLayout
             android:id="@+id/third"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:orientation="vertical"
             android:layout_weight="1"
             android:gravity="center"
-            android:visibility="gone"
-            >
+            android:orientation="vertical"
+            android:visibility="gone">
+
             <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
                 android:layout_marginTop="10dp"
+                android:gravity="center_horizontal"
 
                 >
+
                 <ImageView
                     android:layout_width="40dp"
                     android:layout_height="40dp"
-                    android:src="@drawable/hexagon"
-                    app:tint="@color/basic_color"
                     android:layout_centerInParent="true"
                     android:rotation="90"
-                    />
+                    android:src="@drawable/hexagon"
+                    app:tint="@color/basic_color" />
 
                 <TextView
                     android:id="@+id/position_3"
@@ -308,24 +301,23 @@
 
             <RelativeLayout
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                >
+                android:layout_height="wrap_content">
 
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/hexagon"
                     android:layout_centerInParent="true"
-                    android:rotation="90"
                     android:layout_marginTop="10dp"
-                    app:tint="@color/basic_color"/>
+                    android:rotation="90"
+                    android:src="@drawable/hexagon"
+                    app:tint="@color/basic_color" />
+
                 <ImageView
                     android:id="@+id/img3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/avatar2"
                     android:layout_centerInParent="true"
-                    />
+                    android:src="@drawable/avatar2" />
 
             </RelativeLayout>
 
@@ -333,58 +325,59 @@
                 android:id="@+id/name3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Cynthia234"
-                android:maxLines="1"
-                android:ellipsize="end"
-                android:textColor="@color/white"
                 android:layout_gravity="center_horizontal"
-                android:textSize="15sp"
                 android:layout_marginTop="20dp"
-                android:fontFamily="@font/arimo"/>
+                android:ellipsize="end"
+                android:fontFamily="@font/arimo"
+                android:maxLines="1"
+                android:text="Cynthia234"
+                android:textColor="@color/white"
+                android:textSize="15sp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
-                android:orientation="horizontal"
-                android:background="@drawable/ic_hexnow"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
                 android:layout_marginBottom="20dp"
+                android:background="@drawable/ic_hexnow"
                 android:gravity="center"
-                >
+                android:orientation="horizontal">
+
                 <TextView
                     android:id="@+id/amount_won_3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="$12,500"
-                    android:maxLines="1"
-                    android:ellipsize="end"
-                    android:textColor="@color/white"
                     android:layout_gravity="center_vertical"
-                    android:textSize="16sp"
-                    android:fontFamily="@font/fjalla_one"/>
+                    android:ellipsize="end"
+                    android:fontFamily="@font/fjalla_one"
+                    android:maxLines="1"
+                    android:text="$12,500"
+                    android:textColor="@color/white"
+                    android:textSize="16sp" />
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
                 android:layout_marginTop="-5dp"
-                >
+                android:orientation="horizontal">
+
                 <ImageView
 
+                    android:id="@+id/flag3"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
-                    android:src="@drawable/img"
-                    android:id="@+id/flag3"
-                    />
+                    android:src="@drawable/img" />
+
                 <TextView
 
+                    android:id="@+id/country_name3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="12sp"
                     android:text="Name"
                     android:textColor="@color/white"
-                    android:id="@+id/country_name3"/>
+                    android:textSize="12sp" />
             </LinearLayout>
 
         </LinearLayout>
@@ -397,17 +390,18 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:paddingBottom="20dp" />
+
     <LinearLayout
+        android:id="@+id/country_layout_container"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:id="@+id/country_layout_container"/>
+        android:orientation="vertical" />
+
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/country_listview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/country_listview"
-        android:visibility="gone"
-        />
+        android:visibility="gone" />
 
 
 </LinearLayout>
