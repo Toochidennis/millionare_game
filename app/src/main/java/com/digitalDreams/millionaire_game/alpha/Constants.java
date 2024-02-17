@@ -63,7 +63,7 @@ public class Constants {
         languageResourceMap.put(URDU_KEY, R.raw.millionaire_ur);
         languageResourceMap.put(JAPANESE_KEY, R.raw.millionaire_ja);
         languageResourceMap.put(GERMAN_KEY, R.raw.millionaire_de);
-        languageResourceMap.put(INDONESIAN_KEY, R.raw.millionaire_id);
+        languageResourceMap.put(INDONESIAN_KEY, R.raw.millionaire_in);
         languageResourceMap.put(TURKISH_KEY, R.raw.millionaire_tr);
 
         countryResourceMap.put(ENGLISH_KEY, R.raw.country_json_en);
@@ -75,7 +75,7 @@ public class Constants {
         countryResourceMap.put(URDU_KEY, R.raw.country_json_ur);
         countryResourceMap.put(JAPANESE_KEY, R.raw.country_json_ja);
         countryResourceMap.put(GERMAN_KEY, R.raw.country_json_de);
-        countryResourceMap.put(INDONESIAN_KEY, R.raw.country_json_id);
+        countryResourceMap.put(INDONESIAN_KEY, R.raw.country_json_in);
         countryResourceMap.put(TURKISH_KEY, R.raw.country_json_tr);
 
         languageTexts.put(ENGLISH_KEY, null);
