@@ -61,7 +61,6 @@
     <string name="home">Hogar</string>
     <string name="winning_congrats">¡Felicidades!</string>
     <string name="next_level">Etapa completada</string>
-
     <string name="can_you_beat_that">¡Puedes superar esta puntuación!</string>
     <string name="share">Compartir</string>
     <string name="are_you_sure_you_want_to_exit">¿Estás seguro de que quieres salir?</string>
@@ -75,7 +74,7 @@
     <string name="take">Llevar</string>
     <string name="replay_level">Nivel de repetición</string>
     <string name="watch_a_video">Conserva tu puntuación</string>
-    <string name="base_url">http://www.cbtportal.linkskool.com/api/1</string>
+    <string name="post_url">https://www.ddgames.net/api/post</string>
     <string name="hard_level">Siguiente nivel</string>
     <string name="failure_text">Fracasar no significa que seas un fracaso</string>
     <string name="play_again"><u>Juega de nuevo</u></string>
@@ -161,4 +160,5 @@
     <string name="amos_lucky_chibueze">Amos Lucky Chibueze</string>
     <string name="next_question">Próximo</string>
     <string name="_15">15</string>
+    <string name="get_url">https://www.ddgames.net/api/get</string>
 </resources>

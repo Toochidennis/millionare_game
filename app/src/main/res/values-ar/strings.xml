@@ -73,9 +73,8 @@
     <string name="take">يأخذ</string>
     <string name="replay_level">مستوى إعادة التشغيل</string>
     <string name="watch_a_video">احتفظ بدرجاتك</string>
-    <string name="base_url">http://www.cbtportal.linkskool.com/api/1</string>
+    <string name="post_url">https://www.ddgames.net/api/post</string>
     <string name="hard_level">المرحلة التالية</string>
-
     <string name="failure_text">فشلك لا يعني أنك فاشل</string>
     <string name="play_again"><u>العب مرة أخرى</u></string>
     <string name="view_ranking"><u>عرض الترتيب</u></string>
@@ -160,4 +159,5 @@
     <string name="amos_lucky_chibueze">عاموس لاكي تشيبويز</string>
     <string name="next_question">التالي</string>
     <string name="_15">15</string>
+    <string name="get_url">https://www.ddgames.net/api/get</string>
 </resources>

@@ -30,7 +30,7 @@
     <string name="german">German</string>
     <string name="japanese">Japanese</string>
     <string name="turkish">Turkish</string>
-    <string name="indonesian">Indonesian</string>
+    <string name="indonesian">Indonesia</string>
     <string name="banner_ad_unit">ca-app-pub-4696224049420135/8152081288</string>
     <string name="app_ad_id">ca-app-pub-4696224049420135~2129598410</string>
     <string name="interstitial_ad_unit_id">ca-app-pub-4696224049420135/9312479087</string>
@@ -60,7 +60,6 @@
     <string name="home">Home</string>
     <string name="winning_congrats">Congratulations!</string>
     <string name="next_level">Stage Completed</string>
-
     <string name="can_you_beat_that">You can beat this score!</string>
     <string name="share">Share</string>
     <string name="are_you_sure_you_want_to_exit">Are you sure you want to exit?</string>
@@ -74,9 +73,8 @@
     <string name="take">Take</string>
     <string name="replay_level">Replay Level</string>
     <string name="watch_a_video">Retain your score</string>
-    <string name="base_url">http://www.cbtportal.linkskool.com/api/1</string>
+    <string name="post_url">https://www.ddgames.net/api/post</string>
     <string name="hard_level">Next Level</string>
-
     <string name="failure_text">Failing does not mean you are a failure</string>
     <string name="play_again"><u>Play Again</u></string>
     <string name="view_ranking"><u>View Ranking</u></string>
@@ -161,4 +159,5 @@
     <string name="amos_lucky_chibueze">Amos Lucky Chibueze</string>
     <string name="next_question">Next</string>
     <string name="_15">15</string>
+    <string name="get_url">https://www.ddgames.net/api/get</string>
 </resources>
