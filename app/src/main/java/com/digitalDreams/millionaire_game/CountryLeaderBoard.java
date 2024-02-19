@@ -66,16 +66,16 @@ public class CountryLeaderBoard extends AppCompatActivity {
     public static int MY_PERMISSIONS_WRITE_EXTERNAL_STORAGE = 100;
     RecyclerView recyclerView;
     List<PlayerObject> list;
-    LinearLayout firstContainer,secondContainer,thirdContainer,fourthCountainer;
-    TextView name1,name2,name3,amount1,amount2,amount3;
-    TextView country_name1,country_name2,country_name3;
-    ImageView img1,img2,img3;
-    ImageView flag1,flag2,flag3;
+    LinearLayout firstContainer, secondContainer, thirdContainer, fourthCountainer;
+    TextView name1, name2, name3, amount1, amount2, amount3;
+    TextView country_name1, country_name2, country_name3;
+    ImageView img1, img2, img3;
+    ImageView flag1, flag2, flag3;
     LeaderboardAdapter adapter;
-    LinearLayout allBtn,weekBtn,dailyBtn,container,countryBtn;
+    LinearLayout allBtn, weekBtn, dailyBtn, container, countryBtn;
     LayoutInflater inflater;
-    View view,view2,view3, view4;
-    String json1,json2,json3,json4;
+    View view, view2, view3, view4;
+    String json1, json2, json3, json4;
     LinearLayout emptyLayout;
     TextView emptyText;
     ProgressBar progressBar;
@@ -91,10 +91,11 @@ public class CountryLeaderBoard extends AppCompatActivity {
     CountryJsonAdapter countryJsonAdapter;
     RecyclerView countryListView;
     TextView activity_title;
-    Map<String,Object> country_map;
+    Map<String, Object> country_map;
     String country;
     String countryId;
     String country_flag;
+
     //AdManager  adManager;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -104,7 +105,7 @@ public class CountryLeaderBoard extends AppCompatActivity {
 
         /////////////
         jsonObjects = new ArrayList<JSONObject>();
-        countryJsonAdapter = new CountryJsonAdapter(this,jsonObjects);
+        countryJsonAdapter = new CountryJsonAdapter(this, jsonObjects);
 
         activity_title = findViewById(R.id.activity_title);
 
@@ -112,14 +113,10 @@ public class CountryLeaderBoard extends AppCompatActivity {
         countryId = getIntent().getStringExtra("country_id");
         country_flag = getIntent().getStringExtra("country_flag");
 
-       // country_map = (Map<String, Object>) getIntent().getSerializableExtra("country_map");
+        // country_map = (Map<String, Object>) getIntent().getSerializableExtra("country_map");
 
 
         activity_title.setText(country);
-
-
-
-
 
 
         /////////////////AD////////
@@ -131,7 +128,7 @@ public class CountryLeaderBoard extends AppCompatActivity {
         mAdView.loadAd(adRequest);
 
         //loadInterstialAd();
-            AdManager.loadInterstitialAd(this);
+        AdManager.loadInterstitialAd(this);
         AdManager.loadInterstitialAd(this);
 
 
@@ -145,7 +142,7 @@ public class CountryLeaderBoard extends AppCompatActivity {
 
 
         container = findViewById(R.id.container);
-        emptyLayout=findViewById(R.id.empty_state);
+        emptyLayout = findViewById(R.id.empty_state);
         emptyText = findViewById(R.id.empty_text);
         progressBar = findViewById(R.id.progress);
         //container.removeAllViews();
@@ -153,21 +150,21 @@ public class CountryLeaderBoard extends AppCompatActivity {
         /////////
 
         inflater = LayoutInflater.from(this);
-        view = inflater.inflate(R.layout.all_time_layout,container,false);
+        view = inflater.inflate(R.layout.all_time_layout, container, false);
         container.addView(view);
 
         list = new ArrayList<>();
         setView(view);
         allBtn.setOnClickListener(view -> {
-            AudioManager.darkBlueBlink(getApplicationContext(),allBtn);
+            AudioManager.darkBlueBlink(getApplicationContext(), allBtn);
             list.clear();
             emptyText.setVisibility(View.GONE);
             selector(0);
             container.removeAllViews();
-            view = inflater.inflate(R.layout.all_time_layout,container,false);
+            view = inflater.inflate(R.layout.all_time_layout, container, false);
             container.addView(view);
             setView(view);
-            if(json1!=null){
+            if (json1 != null) {
                 try {
                     parseJSON(json1);
                 } catch (JSONException e) {
@@ -177,40 +174,40 @@ public class CountryLeaderBoard extends AppCompatActivity {
         });
 
         weekBtn.setOnClickListener(view -> {
-            AudioManager.darkBlueBlink(getApplicationContext(),weekBtn);
+            AudioManager.darkBlueBlink(getApplicationContext(), weekBtn);
             list.clear();
             emptyText.setVisibility(View.GONE);
             container.removeAllViews();
             selector(1);
-            view2 = inflater.inflate(R.layout.week_layout,container,false);
+            view2 = inflater.inflate(R.layout.week_layout, container, false);
             container.addView(view2);
             setView(view2);
-            if(json2!=null){
+            if (json2 != null) {
                 try {
                     parseJSON(json2);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-            }else {
+            } else {
                 getWeeklyLeaderBoard();
             }
         });
         dailyBtn.setOnClickListener(view -> {
-            AudioManager.darkBlueBlink(getApplicationContext(),dailyBtn);
+            AudioManager.darkBlueBlink(getApplicationContext(), dailyBtn);
             list.clear();
             emptyText.setVisibility(View.GONE);
             selector(2);
             container.removeAllViews();
-            view3 = inflater.inflate(R.layout.daily_layout,container,false);
+            view3 = inflater.inflate(R.layout.daily_layout, container, false);
             container.addView(view3);
             setView(view3);
-            if(json3!=null){
+            if (json3 != null) {
                 try {
                     parseJSON(json3);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-            }else {
+            } else {
                 getDialyLeaderBoard();
             }
         });
@@ -220,45 +217,44 @@ public class CountryLeaderBoard extends AppCompatActivity {
             emptyText.setVisibility(View.GONE);
             selector(3);
             container.removeAllViews();
-            view4 = inflater.inflate(R.layout.country_leader_board,container,false);
+            view4 = inflater.inflate(R.layout.country_leader_board, container, false);
             container.addView(view4);
             setView(view4);
-            if(json4!=null){
+            if (json4 != null) {
                 try {
                     parseJSON(json4);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-            }else {
+            } else {
                 getCountryLeaderBoard();
             }
         });
 
         share_container.setOnClickListener(view -> {
-           try {
-               checkPermission();
-           }catch (Exception e){}
+            try {
+                checkPermission();
+            } catch (Exception e) {
+            }
         });
 
 
-
-
         SharedPreferences sharedPreferences = getSharedPreferences("settings", Context.MODE_PRIVATE);
-        String languageCode = sharedPreferences.getString("language","en");
-        int endcolor = sharedPreferences.getInt("end_color",getResources().getColor(R.color.purple_dark));
-        int startColor = sharedPreferences.getInt("start_color",getResources().getColor(R.color.purple_500));
-        int cardBackground = sharedPreferences.getInt("card_background",0x219ebc);
-        username = sharedPreferences.getString("username","");
+        String languageCode = sharedPreferences.getString("language", "en");
+        int endcolor = sharedPreferences.getInt("end_color", getResources().getColor(R.color.purple_dark));
+        int startColor = sharedPreferences.getInt("start_color", getResources().getColor(R.color.purple_500));
+        int cardBackground = sharedPreferences.getInt("card_background", 0x219ebc);
+        username = sharedPreferences.getString("username", "");
 
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
         getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
                 | View.SYSTEM_UI_FLAG_IMMERSIVE);
 
         RelativeLayout bg = findViewById(R.id.rootview);
-        new Particles(this,bg,R.layout.image_xml,20);
+        new Particles(this, bg, R.layout.image_xml, 20);
         GradientDrawable gd = new GradientDrawable(
                 GradientDrawable.Orientation.TOP_BOTTOM,
-                new int[] {startColor,endcolor});
+                new int[]{startColor, endcolor});
 
         bg.setBackgroundDrawable(gd);
 
@@ -270,28 +266,27 @@ public class CountryLeaderBoard extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                AudioManager.darkBlueBlink(getApplicationContext(),closeBtn);
+                AudioManager.darkBlueBlink(getApplicationContext(), closeBtn);
                 showInterstitial();
 
 
-               // onBackPressed();
+                // onBackPressed();
 
             }
         });
 
 
-        String highscore = sharedPreferences.getString("high_score","0");
-        String username = sharedPreferences.getString("username","");
+        String highscore = sharedPreferences.getString("high_score", "0");
+        String username = sharedPreferences.getString("username", "");
 
         getAllLeaderBoard();
-
 
 
     }
 
     private void loadAnimations(View view) {
         AnimatorSet flip;
-        flip= (AnimatorSet) AnimatorInflater.loadAnimator(this, R.animator.out_animator);
+        flip = (AnimatorSet) AnimatorInflater.loadAnimator(this, R.animator.out_animator);
         flip.setTarget(view);
         flip.setDuration(5000);
         flip.start();
@@ -319,11 +314,10 @@ public class CountryLeaderBoard extends AppCompatActivity {
     }
 
 
-
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         super.onOptionsItemSelected(item);
-        if(item.getItemId()==android.R.id.home){
+        if (item.getItemId() == android.R.id.home) {
             onBackPressed();
             return true;
         }
@@ -331,40 +325,35 @@ public class CountryLeaderBoard extends AppCompatActivity {
     }
 
 
-    private void getAllLeaderBoard(){
+    private void getAllLeaderBoard() {
         String url = getResources().getString(R.string.get_url);
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                Log.i("response","response "+response);
+                Log.i("response", "response " + response);
                 progressBar.setVisibility(View.GONE);
-                if(response!=null){
+                if (response != null) {
                     try {
                         adapter.notifyDataSetChanged();
                         list.clear();
-                        json1=response;
+                        json1 = response;
                         parseJSON(response);
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
                 }
             }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                error.printStackTrace();
-            }
-        }){
+        }, error -> error.printStackTrace()) {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 super.getParams();
-                Map<String,String> param = new HashMap<>();
-                param.put("game_type","millionaire");
-                param.put("country_filter",countryId);
-                param.put("country_name",country);
-                param.put("country_flag",country_flag);
-                param.put("period","today");
+                Map<String, String> param = new HashMap<>();
+                param.put("game_type", "millionaire");
+                param.put("country_filter", countryId);
+                param.put("country_name", country);
+                param.put("country_flag", country_flag);
+                param.put("period", "today");
                 return param;
             }
         };
@@ -373,20 +362,20 @@ public class CountryLeaderBoard extends AppCompatActivity {
         requestQueue.add(stringRequest);
     }
 
-    private void getWeeklyLeaderBoard(){
+    private void getWeeklyLeaderBoard() {
         emptyLayout.setVisibility(View.VISIBLE);
         progressBar.setVisibility(View.VISIBLE);
         String url = getResources().getString(R.string.get_url);
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                Log.i("response","response "+response);
+                Log.i("response", "response " + response);
                 progressBar.setVisibility(View.GONE);
-                if(response!=null){
+                if (response != null) {
                     try {
                         list.clear();
                         adapter.notifyDataSetChanged();
-                        json2=response;
+                        json2 = response;
                         parseJSON(response);
                     } catch (JSONException e) {
                         e.printStackTrace();
@@ -398,16 +387,16 @@ public class CountryLeaderBoard extends AppCompatActivity {
             public void onErrorResponse(VolleyError error) {
                 error.printStackTrace();
             }
-        }){
+        }) {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 super.getParams();
-                Map<String,String> param = new HashMap<>();
-                param.put("game_type","millionaire");
-                param.put("country_filter",countryId);
-                param.put("country_name",country);
-                param.put("country_flag",country_flag);
-                param.put("period","week");
+                Map<String, String> param = new HashMap<>();
+                param.put("game_type", "millionaire");
+                param.put("country_filter", countryId);
+                param.put("country_name", country);
+                param.put("country_flag", country_flag);
+                param.put("period", "week");
                 return param;
             }
         };
@@ -416,20 +405,20 @@ public class CountryLeaderBoard extends AppCompatActivity {
         requestQueue.add(stringRequest);
     }
 
-    private void getDialyLeaderBoard(){
+    private void getDialyLeaderBoard() {
         emptyLayout.setVisibility(View.VISIBLE);
         progressBar.setVisibility(View.VISIBLE);
         String url = getResources().getString(R.string.get_url);
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                Log.i("response","response "+response);
+                Log.i("response", "response " + response);
                 progressBar.setVisibility(View.GONE);
-                if(response!=null){
+                if (response != null) {
                     try {
                         list.clear();
 
-                        json3=response;
+                        json3 = response;
                         parseJSON(response);
                     } catch (JSONException e) {
                         e.printStackTrace();
@@ -441,16 +430,16 @@ public class CountryLeaderBoard extends AppCompatActivity {
             public void onErrorResponse(VolleyError error) {
                 error.printStackTrace();
             }
-        }){
+        }) {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 super.getParams();
-                Map<String,String> param = new HashMap<>();
-                param.put("game_type","millionaire");
-                param.put("country_filter",countryId);
-                param.put("country_name",country);
-                param.put("country_flag",country_flag);
-                param.put("period","daily");
+                Map<String, String> param = new HashMap<>();
+                param.put("game_type", "millionaire");
+                param.put("country_filter", countryId);
+                param.put("country_name", country);
+                param.put("country_flag", country_flag);
+                param.put("period", "daily");
                 return param;
             }
         };
@@ -460,25 +449,24 @@ public class CountryLeaderBoard extends AppCompatActivity {
     }
 
 
-    private void getCountryLeaderBoard(){
+    private void getCountryLeaderBoard() {
         emptyLayout.setVisibility(View.VISIBLE);
         progressBar.setVisibility(View.VISIBLE);
         String url = getString(R.string.get_url);
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url, response -> {
-            Log.i("response_country","response "+response);
+            Log.i("response_country", "response " + response);
             progressBar.setVisibility(View.GONE);
             //solveCountryJson(response);
-            if(response!=null){
+            if (response != null) {
                 try {
                     list.clear();
 
                     json4 = response;
-                    JSONObject object =  new JSONObject(response);
+                    JSONObject object = new JSONObject(response);
                     //solveCountryJson(response);
 
 
-
-                    Log.i("confirm",json4);
+                    Log.i("confirm", json4);
 
                     // parseJSON(response);
                 } catch (JSONException e) {
@@ -490,13 +478,13 @@ public class CountryLeaderBoard extends AppCompatActivity {
             public void onErrorResponse(VolleyError error) {
                 error.printStackTrace();
             }
-        }){
+        }) {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 super.getParams();
-                Map<String,String> param = new HashMap<>();
-                param.put("game_type","millionaire");
-                param.put("country","1");
+                Map<String, String> param = new HashMap<>();
+                param.put("game_type", "millionaire");
+                param.put("country", "1");
                 return param;
             }
         };
@@ -510,78 +498,79 @@ public class CountryLeaderBoard extends AppCompatActivity {
 
         JSONArray jsonArray = new JSONArray(response);
 
-        for(int a=0;a<jsonArray.length();a++){
+        for (int a = 0; a < jsonArray.length(); a++) {
             JSONObject obj = jsonArray.getJSONObject(a);
             String score = obj.getString("score");
             String username = obj.getString("username");
             String country = ""; //= obj.getString("country");
             String country_json = obj.getString("country_json");
             String country_flag = "";
-            if(country_json.length() > 10) {
+            if (country_json.length() > 10) {
 
-                JSONObject country_json_object = new JSONObject(country_json.replaceAll("[\\\\]{1}[\"]{1}","\""));
+                JSONObject country_json_object = new JSONObject(country_json.replaceAll("[\\\\]{1}[\"]{1}", "\""));
 
                 country = country_json_object.getString("name");
-                country_flag = country_json_object.getString("url").replace("\\","");
-                Log.i("efi",country_flag+" "+username+" "+country);
+                country_flag = country_json_object.getString("url").replace("\\", "");
+                Log.i("efi", country_flag + " " + username + " " + country);
 
             }
             Log.i("ok" +
                     "iii", obj.toString());
-            if(username.length() > 13){
-                username = username.substring(0,13)+"...";
+            if (username.length() > 13) {
+                username = username.substring(0, 13) + "...";
             }
+
             String avatar = obj.getString("avatar");
-            username = username.substring(0,1).toUpperCase()+""+username.substring(1);
+            if (!username.isEmpty()) {
+                username = username.substring(0, 1).toUpperCase() + username.substring(1);
+            }
             String pattern = "#,###,###.###";
             DecimalFormat decimalFormat = new DecimalFormat(pattern);
 
-            if(a==0){
+            if (a == 0) {
                 firstContainer.setVisibility(View.VISIBLE);
                 name1.setText(username);
-                getAvatar(img1,avatar);
-                amount1.setText("$"+decimalFormat.format(Integer.parseInt(score)));
+                getAvatar(img1, avatar);
+                amount1.setText("$" + decimalFormat.format(Integer.parseInt(score)));
                 country_name1.setText(country);
                 country_name1.setVisibility(View.VISIBLE);
-                if(!country_flag.isEmpty()) {
+                if (!country_flag.isEmpty()) {
                     loadFlag(country_flag, flag1);
-                   // SVGLoader.fetchSvg(CountryLeaderBoard.this,country_flag,flag1);
+                    // SVGLoader.fetchSvg(CountryLeaderBoard.this,country_flag,flag1);
                     flag1.setVisibility(View.VISIBLE);
                 }
-            }else if(a==1){
+            } else if (a == 1) {
                 secondContainer.setVisibility(View.VISIBLE);
                 name2.setText(username);
-                getAvatar(img2,avatar);
-                amount2.setText("$"+decimalFormat.format(Integer.parseInt(score)));
+                getAvatar(img2, avatar);
+                amount2.setText("$" + decimalFormat.format(Integer.parseInt(score)));
                 country_name2.setText(country);
                 country_name2.setVisibility(View.VISIBLE);
 
-                if(!country_flag.isEmpty()) {
+                if (!country_flag.isEmpty()) {
                     loadFlag(country_flag, flag2);
-                   // SVGLoader.fetchSvg(CountryLeaderBoard.this,country_flag,flag2);
+                    // SVGLoader.fetchSvg(CountryLeaderBoard.this,country_flag,flag2);
                     flag2.setVisibility(View.VISIBLE);
                 }
 
-            }else if(a==2){
+            } else if (a == 2) {
                 thirdContainer.setVisibility(View.VISIBLE);
                 name3.setText(username);
-                getAvatar(img3,avatar);
-                amount3.setText("$"+decimalFormat.format(Integer.parseInt(score)));
+                getAvatar(img3, avatar);
+                amount3.setText("$" + decimalFormat.format(Integer.parseInt(score)));
                 country_name3.setText(country);
                 country_name3.setVisibility(View.VISIBLE);
-                if(!country_flag.isEmpty()) {
+                if (!country_flag.isEmpty()) {
                     loadFlag(country_flag, flag3);
-                   // SVGLoader.fetchSvg(CountryLeaderBoard.this,country_flag,flag3);
+                    // SVGLoader.fetchSvg(CountryLeaderBoard.this,country_flag,flag3);
                     flag3.setVisibility(View.VISIBLE);
                 }
-            }
-
-            else{
+            } else {
 
                 PlayerObject obj1 = new PlayerObject();
                 obj1.setPlayerName(username);
-                obj1.setHighscore("$"+decimalFormat.format(Integer.parseInt(score)));
-                obj1.setPosition(""+a);
+                obj1.setHighscore("$" + decimalFormat.format(Integer.parseInt(score)));
+                obj1.setPosition("" + a);
                 obj1.setCountry(country);
                 obj1.setCountry_flag(country_flag);
 
@@ -589,7 +578,7 @@ public class CountryLeaderBoard extends AppCompatActivity {
             }
         }
         adapter.notifyDataSetChanged();
-        if(jsonArray.length() == 0){
+        if (jsonArray.length() == 0) {
             emptyText.setVisibility(View.VISIBLE);
         } else {
             emptyLayout.setVisibility(View.GONE);
@@ -597,35 +586,20 @@ public class CountryLeaderBoard extends AppCompatActivity {
 
     }
 
-    private String getAvatar(ImageView imageView,String avatar){
-        //SharedPreferences sharedPreferences = getSharedPreferences("settings", Context.MODE_PRIVATE);
-        //String avatar = sharedPreferences.getString("avatar","");
-        switch (avatar){
-            case "1":
-                imageView.setImageResource(R.drawable.avatar1);
-                break;
-            case "2":
-                imageView.setImageResource(R.drawable.avatar2);
-                break;
-            case "3":
-                imageView.setImageResource(R.drawable.avatar3);
-                break;
-            case "4":
-                imageView.setImageResource(R.drawable.avatar4);
-                break;
+    private void getAvatar(ImageView imageView, String avatar) {
+        switch (avatar) {
+            case "1" -> imageView.setImageResource(R.drawable.avatar1);
+            case "2" -> imageView.setImageResource(R.drawable.avatar2);
+            case "3" -> imageView.setImageResource(R.drawable.avatar3);
+            case "4" -> imageView.setImageResource(R.drawable.avatar4);
         }
-        return avatar;
     }
 
-    private void setView(View view){
+    private void setView(View view) {
 
 
         countryListView = view.findViewById(R.id.country_listview);
         //countryListView.setAdapter(countryJsonAdapter);
-
-
-
-
 
 
         img1 = view.findViewById(R.id.img1);
@@ -647,10 +621,8 @@ public class CountryLeaderBoard extends AppCompatActivity {
 
 
         flag1.setVisibility(View.INVISIBLE);
-       flag2.setVisibility(View.INVISIBLE);
+        flag2.setVisibility(View.INVISIBLE);
         flag3.setVisibility(View.INVISIBLE);
-
-
 
 
         firstContainer = view.findViewById(R.id.first);
@@ -666,34 +638,33 @@ public class CountryLeaderBoard extends AppCompatActivity {
         recyclerView = view.findViewById(R.id.recyclerview);
 
 
-        adapter = new LeaderboardAdapter(this,list);
+        adapter = new LeaderboardAdapter(this, list);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setHasFixedSize(true);
         recyclerView.setAdapter(adapter);
     }
 
-    private void deSelector(){
+    private void deSelector() {
 
-        LinearLayout[] arrCon ={allBtn,weekBtn,dailyBtn,countryBtn};
+        LinearLayout[] arrCon = {allBtn, weekBtn, dailyBtn, countryBtn};
 
-        for (int a=0;a<arrCon.length;a++){
+        for (int a = 0; a < arrCon.length; a++) {
             LinearLayout layout = arrCon[a];
             layout.setBackgroundColor(getResources().getColor(android.R.color.transparent));
         }
     }
 
-    private void selector(int b){
-        LinearLayout[] arrCon ={allBtn,weekBtn,dailyBtn,countryBtn};
+    private void selector(int b) {
+        LinearLayout[] arrCon = {allBtn, weekBtn, dailyBtn, countryBtn};
         deSelector();
-        for (int a=0;a<arrCon.length;a++){
-            if(a==b) {
+        for (int a = 0; a < arrCon.length; a++) {
+            if (a == b) {
                 LinearLayout layout = arrCon[a];
                 layout.setBackgroundColor(getResources().getColor(R.color.basic_color));
             }
         }
     }
-
 
 
     public void checkPermission() {
@@ -814,37 +785,27 @@ public class CountryLeaderBoard extends AppCompatActivity {
     }
 
 
-    public void solveCountryJson111(String json){
+    public void solveCountryJson111(String json) {
 
         try {
             JSONArray jsonArray = new JSONArray(json);
 
-            for(int i = 0; i < jsonArray.length(); i++){
+            for (int i = 0; i < jsonArray.length(); i++) {
                 JSONObject obj = jsonArray.getJSONObject(i);
                 jsonObjects.add(obj);
-                Log.i("jsonnnnnn"+String.valueOf(i),String.valueOf(obj));
-
-
+                Log.i("jsonnnnnn" + String.valueOf(i), String.valueOf(obj));
 
 
             }
 
             countryJsonAdapter.notifyDataSetChanged();
-           // countryJsonAdapter.notifyDataSetInvalidated();
+            // countryJsonAdapter.notifyDataSetInvalidated();
 
 
-
-
-
-
-
-
-
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
 
         }
-
 
 
     }
@@ -860,7 +821,7 @@ public class CountryLeaderBoard extends AppCompatActivity {
 //            });
 //        }
         AdManager.showInterstitial(CountryLeaderBoard.this);
-        if(AdManager.interstitialAd != null){
+        if (AdManager.interstitialAd != null) {
             AdManager.interstitialAd.setFullScreenContentCallback(new FullScreenContentCallback() {
                 @Override
                 public void onAdFailedToShowFullScreenContent(@NonNull AdError adError) {
@@ -876,22 +837,22 @@ public class CountryLeaderBoard extends AppCompatActivity {
                 }
             });
 
-        }else{
+        } else {
             goBack();
         }
     }
 
-    public  void goBack(){
-        Utils.leaderboardClick+=1;
-        Intent i = new Intent(CountryLeaderBoard.this,LeaderBoard.class);
+    public void goBack() {
+        Utils.leaderboardClick += 1;
+        Intent i = new Intent(CountryLeaderBoard.this, LeaderBoard.class);
         startActivity(i);
         finish();
     }
 
-    public void loadFlag(String url,ImageView imageView){
+    public void loadFlag(String url, ImageView imageView) {
         try {
-            SVGLoader.fetchSvg(CountryLeaderBoard.this,url,imageView);
-        }catch (Exception e){
+            SVGLoader.fetchSvg(CountryLeaderBoard.this, url, imageView);
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }

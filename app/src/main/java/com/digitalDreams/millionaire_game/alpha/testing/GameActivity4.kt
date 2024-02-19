@@ -299,6 +299,8 @@ class GameActivity4 : AppCompatActivity(), OnOptionsClickListener {
 
             withContext(Dispatchers.Main) {
                 showQuestion()
+
+                saveGameProgress()
             }
         }
     }
@@ -308,7 +310,6 @@ class GameActivity4 : AppCompatActivity(), OnOptionsClickListener {
         parseQuestion()
         animateViews()
         startCountdownTimerIfGameModeIsTimed()
-        saveGameProgress()
     }
 
     private fun parseQuestion() {
@@ -588,8 +589,13 @@ class GameActivity4 : AppCompatActivity(), OnOptionsClickListener {
             putInt("amountWonText", amountWonText)
             putLong("startTimeMillis", startTimeMillis)
 
-            val jsonArray = fromQuestions()
-            putString("question_list", jsonArray.toString())
+            if (questions.isNotEmpty()) {
+                val jsonArray = fromQuestions()
+                putString("question_list", jsonArray.toString())
+            } else {
+                putString("question_list", "")
+            }
+
             apply()
         }
     }
@@ -616,7 +622,7 @@ class GameActivity4 : AppCompatActivity(), OnOptionsClickListener {
             startTimeMillis = getLong("startTimeMillis", 0)
             val json = getString("question_list", "")
 
-            if (json != null) {
+            if (!json.isNullOrEmpty()) {
                 toQuestions(json)
             }
 
