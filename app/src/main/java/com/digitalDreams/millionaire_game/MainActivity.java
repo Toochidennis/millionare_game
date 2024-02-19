@@ -269,7 +269,6 @@ public class MainActivity extends AppCompatActivity {
         return questions;
     }
 
-
     private String capitaliseFirstLetter(String word) {
         if (word == null || word.isEmpty()) {
             return word;
