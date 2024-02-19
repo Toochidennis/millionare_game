@@ -234,32 +234,33 @@ public class MainActivity extends AppCompatActivity {
         try {
             JSONArray jsonArray = new JSONArray(json);
             for (int a = 0; a < jsonArray.length(); a++) {
-
                 JSONArray questionArray = jsonArray.getJSONArray(a);
-                String id = String.valueOf(questionArray.getInt(0));
-                String questionTitle = questionArray.getString(1);
-                String level = String.valueOf(questionArray.getString(2));
-                String correctAnswer = questionArray.getString(3).trim();
-                String reason = questionArray.getString(4).trim();
-                String optionA = questionArray.getString(5);
-                String optionB = questionArray.getString(6);
-                String optionC = questionArray.getString(7);
-                String optionD = questionArray.getString(8);
-                String language = getLanguageText(this, languageCode);
+                if (questionArray.length() >= 9) { // Ensure the array has at least 9 elements
+                    String id = String.valueOf(questionArray.optInt(0)); // Use optInt to handle null values
+                    String questionTitle = questionArray.optString(1, ""); // Provide default value for empty strings
+                    String level = String.valueOf(questionArray.optInt(2));
+                    String correctAnswer = questionArray.optString(3, "").trim();
+                    String reason = questionArray.optString(4, "").trim();
+                    String optionA = questionArray.optString(5, "");
+                    String optionB = questionArray.optString(6, "");
+                    String optionC = questionArray.optString(7, "");
+                    String optionD = questionArray.optString(8, "");
+                    String language = getLanguageText(this, languageCode);
 
-                Question question = new Question(id,
-                        capitaliseFirstLetter(questionTitle),
-                        capitaliseFirstLetter(correctAnswer),
-                        new Question.Options(
-                                capitaliseFirstLetter(optionA),
-                                capitaliseFirstLetter(optionB),
-                                capitaliseFirstLetter(optionC),
-                                capitaliseFirstLetter(optionD)
-                        ),
-                        reason, "GENERAL", "1", level, language
-                );
+                    Question question = new Question(id,
+                            capitaliseFirstLetter(questionTitle),
+                            capitaliseFirstLetter(correctAnswer),
+                            new Question.Options(
+                                    capitaliseFirstLetter(optionA),
+                                    capitaliseFirstLetter(optionB),
+                                    capitaliseFirstLetter(optionC),
+                                    capitaliseFirstLetter(optionD)
+                            ),
+                            reason, "GENERAL", "1", level, language
+                    );
 
-                questions.add(question);
+                    questions.add(question);
+                }
             }
         } catch (Exception e) {
             e.printStackTrace();
