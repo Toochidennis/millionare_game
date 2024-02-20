@@ -14,6 +14,7 @@ import android.os.Handler
 import android.os.Looper
 import android.os.VibrationEffect
 import android.os.Vibrator
+import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
@@ -25,9 +26,6 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
 import androidx.core.content.ContextCompat
-import androidx.core.view.WindowCompat
-import androidx.core.view.WindowInsetsCompat
-import androidx.core.view.WindowInsetsControllerCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.digitalDreams.millionaire_game.AdManager
 import com.digitalDreams.millionaire_game.CountDownActivity
@@ -60,10 +58,10 @@ import com.digitalDreams.millionaire_game.alpha.Constants.getRandomSuggestion
 import com.digitalDreams.millionaire_game.alpha.ExplanationBottomSheetDialog
 import com.digitalDreams.millionaire_game.alpha.activity.ProgressActivity2
 import com.digitalDreams.millionaire_game.alpha.adapters.OnOptionsClickListener
+import com.digitalDreams.millionaire_game.alpha.models.OptionsModel
 import com.digitalDreams.millionaire_game.alpha.testing.database.DatabaseProvider
 import com.digitalDreams.millionaire_game.alpha.testing.database.Question
 import com.digitalDreams.millionaire_game.alpha.testing.database.QuestionDao
-import com.digitalDreams.millionaire_game.alpha.models.OptionsModel
 import com.google.android.gms.ads.AdError
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdView
@@ -189,9 +187,11 @@ class GameActivity4 : AppCompatActivity(), OnOptionsClickListener {
     }
 
     private fun initializeViews() {
-        WindowCompat.setDecorFitsSystemWindows(window, false)
-        val controller = WindowInsetsControllerCompat(window, window.decorView)
-        controller.hide(WindowInsetsCompat.Type.systemBars())
+        window.decorView.apply {
+            @Suppress("DEPRECATION")
+            systemUiVisibility =
+                View.SYSTEM_UI_FLAG_HIDE_NAVIGATION or View.SYSTEM_UI_FLAG_FULLSCREEN
+        }
 
         setContentView(R.layout.activity_game3)
 
@@ -286,7 +286,7 @@ class GameActivity4 : AppCompatActivity(), OnOptionsClickListener {
     private fun loadQuestions() {
         val languageCode = sharedPreferences.getString("language", "")
         val language = getLanguageText(this, languageCode)
-        questions.clear()
+        questions = mutableListOf()
 
         CoroutineScope(Dispatchers.Default).launch {
             for (level in 1..15) {
@@ -294,12 +294,16 @@ class GameActivity4 : AppCompatActivity(), OnOptionsClickListener {
                     language = language!!,
                     level = level.toString()
                 )
-                questions.add(question)
+
+                Log.d("question", "$question")
+
+                question?.let {
+                    questions.add(it)
+                }
             }
 
             withContext(Dispatchers.Main) {
                 showQuestion()
-
                 saveGameProgress()
             }
         }
@@ -313,19 +317,26 @@ class GameActivity4 : AppCompatActivity(), OnOptionsClickListener {
     }
 
     private fun parseQuestion() {
-        question = questions[questionIndex]
+        if (questionIndex <= 14 && questions.size < 14) {
+            loadQuestions() // Reload the questions
+        }
 
-        question?.let {
-            questionTextView.text = it.question
-            val option = it.options
+        if (questionIndex <= 14 && questions.size >= 14) {
+            question = questions[questionIndex]
 
-            options.clear()
-            options.add(OptionsModel(option.a))
-            options.add(OptionsModel(option.b))
-            options.add(OptionsModel(option.c))
-            options.add(OptionsModel(option.d))
+            question?.let {
+                questionTextView.text = it.question
+                val option = it.options
 
-            inflateOptions()
+                options = mutableListOf<OptionsModel>().apply {
+                    add(OptionsModel(option.a))
+                    add(OptionsModel(option.b))
+                    add(OptionsModel(option.c))
+                    add(OptionsModel(option.d))
+                }
+
+                inflateOptions()
+            }
         }
     }
 
@@ -382,7 +393,7 @@ class GameActivity4 : AppCompatActivity(), OnOptionsClickListener {
         vibrate()
         cancelTimer()
 
-        val explanationDialog = ExplanationBottomSheetDialog(this, question)
+        val explanationDialog = ExplanationBottomSheetDialog(this@GameActivity4, question)
 
         if (from == PASSED) {
             explanationDialog.show()
@@ -996,6 +1007,7 @@ class GameActivity4 : AppCompatActivity(), OnOptionsClickListener {
         super.onResume()
 
         if (!isFirstTime()) {
+            Log.d("response", "1")
             if (shouldContinueGame()) {
                 if (isFromProgress()) {
                     showQuestion()
@@ -1009,8 +1021,10 @@ class GameActivity4 : AppCompatActivity(), OnOptionsClickListener {
             } else {
                 enableLifeLines()
                 loadQuestions()
+                Log.d("response", "2")
             }
-        }
+        } else
+            Log.d("response", "3")
 
         if (shouldPlayMusic()) {
             AudioManager.playBackgroundMusic(this)
