@@ -206,12 +206,14 @@ public class UserDetails extends AppCompatActivity {
             listView.setOnItemClickListener((parent, view, position, id) -> {
                 // when item selected from list
                 // set selected item on textView
-                country_name.setText(adapter1.getItem(position));
-
-                country = adapter1.getItem(position);
-                flag = flags.get(countries.indexOf(country));
-                countryId = countryIds.get(countries.indexOf(country));
-
+                try {
+                    country_name.setText(adapter1.getItem(position));
+                    country = adapter1.getItem(position);
+                    flag = flags.get(countries.indexOf(country));
+                    countryId = countryIds.get(countries.indexOf(country));
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
                 editText.clearFocus();
                 //imm.toggleSoftInput(InputMethodManager.HIDE_IMPLICIT_ONLY, 0);
 
@@ -312,7 +314,6 @@ public class UserDetails extends AppCompatActivity {
                 countries.add(name);
                 flags.add(flag);
                 countryIds.add(id);
-
             }
 
         } catch (Exception e) {

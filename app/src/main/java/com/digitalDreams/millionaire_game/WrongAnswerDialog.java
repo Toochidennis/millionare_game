@@ -110,9 +110,9 @@ public class WrongAnswerDialog extends Dialog {
         ExplanationBottomSheetDialog explanationBottomSheetDialog;
 
         if (questionModel == null) {
-            explanationBottomSheetDialog = new ExplanationBottomSheetDialog(getContext(), question);
+            explanationBottomSheetDialog = new ExplanationBottomSheetDialog(context, question);
         } else {
-            explanationBottomSheetDialog = new ExplanationBottomSheetDialog(getContext(), questionModel);
+            explanationBottomSheetDialog = new ExplanationBottomSheetDialog(context, questionModel);
         }
         explanationBottomSheetDialog.show();
 
@@ -187,12 +187,12 @@ public class WrongAnswerDialog extends Dialog {
 
     private void dismissDialogAndStartFailureActivity() {
         dismiss();
-        context.startActivity(new Intent(getContext(), FailureActivity.class));
+        context.startActivity(new Intent(context, FailureActivity.class));
     }
 
     private void startFailureActivity() {
         stopBackgroundMusic();
-        context.startActivity(new Intent(getContext(), FailureActivity.class));
+        context.startActivity(new Intent(context, FailureActivity.class));
     }
 
     private void updateSharedPreference() {

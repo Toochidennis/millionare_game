@@ -11,7 +11,7 @@ interface QuestionDao {
     fun insertQuestion(question: List<Question>)
 
     @Query("SELECT * FROM questions WHERE language = :language AND level = :level ORDER BY RANDOM() LIMIT 1")
-    suspend fun getQuestionByLanguageAndLevel(language: String, level: String): Question
+    suspend fun getQuestionByLanguageAndLevel(language: String, level: String): Question?
 
     @Query("SELECT COUNT() FROM questions")
     fun getQuestionSize(): Int
