@@ -34,8 +34,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.digitalDreams.millionaire_game.alpha.AudioManager;
@@ -422,7 +420,7 @@ public class FailureActivity extends AppCompatActivity {
             userDetails.put("country", country);
             userDetails.put("country_flag", country_flag);
 
-            // sendScoreToSever(String.valueOf(totalAmount2), userDetails);
+            sendScoreToSever(String.valueOf(totalAmount2), userDetails);
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -430,14 +428,9 @@ public class FailureActivity extends AppCompatActivity {
     }
 
     private void sendScoreToSever(String score, Map<String, String> userDetails) {
-        String url = getResources().getString(R.string.post_url) + "/post_score.php";
+        String url = getResources().getString(R.string.post_url);
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url, response ->
-                Log.i("response", "response " + response), new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                error.printStackTrace();
-            }
-        }) {
+                Log.i("response", "response " + response), Throwable::printStackTrace) {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 super.getParams();
@@ -472,9 +465,6 @@ public class FailureActivity extends AppCompatActivity {
     }
 
     public static String getDeviceId(Context context) {
-    /*    String id = Settings.Secure.getString(context.getContentResolver(),
-                Settings.Secure.ANDROID_ID);
-        return id;*/
         try {
             return AdvertisingIdClient.getAdvertisingIdInfo(context).getId();
         } catch (Exception e) {
@@ -486,7 +476,6 @@ public class FailureActivity extends AppCompatActivity {
 
     private boolean isNetworkConnected() {
         ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-
         return cm.getActiveNetworkInfo() != null && cm.getActiveNetworkInfo().isConnected();
     }
 
@@ -520,5 +509,4 @@ public class FailureActivity extends AppCompatActivity {
         editor.putBoolean("is_first_time", false);
         editor.apply();
     }
-
 }

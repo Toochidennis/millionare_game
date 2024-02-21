@@ -32,13 +32,12 @@ import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import com.digitalDreams.millionaire_game.alpha.AudioManager;
 import com.digitalDreams.millionaire_game.alpha.testing.GameActivity4;
-import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 
 import java.util.Locale;
 
 public class Dashboard extends AppCompatActivity {
-    TextView newGameTxt, playTxt, leaderboardText, seeRankTxt, moreTxt, playTxt2, gotoYotubeTxt;
+    TextView newGameTxt, playTxt, leaderboardText, seeRankTxt, moreTxt, playTxt2, gotoYoutubeTxt;
     RelativeLayout bg;
     RelativeLayout newGameBtn, leaderBoardBtn, exitBtn, gotoYoutubeBtn, new_particle;
     ImageView settingBtn;
@@ -64,9 +63,9 @@ public class Dashboard extends AppCompatActivity {
         languageCode = sharedPreferences.getString("language", "en");
         int endColor = sharedPreferences.getInt("end_color", getResources().getColor(R.color.purple_dark));
         int startColor = sharedPreferences.getInt("start_color", getResources().getColor(R.color.purple_500));
-        int cardBackground = sharedPreferences.getInt("card_background", 0x219ebc);
+        ///int cardBackground = sharedPreferences.getInt("card_background", 0x219ebc);
         String highScore = sharedPreferences.getString("high_score", "0");
-        String game_level = sharedPreferences.getString("game_level", "1");
+        // String game_level = sharedPreferences.getString("game_level", "1");
 
         setLocale(this, languageCode);
 
@@ -81,15 +80,14 @@ public class Dashboard extends AppCompatActivity {
 
         AdView mAdView;
         mAdView = findViewById(R.id.adView);
-        AdRequest adRequest = new AdRequest.Builder().build();
-        mAdView.loadAd(adRequest);
+        AdManager.loadAdView(mAdView);
 
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
         getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
                 | View.SYSTEM_UI_FLAG_IMMERSIVE);
 
         newGameTxt = findViewById(R.id.new_game_text);
-        gotoYotubeTxt = findViewById(R.id.goto_youtube_txt);
+        gotoYoutubeTxt = findViewById(R.id.goto_youtube_txt);
         new_particle = findViewById(R.id.new_particle);
         playTxt = findViewById(R.id.play_text);
         playTxt2 = findViewById(R.id.play_text1);
@@ -317,7 +315,7 @@ public class Dashboard extends AppCompatActivity {
         super.onResume();
         playTxt.setText(getResources().getString(R.string.play));
         newGameTxt.setText(getResources().getString(R.string.new_game));
-        gotoYotubeTxt.setText(getResources().getString(R.string.goto_youtube));
+        gotoYoutubeTxt.setText(getResources().getString(R.string.goto_youtube));
         seeRankTxt.setText(getResources().getString(R.string.see_your_ranking));
         moreTxt.setText(getResources().getString(R.string.more_games));
         playTxt2.setText(getResources().getString(R.string.play));

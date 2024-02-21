@@ -105,8 +105,8 @@ public class ExitGameDialog extends Dialog {
             dismiss();
         });
 
-        TextView descriptionTxt = findViewById(R.id.desc);
-        // descriptionTxt.setText("Are you sure you want to take "+ amountWon +" and leave the game?");
+/*        /TextView descriptionTxt = findViewById(R.id.desc);
+        // descriptionTxt.setText("Are you sure you want to take "+ amountWon +" and leave the game?");*/
 
         LinearLayout shareBtn = findViewById(R.id.share);
         shareBtn.setOnClickListener(view -> {
@@ -124,6 +124,11 @@ public class ExitGameDialog extends Dialog {
         if (AdManager.interstitialAd != null) {
             AdManager.interstitialAd.setFullScreenContentCallback(new FullScreenContentCallback() {
                 @Override
+                public void onAdShowedFullScreenContent() {
+                    super.onAdShowedFullScreenContent();
+                }
+
+                @Override
                 public void onAdFailedToShowFullScreenContent(@NonNull AdError adError) {
                     super.onAdFailedToShowFullScreenContent(adError);
                     exitGame();
@@ -131,20 +136,19 @@ public class ExitGameDialog extends Dialog {
 
                 @Override
                 public void onAdDismissedFullScreenContent() {
+                    super.onAdDismissedFullScreenContent();
                     exitGame();
                 }
 
                 @Override
                 public void onAdClicked() {
                     super.onAdClicked();
-                }
 
+                }
             });
 
         } else {
-
             exitGame();
-
         }
     }
 

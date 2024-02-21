@@ -10,11 +10,8 @@ import android.graphics.drawable.GradientDrawable
 import android.os.Build
 import android.os.Bundle
 import android.os.CountDownTimer
-import android.os.Handler
-import android.os.Looper
 import android.os.VibrationEffect
 import android.os.Vibrator
-import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
@@ -28,6 +25,7 @@ import androidx.cardview.widget.CardView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.digitalDreams.millionaire_game.AdManager
+import com.digitalDreams.millionaire_game.AdManager.loadAdView
 import com.digitalDreams.millionaire_game.CountDownActivity
 import com.digitalDreams.millionaire_game.DBHelper
 import com.digitalDreams.millionaire_game.ExitGameDialog
@@ -63,11 +61,13 @@ import com.digitalDreams.millionaire_game.alpha.testing.database.DatabaseProvide
 import com.digitalDreams.millionaire_game.alpha.testing.database.Question
 import com.digitalDreams.millionaire_game.alpha.testing.database.QuestionDao
 import com.google.android.gms.ads.AdError
-import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdView
 import com.google.android.gms.ads.FullScreenContentCallback
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
+import kotlinx.coroutines.awaitAll
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import org.json.JSONArray
@@ -233,7 +233,7 @@ class GameActivity4 : AppCompatActivity(), OnOptionsClickListener {
 
         sharedPreferences = getSharedPreferences(PREF_NAME, MODE_PRIVATE)
 
-        adView.loadAd(createAdRequest())
+        loadAdView(adView)
     }
 
     private fun initializeDatabase() {
@@ -286,25 +286,35 @@ class GameActivity4 : AppCompatActivity(), OnOptionsClickListener {
     private fun loadQuestions() {
         val languageCode = sharedPreferences.getString("language", "")
         val language = getLanguageText(this, languageCode)
-        questions = mutableListOf()
+        questions.clear()
 
-        CoroutineScope(Dispatchers.Default).launch {
-            for (level in 1..15) {
-                val question = questionDao.getQuestionByLanguageAndLevel(
-                    language = language!!,
-                    level = level.toString()
-                )
+        CoroutineScope(Dispatchers.IO).launch {
+            // Use async to perform database queries for each level concurrently
+            val deferredQuestions = (1..15).map { level ->
+                async {
+                    questionDao.getQuestionByLanguageAndLevel(
+                        language = language!!,
+                        level = level.toString()
+                    )
+                }
+            }
 
-                Log.d("question", "$question")
+            // Await all the deferred tasks to complete
+            val questionList = deferredQuestions.awaitAll()
 
+            // Process the questions after all tasks are complete
+            questionList.forEach { question ->
                 question?.let {
                     questions.add(it)
                 }
             }
 
+            // save questions after fetching from the database
+            saveGameProgress()
+
+            // Switch to the main thread to update the UI
             withContext(Dispatchers.Main) {
                 showQuestion()
-                saveGameProgress()
             }
         }
     }
@@ -373,18 +383,20 @@ class GameActivity4 : AppCompatActivity(), OnOptionsClickListener {
     }
 
     private fun vibrate() {
-        val vibrator = ContextCompat.getSystemService(this, Vibrator::class.java)
-        vibrator?.let { vib ->
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                vib.vibrate(
-                    VibrationEffect.createOneShot(
-                        DELAY_INTERVAL_MEDIUM,
-                        VibrationEffect.DEFAULT_AMPLITUDE
+        CoroutineScope(Dispatchers.Main).launch {
+            val vibrator = ContextCompat.getSystemService(this@GameActivity4, Vibrator::class.java)
+            vibrator?.let { vib ->
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                    vib.vibrate(
+                        VibrationEffect.createOneShot(
+                            DELAY_INTERVAL_MEDIUM,
+                            VibrationEffect.DEFAULT_AMPLITUDE
+                        )
                     )
-                )
-            } else {
-                @Suppress("DEPRECATION")
-                vib.vibrate(DELAY_INTERVAL_MEDIUM)
+                } else {
+                    @Suppress("DEPRECATION")
+                    vib.vibrate(DELAY_INTERVAL_MEDIUM)
+                }
             }
         }
     }
@@ -401,10 +413,10 @@ class GameActivity4 : AppCompatActivity(), OnOptionsClickListener {
             explanationDialog.setOnDismissListener { dialog ->
                 dialog.dismiss()
 
-                Handler(Looper.getMainLooper()).postDelayed(
-                    { startProgressActivity() },
-                    DELAY_INTERVAL_LONG
-                )
+                CoroutineScope(Dispatchers.Main).launch {
+                    delay(DELAY_INTERVAL_LONG)
+                    startProgressActivity()
+                }
             }
 
             question?.let {
@@ -680,18 +692,21 @@ class GameActivity4 : AppCompatActivity(), OnOptionsClickListener {
         highScore: String,
         isCorrect: Boolean
     ) {
-        try {
-            val dateFormat: DateFormat = SimpleDateFormat("EEE, d MMM, HH:mm", Locale.getDefault())
-            val datePlayed = dateFormat.format(Calendar.getInstance().time)
+        CoroutineScope(Dispatchers.IO).launch {
+            try {
+                val dateFormat: DateFormat =
+                    SimpleDateFormat("EEE, d MMM, HH:mm", Locale.getDefault())
+                val datePlayed = dateFormat.format(Calendar.getInstance().time)
 
-            dbHelper.saveHistory(
-                questionId, answer,
-                correctAnswer, question?.reason,
-                datePlayed, datePlayed,
-                highScore, isCorrect
-            )
-        } catch (e: Exception) {
-            e.printStackTrace()
+                dbHelper.saveHistory(
+                    questionId, answer,
+                    correctAnswer, question?.reason,
+                    datePlayed, datePlayed,
+                    highScore, isCorrect
+                )
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
         }
     }
 
@@ -701,7 +716,7 @@ class GameActivity4 : AppCompatActivity(), OnOptionsClickListener {
             try {
                 AdManager.showRewardedAd(this)
 
-                AdManager.rewardedAd.fullScreenContentCallback =
+                AdManager.rewardedAd?.fullScreenContentCallback =
                     object : FullScreenContentCallback() {
                         override fun onAdFailedToShowFullScreenContent(adError: AdError) {
                             showToast()
@@ -713,6 +728,7 @@ class GameActivity4 : AppCompatActivity(), OnOptionsClickListener {
                             updateShouldContinueGame(true)
                             updateProgressState(false)
                             optionsClickable = true
+                            loadQuestions()
                         }
                     }
             } catch (e: java.lang.Exception) {
@@ -899,8 +915,6 @@ class GameActivity4 : AppCompatActivity(), OnOptionsClickListener {
             .start()
     }
 
-    @SuppressLint("VisibleForTests")
-    private fun createAdRequest() = AdRequest.Builder().build()
 
     /**
      * Handles the display of various dialogs such as the exit dialog, failure dialog, and explanation dialog.
@@ -1007,7 +1021,6 @@ class GameActivity4 : AppCompatActivity(), OnOptionsClickListener {
         super.onResume()
 
         if (!isFirstTime()) {
-            Log.d("response", "1")
             if (shouldContinueGame()) {
                 if (isFromProgress()) {
                     showQuestion()
@@ -1021,10 +1034,8 @@ class GameActivity4 : AppCompatActivity(), OnOptionsClickListener {
             } else {
                 enableLifeLines()
                 loadQuestions()
-                Log.d("response", "2")
             }
-        } else
-            Log.d("response", "3")
+        }
 
         if (shouldPlayMusic()) {
             AudioManager.playBackgroundMusic(this)
@@ -1055,6 +1066,16 @@ class GameActivity4 : AppCompatActivity(), OnOptionsClickListener {
         updateRefreshQuestionState(false)
         updateShouldContinueGame(true)
         updateProgressState(false)
+
+    }
+
+    override fun onStop() {
+        super.onStop()
+        AdManager.disposeAds()
+        if (!shouldPlayMusic()) {
+            AudioManager.stopBackgroundMusic()
+            updateMusicState(true)
+        }
     }
 
     @Deprecated("Deprecated in Java")
