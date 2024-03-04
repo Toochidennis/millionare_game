@@ -27,12 +27,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.digitalDreams.millionaire_game.AdManager
 import com.digitalDreams.millionaire_game.AdManager.loadAdView
 import com.digitalDreams.millionaire_game.CountDownActivity
-import com.digitalDreams.millionaire_game.DBHelper
 import com.digitalDreams.millionaire_game.ExitGameDialog
 import com.digitalDreams.millionaire_game.FailureActivity
 import com.digitalDreams.millionaire_game.R
 import com.digitalDreams.millionaire_game.Utils
-import com.digitalDreams.millionaire_game.Utils.ARABIC_KEY
 import com.digitalDreams.millionaire_game.WinnersActivity
 import com.digitalDreams.millionaire_game.WrongAnswerDialog
 import com.digitalDreams.millionaire_game.alpha.AudioManager
@@ -51,7 +49,6 @@ import com.digitalDreams.millionaire_game.alpha.Constants.RED
 import com.digitalDreams.millionaire_game.alpha.Constants.generateAmount
 import com.digitalDreams.millionaire_game.alpha.Constants.getBackgroundDrawable
 import com.digitalDreams.millionaire_game.alpha.Constants.getLabelFromList
-import com.digitalDreams.millionaire_game.alpha.Constants.getLanguageText
 import com.digitalDreams.millionaire_game.alpha.Constants.getRandomSuggestion
 import com.digitalDreams.millionaire_game.alpha.ExplanationBottomSheetDialog
 import com.digitalDreams.millionaire_game.alpha.activity.ProgressActivity2
@@ -71,11 +68,9 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import org.json.JSONArray
-import java.text.DateFormat
-import java.text.SimpleDateFormat
-import java.util.Calendar
 import java.util.Locale
 import java.util.Random
+import java.util.concurrent.CopyOnWriteArrayList
 
 class GameActivity4 : AppCompatActivity(), OnOptionsClickListener {
 
@@ -119,12 +114,12 @@ class GameActivity4 : AppCompatActivity(), OnOptionsClickListener {
     private lateinit var sharedPreferences: SharedPreferences
     private var question: Question? = null
     private lateinit var questionDao: QuestionDao
-    private lateinit var dbHelper: DBHelper
+    // private late init var dbHelper: DBHelper
 
     private var options = mutableListOf<OptionsModel>()
     private var amounts = mutableListOf<Int>()
     private var amountWonList = mutableListOf<Int>()
-    private var questions = mutableListOf<Question>()
+    private var questions = CopyOnWriteArrayList<Question>()
 
     private var questionIndex = 0
     private var numberOfFailure = 0
@@ -140,61 +135,73 @@ class GameActivity4 : AppCompatActivity(), OnOptionsClickListener {
     private var countDownTimer: CountDownTimer? = null
 
     companion object {
+        // This variable holds a reference to the GameActivity4 instance.
+        // Using @SuppressLint("StaticFieldLeak") to suppress the lint warning about potential memory leaks
         @SuppressLint("StaticFieldLeak")
         private var gameActivity: GameActivity4? = null
 
+        // Sets the current GameActivity4 instance.
         fun setGameActivity(activity4: GameActivity4) {
             gameActivity = activity4
         }
 
+        // Retrieves the current GameActivity4 instance.
         fun getGameActivity(): GameActivity4? = gameActivity
     }
 
-
+    // Called when the activity is starting. Responsible for initializing ads.
     override fun onStart() {
         super.onStart()
         initializeAds()
     }
 
+    // Called when the activity is being created. Responsible for initializing the game or resuming it.
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        // If the activity is newly created, initialize the game. Otherwise, resume it.
         if (savedInstanceState == null) {
             initializeGame()
         } else {
             resumeGame()
         }
 
+        // Sets the current GameActivity4 instance to this activity.
         setGameActivity(this)
     }
 
+    // Initializes the game when it's started for the first time.
     private fun initializeGame() {
-        startCountDownActivity()
-        initializeViews()
-        initializeDatabase()
-        loadQuestions()
-        setRootViewBackgroundColor()
-        handleViewClicks()
-        startTimeMillis = System.currentTimeMillis()
+        startCountDownActivity() // Starts the countdown activity.
+        initializeViews() // Initializes the views.
+        initializeDatabase() // Initializes the database.
+        loadQuestions() // Loads the questions for the game.
+        setRootViewBackgroundColor() // Sets the background color of the root view.
+        handleViewClicks() // Handles click events on views.
+        startTimeMillis = System.currentTimeMillis() // Records the start time of the game.
     }
 
+    // Resumes the game from a previously saved state.
     private fun resumeGame() {
-        initializeViews()
-        initializeDatabase()
-        setRootViewBackgroundColor()
-        handleViewClicks()
-        restoreSavedProgress()
+        initializeViews() // Initializes the views.
+        initializeDatabase() // Initializes the database.
+        setRootViewBackgroundColor() // Sets the background color of the root view.
+        handleViewClicks() // Handles click events on views.
+        restoreSavedProgress() // Restores the game progress from the saved state.
     }
 
     private fun initializeViews() {
+        // Hide system UI elements
         window.decorView.apply {
             @Suppress("DEPRECATION")
             systemUiVisibility =
                 View.SYSTEM_UI_FLAG_HIDE_NAVIGATION or View.SYSTEM_UI_FLAG_FULLSCREEN
         }
 
+        // Set content view to the game layout
         setContentView(R.layout.activity_game3)
 
+        // Initialize UI elements by finding views by their IDs
         exitButton = findViewById(R.id.exitBtn)
         timerContainer = findViewById(R.id.timer_container)
         countdownTextView = findViewById(R.id.time)
@@ -231,23 +238,29 @@ class GameActivity4 : AppCompatActivity(), OnOptionsClickListener {
         questionProgressTextView = findViewById(R.id.question_progress)
         adView = findViewById(R.id.adView)
 
+        // Initialise shared preferences
         sharedPreferences = getSharedPreferences(PREF_NAME, MODE_PRIVATE)
 
+        // Load advertisement view
         loadAdView(adView)
     }
 
     private fun initializeDatabase() {
+        // Get an instance of the database provider and initialize the question DAO
         val appDatabase = DatabaseProvider.getInstance(this)
         questionDao = appDatabase.questionDao()
-        dbHelper = DBHelper(this)
+        //dbHelper = DBHelper(this)
     }
 
     private fun initializeAds() {
+        // Load interstitial and rewarded ads using the AdManager
         AdManager.loadInterstitialAd(this)
         AdManager.loadRewardedAd(this)
     }
 
     private fun setRootViewBackgroundColor() {
+        // Get start and end colors from shared preferences, default to purple shades
+        // Set background of root view with gradient drawable
         val startColor = sharedPreferences.getInt(
             "start_color",
             ContextCompat.getColor(this, R.color.purple_500)
@@ -262,12 +275,14 @@ class GameActivity4 : AppCompatActivity(), OnOptionsClickListener {
     }
 
     private fun getAmounts() {
+        // Get game level from shared preferences and generate amounts based on the level
         val gameLevel = sharedPreferences.getString("game_level", "1")
         val level = gameLevel?.toInt()
         amounts = level?.let { generateAmount(it) }!!
     }
 
     private fun handleViewClicks() {
+        // Set click listeners for various UI elements
         minus2QuestionsButton.setOnClickListener { hideTwoQuestions() }
         resetQuestionButton.setOnClickListener { skipQuestion() }
         askComputerButton.setOnClickListener { askComputer() }
@@ -284,60 +299,71 @@ class GameActivity4 : AppCompatActivity(), OnOptionsClickListener {
     }
 
     private fun loadQuestions() {
-        val languageCode = sharedPreferences.getString("language", "")
-        val language = getLanguageText(this, languageCode)
+        // Retrieve language from resources and clear existing questions list
+        val language = getString(R.string.language_)
         questions.clear()
 
+        // Launch a coroutine in IO context to perform database queries for each level concurrently
         CoroutineScope(Dispatchers.IO).launch {
-            // Use async to perform database queries for each level concurrently
-            val deferredQuestions = (1..15).map { level ->
-                async {
-                    questionDao.getQuestionByLanguageAndLevel(
-                        language = language!!,
-                        level = level.toString()
-                    )
+            try {
+                // Use async to perform database queries for each level concurrently
+                val deferredQuestions = (1..15).map { level ->
+                    async {
+                        // Query the database for questions based on language and level
+                        questionDao.getQuestionByLanguageAndLevel(
+                            language = language,
+                            level = level.toString()
+                        )
+                    }
                 }
-            }
 
-            // Await all the deferred tasks to complete
-            val questionList = deferredQuestions.awaitAll()
+                // Await all the deferred tasks to complete
+                val questionList = deferredQuestions.awaitAll()
 
-            // Process the questions after all tasks are complete
-            questionList.forEach { question ->
-                question?.let {
-                    questions.add(it)
+                // Process the questions after all tasks are complete
+                questionList.forEach { question ->
+                    question?.let {
+                        questions.add(it)
+                    }
                 }
-            }
 
-            // save questions after fetching from the database
-            saveGameProgress()
+                // save questions after fetching from the database
+                saveGameProgress()
 
-            // Switch to the main thread to update the UI
-            withContext(Dispatchers.Main) {
-                showQuestion()
+                // Switch to the main thread to update the UI
+                withContext(Dispatchers.Main) {
+                    showQuestion()
+                }
+            } catch (e: Exception) {
+                // Handle exceptions by recursively calling loadQuestions() again
+                loadQuestions()
             }
         }
     }
 
     private fun showQuestion() {
-        updateAmountWon()
-        parseQuestion()
-        animateViews()
-        startCountdownTimerIfGameModeIsTimed()
+        updateAmountWon() // Update the amount won
+        parseQuestion() // Parse and display the current question
+        animateViews() // Animate UI views
+        startCountdownTimerIfGameModeIsTimed() // Start countdown timer if the game mode is timed
     }
 
     private fun parseQuestion() {
+        // Check if there are enough questions loaded; if not, reload questions
         if (questionIndex <= 14 && questions.size < 14) {
             loadQuestions() // Reload the questions
         }
 
+        // If enough questions are available, parse the current question
         if (questionIndex <= 14 && questions.size >= 14) {
             question = questions[questionIndex]
 
+            // Set question text and options
             question?.let {
                 questionTextView.text = it.question
                 val option = it.options
 
+                // Inflate options for the RecyclerView
                 options = mutableListOf<OptionsModel>().apply {
                     add(OptionsModel(option.a))
                     add(OptionsModel(option.b))
@@ -345,12 +371,13 @@ class GameActivity4 : AppCompatActivity(), OnOptionsClickListener {
                     add(OptionsModel(option.d))
                 }
 
-                inflateOptions()
+                inflateOptions() // Populate options in the RecyclerView
             }
         }
     }
 
     private fun inflateOptions() {
+        // Initialize and set adapter for the options RecyclerView
         optionsAdapter2 = OptionsAdapter2(options, this)
         optionsRecyclerView.apply {
             hasFixedSize()
@@ -359,18 +386,23 @@ class GameActivity4 : AppCompatActivity(), OnOptionsClickListener {
     }
 
     override fun onOptionClick(position: Int, itemView: View) {
+        // Check if options are clickable
         if (optionsClickable) {
+            // Change background color of the selected option and handle user selection after a delay
             itemView.background = getBackgroundDrawable(ORANGE, itemView)
             itemView.postDelayed({ handleUserSelection(position, itemView) }, DELAY_INTERVAL_LONG)
+            // Disable options clickability and update the first-time state
             optionsClickable = false
             updateFirstTimeState()
         }
     }
 
     private fun handleUserSelection(position: Int, itemView: View) {
+        // Retrieve the selected answer and the correct answer
         selectedAnswer = options[position].optionText.trim()
         val correctAnswer = question?.correctAnswer?.trim()
 
+        // Compare selected answer with correct answer and show appropriate feedback
         if (selectedAnswer.equals(correctAnswer, ignoreCase = true)) {
             itemView.background = getBackgroundDrawable(GREEN, itemView)
             playSuccessSound(this)
@@ -383,6 +415,8 @@ class GameActivity4 : AppCompatActivity(), OnOptionsClickListener {
     }
 
     private fun vibrate() {
+        // Perform device vibration for feedback
+        // Uses coroutine to perform vibration on the main thread
         CoroutineScope(Dispatchers.Main).launch {
             val vibrator = ContextCompat.getSystemService(this@GameActivity4, Vibrator::class.java)
             vibrator?.let { vib ->
@@ -405,6 +439,7 @@ class GameActivity4 : AppCompatActivity(), OnOptionsClickListener {
         vibrate()
         cancelTimer()
 
+        // Create and show an explanation dialog based on the result
         val explanationDialog = ExplanationBottomSheetDialog(this@GameActivity4, question)
 
         if (from == PASSED) {
@@ -419,38 +454,40 @@ class GameActivity4 : AppCompatActivity(), OnOptionsClickListener {
                 }
             }
 
-            question?.let {
-                saveHistory(
-                    questionId = it.questionId,
-                    answer = selectedAnswer ?: "",
-                    correctAnswer = it.correctAnswer.trim(),
-                    highScore = amountWonText.toString(),
-                    isCorrect = true
-                )
-            }
+            /*  question?.let {
+                  saveHistory(
+                      questionId = it.questionId,
+                      answer = selectedAnswer ?: "",
+                      correctAnswer = it.correctAnswer.trim(),
+                      highScore = amountWonText.toString(),
+                      isCorrect = true
+                  )
+              }*/
 
         } else {
             startFailureActivity(explanationDialog)
 
-            question?.let {
-                saveHistory(
-                    questionId = it.questionId,
-                    answer = selectedAnswer ?: "",
-                    correctAnswer = it.correctAnswer.trim(),
-                    highScore = amountWonText.toString(),
-                    isCorrect = false
-                )
-            }
+            /* question?.let {
+                 saveHistory(
+                     questionId = it.questionId,
+                     answer = selectedAnswer ?: "",
+                     correctAnswer = it.correctAnswer.trim(),
+                     highScore = amountWonText.toString(),
+                     isCorrect = false
+                 )
+             }*/
         }
     }
 
     private fun startProgressActivity() {
+        // Update amount won and proceed to the next question or winner activity
         amountWonText = amounts[numberOfPassed]
         amountWonList.add(amountWonText)
 
         if (numberOfPassed == 14) {
-            startWinnersActivity()
+            startWinnersActivity() // Start winner activity if all questions are passed
         } else {
+            // Start progress activity with updated data and proceed to the next question
             updateRefreshQuestionState(false)
             updateShouldContinueGame(true)
             updateProgressState(true)
@@ -461,30 +498,42 @@ class GameActivity4 : AppCompatActivity(), OnOptionsClickListener {
                     .putExtra("should_use_timer", true)
             )
 
+            // Update question and game state
             questionIndex++
             numberOfPassed++
             numberOfAnswered++
         }
 
+        // Save new amount won, enable options clickability, and update music state
         saveNewAmountWon()
         optionsClickable = true
         updateMusicState(true)
     }
 
-    private fun startFailureActivity(explanationBottomSheetDialog: ExplanationBottomSheetDialog) {
+    private fun startFailureActivity(bottomSheetDialog: ExplanationBottomSheetDialog?) {
+        // Ensure explanation dialog exists, if not create a new one
+        var explanationDialog = bottomSheetDialog
+        if (explanationDialog == null) {
+            explanationDialog = ExplanationBottomSheetDialog(this, question)
+        }
+
+        // Show failure dialog and handle if it's the first failure or subsequent failures
         if (numberOfFailure < 1) {
             showFailureDialog()
             numberOfFailure++
         } else {
             AudioManager.pauseBackgroundMusic()
-            explanationBottomSheetDialog.show()
 
-            explanationBottomSheetDialog.setOnDismissListener { dialog: DialogInterface ->
-                dialog.dismiss()
+            explanationDialog.let {
+                it.show()
+                it.setOnDismissListener { dialog: DialogInterface ->
+                    dialog.dismiss()
 
-                numberOfFailure = 0
-                startActivity(Intent(this, FailureActivity::class.java))
+                    numberOfFailure = 0
+                    startActivity(Intent(this, FailureActivity::class.java))
+                }
             }
+
             updateRefreshQuestionState(true)
             updateShouldContinueGame(false)
         }
@@ -494,6 +543,7 @@ class GameActivity4 : AppCompatActivity(), OnOptionsClickListener {
     }
 
     private fun startWinnersActivity() {
+        // Start winners activity, indicating the win and no need to show an ad
         val intent = Intent(this, WinnersActivity::class.java)
         intent.putExtra("isWon", true)
         intent.putExtra("isShowAd", false)
@@ -502,6 +552,7 @@ class GameActivity4 : AppCompatActivity(), OnOptionsClickListener {
     }
 
     private fun showFailureDialog() {
+        // Pause background music and show the wrong answer dialog
         AudioManager.pauseBackgroundMusic()
         val wrongAnswerDialog = WrongAnswerDialog(this, question)
         wrongAnswerDialog.setCancelable(false)
@@ -509,13 +560,15 @@ class GameActivity4 : AppCompatActivity(), OnOptionsClickListener {
     }
 
     private fun updateAmountWon() {
+        // Update the amount won text view with formatted amount
         val formattedAmount =
             String.format(Locale.getDefault(), "$%s", Constants.prettyCount(amountWonText))
         amountWonTextView.text = formattedAmount
-        updateQuestionProgress()
+        updateQuestionProgress() // Update the question progress text view
     }
 
     private fun updateQuestionProgress() {
+        // Update the question progress text view with current question index
         val progress = String.format(
             Locale.getDefault(), "%d/%s",
             questionIndex + 1,
@@ -525,6 +578,7 @@ class GameActivity4 : AppCompatActivity(), OnOptionsClickListener {
     }
 
     private fun saveNewAmountWon() {
+        // Save the new amount won to shared preferences
         sharedPreferences.edit().apply {
             putString("amountWon", amountWonText.toString())
             putBoolean("hasOldWinningAmount", true)
@@ -601,6 +655,7 @@ class GameActivity4 : AppCompatActivity(), OnOptionsClickListener {
     }
 
     private fun saveGameProgress() {
+        // Save game progress to shared preferences
         getSharedPreferences("progress", MODE_PRIVATE).edit().apply {
             putInt("questionIndex", questionIndex)
             putInt("numberOfPassed", numberOfPassed)
@@ -624,6 +679,7 @@ class GameActivity4 : AppCompatActivity(), OnOptionsClickListener {
     }
 
     private fun fromQuestions(): JSONArray {
+        // Convert list of questions to JSON array
         return JSONArray().apply {
             questions.forEach { question ->
                 put(question.toJsonString())
@@ -632,6 +688,7 @@ class GameActivity4 : AppCompatActivity(), OnOptionsClickListener {
     }
 
     private fun restoreSavedProgress() {
+        // Restore saved progress from shared preferences
         val sharedPreferences = getSharedPreferences("progress", MODE_PRIVATE)
         with(sharedPreferences) {
             questionIndex = getInt("questionIndex", 0)
@@ -660,6 +717,7 @@ class GameActivity4 : AppCompatActivity(), OnOptionsClickListener {
     }
 
     private fun toQuestions(json: String) {
+        // Convert JSON string to list of questions
         try {
             with(JSONArray(json)) {
                 for (i in 0 until length()) {
@@ -674,6 +732,7 @@ class GameActivity4 : AppCompatActivity(), OnOptionsClickListener {
     }
 
     private fun clearSavedProgress() {
+        // Clear saved progress from shared preferences
         getSharedPreferences("progress", MODE_PRIVATE)
             .edit().apply {
                 clear()
@@ -685,35 +744,36 @@ class GameActivity4 : AppCompatActivity(), OnOptionsClickListener {
         startActivity(Intent(this, CountDownActivity::class.java))
     }
 
-    private fun saveHistory(
-        questionId: String,
-        answer: String,
-        correctAnswer: String,
-        highScore: String,
-        isCorrect: Boolean
-    ) {
-        CoroutineScope(Dispatchers.IO).launch {
-            try {
-                val dateFormat: DateFormat =
-                    SimpleDateFormat("EEE, d MMM, HH:mm", Locale.getDefault())
-                val datePlayed = dateFormat.format(Calendar.getInstance().time)
+    /* private fun saveHistory(
+         questionId: String,
+         answer: String,
+         correctAnswer: String,
+         highScore: String,
+         isCorrect: Boolean
+     ) {
+         CoroutineScope(Dispatchers.IO).launch {
+             try {
+                 val dateFormat: DateFormat =
+                     SimpleDateFormat("EEE, d MMM, HH:mm", Locale.getDefault())
+                 val datePlayed = dateFormat.format(Calendar.getInstance().time)
 
-                dbHelper.saveHistory(
-                    questionId, answer,
-                    correctAnswer, question?.reason,
-                    datePlayed, datePlayed,
-                    highScore, isCorrect
-                )
-            } catch (e: Exception) {
-                e.printStackTrace()
-            }
-        }
-    }
-
+                 dbHelper.saveHistory(
+                     questionId, answer,
+                     correctAnswer, question?.reason,
+                     datePlayed, datePlayed,
+                     highScore, isCorrect
+                 )
+             } catch (e: Exception) {
+                 e.printStackTrace()
+             }
+         }
+     }
+ */
 
     private fun skipQuestion() {
         if (Utils.isOnline(this)) {
             try {
+                initializeAds()
                 AdManager.showRewardedAd(this)
 
                 AdManager.rewardedAd?.fullScreenContentCallback =
@@ -805,7 +865,7 @@ class GameActivity4 : AppCompatActivity(), OnOptionsClickListener {
 
     private fun isArabic(): Boolean {
         val languageCode = sharedPreferences.getString("language", "")
-        return languageCode == ARABIC_KEY
+        return languageCode == Language.ARABIC.code
     }
 
     /**
@@ -1005,6 +1065,8 @@ class GameActivity4 : AppCompatActivity(), OnOptionsClickListener {
         updateMusicState(false)
         AdManager.disposeAds()
         cancelTimer()
+        clearSavedProgress()
+        adView.destroy()
 
         val durationMillis = System.currentTimeMillis() - startTimeMillis
         val durationString: String = formatDuration(durationMillis)
@@ -1020,28 +1082,37 @@ class GameActivity4 : AppCompatActivity(), OnOptionsClickListener {
     override fun onResume() {
         super.onResume()
 
+        // Check if it's not the first time user playing
         if (!isFirstTime()) {
+            // If the game should continue
             if (shouldContinueGame()) {
+                // If coming from progress, show the next question
                 if (isFromProgress()) {
                     showQuestion()
-                } else if (isShouldRefreshQuestion()) {
+                }
+                // If the question needs to be refreshed
+                else if (isShouldRefreshQuestion()) {
                     loadQuestions()
                     updateRefreshQuestionState(false)
                     updateShouldContinueGame(true)
                 } else {
                     startCountdownTimerIfGameModeIsTimed()
                 }
-            } else {
+            }
+            // If the game should not continue, load new questions and enable lifelines
+            else {
                 enableLifeLines()
                 loadQuestions()
             }
         }
 
+        // If music should play, start playing background music and update music state
         if (shouldPlayMusic()) {
             AudioManager.playBackgroundMusic(this)
             updateMusicState(false)
         }
 
+        // Update suggestion and poll visibility, get amounts
         updateSuggestionAndPollVisibility()
         getAmounts()
     }
@@ -1066,12 +1137,12 @@ class GameActivity4 : AppCompatActivity(), OnOptionsClickListener {
         updateRefreshQuestionState(false)
         updateShouldContinueGame(true)
         updateProgressState(false)
-
     }
 
     override fun onStop() {
         super.onStop()
         AdManager.disposeAds()
+
         if (!shouldPlayMusic()) {
             AudioManager.stopBackgroundMusic()
             updateMusicState(true)
@@ -1085,6 +1156,5 @@ class GameActivity4 : AppCompatActivity(), OnOptionsClickListener {
     override fun onDestroy() {
         super.onDestroy()
         disposeResources()
-        clearSavedProgress()
     }
 }

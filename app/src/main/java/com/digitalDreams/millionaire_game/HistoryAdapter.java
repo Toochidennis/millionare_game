@@ -120,7 +120,7 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.HistoryV
             holder.accuracy.setText(String.format(Locale.getDefault(), "%.2f %s", accuracy, context.getResources().getString(R.string.accuracy)));
 
             holder.view_answers.setOnClickListener(view -> {
-                Intent i = new Intent(context, HistoryDetals.class);
+                Intent i = new Intent(context, HistoryDetails.class);
                 i.putExtra("date_played", date_played);
                 context.startActivity(i);
             });

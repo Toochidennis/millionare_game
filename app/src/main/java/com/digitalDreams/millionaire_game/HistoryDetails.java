@@ -21,7 +21,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-public class HistoryDetals extends AppCompatActivity {
+public class HistoryDetails extends AppCompatActivity {
     RelativeLayout bg;
     DBHelper dbHelper;
     HistoryDetailsAdapter historyAdapter;
@@ -75,8 +75,8 @@ public class HistoryDetals extends AppCompatActivity {
         close_container.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                AudioManager.darkBlueBlink(HistoryDetals.this, close_container);
-                AdManager.showInterstitial(HistoryDetals.this);
+                AudioManager.darkBlueBlink(HistoryDetails.this, close_container);
+                AdManager.showInterstitial(HistoryDetails.this);
                 onBackPressed();
 
 
@@ -84,8 +84,8 @@ public class HistoryDetals extends AppCompatActivity {
         });
 
         arrow_back.setOnClickListener(view -> {
-            AudioManager.darkBlueBlink(HistoryDetals.this, arrow_back);
-            AdManager.showInterstitial(HistoryDetals.this);
+            AudioManager.darkBlueBlink(HistoryDetails.this, arrow_back);
+            AdManager.showInterstitial(HistoryDetails.this);
             onBackPressed();
 
         });
