@@ -20,6 +20,7 @@
     <string name="theme_1">تھیم 1</string>
     <string name="theme_2">تھیم 2</string>
     <string name="theme_3">تھیم 3</string>
+    <string name="language_">اردو</string>
     <string name="english">انگریزی</string>
     <string name="french">فرانسیسی</string>
     <string name="spanish">ہسپانوی</string>
@@ -31,6 +32,11 @@
     <string name="japanese">جاپانی</string>
     <string name="turkish">ترکی</string>
     <string name="indonesian">انڈونیشین</string>
+    <string name="malay">مالائی</string>
+    <string name="thai">تھائی</string>
+    <string name="korean">کورین</string>
+    <string name="chinese">چینی</string>
+    <string name="vietnamese">ویتنامی</string>
     <string name="banner_ad_unit">ca-app-pub-4696224049420135/8152081288</string>
     <string name="app_ad_id">ca-app-pub-4696224049420135~2129598410</string>
     <string name="interstitial_ad_unit_id">ca-app-pub-4696224049420135/9312479087</string>
