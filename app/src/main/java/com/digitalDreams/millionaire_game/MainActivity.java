@@ -1,7 +1,6 @@
 package com.digitalDreams.millionaire_game;
 
 import static com.digitalDreams.millionaire_game.alpha.Constants.getLanguageResource;
-import static com.digitalDreams.millionaire_game.alpha.Constants.getLanguageText;
 
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
@@ -17,7 +16,6 @@ import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -245,7 +243,7 @@ public class MainActivity extends AppCompatActivity {
                     String optionB = questionArray.optString(6, "");
                     String optionC = questionArray.optString(7, "");
                     String optionD = questionArray.optString(8, "");
-                    String language = getLanguageText(this, languageCode);
+                    String language = getString(R.string.language_);
 
                     Question question = new Question(id,
                             capitaliseFirstLetter(questionTitle),
