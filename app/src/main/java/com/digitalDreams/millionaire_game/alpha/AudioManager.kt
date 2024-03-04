@@ -118,7 +118,7 @@ object AudioManager {
     @JvmStatic
     @SuppressLint("ClickableViewAccessibility")
     fun greenBlink(context: Context, view: View) {
-        CoroutineScope(Dispatchers.Main).launch {
+        coroutineScope.launch {
             try {
                 if (greenMediaPlayer == null) {
                     greenMediaPlayer = MediaPlayer.create(context, R.raw.play)
@@ -137,13 +137,12 @@ object AudioManager {
                 e.printStackTrace()
             }
         }
-
     }
 
     @JvmStatic
     @SuppressLint("ClickableViewAccessibility")
     fun darkBlueBlink(context: Context, view: View) {
-        CoroutineScope(Dispatchers.Main).launch {
+        coroutineScope.launch {
             try {
                 if (darkBlueMediaPlayer == null) {
                     darkBlueMediaPlayer = MediaPlayer.create(context, R.raw.others)
