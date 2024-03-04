@@ -27,20 +27,6 @@ import java.util.Map;
 
 public class Utils {
     public static boolean IS_DONE_INSERTING = false;
-
-    public static String ENGLISH_KEY = "en";
-    public static String SPANISH_KEY = "es";
-    public static String FRENCH_KEY = "fr";
-    public static String ARABIC_KEY = "ar";
-    public static String HINDI_KEY = "hi";
-    public static String PORTUGUESE_KEY = "pt";
-    public static String URDU_KEY = "ur";
-    public static String JAPANESE_KEY = "ja";
-    public static String GERMAN_KEY = "de";
-    public static String INDONESIAN_KEY = "in";
-    public static String TURKISH_KEY = "tr";
-
-    public static int NUMBER_OF_INSERT = 0;
     public static Class destination_activity = Dashboard.class;
     public static int leaderboardClick = 0;
     public static int highScore = 500;
