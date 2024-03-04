@@ -244,9 +244,6 @@ public class Dashboard extends AppCompatActivity {
 
             }
 
-            setLanguage(Dashboard.this);
-            //SettingsDialog.languageBtn.setCardBackgroundColor(cardBackground);
-
             //newGameTxt.setText(getResources().getString(R.string.new_game));
 
             setLocale(Dashboard.this, languageCode);
@@ -329,7 +326,7 @@ public class Dashboard extends AppCompatActivity {
         String languageCode = sharedPreferences.getString("language", "");
 
         switch (languageCode) {
-            case "fr", "es", "pt", "de", "in", "tr" -> {
+            case "fr", "es", "pt", "de", "in", "tr", "ms" -> {
                 playTxt.setTextSize(18);
                 playTxt2.setTextSize(18);
             }
@@ -340,37 +337,6 @@ public class Dashboard extends AppCompatActivity {
         }
 
         setLocale(this, languageCode);
-    }
-
-    public void setLanguage(Context context) {
-        SharedPreferences sharedPreferences = context.getSharedPreferences("settings", MODE_PRIVATE);
-        String languageCode = sharedPreferences.getString("language", "");
-        SettingActivity.flagImg.setImageResource(R.drawable.country_flag);
-
-        switch (languageCode) {
-            case "fr" ->
-                    SettingActivity.languageTxt.setText(context.getResources().getString(R.string.french));
-            case "es" ->
-                    SettingActivity.languageTxt.setText(context.getResources().getString(R.string.spanish));
-            case "pt" ->
-                    SettingActivity.languageTxt.setText(context.getResources().getString(R.string.portuguese));
-            case "ur" ->
-                    SettingActivity.languageTxt.setText(context.getResources().getString(R.string.urdu));
-            case "hi" ->
-                    SettingActivity.languageTxt.setText(context.getResources().getString(R.string.hindi));
-            case "ar" ->
-                    SettingActivity.languageTxt.setText(context.getResources().getString(R.string.arabic));
-            case "de" ->
-                    SettingActivity.languageTxt.setText(context.getResources().getString(R.string.german));
-            case "ja" ->
-                    SettingActivity.languageTxt.setText(context.getResources().getString(R.string.japanese));
-            case "in" ->
-                    SettingActivity.languageTxt.setText(context.getResources().getString(R.string.indonesian));
-            case "tr" ->
-                    SettingActivity.languageTxt.setText(context.getResources().getString(R.string.turkish));
-            default ->
-                    SettingActivity.languageTxt.setText(context.getResources().getString(R.string.english));
-        }
     }
 
     @Override

@@ -1,7 +1,5 @@
 package com.digitalDreams.millionaire_game;
 
-import static com.digitalDreams.millionaire_game.alpha.Constants.getLanguageText;
-
 import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
@@ -123,9 +121,7 @@ public class DBHelper extends SQLiteOpenHelper {
             try {
                 db = getWritableDatabase();
 
-                SharedPreferences sharedPreferences = context.getSharedPreferences("settings", Context.MODE_PRIVATE);
-                String languageCode = sharedPreferences.getString("language", "");
-                String language = getLanguageText(context, languageCode);
+                String language = context.getString(R.string.language_);
 
                 String selectQuery = "SELECT * FROM " + JSON_TABLE + " WHERE LEVEL = ? AND  LANGUAGE = ? ORDER BY RANDOM() LIMIT 1";
                 Log.i("query", selectQuery);
@@ -156,9 +152,7 @@ public class DBHelper extends SQLiteOpenHelper {
             try {
                 SQLiteDatabase db = this.getWritableDatabase();
 
-                SharedPreferences sharedPreferences = context.getSharedPreferences("settings", Context.MODE_PRIVATE);
-                String languageCode = sharedPreferences.getString("language", "");
-                String language = getLanguageText(context, languageCode);
+                String language = context.getString(R.string.language_);
 
                 //String selectQuery = "SELECT * FROM " + JSON_TABLE + " where LEVEL = "+level+" ORDER BY RANDOM() LIMIT 1";
                 String selectQuery = "SELECT * FROM " + JSON_TABLE + " WHERE  LANGUAGE = ? ORDER BY  STAGE ASC";
