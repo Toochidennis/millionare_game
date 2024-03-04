@@ -45,7 +45,7 @@
             android:name=".WebViewActivity"
             android:exported="false" />
         <activity
-            android:name=".HistoryDetals"
+            android:name=".HistoryDetails"
             android:exported="false" />
         <activity
             android:name=".MainGameActivity"
