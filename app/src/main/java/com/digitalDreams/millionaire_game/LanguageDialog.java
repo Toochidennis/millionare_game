@@ -1,19 +1,7 @@
 package com.digitalDreams.millionaire_game;
 
-import static com.digitalDreams.millionaire_game.Utils.ARABIC_KEY;
-import static com.digitalDreams.millionaire_game.Utils.ENGLISH_KEY;
-import static com.digitalDreams.millionaire_game.Utils.FRENCH_KEY;
-import static com.digitalDreams.millionaire_game.Utils.GERMAN_KEY;
-import static com.digitalDreams.millionaire_game.Utils.HINDI_KEY;
-import static com.digitalDreams.millionaire_game.Utils.INDONESIAN_KEY;
-import static com.digitalDreams.millionaire_game.Utils.JAPANESE_KEY;
-import static com.digitalDreams.millionaire_game.Utils.PORTUGUESE_KEY;
-import static com.digitalDreams.millionaire_game.Utils.SPANISH_KEY;
-import static com.digitalDreams.millionaire_game.Utils.TURKISH_KEY;
-import static com.digitalDreams.millionaire_game.Utils.URDU_KEY;
 import static com.digitalDreams.millionaire_game.alpha.Constants.PREF_NAME;
 import static com.digitalDreams.millionaire_game.alpha.Constants.getLanguageResource;
-import static com.digitalDreams.millionaire_game.alpha.Constants.getLanguageText;
 
 import android.app.Activity;
 import android.app.Dialog;
@@ -25,7 +13,6 @@ import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.ImageView;
@@ -34,6 +21,7 @@ import android.widget.LinearLayout;
 import androidx.annotation.NonNull;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
+import com.digitalDreams.millionaire_game.alpha.testing.Language;
 import com.digitalDreams.millionaire_game.alpha.testing.database.AppDatabase;
 import com.digitalDreams.millionaire_game.alpha.testing.database.DatabaseProvider;
 import com.digitalDreams.millionaire_game.alpha.testing.database.Question;
@@ -56,7 +44,7 @@ class LanguageDialog extends Dialog {
     Context context;
 
     private LoadingDialog loadingDialog;
-    private String gameLevel;
+    //  private String gameLevel;
 
     public LanguageDialog(@NonNull Context context) {
         super(context);
@@ -81,49 +69,39 @@ class LanguageDialog extends Dialog {
         LinearLayout japaneseBtn = findViewById(R.id.japanese_language);
         LinearLayout indonesianBtn = findViewById(R.id.indonesian_language);
         LinearLayout turkishBtn = findViewById(R.id.turkish_language);
+        LinearLayout chineseBtn = findViewById(R.id.chinese_language);
+        LinearLayout koreanBtn = findViewById(R.id.korean_language);
+        LinearLayout malayBtn = findViewById(R.id.malay_language);
+        LinearLayout thaiBtn = findViewById(R.id.thai_language);
+        LinearLayout vietnameseBtn = findViewById(R.id.vietnamese_language);
+
 
         SharedPreferences sharedPreferences = context.getSharedPreferences("settings", Context.MODE_PRIVATE);
-        boolean isEnglishInserted = sharedPreferences.getBoolean(ENGLISH_KEY, false);
-        boolean isSpanishInserted = sharedPreferences.getBoolean(SPANISH_KEY, false);
-        boolean isFrenchInserted = sharedPreferences.getBoolean(FRENCH_KEY, false);
-        boolean isArabicInserted = sharedPreferences.getBoolean(ARABIC_KEY, false);
-        boolean isPortugueseInserted = sharedPreferences.getBoolean(PORTUGUESE_KEY, false);
-        boolean isHindiInserted = sharedPreferences.getBoolean(HINDI_KEY, false);
-        boolean isUrduInserted = sharedPreferences.getBoolean(URDU_KEY, false);
-        boolean isGermanInserted = sharedPreferences.getBoolean(GERMAN_KEY, false);
-        boolean isJapaneseInserted = sharedPreferences.getBoolean(JAPANESE_KEY, false);
-        boolean isIndonesianInserted = sharedPreferences.getBoolean(INDONESIAN_KEY, false);
-        boolean isTurkishInserted = sharedPreferences.getBoolean(TURKISH_KEY, false);
-        gameLevel = sharedPreferences.getString("game_level", "1");
 
         closeBtn.setOnClickListener(view -> dismiss());
 
         // Define an array of language buttons along with their keys
         LinearLayout[] languageButtons = {
-                englishBtn, frenchBtn, spanishBtn,
-                arabicBtn, portugueseBtn, hindiBtn,
-                urduBtn, germanBtn, japaneseBtn,
-                indonesianBtn, turkishBtn
+                englishBtn, frenchBtn, spanishBtn, arabicBtn, portugueseBtn, hindiBtn, urduBtn,
+                germanBtn, japaneseBtn, indonesianBtn, turkishBtn, chineseBtn, malayBtn, thaiBtn,
+                vietnameseBtn, koreanBtn
         };
+
         String[] languageKeys = {
-                ENGLISH_KEY, FRENCH_KEY, SPANISH_KEY,
-                ARABIC_KEY, PORTUGUESE_KEY, HINDI_KEY,
-                URDU_KEY, GERMAN_KEY, JAPANESE_KEY,
-                INDONESIAN_KEY, TURKISH_KEY
-        };
-        boolean[] isLanguageInserted = {
-                isEnglishInserted, isFrenchInserted, isSpanishInserted,
-                isArabicInserted, isPortugueseInserted, isHindiInserted,
-                isUrduInserted, isGermanInserted, isJapaneseInserted,
-                isIndonesianInserted, isTurkishInserted
+                Language.ENGLISH.getCode(), Language.FRENCH.getCode(), Language.SPANISH.getCode(),
+                Language.ARABIC.getCode(), Language.PORTUGUESE.getCode(), Language.HINDI.getCode(),
+                Language.URDU.getCode(), Language.GERMAN.getCode(), Language.JAPANESE.getCode(),
+                Language.INDONESIA.getCode(), Language.TURKISH.getCode(), Language.CHINESE.getCode(),
+                Language.MALAY.getCode(), Language.THAI.getCode(), Language.VIETNAMESE.getCode(),
+                Language.KOREAN.getCode()
         };
 
         for (int i = 0; i < languageButtons.length; i++) {
             LinearLayout button = languageButtons[i];
             String languageKey = languageKeys[i];
-            boolean isInserted = isLanguageInserted[i];
+            boolean isLanguageInserted = sharedPreferences.getBoolean(languageKeys[i], false);
 
-            button.setOnClickListener(view -> changeLanguage(languageKey, isInserted));
+            button.setOnClickListener(view -> changeLanguage(languageKey, isLanguageInserted));
         }
     }
 
@@ -132,7 +110,6 @@ class LanguageDialog extends Dialog {
         SharedPreferences.Editor editor = sharedPreferences.edit();
 
         setLocale(unwrap(context), key);
-        Log.d("response", key);
 
         editor.putString("language", key);
 
@@ -158,12 +135,12 @@ class LanguageDialog extends Dialog {
         Objects.requireNonNull(loadingDialog.getWindow()).setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
         loadingDialog.show();
 
-        Executors.newSingleThreadExecutor().execute(() -> {
-            initializeDatabase(getLanguageResource(languageCode), languageCode);
-        });
+        Executors.newSingleThreadExecutor().execute(() ->
+                initializeDatabase(getLanguageResource(languageCode))
+        );
     }
 
-    private void initializeDatabase(int resId, String languageCode) {
+    private void initializeDatabase(int resId) {
         // Read the JSON file from the raw resources
         InputStream inputStream = context.getResources().openRawResource(resId);
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
@@ -182,7 +159,7 @@ class LanguageDialog extends Dialog {
             }
 
             // Parse JSON data into a list of Question objects
-            List<Question> questions = parseJsonToQuestions(json, languageCode);
+            List<Question> questions = parseJsonToQuestions(json);
 
             // Insert questions into the database
             AppDatabase database = DatabaseProvider.getInstance(unwrap(context));
@@ -206,7 +183,7 @@ class LanguageDialog extends Dialog {
         }
     }
 
-    private List<Question> parseJsonToQuestions(String json, String languageCode) {
+    private List<Question> parseJsonToQuestions(String json) {
         List<Question> questions = new ArrayList<>();
         try {
             JSONArray jsonArray = new JSONArray(json);
@@ -222,7 +199,7 @@ class LanguageDialog extends Dialog {
                     String optionB = questionArray.optString(6, "");
                     String optionC = questionArray.optString(7, "");
                     String optionD = questionArray.optString(8, "");
-                    String language = getLanguageText(context, languageCode);
+                    String language = context.getString(R.string.language_);
 
                     Question question = new Question(id,
                             capitaliseFirstLetter(questionTitle),
