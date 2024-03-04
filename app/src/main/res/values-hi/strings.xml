@@ -20,6 +20,7 @@
     <string name='theme_1'>थीम 1</string>
     <string name='theme_2'>थीम 2</string>
     <string name='theme_3'>थीम 3</string>
+    <string name="language_">हिंदी</string>
     <string name='english'>अंग्रेज़ी</string>
     <string name='french'>फ़्रेंच</string>
     <string name="spanish">स्पैनिश</string>
@@ -31,6 +32,11 @@
     <string name="japanese">जापानी</string>
     <string name="turkish">तुर्की</string>
     <string name="indonesian">इन्डोनेशियाई</string>
+    <string name="malay">मलायी</string>
+    <string name="thai">थाई</string>
+    <string name="korean">कोरियाई</string>
+    <string name="chinese">चीनी</string>
+    <string name="vietnamese">वियतनामी</string>
     <string name="banner_ad_unit">ca-app-pub-4696224049420135/8152081288</string>
     <string name="app_ad_id">ca-app-pub-4696224049420135~2129598410</string>
     <string name="interstitial_ad_unit_id">ca-app-pub-4696224049420135/9312479087</string>

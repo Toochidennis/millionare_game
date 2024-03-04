@@ -20,6 +20,7 @@
     <string name="theme_1">Tema 1</string>
     <string name="theme_2">Tema 2</string>
     <string name="theme_3">Tema 3</string>
+    <string name="language_">Indonesia</string>
     <string name="english">Inggris</string>
     <string name="french">Prancis</string>
     <string name="spanish">Spanyol</string>
@@ -31,6 +32,11 @@
     <string name="japanese">Jepang</string>
     <string name="turkish">Turki</string>
     <string name="indonesian">Indonesia</string>
+    <string name="malay">Melayu</string>
+    <string name="thai">Thai</string>
+    <string name="korean">Korea</string>
+    <string name="chinese">Cina</string>
+    <string name="vietnamese">Orang Vietnam</string>
     <string name="banner_ad_unit">ca-app-pub-4696224049420135/8152081288</string>
     <string name="app_ad_id">ca-app-pub-4696224049420135~2129598410</string>
     <string name="interstitial_ad_unit_id">ca-app-pub-4696224049420135/9312479087</string>
