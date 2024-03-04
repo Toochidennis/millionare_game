@@ -20,6 +20,7 @@
     <string name="theme_1">Tema 1</string>
     <string name="theme_2">Tema 2</string>
     <string name="theme_3">Tema 3</string>
+    <string name="language_">Português</string>
     <string name="english">Inglês</string>
     <string name="french">Francês</string>
     <string name="spanish">Espanhol</string>
@@ -31,6 +32,11 @@
     <string name="japanese">japonês</string>
     <string name="turkish">Turco</string>
     <string name="indonesian">Indonésio</string>
+    <string name="malay">Malaio</string>
+    <string name="thai">Tailandês</string>
+    <string name="korean">Coreano</string>
+    <string name="chinese">chinês</string>
+    <string name="vietnamese">vietnamita</string>
     <string name="banner_ad_unit">ca-app-pub-4696224049420135/8152081288</string>
     <string name="app_ad_id">ca-app-pub-4696224049420135~2129598410</string>
     <string name="interstitial_ad_unit_id">ca-app-pub-4696224049420135/9312479087</string>
