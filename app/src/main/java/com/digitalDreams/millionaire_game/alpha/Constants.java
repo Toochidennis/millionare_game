@@ -1,17 +1,5 @@
 package com.digitalDreams.millionaire_game.alpha;
 
-import static com.digitalDreams.millionaire_game.Utils.ARABIC_KEY;
-import static com.digitalDreams.millionaire_game.Utils.ENGLISH_KEY;
-import static com.digitalDreams.millionaire_game.Utils.FRENCH_KEY;
-import static com.digitalDreams.millionaire_game.Utils.GERMAN_KEY;
-import static com.digitalDreams.millionaire_game.Utils.HINDI_KEY;
-import static com.digitalDreams.millionaire_game.Utils.INDONESIAN_KEY;
-import static com.digitalDreams.millionaire_game.Utils.JAPANESE_KEY;
-import static com.digitalDreams.millionaire_game.Utils.PORTUGUESE_KEY;
-import static com.digitalDreams.millionaire_game.Utils.SPANISH_KEY;
-import static com.digitalDreams.millionaire_game.Utils.TURKISH_KEY;
-import static com.digitalDreams.millionaire_game.Utils.URDU_KEY;
-
 import android.content.Context;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
@@ -20,6 +8,7 @@ import android.view.View;
 import androidx.core.content.ContextCompat;
 
 import com.digitalDreams.millionaire_game.R;
+import com.digitalDreams.millionaire_game.alpha.testing.Language;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -30,67 +19,78 @@ import java.util.Map;
 import java.util.Random;
 
 public class Constants {
+
+    // Delay intervals for different time durations
     public static long DELAY_INTERVAL_LONG = 1000;
     public static long DELAY_INTERVAL_MEDIUM = 500L;
     public static long DELAY_INTERVAL_SHORT = 200L;
+
+    // Strings for game outcomes
     public static String FAILED = "Failed";
     public static String PASSED = "Passed";
+
+    // Integer values for colors
     public static int RED = 1;
     public static int GREEN = 2;
     public static int ORANGE = 0;
+
+    // Keys for SharedPreferences
     public static String SHOULD_CONTINUE_GAME = "shouldContinueGame";
     public static String APPLICATION_DATA = "application_data";
     public static String PREF_NAME = "settings";
     public static String SHOULD_REFRESH_QUESTION = "Failure activity";
     public static String FROM_PROGRESS = "From progress";
     public static String SOUND = "Sound";
+
+    // Suffixes and format for currency
     private static final char[] SUFFIX = {' ', 'k', 'M', 'B', 'T', 'P', 'E'};
     private static final DecimalFormat DECIMAL_FORMAT = new DecimalFormat("#0");
 
     private static final double[] POWERS_OF_TEN = {1e0, 1e3, 1e6, 1e9, 1e12, 1e15};
 
+    // Maps for language, country, and texts
     private static final Map<String, Integer> languageResourceMap = new HashMap<>();
-    private static final Map<String, String> languageTexts = new HashMap<>();
     private static final Map<String, Integer> countryResourceMap = new HashMap<>();
 
+    // Static initialization block for maps
     static {
-        languageResourceMap.put(ENGLISH_KEY, R.raw.millionaire);
-        languageResourceMap.put(ARABIC_KEY, R.raw.millionaire_ar);
-        languageResourceMap.put(FRENCH_KEY, R.raw.millionaire_fr);
-        languageResourceMap.put(SPANISH_KEY, R.raw.millionaire_es);
-        languageResourceMap.put(HINDI_KEY, R.raw.millionaire_hi);
-        languageResourceMap.put(PORTUGUESE_KEY, R.raw.millionaire_pt);
-        languageResourceMap.put(URDU_KEY, R.raw.millionaire_ur);
-        languageResourceMap.put(JAPANESE_KEY, R.raw.millionaire_ja);
-        languageResourceMap.put(GERMAN_KEY, R.raw.millionaire_de);
-        languageResourceMap.put(INDONESIAN_KEY, R.raw.millionaire_in);
-        languageResourceMap.put(TURKISH_KEY, R.raw.millionaire_tr);
+        languageResourceMap.put(Language.ENGLISH.getCode(), R.raw.millionaire_english);
+        languageResourceMap.put(Language.ARABIC.getCode(), R.raw.millionaire_arabic);
+        languageResourceMap.put(Language.FRENCH.getCode(), R.raw.millionaire_french);
+        languageResourceMap.put(Language.SPANISH.getCode(), R.raw.millionaire_spanish);
+        languageResourceMap.put(Language.HINDI.getCode(), R.raw.millionaire_hindi);
+        languageResourceMap.put(Language.PORTUGUESE.getCode(), R.raw.millionaire_portugal);
+        languageResourceMap.put(Language.URDU.getCode(), R.raw.millionaire_urdu);
+        languageResourceMap.put(Language.JAPANESE.getCode(), R.raw.millionaire_japanese);
+        languageResourceMap.put(Language.GERMAN.getCode(), R.raw.millionaire_german);
+        languageResourceMap.put(Language.INDONESIA.getCode(), R.raw.millionaire_indonesian);
+        languageResourceMap.put(Language.TURKISH.getCode(), R.raw.millionaire_turkish);
+        languageResourceMap.put(Language.CHINESE.getCode(), R.raw.millionaire_chinese);
+        languageResourceMap.put(Language.MALAY.getCode(), R.raw.millionaire_malay);
+        languageResourceMap.put(Language.KOREAN.getCode(), R.raw.millionaire_korean);
+        languageResourceMap.put(Language.VIETNAMESE.getCode(), R.raw.millionaire_vietnamese);
+        languageResourceMap.put(Language.THAI.getCode(), R.raw.millionaire_thai);
 
-        countryResourceMap.put(ENGLISH_KEY, R.raw.country_json_en);
-        countryResourceMap.put(ARABIC_KEY, R.raw.country_json_ar);
-        countryResourceMap.put(FRENCH_KEY, R.raw.country_json_fr);
-        countryResourceMap.put(SPANISH_KEY, R.raw.country_json_es);
-        countryResourceMap.put(HINDI_KEY, R.raw.country_json_hi);
-        countryResourceMap.put(PORTUGUESE_KEY, R.raw.country_json_pt);
-        countryResourceMap.put(URDU_KEY, R.raw.country_json_ur);
-        countryResourceMap.put(JAPANESE_KEY, R.raw.country_json_ja);
-        countryResourceMap.put(GERMAN_KEY, R.raw.country_json_de);
-        countryResourceMap.put(INDONESIAN_KEY, R.raw.country_json_in);
-        countryResourceMap.put(TURKISH_KEY, R.raw.country_json_tr);
 
-        languageTexts.put(ENGLISH_KEY, null);
-        languageTexts.put(ARABIC_KEY, null);
-        languageTexts.put(FRENCH_KEY, null);
-        languageTexts.put(SPANISH_KEY, null);
-        languageTexts.put(HINDI_KEY, null);
-        languageTexts.put(PORTUGUESE_KEY, null);
-        languageTexts.put(URDU_KEY, null);
-        languageTexts.put(JAPANESE_KEY, null);
-        languageTexts.put(GERMAN_KEY, null);
-        languageTexts.put(INDONESIAN_KEY, null);
-        languageTexts.put(TURKISH_KEY, null);
+        countryResourceMap.put(Language.ENGLISH.getCode(), R.raw.country_json_en);
+        countryResourceMap.put(Language.ARABIC.getCode(), R.raw.country_json_ar);
+        countryResourceMap.put(Language.FRENCH.getCode(), R.raw.country_json_fr);
+        countryResourceMap.put(Language.SPANISH.getCode(), R.raw.country_json_es);
+        countryResourceMap.put(Language.HINDI.getCode(), R.raw.country_json_hi);
+        countryResourceMap.put(Language.PORTUGUESE.getCode(), R.raw.country_json_pt);
+        countryResourceMap.put(Language.URDU.getCode(), R.raw.country_json_ur);
+        countryResourceMap.put(Language.JAPANESE.getCode(), R.raw.country_json_ja);
+        countryResourceMap.put(Language.GERMAN.getCode(), R.raw.country_json_de);
+        countryResourceMap.put(Language.INDONESIA.getCode(), R.raw.country_json_in);
+        countryResourceMap.put(Language.TURKISH.getCode(), R.raw.country_json_tr);
+        countryResourceMap.put(Language.CHINESE.getCode(), R.raw.country_json_zh);
+        countryResourceMap.put(Language.MALAY.getCode(), R.raw.country_json_ms);
+        countryResourceMap.put(Language.KOREAN.getCode(), R.raw.country_json_ko);
+        countryResourceMap.put(Language.VIETNAMESE.getCode(), R.raw.country_json_vi);
+        countryResourceMap.put(Language.THAI.getCode(), R.raw.country_json_th);
     }
 
+    // Getters for language and country resources
     public static Integer getLanguageResource(String languageCode) {
         return languageResourceMap.get(languageCode);
     }
@@ -99,41 +99,11 @@ public class Constants {
         return countryResourceMap.get(languageCode);
     }
 
-    public static String getLanguageText(Context context, String languageCode) {
-        // Fetch language text from the map
-        String text = languageTexts.get(languageCode);
-
-        // If text is not fetched yet, fetch it from resources
-        if (text == null) {
-            text = context.getResources().getString(getResourceIdByLanguageCode(languageCode));
-            // Store the fetched text in the map for later retrieval
-            languageTexts.put(languageCode, text);
-        }
-
-        return text;
-    }
-
-    private static int getResourceIdByLanguageCode(String languageCode) {
-        // Get resource ID based on language code
-        return switch (languageCode) {
-            case "ar" -> R.string.arabic;
-            case "fr" -> R.string.french;
-            case "es" -> R.string.spanish;
-            case "hi" -> R.string.hindi;
-            case "pt" -> R.string.portuguese;
-            case "ur" -> R.string.urdu;
-            case "de" -> R.string.german;
-            case "ja" -> R.string.japanese;
-            case "id" -> R.string.indonesian;
-            case "tr" -> R.string.turkish;
-            default -> R.string.english;
-        };
-    }
-
-
+    // Generate amounts based on game level
     public static List<Integer> generateAmount(int gameLevel) {
         int[] baseAmounts = {500, 1000, 2000, 3000, 5000, 7500, 10000, 12500, 15000,
-                25000, 50000, 100000, 250000, 500000, 1000000};
+                25000, 50000, 100000, 250000, 500000, 1000000
+        };
 
         List<Integer> amountList = new ArrayList<>();
 
@@ -144,6 +114,7 @@ public class Constants {
         return amountList;
     }
 
+    // Background colors and drawable manipulation
     public static final int[] backgroundColors = {
             R.color.orange,
             R.color.redH,
@@ -157,10 +128,12 @@ public class Constants {
         return drawable;
     }
 
+    // Format currency amount
     public static String formatCurrency(double amount) {
         return new DecimalFormat("#,###,###").format(amount);
     }
 
+    // Format numbers in a readable format
     public static String prettyCount(int number) {
         if (number == 0 || number == 500) {
             return String.valueOf(number);
@@ -176,6 +149,7 @@ public class Constants {
         }
     }
 
+    // Get a random suggestion string
     public static String getRandomSuggestion(Context context) {
         String[] helpList = {
                 context.getResources().getString(R.string.maybe_its),
@@ -188,6 +162,7 @@ public class Constants {
         return helpList[index];
     }
 
+    // Get label from list based on index
     public static String getLabelFromList(Context context, int index) {
         String[] labels = {context.getResources().getString(R.string.a),
                 context.getResources().getString(R.string.b),
