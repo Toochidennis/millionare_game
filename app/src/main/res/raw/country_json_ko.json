@@ -1,0 +1,2090 @@
+[
+ {
+   "id": 0,
+   "name": "아프가니스탄",
+   "code": "AF",
+   "emoji": "🇦🇫",
+   "unicode": "U+1F1E6 U+1F1EB",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/AF.svg"
+ },
+ {
+   "id": 1,
+   "name": "앨랜드 제도",
+   "code": "AX",
+   "emoji": "🇦🇽",
+   "unicode": "U+1F1E6 U+1F1FD",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/AX.svg"
+ },
+ {
+   "id": 2,
+   "name": "알바니아",
+   "code": "AL",
+   "emoji": "🇦🇱",
+   "unicode": "U+1F1E6 U+1F1F1",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/AL.svg"
+ },
+ {
+   "id": 3,
+   "name": "알제리",
+   "code": "DZ",
+   "emoji": "🇩🇿",
+   "unicode": "U+1F1E9 U+1F1FF",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/DZ.svg"
+ },
+ {
+   "id": 4,
+   "name": "미국 사모아",
+   "code": "AS",
+   "emoji": "🇦🇸",
+   "unicode": "U+1F1E6 U+1F1F8",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/AS.svg"
+ },
+ {
+   "id": 5,
+   "name": "안도라",
+   "code": "AD",
+   "emoji": "🇦🇩",
+   "unicode": "U+1F1E6 U+1F1E9",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/AD.svg"
+ },
+ {
+   "id": 6,
+   "name": "앙골라",
+   "code": "AO",
+   "emoji": "🇦🇴",
+   "unicode": "U+1F1E6 U+1F1F4",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/AO.svg"
+ },
+ {
+   "id": 7,
+   "name": "뱀장어",
+   "code": "AI",
+   "emoji": "🇦🇮",
+   "unicode": "U+1F1E6 U+1F1EE",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/AI.svg"
+ },
+ {
+   "id": 8,
+   "name": "남극 대륙",
+   "code": "AQ",
+   "emoji": "🇦🇶",
+   "unicode": "U+1F1E6 U+1F1F6",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/AQ.svg"
+ },
+ {
+   "id": 9,
+   "name": "오래되고 수염",
+   "code": "AG",
+   "emoji": "🇦🇬",
+   "unicode": "U+1F1E6 U+1F1EC",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/AG.svg"
+ },
+ {
+   "id": 10,
+   "name": "아르헨티나",
+   "code": "AR",
+   "emoji": "🇦🇷",
+   "unicode": "U+1F1E6 U+1F1F7",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/AR.svg"
+ },
+ {
+   "id": 11,
+   "name": "아르메니아",
+   "code": "AM",
+   "emoji": "🇦🇲",
+   "unicode": "U+1F1E6 U+1F1F2",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/AM.svg"
+ },
+ {
+   "id": 12,
+   "name": "아루바",
+   "code": "AW",
+   "emoji": "🇦🇼",
+   "unicode": "U+1F1E6 U+1F1FC",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/AW.svg"
+ },
+ {
+   "id": 13,
+   "name": "상승 섬",
+   "code": "AC",
+   "emoji": "🇦🇨",
+   "unicode": "U+1F1E6 U+1F1E8",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/AC.svg"
+ },
+ {
+   "id": 14,
+   "name": "호주",
+   "code": "AU",
+   "emoji": "🇦🇺",
+   "unicode": "U+1F1E6 U+1F1FA",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/AU.svg"
+ },
+ {
+   "id": 15,
+   "name": "오스트리아",
+   "code": "AT",
+   "emoji": "🇦🇹",
+   "unicode": "U+1F1E6 U+1F1F9",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/AT.svg"
+ },
+ {
+   "id": 16,
+   "name": "아제르바이잔",
+   "code": "AZ",
+   "emoji": "🇦🇿",
+   "unicode": "U+1F1E6 U+1F1FF",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/AZ.svg"
+ },
+ {
+   "id": 17,
+   "name": "바하마",
+   "code": "BS",
+   "emoji": "🇧🇸",
+   "unicode": "U+1F1E7 U+1F1F8",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/BS.svg"
+ },
+ {
+   "id": 18,
+   "name": "바레인",
+   "code": "BH",
+   "emoji": "🇧🇭",
+   "unicode": "U+1F1E7 U+1F1ED",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/BH.svg"
+ },
+ {
+   "id": 19,
+   "name": "방글라데시",
+   "code": "BD",
+   "emoji": "🇧🇩",
+   "unicode": "U+1F1E7 U+1F1E9",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/BD.svg"
+ },
+ {
+   "id": 20,
+   "name": "바베이도스",
+   "code": "BB",
+   "emoji": "🇧🇧",
+   "unicode": "U+1F1E7 U+1F1E7",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/BB.svg"
+ },
+ {
+   "id": 21,
+   "name": "벨라루스",
+   "code": "BY",
+   "emoji": "🇧🇾",
+   "unicode": "U+1F1E7 U+1F1FE",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/BY.svg"
+ },
+ {
+   "id": 22,
+   "name": "벨기에",
+   "code": "BE",
+   "emoji": "🇧🇪",
+   "unicode": "U+1F1E7 U+1F1EA",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/BE.svg"
+ },
+ {
+   "id": 23,
+   "name": "벨고",
+   "code": "BZ",
+   "emoji": "🇧🇿",
+   "unicode": "U+1F1E7 U+1F1FF",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/BZ.svg"
+ },
+ {
+   "id": 24,
+   "name": "베닌",
+   "code": "BJ",
+   "emoji": "🇧🇯",
+   "unicode": "U+1F1E7 U+1F1EF",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/BJ.svg"
+ },
+ {
+   "id": 25,
+   "name": "버뮤다 섬들",
+   "code": "BM",
+   "emoji": "🇧🇲",
+   "unicode": "U+1F1E7 U+1F1F2",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/BM.svg"
+ },
+ {
+   "id": 26,
+   "name": "부타",
+   "code": "BT",
+   "emoji": "🇧🇹",
+   "unicode": "U+1F1E7 U+1F1F9",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/BT.svg"
+ },
+ {
+   "id": 27,
+   "name": "볼리비아",
+   "code": "BO",
+   "emoji": "🇧🇴",
+   "unicode": "U+1F1E7 U+1F1F4",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/BO.svg"
+ },
+ {
+   "id": 28,
+   "name": "보스니아 헤르체고비나",
+   "code": "BA",
+   "emoji": "🇧🇦",
+   "unicode": "U+1F1E7 U+1F1E6",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/BA.svg"
+ },
+ {
+   "id": 29,
+   "name": "보츠와나",
+   "code": "BW",
+   "emoji": "🇧🇼",
+   "unicode": "U+1F1E7 U+1F1FC",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/BW.svg"
+ },
+ {
+   "id": 30,
+   "name": "Bouvet Island",
+   "code": "BV",
+   "emoji": "🇧🇻",
+   "unicode": "U+1F1E7 U+1F1FB",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/BV.svg"
+ },
+ {
+   "id": 31,
+   "name": "브라질",
+   "code": "BR",
+   "emoji": "🇧🇷",
+   "unicode": "U+1F1E7 U+1F1F7",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/BR.svg"
+ },
+ {
+   "id": 32,
+   "name": "영국 인도양 영토",
+   "code": "IO",
+   "emoji": "🇮🇴",
+   "unicode": "U+1F1EE U+1F1F4",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/IO.svg"
+ },
+ {
+   "id": 33,
+   "name": "영국령 버진 아일랜드",
+   "code": "VG",
+   "emoji": "🇻🇬",
+   "unicode": "U+1F1FB U+1F1EC",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/VG.svg"
+ },
+ {
+   "id": 34,
+   "name": "브루나이",
+   "code": "BN",
+   "emoji": "🇧🇳",
+   "unicode": "U+1F1E7 U+1F1F3",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/BN.svg"
+ },
+ {
+   "id": 35,
+   "name": "불가리아",
+   "code": "BG",
+   "emoji": "🇧🇬",
+   "unicode": "U+1F1E7 U+1F1EC",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/BG.svg"
+ },
+ {
+   "id": 36,
+   "name": "부키 나 파소",
+   "code": "BF",
+   "emoji": "🇧🇫",
+   "unicode": "U+1F1E7 U+1F1EB",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/BF.svg"
+ },
+ {
+   "id": 37,
+   "name": "부룬디",
+   "code": "BI",
+   "emoji": "🇧🇮",
+   "unicode": "U+1F1E7 U+1F1EE",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/BI.svg"
+ },
+ {
+   "id": 38,
+   "name": "캄보디아",
+   "code": "KH",
+   "emoji": "🇰🇭",
+   "unicode": "U+1F1F0 U+1F1ED",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/KH.svg"
+ },
+ {
+   "id": 39,
+   "name": "카메룬",
+   "code": "CM",
+   "emoji": "🇨🇲",
+   "unicode": "U+1F1E8 U+1F1F2",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/CM.svg"
+ },
+ {
+   "id": 40,
+   "name": "캐나다",
+   "code": "CA",
+   "emoji": "🇨🇦",
+   "unicode": "U+1F1E8 U+1F1E6",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/CA.svg"
+ },
+ {
+   "id": 41,
+   "name": "카나리아 제도",
+   "code": "IC",
+   "emoji": "🇮🇨",
+   "unicode": "U+1F1EE U+1F1E8",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/IC.svg"
+ },
+ {
+   "id": 42,
+   "name": "케이프 베르데",
+   "code": "CV",
+   "emoji": "🇨🇻",
+   "unicode": "U+1F1E8 U+1F1FB",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/CV.svg"
+ },
+ {
+   "id": 43,
+   "name": "카리브해 네덜란드",
+   "code": "BQ",
+   "emoji": "🇧🇶",
+   "unicode": "U+1F1E7 U+1F1F6",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/BQ.svg"
+ },
+ {
+   "id": 44,
+   "name": "케이맨 제도",
+   "code": "KY",
+   "emoji": "🇰🇾",
+   "unicode": "U+1F1F0 U+1F1FE",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/KY.svg"
+ },
+ {
+   "id": 45,
+   "name": "중앙 아프리카 공화국",
+   "code": "CF",
+   "emoji": "🇨🇫",
+   "unicode": "U+1F1E8 U+1F1EB",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/CF.svg"
+ },
+ {
+   "id": 46,
+   "name": "Ceuta와 Melilla",
+   "code": "EA",
+   "emoji": "🇪🇦",
+   "unicode": "U+1F1EA U+1F1E6",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/EA.svg"
+ },
+ {
+   "id": 47,
+   "name": "차드",
+   "code": "TD",
+   "emoji": "🇹🇩",
+   "unicode": "U+1F1F9 U+1F1E9",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/TD.svg"
+ },
+ {
+   "id": 48,
+   "name": "칠리",
+   "code": "CL",
+   "emoji": "🇨🇱",
+   "unicode": "U+1F1E8 U+1F1F1",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/CL.svg"
+ },
+ {
+   "id": 49,
+   "name": "도자기",
+   "code": "CN",
+   "emoji": "🇨🇳",
+   "unicode": "U+1F1E8 U+1F1F3",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/CN.svg"
+ },
+ {
+   "id": 50,
+   "name": "크리스마스 섬",
+   "code": "CX",
+   "emoji": "🇨🇽",
+   "unicode": "U+1F1E8 U+1F1FD",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/CX.svg"
+ },
+ {
+   "id": 51,
+   "name": "Clipperton Island",
+   "code": "CP",
+   "emoji": "🇨🇵",
+   "unicode": "U+1F1E8 U+1F1F5",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/CP.svg"
+ },
+ {
+   "id": 52,
+   "name": "코코스 제도 (킬링)",
+   "code": "CC",
+   "emoji": "🇨🇨",
+   "unicode": "U+1F1E8 U+1F1E8",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/CC.svg"
+ },
+ {
+   "id": 53,
+   "name": "콜롬비아",
+   "code": "CO",
+   "emoji": "🇨🇴",
+   "unicode": "U+1F1E8 U+1F1F4",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/CO.svg"
+ },
+ {
+   "id": 54,
+   "name": "코 모라",
+   "code": "KM",
+   "emoji": "🇰🇲",
+   "unicode": "U+1F1F0 U+1F1F2",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/KM.svg"
+ },
+ {
+   "id": 55,
+   "name": "콩고 - 브라자빌",
+   "code": "CG",
+   "emoji": "🇨🇬",
+   "unicode": "U+1F1E8 U+1F1EC",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/CG.svg"
+ },
+ {
+   "id": 56,
+   "name": "콩고 - 킨 샤사",
+   "code": "CD",
+   "emoji": "🇨🇩",
+   "unicode": "U+1F1E8 U+1F1E9",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/CD.svg"
+ },
+ {
+   "id": 57,
+   "name": "쿡 제도",
+   "code": "CK",
+   "emoji": "🇨🇰",
+   "unicode": "U+1F1E8 U+1F1F0",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/CK.svg"
+ },
+ {
+   "id": 58,
+   "name": "코스타리카",
+   "code": "CR",
+   "emoji": "🇨🇷",
+   "unicode": "U+1F1E8 U+1F1F7",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/CR.svg"
+ },
+ {
+   "id": 59,
+   "name": "아이보리 해안",
+   "code": "CI",
+   "emoji": "🇨🇮",
+   "unicode": "U+1F1E8 U+1F1EE",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/CI.svg"
+ },
+ {
+   "id": 60,
+   "name": "크로아티아",
+   "code": "HR",
+   "emoji": "🇭🇷",
+   "unicode": "U+1F1ED U+1F1F7",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/HR.svg"
+ },
+ {
+   "id": 61,
+   "name": "쿠바",
+   "code": "CU",
+   "emoji": "🇨🇺",
+   "unicode": "U+1F1E8 U+1F1FA",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/CU.svg"
+ },
+ {
+   "id": 62,
+   "name": "Curaçao",
+   "code": "CW",
+   "emoji": "🇨🇼",
+   "unicode": "U+1F1E8 U+1F1FC",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/CW.svg"
+ },
+ {
+   "id": 63,
+   "name": "키프로스",
+   "code": "CY",
+   "emoji": "🇨🇾",
+   "unicode": "U+1F1E8 U+1F1FE",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/CY.svg"
+ },
+ {
+   "id": 64,
+   "name": "체코 사람",
+   "code": "CZ",
+   "emoji": "🇨🇿",
+   "unicode": "U+1F1E8 U+1F1FF",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/CZ.svg"
+ },
+ {
+   "id": 65,
+   "name": "덴마크",
+   "code": "DK",
+   "emoji": "🇩🇰",
+   "unicode": "U+1F1E9 U+1F1F0",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/DK.svg"
+ },
+ {
+   "id": 66,
+   "name": "디에고 가르시아",
+   "code": "DG",
+   "emoji": "🇩🇬",
+   "unicode": "U+1F1E9 U+1F1EC",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/DG.svg"
+ },
+ {
+   "id": 67,
+   "name": "지부티",
+   "code": "DJ",
+   "emoji": "🇩🇯",
+   "unicode": "U+1F1E9 U+1F1EF",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/DJ.svg"
+ },
+ {
+   "id": 68,
+   "name": "도메인",
+   "code": "DM",
+   "emoji": "🇩🇲",
+   "unicode": "U+1F1E9 U+1F1F2",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/DM.svg"
+ },
+ {
+   "id": 69,
+   "name": "도미니카 공화국",
+   "code": "DO",
+   "emoji": "🇩🇴",
+   "unicode": "U+1F1E9 U+1F1F4",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/DO.svg"
+ },
+ {
+   "id": 70,
+   "name": "에콰도르",
+   "code": "EC",
+   "emoji": "🇪🇨",
+   "unicode": "U+1F1EA U+1F1E8",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/EC.svg"
+ },
+ {
+   "id": 71,
+   "name": "이집트",
+   "code": "EG",
+   "emoji": "🇪🇬",
+   "unicode": "U+1F1EA U+1F1EC",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/EG.svg"
+ },
+ {
+   "id": 72,
+   "name": "구주",
+   "code": "SV",
+   "emoji": "🇸🇻",
+   "unicode": "U+1F1F8 U+1F1FB",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/SV.svg"
+ },
+ {
+   "id": 73,
+   "name": "영국",
+   "code": "ENGLAND",
+   "emoji": "🏴󠁧󠁢󠁥󠁮󠁧󠁿",
+   "unicode": "U+1F3F4 U+E0067 U+E0062 U+E0065 U+E006E U+E0067 U+E007F",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/ENGLAND.svg"
+ },
+ {
+   "id": 74,
+   "name": "적도 기니",
+   "code": "GQ",
+   "emoji": "🇬🇶",
+   "unicode": "U+1F1EC U+1F1F6",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/GQ.svg"
+ },
+ {
+   "id": 75,
+   "name": "에리트레아",
+   "code": "ER",
+   "emoji": "🇪🇷",
+   "unicode": "U+1F1EA U+1F1F7",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/ER.svg"
+ },
+ {
+   "id": 76,
+   "name": "에스토니아",
+   "code": "EE",
+   "emoji": "🇪🇪",
+   "unicode": "U+1F1EA U+1F1EA",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/EE.svg"
+ },
+ {
+   "id": 77,
+   "name": "에스와 티니",
+   "code": "SZ",
+   "emoji": "🇸🇿",
+   "unicode": "U+1F1F8 U+1F1FF",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/SZ.svg"
+ },
+ {
+   "id": 78,
+   "name": "에티오피아",
+   "code": "ET",
+   "emoji": "🇪🇹",
+   "unicode": "U+1F1EA U+1F1F9",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/ET.svg"
+ },
+ {
+   "id": 79,
+   "name": "유럽 ​​연합",
+   "code": "EU",
+   "emoji": "🇪🇺",
+   "unicode": "U+1F1EA U+1F1FA",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/EU.svg"
+ },
+ {
+   "id": 80,
+   "name": "포클랜드 제도",
+   "code": "FK",
+   "emoji": "🇫🇰",
+   "unicode": "U+1F1EB U+1F1F0",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/FK.svg"
+ },
+ {
+   "id": 81,
+   "name": "페로 제도",
+   "code": "FO",
+   "emoji": "🇫🇴",
+   "unicode": "U+1F1EB U+1F1F4",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/FO.svg"
+ },
+ {
+   "id": 82,
+   "name": "피지",
+   "code": "FJ",
+   "emoji": "🇫🇯",
+   "unicode": "U+1F1EB U+1F1EF",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/FJ.svg"
+ },
+ {
+   "id": 83,
+   "name": "핀란드",
+   "code": "FI",
+   "emoji": "🇫🇮",
+   "unicode": "U+1F1EB U+1F1EE",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/FI.svg"
+ },
+ {
+   "id": 84,
+   "name": "프랑스",
+   "code": "FR",
+   "emoji": "🇫🇷",
+   "unicode": "U+1F1EB U+1F1F7",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/FR.svg"
+ },
+ {
+   "id": 85,
+   "name": "프랑스 과야나",
+   "code": "GF",
+   "emoji": "🇬🇫",
+   "unicode": "U+1F1EC U+1F1EB",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/GF.svg"
+ },
+ {
+   "id": 86,
+   "name": "프랑스 령 폴리네시아의",
+   "code": "PF",
+   "emoji": "🇵🇫",
+   "unicode": "U+1F1F5 U+1F1EB",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/PF.svg"
+ },
+ {
+   "id": 87,
+   "name": "남쪽의 프랑스 영토",
+   "code": "TF",
+   "emoji": "🇹🇫",
+   "unicode": "U+1F1F9 U+1F1EB",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/TF.svg"
+ },
+ {
+   "id": 88,
+   "name": "가봉",
+   "code": "GA",
+   "emoji": "🇬🇦",
+   "unicode": "U+1F1EC U+1F1E6",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/GA.svg"
+ },
+ {
+   "id": 89,
+   "name": "감비아",
+   "code": "GM",
+   "emoji": "🇬🇲",
+   "unicode": "U+1F1EC U+1F1F2",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/GM.svg"
+ },
+ {
+   "id": 90,
+   "name": "그루지야",
+   "code": "GE",
+   "emoji": "🇬🇪",
+   "unicode": "U+1F1EC U+1F1EA",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/GE.svg"
+ },
+ {
+   "id": 91,
+   "name": "독일",
+   "code": "DE",
+   "emoji": "🇩🇪",
+   "unicode": "U+1F1E9 U+1F1EA",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/DE.svg"
+ },
+ {
+   "id": 92,
+   "name": "가나",
+   "code": "GH",
+   "emoji": "🇬🇭",
+   "unicode": "U+1F1EC U+1F1ED",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/GH.svg"
+ },
+ {
+   "id": 93,
+   "name": "지브롤터",
+   "code": "GI",
+   "emoji": "🇬🇮",
+   "unicode": "U+1F1EC U+1F1EE",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/GI.svg"
+ },
+ {
+   "id": 94,
+   "name": "그리스",
+   "code": "GR",
+   "emoji": "🇬🇷",
+   "unicode": "U+1F1EC U+1F1F7",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/GR.svg"
+ },
+ {
+   "id": 95,
+   "name": "그린란드",
+   "code": "GL",
+   "emoji": "🇬🇱",
+   "unicode": "U+1F1EC U+1F1F1",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/GL.svg"
+ },
+ {
+   "id": 96,
+   "name": "수류탄",
+   "code": "GD",
+   "emoji": "🇬🇩",
+   "unicode": "U+1F1EC U+1F1E9",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/GD.svg"
+ },
+ {
+   "id": 97,
+   "name": "Guadeloupo",
+   "code": "GP",
+   "emoji": "🇬🇵",
+   "unicode": "U+1F1EC U+1F1F5",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/GP.svg"
+ },
+ {
+   "id": 98,
+   "name": "괌",
+   "code": "GU",
+   "emoji": "🇬🇺",
+   "unicode": "U+1F1EC U+1F1FA",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/GU.svg"
+ },
+ {
+   "id": 99,
+   "name": "과테말라",
+   "code": "GT",
+   "emoji": "🇬🇹",
+   "unicode": "U+1F1EC U+1F1F9",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/GT.svg"
+ },
+ {
+   "id": 100,
+   "name": "가이드",
+   "code": "GG",
+   "emoji": "🇬🇬",
+   "unicode": "U+1F1EC U+1F1EC",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/GG.svg"
+ },
+ {
+   "id": 101,
+   "name": "기니",
+   "code": "GN",
+   "emoji": "🇬🇳",
+   "unicode": "U+1F1EC U+1F1F3",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/GN.svg"
+ },
+ {
+   "id": 102,
+   "name": "기니 비시",
+   "code": "GW",
+   "emoji": "🇬🇼",
+   "unicode": "U+1F1EC U+1F1FC",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/GW.svg"
+ },
+ {
+   "id": 103,
+   "name": "기아나",
+   "code": "GY",
+   "emoji": "🇬🇾",
+   "unicode": "U+1F1EC U+1F1FE",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/GY.svg"
+ },
+ {
+   "id": 104,
+   "name": "아이티",
+   "code": "HT",
+   "emoji": "🇭🇹",
+   "unicode": "U+1F1ED U+1F1F9",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/HT.svg"
+ },
+ {
+   "id": 105,
+   "name": "& 맥도날드 제도",
+   "code": "HM",
+   "emoji": "🇭🇲",
+   "unicode": "U+1F1ED U+1F1F2",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/HM.svg"
+ },
+ {
+   "id": 106,
+   "name": "온두라스",
+   "code": "HN",
+   "emoji": "🇭🇳",
+   "unicode": "U+1F1ED U+1F1F3",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/HN.svg"
+ },
+ {
+   "id": 107,
+   "name": "홍콩 SAR 중국",
+   "code": "HK",
+   "emoji": "🇭🇰",
+   "unicode": "U+1F1ED U+1F1F0",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/HK.svg"
+ },
+ {
+   "id": 108,
+   "name": "헝가리",
+   "code": "HU",
+   "emoji": "🇭🇺",
+   "unicode": "U+1F1ED U+1F1FA",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/HU.svg"
+ },
+ {
+   "id": 109,
+   "name": "아이슬란드",
+   "code": "IS",
+   "emoji": "🇮🇸",
+   "unicode": "U+1F1EE U+1F1F8",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/IS.svg"
+ },
+ {
+   "id": 110,
+   "name": "인도",
+   "code": "IN",
+   "emoji": "🇮🇳",
+   "unicode": "U+1F1EE U+1F1F3",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/IN.svg"
+ },
+ {
+   "id": 111,
+   "name": "인도네시아",
+   "code": "ID",
+   "emoji": "🇮🇩",
+   "unicode": "U+1F1EE U+1F1E9",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/ID.svg"
+ },
+ {
+   "id": 112,
+   "name": "이란",
+   "code": "IR",
+   "emoji": "🇮🇷",
+   "unicode": "U+1F1EE U+1F1F7",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/IR.svg"
+ },
+ {
+   "id": 113,
+   "name": "이라크",
+   "code": "IQ",
+   "emoji": "🇮🇶",
+   "unicode": "U+1F1EE U+1F1F6",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/IQ.svg"
+ },
+ {
+   "id": 114,
+   "name": "아일랜드",
+   "code": "IE",
+   "emoji": "🇮🇪",
+   "unicode": "U+1F1EE U+1F1EA",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/IE.svg"
+ },
+ {
+   "id": 115,
+   "name": "남자의 남자",
+   "code": "IM",
+   "emoji": "🇮🇲",
+   "unicode": "U+1F1EE U+1F1F2",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/IM.svg"
+ },
+ {
+   "id": 116,
+   "name": "이스라엘",
+   "code": "IL",
+   "emoji": "🇮🇱",
+   "unicode": "U+1F1EE U+1F1F1",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/IL.svg"
+ },
+ {
+   "id": 117,
+   "name": "이탈리아",
+   "code": "IT",
+   "emoji": "🇮🇹",
+   "unicode": "U+1F1EE U+1F1F9",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/IT.svg"
+ },
+ {
+   "id": 118,
+   "name": "자메이카",
+   "code": "JM",
+   "emoji": "🇯🇲",
+   "unicode": "U+1F1EF U+1F1F2",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/JM.svg"
+ },
+ {
+   "id": 119,
+   "name": "일본",
+   "code": "JP",
+   "emoji": "🇯🇵",
+   "unicode": "U+1F1EF U+1F1F5",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/JP.svg"
+ },
+ {
+   "id": 120,
+   "name": "스웨터",
+   "code": "JE",
+   "emoji": "🇯🇪",
+   "unicode": "U+1F1EF U+1F1EA",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/JE.svg"
+ },
+ {
+   "id": 121,
+   "name": "요르단",
+   "code": "JO",
+   "emoji": "🇯🇴",
+   "unicode": "U+1F1EF U+1F1F4",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/JO.svg"
+ },
+ {
+   "id": 122,
+   "name": "카자흐스탄",
+   "code": "KZ",
+   "emoji": "🇰🇿",
+   "unicode": "U+1F1F0 U+1F1FF",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/KZ.svg"
+ },
+ {
+   "id": 123,
+   "name": "케냐",
+   "code": "KE",
+   "emoji": "🇰🇪",
+   "unicode": "U+1F1F0 U+1F1EA",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/KE.svg"
+ },
+ {
+   "id": 124,
+   "name": "키리 바티",
+   "code": "KI",
+   "emoji": "🇰🇮",
+   "unicode": "U+1F1F0 U+1F1EE",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/KI.svg"
+ },
+ {
+   "id": 125,
+   "name": "코소보",
+   "code": "XK",
+   "emoji": "🇽🇰",
+   "unicode": "U+1F1FD U+1F1F0",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/XK.svg"
+ },
+ {
+   "id": 126,
+   "name": "쿠웨이트",
+   "code": "KW",
+   "emoji": "🇰🇼",
+   "unicode": "U+1F1F0 U+1F1FC",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/KW.svg"
+ },
+ {
+   "id": 127,
+   "name": "키루스탄",
+   "code": "KG",
+   "emoji": "🇰🇬",
+   "unicode": "U+1F1F0 U+1F1EC",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/KG.svg"
+ },
+ {
+   "id": 128,
+   "name": "라오스",
+   "code": "LA",
+   "emoji": "🇱🇦",
+   "unicode": "U+1F1F1 U+1F1E6",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/LA.svg"
+ },
+ {
+   "id": 129,
+   "name": "라트비아",
+   "code": "LV",
+   "emoji": "🇱🇻",
+   "unicode": "U+1F1F1 U+1F1FB",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/LV.svg"
+ },
+ {
+   "id": 130,
+   "name": "레바논",
+   "code": "LB",
+   "emoji": "🇱🇧",
+   "unicode": "U+1F1F1 U+1F1E7",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/LB.svg"
+ },
+ {
+   "id": 131,
+   "name": "레소토",
+   "code": "LS",
+   "emoji": "🇱🇸",
+   "unicode": "U+1F1F1 U+1F1F8",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/LS.svg"
+ },
+ {
+   "id": 132,
+   "name": "라이베리아",
+   "code": "LR",
+   "emoji": "🇱🇷",
+   "unicode": "U+1F1F1 U+1F1F7",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/LR.svg"
+ },
+ {
+   "id": 133,
+   "name": "리비아",
+   "code": "LY",
+   "emoji": "🇱🇾",
+   "unicode": "U+1F1F1 U+1F1FE",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/LY.svg"
+ },
+ {
+   "id": 134,
+   "name": "리히텐슈타인",
+   "code": "LI",
+   "emoji": "🇱🇮",
+   "unicode": "U+1F1F1 U+1F1EE",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/LI.svg"
+ },
+ {
+   "id": 135,
+   "name": "리투아니아",
+   "code": "LT",
+   "emoji": "🇱🇹",
+   "unicode": "U+1F1F1 U+1F1F9",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/LT.svg"
+ },
+ {
+   "id": 136,
+   "name": "룩셈부르크",
+   "code": "LU",
+   "emoji": "🇱🇺",
+   "unicode": "U+1F1F1 U+1F1FA",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/LU.svg"
+ },
+ {
+   "id": 137,
+   "name": "마카오 SAR 중국",
+   "code": "MO",
+   "emoji": "🇲🇴",
+   "unicode": "U+1F1F2 U+1F1F4",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/MO.svg"
+ },
+ {
+   "id": 138,
+   "name": "마다가스카르",
+   "code": "MG",
+   "emoji": "🇲🇬",
+   "unicode": "U+1F1F2 U+1F1EC",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/MG.svg"
+ },
+ {
+   "id": 139,
+   "name": "말로우",
+   "code": "MW",
+   "emoji": "🇲🇼",
+   "unicode": "U+1F1F2 U+1F1FC",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/MW.svg"
+ },
+ {
+   "id": 140,
+   "name": "말레이시아",
+   "code": "MY",
+   "emoji": "🇲🇾",
+   "unicode": "U+1F1F2 U+1F1FE",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/MY.svg"
+ },
+ {
+   "id": 141,
+   "name": "몰디브",
+   "code": "MV",
+   "emoji": "🇲🇻",
+   "unicode": "U+1F1F2 U+1F1FB",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/MV.svg"
+ },
+ {
+   "id": 142,
+   "name": "말리",
+   "code": "ML",
+   "emoji": "🇲🇱",
+   "unicode": "U+1F1F2 U+1F1F1",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/ML.svg"
+ },
+ {
+   "id": 143,
+   "name": "맥아",
+   "code": "MT",
+   "emoji": "🇲🇹",
+   "unicode": "U+1F1F2 U+1F1F9",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/MT.svg"
+ },
+ {
+   "id": 144,
+   "name": "마샬 제도",
+   "code": "MH",
+   "emoji": "🇲🇭",
+   "unicode": "U+1F1F2 U+1F1ED",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/MH.svg"
+ },
+ {
+   "id": 145,
+   "name": "마르티니크",
+   "code": "MQ",
+   "emoji": "🇲🇶",
+   "unicode": "U+1F1F2 U+1F1F6",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/MQ.svg"
+ },
+ {
+   "id": 146,
+   "name": "모리타니",
+   "code": "MR",
+   "emoji": "🇲🇷",
+   "unicode": "U+1F1F2 U+1F1F7",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/MR.svg"
+ },
+ {
+   "id": 147,
+   "name": "Mauricio",
+   "code": "MU",
+   "emoji": "🇲🇺",
+   "unicode": "U+1F1F2 U+1F1FA",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/MU.svg"
+ },
+ {
+   "id": 148,
+   "name": "Mayotte",
+   "code": "YT",
+   "emoji": "🇾🇹",
+   "unicode": "U+1F1FE U+1F1F9",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/YT.svg"
+ },
+ {
+   "id": 149,
+   "name": "멕시코",
+   "code": "MX",
+   "emoji": "🇲🇽",
+   "unicode": "U+1F1F2 U+1F1FD",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/MX.svg"
+ },
+ {
+   "id": 150,
+   "name": "미크로네시아",
+   "code": "FM",
+   "emoji": "🇫🇲",
+   "unicode": "U+1F1EB U+1F1F2",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/FM.svg"
+ },
+ {
+   "id": 151,
+   "name": "몰도바",
+   "code": "MD",
+   "emoji": "🇲🇩",
+   "unicode": "U+1F1F2 U+1F1E9",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/MD.svg"
+ },
+ {
+   "id": 152,
+   "name": "모나코",
+   "code": "MC",
+   "emoji": "🇲🇨",
+   "unicode": "U+1F1F2 U+1F1E8",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/MC.svg"
+ },
+ {
+   "id": 153,
+   "name": "몽골리아",
+   "code": "MN",
+   "emoji": "🇲🇳",
+   "unicode": "U+1F1F2 U+1F1F3",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/MN.svg"
+ },
+ {
+   "id": 154,
+   "name": "몬테네그로",
+   "code": "ME",
+   "emoji": "🇲🇪",
+   "unicode": "U+1F1F2 U+1F1EA",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/ME.svg"
+ },
+ {
+   "id": 155,
+   "name": "Montserrat",
+   "code": "MS",
+   "emoji": "🇲🇸",
+   "unicode": "U+1F1F2 U+1F1F8",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/MS.svg"
+ },
+ {
+   "id": 156,
+   "name": "모로코",
+   "code": "MA",
+   "emoji": "🇲🇦",
+   "unicode": "U+1F1F2 U+1F1E6",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/MA.svg"
+ },
+ {
+   "id": 157,
+   "name": "모잠비크",
+   "code": "MZ",
+   "emoji": "🇲🇿",
+   "unicode": "U+1F1F2 U+1F1FF",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/MZ.svg"
+ },
+ {
+   "id": 158,
+   "name": "미얀마 (버마)",
+   "code": "MM",
+   "emoji": "🇲🇲",
+   "unicode": "U+1F1F2 U+1F1F2",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/MM.svg"
+ },
+ {
+   "id": 159,
+   "name": "나미비아",
+   "code": "NA",
+   "emoji": "🇳🇦",
+   "unicode": "U+1F1F3 U+1F1E6",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/NA.svg"
+ },
+ {
+   "id": 160,
+   "name": "나우루",
+   "code": "NR",
+   "emoji": "🇳🇷",
+   "unicode": "U+1F1F3 U+1F1F7",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/NR.svg"
+ },
+ {
+   "id": 161,
+   "name": "네팔",
+   "code": "NP",
+   "emoji": "🇳🇵",
+   "unicode": "U+1F1F3 U+1F1F5",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/NP.svg"
+ },
+ {
+   "id": 162,
+   "name": "네덜란드",
+   "code": "NL",
+   "emoji": "🇳🇱",
+   "unicode": "U+1F1F3 U+1F1F1",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/NL.svg"
+ },
+ {
+   "id": 163,
+   "name": "뉴 칼레도니아",
+   "code": "NC",
+   "emoji": "🇳🇨",
+   "unicode": "U+1F1F3 U+1F1E8",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/NC.svg"
+ },
+ {
+   "id": 164,
+   "name": "뉴질랜드",
+   "code": "NZ",
+   "emoji": "🇳🇿",
+   "unicode": "U+1F1F3 U+1F1FF",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/NZ.svg"
+ },
+ {
+   "id": 165,
+   "name": "니카라과",
+   "code": "NI",
+   "emoji": "🇳🇮",
+   "unicode": "U+1F1F3 U+1F1EE",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/NI.svg"
+ },
+ {
+   "id": 166,
+   "name": "니제르",
+   "code": "NE",
+   "emoji": "🇳🇪",
+   "unicode": "U+1F1F3 U+1F1EA",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/NE.svg"
+ },
+ {
+   "id": 167,
+   "name": "나이지리아",
+   "code": "NG",
+   "emoji": "🇳🇬",
+   "unicode": "U+1F1F3 U+1F1EC",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/NG.svg"
+ },
+ {
+   "id": 168,
+   "name": "니우",
+   "code": "NU",
+   "emoji": "🇳🇺",
+   "unicode": "U+1F1F3 U+1F1FA",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/NU.svg"
+ },
+ {
+   "id": 169,
+   "name": "노퍽 섬",
+   "code": "NF",
+   "emoji": "🇳🇫",
+   "unicode": "U+1F1F3 U+1F1EB",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/NF.svg"
+ },
+ {
+   "id": 170,
+   "name": "북한",
+   "code": "KP",
+   "emoji": "🇰🇵",
+   "unicode": "U+1F1F0 U+1F1F5",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/KP.svg"
+ },
+ {
+   "id": 171,
+   "name": "마케도니아 델 노르테",
+   "code": "MK",
+   "emoji": "🇲🇰",
+   "unicode": "U+1F1F2 U+1F1F0",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/MK.svg"
+ },
+ {
+   "id": 172,
+   "name": "북쪽에서 마리아나 제도",
+   "code": "MP",
+   "emoji": "🇲🇵",
+   "unicode": "U+1F1F2 U+1F1F5",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/MP.svg"
+ },
+ {
+   "id": 173,
+   "name": "노르웨이",
+   "code": "NO",
+   "emoji": "🇳🇴",
+   "unicode": "U+1F1F3 U+1F1F4",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/NO.svg"
+ },
+ {
+   "id": 174,
+   "name": "오만",
+   "code": "OM",
+   "emoji": "🇴🇲",
+   "unicode": "U+1F1F4 U+1F1F2",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/OM.svg"
+ },
+ {
+   "id": 175,
+   "name": "파키스탄",
+   "code": "PK",
+   "emoji": "🇵🇰",
+   "unicode": "U+1F1F5 U+1F1F0",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/PK.svg"
+ },
+ {
+   "id": 176,
+   "name": "팔라우",
+   "code": "PW",
+   "emoji": "🇵🇼",
+   "unicode": "U+1F1F5 U+1F1FC",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/PW.svg"
+ },
+ {
+   "id": 177,
+   "name": "팔레스타인 영토",
+   "code": "PS",
+   "emoji": "🇵🇸",
+   "unicode": "U+1F1F5 U+1F1F8",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/PS.svg"
+ },
+ {
+   "id": 178,
+   "name": "파나마",
+   "code": "PA",
+   "emoji": "🇵🇦",
+   "unicode": "U+1F1F5 U+1F1E6",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/PA.svg"
+ },
+ {
+   "id": 179,
+   "name": "파푸아 뉴기니",
+   "code": "PG",
+   "emoji": "🇵🇬",
+   "unicode": "U+1F1F5 U+1F1EC",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/PG.svg"
+ },
+ {
+   "id": 180,
+   "name": "파라과이",
+   "code": "PY",
+   "emoji": "🇵🇾",
+   "unicode": "U+1F1F5 U+1F1FE",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/PY.svg"
+ },
+ {
+   "id": 181,
+   "name": "페루",
+   "code": "PE",
+   "emoji": "🇵🇪",
+   "unicode": "U+1F1F5 U+1F1EA",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/PE.svg"
+ },
+ {
+   "id": 182,
+   "name": "필리핀 제도",
+   "code": "PH",
+   "emoji": "🇵🇭",
+   "unicode": "U+1F1F5 U+1F1ED",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/PH.svg"
+ },
+ {
+   "id": 183,
+   "name": "핏 케언 제도",
+   "code": "PN",
+   "emoji": "🇵🇳",
+   "unicode": "U+1F1F5 U+1F1F3",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/PN.svg"
+ },
+ {
+   "id": 184,
+   "name": "폴란드",
+   "code": "PL",
+   "emoji": "🇵🇱",
+   "unicode": "U+1F1F5 U+1F1F1",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/PL.svg"
+ },
+ {
+   "id": 185,
+   "name": "포르투갈",
+   "code": "PT",
+   "emoji": "🇵🇹",
+   "unicode": "U+1F1F5 U+1F1F9",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/PT.svg"
+ },
+ {
+   "id": 186,
+   "name": "푸에르토 리코",
+   "code": "PR",
+   "emoji": "🇵🇷",
+   "unicode": "U+1F1F5 U+1F1F7",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/PR.svg"
+ },
+ {
+   "id": 187,
+   "name": "카타르",
+   "code": "QA",
+   "emoji": "🇶🇦",
+   "unicode": "U+1F1F6 U+1F1E6",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/QA.svg"
+ },
+ {
+   "id": 188,
+   "name": "회의",
+   "code": "RE",
+   "emoji": "🇷🇪",
+   "unicode": "U+1F1F7 U+1F1EA",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/RE.svg"
+ },
+ {
+   "id": 189,
+   "name": "루마니아",
+   "code": "RO",
+   "emoji": "🇷🇴",
+   "unicode": "U+1F1F7 U+1F1F4",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/RO.svg"
+ },
+ {
+   "id": 190,
+   "name": "러시아",
+   "code": "RU",
+   "emoji": "🇷🇺",
+   "unicode": "U+1F1F7 U+1F1FA",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/RU.svg"
+ },
+ {
+   "id": 191,
+   "name": "르완다",
+   "code": "RW",
+   "emoji": "🇷🇼",
+   "unicode": "U+1F1F7 U+1F1FC",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/RW.svg"
+ },
+ {
+   "id": 192,
+   "name": "사모아",
+   "code": "WS",
+   "emoji": "🇼🇸",
+   "unicode": "U+1F1FC U+1F1F8",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/WS.svg"
+ },
+ {
+   "id": 193,
+   "name": "산 마리노",
+   "code": "SM",
+   "emoji": "🇸🇲",
+   "unicode": "U+1F1F8 U+1F1F2",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/SM.svg"
+ },
+ {
+   "id": 194,
+   "name": "상자와 왕자",
+   "code": "ST",
+   "emoji": "🇸🇹",
+   "unicode": "U+1F1F8 U+1F1F9",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/ST.svg"
+ },
+ {
+   "id": 195,
+   "name": "사우디 아라비아",
+   "code": "SA",
+   "emoji": "🇸🇦",
+   "unicode": "U+1F1F8 U+1F1E6",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/SA.svg"
+ },
+ {
+   "id": 196,
+   "name": "스코틀랜드",
+   "code": "SCOTLAND",
+   "emoji": "🏴󠁧󠁢󠁳󠁣󠁴󠁿",
+   "unicode": "U+1F3F4 U+E0067 U+E0062 U+E0073 U+E0063 U+E0074 U+E007F",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/SCOTLAND.svg"
+ },
+ {
+   "id": 197,
+   "name": "세네갈",
+   "code": "SN",
+   "emoji": "🇸🇳",
+   "unicode": "U+1F1F8 U+1F1F3",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/SN.svg"
+ },
+ {
+   "id": 198,
+   "name": "세르비아",
+   "code": "RS",
+   "emoji": "🇷🇸",
+   "unicode": "U+1F1F7 U+1F1F8",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/RS.svg"
+ },
+ {
+   "id": 199,
+   "name": "세이셸",
+   "code": "SC",
+   "emoji": "🇸🇨",
+   "unicode": "U+1F1F8 U+1F1E8",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/SC.svg"
+ },
+ {
+   "id": 200,
+   "name": "시에라 리온",
+   "code": "SL",
+   "emoji": "🇸🇱",
+   "unicode": "U+1F1F8 U+1F1F1",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/SL.svg"
+ },
+ {
+   "id": 201,
+   "name": "싱가포르",
+   "code": "SG",
+   "emoji": "🇸🇬",
+   "unicode": "U+1F1F8 U+1F1EC",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/SG.svg"
+ },
+ {
+   "id": 202,
+   "name": "Sint Maarten",
+   "code": "SX",
+   "emoji": "🇸🇽",
+   "unicode": "U+1F1F8 U+1F1FD",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/SX.svg"
+ },
+ {
+   "id": 203,
+   "name": "슬로바키아",
+   "code": "SK",
+   "emoji": "🇸🇰",
+   "unicode": "U+1F1F8 U+1F1F0",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/SK.svg"
+ },
+ {
+   "id": 204,
+   "name": "슬로베니아",
+   "code": "SI",
+   "emoji": "🇸🇮",
+   "unicode": "U+1F1F8 U+1F1EE",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/SI.svg"
+ },
+ {
+   "id": 205,
+   "name": "솔로몬 제도",
+   "code": "SB",
+   "emoji": "🇸🇧",
+   "unicode": "U+1F1F8 U+1F1E7",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/SB.svg"
+ },
+ {
+   "id": 206,
+   "name": "소말리아",
+   "code": "SO",
+   "emoji": "🇸🇴",
+   "unicode": "U+1F1F8 U+1F1F4",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/SO.svg"
+ },
+ {
+   "id": 207,
+   "name": "남아프리카",
+   "code": "ZA",
+   "emoji": "🇿🇦",
+   "unicode": "U+1F1FF U+1F1E6",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/ZA.svg"
+ },
+ {
+   "id": 208,
+   "name": "사우스 조지아와 샌드위치 남섬",
+   "code": "GS",
+   "emoji": "🇬🇸",
+   "unicode": "U+1F1EC U+1F1F8",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/GS.svg"
+ },
+ {
+   "id": 209,
+   "name": "대한민국",
+   "code": "KR",
+   "emoji": "🇰🇷",
+   "unicode": "U+1F1F0 U+1F1F7",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/KR.svg"
+ },
+ {
+   "id": 210,
+   "name": "남 수단",
+   "code": "SS",
+   "emoji": "🇸🇸",
+   "unicode": "U+1F1F8 U+1F1F8",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/SS.svg"
+ },
+ {
+   "id": 211,
+   "name": "스페인",
+   "code": "ES",
+   "emoji": "🇪🇸",
+   "unicode": "U+1F1EA U+1F1F8",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/ES.svg"
+ },
+ {
+   "id": 212,
+   "name": "스리랑카",
+   "code": "LK",
+   "emoji": "🇱🇰",
+   "unicode": "U+1F1F1 U+1F1F0",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/LK.svg"
+ },
+ {
+   "id": 213,
+   "name": "San Barthélemy",
+   "code": "BL",
+   "emoji": "🇧🇱",
+   "unicode": "U+1F1E7 U+1F1F1",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/BL.svg"
+ },
+ {
+   "id": 214,
+   "name": "산타 헬레나",
+   "code": "SH",
+   "emoji": "🇸🇭",
+   "unicode": "U+1F1F8 U+1F1ED",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/SH.svg"
+ },
+ {
+   "id": 215,
+   "name": "San Kitts와 Nevis",
+   "code": "KN",
+   "emoji": "🇰🇳",
+   "unicode": "U+1F1F0 U+1F1F3",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/KN.svg"
+ },
+ {
+   "id": 216,
+   "name": "세인트 루시아",
+   "code": "LC",
+   "emoji": "🇱🇨",
+   "unicode": "U+1F1F1 U+1F1E8",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/LC.svg"
+ },
+ {
+   "id": 217,
+   "name": "산 마틴",
+   "code": "MF",
+   "emoji": "🇲🇫",
+   "unicode": "U+1F1F2 U+1F1EB",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/MF.svg"
+ },
+ {
+   "id": 218,
+   "name": "세인트 피에르와 미 킬론",
+   "code": "PM",
+   "emoji": "🇵🇲",
+   "unicode": "U+1F1F5 U+1F1F2",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/PM.svg"
+ },
+ {
+   "id": 219,
+   "name": "San Vicente와 Granadines",
+   "code": "VC",
+   "emoji": "🇻🇨",
+   "unicode": "U+1F1FB U+1F1E8",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/VC.svg"
+ },
+ {
+   "id": 220,
+   "name": "수단",
+   "code": "SD",
+   "emoji": "🇸🇩",
+   "unicode": "U+1F1F8 U+1F1E9",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/SD.svg"
+ },
+ {
+   "id": 221,
+   "name": "수리남",
+   "code": "SR",
+   "emoji": "🇸🇷",
+   "unicode": "U+1F1F8 U+1F1F7",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/SR.svg"
+ },
+ {
+   "id": 222,
+   "name": "Svalbard와 Jan Mayen",
+   "code": "SJ",
+   "emoji": "🇸🇯",
+   "unicode": "U+1F1F8 U+1F1EF",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/SJ.svg"
+ },
+ {
+   "id": 223,
+   "name": "스웨덴",
+   "code": "SE",
+   "emoji": "🇸🇪",
+   "unicode": "U+1F1F8 U+1F1EA",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/SE.svg"
+ },
+ {
+   "id": 224,
+   "name": "스위스",
+   "code": "CH",
+   "emoji": "🇨🇭",
+   "unicode": "U+1F1E8 U+1F1ED",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/CH.svg"
+ },
+ {
+   "id": 225,
+   "name": "시리아",
+   "code": "SY",
+   "emoji": "🇸🇾",
+   "unicode": "U+1F1F8 U+1F1FE",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/SY.svg"
+ },
+ {
+   "id": 226,
+   "name": "대만",
+   "code": "TW",
+   "emoji": "🇹🇼",
+   "unicode": "U+1F1F9 U+1F1FC",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/TW.svg"
+ },
+ {
+   "id": 227,
+   "name": "타이키스탄",
+   "code": "TJ",
+   "emoji": "🇹🇯",
+   "unicode": "U+1F1F9 U+1F1EF",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/TJ.svg"
+ },
+ {
+   "id": 228,
+   "name": "탄자니아",
+   "code": "TZ",
+   "emoji": "🇹🇿",
+   "unicode": "U+1F1F9 U+1F1FF",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/TZ.svg"
+ },
+ {
+   "id": 229,
+   "name": "태국",
+   "code": "TH",
+   "emoji": "🇹🇭",
+   "unicode": "U+1F1F9 U+1F1ED",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/TH.svg"
+ },
+ {
+   "id": 230,
+   "name": "소심한",
+   "code": "TL",
+   "emoji": "🇹🇱",
+   "unicode": "U+1F1F9 U+1F1F1",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/TL.svg"
+ },
+ {
+   "id": 231,
+   "name": "가다",
+   "code": "TG",
+   "emoji": "🇹🇬",
+   "unicode": "U+1F1F9 U+1F1EC",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/TG.svg"
+ },
+ {
+   "id": 232,
+   "name": "Tokelau",
+   "code": "TK",
+   "emoji": "🇹🇰",
+   "unicode": "U+1F1F9 U+1F1F0",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/TK.svg"
+ },
+ {
+   "id": 233,
+   "name": "통가",
+   "code": "TO",
+   "emoji": "🇹🇴",
+   "unicode": "U+1F1F9 U+1F1F4",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/TO.svg"
+ },
+ {
+   "id": 234,
+   "name": "트리니다드 토바고",
+   "code": "TT",
+   "emoji": "🇹🇹",
+   "unicode": "U+1F1F9 U+1F1F9",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/TT.svg"
+ },
+ {
+   "id": 235,
+   "name": "트리스탄 다 쿠 하",
+   "code": "TA",
+   "emoji": "🇹🇦",
+   "unicode": "U+1F1F9 U+1F1E6",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/TA.svg"
+ },
+ {
+   "id": 236,
+   "name": "튀니지",
+   "code": "TN",
+   "emoji": "🇹🇳",
+   "unicode": "U+1F1F9 U+1F1F3",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/TN.svg"
+ },
+ {
+   "id": 237,
+   "name": "칠면조",
+   "code": "TR",
+   "emoji": "🇹🇷",
+   "unicode": "U+1F1F9 U+1F1F7",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/TR.svg"
+ },
+ {
+   "id": 238,
+   "name": "투르크 메니스탄",
+   "code": "TM",
+   "emoji": "🇹🇲",
+   "unicode": "U+1F1F9 U+1F1F2",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/TM.svg"
+ },
+ {
+   "id": 239,
+   "name": "터키와 카이 코스 제도",
+   "code": "TC",
+   "emoji": "🇹🇨",
+   "unicode": "U+1F1F9 U+1F1E8",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/TC.svg"
+ },
+ {
+   "id": 240,
+   "name": "투발루",
+   "code": "TV",
+   "emoji": "🇹🇻",
+   "unicode": "U+1F1F9 U+1F1FB",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/TV.svg"
+ },
+ {
+   "id": 241,
+   "name": "미국 주변 제도. UU.",
+   "code": "UM",
+   "emoji": "🇺🇲",
+   "unicode": "U+1F1FA U+1F1F2",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/UM.svg"
+ },
+ {
+   "id": 242,
+   "name": "미국 버진 아일랜드",
+   "code": "VI",
+   "emoji": "🇻🇮",
+   "unicode": "U+1F1FB U+1F1EE",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/VI.svg"
+ },
+ {
+   "id": 243,
+   "name": "우간다",
+   "code": "UG",
+   "emoji": "🇺🇬",
+   "unicode": "U+1F1FA U+1F1EC",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/UG.svg"
+ },
+ {
+   "id": 244,
+   "name": "우크라이나",
+   "code": "UA",
+   "emoji": "🇺🇦",
+   "unicode": "U+1F1FA U+1F1E6",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/UA.svg"
+ },
+ {
+   "id": 245,
+   "name": "아랍 에미리트",
+   "code": "AE",
+   "emoji": "🇦🇪",
+   "unicode": "U+1F1E6 U+1F1EA",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/AE.svg"
+ },
+ {
+   "id": 246,
+   "name": "영국",
+   "code": "GB",
+   "emoji": "🇬🇧",
+   "unicode": "U+1F1EC U+1F1E7",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/GB.svg"
+ },
+ {
+   "id": 247,
+   "name": "연합 국가",
+   "code": "UN",
+   "emoji": "🇺🇳",
+   "unicode": "U+1F1FA U+1F1F3",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/UN.svg"
+ },
+ {
+   "id": 248,
+   "name": "미국",
+   "code": "US",
+   "emoji": "🇺🇸",
+   "unicode": "U+1F1FA U+1F1F8",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/US.svg"
+ },
+ {
+   "id": 249,
+   "name": "우루과이",
+   "code": "UY",
+   "emoji": "🇺🇾",
+   "unicode": "U+1F1FA U+1F1FE",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/UY.svg"
+ },
+ {
+   "id": 250,
+   "name": "우즈베키스탄",
+   "code": "UZ",
+   "emoji": "🇺🇿",
+   "unicode": "U+1F1FA U+1F1FF",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/UZ.svg"
+ },
+ {
+   "id": 251,
+   "name": "바누아투",
+   "code": "VU",
+   "emoji": "🇻🇺",
+   "unicode": "U+1F1FB U+1F1FA",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/VU.svg"
+ },
+ {
+   "id": 252,
+   "name": "바티칸 시티",
+   "code": "VA",
+   "emoji": "🇻🇦",
+   "unicode": "U+1F1FB U+1F1E6",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/VA.svg"
+ },
+ {
+   "id": 253,
+   "name": "베네수엘라",
+   "code": "VE",
+   "emoji": "🇻🇪",
+   "unicode": "U+1F1FB U+1F1EA",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/VE.svg"
+ },
+ {
+   "id": 254,
+   "name": "베트남",
+   "code": "VN",
+   "emoji": "🇻🇳",
+   "unicode": "U+1F1FB U+1F1F3",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/VN.svg"
+ },
+ {
+   "id": 255,
+   "name": "웨일스 말",
+   "code": "WALES",
+   "emoji": "🏴󠁧󠁢󠁷󠁬󠁳󠁿",
+   "unicode": "U+1F3F4 U+E0067 U+E0062 U+E0077 U+E006C U+E0073 U+E007F",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/WALES.svg"
+ },
+ {
+   "id": 256,
+   "name": "Wallis와 Futuna",
+   "code": "WF",
+   "emoji": "🇼🇫",
+   "unicode": "U+1F1FC U+1F1EB",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/WF.svg"
+ },
+ {
+   "id": 257,
+   "name": "서양 사하라",
+   "code": "EH",
+   "emoji": "🇪🇭",
+   "unicode": "U+1F1EA U+1F1ED",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/EH.svg"
+ },
+ {
+   "id": 258,
+   "name": "예멘",
+   "code": "YE",
+   "emoji": "🇾🇪",
+   "unicode": "U+1F1FE U+1F1EA",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/YE.svg"
+ },
+ {
+   "id": 259,
+   "name": "잠비아",
+   "code": "ZM",
+   "emoji": "🇿🇲",
+   "unicode": "U+1F1FF U+1F1F2",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/ZM.svg"
+ },
+ {
+   "id": 260,
+   "name": "짐바브웨",
+   "code": "ZW",
+   "emoji": "🇿🇼",
+   "unicode": "U+1F1FF U+1F1FC",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/ZW.svg"
+ }
+]

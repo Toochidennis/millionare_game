@@ -1,0 +1,2090 @@
+[
+ {
+   "id": 0,
+   "name": "阿富汗",
+   "code": "AF",
+   "emoji": "🇦🇫",
+   "unicode": "U+1F1E6 U+1F1EB",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/AF.svg"
+ },
+ {
+   "id": 1,
+   "name": "阿兰群岛",
+   "code": "AX",
+   "emoji": "🇦🇽",
+   "unicode": "U+1F1E6 U+1F1FD",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/AX.svg"
+ },
+ {
+   "id": 2,
+   "name": "阿尔巴尼亚",
+   "code": "AL",
+   "emoji": "🇦🇱",
+   "unicode": "U+1F1E6 U+1F1F1",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/AL.svg"
+ },
+ {
+   "id": 3,
+   "name": "阿尔及利亚",
+   "code": "DZ",
+   "emoji": "🇩🇿",
+   "unicode": "U+1F1E9 U+1F1FF",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/DZ.svg"
+ },
+ {
+   "id": 4,
+   "name": "美国萨摩亚",
+   "code": "AS",
+   "emoji": "🇦🇸",
+   "unicode": "U+1F1E6 U+1F1F8",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/AS.svg"
+ },
+ {
+   "id": 5,
+   "name": "安道尔",
+   "code": "AD",
+   "emoji": "🇦🇩",
+   "unicode": "U+1F1E6 U+1F1E9",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/AD.svg"
+ },
+ {
+   "id": 6,
+   "name": "安哥拉",
+   "code": "AO",
+   "emoji": "🇦🇴",
+   "unicode": "U+1F1E6 U+1F1F4",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/AO.svg"
+ },
+ {
+   "id": 7,
+   "name": "鳗鱼",
+   "code": "AI",
+   "emoji": "🇦🇮",
+   "unicode": "U+1F1E6 U+1F1EE",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/AI.svg"
+ },
+ {
+   "id": 8,
+   "name": "南极洲",
+   "code": "AQ",
+   "emoji": "🇦🇶",
+   "unicode": "U+1F1E6 U+1F1F6",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/AQ.svg"
+ },
+ {
+   "id": 9,
+   "name": "古老而胡须",
+   "code": "AG",
+   "emoji": "🇦🇬",
+   "unicode": "U+1F1E6 U+1F1EC",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/AG.svg"
+ },
+ {
+   "id": 10,
+   "name": "阿根廷",
+   "code": "AR",
+   "emoji": "🇦🇷",
+   "unicode": "U+1F1E6 U+1F1F7",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/AR.svg"
+ },
+ {
+   "id": 11,
+   "name": "亚美尼亚",
+   "code": "AM",
+   "emoji": "🇦🇲",
+   "unicode": "U+1F1E6 U+1F1F2",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/AM.svg"
+ },
+ {
+   "id": 12,
+   "name": "阿鲁巴",
+   "code": "AW",
+   "emoji": "🇦🇼",
+   "unicode": "U+1F1E6 U+1F1FC",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/AW.svg"
+ },
+ {
+   "id": 13,
+   "name": "上升岛",
+   "code": "AC",
+   "emoji": "🇦🇨",
+   "unicode": "U+1F1E6 U+1F1E8",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/AC.svg"
+ },
+ {
+   "id": 14,
+   "name": "澳大利亚",
+   "code": "AU",
+   "emoji": "🇦🇺",
+   "unicode": "U+1F1E6 U+1F1FA",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/AU.svg"
+ },
+ {
+   "id": 15,
+   "name": "奥地利",
+   "code": "AT",
+   "emoji": "🇦🇹",
+   "unicode": "U+1F1E6 U+1F1F9",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/AT.svg"
+ },
+ {
+   "id": 16,
+   "name": "阿塞拜疆",
+   "code": "AZ",
+   "emoji": "🇦🇿",
+   "unicode": "U+1F1E6 U+1F1FF",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/AZ.svg"
+ },
+ {
+   "id": 17,
+   "name": "巴哈马",
+   "code": "BS",
+   "emoji": "🇧🇸",
+   "unicode": "U+1F1E7 U+1F1F8",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/BS.svg"
+ },
+ {
+   "id": 18,
+   "name": "巴林",
+   "code": "BH",
+   "emoji": "🇧🇭",
+   "unicode": "U+1F1E7 U+1F1ED",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/BH.svg"
+ },
+ {
+   "id": 19,
+   "name": "孟加拉国",
+   "code": "BD",
+   "emoji": "🇧🇩",
+   "unicode": "U+1F1E7 U+1F1E9",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/BD.svg"
+ },
+ {
+   "id": 20,
+   "name": "巴巴多斯",
+   "code": "BB",
+   "emoji": "🇧🇧",
+   "unicode": "U+1F1E7 U+1F1E7",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/BB.svg"
+ },
+ {
+   "id": 21,
+   "name": "白俄罗斯",
+   "code": "BY",
+   "emoji": "🇧🇾",
+   "unicode": "U+1F1E7 U+1F1FE",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/BY.svg"
+ },
+ {
+   "id": 22,
+   "name": "比利时",
+   "code": "BE",
+   "emoji": "🇧🇪",
+   "unicode": "U+1F1E7 U+1F1EA",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/BE.svg"
+ },
+ {
+   "id": 23,
+   "name": "贝尔戈",
+   "code": "BZ",
+   "emoji": "🇧🇿",
+   "unicode": "U+1F1E7 U+1F1FF",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/BZ.svg"
+ },
+ {
+   "id": 24,
+   "name": "贝宁",
+   "code": "BJ",
+   "emoji": "🇧🇯",
+   "unicode": "U+1F1E7 U+1F1EF",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/BJ.svg"
+ },
+ {
+   "id": 25,
+   "name": "百慕大群岛",
+   "code": "BM",
+   "emoji": "🇧🇲",
+   "unicode": "U+1F1E7 U+1F1F2",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/BM.svg"
+ },
+ {
+   "id": 26,
+   "name": "但是",
+   "code": "BT",
+   "emoji": "🇧🇹",
+   "unicode": "U+1F1E7 U+1F1F9",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/BT.svg"
+ },
+ {
+   "id": 27,
+   "name": "玻利维亚",
+   "code": "BO",
+   "emoji": "🇧🇴",
+   "unicode": "U+1F1E7 U+1F1F4",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/BO.svg"
+ },
+ {
+   "id": 28,
+   "name": "波斯尼亚和黑塞哥维那",
+   "code": "BA",
+   "emoji": "🇧🇦",
+   "unicode": "U+1F1E7 U+1F1E6",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/BA.svg"
+ },
+ {
+   "id": 29,
+   "name": "博茨瓦纳",
+   "code": "BW",
+   "emoji": "🇧🇼",
+   "unicode": "U+1F1E7 U+1F1FC",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/BW.svg"
+ },
+ {
+   "id": 30,
+   "name": "Bouvet岛",
+   "code": "BV",
+   "emoji": "🇧🇻",
+   "unicode": "U+1F1E7 U+1F1FB",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/BV.svg"
+ },
+ {
+   "id": 31,
+   "name": "巴西",
+   "code": "BR",
+   "emoji": "🇧🇷",
+   "unicode": "U+1F1E7 U+1F1F7",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/BR.svg"
+ },
+ {
+   "id": 32,
+   "name": "英属印度洋领地",
+   "code": "IO",
+   "emoji": "🇮🇴",
+   "unicode": "U+1F1EE U+1F1F4",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/IO.svg"
+ },
+ {
+   "id": 33,
+   "name": "英属维尔京群岛",
+   "code": "VG",
+   "emoji": "🇻🇬",
+   "unicode": "U+1F1FB U+1F1EC",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/VG.svg"
+ },
+ {
+   "id": 34,
+   "name": "文莱",
+   "code": "BN",
+   "emoji": "🇧🇳",
+   "unicode": "U+1F1E7 U+1F1F3",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/BN.svg"
+ },
+ {
+   "id": 35,
+   "name": "保加利亚",
+   "code": "BG",
+   "emoji": "🇧🇬",
+   "unicode": "U+1F1E7 U+1F1EC",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/BG.svg"
+ },
+ {
+   "id": 36,
+   "name": "布基纳法索",
+   "code": "BF",
+   "emoji": "🇧🇫",
+   "unicode": "U+1F1E7 U+1F1EB",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/BF.svg"
+ },
+ {
+   "id": 37,
+   "name": "布隆迪",
+   "code": "BI",
+   "emoji": "🇧🇮",
+   "unicode": "U+1F1E7 U+1F1EE",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/BI.svg"
+ },
+ {
+   "id": 38,
+   "name": "柬埔寨",
+   "code": "KH",
+   "emoji": "🇰🇭",
+   "unicode": "U+1F1F0 U+1F1ED",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/KH.svg"
+ },
+ {
+   "id": 39,
+   "name": "喀麦隆",
+   "code": "CM",
+   "emoji": "🇨🇲",
+   "unicode": "U+1F1E8 U+1F1F2",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/CM.svg"
+ },
+ {
+   "id": 40,
+   "name": "加拿大",
+   "code": "CA",
+   "emoji": "🇨🇦",
+   "unicode": "U+1F1E8 U+1F1E6",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/CA.svg"
+ },
+ {
+   "id": 41,
+   "name": "加那利群岛",
+   "code": "IC",
+   "emoji": "🇮🇨",
+   "unicode": "U+1F1EE U+1F1E8",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/IC.svg"
+ },
+ {
+   "id": 42,
+   "name": "佛得角",
+   "code": "CV",
+   "emoji": "🇨🇻",
+   "unicode": "U+1F1E8 U+1F1FB",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/CV.svg"
+ },
+ {
+   "id": 43,
+   "name": "加勒比海荷兰",
+   "code": "BQ",
+   "emoji": "🇧🇶",
+   "unicode": "U+1F1E7 U+1F1F6",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/BQ.svg"
+ },
+ {
+   "id": 44,
+   "name": "开曼群岛",
+   "code": "KY",
+   "emoji": "🇰🇾",
+   "unicode": "U+1F1F0 U+1F1FE",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/KY.svg"
+ },
+ {
+   "id": 45,
+   "name": "中非共和国",
+   "code": "CF",
+   "emoji": "🇨🇫",
+   "unicode": "U+1F1E8 U+1F1EB",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/CF.svg"
+ },
+ {
+   "id": 46,
+   "name": "CEUTA和MELILLA",
+   "code": "EA",
+   "emoji": "🇪🇦",
+   "unicode": "U+1F1EA U+1F1E6",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/EA.svg"
+ },
+ {
+   "id": 47,
+   "name": "乍得",
+   "code": "TD",
+   "emoji": "🇹🇩",
+   "unicode": "U+1F1F9 U+1F1E9",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/TD.svg"
+ },
+ {
+   "id": 48,
+   "name": "辣椒",
+   "code": "CL",
+   "emoji": "🇨🇱",
+   "unicode": "U+1F1E8 U+1F1F1",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/CL.svg"
+ },
+ {
+   "id": 49,
+   "name": "瓷",
+   "code": "CN",
+   "emoji": "🇨🇳",
+   "unicode": "U+1F1E8 U+1F1F3",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/CN.svg"
+ },
+ {
+   "id": 50,
+   "name": "圣诞岛",
+   "code": "CX",
+   "emoji": "🇨🇽",
+   "unicode": "U+1F1E8 U+1F1FD",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/CX.svg"
+ },
+ {
+   "id": 51,
+   "name": "克里普顿岛",
+   "code": "CP",
+   "emoji": "🇨🇵",
+   "unicode": "U+1F1E8 U+1F1F5",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/CP.svg"
+ },
+ {
+   "id": 52,
+   "name": "可可群岛（龙骨）",
+   "code": "CC",
+   "emoji": "🇨🇨",
+   "unicode": "U+1F1E8 U+1F1E8",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/CC.svg"
+ },
+ {
+   "id": 53,
+   "name": "哥伦比亚",
+   "code": "CO",
+   "emoji": "🇨🇴",
+   "unicode": "U+1F1E8 U+1F1F4",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/CO.svg"
+ },
+ {
+   "id": 54,
+   "name": "科莫拉斯",
+   "code": "KM",
+   "emoji": "🇰🇲",
+   "unicode": "U+1F1F0 U+1F1F2",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/KM.svg"
+ },
+ {
+   "id": 55,
+   "name": "刚果-Brazzaville",
+   "code": "CG",
+   "emoji": "🇨🇬",
+   "unicode": "U+1F1E8 U+1F1EC",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/CG.svg"
+ },
+ {
+   "id": 56,
+   "name": "刚果 - 金沙萨",
+   "code": "CD",
+   "emoji": "🇨🇩",
+   "unicode": "U+1F1E8 U+1F1E9",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/CD.svg"
+ },
+ {
+   "id": 57,
+   "name": "库克群岛",
+   "code": "CK",
+   "emoji": "🇨🇰",
+   "unicode": "U+1F1E8 U+1F1F0",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/CK.svg"
+ },
+ {
+   "id": 58,
+   "name": "哥斯达黎加",
+   "code": "CR",
+   "emoji": "🇨🇷",
+   "unicode": "U+1F1E8 U+1F1F7",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/CR.svg"
+ },
+ {
+   "id": 59,
+   "name": "象牙海岸",
+   "code": "CI",
+   "emoji": "🇨🇮",
+   "unicode": "U+1F1E8 U+1F1EE",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/CI.svg"
+ },
+ {
+   "id": 60,
+   "name": "克罗地亚",
+   "code": "HR",
+   "emoji": "🇭🇷",
+   "unicode": "U+1F1ED U+1F1F7",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/HR.svg"
+ },
+ {
+   "id": 61,
+   "name": "古巴",
+   "code": "CU",
+   "emoji": "🇨🇺",
+   "unicode": "U+1F1E8 U+1F1FA",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/CU.svg"
+ },
+ {
+   "id": 62,
+   "name": "库拉索",
+   "code": "CW",
+   "emoji": "🇨🇼",
+   "unicode": "U+1F1E8 U+1F1FC",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/CW.svg"
+ },
+ {
+   "id": 63,
+   "name": "塞浦路斯",
+   "code": "CY",
+   "emoji": "🇨🇾",
+   "unicode": "U+1F1E8 U+1F1FE",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/CY.svg"
+ },
+ {
+   "id": 64,
+   "name": "捷克",
+   "code": "CZ",
+   "emoji": "🇨🇿",
+   "unicode": "U+1F1E8 U+1F1FF",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/CZ.svg"
+ },
+ {
+   "id": 65,
+   "name": "丹麦",
+   "code": "DK",
+   "emoji": "🇩🇰",
+   "unicode": "U+1F1E9 U+1F1F0",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/DK.svg"
+ },
+ {
+   "id": 66,
+   "name": "迭戈·加西亚",
+   "code": "DG",
+   "emoji": "🇩🇬",
+   "unicode": "U+1F1E9 U+1F1EC",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/DG.svg"
+ },
+ {
+   "id": 67,
+   "name": "吉布提",
+   "code": "DJ",
+   "emoji": "🇩🇯",
+   "unicode": "U+1F1E9 U+1F1EF",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/DJ.svg"
+ },
+ {
+   "id": 68,
+   "name": "领域",
+   "code": "DM",
+   "emoji": "🇩🇲",
+   "unicode": "U+1F1E9 U+1F1F2",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/DM.svg"
+ },
+ {
+   "id": 69,
+   "name": "多明尼加共和国",
+   "code": "DO",
+   "emoji": "🇩🇴",
+   "unicode": "U+1F1E9 U+1F1F4",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/DO.svg"
+ },
+ {
+   "id": 70,
+   "name": "厄瓜多尔",
+   "code": "EC",
+   "emoji": "🇪🇨",
+   "unicode": "U+1F1EA U+1F1E8",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/EC.svg"
+ },
+ {
+   "id": 71,
+   "name": "埃及",
+   "code": "EG",
+   "emoji": "🇪🇬",
+   "unicode": "U+1F1EA U+1F1EC",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/EG.svg"
+ },
+ {
+   "id": 72,
+   "name": "萨尔瓦多",
+   "code": "SV",
+   "emoji": "🇸🇻",
+   "unicode": "U+1F1F8 U+1F1FB",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/SV.svg"
+ },
+ {
+   "id": 73,
+   "name": "英格兰",
+   "code": "ENGLAND",
+   "emoji": "🏴󠁧󠁢󠁥󠁮󠁧󠁿",
+   "unicode": "U+1F3F4 U+E0067 U+E0062 U+E0065 U+E006E U+E0067 U+E007F",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/ENGLAND.svg"
+ },
+ {
+   "id": 74,
+   "name": "赤道几内亚",
+   "code": "GQ",
+   "emoji": "🇬🇶",
+   "unicode": "U+1F1EC U+1F1F6",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/GQ.svg"
+ },
+ {
+   "id": 75,
+   "name": "厄立特里亚",
+   "code": "ER",
+   "emoji": "🇪🇷",
+   "unicode": "U+1F1EA U+1F1F7",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/ER.svg"
+ },
+ {
+   "id": 76,
+   "name": "爱沙尼亚",
+   "code": "EE",
+   "emoji": "🇪🇪",
+   "unicode": "U+1F1EA U+1F1EA",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/EE.svg"
+ },
+ {
+   "id": 77,
+   "name": "Eswatini",
+   "code": "SZ",
+   "emoji": "🇸🇿",
+   "unicode": "U+1F1F8 U+1F1FF",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/SZ.svg"
+ },
+ {
+   "id": 78,
+   "name": "埃塞俄比亚",
+   "code": "ET",
+   "emoji": "🇪🇹",
+   "unicode": "U+1F1EA U+1F1F9",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/ET.svg"
+ },
+ {
+   "id": 79,
+   "name": "欧洲联盟",
+   "code": "EU",
+   "emoji": "🇪🇺",
+   "unicode": "U+1F1EA U+1F1FA",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/EU.svg"
+ },
+ {
+   "id": 80,
+   "name": "福克兰群岛",
+   "code": "FK",
+   "emoji": "🇫🇰",
+   "unicode": "U+1F1EB U+1F1F0",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/FK.svg"
+ },
+ {
+   "id": 81,
+   "name": "法罗群岛",
+   "code": "FO",
+   "emoji": "🇫🇴",
+   "unicode": "U+1F1EB U+1F1F4",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/FO.svg"
+ },
+ {
+   "id": 82,
+   "name": "斐济",
+   "code": "FJ",
+   "emoji": "🇫🇯",
+   "unicode": "U+1F1EB U+1F1EF",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/FJ.svg"
+ },
+ {
+   "id": 83,
+   "name": "芬兰",
+   "code": "FI",
+   "emoji": "🇫🇮",
+   "unicode": "U+1F1EB U+1F1EE",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/FI.svg"
+ },
+ {
+   "id": 84,
+   "name": "法国",
+   "code": "FR",
+   "emoji": "🇫🇷",
+   "unicode": "U+1F1EB U+1F1F7",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/FR.svg"
+ },
+ {
+   "id": 85,
+   "name": "法国瓜亚纳",
+   "code": "GF",
+   "emoji": "🇬🇫",
+   "unicode": "U+1F1EC U+1F1EB",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/GF.svg"
+ },
+ {
+   "id": 86,
+   "name": "法属波利尼西亚",
+   "code": "PF",
+   "emoji": "🇵🇫",
+   "unicode": "U+1F1F5 U+1F1EB",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/PF.svg"
+ },
+ {
+   "id": 87,
+   "name": "南方的法国领土",
+   "code": "TF",
+   "emoji": "🇹🇫",
+   "unicode": "U+1F1F9 U+1F1EB",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/TF.svg"
+ },
+ {
+   "id": 88,
+   "name": "加蓬",
+   "code": "GA",
+   "emoji": "🇬🇦",
+   "unicode": "U+1F1EC U+1F1E6",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/GA.svg"
+ },
+ {
+   "id": 89,
+   "name": "冈比亚",
+   "code": "GM",
+   "emoji": "🇬🇲",
+   "unicode": "U+1F1EC U+1F1F2",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/GM.svg"
+ },
+ {
+   "id": 90,
+   "name": "乔治亚州",
+   "code": "GE",
+   "emoji": "🇬🇪",
+   "unicode": "U+1F1EC U+1F1EA",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/GE.svg"
+ },
+ {
+   "id": 91,
+   "name": "德国",
+   "code": "DE",
+   "emoji": "🇩🇪",
+   "unicode": "U+1F1E9 U+1F1EA",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/DE.svg"
+ },
+ {
+   "id": 92,
+   "name": "加纳",
+   "code": "GH",
+   "emoji": "🇬🇭",
+   "unicode": "U+1F1EC U+1F1ED",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/GH.svg"
+ },
+ {
+   "id": 93,
+   "name": "直布罗陀",
+   "code": "GI",
+   "emoji": "🇬🇮",
+   "unicode": "U+1F1EC U+1F1EE",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/GI.svg"
+ },
+ {
+   "id": 94,
+   "name": "希腊",
+   "code": "GR",
+   "emoji": "🇬🇷",
+   "unicode": "U+1F1EC U+1F1F7",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/GR.svg"
+ },
+ {
+   "id": 95,
+   "name": "格陵兰",
+   "code": "GL",
+   "emoji": "🇬🇱",
+   "unicode": "U+1F1EC U+1F1F1",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/GL.svg"
+ },
+ {
+   "id": 96,
+   "name": "手榴弹",
+   "code": "GD",
+   "emoji": "🇬🇩",
+   "unicode": "U+1F1EC U+1F1E9",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/GD.svg"
+ },
+ {
+   "id": 97,
+   "name": "瓜德洛普多",
+   "code": "GP",
+   "emoji": "🇬🇵",
+   "unicode": "U+1F1EC U+1F1F5",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/GP.svg"
+ },
+ {
+   "id": 98,
+   "name": "关岛",
+   "code": "GU",
+   "emoji": "🇬🇺",
+   "unicode": "U+1F1EC U+1F1FA",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/GU.svg"
+ },
+ {
+   "id": 99,
+   "name": "危地马拉",
+   "code": "GT",
+   "emoji": "🇬🇹",
+   "unicode": "U+1F1EC U+1F1F9",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/GT.svg"
+ },
+ {
+   "id": 100,
+   "name": "指导",
+   "code": "GG",
+   "emoji": "🇬🇬",
+   "unicode": "U+1F1EC U+1F1EC",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/GG.svg"
+ },
+ {
+   "id": 101,
+   "name": "几内亚",
+   "code": "GN",
+   "emoji": "🇬🇳",
+   "unicode": "U+1F1EC U+1F1F3",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/GN.svg"
+ },
+ {
+   "id": 102,
+   "name": "几内亚 - 比索",
+   "code": "GW",
+   "emoji": "🇬🇼",
+   "unicode": "U+1F1EC U+1F1FC",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/GW.svg"
+ },
+ {
+   "id": 103,
+   "name": "圭亚那",
+   "code": "GY",
+   "emoji": "🇬🇾",
+   "unicode": "U+1F1EC U+1F1FE",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/GY.svg"
+ },
+ {
+   "id": 104,
+   "name": "海地",
+   "code": "HT",
+   "emoji": "🇭🇹",
+   "unicode": "U+1F1ED U+1F1F9",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/HT.svg"
+ },
+ {
+   "id": 105,
+   "name": "Heard＆McDonald群岛",
+   "code": "HM",
+   "emoji": "🇭🇲",
+   "unicode": "U+1F1ED U+1F1F2",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/HM.svg"
+ },
+ {
+   "id": 106,
+   "name": "洪都拉斯",
+   "code": "HN",
+   "emoji": "🇭🇳",
+   "unicode": "U+1F1ED U+1F1F3",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/HN.svg"
+ },
+ {
+   "id": 107,
+   "name": "香港中国",
+   "code": "HK",
+   "emoji": "🇭🇰",
+   "unicode": "U+1F1ED U+1F1F0",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/HK.svg"
+ },
+ {
+   "id": 108,
+   "name": "匈牙利",
+   "code": "HU",
+   "emoji": "🇭🇺",
+   "unicode": "U+1F1ED U+1F1FA",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/HU.svg"
+ },
+ {
+   "id": 109,
+   "name": "冰岛",
+   "code": "IS",
+   "emoji": "🇮🇸",
+   "unicode": "U+1F1EE U+1F1F8",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/IS.svg"
+ },
+ {
+   "id": 110,
+   "name": "印度",
+   "code": "IN",
+   "emoji": "🇮🇳",
+   "unicode": "U+1F1EE U+1F1F3",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/IN.svg"
+ },
+ {
+   "id": 111,
+   "name": "印度尼西亚",
+   "code": "ID",
+   "emoji": "🇮🇩",
+   "unicode": "U+1F1EE U+1F1E9",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/ID.svg"
+ },
+ {
+   "id": 112,
+   "name": "伊朗",
+   "code": "IR",
+   "emoji": "🇮🇷",
+   "unicode": "U+1F1EE U+1F1F7",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/IR.svg"
+ },
+ {
+   "id": 113,
+   "name": "伊拉克",
+   "code": "IQ",
+   "emoji": "🇮🇶",
+   "unicode": "U+1F1EE U+1F1F6",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/IQ.svg"
+ },
+ {
+   "id": 114,
+   "name": "爱尔兰",
+   "code": "IE",
+   "emoji": "🇮🇪",
+   "unicode": "U+1F1EE U+1F1EA",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/IE.svg"
+ },
+ {
+   "id": 115,
+   "name": "人的人",
+   "code": "IM",
+   "emoji": "🇮🇲",
+   "unicode": "U+1F1EE U+1F1F2",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/IM.svg"
+ },
+ {
+   "id": 116,
+   "name": "以色列",
+   "code": "IL",
+   "emoji": "🇮🇱",
+   "unicode": "U+1F1EE U+1F1F1",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/IL.svg"
+ },
+ {
+   "id": 117,
+   "name": "意大利",
+   "code": "IT",
+   "emoji": "🇮🇹",
+   "unicode": "U+1F1EE U+1F1F9",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/IT.svg"
+ },
+ {
+   "id": 118,
+   "name": "牙买加",
+   "code": "JM",
+   "emoji": "🇯🇲",
+   "unicode": "U+1F1EF U+1F1F2",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/JM.svg"
+ },
+ {
+   "id": 119,
+   "name": "日本",
+   "code": "JP",
+   "emoji": "🇯🇵",
+   "unicode": "U+1F1EF U+1F1F5",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/JP.svg"
+ },
+ {
+   "id": 120,
+   "name": "毛衣",
+   "code": "JE",
+   "emoji": "🇯🇪",
+   "unicode": "U+1F1EF U+1F1EA",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/JE.svg"
+ },
+ {
+   "id": 121,
+   "name": "约旦",
+   "code": "JO",
+   "emoji": "🇯🇴",
+   "unicode": "U+1F1EF U+1F1F4",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/JO.svg"
+ },
+ {
+   "id": 122,
+   "name": "哈萨克斯坦",
+   "code": "KZ",
+   "emoji": "🇰🇿",
+   "unicode": "U+1F1F0 U+1F1FF",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/KZ.svg"
+ },
+ {
+   "id": 123,
+   "name": "肯尼亚",
+   "code": "KE",
+   "emoji": "🇰🇪",
+   "unicode": "U+1F1F0 U+1F1EA",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/KE.svg"
+ },
+ {
+   "id": 124,
+   "name": "基里巴斯",
+   "code": "KI",
+   "emoji": "🇰🇮",
+   "unicode": "U+1F1F0 U+1F1EE",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/KI.svg"
+ },
+ {
+   "id": 125,
+   "name": "科索沃",
+   "code": "XK",
+   "emoji": "🇽🇰",
+   "unicode": "U+1F1FD U+1F1F0",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/XK.svg"
+ },
+ {
+   "id": 126,
+   "name": "科威特",
+   "code": "KW",
+   "emoji": "🇰🇼",
+   "unicode": "U+1F1F0 U+1F1FC",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/KW.svg"
+ },
+ {
+   "id": 127,
+   "name": "凯尔吉斯坦",
+   "code": "KG",
+   "emoji": "🇰🇬",
+   "unicode": "U+1F1F0 U+1F1EC",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/KG.svg"
+ },
+ {
+   "id": 128,
+   "name": "老挝",
+   "code": "LA",
+   "emoji": "🇱🇦",
+   "unicode": "U+1F1F1 U+1F1E6",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/LA.svg"
+ },
+ {
+   "id": 129,
+   "name": "拉脱维亚",
+   "code": "LV",
+   "emoji": "🇱🇻",
+   "unicode": "U+1F1F1 U+1F1FB",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/LV.svg"
+ },
+ {
+   "id": 130,
+   "name": "黎巴嫩",
+   "code": "LB",
+   "emoji": "🇱🇧",
+   "unicode": "U+1F1F1 U+1F1E7",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/LB.svg"
+ },
+ {
+   "id": 131,
+   "name": "莱索托",
+   "code": "LS",
+   "emoji": "🇱🇸",
+   "unicode": "U+1F1F1 U+1F1F8",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/LS.svg"
+ },
+ {
+   "id": 132,
+   "name": "利比里亚",
+   "code": "LR",
+   "emoji": "🇱🇷",
+   "unicode": "U+1F1F1 U+1F1F7",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/LR.svg"
+ },
+ {
+   "id": 133,
+   "name": "利比亚",
+   "code": "LY",
+   "emoji": "🇱🇾",
+   "unicode": "U+1F1F1 U+1F1FE",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/LY.svg"
+ },
+ {
+   "id": 134,
+   "name": "列支敦士登",
+   "code": "LI",
+   "emoji": "🇱🇮",
+   "unicode": "U+1F1F1 U+1F1EE",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/LI.svg"
+ },
+ {
+   "id": 135,
+   "name": "立陶宛",
+   "code": "LT",
+   "emoji": "🇱🇹",
+   "unicode": "U+1F1F1 U+1F1F9",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/LT.svg"
+ },
+ {
+   "id": 136,
+   "name": "卢森堡",
+   "code": "LU",
+   "emoji": "🇱🇺",
+   "unicode": "U+1F1F1 U+1F1FA",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/LU.svg"
+ },
+ {
+   "id": 137,
+   "name": "澳门sar中国",
+   "code": "MO",
+   "emoji": "🇲🇴",
+   "unicode": "U+1F1F2 U+1F1F4",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/MO.svg"
+ },
+ {
+   "id": 138,
+   "name": "马达加斯加",
+   "code": "MG",
+   "emoji": "🇲🇬",
+   "unicode": "U+1F1F2 U+1F1EC",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/MG.svg"
+ },
+ {
+   "id": 139,
+   "name": "马洛",
+   "code": "MW",
+   "emoji": "🇲🇼",
+   "unicode": "U+1F1F2 U+1F1FC",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/MW.svg"
+ },
+ {
+   "id": 140,
+   "name": "马来西亚",
+   "code": "MY",
+   "emoji": "🇲🇾",
+   "unicode": "U+1F1F2 U+1F1FE",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/MY.svg"
+ },
+ {
+   "id": 141,
+   "name": "马尔代夫",
+   "code": "MV",
+   "emoji": "🇲🇻",
+   "unicode": "U+1F1F2 U+1F1FB",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/MV.svg"
+ },
+ {
+   "id": 142,
+   "name": "马里",
+   "code": "ML",
+   "emoji": "🇲🇱",
+   "unicode": "U+1F1F2 U+1F1F1",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/ML.svg"
+ },
+ {
+   "id": 143,
+   "name": "麦芽",
+   "code": "MT",
+   "emoji": "🇲🇹",
+   "unicode": "U+1F1F2 U+1F1F9",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/MT.svg"
+ },
+ {
+   "id": 144,
+   "name": "马绍尔群岛",
+   "code": "MH",
+   "emoji": "🇲🇭",
+   "unicode": "U+1F1F2 U+1F1ED",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/MH.svg"
+ },
+ {
+   "id": 145,
+   "name": "马提尼克",
+   "code": "MQ",
+   "emoji": "🇲🇶",
+   "unicode": "U+1F1F2 U+1F1F6",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/MQ.svg"
+ },
+ {
+   "id": 146,
+   "name": "毛里塔尼亚",
+   "code": "MR",
+   "emoji": "🇲🇷",
+   "unicode": "U+1F1F2 U+1F1F7",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/MR.svg"
+ },
+ {
+   "id": 147,
+   "name": "毛里西奥",
+   "code": "MU",
+   "emoji": "🇲🇺",
+   "unicode": "U+1F1F2 U+1F1FA",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/MU.svg"
+ },
+ {
+   "id": 148,
+   "name": "Mayotte",
+   "code": "YT",
+   "emoji": "🇾🇹",
+   "unicode": "U+1F1FE U+1F1F9",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/YT.svg"
+ },
+ {
+   "id": 149,
+   "name": "墨西哥",
+   "code": "MX",
+   "emoji": "🇲🇽",
+   "unicode": "U+1F1F2 U+1F1FD",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/MX.svg"
+ },
+ {
+   "id": 150,
+   "name": "麦克罗尼西亚",
+   "code": "FM",
+   "emoji": "🇫🇲",
+   "unicode": "U+1F1EB U+1F1F2",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/FM.svg"
+ },
+ {
+   "id": 151,
+   "name": "摩尔多瓦",
+   "code": "MD",
+   "emoji": "🇲🇩",
+   "unicode": "U+1F1F2 U+1F1E9",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/MD.svg"
+ },
+ {
+   "id": 152,
+   "name": "摩纳哥",
+   "code": "MC",
+   "emoji": "🇲🇨",
+   "unicode": "U+1F1F2 U+1F1E8",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/MC.svg"
+ },
+ {
+   "id": 153,
+   "name": "蒙古",
+   "code": "MN",
+   "emoji": "🇲🇳",
+   "unicode": "U+1F1F2 U+1F1F3",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/MN.svg"
+ },
+ {
+   "id": 154,
+   "name": "黑山",
+   "code": "ME",
+   "emoji": "🇲🇪",
+   "unicode": "U+1F1F2 U+1F1EA",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/ME.svg"
+ },
+ {
+   "id": 155,
+   "name": "蒙特塞拉特",
+   "code": "MS",
+   "emoji": "🇲🇸",
+   "unicode": "U+1F1F2 U+1F1F8",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/MS.svg"
+ },
+ {
+   "id": 156,
+   "name": "摩洛哥",
+   "code": "MA",
+   "emoji": "🇲🇦",
+   "unicode": "U+1F1F2 U+1F1E6",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/MA.svg"
+ },
+ {
+   "id": 157,
+   "name": "莫桑比克",
+   "code": "MZ",
+   "emoji": "🇲🇿",
+   "unicode": "U+1F1F2 U+1F1FF",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/MZ.svg"
+ },
+ {
+   "id": 158,
+   "name": "缅甸（缅甸）",
+   "code": "MM",
+   "emoji": "🇲🇲",
+   "unicode": "U+1F1F2 U+1F1F2",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/MM.svg"
+ },
+ {
+   "id": 159,
+   "name": "纳米比亚",
+   "code": "NA",
+   "emoji": "🇳🇦",
+   "unicode": "U+1F1F3 U+1F1E6",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/NA.svg"
+ },
+ {
+   "id": 160,
+   "name": "瑙鲁",
+   "code": "NR",
+   "emoji": "🇳🇷",
+   "unicode": "U+1F1F3 U+1F1F7",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/NR.svg"
+ },
+ {
+   "id": 161,
+   "name": "尼泊尔",
+   "code": "NP",
+   "emoji": "🇳🇵",
+   "unicode": "U+1F1F3 U+1F1F5",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/NP.svg"
+ },
+ {
+   "id": 162,
+   "name": "荷兰",
+   "code": "NL",
+   "emoji": "🇳🇱",
+   "unicode": "U+1F1F3 U+1F1F1",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/NL.svg"
+ },
+ {
+   "id": 163,
+   "name": "新喀里多尼亚",
+   "code": "NC",
+   "emoji": "🇳🇨",
+   "unicode": "U+1F1F3 U+1F1E8",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/NC.svg"
+ },
+ {
+   "id": 164,
+   "name": "新西兰",
+   "code": "NZ",
+   "emoji": "🇳🇿",
+   "unicode": "U+1F1F3 U+1F1FF",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/NZ.svg"
+ },
+ {
+   "id": 165,
+   "name": "尼加拉瓜",
+   "code": "NI",
+   "emoji": "🇳🇮",
+   "unicode": "U+1F1F3 U+1F1EE",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/NI.svg"
+ },
+ {
+   "id": 166,
+   "name": "尼日尔",
+   "code": "NE",
+   "emoji": "🇳🇪",
+   "unicode": "U+1F1F3 U+1F1EA",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/NE.svg"
+ },
+ {
+   "id": 167,
+   "name": "尼日利亚",
+   "code": "NG",
+   "emoji": "🇳🇬",
+   "unicode": "U+1F1F3 U+1F1EC",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/NG.svg"
+ },
+ {
+   "id": 168,
+   "name": "尼",
+   "code": "NU",
+   "emoji": "🇳🇺",
+   "unicode": "U+1F1F3 U+1F1FA",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/NU.svg"
+ },
+ {
+   "id": 169,
+   "name": "诺福克岛",
+   "code": "NF",
+   "emoji": "🇳🇫",
+   "unicode": "U+1F1F3 U+1F1EB",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/NF.svg"
+ },
+ {
+   "id": 170,
+   "name": "北朝鲜",
+   "code": "KP",
+   "emoji": "🇰🇵",
+   "unicode": "U+1F1F0 U+1F1F5",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/KP.svg"
+ },
+ {
+   "id": 171,
+   "name": "马其顿北部",
+   "code": "MK",
+   "emoji": "🇲🇰",
+   "unicode": "U+1F1F2 U+1F1F0",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/MK.svg"
+ },
+ {
+   "id": 172,
+   "name": "玛丽安娜群岛从北部",
+   "code": "MP",
+   "emoji": "🇲🇵",
+   "unicode": "U+1F1F2 U+1F1F5",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/MP.svg"
+ },
+ {
+   "id": 173,
+   "name": "挪威",
+   "code": "NO",
+   "emoji": "🇳🇴",
+   "unicode": "U+1F1F3 U+1F1F4",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/NO.svg"
+ },
+ {
+   "id": 174,
+   "name": "阿曼",
+   "code": "OM",
+   "emoji": "🇴🇲",
+   "unicode": "U+1F1F4 U+1F1F2",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/OM.svg"
+ },
+ {
+   "id": 175,
+   "name": "巴基斯坦",
+   "code": "PK",
+   "emoji": "🇵🇰",
+   "unicode": "U+1F1F5 U+1F1F0",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/PK.svg"
+ },
+ {
+   "id": 176,
+   "name": "帕劳",
+   "code": "PW",
+   "emoji": "🇵🇼",
+   "unicode": "U+1F1F5 U+1F1FC",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/PW.svg"
+ },
+ {
+   "id": 177,
+   "name": "巴勒斯坦领土",
+   "code": "PS",
+   "emoji": "🇵🇸",
+   "unicode": "U+1F1F5 U+1F1F8",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/PS.svg"
+ },
+ {
+   "id": 178,
+   "name": "巴拿马",
+   "code": "PA",
+   "emoji": "🇵🇦",
+   "unicode": "U+1F1F5 U+1F1E6",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/PA.svg"
+ },
+ {
+   "id": 179,
+   "name": "巴布亚新几内亚",
+   "code": "PG",
+   "emoji": "🇵🇬",
+   "unicode": "U+1F1F5 U+1F1EC",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/PG.svg"
+ },
+ {
+   "id": 180,
+   "name": "巴拉圭",
+   "code": "PY",
+   "emoji": "🇵🇾",
+   "unicode": "U+1F1F5 U+1F1FE",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/PY.svg"
+ },
+ {
+   "id": 181,
+   "name": "秘鲁",
+   "code": "PE",
+   "emoji": "🇵🇪",
+   "unicode": "U+1F1F5 U+1F1EA",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/PE.svg"
+ },
+ {
+   "id": 182,
+   "name": "菲律宾",
+   "code": "PH",
+   "emoji": "🇵🇭",
+   "unicode": "U+1F1F5 U+1F1ED",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/PH.svg"
+ },
+ {
+   "id": 183,
+   "name": "皮特凯群岛",
+   "code": "PN",
+   "emoji": "🇵🇳",
+   "unicode": "U+1F1F5 U+1F1F3",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/PN.svg"
+ },
+ {
+   "id": 184,
+   "name": "波兰",
+   "code": "PL",
+   "emoji": "🇵🇱",
+   "unicode": "U+1F1F5 U+1F1F1",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/PL.svg"
+ },
+ {
+   "id": 185,
+   "name": "葡萄牙",
+   "code": "PT",
+   "emoji": "🇵🇹",
+   "unicode": "U+1F1F5 U+1F1F9",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/PT.svg"
+ },
+ {
+   "id": 186,
+   "name": "波多黎各",
+   "code": "PR",
+   "emoji": "🇵🇷",
+   "unicode": "U+1F1F5 U+1F1F7",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/PR.svg"
+ },
+ {
+   "id": 187,
+   "name": "卡塔尔",
+   "code": "QA",
+   "emoji": "🇶🇦",
+   "unicode": "U+1F1F6 U+1F1E6",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/QA.svg"
+ },
+ {
+   "id": 188,
+   "name": "会议",
+   "code": "RE",
+   "emoji": "🇷🇪",
+   "unicode": "U+1F1F7 U+1F1EA",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/RE.svg"
+ },
+ {
+   "id": 189,
+   "name": "罗马尼亚",
+   "code": "RO",
+   "emoji": "🇷🇴",
+   "unicode": "U+1F1F7 U+1F1F4",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/RO.svg"
+ },
+ {
+   "id": 190,
+   "name": "俄罗斯",
+   "code": "RU",
+   "emoji": "🇷🇺",
+   "unicode": "U+1F1F7 U+1F1FA",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/RU.svg"
+ },
+ {
+   "id": 191,
+   "name": "卢旺达",
+   "code": "RW",
+   "emoji": "🇷🇼",
+   "unicode": "U+1F1F7 U+1F1FC",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/RW.svg"
+ },
+ {
+   "id": 192,
+   "name": "萨摩亚",
+   "code": "WS",
+   "emoji": "🇼🇸",
+   "unicode": "U+1F1FC U+1F1F8",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/WS.svg"
+ },
+ {
+   "id": 193,
+   "name": "圣马力诺",
+   "code": "SM",
+   "emoji": "🇸🇲",
+   "unicode": "U+1F1F8 U+1F1F2",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/SM.svg"
+ },
+ {
+   "id": 194,
+   "name": "我拿到圣王子和王子",
+   "code": "ST",
+   "emoji": "🇸🇹",
+   "unicode": "U+1F1F8 U+1F1F9",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/ST.svg"
+ },
+ {
+   "id": 195,
+   "name": "沙特阿拉伯",
+   "code": "SA",
+   "emoji": "🇸🇦",
+   "unicode": "U+1F1F8 U+1F1E6",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/SA.svg"
+ },
+ {
+   "id": 196,
+   "name": "苏格兰",
+   "code": "SCOTLAND",
+   "emoji": "🏴󠁧󠁢󠁳󠁣󠁴󠁿",
+   "unicode": "U+1F3F4 U+E0067 U+E0062 U+E0073 U+E0063 U+E0074 U+E007F",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/SCOTLAND.svg"
+ },
+ {
+   "id": 197,
+   "name": "塞内加尔",
+   "code": "SN",
+   "emoji": "🇸🇳",
+   "unicode": "U+1F1F8 U+1F1F3",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/SN.svg"
+ },
+ {
+   "id": 198,
+   "name": "塞尔维亚",
+   "code": "RS",
+   "emoji": "🇷🇸",
+   "unicode": "U+1F1F7 U+1F1F8",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/RS.svg"
+ },
+ {
+   "id": 199,
+   "name": "塞舌尔",
+   "code": "SC",
+   "emoji": "🇸🇨",
+   "unicode": "U+1F1F8 U+1F1E8",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/SC.svg"
+ },
+ {
+   "id": 200,
+   "name": "塞拉利昂",
+   "code": "SL",
+   "emoji": "🇸🇱",
+   "unicode": "U+1F1F8 U+1F1F1",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/SL.svg"
+ },
+ {
+   "id": 201,
+   "name": "新加坡",
+   "code": "SG",
+   "emoji": "🇸🇬",
+   "unicode": "U+1F1F8 U+1F1EC",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/SG.svg"
+ },
+ {
+   "id": 202,
+   "name": "Sint Maarten",
+   "code": "SX",
+   "emoji": "🇸🇽",
+   "unicode": "U+1F1F8 U+1F1FD",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/SX.svg"
+ },
+ {
+   "id": 203,
+   "name": "斯洛伐克",
+   "code": "SK",
+   "emoji": "🇸🇰",
+   "unicode": "U+1F1F8 U+1F1F0",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/SK.svg"
+ },
+ {
+   "id": 204,
+   "name": "斯洛文尼亚",
+   "code": "SI",
+   "emoji": "🇸🇮",
+   "unicode": "U+1F1F8 U+1F1EE",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/SI.svg"
+ },
+ {
+   "id": 205,
+   "name": "所罗门群岛",
+   "code": "SB",
+   "emoji": "🇸🇧",
+   "unicode": "U+1F1F8 U+1F1E7",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/SB.svg"
+ },
+ {
+   "id": 206,
+   "name": "索马里",
+   "code": "SO",
+   "emoji": "🇸🇴",
+   "unicode": "U+1F1F8 U+1F1F4",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/SO.svg"
+ },
+ {
+   "id": 207,
+   "name": "南非",
+   "code": "ZA",
+   "emoji": "🇿🇦",
+   "unicode": "U+1F1FF U+1F1E6",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/ZA.svg"
+ },
+ {
+   "id": 208,
+   "name": "乔治亚州和三明治南岛",
+   "code": "GS",
+   "emoji": "🇬🇸",
+   "unicode": "U+1F1EC U+1F1F8",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/GS.svg"
+ },
+ {
+   "id": 209,
+   "name": "韩国",
+   "code": "KR",
+   "emoji": "🇰🇷",
+   "unicode": "U+1F1F0 U+1F1F7",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/KR.svg"
+ },
+ {
+   "id": 210,
+   "name": "南苏丹",
+   "code": "SS",
+   "emoji": "🇸🇸",
+   "unicode": "U+1F1F8 U+1F1F8",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/SS.svg"
+ },
+ {
+   "id": 211,
+   "name": "西班牙",
+   "code": "ES",
+   "emoji": "🇪🇸",
+   "unicode": "U+1F1EA U+1F1F8",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/ES.svg"
+ },
+ {
+   "id": 212,
+   "name": "斯里兰卡",
+   "code": "LK",
+   "emoji": "🇱🇰",
+   "unicode": "U+1F1F1 U+1F1F0",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/LK.svg"
+ },
+ {
+   "id": 213,
+   "name": "圣巴塞勒米",
+   "code": "BL",
+   "emoji": "🇧🇱",
+   "unicode": "U+1F1E7 U+1F1F1",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/BL.svg"
+ },
+ {
+   "id": 214,
+   "name": "圣海伦娜",
+   "code": "SH",
+   "emoji": "🇸🇭",
+   "unicode": "U+1F1F8 U+1F1ED",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/SH.svg"
+ },
+ {
+   "id": 215,
+   "name": "圣基茨和尼维斯",
+   "code": "KN",
+   "emoji": "🇰🇳",
+   "unicode": "U+1F1F0 U+1F1F3",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/KN.svg"
+ },
+ {
+   "id": 216,
+   "name": "圣卢西亚",
+   "code": "LC",
+   "emoji": "🇱🇨",
+   "unicode": "U+1F1F1 U+1F1E8",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/LC.svg"
+ },
+ {
+   "id": 217,
+   "name": "圣马丁",
+   "code": "MF",
+   "emoji": "🇲🇫",
+   "unicode": "U+1F1F2 U+1F1EB",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/MF.svg"
+ },
+ {
+   "id": 218,
+   "name": "圣皮埃尔和米克隆",
+   "code": "PM",
+   "emoji": "🇵🇲",
+   "unicode": "U+1F1F5 U+1F1F2",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/PM.svg"
+ },
+ {
+   "id": 219,
+   "name": "圣维森特和花格拉丁",
+   "code": "VC",
+   "emoji": "🇻🇨",
+   "unicode": "U+1F1FB U+1F1E8",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/VC.svg"
+ },
+ {
+   "id": 220,
+   "name": "苏丹",
+   "code": "SD",
+   "emoji": "🇸🇩",
+   "unicode": "U+1F1F8 U+1F1E9",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/SD.svg"
+ },
+ {
+   "id": 221,
+   "name": "苏里南",
+   "code": "SR",
+   "emoji": "🇸🇷",
+   "unicode": "U+1F1F8 U+1F1F7",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/SR.svg"
+ },
+ {
+   "id": 222,
+   "name": "Svalbard和Jan Mayen",
+   "code": "SJ",
+   "emoji": "🇸🇯",
+   "unicode": "U+1F1F8 U+1F1EF",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/SJ.svg"
+ },
+ {
+   "id": 223,
+   "name": "瑞典",
+   "code": "SE",
+   "emoji": "🇸🇪",
+   "unicode": "U+1F1F8 U+1F1EA",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/SE.svg"
+ },
+ {
+   "id": 224,
+   "name": "瑞士",
+   "code": "CH",
+   "emoji": "🇨🇭",
+   "unicode": "U+1F1E8 U+1F1ED",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/CH.svg"
+ },
+ {
+   "id": 225,
+   "name": "叙利亚",
+   "code": "SY",
+   "emoji": "🇸🇾",
+   "unicode": "U+1F1F8 U+1F1FE",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/SY.svg"
+ },
+ {
+   "id": 226,
+   "name": "台湾",
+   "code": "TW",
+   "emoji": "🇹🇼",
+   "unicode": "U+1F1F9 U+1F1FC",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/TW.svg"
+ },
+ {
+   "id": 227,
+   "name": "Tayikistan",
+   "code": "TJ",
+   "emoji": "🇹🇯",
+   "unicode": "U+1F1F9 U+1F1EF",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/TJ.svg"
+ },
+ {
+   "id": 228,
+   "name": "坦桑尼亚",
+   "code": "TZ",
+   "emoji": "🇹🇿",
+   "unicode": "U+1F1F9 U+1F1FF",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/TZ.svg"
+ },
+ {
+   "id": 229,
+   "name": "泰国",
+   "code": "TH",
+   "emoji": "🇹🇭",
+   "unicode": "U+1F1F9 U+1F1ED",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/TH.svg"
+ },
+ {
+   "id": 230,
+   "name": "帝摩特",
+   "code": "TL",
+   "emoji": "🇹🇱",
+   "unicode": "U+1F1F9 U+1F1F1",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/TL.svg"
+ },
+ {
+   "id": 231,
+   "name": "去",
+   "code": "TG",
+   "emoji": "🇹🇬",
+   "unicode": "U+1F1F9 U+1F1EC",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/TG.svg"
+ },
+ {
+   "id": 232,
+   "name": "Tokelau",
+   "code": "TK",
+   "emoji": "🇹🇰",
+   "unicode": "U+1F1F9 U+1F1F0",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/TK.svg"
+ },
+ {
+   "id": 233,
+   "name": "汤加",
+   "code": "TO",
+   "emoji": "🇹🇴",
+   "unicode": "U+1F1F9 U+1F1F4",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/TO.svg"
+ },
+ {
+   "id": 234,
+   "name": "特立尼达和多巴哥",
+   "code": "TT",
+   "emoji": "🇹🇹",
+   "unicode": "U+1F1F9 U+1F1F9",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/TT.svg"
+ },
+ {
+   "id": 235,
+   "name": "Tristan da Cunha",
+   "code": "TA",
+   "emoji": "🇹🇦",
+   "unicode": "U+1F1F9 U+1F1E6",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/TA.svg"
+ },
+ {
+   "id": 236,
+   "name": "突尼斯",
+   "code": "TN",
+   "emoji": "🇹🇳",
+   "unicode": "U+1F1F9 U+1F1F3",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/TN.svg"
+ },
+ {
+   "id": 237,
+   "name": "火鸡",
+   "code": "TR",
+   "emoji": "🇹🇷",
+   "unicode": "U+1F1F9 U+1F1F7",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/TR.svg"
+ },
+ {
+   "id": 238,
+   "name": "土库曼斯坦",
+   "code": "TM",
+   "emoji": "🇹🇲",
+   "unicode": "U+1F1F9 U+1F1F2",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/TM.svg"
+ },
+ {
+   "id": 239,
+   "name": "特克斯和凯科斯群岛",
+   "code": "TC",
+   "emoji": "🇹🇨",
+   "unicode": "U+1F1F9 U+1F1E8",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/TC.svg"
+ },
+ {
+   "id": 240,
+   "name": "图瓦卢",
+   "code": "TV",
+   "emoji": "🇹🇻",
+   "unicode": "U+1F1F9 U+1F1FB",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/TV.svg"
+ },
+ {
+   "id": 241,
+   "name": "美国外围群岛。",
+   "code": "UM",
+   "emoji": "🇺🇲",
+   "unicode": "U+1F1FA U+1F1F2",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/UM.svg"
+ },
+ {
+   "id": 242,
+   "name": "美国维尔京群岛",
+   "code": "VI",
+   "emoji": "🇻🇮",
+   "unicode": "U+1F1FB U+1F1EE",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/VI.svg"
+ },
+ {
+   "id": 243,
+   "name": "乌干达",
+   "code": "UG",
+   "emoji": "🇺🇬",
+   "unicode": "U+1F1FA U+1F1EC",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/UG.svg"
+ },
+ {
+   "id": 244,
+   "name": "乌克兰",
+   "code": "UA",
+   "emoji": "🇺🇦",
+   "unicode": "U+1F1FA U+1F1E6",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/UA.svg"
+ },
+ {
+   "id": 245,
+   "name": "阿拉伯联合酋长国",
+   "code": "AE",
+   "emoji": "🇦🇪",
+   "unicode": "U+1F1E6 U+1F1EA",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/AE.svg"
+ },
+ {
+   "id": 246,
+   "name": "英国",
+   "code": "GB",
+   "emoji": "🇬🇧",
+   "unicode": "U+1F1EC U+1F1E7",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/GB.svg"
+ },
+ {
+   "id": 247,
+   "name": "联合国",
+   "code": "UN",
+   "emoji": "🇺🇳",
+   "unicode": "U+1F1FA U+1F1F3",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/UN.svg"
+ },
+ {
+   "id": 248,
+   "name": "美国",
+   "code": "US",
+   "emoji": "🇺🇸",
+   "unicode": "U+1F1FA U+1F1F8",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/US.svg"
+ },
+ {
+   "id": 249,
+   "name": "乌拉圭",
+   "code": "UY",
+   "emoji": "🇺🇾",
+   "unicode": "U+1F1FA U+1F1FE",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/UY.svg"
+ },
+ {
+   "id": 250,
+   "name": "乌兹别克斯坦",
+   "code": "UZ",
+   "emoji": "🇺🇿",
+   "unicode": "U+1F1FA U+1F1FF",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/UZ.svg"
+ },
+ {
+   "id": 251,
+   "name": "瓦努阿图",
+   "code": "VU",
+   "emoji": "🇻🇺",
+   "unicode": "U+1F1FB U+1F1FA",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/VU.svg"
+ },
+ {
+   "id": 252,
+   "name": "梵蒂冈城",
+   "code": "VA",
+   "emoji": "🇻🇦",
+   "unicode": "U+1F1FB U+1F1E6",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/VA.svg"
+ },
+ {
+   "id": 253,
+   "name": "委内瑞拉",
+   "code": "VE",
+   "emoji": "🇻🇪",
+   "unicode": "U+1F1FB U+1F1EA",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/VE.svg"
+ },
+ {
+   "id": 254,
+   "name": "越南",
+   "code": "VN",
+   "emoji": "🇻🇳",
+   "unicode": "U+1F1FB U+1F1F3",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/VN.svg"
+ },
+ {
+   "id": 255,
+   "name": "威尔士语",
+   "code": "WALES",
+   "emoji": "🏴󠁧󠁢󠁷󠁬󠁳󠁿",
+   "unicode": "U+1F3F4 U+E0067 U+E0062 U+E0077 U+E006C U+E0073 U+E007F",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/WALES.svg"
+ },
+ {
+   "id": 256,
+   "name": "沃利斯和五人",
+   "code": "WF",
+   "emoji": "🇼🇫",
+   "unicode": "U+1F1FC U+1F1EB",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/WF.svg"
+ },
+ {
+   "id": 257,
+   "name": "西方撒哈拉沙漠",
+   "code": "EH",
+   "emoji": "🇪🇭",
+   "unicode": "U+1F1EA U+1F1ED",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/EH.svg"
+ },
+ {
+   "id": 258,
+   "name": "也门",
+   "code": "YE",
+   "emoji": "🇾🇪",
+   "unicode": "U+1F1FE U+1F1EA",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/YE.svg"
+ },
+ {
+   "id": 259,
+   "name": "赞比亚",
+   "code": "ZM",
+   "emoji": "🇿🇲",
+   "unicode": "U+1F1FF U+1F1F2",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/ZM.svg"
+ },
+ {
+   "id": 260,
+   "name": "津巴布韦",
+   "code": "ZW",
+   "emoji": "🇿🇼",
+   "unicode": "U+1F1FF U+1F1FC",
+   "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/ZW.svg"
+ }
+]
