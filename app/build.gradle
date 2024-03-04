@@ -13,18 +13,21 @@ android {
         minSdkVersion 21
         targetSdk 34
 
-        versionCode 137
+        versionCode 152
 
-        versionName "6.2.6"
+        versionName "6.2.9.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
 
+
     buildTypes {
         release {
+            signingConfig signingConfigs.release
             minifyEnabled true
             shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.debug
         }
     }
 
@@ -34,12 +37,13 @@ android {
         }
     }
 
-    ksp{
+    ksp {
         arg('room.schemaLocation', "$projectDir/schemas")
     }
-     viewBinding{
-         enabled = true
-     }
+
+    /*  viewBinding{
+          enabled = true
+      }*/
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_17
@@ -57,7 +61,6 @@ dependencies {
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3'
     implementation 'androidx.core:core-ktx:1.12.0'
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.7.0'
-    implementation 'com.google.code.gson:gson:2.10'
 
     implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'com.google.android.material:material:1.2.1'
