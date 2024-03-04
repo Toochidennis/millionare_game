@@ -1,7 +1,6 @@
 package com.digitalDreams.millionaire_game.alpha.activity;
 
 import static com.digitalDreams.millionaire_game.AdManager.disposeAds;
-import static com.digitalDreams.millionaire_game.Utils.ARABIC_KEY;
 import static com.digitalDreams.millionaire_game.alpha.AudioManager.pauseBackgroundMusic;
 import static com.digitalDreams.millionaire_game.alpha.AudioManager.playBackgroundMusic;
 import static com.digitalDreams.millionaire_game.alpha.AudioManager.playFailureSound;
@@ -73,6 +72,7 @@ import com.digitalDreams.millionaire_game.alpha.adapters.OnOptionsClickListener;
 import com.digitalDreams.millionaire_game.alpha.adapters.OptionsAdapter;
 import com.digitalDreams.millionaire_game.alpha.models.OptionsModel;
 import com.digitalDreams.millionaire_game.alpha.models.QuestionModel;
+import com.digitalDreams.millionaire_game.alpha.testing.Language;
 import com.google.android.gms.ads.AdError;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
@@ -737,7 +737,7 @@ public class GameActivity3 extends AppCompatActivity implements OnOptionsClickLi
     private boolean isArabic() {
         sharedPreferences = getSharedPreferences(PREF_NAME, MODE_PRIVATE);
         String languageCode = sharedPreferences.getString("language", "");
-        return languageCode.equals(ARABIC_KEY);
+        return languageCode.equals(Language.ARABIC.getCode());
     }
 
     /**
