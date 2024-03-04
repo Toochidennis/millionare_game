@@ -66,7 +66,7 @@ public class ResultDialog extends Dialog {
         });
 
         view_history.setOnClickListener(view -> {
-            Intent i = new Intent(context, HistoryDetals.class);
+            Intent i = new Intent(context, HistoryDetails.class);
             AudioManager.darkBlueBlink(context,view_history);
             i.putExtra("date_played", Utils.lastDatePlayed);
 

@@ -20,6 +20,7 @@
     <string name="theme_1">Theme 1</string>
     <string name="theme_2">Theme 2</string>
     <string name="theme_3">Theme 3</string>
+    <string name="language_">English</string>
     <string name="english">English</string>
     <string name="french">French</string>
     <string name="spanish">Spanish</string>
@@ -31,6 +32,11 @@
     <string name="japanese">Japanese</string>
     <string name="turkish">Turkish</string>
     <string name="indonesian">Indonesia</string>
+    <string name="malay">Malay</string>
+    <string name="thai">Thai</string>
+    <string name="korean">Korean</string>
+    <string name="chinese">Chinese</string>
+    <string name="vietnamese">Vietnamese</string>
     <string name="banner_ad_unit">ca-app-pub-4696224049420135/8152081288</string>
     <string name="app_ad_id">ca-app-pub-4696224049420135~2129598410</string>
     <string name="interstitial_ad_unit_id">ca-app-pub-4696224049420135/9312479087</string>
@@ -118,8 +124,8 @@
     <string name="beat_today_s_highest_score">Beat today\'s highest score - $</string>
     <string name="file_does_not_exist">File does not exist</string>
     <string name="accuracy">% Accuracy</string>
-    <string name="questions_answered">"questions answered"</string>
-    <string name="question_answered">"question answered"</string>
+    <string name="questions_answered">questions answered</string>
+    <string name="question_answered">question answered</string>
     <string name="create_your_player_profile">Create your player profile</string>
     <string name="select_an_avatar">Select an Avatar</string>
     <string name="select_country">Select country</string>

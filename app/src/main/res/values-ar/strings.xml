@@ -20,6 +20,7 @@
     <string name="theme_1">الموضوع 1</string>
     <string name="theme_2">الموضوع 2</string>
     <string name="theme_3">الموضوع 3</string>
+    <string name="language_">عربي</string>
     <string name="english">إنجليزي</string>
     <string name="french">فرنسي</string>
     <string name="spanish">الأسبانية</string>
@@ -31,6 +32,11 @@
     <string name="japanese">اليابانية</string>
     <string name="turkish">اللغة التركية</string>
     <string name="indonesian">الاندونيسية</string>
+    <string name="malay">لغة الملايو</string>
+    <string name="thai">التايلاندية</string>
+    <string name="korean">الكورية</string>
+    <string name="chinese">صينى</string>
+    <string name="vietnamese">الفيتنامية</string>
     <string name="banner_ad_unit">ca-app-pub-4696224049420135/8152081288</string>
     <string name="app_ad_id">ca-app-pub-4696224049420135~2129598410</string>
     <string name="interstitial_ad_unit_id">ca-app-pub-4696224049420135/9312479087</string>

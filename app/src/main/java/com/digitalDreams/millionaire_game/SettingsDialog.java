@@ -58,7 +58,7 @@ class SettingsDialog extends Dialog {
         gameModeBtn.setCardBackgroundColor(cardBackground);
         selectThemeBtn.setCardBackgroundColor(cardBackground);
         rootView.setCardBackgroundColor(endColor);
-        new Dashboard().setLanguage(context);
+       // new Dashboard().setLanguage(context);
 
         languageBtn.setOnClickListener(view -> {
             LanguageDialog dialog = new LanguageDialog(getContext());

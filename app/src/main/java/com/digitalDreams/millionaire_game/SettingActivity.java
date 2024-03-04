@@ -1,8 +1,5 @@
 package com.digitalDreams.millionaire_game;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.localbroadcastmanager.content.LocalBroadcastManager;
-
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -21,6 +18,9 @@ import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import com.digitalDreams.millionaire_game.alpha.AudioManager;
 
@@ -73,7 +73,6 @@ public class SettingActivity extends AppCompatActivity {
         RelativeLayout creditBtn = findViewById(R.id.credits);
         flagImg = findViewById(R.id.flag);
         languageTxt = findViewById(R.id.language_value);
-        new Dashboard().setLanguage(SettingActivity.this);
         themeNameTxt = findViewById(R.id.theme_name);
         themeNameTxt.setText(theme);
         soundTxt = findViewById(R.id.sound_txt);
@@ -83,6 +82,9 @@ public class SettingActivity extends AppCompatActivity {
         creditTxt = findViewById(R.id.credit_txt);
         language = findViewById(R.id.language_txt);
         settingsTxt = findViewById(R.id.settingsTextView);
+
+        languageTxt.setText(getString(R.string.language_));
+        flagImg.setImageResource(R.drawable.country_flag);
 
         String sound = sharedPreferences.getString("sound", "1");
 
@@ -135,19 +137,14 @@ public class SettingActivity extends AppCompatActivity {
         });
 
         switch (theme) {
-            case "0":
-                SettingActivity.themeNameTxt.setText(getResources().getString(R.string.default_theme));
-                break;
-            case "1":
-                SettingActivity.themeNameTxt.setText(getResources().getString(R.string.theme_1));
-
-                break;
-            case "2":
-                SettingActivity.themeNameTxt.setText(getResources().getString(R.string.theme_2));
-                break;
-            case "3":
-                SettingActivity.themeNameTxt.setText(getResources().getString(R.string.theme_3));
-                break;
+            case "0" ->
+                    SettingActivity.themeNameTxt.setText(getResources().getString(R.string.default_theme));
+            case "1" ->
+                    SettingActivity.themeNameTxt.setText(getResources().getString(R.string.theme_1));
+            case "2" ->
+                    SettingActivity.themeNameTxt.setText(getResources().getString(R.string.theme_2));
+            case "3" ->
+                    SettingActivity.themeNameTxt.setText(getResources().getString(R.string.theme_3));
         }
 
         themeBtn.setOnClickListener(view -> {
