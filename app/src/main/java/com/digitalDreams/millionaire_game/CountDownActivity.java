@@ -7,6 +7,7 @@ import static com.digitalDreams.millionaire_game.alpha.Constants.PREF_NAME;
 import static com.digitalDreams.millionaire_game.alpha.Constants.SHOULD_CONTINUE_GAME;
 import static com.digitalDreams.millionaire_game.alpha.Constants.SOUND;
 import static com.digitalDreams.millionaire_game.alpha.Constants.formatCurrency;
+import static com.digitalDreams.millionaire_game.alpha.Constants.setLocale;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -17,10 +18,11 @@ import android.os.CountDownTimer;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.digitalDreams.millionaire_game.alpha.AudioManager;
 
 import java.util.Locale;
 
@@ -37,6 +39,7 @@ public class CountDownActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setLocale(this);
         setContentView(R.layout.activity_count_down);
 
         AdManager.loadInterstitialAd(this);
@@ -55,7 +58,7 @@ public class CountDownActivity extends AppCompatActivity {
         int endColor = sharedPreferences.getInt("end_color", getResources().getColor(R.color.purple_dark));
         int startColor = sharedPreferences.getInt("start_color", getResources().getColor(R.color.purple_500));
         String game_level = sharedPreferences.getString("game_level", "1");
-        String sound = sharedPreferences.getString("sound", "1");
+       // String sound = sharedPreferences.getString("sound", "1");
 
 
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
@@ -121,6 +124,7 @@ public class CountDownActivity extends AppCompatActivity {
         editor.clear();
         editor.putBoolean(SHOULD_CONTINUE_GAME, false);
         editor.apply();
+        AudioManager.stopBackgroundMusic();
     }
 
     private void updateSoundState() {

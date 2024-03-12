@@ -1,6 +1,9 @@
 package com.digitalDreams.millionaire_game.alpha;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.view.View;
@@ -171,6 +174,15 @@ public class Constants {
         };
 
         return labels[index];
+    }
+
+    public static void setLocale(Activity activity) {
+        String languageCode = activity.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE).getString("language", "");
+        Locale locale = new Locale(languageCode);
+        Resources resources = activity.getResources();
+        Configuration configuration = resources.getConfiguration();
+        configuration.locale = locale;
+        resources.updateConfiguration(configuration, resources.getDisplayMetrics());
     }
 
 }
