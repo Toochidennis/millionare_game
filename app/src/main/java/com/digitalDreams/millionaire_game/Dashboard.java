@@ -1,15 +1,13 @@
 package com.digitalDreams.millionaire_game;
 
 import static com.digitalDreams.millionaire_game.alpha.Constants.prettyCount;
+import static com.digitalDreams.millionaire_game.alpha.Constants.setLocale;
 
-import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
-import android.content.res.Configuration;
-import android.content.res.Resources;
 import android.graphics.drawable.GradientDrawable;
 import android.net.Uri;
 import android.os.Bundle;
@@ -67,7 +65,7 @@ public class Dashboard extends AppCompatActivity {
         String highScore = sharedPreferences.getString("high_score", "0");
         // String game_level = sharedPreferences.getString("game_level", "1");
 
-        setLocale(this, languageCode);
+        setLocale(this);
 
         TextView highScoreTxt = findViewById(R.id.highscore);
 
@@ -200,14 +198,6 @@ public class Dashboard extends AppCompatActivity {
         });
     }
 
-    public static void setLocale(Activity activity, String languageCode) {
-        Locale locale = new Locale(languageCode);
-        Locale.setDefault(locale);
-        Resources resources = activity.getResources();
-        Configuration config = resources.getConfiguration();
-        config.locale = locale;
-        resources.updateConfiguration(config, resources.getDisplayMetrics());
-    }
 
     private void updateGameLogo() {
         ImageView gameLogo = findViewById(R.id.gameLogoImageView);
@@ -218,91 +208,9 @@ public class Dashboard extends AppCompatActivity {
         @Override
         public void onReceive(Context context, Intent intent) {
             recreate();
-            SharedPreferences sharedPreferences = getSharedPreferences("settings", Context.MODE_PRIVATE);
-            String languageCode = sharedPreferences.getString("language", "");
-            int endColor = sharedPreferences.getInt("end_color", 0x230253);
-            int startColor = sharedPreferences.getInt("start_color", 0xFF6200EE);
-            int cardBackground = sharedPreferences.getInt("card_background", 0x03045e);
-
-            if (SettingsDialog.soundTxt != null & SettingsDialog.soundBtn != null) {
-                SettingsDialog.soundTxt.setText(getResources().getString(R.string.sound_on));
-                SettingsDialog.soundBtn.setCardBackgroundColor(cardBackground);
-            }
-            if (SettingsDialog.gameModeTxt != null && SettingsDialog.gameModeBtn != null) {
-                SettingsDialog.gameModeTxt.setText(getResources().getString(R.string.game_mode));
-                SettingsDialog.gameModeBtn.setCardBackgroundColor(cardBackground);
-
-            }
-            if (SettingsDialog.themeTxt != null && SettingsDialog.selectThemeBtn != null) {
-                SettingsDialog.themeTxt.setText(getResources().getString(R.string.select_a_theme));
-                SettingsDialog.selectThemeBtn.setCardBackgroundColor(cardBackground);
-
-            }
-            if (SettingsDialog.vibrationTxt != null && SettingsDialog.vibrationBtn != null) {
-                SettingsDialog.vibrationTxt.setText(getResources().getString(R.string.taptic));
-                SettingsDialog.vibrationBtn.setCardBackgroundColor(cardBackground);
-
-            }
-
-            //newGameTxt.setText(getResources().getString(R.string.new_game));
-
-            setLocale(Dashboard.this, languageCode);
-
-            GradientDrawable gradientDrawable = new GradientDrawable(
-                    GradientDrawable.Orientation.TOP_BOTTOM,
-                    new int[]{startColor, endColor});
-
-            bg.setBackground(gradientDrawable);
-
-            if (SettingActivity.bg != null) {
-                String theme = sharedPreferences.getString("theme", "0");
-                SettingActivity.bg.setBackground(gradientDrawable);
-                switch (theme) {
-                    case "0" ->
-                            SettingActivity.themeNameTxt.setText(getResources().getString(R.string.default_theme));
-                    case "1" ->
-                            SettingActivity.themeNameTxt.setText(getResources().getString(R.string.theme_1));
-                    case "2" ->
-                            SettingActivity.themeNameTxt.setText(getResources().getString(R.string.theme_2));
-                    case "3" ->
-                            SettingActivity.themeNameTxt.setText(getResources().getString(R.string.theme_3));
-                }
-            }
-
-            SettingActivity.soundTxt.setText(getResources().getString(R.string.sound_on));
-            SettingActivity.themeTxt.setText(getResources().getString(R.string.select_a_theme));
-            SettingActivity.vibrationTxt.setText(getResources().getString(R.string.taptic));
-            SettingActivity.gameModeTxt.setText(getResources().getString(R.string.game_mode));
-            SettingActivity.creditTxt.setText(getResources().getString(R.string.credits));
-            SettingActivity.language.setText(getResources().getString(R.string.language));
-            SettingActivity.settingsTxt.setText(getResources().getString(R.string.settings));
-
             leaderboardText.setText(getResources().getString(R.string.leaderboard));
 
             updateGameLogo();
-
-            String sound = sharedPreferences.getString("sound", "1");
-
-            if (sound.equalsIgnoreCase("1")) {
-                SettingActivity.soundModeTxt.setText(getResources().getString(R.string.on));
-            } else {
-                SettingActivity.soundModeTxt.setText(getResources().getString(R.string.off));
-            }
-
-            String mode = sharedPreferences.getString("game_mode", "0");
-            if (mode.equals("0")) {
-                SettingActivity.modeText.setText(getResources().getString(R.string.simple));
-            } else {
-                SettingActivity.modeText.setText(getResources().getString(R.string.timed));
-            }
-            String vibrate = sharedPreferences.getString("vibrate", "1");
-            if (vibrate.equals("0")) {
-                SettingActivity.badIcon.setVisibility(View.VISIBLE);
-                SettingActivity.vibrationTxt.setText(getResources().getString(R.string.off));
-            } else {
-                SettingActivity.badIcon.setVisibility(View.GONE);
-                SettingActivity.vibrationTxt.setText(getResources().getString(R.string.on));
-            }
         }
     };
 
@@ -336,7 +244,7 @@ public class Dashboard extends AppCompatActivity {
             }
         }
 
-        setLocale(this, languageCode);
+        // setLocale(this);
     }
 
     @Override

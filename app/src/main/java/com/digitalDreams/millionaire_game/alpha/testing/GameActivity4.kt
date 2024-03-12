@@ -46,10 +46,14 @@ import com.digitalDreams.millionaire_game.alpha.Constants.ORANGE
 import com.digitalDreams.millionaire_game.alpha.Constants.PASSED
 import com.digitalDreams.millionaire_game.alpha.Constants.PREF_NAME
 import com.digitalDreams.millionaire_game.alpha.Constants.RED
+import com.digitalDreams.millionaire_game.alpha.Constants.SHOULD_CONTINUE_GAME
+import com.digitalDreams.millionaire_game.alpha.Constants.SHOULD_REFRESH_QUESTION
+import com.digitalDreams.millionaire_game.alpha.Constants.SOUND
 import com.digitalDreams.millionaire_game.alpha.Constants.generateAmount
 import com.digitalDreams.millionaire_game.alpha.Constants.getBackgroundDrawable
 import com.digitalDreams.millionaire_game.alpha.Constants.getLabelFromList
 import com.digitalDreams.millionaire_game.alpha.Constants.getRandomSuggestion
+import com.digitalDreams.millionaire_game.alpha.Constants.setLocale
 import com.digitalDreams.millionaire_game.alpha.ExplanationBottomSheetDialog
 import com.digitalDreams.millionaire_game.alpha.activity.ProgressActivity2
 import com.digitalDreams.millionaire_game.alpha.adapters.OnOptionsClickListener
@@ -129,6 +133,7 @@ class GameActivity4 : AppCompatActivity(), OnOptionsClickListener {
     private var hasAskedComputer = false
     private var hasTakenPoll = false
     private var hasMinus2Question = false
+    private var isSavedInstance = false
     private var amountWonText = 0
     private var selectedAnswer: String? = null
     private var startTimeMillis: Long = 0
@@ -153,11 +158,13 @@ class GameActivity4 : AppCompatActivity(), OnOptionsClickListener {
     override fun onStart() {
         super.onStart()
         initializeAds()
+        updateMusicState(true)
     }
 
     // Called when the activity is being created. Responsible for initializing the game or resuming it.
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        updateConfiguration()
 
         // If the activity is newly created, initialize the game. Otherwise, resume it.
         if (savedInstanceState == null) {
@@ -168,6 +175,10 @@ class GameActivity4 : AppCompatActivity(), OnOptionsClickListener {
 
         // Sets the current GameActivity4 instance to this activity.
         setGameActivity(this)
+    }
+
+    private fun updateConfiguration() {
+        setLocale(this)
     }
 
     // Initializes the game when it's started for the first time.
@@ -327,9 +338,6 @@ class GameActivity4 : AppCompatActivity(), OnOptionsClickListener {
                     }
                 }
 
-                // save questions after fetching from the database
-                saveGameProgress()
-
                 // Switch to the main thread to update the UI
                 withContext(Dispatchers.Main) {
                     showQuestion()
@@ -446,7 +454,7 @@ class GameActivity4 : AppCompatActivity(), OnOptionsClickListener {
             explanationDialog.show()
 
             explanationDialog.setOnDismissListener { dialog ->
-                dialog.dismiss()
+                dialog?.dismiss()
 
                 CoroutineScope(Dispatchers.Main).launch {
                     delay(DELAY_INTERVAL_LONG)
@@ -526,8 +534,8 @@ class GameActivity4 : AppCompatActivity(), OnOptionsClickListener {
 
             explanationDialog.let {
                 it.show()
-                it.setOnDismissListener { dialog: DialogInterface ->
-                    dialog.dismiss()
+                it.setOnDismissListener { dialog: DialogInterface? ->
+                    dialog?.dismiss()
 
                     numberOfFailure = 0
                     startActivity(Intent(this, FailureActivity::class.java))
@@ -597,12 +605,12 @@ class GameActivity4 : AppCompatActivity(), OnOptionsClickListener {
 
     private fun shouldContinueGame(): Boolean {
         return getSharedPreferences(Constants.APPLICATION_DATA, MODE_PRIVATE)
-            .getBoolean(Constants.SHOULD_CONTINUE_GAME, true)
+            .getBoolean(SHOULD_CONTINUE_GAME, true)
     }
 
     private fun isShouldRefreshQuestion(): Boolean {
         return getSharedPreferences(Constants.APPLICATION_DATA, MODE_PRIVATE)
-            .getBoolean(Constants.SHOULD_REFRESH_QUESTION, false)
+            .getBoolean(SHOULD_REFRESH_QUESTION, false)
     }
 
     private fun isFromProgress(): Boolean {
@@ -616,19 +624,19 @@ class GameActivity4 : AppCompatActivity(), OnOptionsClickListener {
     }
 
     private fun shouldPlayMusic(): Boolean {
-        return sharedPreferences.getBoolean(Constants.SOUND, false)
+        return sharedPreferences.getBoolean(SOUND, false)
     }
 
     private fun updateMusicState(soundState: Boolean) {
         sharedPreferences.edit().apply {
-            putBoolean(Constants.SOUND, soundState)
+            putBoolean(SOUND, soundState)
         }.apply()
     }
 
     private fun updateRefreshQuestionState(refreshState: Boolean) {
         getSharedPreferences(Constants.APPLICATION_DATA, MODE_PRIVATE)
             .edit().apply {
-                putBoolean(Constants.SHOULD_REFRESH_QUESTION, refreshState)
+                putBoolean(SHOULD_REFRESH_QUESTION, refreshState)
                 apply()
             }
     }
@@ -636,7 +644,7 @@ class GameActivity4 : AppCompatActivity(), OnOptionsClickListener {
     private fun updateShouldContinueGame(savedState: Boolean) {
         getSharedPreferences(Constants.APPLICATION_DATA, MODE_PRIVATE)
             .edit().apply {
-                putBoolean(Constants.SHOULD_CONTINUE_GAME, savedState)
+                putBoolean(SHOULD_CONTINUE_GAME, savedState)
                 apply()
             }
     }
@@ -682,7 +690,7 @@ class GameActivity4 : AppCompatActivity(), OnOptionsClickListener {
         // Convert list of questions to JSON array
         return JSONArray().apply {
             questions.forEach { question ->
-                put(question.toJsonString())
+                put(question.toJsonObject())
             }
         }
     }
@@ -701,6 +709,7 @@ class GameActivity4 : AppCompatActivity(), OnOptionsClickListener {
             amountWonText = getInt("amountWonText", 0)
             startTimeMillis = getLong("startTimeMillis", 0)
             val json = getString("question_list", "")
+
 
             if (!json.isNullOrEmpty()) {
                 toQuestions(json)
@@ -722,7 +731,7 @@ class GameActivity4 : AppCompatActivity(), OnOptionsClickListener {
             with(JSONArray(json)) {
                 for (i in 0 until length()) {
                     val jsonObject = getJSONObject(i)
-                    val question = Question.fromJsonString(jsonString = jsonObject.toString())
+                    val question = Question.fromJsonObject(jsonString = jsonObject.toString())
                     questions.add(question)
                 }
             }
@@ -981,6 +990,8 @@ class GameActivity4 : AppCompatActivity(), OnOptionsClickListener {
      */
     private fun showExitDialog() {
         AudioManager.darkBlueBlink(this, exitButton)
+        isSavedInstance = false
+
         ExitGameDialog(this, amountWonText.toString()).apply {
             setCancelable(false)
             setCanceledOnTouchOutside(false)
@@ -1065,7 +1076,10 @@ class GameActivity4 : AppCompatActivity(), OnOptionsClickListener {
         updateMusicState(false)
         AdManager.disposeAds()
         cancelTimer()
-        clearSavedProgress()
+
+        if (!isSavedInstance) {
+            clearSavedProgress()
+        }
         adView.destroy()
 
         val durationMillis = System.currentTimeMillis() - startTimeMillis
@@ -1120,12 +1134,15 @@ class GameActivity4 : AppCompatActivity(), OnOptionsClickListener {
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
         outState.putIntegerArrayList("amountWonList", ArrayList(amountWonList))
+        saveGameProgress()
+        isSavedInstance = true
     }
 
     override fun onRestoreInstanceState(savedInstanceState: Bundle) {
         super.onRestoreInstanceState(savedInstanceState)
         amountWonList = savedInstanceState.getIntegerArrayList("amountWonList")!!
     }
+
 
     override fun onPause() {
         super.onPause()
