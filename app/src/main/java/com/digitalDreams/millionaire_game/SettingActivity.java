@@ -1,5 +1,7 @@
 package com.digitalDreams.millionaire_game;
 
+import static com.digitalDreams.millionaire_game.alpha.Constants.setLocale;
+
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -26,18 +28,19 @@ import com.digitalDreams.millionaire_game.alpha.AudioManager;
 
 public class SettingActivity extends AppCompatActivity {
 
-    public static RelativeLayout bg;
-    public static TextView themeNameTxt;
-    public static ImageView flagImg;
-    public static TextView languageTxt;
-    public static TextView soundTxt, themeTxt, gameModeTxt, vibrationTxt, creditTxt, language, soundModeTxt, settingsTxt;
-    public static TextView modeText;
-    public static ImageView badIcon;
+    public RelativeLayout bg;
+    public TextView themeNameTxt;
+    public ImageView flagImg;
+    public TextView languageTxt;
+    public TextView soundTxt, themeTxt, gameModeTxt, vibrationTxt, creditTxt, language, soundModeTxt, settingsTxt;
+    public TextView modeText;
+    public ImageView badIcon;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setLocale(this);
         setContentView(R.layout.activity_setting);
 
         SharedPreferences sharedPreferences = getSharedPreferences("settings", Context.MODE_PRIVATE);
@@ -52,11 +55,11 @@ public class SettingActivity extends AppCompatActivity {
 
         bg = findViewById(R.id.rootview);
         new Particles(this, bg, R.layout.image_xml, 20);
-        GradientDrawable gd = new GradientDrawable(
+        GradientDrawable gradientDrawable = new GradientDrawable(
                 GradientDrawable.Orientation.TOP_BOTTOM,
                 new int[]{startColor, endColor});
 
-        bg.setBackground(gd);
+        bg.setBackground(gradientDrawable);
 
         RelativeLayout closeBtn = findViewById(R.id.close_container);
 
@@ -83,10 +86,10 @@ public class SettingActivity extends AppCompatActivity {
         language = findViewById(R.id.language_txt);
         settingsTxt = findViewById(R.id.settingsTextView);
 
+        String sound = sharedPreferences.getString("sound", "1");
+
         languageTxt.setText(getString(R.string.language_));
         flagImg.setImageResource(R.drawable.country_flag);
-
-        String sound = sharedPreferences.getString("sound", "1");
 
         soundModeTxt = findViewById(R.id.sound_value);
         if (sound.equalsIgnoreCase("1")) {
@@ -137,14 +140,10 @@ public class SettingActivity extends AppCompatActivity {
         });
 
         switch (theme) {
-            case "0" ->
-                    SettingActivity.themeNameTxt.setText(getResources().getString(R.string.default_theme));
-            case "1" ->
-                    SettingActivity.themeNameTxt.setText(getResources().getString(R.string.theme_1));
-            case "2" ->
-                    SettingActivity.themeNameTxt.setText(getResources().getString(R.string.theme_2));
-            case "3" ->
-                    SettingActivity.themeNameTxt.setText(getResources().getString(R.string.theme_3));
+            case "0" -> themeNameTxt.setText(getResources().getString(R.string.default_theme));
+            case "1" -> themeNameTxt.setText(getResources().getString(R.string.theme_1));
+            case "2" -> themeNameTxt.setText(getResources().getString(R.string.theme_2));
+            case "3" -> themeNameTxt.setText(getResources().getString(R.string.theme_3));
         }
 
         themeBtn.setOnClickListener(view -> {
@@ -248,6 +247,81 @@ public class SettingActivity extends AppCompatActivity {
         @Override
         public void onReceive(Context context, Intent intent) {
             recreate();
+
+            SharedPreferences sharedPreferences = getSharedPreferences("settings", Context.MODE_PRIVATE);
+            int endColor = sharedPreferences.getInt("end_color", 0x230253);
+            int startColor = sharedPreferences.getInt("start_color", 0xFF6200EE);
+            int cardBackground = sharedPreferences.getInt("card_background", 0x03045e);
+
+            if (SettingsDialog.soundTxt != null & SettingsDialog.soundBtn != null) {
+                SettingsDialog.soundTxt.setText(getResources().getString(R.string.sound_on));
+                SettingsDialog.soundBtn.setCardBackgroundColor(cardBackground);
+            }
+            if (SettingsDialog.gameModeTxt != null && SettingsDialog.gameModeBtn != null) {
+                SettingsDialog.gameModeTxt.setText(getResources().getString(R.string.game_mode));
+                SettingsDialog.gameModeBtn.setCardBackgroundColor(cardBackground);
+
+            }
+            if (SettingsDialog.themeTxt != null && SettingsDialog.selectThemeBtn != null) {
+                SettingsDialog.themeTxt.setText(getResources().getString(R.string.select_a_theme));
+                SettingsDialog.selectThemeBtn.setCardBackgroundColor(cardBackground);
+
+            }
+            if (SettingsDialog.vibrationTxt != null && SettingsDialog.vibrationBtn != null) {
+                SettingsDialog.vibrationTxt.setText(getResources().getString(R.string.taptic));
+                SettingsDialog.vibrationBtn.setCardBackgroundColor(cardBackground);
+            }
+
+
+            GradientDrawable gradientDrawable = new GradientDrawable(
+                    GradientDrawable.Orientation.TOP_BOTTOM,
+                    new int[]{startColor, endColor});
+
+            bg.setBackground(gradientDrawable);
+
+            if (bg != null) {
+                String theme = sharedPreferences.getString("theme", "0");
+                bg.setBackground(gradientDrawable);
+                switch (theme) {
+                    case "0" ->
+                            themeNameTxt.setText(getResources().getString(R.string.default_theme));
+                    case "1" -> themeNameTxt.setText(getResources().getString(R.string.theme_1));
+                    case "2" -> themeNameTxt.setText(getResources().getString(R.string.theme_2));
+                    case "3" -> themeNameTxt.setText(getResources().getString(R.string.theme_3));
+                }
+            }
+
+            soundTxt.setText(getResources().getString(R.string.sound_on));
+            themeTxt.setText(getResources().getString(R.string.select_a_theme));
+            vibrationTxt.setText(getResources().getString(R.string.taptic));
+            gameModeTxt.setText(getResources().getString(R.string.game_mode));
+            creditTxt.setText(getResources().getString(R.string.credits));
+            language.setText(getResources().getString(R.string.language));
+            settingsTxt.setText(getResources().getString(R.string.settings));
+
+
+            String sound = sharedPreferences.getString("sound", "1");
+
+            if (sound.equalsIgnoreCase("1")) {
+                soundModeTxt.setText(getResources().getString(R.string.on));
+            } else {
+                soundModeTxt.setText(getResources().getString(R.string.off));
+            }
+
+            String mode = sharedPreferences.getString("game_mode", "0");
+            if (mode.equals("0")) {
+                modeText.setText(getResources().getString(R.string.simple));
+            } else {
+                modeText.setText(getResources().getString(R.string.timed));
+            }
+            String vibrate = sharedPreferences.getString("vibrate", "1");
+            if (vibrate.equals("0")) {
+                badIcon.setVisibility(View.VISIBLE);
+                vibrationTxt.setText(getResources().getString(R.string.off));
+            } else {
+                badIcon.setVisibility(View.GONE);
+                vibrationTxt.setText(getResources().getString(R.string.on));
+            }
         }
     };
 
@@ -255,6 +329,7 @@ public class SettingActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+
         LocalBroadcastManager.getInstance(this).registerReceiver(broadcastReceiver, new IntentFilter("refresh"));
     }
 

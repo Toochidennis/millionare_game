@@ -17,28 +17,28 @@ data class Question(
     var level: String,
     var language: String,
 ) {
-    fun toJsonString(): String {
+    fun toJsonObject(): JSONObject {
         return JSONObject().apply {
             put("questionId", questionId)
             put("question", question)
             put("correctAnswer", correctAnswer)
-            put("options", options.toJsonString())
+            put("options", options.toJsonObject())
             put("reason", reason)
             put("stageName", stageName)
             put("stage", stage)
             put("level", level)
             put("language", language)
-        }.toString()
+        }
     }
 
     companion object {
-        fun fromJsonString(jsonString: String): Question {
+        fun fromJsonObject(jsonString: String): Question {
             val jsonObject = JSONObject(jsonString)
             val questionId = jsonObject.getString("questionId")
             val question = jsonObject.getString("question")
             val correctAnswer = jsonObject.getString("correctAnswer")
             val optionsJson = jsonObject.getString("options")
-            val options = Options.fromJsonString(optionsJson) // Deserialize nested object
+            val options = Options.fromJsonObject(optionsJson) // Deserialize nested object
             val reason = jsonObject.getString("reason")
             val stageName = jsonObject.getString("stageName")
             val stage = jsonObject.getString("stage")
@@ -66,17 +66,17 @@ data class Question(
         val c: String,
         val d: String,
     ) {
-        fun toJsonString(): String {
+        fun toJsonObject(): JSONObject {
             val jsonObject = JSONObject()
             jsonObject.put("a", a)
             jsonObject.put("b", b)
             jsonObject.put("c", c)
             jsonObject.put("d", d)
-            return jsonObject.toString()
+            return jsonObject
         }
 
         companion object {
-            fun fromJsonString(jsonString: String): Options {
+            fun fromJsonObject(jsonString: String): Options {
                 val jsonObject = JSONObject(jsonString)
                 val a = jsonObject.getString("a")
                 val b = jsonObject.getString("b")
