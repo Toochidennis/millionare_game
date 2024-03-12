@@ -40,7 +40,6 @@ import com.google.android.gms.ads.RequestConfiguration;
 import org.json.JSONArray;
 
 import java.io.ByteArrayOutputStream;
-import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
@@ -190,17 +189,20 @@ public class MainActivity extends AppCompatActivity {
 
 
     private void initializeDatabase() {
-        // Read the JSON file from the raw resources
-        int resId = getLanguageResource(languageCode);
-        InputStream inputStream = getResources().openRawResource(resId);
-        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-        byte[] buffer = new byte[1250];
-        String json;
-
         try {
-            int length;
-            while ((length = inputStream.read(buffer)) != -1) {
-                outputStream.write(buffer, 0, length);
+            // Read the JSON file from the raw resources
+            int resId = getLanguageResource(languageCode);
+            ByteArrayOutputStream outputStream;
+            String json;
+
+            try (InputStream inputStream = getResources().openRawResource(resId)) {
+                outputStream = new ByteArrayOutputStream();
+                byte[] buffer = new byte[1249];
+
+                int length;
+                while ((length = inputStream.read(buffer)) != -1) {
+                    outputStream.write(buffer, 0, length);
+                }
             }
 
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
@@ -212,18 +214,15 @@ public class MainActivity extends AppCompatActivity {
             // Parse JSON data into a list of Question objects
             List<Question> questions = parseJsonToQuestions(json);
 
+            AppDatabase database = DatabaseProvider.getInstance(this);
+            questionDao = database.questionDao();
+
             // Insert questions into the database
             questionDao.insertQuestion(questions);
 
             Utils.IS_DONE_INSERTING = true;
         } catch (Exception e) {
             e.printStackTrace();
-        } finally {
-            try {
-                inputStream.close();
-            } catch (IOException exception) {
-                exception.printStackTrace();
-            }
         }
     }
 

@@ -50,6 +50,7 @@ public class MyApplication extends Application
         appOpenAdManager = new AppOpenAdManager();
     }
 
+
     @Override
     protected void attachBaseContext(Context base) {
         sharedPreferences = base.getSharedPreferences("settings", MODE_PRIVATE);
