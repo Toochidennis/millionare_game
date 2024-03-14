@@ -30,7 +30,6 @@ import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import com.digitalDreams.millionaire_game.alpha.AudioManager;
 import com.digitalDreams.millionaire_game.alpha.testing.GameActivity4;
-import com.google.android.gms.ads.AdView;
 
 import java.util.Locale;
 
@@ -76,9 +75,9 @@ public class Dashboard extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        AdView mAdView;
-        mAdView = findViewById(R.id.adView);
-        AdManager.loadAdView(mAdView);
+
+        LinearLayout adViewContainer = findViewById(R.id.adview_container);
+        AdManager.loadBanner(this, adViewContainer);
 
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
         getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION

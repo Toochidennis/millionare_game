@@ -122,10 +122,8 @@ public class CountryLeaderBoard extends AppCompatActivity {
         /////////////////AD////////
 
 
-        AdView mAdView;
-        mAdView = findViewById(R.id.adView);
-        AdRequest adRequest = new AdRequest.Builder().build();
-        mAdView.loadAd(adRequest);
+        LinearLayout adViewContainer = findViewById(R.id.adview_container);
+        AdManager.loadBanner(this, adViewContainer);
 
         //loadInterstialAd();
         AdManager.loadInterstitialAd(this);
