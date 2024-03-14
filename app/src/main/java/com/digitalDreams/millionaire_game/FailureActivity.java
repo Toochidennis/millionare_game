@@ -25,6 +25,7 @@ import android.view.animation.AnimationSet;
 import android.view.animation.AnimationUtils;
 import android.view.animation.DecelerateInterpolator;
 import android.view.animation.TranslateAnimation;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -106,10 +107,8 @@ public class FailureActivity extends AppCompatActivity {
         btn_forAnim.startAnimation(aniFade);
 
 
-        AdView mAdView;
-        mAdView = findViewById(R.id.adView);
-        @SuppressLint("VisibleForTests") AdRequest adRequest = new AdRequest.Builder().build();
-        mAdView.loadAd(adRequest);
+        LinearLayout adViewContainer = findViewById(R.id.adview_container);
+        AdManager.loadBanner(this, adViewContainer);
 
         showInterstitialAd();
 

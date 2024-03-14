@@ -25,7 +25,7 @@ import androidx.cardview.widget.CardView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.digitalDreams.millionaire_game.AdManager
-import com.digitalDreams.millionaire_game.AdManager.loadAdView
+import com.digitalDreams.millionaire_game.AdManager.loadBanner
 import com.digitalDreams.millionaire_game.CountDownActivity
 import com.digitalDreams.millionaire_game.ExitGameDialog
 import com.digitalDreams.millionaire_game.FailureActivity
@@ -62,7 +62,6 @@ import com.digitalDreams.millionaire_game.alpha.testing.database.DatabaseProvide
 import com.digitalDreams.millionaire_game.alpha.testing.database.Question
 import com.digitalDreams.millionaire_game.alpha.testing.database.QuestionDao
 import com.google.android.gms.ads.AdError
-import com.google.android.gms.ads.AdView
 import com.google.android.gms.ads.FullScreenContentCallback
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -112,7 +111,7 @@ class GameActivity4 : AppCompatActivity(), OnOptionsClickListener {
     private lateinit var refreshImageView: ImageView
     private lateinit var refreshVideoImageView: ImageView
     private lateinit var optionsRecyclerView: RecyclerView
-    private lateinit var adView: AdView
+    private lateinit var adViewContainer: LinearLayout
 
     private lateinit var optionsAdapter2: OptionsAdapter2
     private lateinit var sharedPreferences: SharedPreferences
@@ -247,13 +246,13 @@ class GameActivity4 : AppCompatActivity(), OnOptionsClickListener {
         refreshVideoImageView = findViewById(R.id.video_imageview)
         optionsRecyclerView = findViewById(R.id.options_recyclerView)
         questionProgressTextView = findViewById(R.id.question_progress)
-        adView = findViewById(R.id.adView)
+        adViewContainer = findViewById(R.id.adview_container)
 
         // Initialise shared preferences
         sharedPreferences = getSharedPreferences(PREF_NAME, MODE_PRIVATE)
 
         // Load advertisement view
-        loadAdView(adView)
+        loadBanner(this, adViewContainer)
     }
 
     private fun initializeDatabase() {
@@ -1080,7 +1079,7 @@ class GameActivity4 : AppCompatActivity(), OnOptionsClickListener {
         if (!isSavedInstance) {
             clearSavedProgress()
         }
-        adView.destroy()
+        adViewContainer.removeAllViews()
 
         val durationMillis = System.currentTimeMillis() - startTimeMillis
         val durationString: String = formatDuration(durationMillis)
