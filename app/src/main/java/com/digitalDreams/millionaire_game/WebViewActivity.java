@@ -1,7 +1,5 @@
 package com.digitalDreams.millionaire_game;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.annotation.SuppressLint;
 import android.graphics.Bitmap;
 import android.os.Bundle;
@@ -10,12 +8,13 @@ import android.view.View;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.digitalDreams.millionaire_game.alpha.AudioManager;
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdView;
 
 public class WebViewActivity extends AppCompatActivity {
     String questionId = "";
@@ -35,10 +34,10 @@ public class WebViewActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_webview);
 
-        AdView mAdView;
-        mAdView = findViewById(R.id.adView);
-        AdRequest adRequest = new AdRequest.Builder().build();
-        mAdView.loadAd(adRequest);
+
+        LinearLayout adViewContainer = findViewById(R.id.adview_container);
+        AdManager.loadBanner(this, adViewContainer);
+
         progress_bar = findViewById(R.id.progress_bar);
         progress_bar.setVisibility(View.GONE);
 
@@ -80,7 +79,7 @@ public class WebViewActivity extends AppCompatActivity {
 
             @Override
             public void onPageFinished(WebView view, String url) {
-                progress_bar.setVisibility(View.VISIBLE);
+                progress_bar.setVisibility(View.GONE);
                 super.onPageFinished(view, url);
             }
         });

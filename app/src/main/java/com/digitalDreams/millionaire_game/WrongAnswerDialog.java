@@ -117,7 +117,8 @@ public class WrongAnswerDialog extends Dialog {
         explanationBottomSheetDialog.show();
 
         explanationBottomSheetDialog.setOnDismissListener(dialog -> {
-            dialog.dismiss();
+            if (dialog != null)
+                dialog.dismiss();
 
             startFailureActivity();
         });
@@ -129,39 +130,42 @@ public class WrongAnswerDialog extends Dialog {
         if (Utils.isOnline(context)) {
             AdManager.showRewardedAd((Activity) context);
             try {
-                AdManager.rewardedAd.setFullScreenContentCallback(new FullScreenContentCallback() {
-                    @Override
-                    public void onAdClicked() {
-                        // Called when a click is recorded for an ad.
-                        // Log.d(TAG, "Ad was clicked.");
-                    }
 
-                    @Override
-                    public void onAdDismissedFullScreenContent() {
-                        // Called when ad is dismissed.
-                        updateSharedPreference();
-                        playBackgroundMusic(getContext());
-                    }
+                if (AdManager.rewardedAd != null) {
+                    AdManager.rewardedAd.setFullScreenContentCallback(new FullScreenContentCallback() {
+                        @Override
+                        public void onAdClicked() {
+                            // Called when a click is recorded for an ad.
+                            // Log.d(TAG, "Ad was clicked.");
+                        }
 
-                    @Override
-                    public void onAdFailedToShowFullScreenContent(@NonNull AdError adError) {
-                        // Called when ad fails to show.
-                        dismissDialogAndStartFailureActivity();
-                    }
+                        @Override
+                        public void onAdDismissedFullScreenContent() {
+                            // Called when ad is dismissed.
+                            updateSharedPreference();
+                            playBackgroundMusic(getContext());
+                        }
 
-                    @Override
-                    public void onAdImpression() {
-                        // Called when an impression is recorded for an ad.
-                        //Log.d(TAG, "Ad recorded an impression.");
-                    }
+                        @Override
+                        public void onAdFailedToShowFullScreenContent(@NonNull AdError adError) {
+                            // Called when ad fails to show.
+                            dismissDialogAndStartFailureActivity();
+                        }
 
-                    @Override
-                    public void onAdShowedFullScreenContent() {
-                        // Called when ad is shown.
-                        // Log.d(TAG, "Ad showed fullscreen content.");
-                    }
+                        @Override
+                        public void onAdImpression() {
+                            // Called when an impression is recorded for an ad.
+                            //Log.d(TAG, "Ad recorded an impression.");
+                        }
 
-                });
+                        @Override
+                        public void onAdShowedFullScreenContent() {
+                            // Called when ad is shown.
+                            // Log.d(TAG, "Ad showed fullscreen content.");
+                        }
+
+                    });
+                }
             } catch (Exception e) {
                 e.printStackTrace();
 
