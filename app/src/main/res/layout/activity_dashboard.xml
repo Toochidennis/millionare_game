@@ -299,12 +299,11 @@
                         android:id="@+id/leaderboard_text"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/leaderboard"
-                        android:textStyle="bold"
-                        android:textSize="20sp"
                         android:layout_marginStart="40dp"
+                        android:text="@string/leaderboard"
                         android:textColor="@color/black"
-                        />
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/see_rank_text"
@@ -368,13 +367,12 @@
         </RelativeLayout>
     </LinearLayout>
 
-    <com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/adView"
+    <LinearLayout
+        android:id="@+id/adview_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        ads:adSize="FULL_BANNER"
-        ads:adUnitId="@string/banner_ad_unit"/>
-
+        android:layout_marginTop="1dp"
+        android:orientation="vertical" />
 
 </RelativeLayout>
