@@ -3,7 +3,6 @@ package com.digitalDreams.millionaire_game;
 import static com.digitalDreams.millionaire_game.alpha.Constants.formatCurrency;
 
 import android.Manifest;
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
@@ -44,8 +43,6 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.digitalDreams.millionaire_game.alpha.AudioManager;
 import com.digitalDreams.millionaire_game.alpha.testing.GameActivity4;
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdView;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -61,7 +58,7 @@ import java.util.Map;
 
 public class PlayDetailsActivity extends AppCompatActivity {
     DBHelper dbHelper;
-    File imagePath;
+    //  File imagePath;
     RelativeLayout bg, newGameBtn;
     public static int MY_PERMISSIONS_WRITE_EXTERNAL_STORAGE = 100;
     private String deviceId = "";
@@ -91,24 +88,9 @@ public class PlayDetailsActivity extends AppCompatActivity {
 
         RelativeLayout bg = findViewById(R.id.rootview);
 
-        //  AdManager.showInterstitial(PlayDetailsActivity.this);
 
-
-        AdView mAdView;
-        mAdView = findViewById(R.id.adView);
-        @SuppressLint("VisibleForTests") AdRequest adRequest = new AdRequest.Builder().build();
-        mAdView.loadAd(adRequest);
-
-
-   /*     boolean fromNoThanks = getIntent().getBooleanExtra("noThanks", false);
-        if (fromNoThanks) {
-            try {
-                AdManager.showInterstitial(PlayDetailsActivity.this);
-            } catch (Exception e) {
-                e.printStackTrace();
-
-            }*/
-        //}
+        LinearLayout adViewContainer = findViewById(R.id.adview_container);
+        AdManager.loadBanner(this, adViewContainer);
 
 
         newGameBtn = findViewById(R.id.new_game1);

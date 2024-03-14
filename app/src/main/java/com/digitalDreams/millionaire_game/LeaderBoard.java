@@ -122,10 +122,9 @@ public class LeaderBoard extends AppCompatActivity {
         /////////////////AD////////
 
 
-        AdView mAdView;
-        mAdView = findViewById(R.id.adView);
-        AdRequest adRequest = new AdRequest.Builder().build();
-        mAdView.loadAd(adRequest);
+
+        LinearLayout adViewContainer = findViewById(R.id.adview_container);
+        AdManager.loadBanner(this, adViewContainer);
 
         loadInterstialAd();
 
