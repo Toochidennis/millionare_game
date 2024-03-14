@@ -2,8 +2,15 @@ package com.digitalDreams.millionaire_game
 
 import android.app.Activity
 import android.content.Context
+import android.os.Build
+import android.os.Bundle
+import android.util.DisplayMetrics
 import android.util.Log
+import android.view.View
+import android.widget.LinearLayout
+import com.google.ads.mediation.admob.AdMobAdapter
 import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.AdSize
 import com.google.android.gms.ads.AdView
 import com.google.android.gms.ads.LoadAdError
 import com.google.android.gms.ads.MobileAds
@@ -91,10 +98,45 @@ object AdManager {
     }
 
     @JvmStatic
-    fun loadAdView(adView: AdView) {
-        CoroutineScope(Dispatchers.Main).launch {
-            adView.loadAd(AdRequest.Builder().build())
+    fun loadBanner(activity: Activity, adViewContainer: LinearLayout) {
+        val adView = AdView(activity)
+        adView.setAdSize(adSize(activity, adViewContainer))
+        adView.adUnitId = activity.getString(R.string.banner_ad_unit)
+
+        val extras = Bundle().apply {
+           putString( "collapsible", "bottom")
         }
+        Log.d("response", "$extras")
+        val adRequest = AdRequest.Builder()
+            .addNetworkExtrasBundle(AdMobAdapter::class.java, extras)
+            .build()
+
+        adViewContainer.addView(adView)
+        adView.loadAd(adRequest)
+    }
+
+    // Determine the screen width (less decorations) to use for the ad width.
+    // If the ad hasn't been laid out, default to the full screen width.
+    private fun adSize(activity: Activity, adViewContainer: View): AdSize {
+        val display = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            activity.display
+        } else {
+            @Suppress("DEPRECATION")
+            activity.windowManager.defaultDisplay
+        }
+        val outMetrics = DisplayMetrics()
+        @Suppress("DEPRECATION")
+        display?.getMetrics(outMetrics)
+
+        val density = outMetrics.density
+
+        var adWidthPixels = adViewContainer.width.toFloat()
+        if (adWidthPixels == 0f) {
+            adWidthPixels = outMetrics.widthPixels.toFloat()
+        }
+
+        val adWidth = (adWidthPixels / density).toInt()
+        return AdSize.getCurrentOrientationAnchoredAdaptiveBannerAdSize(activity, adWidth)
     }
 
     @JvmStatic
