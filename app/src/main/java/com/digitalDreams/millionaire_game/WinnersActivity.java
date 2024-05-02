@@ -6,13 +6,6 @@ import static com.digitalDreams.millionaire_game.alpha.AudioManager.stopBackgrou
 import static com.digitalDreams.millionaire_game.alpha.Constants.PREF_NAME;
 import static com.digitalDreams.millionaire_game.alpha.Constants.SOUND;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-import androidx.core.content.FileProvider;
-
 import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
@@ -33,6 +26,13 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+import androidx.core.content.FileProvider;
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -48,7 +48,7 @@ public class WinnersActivity extends AppCompatActivity {
     ImageView imageView;
     LinearLayout share_layout;
     public static int MY_PERMISSIONS_WRITE_EXTERNAL_STORAGE = 100;
-    private String sound;
+   // private String sound;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -112,7 +112,6 @@ public class WinnersActivity extends AppCompatActivity {
         editor.putString("high_score", amountWon);
         editor.apply();
 
-
         ///////////////////////////
 
         try {
@@ -133,9 +132,8 @@ public class WinnersActivity extends AppCompatActivity {
 
     }
 
-
     private String setAvatar(ImageView imageView, String avatar) {
-        //SharedPreferences sharedPreferences = getSharedPreferences("settings", Context.MODE_PRIVATE);
+        // SharedPreferences sharedPreferences = getSharedPreferences("settings", Context.MODE_PRIVATE);
         //String avatar = sharedPreferences.getString("avatar","");
         switch (avatar) {
             case "1" -> imageView.setImageResource(R.drawable.avatar1);
@@ -148,8 +146,7 @@ public class WinnersActivity extends AppCompatActivity {
 
     private String getAvatar() {
         SharedPreferences sharedPreferences = getSharedPreferences("settings", Context.MODE_PRIVATE);
-        String avatar = sharedPreferences.getString("avatar", "");
-        return avatar;
+        return sharedPreferences.getString("avatar", "");
     }
 
     public void checkPermission() {
@@ -191,7 +188,6 @@ public class WinnersActivity extends AppCompatActivity {
         }
     }
 
-
     public Bitmap takeScreenshot() {
         View rootView = findViewById(android.R.id.content).getRootView();
         rootView.setDrawingCacheEnabled(true);
@@ -214,7 +210,6 @@ public class WinnersActivity extends AppCompatActivity {
 
         startActivity(Intent.createChooser(sharingIntent, "Share via"));
     }
-
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {

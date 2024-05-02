@@ -96,13 +96,9 @@ public class WrongAnswerDialog extends Dialog {
                 showRewardedAdWithListener()
         );
 
-        giveUpButton.setOnClickListener(giveUpButton -> {
-            showExplanationDialog();
-        });
+        giveUpButton.setOnClickListener(giveUpButton -> showExplanationDialog());
 
-        closeButton.setOnClickListener(view -> {
-            showExplanationDialog();
-        });
+        closeButton.setOnClickListener(view -> showExplanationDialog());
     }
 
     private void showExplanationDialog() {
@@ -117,8 +113,8 @@ public class WrongAnswerDialog extends Dialog {
         explanationBottomSheetDialog.show();
 
         explanationBottomSheetDialog.setOnDismissListener(dialog -> {
-            if (dialog != null)
-                dialog.dismiss();
+//            if (dialog != null)
+//                dialog.dismiss();
 
             startFailureActivity();
         });

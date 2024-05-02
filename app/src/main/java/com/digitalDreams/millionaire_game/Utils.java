@@ -103,7 +103,7 @@ public class Utils {
                 param.put("device_id", getDeviceId(context));
                 param.put("game_type", "millionaire");
                 param.put("mode", modeValue);
-                Log.i("praram", String.valueOf(param));
+                Log.i("param", String.valueOf(param));
                 return param;
             }
         };

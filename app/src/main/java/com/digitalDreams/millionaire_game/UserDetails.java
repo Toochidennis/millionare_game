@@ -2,10 +2,6 @@ package com.digitalDreams.millionaire_game;
 
 import static com.digitalDreams.millionaire_game.alpha.Constants.getCountryResource;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.cardview.widget.CardView;
-
 import android.app.Dialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -23,6 +19,10 @@ import android.widget.GridLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 
 import com.digitalDreams.millionaire_game.alpha.AudioManager;
 
@@ -47,8 +47,8 @@ public class UserDetails extends AppCompatActivity {
     RelativeLayout bg;
     RelativeLayout close_container;
     GridLayout gridLayout;
-    String username = "", avatar = "",
-            country = "Afghanistan", flag = "", languageCode = "", countryId = "0";
+    String username = "", avatar = "", country = "Afghanistan",
+            flag = "", languageCode = "", countryId = "0";
     //AutoCompleteTextView spinner;
     CountryAdapter countryAdapter;
     ArrayList<String> countries = new ArrayList<>();
@@ -81,7 +81,7 @@ public class UserDetails extends AppCompatActivity {
         country = sharedPreferences.getString("country", "");
         flag = sharedPreferences.getString("country_flag", "");
         languageCode = sharedPreferences.getString("language", "");
-        countryId = sharedPreferences.getString("country_id", "");
+        countryId = sharedPreferences.getString("country_id", countryId);
         int endColor = sharedPreferences.getInt("end_color", getResources().getColor(R.color.purple_dark));
         int startColor = sharedPreferences.getInt("start_color", getResources().getColor(R.color.purple_500));
         //int cardBackground = sharedPreferences.getInt("card_background", 0x219ebc);
@@ -90,7 +90,7 @@ public class UserDetails extends AppCompatActivity {
             username = "";
         }
 
-        new Particles(this, bg, R.layout.image_xml, 20);
+     //   new Particles(this, bg, R.layout.image_xml, 20);
         GradientDrawable gradientDrawable = new GradientDrawable(
                 GradientDrawable.Orientation.TOP_BOTTOM,
                 new int[]{startColor, endColor});
@@ -125,7 +125,6 @@ public class UserDetails extends AppCompatActivity {
         if (type != null && type.equals("edit")) {
             selectAvatar();
         }
-
 
         if (!country.equals("default")) {
             country_name.setText(country);
@@ -217,14 +216,11 @@ public class UserDetails extends AppCompatActivity {
                 editText.clearFocus();
                 //imm.toggleSoftInput(InputMethodManager.HIDE_IMPLICIT_ONLY, 0);
 
-
                 // Dismiss dialog
                 dialog.dismiss();
 
-
             });
         });
-
     }
 
     private void selectAvatar(CardView cardView) {
@@ -252,7 +248,7 @@ public class UserDetails extends AppCompatActivity {
         username = usernameEdt.getText().toString();
         if (username.isEmpty()) {
             Toast.makeText(UserDetails.this, getResources().getString(R.string.player_name_can_t_be_empty), Toast.LENGTH_SHORT).show();
-        } else if (country.equals("") || country.equals(getResources().getString(R.string.select_country)) || country.equals("default")) {
+        } else if (country.isEmpty() || country.equals(getResources().getString(R.string.select_country)) || country.equals("default")) {
             Toast.makeText(UserDetails.this, getResources().getString(R.string.select_your_country), Toast.LENGTH_SHORT).show();
 
         } else {
