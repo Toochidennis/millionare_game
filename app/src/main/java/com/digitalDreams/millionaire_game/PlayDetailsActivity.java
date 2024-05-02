@@ -199,7 +199,7 @@ public class PlayDetailsActivity extends AppCompatActivity {
                 new int[]{startColor, endColor});
 
         bg.setBackground(gradientDrawable);
-        new Particles(this, bg, R.layout.image_xml, 20);
+   //     new Particles(this, bg, R.layout.image_xml, 20);
 
         RelativeLayout outLine = findViewById(R.id.view_forAnim);
         new MyAnimation(outLine);
@@ -459,15 +459,12 @@ public class PlayDetailsActivity extends AppCompatActivity {
 
                 } else {
                     txt = getResources().getString(R.string.beat_today_s_highest_score) + currencyFormat(dailyMax);
-
                 }
 
                 ResultDialog r = new ResultDialog(PlayDetailsActivity.this, daily, weekly, txt);
 
                 if (!isFinishing()) {
-
                     r.show();
-
                 }
             } catch (JSONException e) {
                 e.printStackTrace();

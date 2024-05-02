@@ -69,7 +69,7 @@ public class LevelActivity extends AppCompatActivity {
         String game_level = sharedPreferences.getString("game_level","1");
 
         bg = findViewById(R.id.rootview);
-        new Particles(this,bg,R.layout.image_xml,20);
+    //    new Particles(this,bg,R.layout.image_xml,20);
         GradientDrawable gd = new GradientDrawable(
                 GradientDrawable.Orientation.TOP_BOTTOM,
                 new int[] {startColor,endColor});

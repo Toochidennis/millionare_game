@@ -148,7 +148,7 @@ object AudioManager {
                     darkBlueMediaPlayer = MediaPlayer.create(context, R.raw.others)
                 }
                 darkBlueMediaPlayer!!.start()
-                view.setOnTouchListener { v: View?, event: MotionEvent ->
+                view.setOnTouchListener { _: View?, event: MotionEvent ->
                     if (event.action == MotionEvent.ACTION_DOWN || event.action == MotionEvent.ACTION_MOVE) {
                         view.setBackgroundResource(R.drawable.ic_hex_2)
                     }

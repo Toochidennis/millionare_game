@@ -206,7 +206,7 @@ public class MainGameActivity extends AppCompatActivity {
                 1000000*(game_level_int)};
 
 
-        new Particles(this,bg,R.layout.image_xml,30);
+       // new Particles(this,bg,R.layout.image_xml,30);
         GradientDrawable gd = new GradientDrawable(
                 GradientDrawable.Orientation.TOP_BOTTOM,
                 new int[] {startColor,endcolor});

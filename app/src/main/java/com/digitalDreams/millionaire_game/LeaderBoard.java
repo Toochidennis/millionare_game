@@ -12,7 +12,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.Manifest;
-import android.animation.Animator;
 import android.animation.AnimatorInflater;
 import android.animation.AnimatorSet;
 import android.annotation.SuppressLint;
@@ -27,7 +26,6 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageView;
@@ -40,13 +38,10 @@ import android.widget.Toast;
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
-import com.android.volley.Response;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.digitalDreams.millionaire_game.alpha.AudioManager;
 import com.google.android.gms.ads.AdError;
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.FullScreenContentCallback;
 ;
 
@@ -56,7 +51,6 @@ import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -120,7 +114,6 @@ public class LeaderBoard extends AppCompatActivity {
 
 
         /////////////////AD////////
-
 
 
         LinearLayout adViewContainer = findViewById(R.id.adview_container);
@@ -266,7 +259,7 @@ public class LeaderBoard extends AppCompatActivity {
                 | View.SYSTEM_UI_FLAG_IMMERSIVE);
 
         RelativeLayout bg = findViewById(R.id.rootview);
-        new Particles(this, bg, R.layout.image_xml, 20);
+        //    new Particles(this, bg, R.layout.image_xml, 20);
         GradientDrawable gradientDrawable = new GradientDrawable(
                 GradientDrawable.Orientation.TOP_BOTTOM,
                 new int[]{startColor, endColor});
@@ -456,11 +449,18 @@ public class LeaderBoard extends AppCompatActivity {
 
                 JSONObject country_json_object = new JSONObject(country_json.replaceAll("[\\\\]{1}[\"]{1}", "\""));
 
-                String id = country_json_object.getString("id");
                 country_flag = country_json_object.getString("url").replace("\\", "");
-          //      Log.i("efi", country_flag + " " + username + " " + country);
-                country = getCountryName(id);
-              //  Log.d("response", country);
+
+                if (country_json_object.has("id")) {
+                    String id = country_json_object.getString("id");
+                    country = getCountryName(id);
+                } else {
+                    country = country_json_object.getString("name");
+                }
+
+                //      Log.i("efi", country_flag + " " + username + " " + country);
+
+                //  Log.d("response", country);
 
             }
 //            Log.i("ok" +
@@ -555,6 +555,30 @@ public class LeaderBoard extends AppCompatActivity {
         }
 
         return "";
+    }
+
+    @NonNull
+    private String getCountryId(String countryName) {
+        if (countryName.equals("default")) {
+            return "0";
+        } else {
+            try {
+                String json = readRawTextFile(getCountryResource(languageCode));
+                JSONArray jsonArray = new JSONArray(json);
+
+                for (int j = 0; j < jsonArray.length(); j++) {
+                    JSONObject obj1 = jsonArray.getJSONObject(j);
+                    String name = obj1.getString("name").trim();
+                    if (name.equalsIgnoreCase(countryName.trim())) {
+                        return String.valueOf(j);
+                    }
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
+        return "0";
     }
 
     private String readRawTextFile(int resId) throws IOException {
@@ -823,7 +847,6 @@ public class LeaderBoard extends AppCompatActivity {
                 jsonObjects.add(obj);
                 Log.i("jsonnnnnn" + i, String.valueOf(obj));
 
-
             }
 
 
@@ -836,8 +859,6 @@ public class LeaderBoard extends AppCompatActivity {
             e.printStackTrace();
 
         }
-
-
     }
 
 
@@ -861,11 +882,19 @@ public class LeaderBoard extends AppCompatActivity {
             try {
                 JSONObject object = (JSONObject) jsonObjects.get(i);
                 String score = object.getString("score");
-                String id = object.getString("country");
                 String country_json_string = object.getString("country_json");
                 JSONObject country_json_object = new JSONObject(country_json_string.replaceAll("[\\\\]{1}[\"]{1}", "\""));
                 String country_flag = country_json_object.getString("url");
-                String country_name = getCountryName(id);
+                String country_name;
+                String id;
+
+                if (country_json_object.has("id")) {
+                    id = country_json_object.getString("id");
+                    country_name = getCountryName(id);
+                } else {
+                    country_name = country_json_object.getString("name");
+                    id = getCountryId(country_name);
+                }
 
                 if (!country_flag.isEmpty()) {
                     // SVGLoader.fetchSvg(LeaderBoard.this, country_flag, flag);
@@ -898,23 +927,17 @@ public class LeaderBoard extends AppCompatActivity {
                     startActivity(intent);
                 });
 
-
             } catch (Exception e) {
                 e.printStackTrace();
 
             }
 
             country_layout_container.addView(convertView);
-
         }
-
-
     }
 
     public void moveToSignUp(String username) {
         Utils.destination_activity = LeaderBoard.class;
-
-
     }
 
     @Override

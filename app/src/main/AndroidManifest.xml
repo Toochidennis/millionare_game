@@ -8,10 +8,12 @@
 
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"
+        android:maxSdkVersion="32" />
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        android:maxSdkVersion="32" />
     <uses-permission android:name="com.android.alarm.permission.SET_ALARM" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
@@ -70,18 +72,43 @@
         <activity
             android:name=".WinnersActivity"
             android:exported="false" />
-        <activity android:name=".UserDetails" />
-        <activity android:name=".CreditActivity" />
-        <activity android:name=".SettingActivity" />
-        <activity android:name=".PlayDetailsActivity" />
-        <activity android:name=".FailureActivity" />
-        <activity android:name=".ProgressActivity" />
-        <activity android:name=".GameActivity2" />
-        <activity android:name=".Loader" />
-        <activity android:name=".LeaderBoard" />
-        <activity android:name=".Dashboard" />
-        <activity android:name=".CountDownActivity" />
-        <activity android:name=".CountryLeaderBoard" />
+        <activity
+            android:name=".UserDetails"
+            android:exported="false" />
+        <activity
+            android:name=".CreditActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SettingActivity"
+            android:exported="false" />
+        <activity
+            android:name=".PlayDetailsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".FailureActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ProgressActivity"
+            android:exported="false" />
+        <activity
+            android:name=".GameActivity2"
+            android:exported="false" />
+        <activity
+            android:name=".Loader"
+            android:exported="false" />
+        <activity
+            android:name=".LeaderBoard"
+            android:exported="false" />
+        <activity
+            android:name=".Dashboard"
+            android:exported="false" />
+        <activity
+            android:name=".CountDownActivity"
+            android:exported="false" />
+        <activity
+            android:name=".CountryLeaderBoard"
+            android:exported="false" />
+
         <activity
             android:name=".MainActivity"
             android:exported="true">
