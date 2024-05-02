@@ -1,9 +1,5 @@
 package com.digitalDreams.millionaire_game;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.drawable.GradientDrawable;
@@ -11,6 +7,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.digitalDreams.millionaire_game.alpha.AudioManager;
 import com.google.android.gms.ads.AdRequest;
@@ -100,7 +100,7 @@ public class HistoryDetails extends AppCompatActivity {
 
 
         bg = findViewById(R.id.rootview);
-        new Particles(this, bg, R.layout.image_xml, 20);
+    //    new Particles(this, bg, R.layout.image_xml, 20);
         GradientDrawable gd = new GradientDrawable(
                 GradientDrawable.Orientation.TOP_BOTTOM,
                 new int[]{startColor, endcolor});

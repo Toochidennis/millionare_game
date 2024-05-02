@@ -7,8 +7,8 @@ import static com.digitalDreams.millionaire_game.alpha.Constants.PREF_NAME;
 import static com.digitalDreams.millionaire_game.alpha.Constants.SHOULD_CONTINUE_GAME;
 import static com.digitalDreams.millionaire_game.alpha.Constants.SHOULD_REFRESH_QUESTION;
 import static com.digitalDreams.millionaire_game.alpha.Constants.SOUND;
+import static com.digitalDreams.millionaire_game.alpha.Constants.getCountryResource;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -25,7 +25,6 @@ import android.view.animation.AnimationSet;
 import android.view.animation.AnimationUtils;
 import android.view.animation.DecelerateInterpolator;
 import android.view.animation.TranslateAnimation;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -40,13 +39,21 @@ import com.android.volley.toolbox.Volley;
 import com.digitalDreams.millionaire_game.alpha.AudioManager;
 import com.digitalDreams.millionaire_game.alpha.testing.GameActivity4;
 import com.google.android.gms.ads.AdError;
-import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.FullScreenContentCallback;
 import com.google.android.gms.ads.identifier.AdvertisingIdClient;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.Reader;
+import java.io.StringWriter;
+import java.io.Writer;
+import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
@@ -107,8 +114,8 @@ public class FailureActivity extends AppCompatActivity {
         btn_forAnim.startAnimation(aniFade);
 
 
-        LinearLayout adViewContainer = findViewById(R.id.adview_container);
-        AdManager.loadBanner(this, adViewContainer);
+        AdView adView = findViewById(R.id.adView);
+        AdManager.loadBanner(adView);
 
         showInterstitialAd();
 
@@ -133,7 +140,7 @@ public class FailureActivity extends AppCompatActivity {
         new MyAnimation(btn_forAnim);
         RelativeLayout rootView = findViewById(R.id.rootview);
 
-        new Particles(this, rootView, R.layout.image_xml, 20);
+        //    new Particles(this, rootView, R.layout.image_xml, 20);
         GradientDrawable gradientDrawable = new GradientDrawable(
                 GradientDrawable.Orientation.TOP_BOTTOM,
                 new int[]{startColor, endColor});
@@ -392,6 +399,8 @@ public class FailureActivity extends AppCompatActivity {
         String highScore = sharedPreferences.getString("high_score", "0");
         String username = sharedPreferences.getString("username", "");
         String country = sharedPreferences.getString("country", "");
+        String countryId = sharedPreferences.getString("country_id", "0");
+        String languageCode = sharedPreferences.getString("language", "en");
         String country_flag = sharedPreferences.getString("country_flag", "");
         String newAmountWon = sharedPreferences.getString("amountWon", "0");
         int totalAmountWon = sharedPreferences.getInt("totalAmountWon", 0);
@@ -418,9 +427,9 @@ public class FailureActivity extends AppCompatActivity {
             userDetails.put("username", username);
             userDetails.put("country", country);
             userDetails.put("country_flag", country_flag);
+            userDetails.put("country_id", getCountryId(country, languageCode));
 
             sendScoreToSever(String.valueOf(totalAmount2), userDetails);
-
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -438,12 +447,13 @@ public class FailureActivity extends AppCompatActivity {
                 try {
                     country_json.put("name", userDetails.get("country"));
                     country_json.put("url", userDetails.get("country_flag"));
+                    country_json.put("id", userDetails.get("country_id"));
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
                 param.put("score", score);
                 param.put("username", userDetails.get("username"));
-                param.put("country", userDetails.get("country"));
+                param.put("country", userDetails.get("country_id"));
                 param.put("country_json", country_json.toString());
                 param.put("country_flag", userDetails.get("country_flag"));
                 param.put("avatar", getAvatar());
@@ -461,6 +471,50 @@ public class FailureActivity extends AppCompatActivity {
     private String getAvatar() {
         SharedPreferences sharedPreferences = getSharedPreferences("settings", Context.MODE_PRIVATE);
         return sharedPreferences.getString("avatar", "");
+    }
+
+    @NonNull
+    private String getCountryId(String countryName, String languageCode) {
+        if (countryName.equals("default")) {
+            return "0";
+        } else {
+            try {
+                String json = readRawTextFile(getCountryResource(languageCode));
+                JSONArray jsonArray = new JSONArray(json);
+
+                for (int j = 0; j < jsonArray.length(); j++) {
+                    JSONObject obj1 = jsonArray.getJSONObject(j);
+                    String name = obj1.getString("name").trim();
+                    if (name.equalsIgnoreCase(countryName.trim())) {
+                        return String.valueOf(j);
+                    }
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
+        return "0";
+    }
+
+
+    private String readRawTextFile(int resId) throws IOException {
+        InputStream is = getResources().openRawResource(resId);
+        Writer writer = new StringWriter();
+        char[] buffer = new char[10024];
+        try {
+            Reader reader = new BufferedReader(new InputStreamReader(is, StandardCharsets.UTF_8));
+            int n;
+            while ((n = reader.read(buffer)) != -1) {
+                writer.write(buffer, 0, n);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            is.close();
+        }
+
+        return writer.toString();
     }
 
     public static String getDeviceId(Context context) {

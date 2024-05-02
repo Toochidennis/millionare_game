@@ -62,6 +62,7 @@ import com.digitalDreams.millionaire_game.alpha.testing.database.DatabaseProvide
 import com.digitalDreams.millionaire_game.alpha.testing.database.Question
 import com.digitalDreams.millionaire_game.alpha.testing.database.QuestionDao
 import com.google.android.gms.ads.AdError
+import com.google.android.gms.ads.AdView
 import com.google.android.gms.ads.FullScreenContentCallback
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -111,7 +112,7 @@ class GameActivity4 : AppCompatActivity(), OnOptionsClickListener {
     private lateinit var refreshImageView: ImageView
     private lateinit var refreshVideoImageView: ImageView
     private lateinit var optionsRecyclerView: RecyclerView
-    private lateinit var adViewContainer: LinearLayout
+    private lateinit var adView: AdView
 
     private lateinit var optionsAdapter2: OptionsAdapter2
     private lateinit var sharedPreferences: SharedPreferences
@@ -246,13 +247,13 @@ class GameActivity4 : AppCompatActivity(), OnOptionsClickListener {
         refreshVideoImageView = findViewById(R.id.video_imageview)
         optionsRecyclerView = findViewById(R.id.options_recyclerView)
         questionProgressTextView = findViewById(R.id.question_progress)
-        adViewContainer = findViewById(R.id.adview_container)
+        adView = findViewById(R.id.adView)
 
         // Initialise shared preferences
         sharedPreferences = getSharedPreferences(PREF_NAME, MODE_PRIVATE)
 
         // Load advertisement view
-        loadBanner(this, adViewContainer)
+        loadBanner(adView)
     }
 
     private fun initializeDatabase() {
@@ -1079,7 +1080,8 @@ class GameActivity4 : AppCompatActivity(), OnOptionsClickListener {
         if (!isSavedInstance) {
             clearSavedProgress()
         }
-        adViewContainer.removeAllViews()
+        adView.destroy()
+
 
         val durationMillis = System.currentTimeMillis() - startTimeMillis
         val durationString: String = formatDuration(durationMillis)
