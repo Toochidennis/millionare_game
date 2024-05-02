@@ -30,6 +30,7 @@ import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import com.digitalDreams.millionaire_game.alpha.AudioManager;
 import com.digitalDreams.millionaire_game.alpha.testing.GameActivity4;
+import com.google.android.gms.ads.AdView;
 
 import java.util.Locale;
 
@@ -75,9 +76,8 @@ public class Dashboard extends AppCompatActivity {
             e.printStackTrace();
         }
 
-
-        LinearLayout adViewContainer = findViewById(R.id.adview_container);
-        AdManager.loadBanner(this, adViewContainer);
+        AdView adView = findViewById(R.id.adView);
+        AdManager.loadBanner(adView);
 
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
         getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
@@ -93,7 +93,7 @@ public class Dashboard extends AppCompatActivity {
         leaderboardText = findViewById(R.id.leaderboard_text);
         bg = findViewById(R.id.rootview);
 
-        new Particles(this, bg, R.layout.image_xml, 20);
+    //    new Particles(this, bg, R.layout.image_xml, 20);
         GradientDrawable gd = new GradientDrawable(
                 GradientDrawable.Orientation.TOP_BOTTOM,
                 new int[]{startColor, endColor});

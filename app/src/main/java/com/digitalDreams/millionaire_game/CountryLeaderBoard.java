@@ -43,8 +43,6 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.digitalDreams.millionaire_game.alpha.AudioManager;
 import com.google.android.gms.ads.AdError;
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.FullScreenContentCallback;
 
 
@@ -249,7 +247,7 @@ public class CountryLeaderBoard extends AppCompatActivity {
                 | View.SYSTEM_UI_FLAG_IMMERSIVE);
 
         RelativeLayout bg = findViewById(R.id.rootview);
-        new Particles(this, bg, R.layout.image_xml, 20);
+     //   new Particles(this, bg, R.layout.image_xml, 20);
         GradientDrawable gd = new GradientDrawable(
                 GradientDrawable.Orientation.TOP_BOTTOM,
                 new int[]{startColor, endcolor});

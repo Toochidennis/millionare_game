@@ -65,7 +65,7 @@ public class CountDownActivity extends AppCompatActivity {
         getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
                 | View.SYSTEM_UI_FLAG_IMMERSIVE);
 
-        new Particles(this, relativeLayout, R.layout.image_xml, 20);
+      //  new Particles(this, relativeLayout, R.layout.image_xml, 20);
 
         GradientDrawable gradientDrawable = new GradientDrawable(
                 GradientDrawable.Orientation.TOP_BOTTOM,
