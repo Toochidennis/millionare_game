@@ -54,7 +54,7 @@ public class SettingActivity extends AppCompatActivity {
                 | View.SYSTEM_UI_FLAG_IMMERSIVE);
 
         bg = findViewById(R.id.rootview);
-        new Particles(this, bg, R.layout.image_xml, 20);
+       // new Particles(this, bg, R.layout.image_xml, 20);
         GradientDrawable gradientDrawable = new GradientDrawable(
                 GradientDrawable.Orientation.TOP_BOTTOM,
                 new int[]{startColor, endColor});
