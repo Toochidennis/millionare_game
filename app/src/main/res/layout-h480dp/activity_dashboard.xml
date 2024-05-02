@@ -396,17 +396,17 @@
                 android:layout_centerInParent="true"
                 android:text="@string/goto_youtube"
                 android:textColor="@color/white"
-                android:textSize="20dp"
+                android:textSize="20sp"
                 android:textStyle="bold" />
         </RelativeLayout>
     </LinearLayout>
 
-    <LinearLayout
-        android:id="@+id/adview_container"
+    <com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/adView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_marginTop="1dp"
-        android:orientation="vertical" />
+        ads:adSize="BANNER"
+        ads:adUnitId="@string/banner_ad_unit" />
 
 </RelativeLayout>
