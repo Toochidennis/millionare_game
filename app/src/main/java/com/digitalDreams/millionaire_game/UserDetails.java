@@ -135,7 +135,6 @@ public class UserDetails extends AppCompatActivity {
 
             Utils.saveAnonymouseUser(UserDetails.this);
             navigate();
-
         });
 
 
