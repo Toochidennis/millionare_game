@@ -98,6 +98,12 @@ object AdManager {
     }
 
     @JvmStatic
+    fun loadBanner(adView: AdView){
+        val adRequest = AdRequest.Builder().build()
+        adView.loadAd(adRequest)
+    }
+
+    @JvmStatic
     fun loadBanner(activity: Activity, adViewContainer: LinearLayout) {
         val adView = AdView(activity)
         adView.setAdSize(adSize(activity, adViewContainer))

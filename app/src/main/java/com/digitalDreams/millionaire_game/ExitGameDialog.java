@@ -67,7 +67,7 @@ public class ExitGameDialog extends Dialog {
         boolean isFinishLevel = sharedPreferences.getBoolean("isFinishLevel", false);
 
         LinearLayout bg = findViewById(R.id.rootview);
-        new Particles(context, bg, R.layout.image_xml, 20);
+       // new Particles(context, bg, R.layout.image_xml, 20);
         GradientDrawable gd = new GradientDrawable(
                 GradientDrawable.Orientation.TOP_BOTTOM,
                 new int[]{startColor, endColor});
