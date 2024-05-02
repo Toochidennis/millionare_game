@@ -43,6 +43,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.digitalDreams.millionaire_game.alpha.AudioManager;
 import com.digitalDreams.millionaire_game.alpha.testing.GameActivity4;
+import com.google.android.gms.ads.identifier.AdvertisingIdClient;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -239,9 +240,13 @@ public class PlayDetailsActivity extends AppCompatActivity {
 
 
     public static String getDeviceId(Context context) {
-        String id = Settings.Secure.getString(context.getContentResolver(),
-                Settings.Secure.ANDROID_ID);
-        return id;
+        try {
+            return AdvertisingIdClient.getAdvertisingIdInfo(context).getId();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return  Settings.Secure.getString(context.getContentResolver(),
+               Settings.Secure.ANDROID_ID);
     }
 
     public void takeScreenshot() {

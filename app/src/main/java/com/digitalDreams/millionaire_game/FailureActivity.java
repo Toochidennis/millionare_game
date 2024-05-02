@@ -7,8 +7,8 @@ import static com.digitalDreams.millionaire_game.alpha.Constants.PREF_NAME;
 import static com.digitalDreams.millionaire_game.alpha.Constants.SHOULD_CONTINUE_GAME;
 import static com.digitalDreams.millionaire_game.alpha.Constants.SHOULD_REFRESH_QUESTION;
 import static com.digitalDreams.millionaire_game.alpha.Constants.SOUND;
-import static com.digitalDreams.millionaire_game.alpha.Constants.getCountryResource;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -16,6 +16,7 @@ import android.graphics.drawable.GradientDrawable;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.provider.Settings;
 import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
@@ -43,20 +44,10 @@ import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.FullScreenContentCallback;
 import com.google.android.gms.ads.identifier.AdvertisingIdClient;
 
-import org.json.JSONArray;
 import org.json.JSONObject;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.Reader;
-import java.io.StringWriter;
-import java.io.Writer;
-import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.UUID;
 
 public class FailureActivity extends AppCompatActivity {
     long time;
@@ -427,7 +418,7 @@ public class FailureActivity extends AppCompatActivity {
             userDetails.put("username", username);
             userDetails.put("country", country);
             userDetails.put("country_flag", country_flag);
-            userDetails.put("country_id", getCountryId(country, languageCode));
+            userDetails.put("country_id", countryId);
 
             sendScoreToSever(String.valueOf(totalAmount2), userDetails);
         } catch (Exception e) {
@@ -460,6 +451,7 @@ public class FailureActivity extends AppCompatActivity {
                 param.put("device_id", getDeviceId(FailureActivity.this));
                 param.put("game_type", "millionaire");
                 param.put("mode", modeValue);
+                Log.d("param", "" + param);
                 return param;
             }
         };
@@ -473,57 +465,15 @@ public class FailureActivity extends AppCompatActivity {
         return sharedPreferences.getString("avatar", "");
     }
 
-    @NonNull
-    private String getCountryId(String countryName, String languageCode) {
-        if (countryName.equals("default")) {
-            return "0";
-        } else {
-            try {
-                String json = readRawTextFile(getCountryResource(languageCode));
-                JSONArray jsonArray = new JSONArray(json);
-
-                for (int j = 0; j < jsonArray.length(); j++) {
-                    JSONObject obj1 = jsonArray.getJSONObject(j);
-                    String name = obj1.getString("name").trim();
-                    if (name.equalsIgnoreCase(countryName.trim())) {
-                        return String.valueOf(j);
-                    }
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-
-        return "0";
-    }
-
-
-    private String readRawTextFile(int resId) throws IOException {
-        InputStream is = getResources().openRawResource(resId);
-        Writer writer = new StringWriter();
-        char[] buffer = new char[10024];
-        try {
-            Reader reader = new BufferedReader(new InputStreamReader(is, StandardCharsets.UTF_8));
-            int n;
-            while ((n = reader.read(buffer)) != -1) {
-                writer.write(buffer, 0, n);
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            is.close();
-        }
-
-        return writer.toString();
-    }
-
+    @SuppressLint("HardwareIds")
     public static String getDeviceId(Context context) {
         try {
             return AdvertisingIdClient.getAdvertisingIdInfo(context).getId();
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return UUID.randomUUID().toString();
+        return  Settings.Secure.getString(context.getContentResolver(),
+                Settings.Secure.ANDROID_ID);
     }
 
 
