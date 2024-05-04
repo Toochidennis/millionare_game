@@ -90,7 +90,7 @@
     <string name="play_history">Lịch sử chơi</string>
     <string name="give_up"><u>Từ bỏ</u></string>
     <string name="hello_blank_fragment">Xin chào, đoạn văn trống</string>
-    <string name="anonymous_user">Người dùng ẩn danh</string>
+    <string name="anonymous_user">Anonymous user</string>
     <string name="readmore">Đọc thêm</string>
     <string name="loading_image">Đang tải ảnh</string>
     <string name="please_wait">Vui lòng đợi…</string>
