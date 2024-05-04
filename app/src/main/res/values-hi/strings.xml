@@ -91,7 +91,7 @@
     <string name="give_up"><u>छोड़ दो</u></string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name='hello_blank_fragment'>हैलो खाली टुकड़ा</string>
-    <string name='anonymous_user'>गुमनाम उपयोगकर्ता</string>
+    <string name='anonymous_user'>Anonymous user</string>
     <string name='readmore'>और पढ़ें</string>
     <string name='loading_image'>छवि लोड हो रही है</string>
     <string name='please_wait'>कृपया प्रतीक्षा करें…</string>

@@ -90,7 +90,7 @@
     <string name="give_up"><u>Menyerah</u></string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Halo fragmen kosong</string>
-    <string name="anonymous_user">Pengguna anonim</string>
+    <string name="anonymous_user">Anonymous user</string>
     <string name="readmore">Baca Selengkapnya</string>
     <string name="loading_image">Memuat gambar</string>
     <string name="please_wait">Mohon tunggu…</string>

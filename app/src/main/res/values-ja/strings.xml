@@ -91,7 +91,7 @@
     <string name="give_up"><u>あきらめる</u></string>
     <!-- TODO: このプレースホルダー テキストを削除または変更します -->
     <string name="hello_blank_fragment">ブランクフラグメントへようこそ</string>
-    <string name="anonymous_user">匿名ユーザー</string>
+    <string name="anonymous_user">Anonymous user</string>
     <string name="readmore">続きを読む</string>
     <string name="loading_image">画像を読み込み中</string>
     <string name="please_wait">お待ちください…</string>
