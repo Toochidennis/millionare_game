@@ -92,7 +92,7 @@
     <string name="give_up"><u>Abandonar</u></string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Salut fragment vide</string>
-    <string name="anonymous_user">Usuario anónimo</string>
+    <string name="anonymous_user">Anonymous user</string>
     <string name="readmore">Leer más</string>
     <string name="loading_image">Cargando imagen</string>
     <string name="please_wait">Espere por favor…</string>

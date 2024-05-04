@@ -91,7 +91,7 @@
     <string name="count_down_level">Niveau</string>
     <string name="give_up"><ul>Abandonner</ul></string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="anonymous_user">Utilisateur anonyme</string>
+    <string name="anonymous_user">Anonymous user</string>
     <string name="readmore">lire la suite</string>
     <string name="loading_image">Chargement de l\'image</string>
     <string name="please_wait">S\'il vous plaît, attendez…</string>

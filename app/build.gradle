@@ -13,20 +13,13 @@ android {
         minSdkVersion 21
         targetSdk 34
 
-        versionCode 157
+        versionCode 158
 
-        versionName "6.2.9.5"
+        versionName "6.2.9.6"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
-    signingConfigs {
-        release {
-            storeFile file("$projectDir/millionaire.jks")
-            storePassword "millionaire"
-            keyAlias "key0"
-            keyPassword "millionaire"
-        }
-    }
+
 
     buildTypes {
         release {
