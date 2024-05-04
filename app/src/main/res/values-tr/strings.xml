@@ -91,7 +91,7 @@
     <string name="give_up"><u>Vazgeç</u></string>
     <!-- TODO: Bu yer tutucu metni kaldırın veya değiştirin -->
     <string name="hello_blank_fragment">Merhaba boş parça</string>
-    <string name="anonymous_user">Anonim kullanıcı</string>
+    <string name="anonymous_user">Anonymous user</string>
     <string name="readmore">Daha Fazla Oku</string>
     <string name="loading_image">Resim Yükleniyor</string>
     <string name="please_wait">Lütfen bekleyin…</string>

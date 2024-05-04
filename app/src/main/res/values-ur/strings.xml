@@ -91,7 +91,7 @@
     <string name="give_up"><u>ہار</u></string>
     <!-- ٹوڈو: اس پلیس ہولڈر متن کو ہٹائیں یا تبدیل کریں -->
     <string name="hello_blank_fragment">ہیلو خالی ٹکڑا</string>
-    <string name = "anonymous_user"> گمنام صارف</string>
+    <string name = "anonymous_user">Anonymous user</string>
     <string name="readmore">مزید پڑھیں</string>
     <string name="loading_image">تصویر لوڈ ہو رہی ہے</string>
     <string name="please_wait">براہ کرم انتظار کریں…</string>

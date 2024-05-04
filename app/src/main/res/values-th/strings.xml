@@ -85,7 +85,7 @@
     <string name="give_up"><u>ยอมแพ้</u></string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">สวัสดี fragment ว่างเปล่า</string>
-    <string name="anonymous_user">ผู้ใช้ที่ไม่ระบุชื่อ</string>
+    <string name="anonymous_user">Anonymous user</string>
     <string name="readmore">อ่านเพิ่มเติม</string>
     <string name="loading_image">กำลังโหลดรูปภาพ</string>
     <string name="please_wait">โปรดรอ…</string>
