@@ -132,14 +132,12 @@ public class UserDetails extends AppCompatActivity {
 
 
         close_container.setOnClickListener(view -> {
-
             Utils.saveAnonymouseUser(UserDetails.this);
             navigate();
         });
 
 
         country_name.setOnClickListener(v -> {
-
             // Initialize dialog
             dialog = new Dialog(UserDetails.this);
 
@@ -160,7 +158,6 @@ public class UserDetails extends AppCompatActivity {
 
             dialog.show();
 
-
             EditText editText = dialog.findViewById(R.id.edit_text);
             ListView listView = dialog.findViewById(R.id.list_view);
 
@@ -177,9 +174,8 @@ public class UserDetails extends AppCompatActivity {
 
             });
 
-
             // Initialize array adapter
-            ArrayAdapter<String> adapter1 = new ArrayAdapter<String>(UserDetails.this, R.layout.single_tv, countries);
+            ArrayAdapter<String> adapter1 = new ArrayAdapter<>(UserDetails.this, R.layout.single_tv, countries);
 
             // set adapter
             listView.setAdapter(adapter1);
@@ -310,7 +306,6 @@ public class UserDetails extends AppCompatActivity {
                 flags.add(flag);
                 countryIds.add(id);
             }
-
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -338,7 +333,6 @@ public class UserDetails extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-
         navigate();
         super.onBackPressed();
     }

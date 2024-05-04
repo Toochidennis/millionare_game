@@ -482,7 +482,6 @@ public class FailureActivity extends AppCompatActivity {
         return cm.getActiveNetworkInfo() != null && cm.getActiveNetworkInfo().isConnected();
     }
 
-
     public void backToGameActivity() {
         updateSoundState();
         updateSharedPreference(true);

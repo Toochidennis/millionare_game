@@ -3,6 +3,7 @@ package com.digitalDreams.millionaire_game;
 import static com.digitalDreams.millionaire_game.alpha.Constants.formatCurrency;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
@@ -239,6 +240,7 @@ public class PlayDetailsActivity extends AppCompatActivity {
     }
 
 
+    @SuppressLint("HardwareIds")
     public static String getDeviceId(Context context) {
         try {
             return AdvertisingIdClient.getAdvertisingIdInfo(context).getId();
@@ -518,8 +520,7 @@ public class PlayDetailsActivity extends AppCompatActivity {
     private void initializeNotification() {
         AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
 
-
-        //makeNotificationChannel("4","noti",1);
+        //makeNotificationChannel("4","",1);
         final int flag = Build.VERSION.SDK_INT >= Build.VERSION_CODES.M ? PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE : PendingIntent.FLAG_UPDATE_CURRENT;
 
         PendingIntent servicePendingIntent =
