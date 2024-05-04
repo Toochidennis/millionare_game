@@ -91,7 +91,7 @@
     <string name="give_up"><u>Gib auf</u></string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hallo leeres Fragment</string>
-    <string name="anonymous_user">Anonymer Benutzer</string>
+    <string name="anonymous_user">Anonymous user</string>
     <string name="readmore">Weiterlesen</string>
     <string name="loading_image">Bild wird geladen</string>
     <string name="please_wait">Bitte warten…</string>

@@ -91,7 +91,7 @@
     <string name="give_up"><u>يستسلم</u></string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">مرحبا جزء فارغ</string>
-    <string name="anonymous_user">مستخدم مجهول</string>
+    <string name="anonymous_user">Anonymous user</string>
     <string name="readmore">اقرأ أكثر</string>
     <string name="loading_image">جارٍ تحميل الصورة</string>
     <string name="please_wait">انتظر من فضلك…</string>
