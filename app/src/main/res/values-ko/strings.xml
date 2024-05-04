@@ -92,7 +92,7 @@
     <string name="give_up"><u>포기하기</u></string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">안녕하세요 공백 프래그먼트</string>
-    <string name="anonymous_user">익명 사용자</string>
+    <string name="anonymous_user">Anonymous user</string>
     <string name="readmore">더 읽기</string>
     <string name="loading_image">이미지 로드 중</string>
     <string name="please_wait">잠시 기다려주세요…</string>

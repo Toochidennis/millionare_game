@@ -90,7 +90,7 @@
     <string name="play_history">Histórico de Jogo</string>
     <string name="give_up"><u>Desistir</u></string>
     <string name="hello_blank_fragment">Olá fragmento em branco</string>
-    <string name="anonymous_user">Usuário anônimo</string>
+    <string name="anonymous_user">Anonymous user</string>
     <string name="readmore">Leia Mais</string>
     <string name="loading_image">Carregando imagem</string>
     <string name="please_wait">Por favor, aguarde…</string>
