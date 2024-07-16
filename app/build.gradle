@@ -19,7 +19,14 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
-
+    signingConfigs {
+        release {
+            storeFile file("$projectDir/millionaire.jks")
+            storePassword "millionaire"
+            keyAlias "key0"
+            keyPassword "millionaire"
+        }
+    }
 
     buildTypes {
         release {
@@ -67,7 +74,7 @@ dependencies {
     implementation 'com.android.volley:volley:1.1.1'
     implementation 'androidx.localbroadcastmanager:localbroadcastmanager:1.1.0'
     //noinspection GradleCompatible
-    implementation 'com.google.android.gms:play-services-ads:23.0.0'
+    implementation 'com.google.android.gms:play-services-ads:23.2.0'
     implementation 'androidx.core:core-animation:1.0.0-alpha02'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     //implementation 'androidx.lifecycle:lifecycle-process:2.5.1'

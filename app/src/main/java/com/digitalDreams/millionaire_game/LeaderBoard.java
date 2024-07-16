@@ -334,7 +334,7 @@ public class LeaderBoard extends AppCompatActivity {
         progressBar.setVisibility(View.VISIBLE);
         String url = "https://www.ddgames.net/api/get";
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url, response -> {
-            Log.i("responseweek", "response " + response);
+            Log.i("response week", "response " + response);
             progressBar.setVisibility(View.GONE);
             if (response != null) {
                 try {
