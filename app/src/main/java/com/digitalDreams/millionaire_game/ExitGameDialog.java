@@ -56,8 +56,8 @@ public class ExitGameDialog extends Dialog {
         setContentView(R.layout.exit_dialog_2);
         //adManager =  new AdManager(context);
 
-        AdManager.loadInterstitialAd(context);
-        AdManager.loadRewardedAd(context);
+/*        AdManager.loadInterstitialAd(context);
+        AdManager.loadRewardedAd(context);*/
 
         SharedPreferences sharedPreferences = context.getSharedPreferences("settings", Context.MODE_PRIVATE);
         int endColor = sharedPreferences.getInt("end_color", context.getResources().getColor(R.color.purple_dark));
@@ -80,9 +80,10 @@ public class ExitGameDialog extends Dialog {
 
         takeMoneyBtn.setOnClickListener(view -> {
             AudioManager.darkBlueBlink(context, takeMoneyBtn);
-            showInterstitial();
+          //  showInterstitial();
             stopBackgroundMusic();
             takeMoneyBtn.setClickable(false);
+            exitGame();
         });
 
         TextView amountWonText = findViewById(R.id.amount_won);

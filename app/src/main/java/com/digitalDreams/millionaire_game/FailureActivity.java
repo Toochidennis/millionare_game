@@ -40,7 +40,6 @@ import com.android.volley.toolbox.Volley;
 import com.digitalDreams.millionaire_game.alpha.AudioManager;
 import com.digitalDreams.millionaire_game.alpha.testing.GameActivity4;
 import com.google.android.gms.ads.AdError;
-import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.FullScreenContentCallback;
 import com.google.android.gms.ads.identifier.AdvertisingIdClient;
 
@@ -72,8 +71,8 @@ public class FailureActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        AdManager.loadInterstitialAd(this);
-        AdManager.loadRewardedAd(this);
+  /*      AdManager.loadInterstitialAd(this);
+        AdManager.loadRewardedAd(this);*/
     }
 
     @Override
@@ -105,10 +104,10 @@ public class FailureActivity extends AppCompatActivity {
         btn_forAnim.startAnimation(aniFade);
 
 
-        AdView adView = findViewById(R.id.adView);
+       /* AdView adView = findViewById(R.id.adView);
         AdManager.loadBanner(adView);
 
-        showInterstitialAd();
+        showInterstitialAd();*/
 
         SharedPreferences sharedPreferences = getSharedPreferences("settings", Context.MODE_PRIVATE);
         int endColor = sharedPreferences.getInt("end_color", getResources().getColor(R.color.purple_dark));
@@ -151,10 +150,11 @@ public class FailureActivity extends AppCompatActivity {
                 new_games.setClickable(false);
 
                 stopBackgroundMusic();
+                restartGame();
 
-                AdManager.showInterstitial(FailureActivity.this);
+            //    AdManager.showInterstitial(FailureActivity.this);
 
-                if (AdManager.interstitialAd != null) {
+               /* if (AdManager.interstitialAd != null) {
                     AdManager.interstitialAd.setFullScreenContentCallback(new FullScreenContentCallback() {
                         @Override
                         public void onAdClicked() {
@@ -177,7 +177,7 @@ public class FailureActivity extends AppCompatActivity {
 
                 } else {
                     restartGame();
-                }
+                }*/
             }
         });
 
@@ -233,7 +233,7 @@ public class FailureActivity extends AppCompatActivity {
 
                 continueBtn.setClickable(false);
 
-                AdManager.showRewardedAd(FailureActivity.this);
+               // AdManager.showRewardedAd(FailureActivity.this);
 
                 try {
                     if (AdManager.rewardedAd != null) {
@@ -367,7 +367,7 @@ public class FailureActivity extends AppCompatActivity {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        AdManager.disposeAds();
+      //  AdManager.disposeAds();
         AudioManager.releaseMusicResources();
     }
 
