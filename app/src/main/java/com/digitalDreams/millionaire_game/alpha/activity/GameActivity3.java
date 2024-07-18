@@ -1,6 +1,5 @@
 package com.digitalDreams.millionaire_game.alpha.activity;
 
-import static com.digitalDreams.millionaire_game.AdManager.disposeAds;
 import static com.digitalDreams.millionaire_game.alpha.AudioManager.pauseBackgroundMusic;
 import static com.digitalDreams.millionaire_game.alpha.AudioManager.playBackgroundMusic;
 import static com.digitalDreams.millionaire_game.alpha.AudioManager.playFailureSound;
@@ -57,7 +56,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.digitalDreams.millionaire_game.AdManager;
 import com.digitalDreams.millionaire_game.CountDownActivity;
 import com.digitalDreams.millionaire_game.DBHelper;
 import com.digitalDreams.millionaire_game.ExitGameDialog;
@@ -283,7 +281,7 @@ public class GameActivity3 extends AppCompatActivity implements OnOptionsClickLi
     private void handleViewsClick() {
         minus2QuestionsButton.setOnClickListener(minus -> hideTwoQuestions());
 
-        resetQuestionButton.setOnClickListener(reset -> skipQuestion());
+   //     resetQuestionButton.setOnClickListener(reset -> skipQuestion());
 
         askComputerButton.setOnClickListener(ask -> askComputer());
 
@@ -640,11 +638,11 @@ public class GameActivity3 extends AppCompatActivity implements OnOptionsClickLi
     }
 
     private void initializeAds() {
-        AdManager.loadInterstitialAd(this);
-        AdManager.loadRewardedAd(this);
+      //  AdManager.loadInterstitialAd(this);
+      //  AdManager.loadRewardedAd(this);
     }
 
-    private void skipQuestion() {
+ /*   private void skipQuestion() {
         if (Utils.isOnline(this)) {
             try {
                 AdManager.showRewardedAd(this);
@@ -671,7 +669,7 @@ public class GameActivity3 extends AppCompatActivity implements OnOptionsClickLi
         } else {
             showToast();
         }
-    }
+    }*/
 
     private void hideTwoQuestions() {
         String correctAnswer = questionModel.getCorrectText();
@@ -1031,7 +1029,7 @@ public class GameActivity3 extends AppCompatActivity implements OnOptionsClickLi
         stopBackgroundMusic();
         releaseMusicResources();
         updateMusicState(false);
-        disposeAds();
+        //disposeAds();
         cancelTimer();
 
         long durationMillis = System.currentTimeMillis() - startTimeMillis;

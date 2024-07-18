@@ -24,13 +24,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
-import com.digitalDreams.millionaire_game.AdManager
-import com.digitalDreams.millionaire_game.AdManager.loadBanner
 import com.digitalDreams.millionaire_game.CountDownActivity
 import com.digitalDreams.millionaire_game.ExitGameDialog
 import com.digitalDreams.millionaire_game.FailureActivity
 import com.digitalDreams.millionaire_game.R
-import com.digitalDreams.millionaire_game.Utils
 import com.digitalDreams.millionaire_game.WinnersActivity
 import com.digitalDreams.millionaire_game.WrongAnswerDialog
 import com.digitalDreams.millionaire_game.alpha.AudioManager
@@ -61,9 +58,7 @@ import com.digitalDreams.millionaire_game.alpha.models.OptionsModel
 import com.digitalDreams.millionaire_game.alpha.testing.database.DatabaseProvider
 import com.digitalDreams.millionaire_game.alpha.testing.database.Question
 import com.digitalDreams.millionaire_game.alpha.testing.database.QuestionDao
-import com.google.android.gms.ads.AdError
 import com.google.android.gms.ads.AdView
-import com.google.android.gms.ads.FullScreenContentCallback
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
@@ -155,11 +150,11 @@ class GameActivity4 : AppCompatActivity(), OnOptionsClickListener {
     }
 
     // Called when the activity is starting. Responsible for initializing ads.
-    override fun onStart() {
+/*    override fun onStart() {
         super.onStart()
         initializeAds()
         updateMusicState(true)
-    }
+    }*/
 
     // Called when the activity is being created. Responsible for initializing the game or resuming it.
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -253,7 +248,7 @@ class GameActivity4 : AppCompatActivity(), OnOptionsClickListener {
         sharedPreferences = getSharedPreferences(PREF_NAME, MODE_PRIVATE)
 
         // Load advertisement view
-        loadBanner(adView)
+       // loadBanner(adView)
     }
 
     private fun initializeDatabase() {
@@ -263,11 +258,11 @@ class GameActivity4 : AppCompatActivity(), OnOptionsClickListener {
         //dbHelper = DBHelper(this)
     }
 
-    private fun initializeAds() {
+/*    private fun initializeAds() {
         // Load interstitial and rewarded ads using the AdManager
         AdManager.loadInterstitialAd(this)
         AdManager.loadRewardedAd(this)
-    }
+    }*/
 
     private fun setRootViewBackgroundColor() {
         // Get start and end colors from shared preferences, default to purple shades
@@ -295,7 +290,7 @@ class GameActivity4 : AppCompatActivity(), OnOptionsClickListener {
     private fun handleViewClicks() {
         // Set click listeners for various UI elements
         minus2QuestionsButton.setOnClickListener { hideTwoQuestions() }
-        resetQuestionButton.setOnClickListener { skipQuestion() }
+        resetQuestionButton.setOnClickListener { skipQuestion2() }
         askComputerButton.setOnClickListener { askComputer() }
         takeAPollButton.setOnClickListener { takeAPoll() }
         exitButton.setOnClickListener { showExitDialog() }
@@ -309,6 +304,7 @@ class GameActivity4 : AppCompatActivity(), OnOptionsClickListener {
         }
     }
 
+    // load questions from database
     private fun loadQuestions() {
         // Retrieve language from resources and clear existing questions list
         val language = getString(R.string.language_)
@@ -779,7 +775,7 @@ class GameActivity4 : AppCompatActivity(), OnOptionsClickListener {
      }
  */
 
-    private fun skipQuestion() {
+/*    private fun skipQuestion() {
         if (Utils.isOnline(this)) {
             try {
                 initializeAds()
@@ -806,7 +802,16 @@ class GameActivity4 : AppCompatActivity(), OnOptionsClickListener {
         } else {
             showToast()
         }
+    }*/
+
+    private fun skipQuestion2(){
+        updateRefreshQuestionState(true)
+        updateShouldContinueGame(true)
+        updateProgressState(false)
+        optionsClickable = true
+        loadQuestions()
     }
+
 
     private fun hideTwoQuestions() {
         val correctAnswer = question?.correctAnswer
@@ -1074,13 +1079,13 @@ class GameActivity4 : AppCompatActivity(), OnOptionsClickListener {
         AudioManager.stopBackgroundMusic()
         AudioManager.releaseMusicResources()
         updateMusicState(false)
-        AdManager.disposeAds()
+       // AdManager.disposeAds()
         cancelTimer()
+        //adView.destroy()
 
         if (!isSavedInstance) {
             clearSavedProgress()
         }
-        adView.destroy()
 
 
         val durationMillis = System.currentTimeMillis() - startTimeMillis
@@ -1159,7 +1164,7 @@ class GameActivity4 : AppCompatActivity(), OnOptionsClickListener {
 
     override fun onStop() {
         super.onStop()
-        AdManager.disposeAds()
+       // AdManager.disposeAds()
 
         if (!shouldPlayMusic()) {
             AudioManager.stopBackgroundMusic()
@@ -1168,8 +1173,7 @@ class GameActivity4 : AppCompatActivity(), OnOptionsClickListener {
     }
 
     @Deprecated("Deprecated in Java")
-    override fun onBackPressed() {
-    }
+    override fun onBackPressed() {}
 
     override fun onDestroy() {
         super.onDestroy()
