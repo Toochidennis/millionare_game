@@ -5,7 +5,6 @@ import static com.digitalDreams.millionaire_game.alpha.Constants.getLanguageReso
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.app.Activity;
-import android.app.Application;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
@@ -72,6 +71,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Window window = getWindow();
         //     AppOpenManager appOpenAdManager;
+
+        // Added for testing
+      //  LicensingService.verifyLicense(getApplicationContext(), new LicenseVerificationCallback());
 
 
         window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
@@ -347,8 +349,9 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onFinish() {
                         //counterTextView.setText("Done.");
+                        startDashboardActivity();
 
-                        Application application = getApplication();
+                       /* Application application = getApplication();
 
                         // If the application is not an instance of MyApplication, log an error message and
                         // start the MainActivity without showing the app open ad.
@@ -363,7 +366,7 @@ public class MainActivity extends AppCompatActivity {
                                 MainActivity.this,
                                 () -> startDashboardActivity()
                         );
-
+*/
                     }
                 };
         countDownTimer.start();

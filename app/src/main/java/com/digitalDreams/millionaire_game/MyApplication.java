@@ -35,7 +35,7 @@ import java.util.Locale;
 public class MyApplication extends Application
         implements ActivityLifecycleCallbacks, LifecycleObserver {
 
-    private AppOpenAdManager appOpenAdManager;
+   // private AppOpenAdManager appOpenAdManager;
     private Activity currentActivity;
     private final String TAG = "MyApplication";
 
@@ -46,8 +46,8 @@ public class MyApplication extends Application
         super.onCreate();
         this.registerActivityLifecycleCallbacks(this);
         ProcessLifecycleOwner.get().getLifecycle().addObserver(this);
-        AdManager.initializeAds(this);
-        appOpenAdManager = new AppOpenAdManager();
+      //  AdManager.initializeAds(this);
+      //  appOpenAdManager = new AppOpenAdManager();
     }
 
 
@@ -93,7 +93,7 @@ public class MyApplication extends Application
     @OnLifecycleEvent(Event.ON_START)
     protected void onMoveToForeground() {
         // Show the ad (if available) when the app moves to foreground.
-        appOpenAdManager.showAdIfAvailable(currentActivity);
+      //  appOpenAdManager.showAdIfAvailable(currentActivity);
     }
 
     /**
@@ -109,9 +109,9 @@ public class MyApplication extends Application
         // SDK or another activity class implemented by a third party mediation partner. Updating the
         // currentActivity only when an ad is not showing will ensure it is not an ad activity, but the
         // one that shows the ad.
-        if (!appOpenAdManager.isShowingAd) {
+       /* if (!appOpenAdManager.isShowingAd) {
             currentActivity = activity;
-        }
+        }*/
     }
 
     @Override
@@ -145,7 +145,7 @@ public class MyApplication extends Application
             @NonNull OnShowAdCompleteListener onShowAdCompleteListener) {
         // We wrap the showAdIfAvailable to enforce that other classes only interact with MyApplication
         // class.
-        appOpenAdManager.showAdIfAvailable(activity, onShowAdCompleteListener);
+        //appOpenAdManager.showAdIfAvailable(activity, onShowAdCompleteListener);
     }
 
     /**
