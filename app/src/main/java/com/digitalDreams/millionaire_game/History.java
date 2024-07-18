@@ -1,21 +1,18 @@
 package com.digitalDreams.millionaire_game;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.digitalDreams.millionaire_game.alpha.AudioManager;
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdView;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -43,12 +40,12 @@ public class History extends AppCompatActivity {
         String regex = "[^0-9]";
         String cleanedHighScore = highscore.replaceAll(regex,"");
 
-        AdManager.loadInterstitialAd(this);
+       /* AdManager.loadInterstitialAd(this);
 
         AdView mAdView;
         mAdView = findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder().build();
-        mAdView.loadAd(adRequest);
+        mAdView.loadAd(adRequest);*/
 
 
         dbHelper = new DBHelper(this);
@@ -76,14 +73,14 @@ public class History extends AppCompatActivity {
 
         close_container.setOnClickListener(view -> {
             AudioManager.darkBlueBlink(History.this,close_container);
-            AdManager.showInterstitial(History.this);
+            //AdManager.showInterstitial(History.this);
             onBackPressed();
 
         });
 
         arrow_back.setOnClickListener(view -> {
             AudioManager.darkBlueBlink(History.this,arrow_back);
-            AdManager.showInterstitial(History.this);
+          //  AdManager.showInterstitial(History.this);
             onBackPressed();
 
 
@@ -121,6 +118,6 @@ public class History extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         AudioManager.releaseMusicResources();
-        AdManager.disposeAds();
+      //  AdManager.disposeAds();
     }
 }

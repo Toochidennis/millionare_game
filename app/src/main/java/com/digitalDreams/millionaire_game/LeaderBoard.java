@@ -104,8 +104,8 @@ public class LeaderBoard extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_leader_board);
         // adManager = new AdManager(this);
-        AdManager.loadRewardedAd(this);
-        AdManager.loadInterstitialAd(this);
+       // AdManager.loadRewardedAd(this);
+       // AdManager.loadInterstitialAd(this);
 
 
         /////////////
@@ -117,9 +117,9 @@ public class LeaderBoard extends AppCompatActivity {
 
 
         LinearLayout adViewContainer = findViewById(R.id.adview_container);
-        AdManager.loadBanner(this, adViewContainer);
+      //  AdManager.loadBanner(this, adViewContainer);
 
-        loadInterstialAd();
+      //  loadInterstialAd();
 
 
         share_container = findViewById(R.id.share_container);
@@ -272,7 +272,7 @@ public class LeaderBoard extends AppCompatActivity {
         RelativeLayout closeBtn = findViewById(R.id.close_container);
         closeBtn.setOnClickListener(view -> {
             AudioManager.darkBlueBlink(this, closeBtn);
-            showInterstitial();
+         //   showInterstitial();
             closeBtn.setClickable(false);
         });
 
