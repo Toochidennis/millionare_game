@@ -145,6 +145,15 @@
         <receiver
             android:name=".NotificationService"
             android:process=":service" />
+
+        <receiver android:name="com.amazon.device.drm.ResponseReceiver"
+            android:exported="true"
+            android:permission="com.amazon.device.drm.permission.NOTIFY">
+            <intent-filter>
+                <action android:name="com.amazon.drm.NOTIFY" />
+            </intent-filter>
+        </receiver>
+
     </application>
 
 </manifest>
