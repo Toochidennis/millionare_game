@@ -75,8 +75,8 @@ public class PlayDetailsActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        AdManager.loadInterstitialAd(this);
-        AdManager.loadRewardedAd(this);
+      /*  AdManager.loadInterstitialAd(this);
+        AdManager.loadRewardedAd(this);*/
     }
 
     @RequiresApi(api = Build.VERSION_CODES.M)
@@ -92,7 +92,7 @@ public class PlayDetailsActivity extends AppCompatActivity {
 
 
         LinearLayout adViewContainer = findViewById(R.id.adview_container);
-        AdManager.loadBanner(this, adViewContainer);
+      //  AdManager.loadBanner(this, adViewContainer);
 
 
         newGameBtn = findViewById(R.id.new_game1);
@@ -339,20 +339,10 @@ public class PlayDetailsActivity extends AppCompatActivity {
 
             // Permission is not granted
             // Should we show an explanation?
-            if (ActivityCompat.shouldShowRequestPermissionRationale(PlayDetailsActivity.this,
-                    Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
-
-                ActivityCompat.requestPermissions(PlayDetailsActivity.this,
-                        new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
-                        MY_PERMISSIONS_WRITE_EXTERNAL_STORAGE);
-            } else {
-                ActivityCompat.requestPermissions(PlayDetailsActivity.this,
-                        new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
-                        MY_PERMISSIONS_WRITE_EXTERNAL_STORAGE);
-            }
+            ActivityCompat.requestPermissions(PlayDetailsActivity.this,
+                    new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                    MY_PERMISSIONS_WRITE_EXTERNAL_STORAGE);
         } else {
-
-
             takeScreenshot();
         }
     }
@@ -547,7 +537,7 @@ public class PlayDetailsActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        AdManager.disposeAds();
+      //  AdManager.disposeAds();
         AudioManager.releaseMusicResources();
     }
 }
