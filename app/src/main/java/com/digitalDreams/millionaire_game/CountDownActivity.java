@@ -1,6 +1,5 @@
 package com.digitalDreams.millionaire_game;
 
-import static com.digitalDreams.millionaire_game.alpha.AudioManager.playBackgroundMusic;
 import static com.digitalDreams.millionaire_game.alpha.Constants.APPLICATION_DATA;
 import static com.digitalDreams.millionaire_game.alpha.Constants.DELAY_INTERVAL_LONG;
 import static com.digitalDreams.millionaire_game.alpha.Constants.PREF_NAME;
@@ -42,8 +41,8 @@ public class CountDownActivity extends AppCompatActivity {
         setLocale(this);
         setContentView(R.layout.activity_count_down);
 
-        AdManager.loadInterstitialAd(this);
-        AdManager.loadRewardedAd(CountDownActivity.this);
+    /*    AdManager.loadInterstitialAd(this);
+        AdManager.loadRewardedAd(CountDownActivity.this);*/
 
         LinearLayout relativeLayout = findViewById(R.id.rootview);
         amount_to_win = findViewById(R.id.amount_to_win);
@@ -104,7 +103,7 @@ public class CountDownActivity extends AppCompatActivity {
                 //  GameActivity2.isStartAtFresh= false;
                 finish();
                 updateSoundState();
-                playBackgroundMusic(CountDownActivity.this);
+                //playBackgroundMusic(CountDownActivity.this);
             }
         };
 
@@ -113,9 +112,7 @@ public class CountDownActivity extends AppCompatActivity {
     }
 
     @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-    }
+    public void onBackPressed() {}
 
 
     private void resetData() {
@@ -130,7 +127,7 @@ public class CountDownActivity extends AppCompatActivity {
     private void updateSoundState() {
         SharedPreferences sharedPref = getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPref.edit();
-        editor.putBoolean(SOUND, false);
+        editor.putBoolean(SOUND, true);
         editor.apply();
     }
 
