@@ -30,7 +30,6 @@ import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import com.digitalDreams.millionaire_game.alpha.AudioManager;
 import com.digitalDreams.millionaire_game.alpha.testing.GameActivity4;
-import com.google.android.gms.ads.AdView;
 
 import java.util.Locale;
 
@@ -43,11 +42,13 @@ public class Dashboard extends AppCompatActivity {
 
     AlphaAnimation buttonClick = new AlphaAnimation(1F, 0.8F);
 
+/**
     @Override
     protected void onStart() {
         super.onStart();
         AdManager.loadInterstitialAd(this);
     }
+*/
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,7 +56,7 @@ public class Dashboard extends AppCompatActivity {
         setContentView(R.layout.activity_dashboard);
 
 
-        showInterstitialAd();
+      //  showInterstitialAd();
 
         SharedPreferences sharedPreferences = getSharedPreferences("settings", Context.MODE_PRIVATE);
         languageCode = sharedPreferences.getString("language", "en");
@@ -76,8 +77,8 @@ public class Dashboard extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        AdView adView = findViewById(R.id.adView);
-        AdManager.loadBanner(adView);
+       // AdView adView = findViewById(R.id.adView);
+       // AdManager.loadBanner(adView);
 
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
         getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
@@ -256,14 +257,14 @@ public class Dashboard extends AppCompatActivity {
     }
 
 
-    private void showInterstitialAd() {
+ /*   private void showInterstitialAd() {
         AdManager.showInterstitial(this);
-    }
+    }*/
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        AdManager.disposeAds();
+      //  AdManager.disposeAds();
         AudioManager.releaseMusicResources();
     }
 }

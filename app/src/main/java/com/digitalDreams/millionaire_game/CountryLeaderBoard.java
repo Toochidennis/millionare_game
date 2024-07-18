@@ -121,11 +121,11 @@ public class CountryLeaderBoard extends AppCompatActivity {
 
 
         LinearLayout adViewContainer = findViewById(R.id.adview_container);
-        AdManager.loadBanner(this, adViewContainer);
+       // AdManager.loadBanner(this, adViewContainer);
 
         //loadInterstialAd();
-        AdManager.loadInterstitialAd(this);
-        AdManager.loadInterstitialAd(this);
+       // AdManager.loadInterstitialAd(this);
+       // AdManager.loadInterstitialAd(this);
 
 
         share_container = findViewById(R.id.share_container);
@@ -263,7 +263,7 @@ public class CountryLeaderBoard extends AppCompatActivity {
             public void onClick(View view) {
 
                 AudioManager.darkBlueBlink(getApplicationContext(), closeBtn);
-                showInterstitial();
+              //  showInterstitial();
 
 
                 // onBackPressed();
@@ -857,6 +857,6 @@ public class CountryLeaderBoard extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         AudioManager.releaseMusicResources();
-        AdManager.disposeAds();
+        //AdManager.disposeAds();
     }
 }
