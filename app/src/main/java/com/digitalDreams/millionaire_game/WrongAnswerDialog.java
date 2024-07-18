@@ -45,8 +45,8 @@ public class WrongAnswerDialog extends Dialog {
         this.context = context;
 
         this.questionModel = questionModel;
-        AdManager.loadInterstitialAd((Activity) context);
-        AdManager.loadRewardedAd((Activity) context);
+     /*   AdManager.loadInterstitialAd((Activity) context);
+        AdManager.loadRewardedAd((Activity) context);*/
 
     }
 
@@ -55,8 +55,8 @@ public class WrongAnswerDialog extends Dialog {
         this.context = context;
 
         this.question = question;
-        AdManager.loadInterstitialAd((Activity) context);
-        AdManager.loadRewardedAd((Activity) context);
+     /*   AdManager.loadInterstitialAd((Activity) context);
+        AdManager.loadRewardedAd((Activity) context);*/
     }
 
 
@@ -93,7 +93,8 @@ public class WrongAnswerDialog extends Dialog {
 
     private void handleViewClicks() {
         continueButton.setOnClickListener(continue_btn ->
-                showRewardedAdWithListener()
+               // showRewardedAdWithListener()
+                showExplanationDialog()
         );
 
         giveUpButton.setOnClickListener(giveUpButton -> showExplanationDialog());
