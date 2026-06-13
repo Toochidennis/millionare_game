@@ -12,6 +12,7 @@ import android.os.Bundle
 import android.os.CountDownTimer
 import android.os.VibrationEffect
 import android.os.Vibrator
+import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
@@ -333,6 +334,8 @@ class GameActivity4 : AppCompatActivity(), OnOptionsClickListener {
                         questions.add(it)
                     }
                 }
+
+                Log.d("question", "${questions[1]}")
 
                 // Switch to the main thread to update the UI
                 withContext(Dispatchers.Main) {
